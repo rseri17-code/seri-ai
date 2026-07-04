@@ -1,35 +1,43 @@
 # seri.ai
 
-Production-grade personal brand platform for Ravi Seri. This is not a generic resume site; it is a public home for Ravi's thinking around Operational Intelligence, Agentic Systems, Transaction Intelligence, enterprise observability, AI-native incident investigation, knowledge graphs, and AI evaluation.
+seri.ai is Ravi Seri's public Operational Intelligence knowledge platform.
+
+It is not a generic resume site. It is a living product: a public wiki, architecture pattern library, AI-powered body of work, and personal operating system for thinking about Operational Intelligence, Agentic Systems, Transaction Intelligence, enterprise observability, AI-native incident investigation, knowledge graphs, operational memory, and AI evaluation.
+
+## Product Vision
+
+A visitor should leave thinking:
+
+> This is not a resume. This person has a category, a language, a system, and a serious body of thinking.
+
+The site is built around public-safe content only. Do not publish employer-specific product names, internal platform names, confidential projects, internal screenshots, logs, dashboards, proprietary architecture, or company-specific implementation details.
 
 ## Stack
 
 - Next.js App Router, React, TypeScript
 - Tailwind CSS and Framer Motion
+- MDX-style wiki notes with frontmatter
 - Supabase Postgres with pgvector
 - OpenAI or Anthropic API
 - PostHog analytics
 - Vercel deployment
 
-## Core surfaces
+## Core Routes
 
-- Home
-- Ask Ravi
-- Ideas
-- Architecture Lab
-- Projects
-- Interactive Resume
-- Interview Mode
-- Contact
-- Admin content dashboard
+- `/` — home
+- `/ask` — public-grounded Ask Ravi assistant
+- `/start-here` — audience-specific paths
+- `/wiki` — public notes and content search
+- `/principles` — Ravi's principles
+- `/patterns` — architecture pattern library
+- `/projects` — public-safe project patterns
+- `/now` — current focus areas
+- `/resume` — interactive public resume
+- `/contact` — contact form
+- `/changelog` — living product history
+- `/search` — search across wiki, principles, patterns, projects, and essays
 
-## Compliance model
-
-The app is designed for approved public content only. The assistant is instructed not to mention internal employer product names, proprietary projects, confidential platform names, internal screenshots, logs, dashboards, or architecture. Unknown or confidential questions should be refused clearly.
-
-Seeded copy is intentionally public-safe and vendor-neutral.
-
-## Local setup
+## Local Setup
 
 ```bash
 npm install
@@ -39,7 +47,7 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-## Environment variables
+## Environment Variables
 
 See `.env.example`.
 
@@ -52,14 +60,107 @@ Required for full production behavior:
 - `ADMIN_TOKEN`
 - `NEXT_PUBLIC_POSTHOG_KEY`
 
-Without model or database keys, `/ask` still runs with a local approved-content fallback so the app is demoable.
+Without model or database keys, `/ask` runs with the local approved-content fallback so the app remains demoable.
 
-## Supabase setup
+## How To Add Wiki Notes
+
+Create a new `.mdx` file in `content/wiki`.
+
+Required frontmatter:
+
+```mdx
+---
+title: "Evidence Before Conclusions"
+description: "Why AI incident systems must ground every answer in evidence."
+category: "Principles"
+tags: ["Operational Intelligence", "AI Evaluation", "Incident Intelligence"]
+status: "published"
+createdAt: "2026-07-05"
+updatedAt: "2026-07-05"
+related: ["operational-memory"]
+---
+
+Write the public-safe note here.
+```
+
+Valid statuses:
+
+- `draft` — validated but hidden from public routes and search
+- `published` — visible publicly and available to Ask Ravi
+- `archived` — retained but hidden
+
+Run validation before publishing:
+
+```bash
+npm run validate:content
+```
+
+## How To Publish Notes
+
+1. Keep the note public-safe and vendor-neutral.
+2. Set `status: "published"`.
+3. Update `updatedAt`.
+4. Run `npm run validate:content`.
+5. Run `npm run build`.
+6. Commit and push.
+
+## How To Update `/now`
+
+Edit `nowPage` in `content/site.ts`.
+
+Keep it current, specific, and public-safe. It should reflect what Ravi is actively building, studying, writing, avoiding, and exploring.
+
+## How To Add A Principle
+
+Edit the `principles` array in `content/site.ts`.
+
+Each principle needs:
+
+- `slug`
+- `statement`
+- `explanation`
+- `example`
+- `tags`
+- `related`
+
+Principles should be memorable, reusable, and connected to wiki notes or patterns.
+
+## How To Add Architecture Patterns
+
+Edit the `patterns` array in `content/site.ts`.
+
+Each pattern must include:
+
+- problem
+- context
+- forces / tradeoffs
+- architecture
+- failure modes
+- evaluation
+- when to use
+- when not to use
+- related notes
+
+Patterns should describe public-safe architecture ideas, not internal implementations.
+
+## Ask Ravi Grounding
+
+`/api/ask` retrieves only published public sources from:
+
+- wiki notes
+- principles
+- patterns
+- projects
+- essays
+
+The assistant must refuse confidential or employer-specific questions. It should say when a question is not yet covered in the public knowledge base rather than inventing claims, metrics, experience, or implementation details.
+
+## Supabase Setup
 
 1. Create a Supabase project.
 2. Run `supabase/schema.sql` in the SQL editor.
-3. Add the Supabase environment variables to Vercel.
-4. Ingest approved public content through `/api/ingest`.
+3. Add Supabase environment variables to Vercel.
+4. Ingest approved public content through `/api/ingest` if you want pgvector retrieval beyond local content.
 
 Example ingestion:
 
@@ -75,16 +176,15 @@ curl -X POST http://localhost:3000/api/ingest \
   }'
 ```
 
-## RAG behavior
+## Validation And Build
 
-`/api/ask` follows this sequence:
+```bash
+npm run validate:content
+npm run typecheck
+npm run build
+```
 
-1. Validate the request.
-2. Reject obviously confidential prompts.
-3. Retrieve approved context from Supabase pgvector when configured.
-4. Fall back to local seeded public content.
-5. Generate with OpenAI or Anthropic when configured.
-6. Return a grounded answer and source snippets.
+`npm run build` runs content validation first.
 
 ## Deployment
 
@@ -94,20 +194,17 @@ Deploy to Vercel:
 vercel
 ```
 
-Set the environment variables in Vercel project settings, then run:
+Set environment variables in Vercel project settings, then run:
 
 ```bash
 npm run build
 ```
 
-## Content operations
-
-The admin dashboard at `/admin` summarizes seeded content and points editors to the ingestion endpoint. For a hardened production deployment, protect `/admin` at the edge with SSO, Vercel password protection, or middleware that checks an authenticated session.
-
-## Recommended next production hardening
+## Recommended Production Hardening
 
 - Add SSO-backed admin authentication.
-- Store contact notifications through a transactional email provider.
-- Add source-level citations and public URL labels in the chat UI.
-- Add automated eval fixtures for refusal behavior, retrieval quality, and Ravi-style tone.
-- Add a CMS workflow for approved public articles and architecture notes.
+- Connect newsletter capture to Resend, ConvertKit, or another email provider.
+- Add automated eval fixtures for Ask Ravi refusal behavior and citation quality.
+- Move patterns and principles to MDX if editorial workflow grows.
+- Add source-level citation labels for Supabase-ingested documents.
+- Add scheduled content review for stale notes.

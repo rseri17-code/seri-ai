@@ -9,7 +9,7 @@ export type ChatMessage = {
 
 type GenerateArgs = {
   question: string;
-  context: string[];
+  context: Array<{ title: string; url: string; content: string }>;
   history?: ChatMessage[];
 };
 
@@ -19,9 +19,13 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
     publicSafetyInstruction(),
     "",
     "Approved context:",
-    context.length ? context.map((item, index) => `[${index + 1}] ${item}`).join("\n") : "No relevant public context found.",
+    context.length
+      ? context.map((item, index) => `[${index + 1}] ${item.title} (${item.url}): ${item.content}`).join("\n")
+      : "No relevant public context found.",
     "",
-    `Question: ${question}`
+    `Question: ${question}`,
+    "",
+    "Answer requirements: cite the relevant source titles inline when useful. If the approved context does not cover the question, say the public knowledge base does not cover it yet."
   ].join("\n");
 
   if (provider === "anthropic" && process.env.ANTHROPIC_API_KEY) {
@@ -55,10 +59,13 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
   }
 
   if (!context.length) {
-    return "I do not have enough approved public context to answer that. I can discuss Ravi's public work around Operational Intelligence, agentic systems, transaction intelligence, observability, knowledge graphs, and AI evaluation.";
+    return "That is not yet covered in Ravi's public knowledge base. I can discuss the published material on Operational Intelligence, agentic systems, transaction intelligence, observability, knowledge graphs, AI evaluation, and architecture patterns.";
   }
 
-  return `From Ravi's public point of view: ${context.slice(0, 3).join(" ")}\n\nI cannot discuss confidential employer-specific systems, internal product names, screenshots, logs, dashboards, or proprietary architecture.`;
+  return `From Ravi's public point of view: ${context
+    .slice(0, 3)
+    .map((item) => `${item.content} Source: ${item.title} (${item.url}).`)
+    .join(" ")}\n\nI cannot discuss confidential employer-specific systems, internal product names, screenshots, logs, dashboards, or proprietary architecture.`;
 }
 
 export async function embedText(input: string) {

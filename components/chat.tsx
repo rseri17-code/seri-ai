@@ -6,7 +6,7 @@ import type { ChatMessage } from "@/lib/ai";
 
 type ApiResponse = {
   answer: string;
-  sources: string[];
+  sources: Array<{ title: string; url: string; excerpt: string }>;
 };
 
 export function Chat({ mode = "ask" }: { mode?: "ask" | "interview" }) {
@@ -20,7 +20,7 @@ export function Chat({ mode = "ask" }: { mode?: "ask" | "interview" }) {
     }
   ]);
   const [input, setInput] = useState("");
-  const [sources, setSources] = useState<string[]>([]);
+  const [sources, setSources] = useState<Array<{ title: string; url: string; excerpt: string }>>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   async function sendMessage(question = input) {
@@ -111,7 +111,17 @@ export function Chat({ mode = "ask" }: { mode?: "ask" | "interview" }) {
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
           <h2 className="font-semibold text-white">Grounding</h2>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
-            {sources.length ? sources.map((source) => <p key={source}>{source}</p>) : <p>Sources will appear after an answer.</p>}
+            {sources.length ? (
+              sources.map((source) => (
+                <a key={`${source.title}-${source.url}`} href={source.url} className="block rounded border border-white/10 p-3 hover:border-mint/40">
+                  <span className="block font-medium text-white">{source.title}</span>
+                  <span className="mt-1 block text-xs text-slate-400">{source.url}</span>
+                  <span className="mt-2 block text-slate-300">{source.excerpt}</span>
+                </a>
+              ))
+            ) : (
+              <p>Sources will appear after an answer.</p>
+            )}
           </div>
         </div>
       </aside>

@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run validate:content && next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "test": "npm run validate:content && npm run typecheck",
+    "typecheck": "tsc --noEmit",
+    "validate:content": "node scripts/validate-content.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.56.0",

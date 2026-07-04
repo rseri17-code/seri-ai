@@ -1,7 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { projects } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: "Projects | Ravi Seri — Operational Intelligence",
+  description: "Public-safe project patterns for Operational Intelligence, transaction graphs, AI evaluation, and enterprise AI architecture."
+};
 
 export default function ProjectsPage() {
   return (

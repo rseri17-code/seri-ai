@@ -28,13 +28,17 @@ export async function POST(request: Request) {
   if (!isPublicSafe(question)) {
     return NextResponse.json({
       answer:
-        "I cannot discuss confidential employer-specific systems, internal product names, private screenshots, logs, dashboards, or proprietary architecture. I can answer using Ravi's approved public content.",
+        "I can't discuss internal or employer-specific platforms, proprietary projects, private screenshots, logs, dashboards, or confidential architecture. I can explain the public architectural patterns Ravi works on, such as Operational Intelligence, AI incident investigation, transaction intelligence, and evidence-driven RCA.",
       sources: []
     });
   }
 
   const supabase = getSupabaseAdmin();
-  let context = localSearch(question).map((hit) => hit.content);
+  let context = localSearch(question).map((hit) => ({
+    title: hit.source.title,
+    url: hit.source.url,
+    content: hit.content
+  }));
 
   if (supabase && process.env.OPENAI_API_KEY) {
     try {
@@ -47,11 +51,19 @@ export async function POST(request: Request) {
           filter: { public_safe: true }
         });
         if (Array.isArray(data) && data.length) {
-          context = data.map((row: { content: string }) => row.content);
+          context = data.map((row: { title?: string; source_url?: string; content: string }) => ({
+            title: row.title ?? "Approved public source",
+            url: row.source_url ?? "/wiki",
+            content: row.content
+          }));
         }
       }
     } catch {
-      context = localSearch(question).map((hit) => hit.content);
+      context = localSearch(question).map((hit) => ({
+        title: hit.source.title,
+        url: hit.source.url,
+        content: hit.content
+      }));
     }
   }
 
@@ -59,6 +71,10 @@ export async function POST(request: Request) {
 
   return NextResponse.json({
     answer,
-    sources: context.slice(0, 4)
+    sources: context.slice(0, 4).map((source) => ({
+      title: source.title,
+      url: source.url,
+      excerpt: source.content.slice(0, 220)
+    }))
   });
 }

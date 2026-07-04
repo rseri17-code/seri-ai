@@ -1,7 +1,13 @@
 import { Download } from "lucide-react";
+import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { resume } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: "Resume | Ravi Seri — Operational Intelligence and Enterprise AI",
+  description: "Interactive public resume for Ravi Seri focused on Operational Intelligence, agentic systems, observability strategy, and enterprise AI."
+};
 
 export default function ResumePage() {
   return (

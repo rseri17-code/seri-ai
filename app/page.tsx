@@ -3,7 +3,7 @@ import { ArrowRight, BrainCircuit, GitBranch, MessagesSquare, Radar } from "luci
 import { Card } from "@/components/card";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
-import { architectureCards, articles, projects, site } from "@/content/site";
+import { articles, patterns, principles, projects, site } from "@/content/site";
 
 export default function Home() {
   return (
@@ -40,18 +40,36 @@ export default function Home() {
         </div>
       </section>
 
-      <Section eyebrow="Core themes" title="A public knowledge base for enterprise AI operations.">
+      <Section eyebrow="Living product" title="A public Operational Intelligence knowledge platform.">
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            ["Operational Intelligence", "Reasoning across telemetry, workflows, context, and outcomes."],
-            ["Agentic Systems", "Controlled agents that show evidence, uncertainty, and next actions."],
-            ["AI Evaluation", "Quality systems for assistants that operate under real-world ambiguity."]
+            ["Public Wiki", "Approved notes that compound Ravi's public body of thinking."],
+            ["Ravi's Principles", "A concise operating philosophy for AI-native enterprise operations."],
+            ["Architecture Patterns", "Reusable patterns for evidence, agents, topology, memory, and evaluation."]
           ].map(([title, text]) => (
             <Card key={title}>
               <BrainCircuit className="mb-5 text-mint" />
               <h3 className="text-xl font-semibold text-white">{title}</h3>
               <p className="mt-3 text-slate-300">{text}</p>
             </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Start here" title="Choose a path through the system.">
+        <div className="grid gap-4 md:grid-cols-4">
+          {[
+            ["/start-here", "Start Here", "Audience-specific paths for executives, recruiters, architects, engineers, and founders."],
+            ["/wiki", "Wiki", "Public-safe notes on Operational Intelligence and enterprise AI systems."],
+            ["/principles", "Principles", `${principles.length} principles for trustworthy operational AI.`],
+            ["/patterns", "Patterns", `${patterns.length} architecture patterns for AI-native operations.`]
+          ].map(([href, title, text]) => (
+            <Link key={href} href={href}>
+              <Card className="h-full transition hover:border-mint/40">
+                <h3 className="text-xl font-semibold text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+              </Card>
+            </Link>
           ))}
         </div>
       </Section>
@@ -70,14 +88,16 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Architecture lab" title="Patterns for AI-native operational systems.">
+      <Section eyebrow="Architecture patterns" title="Patterns for AI-native operational systems.">
         <div className="grid gap-4 lg:grid-cols-4">
-          {architectureCards.map((card) => (
-            <Card key={card.title}>
+          {patterns.slice(0, 4).map((card) => (
+            <Link key={card.slug} href={`/patterns/${card.slug}`}>
+              <Card className="h-full transition hover:border-signal/40">
               <GitBranch className="mb-4 text-signal" />
               <h3 className="font-semibold text-white">{card.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{card.pattern}</p>
-            </Card>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{card.description}</p>
+              </Card>
+            </Link>
           ))}
         </div>
       </Section>

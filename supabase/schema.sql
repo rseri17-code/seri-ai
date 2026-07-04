@@ -28,6 +28,13 @@ create table if not exists contact_messages (
   created_at timestamptz not null default now()
 );
 
+create table if not exists newsletter_subscribers (
+  id uuid primary key default gen_random_uuid(),
+  email text not null unique,
+  source text not null default 'seri.ai',
+  created_at timestamptz not null default now()
+);
+
 create or replace function match_documents(
   query_embedding vector(1536),
   match_count int default 6,
@@ -62,6 +69,7 @@ $$;
 
 alter table documents enable row level security;
 alter table contact_messages enable row level security;
+alter table newsletter_subscribers enable row level security;
 
 create policy "Public can read approved documents"
 on documents for select
