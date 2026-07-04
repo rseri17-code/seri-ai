@@ -1,0 +1,13 @@
+Ravi Seri
+
+AI and enterprise technology leader focused on Operational Intelligence and agentic systems.
+
+Public focus areas:
+- AI-native operational workflows
+- Enterprise observability strategy
+- Transaction intelligence and impact modeling
+- Knowledge graph and retrieval architecture
+- AI evaluation, governance, and adoption
+
+Compliance note:
+This public resume intentionally excludes confidential employer-specific product names, proprietary projects, internal screenshots, logs, dashboards, and private architecture.
