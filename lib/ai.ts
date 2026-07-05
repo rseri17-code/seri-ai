@@ -65,7 +65,7 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
   return `From Ravi's public point of view: ${context
     .slice(0, 3)
     .map((item) => `${item.content} Source: ${item.title} (${item.url}).`)
-    .join(" ")}\n\nI cannot discuss confidential employer-specific systems, internal product names, screenshots, logs, dashboards, or proprietary architecture.`;
+    .join(" ")}`;
 }
 
 export async function embedText(input: string) {

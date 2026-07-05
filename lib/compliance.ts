@@ -1,11 +1,10 @@
 const bannedPatterns = [
-  /internal employer product/i,
-  /proprietary project/i,
-  /confidential platform/i,
-  /internal screenshot/i,
-  /internal log/i,
-  /internal dashboard/i,
-  /private architecture/i
+  /\binternal\b.*\b(product|platform|project|system|tool|dashboard|dashboards|log|logs|screenshot|screenshots|architecture|implementation)\b/i,
+  /\b(current|your|employer|company)\b.*\b(internal|private|confidential|proprietary)\b/i,
+  /\bproprietary\b.*\b(project|platform|system|tool|architecture|implementation)\b/i,
+  /\bconfidential\b.*\b(project|platform|system|tool|architecture|implementation|detail|details)\b/i,
+  /\bprivate\b.*\b(platform|system|tool|dashboard|dashboards|log|logs|architecture|implementation)\b/i,
+  /\b(employer-specific|company-specific)\b/i
 ];
 
 export function isPublicSafe(input: string) {
