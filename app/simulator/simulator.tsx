@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   ClipboardCheck,
   Database,
+  Download,
   FileText,
   GitBranch,
   Network,
@@ -347,6 +348,18 @@ function scenarioActionLabel(scenario: (typeof scenarios)[number], index: number
   return copy.weakAction;
 }
 
+function branchOutcomeForAction(actionQuality: string) {
+  if (actionQuality === "Best") {
+    return "Approved-review path: safest recommendation, strong auditability, and reusable outcome memory.";
+  }
+
+  if (actionQuality === "Risky") {
+    return "Automation-risk path: fast but not release-ready because irreversible change skipped owner approval.";
+  }
+
+  return "Delay-risk path: avoids unsafe automation but leaves customer impact unresolved despite enough review evidence.";
+}
+
 function adjustedConfidence(name: string, activeEvidenceIds: string[]) {
   const activeSet = new Set(activeEvidenceIds);
 
@@ -423,29 +436,73 @@ export function IncidentSimulator() {
     .filter(Boolean)
     .join(" / ");
   const CurrentIcon = steps[active].icon;
-  const branchOutcome =
-    selectedActionDetail?.quality === "Best"
-      ? "Approved-review path: safest recommendation, strong auditability, and reusable outcome memory."
-      : selectedActionDetail?.quality === "Risky"
-        ? "Automation-risk path: fast but not release-ready because irreversible change skipped owner approval."
-        : "Delay-risk path: avoids unsafe automation but leaves customer impact unresolved despite enough review evidence.";
+  const branchOutcome = branchOutcomeForAction(selectedActionDetail?.quality ?? "Weak");
+  const evidenceReportLines = evidence.map((item) => {
+    const included = activeEvidenceIds.includes(item.id);
+    return `- ${item.type}: ${included ? "included" : "excluded"} | ${item.confidence} confidence | ${item.fact}`;
+  });
+  const timelineReportLines = timeline.map(([time, label, detail, state]) => `- ${time} | ${label} | ${state} | ${detail}`);
+  const decisionTraceLines = [
+    `- Intake: ${selectedScenario.trigger}`,
+    `- Evidence: ${activeEvidenceIds.length} active evidence items (${activeEvidenceTypes || "none"})`,
+    `- Hypothesis: ${selectedHypothesisLabel} at ${selectedHypothesisConfidence}% confidence`,
+    `- Action gate: ${selectedActionLabel} (${selectedActionDetail?.quality ?? "Not scored"})`,
+    `- Replay cursor: ${currentReplayChapter.id} ${currentReplayChapter.label}`,
+    `- Learning target: ${selectedScenario.learningTarget}`
+  ];
+  const branchReportLines = actions.map((action, index) => `- ${action.quality}: ${scenarioActionLabel(selectedScenario, index)} | ${branchOutcomeForAction(action.quality)}`);
   const report = [
     "ReasonOps Harness Console Report",
+    "================================",
+    "",
+    "Executive summary",
+    "-----------------",
     `Case: ${selectedScenario.caseId} - ${selectedScenario.title}`,
     `Trigger: ${selectedScenario.trigger}`,
     `Impact: ${selectedScenario.impact}`,
+    `Operator goal: ${selectedScenario.operatorGoal}`,
     `Mode: ${steps[active].mode}`,
+    "",
+    "Replay state",
+    "------------",
     `Replay cursor: ${currentReplayChapter.id} - ${currentReplayChapter.label}`,
+    `Replay progress: ${replayProgress}%`,
+    `Visible replay chapters: ${visibleReplayChapters.map((chapter) => chapter.id).join(", ")}`,
+    "",
+    "Evidence packet",
+    "---------------",
+    ...evidenceReportLines,
+    "",
+    "Timeline reconstruction",
+    "-----------------------",
+    ...timelineReportLines,
+    "",
+    "Decision trace",
+    "--------------",
+    ...decisionTraceLines,
+    "",
+    "Selected recommendation",
+    "-----------------------",
     `Hypothesis: ${selectedHypothesisLabel}`,
     `Hypothesis confidence: ${selectedHypothesisDetail ? `${selectedHypothesisConfidence}%` : "Not scored"}`,
-    `Evidence included: ${activeEvidenceIds.length ? activeEvidenceIds.join(", ") : "None"}`,
     `Action: ${selectedActionLabel}`,
     `Action quality: ${selectedActionDetail?.quality ?? "Not scored"}`,
     `Branch outcome: ${branchOutcome}`,
     `Readiness score: ${score}%`,
+    "",
+    "Branch comparison",
+    "-----------------",
+    ...branchReportLines,
+    "",
+    "Evaluation release gate",
+    "-----------------------",
     `Learning target: ${selectedScenario.learningTarget}`,
     "Release gate: publish only if evidence coverage, uncertainty, confidentiality, human review, and actionability remain green.",
-    "Operating model: evidence before conclusions, timeline before RCA, evaluation before trust, human review before irreversible action."
+    "Public-safe boundary: no private logs, internal product names, screenshots, dashboards, or proprietary architecture.",
+    "",
+    "Operating model",
+    "---------------",
+    "Evidence before conclusions. Timeline before RCA. Evaluation before trust. Human review before irreversible action."
   ].join("\n");
 
   return (
@@ -692,7 +749,15 @@ export function IncidentSimulator() {
             {active === 3 && (
               <ActionGate selectedHypothesisDetail={selectedHypothesisDetail} selectedAction={selectedAction} onSelect={setSelectedAction} branchOutcome={branchOutcome} scenario={selectedScenario} />
             )}
-            {active === 4 && <EvalBoard report={report} branchOutcome={branchOutcome} scenario={selectedScenario} score={score} />}
+            {active === 4 && (
+              <EvalBoard
+                report={report}
+                branchOutcome={branchOutcome}
+                scenario={selectedScenario}
+                score={score}
+                selectedAction={selectedAction}
+              />
+            )}
           </motion.div>
         </main>
 
@@ -1431,14 +1496,19 @@ function EvalBoard({
   report,
   branchOutcome,
   scenario,
-  score
+  score,
+  selectedAction
 }: {
   report: string;
   branchOutcome: string;
   scenario: (typeof scenarios)[number];
   score: number;
+  selectedAction: string | null;
 }) {
   const releaseVerdict = score >= 85 ? "Ready for reviewed recommendation" : score >= 70 ? "Needs operator review before recommendation" : "Not release-ready";
+  const reportFileName = `${scenario.caseId.toLowerCase()}-reasonops-report.txt`;
+  const reportHref = `data:text/plain;charset=utf-8,${encodeURIComponent(report)}`;
+
   return (
     <div>
       <PanelIntro
@@ -1457,6 +1527,28 @@ function EvalBoard({
               <p className="font-mono text-4xl font-semibold text-mint">{score}%</p>
             </div>
             <p className="mt-3 text-sm leading-6 text-slate-300">{branchOutcome}</p>
+          </div>
+          <div className="rounded-lg border border-signal/25 bg-signal/[0.06] p-4">
+            <p className="text-xs font-semibold uppercase text-slate-500">Branch comparison</p>
+            <div className="mt-4 grid gap-3">
+              {actions.map((action, index) => {
+                const selected = selectedAction === action.name;
+                return (
+                  <div
+                    key={action.name}
+                    className={`rounded border p-3 ${selected ? "border-mint/35 bg-mint/[0.08]" : "border-white/10 bg-black/20"}`}
+                  >
+                    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                      <p className="font-semibold text-white">{scenarioActionLabel(scenario, index)}</p>
+                      <span className={action.quality === "Best" ? "text-sm font-semibold text-mint" : "text-sm font-semibold text-amber"}>
+                        {action.quality}{selected ? " selected" : ""}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-slate-300">{branchOutcomeForAction(action.quality)}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div className="grid gap-3 md:grid-cols-2">
             {[
@@ -1480,9 +1572,19 @@ function EvalBoard({
           ))}
         </div>
         <div className="rounded-lg border border-white/10 bg-black/20 p-5">
-          <div className="flex items-center gap-3">
-            <FileText className="text-signal" />
-            <h3 className="text-xl font-semibold text-white">Exportable RCA summary</h3>
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-3">
+              <FileText className="text-signal" />
+              <h3 className="text-xl font-semibold text-white">Exportable RCA packet</h3>
+            </div>
+            <a
+              href={reportHref}
+              download={reportFileName}
+              className="inline-flex items-center justify-center gap-2 rounded bg-white px-4 py-2 text-sm font-semibold text-ink"
+            >
+              <Download size={16} />
+              Download
+            </a>
           </div>
           <pre className="mt-4 whitespace-pre-wrap rounded border border-white/10 bg-black/30 p-4 text-sm leading-6 text-slate-200">{report}</pre>
         </div>
