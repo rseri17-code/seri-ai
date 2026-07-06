@@ -10,9 +10,11 @@ import {
   BrainCircuit,
   CheckCircle2,
   ClipboardCheck,
+  Database,
   FileText,
   GitBranch,
   Network,
+  Play,
   Radar,
   ShieldCheck,
   Sparkles,
@@ -148,6 +150,30 @@ const evalChecks = [
   ["Actionability", "Pass", "Suggests a focused rollback review and monitoring plan."]
 ];
 
+const executionStages = [
+  { label: "Intake", detail: "Normalize the incident", status: "complete" },
+  { label: "Collect", detail: "Gather public-safe evidence", status: "complete" },
+  { label: "Graph", detail: "Connect evidence relationships", status: "running" },
+  { label: "Score", detail: "Move hypothesis confidence", status: "running" },
+  { label: "Gate", detail: "Prepare human review", status: "pending" },
+  { label: "Learn", detail: "Create future memory candidate", status: "pending" }
+];
+const receiptLedger = [
+  ["R-001", "Signal receipt", "completion drop", "verified"],
+  ["R-002", "Change receipt", "09:18 config update", "correlated"],
+  ["R-003", "Topology receipt", "dependency path", "linked"],
+  ["R-004", "Decision receipt", "rollback review packet", "pending approval"]
+];
+const replayModes = [
+  ["Fast", "Replay the evidence chain at compressed speed."],
+  ["Live", "Replay with original timing and sequence."],
+  ["Step", "Advance one receipt and decision at a time."]
+];
+const memorySignals = [
+  ["Outcome memory", "Was the recommended action accepted and effective?"],
+  ["False lead", "Which evidence looked relevant but failed the hypothesis?"],
+  ["Pattern signature", "Which graph shape should be recognized next time?"]
+];
 const investigationLanes = ["Customer journey", "Change record", "Dependency path", "Human owner"];
 const defaultEvidenceIds = evidence.filter((item) => item.used).map((item) => item.id);
 const replayTrace = [
@@ -303,6 +329,14 @@ export function IncidentSimulator() {
           </div>
         </div>
       </div>
+
+      <ControlPlaneConsole
+        active={active}
+        score={score}
+        confidence={selectedHypothesisConfidence}
+        activeEvidenceIds={activeEvidenceIds}
+        selectedActionQuality={selectedActionDetail?.quality ?? "Pending"}
+      />
 
       <div className="grid grid-cols-5 border-b border-white/10">
         {steps.map((step, index) => {
@@ -471,6 +505,108 @@ export function IncidentSimulator() {
         >
           Next <ArrowRight size={16} />
         </button>
+      </div>
+    </div>
+  );
+}
+
+function ControlPlaneConsole({
+  active,
+  score,
+  confidence,
+  activeEvidenceIds,
+  selectedActionQuality
+}: {
+  active: number;
+  score: number;
+  confidence: number;
+  activeEvidenceIds: string[];
+  selectedActionQuality: string;
+}) {
+  const budgetUsed = Math.min(20, 4 + activeEvidenceIds.length + active * 3);
+  const risk = selectedActionQuality === "Risky" ? "High" : score > 78 ? "Managed" : "Open";
+  const activeStage = executionStages[Math.min(active + 1, executionStages.length - 1)]?.label ?? "Score";
+
+  return (
+    <div className="border-b border-white/10 bg-black/20 p-4 md:p-5">
+      <div className="grid gap-4 xl:grid-cols-[0.8fr_1.25fr_0.95fr]">
+        <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+          <p className="text-xs font-semibold uppercase text-slate-500">Risk and confidence strip</p>
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            {[
+              ["Confidence", `${confidence}%`, "text-mint"],
+              ["Risk", risk, risk === "High" ? "text-amber" : "text-signal"],
+              ["Budget", `${budgetUsed}/20`, budgetUsed > 16 ? "text-amber" : "text-mint"],
+              ["Stage", activeStage, "text-signal"]
+            ].map(([label, value, tone]) => (
+              <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                <p className="text-xs text-slate-500">{label}</p>
+                <p className={`mt-1 font-mono text-lg font-semibold ${tone}`}>{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-white/10 bg-[#071018] p-4">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-xs font-semibold uppercase text-slate-500">Execution graph</p>
+            <span className="rounded border border-mint/25 bg-mint/10 px-2 py-1 font-mono text-xs text-mint">deterministic path</span>
+          </div>
+          <div className="mt-4 grid gap-2 md:grid-cols-6">
+            {executionStages.map((stage, index) => {
+              const current = index === Math.min(active + 1, executionStages.length - 1);
+              const complete = index <= active;
+              return (
+                <div key={stage.label} className={`relative min-h-28 rounded-lg border p-3 ${current ? "border-signal/50 bg-signal/[0.09]" : complete ? "border-mint/30 bg-mint/[0.06]" : "border-white/10 bg-white/[0.03]"}`}>
+                  <span className={`absolute right-3 top-3 h-2 w-2 rounded-full ${current ? "bg-signal" : complete ? "bg-mint" : "bg-slate-600"}`} />
+                  <p className="font-mono text-xs text-slate-500">0{index + 1}</p>
+                  <h3 className="mt-3 text-sm font-semibold text-white">{stage.label}</h3>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{stage.detail}</p>
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-4 grid gap-2 md:grid-cols-4">
+            {receiptLedger.map(([id, label, subject, state]) => (
+              <div key={id} className="rounded border border-white/10 bg-black/20 p-3">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-mono text-xs text-signal">{id}</p>
+                  <p className="text-xs text-mint">{state}</p>
+                </div>
+                <p className="mt-2 text-sm font-semibold text-white">{label}</p>
+                <p className="mt-1 text-xs leading-5 text-slate-400">{subject}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+          <div className="flex items-center gap-2">
+            <Database className="text-mint" size={18} />
+            <p className="text-xs font-semibold uppercase text-slate-500">Memory and replay</p>
+          </div>
+          <div className="mt-4 space-y-3">
+            {memorySignals.map(([label, detail]) => (
+              <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                <p className="text-sm font-semibold text-white">{label}</p>
+                <p className="mt-1 text-xs leading-5 text-slate-400">{detail}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 rounded border border-signal/20 bg-signal/[0.06] p-3">
+            <div className="flex items-center gap-2">
+              <Play className="text-signal" size={15} />
+              <p className="text-xs font-semibold uppercase text-slate-500">Replay modes</p>
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {replayModes.map(([label]) => (
+                <span key={label} className="rounded border border-white/10 bg-black/20 px-2 py-1 text-xs text-slate-300">
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
