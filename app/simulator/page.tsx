@@ -1,0 +1,39 @@
+import Link from "next/link";
+import { ArrowRight, ShieldCheck } from "lucide-react";
+import { IncidentSimulator } from "./simulator";
+import { operationalIntelligenceSystem } from "@/content/site";
+
+export default function SimulatorPage() {
+  return (
+    <>
+      <section className="grid-bg border-b border-white/10">
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+          <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div className="max-w-5xl">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-signal/30 bg-signal/10 px-3 py-1 text-xs font-semibold uppercase text-signal">
+                <ShieldCheck size={16} />
+                Signature artifact
+              </div>
+              <h1 className="text-3xl font-semibold text-white md:text-5xl">ReasonOps Investigation Room</h1>
+              <p className="mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 sm:block">
+                A public-safe interactive artifact for AI-native incident investigation. Run {operationalIntelligenceSystem.caseId},
+                trace the Operational Intelligence layers, and see how evidence becomes a reviewable decision.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Link href="/ask" className="inline-flex items-center gap-2 rounded bg-mint px-4 py-2 text-sm font-semibold text-ink">
+                Ask about the model <ArrowRight size={18} />
+              </Link>
+              <Link href="/ideas/incident-investigation-as-a-product-experience" className="rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white">
+                Read the essay
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+        <IncidentSimulator />
+      </section>
+    </>
+  );
+}

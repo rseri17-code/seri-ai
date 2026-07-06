@@ -13,8 +13,10 @@
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(95, 242, 181, 0.14), transparent 34rem),
-    radial-gradient(circle at top right, rgba(115, 167, 255, 0.12), transparent 30rem),
+    linear-gradient(180deg, rgba(8, 10, 15, 0), rgba(8, 10, 15, 0.88) 42rem),
+    radial-gradient(circle at top left, rgba(95, 242, 181, 0.12), transparent 34rem),
+    radial-gradient(circle at top right, rgba(115, 167, 255, 0.1), transparent 30rem),
+    radial-gradient(circle at 72% 18rem, rgba(243, 201, 105, 0.08), transparent 22rem),
     #080a0f;
   color: #eef4ff;
   font-family:
@@ -32,7 +34,120 @@ a {
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 44px 44px;
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(95, 242, 181, 0.08), rgba(115, 167, 255, 0.04) 42%, transparent 68%);
+  background-size: 56px 56px, 56px 56px, auto;
+}
+
+.intelligence-field {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 50% 45%, rgba(115, 167, 255, 0.16), transparent 16rem);
+  background-size: 28px 28px, 28px 28px, auto;
+}
+
+.hero-scanline {
+  background: linear-gradient(180deg, transparent, rgba(95, 242, 181, 0.08), transparent);
+  animation: scan 7s ease-in-out infinite;
+}
+
+.flow-path {
+  fill: none;
+  stroke: url("#flow-line");
+  stroke-dasharray: 10 14;
+  stroke-linecap: round;
+  stroke-width: 2;
+  animation: flow 4.5s linear infinite;
+}
+
+.flow-path-delay {
+  animation-delay: -1.4s;
+}
+
+.flow-path-slow {
+  animation-duration: 6.4s;
+}
+
+.premium-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-card::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.executive-rail {
+  background:
+    linear-gradient(90deg, rgba(95, 242, 181, 0.16), transparent 18%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+}
+
+.reasonops-room {
+  position: relative;
+}
+
+.reasonops-room::after {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.reasonops-room > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sim-graph-label {
+  fill: #eef4ff;
+  font-size: 3px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.sim-graph-detail {
+  fill: #94a3b8;
+  font-size: 2.35px;
+  letter-spacing: 0;
+}
+
+.sim-graph-node-muted .sim-graph-label,
+.sim-graph-node-muted .sim-graph-detail {
+  opacity: 0.55;
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+@keyframes scan {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-35%);
+  }
+
+  45%,
+  55% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(35%);
+  }
 }

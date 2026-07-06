@@ -5,7 +5,7 @@ import { articles } from "@/content/site";
 
 export default function IdeasPage() {
   return (
-    <Section eyebrow="Ideas" title="Essays on Operational Intelligence and AI-native operations.">
+    <Section eyebrow="Library" title="Essays, memos, and field notes on Operational Intelligence.">
       <div className="grid gap-4 md:grid-cols-2">
         {articles.map((article) => (
           <Link key={article.slug} href={`/ideas/${article.slug}`}>

@@ -5,7 +5,7 @@ import { Section } from "@/components/section";
 import { projects } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Projects | Ravi Seri — Operational Intelligence",
+  title: "Projects | Ravikanth Seri — Operational Intelligence",
   description: "Public-safe project patterns for Operational Intelligence, transaction graphs, AI evaluation, and enterprise AI architecture."
 };
 

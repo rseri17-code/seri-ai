@@ -9,17 +9,25 @@ type ApiResponse = {
   sources: Array<{ title: string; url: string; excerpt: string }>;
 };
 
-export function Chat({ mode = "ask" }: { mode?: "ask" | "interview" }) {
+export function Chat({
+  mode = "ask",
+  initialPrompt = "",
+  suggestedPrompts
+}: {
+  mode?: "ask" | "interview";
+  initialPrompt?: string;
+  suggestedPrompts?: string[];
+}) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
       content:
         mode === "interview"
-          ? "I can help interview Ravi's public experience and thinking. Ask about Operational Intelligence, AI-native incident investigation, transaction intelligence, or evaluation."
-          : "Ask me about Ravi's public thinking on Operational Intelligence, agentic systems, observability, knowledge graphs, and AI evaluation."
+          ? "I can help interview Ravikanth's public experience and thinking. Ask about Operational Intelligence, AI-native incident investigation, transaction intelligence, or evaluation."
+          : "Ask me about Ravikanth's public thinking on Operational Intelligence, agentic systems, observability, knowledge graphs, and AI evaluation."
     }
   ]);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(initialPrompt);
   const [sources, setSources] = useState<Array<{ title: string; url: string; excerpt: string }>>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -46,17 +54,18 @@ export function Chat({ mode = "ask" }: { mode?: "ask" | "interview" }) {
   }
 
   const prompts =
-    mode === "interview"
+    suggestedPrompts ??
+    (mode === "interview"
       ? [
-          "How does Ravi think about AI evaluation for enterprise operations?",
+          "How does Ravikanth think about AI evaluation for enterprise operations?",
           "What makes Operational Intelligence different from observability?",
-          "What leadership strengths show up in Ravi's public resume?"
+          "What leadership strengths show up in Ravikanth's public resume?"
         ]
       : [
-          "Explain Operational Intelligence in Ravi's voice.",
+          "Explain Operational Intelligence in Ravikanth's voice.",
           "How should agents investigate incidents safely?",
           "What is Transaction Intelligence?"
-        ];
+        ]);
 
   return (
     <div className="grid gap-5 lg:grid-cols-[1fr_340px]">

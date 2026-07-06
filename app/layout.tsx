@@ -5,13 +5,13 @@ import { Header } from "@/components/header";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "seri.ai | Operational Intelligence thinking by Ravi Seri",
+  title: "seri.ai | The home of Operational Intelligence",
   description:
-    "The public home of Ravi Seri's thinking on Operational Intelligence, Agentic Systems, Transaction Intelligence, observability, knowledge graphs, and AI evaluation.",
+    "A public product lab, knowledge base, and operating system for Operational Intelligence: the reasoning layer between enterprise telemetry and human decision.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://seri.ai"),
   openGraph: {
-    title: "seri.ai",
-    description: "Building AI systems that help enterprises understand, explain, and improve their operations.",
+    title: "seri.ai | Operational Intelligence",
+    description: "Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
     type: "website"
   }
 };

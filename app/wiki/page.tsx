@@ -7,7 +7,7 @@ import { Section } from "@/components/section";
 import { buildPublicSourceIndex, getPublishedWikiNotes } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Wiki | Ravi Seri — Operational Intelligence, Agentic Systems, Enterprise AI Architecture",
+  title: "Wiki | Ravikanth Seri — Operational Intelligence, Agentic Systems, Enterprise AI Architecture",
   description: "Public wiki notes on Operational Intelligence, agentic systems, transaction intelligence, incident intelligence, AI evaluation, and knowledge graphs."
 };
 
@@ -16,7 +16,7 @@ export default function WikiPage() {
   const sources = buildPublicSourceIndex();
 
   return (
-    <Section eyebrow="Public wiki" title="Approved public notes for Ravi's Operational Intelligence body of work.">
+    <Section eyebrow="Public wiki" title="Approved public notes for Ravikanth's Operational Intelligence body of work.">
       <div className="mb-8">
         <EmailCapture />
       </div>

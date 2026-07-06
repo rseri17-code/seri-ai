@@ -5,7 +5,7 @@ import { buildPublicSourceIndex } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Search | seri.ai",
-  description: "Search Ravi Seri's public Operational Intelligence wiki, principles, patterns, projects, and essays."
+  description: "Search Ravikanth Seri's public Operational Intelligence wiki, principles, patterns, projects, and essays."
 };
 
 export default function SearchPage() {

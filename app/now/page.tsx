@@ -4,8 +4,8 @@ import { Section } from "@/components/section";
 import { nowPage } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Now | Ravi Seri",
-  description: "Ravi Seri's current public focus areas across Operational Intelligence, agentic systems, transaction intelligence, and AI evaluation."
+  title: "Now | Ravikanth Seri",
+  description: "Ravikanth Seri's current public focus areas across Operational Intelligence, agentic systems, transaction intelligence, and AI evaluation."
 };
 
 export default function NowPage() {

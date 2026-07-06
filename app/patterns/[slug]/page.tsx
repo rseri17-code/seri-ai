@@ -28,6 +28,7 @@ export default async function PatternPage({ params }: { params: Promise<{ slug: 
   const sections = [
     ["Problem", pattern.problem],
     ["Context", pattern.context],
+    ["Solution", pattern.solution],
     ["Architecture", pattern.architecture],
     ["Evaluation", pattern.evaluation],
     ["When to use", pattern.whenToUse],
@@ -47,6 +48,16 @@ export default async function PatternPage({ params }: { params: Promise<{ slug: 
           </Card>
         ))}
         <Card>
+          <h2 className="text-xl font-semibold text-white">Architecture sketch</h2>
+          <div className="mt-3 space-y-2 text-slate-300">
+            {pattern.architectureSketch.map((step, index) => (
+              <p key={step} className="rounded border border-white/10 bg-ink p-3 text-sm">
+                {index + 1}. {step}
+              </p>
+            ))}
+          </div>
+        </Card>
+        <Card>
           <h2 className="text-xl font-semibold text-white">Forces / tradeoffs</h2>
           <ul className="mt-3 space-y-2 text-slate-300">
             {pattern.forces.map((force) => (
@@ -64,13 +75,38 @@ export default async function PatternPage({ params }: { params: Promise<{ slug: 
         </Card>
       </div>
       <Card className="mt-5">
-        <h2 className="text-xl font-semibold text-white">Related notes</h2>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {pattern.related.map((href) => (
-            <Link key={href} href={href} className="rounded border border-white/10 px-3 py-2 text-sm text-slate-200 hover:border-mint/40">
-              {href}
-            </Link>
-          ))}
+        <h2 className="text-xl font-semibold text-white">Related context</h2>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div>
+            <p className="text-sm font-semibold text-mint">Principles</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {pattern.relatedPrinciples.map((principle) => (
+                <span key={principle} className="rounded border border-white/10 px-3 py-2 text-sm text-slate-200">
+                  {principle}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-signal">Wiki</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {pattern.relatedWiki.map((href) => (
+                <Link key={href} href={href} className="rounded border border-white/10 px-3 py-2 text-sm text-slate-200 hover:border-signal/40">
+                  {href}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-amber">Other links</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {pattern.related.map((href) => (
+                <Link key={href} href={href} className="rounded border border-white/10 px-3 py-2 text-sm text-slate-200 hover:border-amber/40">
+                  {href}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </Card>
     </article>

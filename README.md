@@ -1,16 +1,38 @@
 # seri.ai
 
-seri.ai is Ravi Seri's public Operational Intelligence knowledge platform.
+seri.ai is Ravikanth Seri's public operating system for Operational Intelligence.
 
-It is not a generic resume site. It is a living product: a public wiki, architecture pattern library, AI-powered body of work, and personal operating system for thinking about Operational Intelligence, Agentic Systems, Transaction Intelligence, enterprise observability, AI-native incident investigation, knowledge graphs, operational memory, and AI evaluation.
+It is not a resume website, portfolio template, job-search landing page, or showcase of confidential employer work. It is a living product lab, public wiki, architecture pattern library, grounded assistant, and body of work around AI-native enterprise operations.
 
 ## Product Vision
 
 A visitor should leave thinking:
 
-> This is not a resume. This person has a category, a language, a system, and a serious body of thinking.
+> This is the home of Operational Intelligence. Ravikanth Seri is building a serious language, system, and body of work around AI-native enterprise operations.
+
+Canonical definition:
+
+> Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.
+
+seri.ai is the public operating system. Operational Intelligence is the category. ReasonOps is the product/platform expression. Investigation Room is the interactive artifact. Ask Ravikanth is the grounded public assistant. Background is secondary evidence.
 
 The site is built around public-safe content only. Do not publish employer-specific product names, internal platform names, confidential projects, internal screenshots, logs, dashboards, proprietary architecture, or company-specific implementation details.
+
+## Product Spine
+
+The Map, Investigation Room, and Ask Ravikanth should feel like one system, not separate pages.
+
+Shared case:
+
+- `OI-ROOM-001` — Customer transaction degradation
+
+Shared loop:
+
+- Map the operating model in `/map`
+- Run the case in `/investigation-room`
+- Interrogate the reasoning in `/ask`
+
+When adding new product surfaces, connect them to `operationalIntelligenceSystem` in `content/site.ts` so the thesis, artifact, and assistant stay aligned.
 
 ## Stack
 
@@ -25,17 +47,67 @@ The site is built around public-safe content only. Do not publish employer-speci
 ## Core Routes
 
 - `/` — home
-- `/ask` — public-grounded Ask Ravi assistant
 - `/start-here` — audience-specific paths
-- `/wiki` — public notes and content search
-- `/principles` — Ravi's principles
+- `/map` — Operational Intelligence knowledge map
+- `/manifesto` — founding thesis: Operational Intelligence Is the New Control Plane
+- `/library` — essays, memos, notes, field guides, and public assets
 - `/patterns` — architecture pattern library
-- `/projects` — public-safe project patterns
+- `/products/reasonops` — ReasonOps product/platform concept
+- `/investigation-room` — signature evidence-first incident investigation artifact
+- `/artifacts` — public-safe proof objects and release model
+- `/ask` — public-grounded Ask Ravikanth assistant
+- `/evals` — public trust report for Ask Ravikanth behavior
+- `/radar` — market thesis radar for Operational Intelligence trends
+- `/wiki` — public notes and content search
+- `/principles` — Ravikanth's principles
+- `/products` — public product concepts under seri.ai
 - `/now` — current focus areas
-- `/resume` — interactive public resume
+- `/background` — resume/career evidence as secondary proof
 - `/contact` — contact form
 - `/changelog` — living product history
-- `/search` — search across wiki, principles, patterns, projects, and essays
+- `/search` — search across wiki, principles, patterns, artifacts, and essays
+
+Legacy routes such as `/ideas`, `/projects`, `/resume`, and `/simulator` may remain for compatibility, but new navigation should prefer Library, Artifacts, Background, and Investigation Room.
+
+## Operational Intelligence Vocabulary
+
+Every page should reinforce the shared vocabulary:
+
+- Signal Layer
+- Transaction Layer
+- Topology Layer
+- Evidence Layer
+- Reasoning Layer
+- Memory Layer
+- Evaluation Layer
+- Decision Layer
+- Learning Layer
+- Operator Layer
+
+Use this language before inventing new terms.
+
+## Content Asset Model
+
+Treat every content item as an asset, not a blog post.
+
+Preferred asset types:
+
+- Manifesto
+- Pattern
+- Field Guide
+- Product Brief
+- Map
+- Artifact
+- Principle
+- Radar Note
+- Memo
+- Background Entry
+
+Target cadence:
+
+- one new pattern, memo, artifact, or field guide per month
+- one quarterly State of Operational Intelligence memo
+- changelog entry for visible product evolution
 
 ## Local Setup
 
@@ -86,7 +158,7 @@ Write the public-safe note here.
 Valid statuses:
 
 - `draft` — validated but hidden from public routes and search
-- `published` — visible publicly and available to Ask Ravi
+- `published` — visible publicly and available to Ask Ravikanth
 - `archived` — retained but hidden
 
 Run validation before publishing:
@@ -108,7 +180,7 @@ npm run validate:content
 
 Edit `nowPage` in `content/site.ts`.
 
-Keep it current, specific, and public-safe. It should reflect what Ravi is actively building, studying, writing, avoiding, and exploring.
+Keep it current, specific, and public-safe. It should reflect what Ravikanth is actively building, studying, writing, avoiding, and exploring.
 
 ## How To Add A Principle
 
@@ -143,17 +215,17 @@ Each pattern must include:
 
 Patterns should describe public-safe architecture ideas, not internal implementations.
 
-## Ask Ravi Grounding
+## Ask Ravikanth Grounding
 
 `/api/ask` retrieves only published public sources from:
 
 - wiki notes
 - principles
 - patterns
-- projects
+- artifacts/project patterns
 - essays
 
-The assistant must refuse confidential or employer-specific questions. It should say when a question is not yet covered in the public knowledge base rather than inventing claims, metrics, experience, or implementation details.
+The assistant must refuse confidential or employer-specific questions. It should say when a question is not yet covered in the public knowledge base rather than inventing claims, metrics, experience, or implementation details. When refusing, redirect to public architecture patterns such as evidence-driven RCA, transaction journey reconstruction, operational memory, topology-aware reasoning, evaluation and replay, and human-in-the-loop operational AI.
 
 ## Supabase Setup
 
@@ -180,11 +252,13 @@ curl -X POST http://localhost:3000/api/ingest \
 
 ```bash
 npm run validate:content
+npm run evals
 npm run typecheck
 npm run build
 ```
 
-`npm run build` runs content validation first.
+`npm run build` runs content validation and the Ask Ravikanth trust fixtures before building.
+`npm test` runs content validation, the Ask Ravikanth trust fixtures, and TypeScript checks.
 
 ## Deployment
 
@@ -204,7 +278,7 @@ npm run build
 
 - Add SSO-backed admin authentication.
 - Connect newsletter capture to Resend, ConvertKit, or another email provider.
-- Add automated eval fixtures for Ask Ravi refusal behavior and citation quality.
+- Add automated eval fixtures for Ask Ravikanth refusal behavior and citation quality.
 - Move patterns and principles to MDX if editorial workflow grows.
 - Add source-level citation labels for Supabase-ingested documents.
 - Add scheduled content review for stale notes.

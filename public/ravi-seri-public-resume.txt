@@ -1,13 +1,63 @@
-Ravi Seri
+Ravikanth Seri
 
-AI and enterprise technology leader focused on Operational Intelligence and agentic systems.
+Senior Infrastructure Architect | Production AI Agent Systems | Enterprise Operations
 
-Public focus areas:
-- AI-native operational workflows
-- Enterprise observability strategy
-- Transaction intelligence and impact modeling
-- Knowledge graph and retrieval architecture
-- AI evaluation, governance, and adoption
+Charlotte, NC
+rseri17@gmail.com | github.com/rseri17-code | linkedin.com/in/ravikanthseri
+
+Professional summary:
+Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial-services environments. Ravikanth's work sits at the intersection of AI-native operations, observability, identity modernization, Kubernetes platforms, runtime governance, and incident investigation. He builds practical systems that turn telemetry, transactions, topology, and operational memory into evidence-backed decisions.
+
+Core strengths:
+- Production AI agent systems for enterprise operations
+- Operational Intelligence, AIOps, and AI-native incident investigation
+- Agent observability, evaluation, replayability, and behavioral drift analysis
+- Runtime governance, bounded execution, tool controls, and human-in-the-loop review
+- Kubernetes, hybrid cloud infrastructure, identity platforms, and distributed systems
+- OpenTelemetry, distributed tracing, telemetry correlation, and performance diagnostics
+- Python automation, enterprise API integration, and workflow orchestration
+- Architecture enablement for executives, platform teams, and operations stakeholders
+
+Architecture highlights:
+- Architected production LLM-driven agent platforms using deterministic orchestration, bounded execution controls, replayability safeguards, and human review gates.
+- Designed governed tool-calling ecosystems that connect observability, IT service workflows, telemetry systems, and enterprise APIs through schema-bound interfaces.
+- Built end-to-end agent observability patterns using OpenTelemetry-style instrumentation, evaluator scoring, orchestration introspection, telemetry receipts, and drift analysis.
+- Implemented runtime governance models including fail-closed execution, freshness validation, tool budget enforcement, policy-aware safeguards, and approval checkpoints.
+- Designed telemetry and workload coordination architectures across Kubernetes, cloud platforms, and hybrid enterprise infrastructure.
+
+Experience:
+
+AIOps Lead Architect | Major regulated financial-services enterprise | 2025 - Present
+- Leads architecture for production AI-assisted operational workflows that support observability, incident response, retrieval, evaluation, and governed tool use.
+- Architected LLM-driven agent platforms for enterprise operations using deterministic orchestration, bounded execution, replayability, and human-in-the-loop governance.
+- Designed governed enterprise tool ecosystems spanning observability, IT service workflows, telemetry, and enterprise APIs through schema-bound dispatch and policy-aware execution.
+- Built agent observability pipelines for prompt execution, tool invocation behavior, orchestration paths, evaluator scoring, runtime telemetry, and behavioral drift analysis.
+- Designed evaluation workflows for root-cause analysis quality, workload reliability scoring, operational usefulness, and regression testing before production trust.
+- Profiled model-selection tradeoffs across latency, cost, retrieval depth, token throughput, and reliability for production AI workload constraints.
+- Authored executive technical memos and delivered architecture enablement sessions for operations, platform engineering, and leadership stakeholders.
+
+Infrastructure Technical Lead - Identity and Observability | Major regulated financial-services enterprise | 2022 - 2025
+- Led identity modernization, cloud-native platform reliability, observability integration, and automation initiatives across enterprise application environments.
+- Led containerization and modernization of enterprise identity workloads on Kubernetes, improving scalability, deployment consistency, isolation, and reliability.
+- Orchestrated zero-downtime OpenID Connect migration across 120+ enterprise applications while preserving legacy application contracts and reducing migration friction.
+- Integrated OpenTelemetry-style pipelines across identity services and Kubernetes environments to improve tracing, telemetry correlation, diagnostics, and anomaly detection.
+- Designed observability integration patterns across distributed tracing, runtime telemetry, and monitoring platforms for hybrid enterprise infrastructure.
+- Automated OAuth onboarding and enterprise API workflows with Python, reducing identity support tickets by 80% and recovering about 200 engineering hours per quarter.
+
+Enterprise Infrastructure and Middleware Engineer | Financial services, retail, insurance, and enterprise technology environments | 2008 - 2022
+- Built a foundation across middleware, infrastructure operations, identity systems, distributed platforms, automation, and reliability engineering.
+- Operated and modernized enterprise middleware, identity, and infrastructure platforms in high-availability environments.
+- Partnered with engineering, security, and operations teams to improve reliability, access patterns, integration quality, and operational support models.
+
+Education:
+- MS, Industrial Engineering, University of New Haven
+
+Public certifications:
+- Artificial Intelligence Associate, North Carolina State University, issued Dec 2025
+- Certified Data Scientist, North Carolina State University, issued Jun 2025
+- AWS Solutions Architect Associate, Amazon Web Services, issued Mar 2020 and expired Mar 2023
+- Certified Kubernetes Administrator
+- IBM Certified DataPower Administrator
 
 Compliance note:
 This public resume intentionally excludes confidential employer-specific product names, proprietary projects, internal screenshots, logs, dashboards, and private architecture.

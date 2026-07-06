@@ -5,7 +5,7 @@ import { Section } from "@/components/section";
 import { patterns } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Architecture Patterns | Ravi Seri — Operational Intelligence",
+  title: "Architecture Patterns | Ravikanth Seri — Operational Intelligence",
   description: "Public-safe architecture patterns for Operational Intelligence, AI incident investigation, transaction intelligence, operational memory, and evaluation."
 };
 
