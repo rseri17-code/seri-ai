@@ -60,6 +60,42 @@ const steps = [
   }
 ];
 
+const scenarios = [
+  {
+    id: "transaction-degradation",
+    caseId: "OI-ROOM-001",
+    title: "Customer transaction degradation",
+    summary:
+      "A critical customer journey degrades after a public-safe configuration change. The harness must connect signal, transaction, topology, evidence, memory, evaluation, and human review before recommending action.",
+    trigger: "Completion drop after change window",
+    impact: "Customer-facing workflow interruption",
+    operatorGoal: "Protect customers while keeping operational change behind approval.",
+    learningTarget: "Configuration-regression replay fixture"
+  },
+  {
+    id: "ai-answer-drift",
+    caseId: "OI-ROOM-002",
+    title: "AI answer drift under missing context",
+    summary:
+      "An operational assistant begins giving overconfident answers when approved context is incomplete. The harness must separate grounded evidence from unknowns and prove refusal behavior.",
+    trigger: "Confidence rises while evidence coverage falls",
+    impact: "Operator trust and escalation quality risk",
+    operatorGoal: "Force uncertainty, citation discipline, and escalation instead of confident guessing.",
+    learningTarget: "Grounding and refusal eval fixture"
+  },
+  {
+    id: "batch-latency-regression",
+    caseId: "OI-ROOM-003",
+    title: "Batch workflow latency regression",
+    summary:
+      "A cross-system batch workflow misses its expected completion window. The harness must reconstruct the transaction path, isolate weak evidence, and produce a bounded review packet.",
+    trigger: "SLA pressure without a single obvious red alert",
+    impact: "Downstream operational readiness risk",
+    operatorGoal: "Find the smallest reviewable mitigation without inventing private system details.",
+    learningTarget: "Transaction-path latency replay fixture"
+  }
+];
+
 const evidence = [
   {
     id: "signal",
@@ -141,6 +177,36 @@ const actions = [
     rationale: "Avoids action even though the evidence is strong enough for a focused review."
   }
 ];
+
+const scenarioCopy = {
+  "transaction-degradation": {
+    primaryHypothesis: "Configuration regression in a dependency path",
+    secondaryHypothesis: "Capacity saturation on the customer journey",
+    tertiaryHypothesis: "Unrelated warning cascade",
+    primaryRationale: "Best explains timing, affected transaction path, and reversible mitigation.",
+    bestAction: "Recommend rollback review with owner approval",
+    riskyAction: "Autonomously roll back the dependency",
+    weakAction: "Only monitor until more alerts appear"
+  },
+  "ai-answer-drift": {
+    primaryHypothesis: "Approved-context gap causing overconfident answer drift",
+    secondaryHypothesis: "Retrieval freshness regression",
+    tertiaryHypothesis: "Prompt-noise false lead",
+    primaryRationale: "Best explains confidence rising while evidence coverage and citation quality fall.",
+    bestAction: "Require refusal and escalation review before the answer is trusted",
+    riskyAction: "Let the assistant continue answering without a grounding gate",
+    weakAction: "Only add more prompts without changing the eval harness"
+  },
+  "batch-latency-regression": {
+    primaryHypothesis: "Dependency-path latency regression in a batch workflow",
+    secondaryHypothesis: "Downstream capacity pressure",
+    tertiaryHypothesis: "Unrelated scheduler warning",
+    primaryRationale: "Best explains the missed completion window, transaction path, and bounded mitigation option.",
+    bestAction: "Recommend bounded mitigation review with owner approval",
+    riskyAction: "Autonomously reroute the workflow without approval",
+    weakAction: "Only wait for the next batch window"
+  }
+};
 
 const evalChecks = [
   ["Evidence coverage", "Pass", "Uses signals, topology, timeline, and change context."],
@@ -254,6 +320,33 @@ const replayEdges = [
   ["noise", "hypothesis", "noise"]
 ];
 
+function scenarioHypothesisLabel(scenario: (typeof scenarios)[number], index: number) {
+  const copy = scenarioCopy[scenario.id as keyof typeof scenarioCopy];
+  if (index === 0) {
+    return copy.primaryHypothesis;
+  }
+  if (index === 1) {
+    return copy.secondaryHypothesis;
+  }
+  return copy.tertiaryHypothesis;
+}
+
+function scenarioHypothesisRationale(scenario: (typeof scenarios)[number], index: number, fallback: string) {
+  const copy = scenarioCopy[scenario.id as keyof typeof scenarioCopy];
+  return index === 0 ? copy.primaryRationale : fallback;
+}
+
+function scenarioActionLabel(scenario: (typeof scenarios)[number], index: number) {
+  const copy = scenarioCopy[scenario.id as keyof typeof scenarioCopy];
+  if (index === 0) {
+    return copy.bestAction;
+  }
+  if (index === 1) {
+    return copy.riskyAction;
+  }
+  return copy.weakAction;
+}
+
 function adjustedConfidence(name: string, activeEvidenceIds: string[]) {
   const activeSet = new Set(activeEvidenceIds);
 
@@ -273,11 +366,13 @@ function adjustedConfidence(name: string, activeEvidenceIds: string[]) {
 
 export function IncidentSimulator() {
   const [active, setActive] = useState(0);
+  const [selectedScenarioId, setSelectedScenarioId] = useState(scenarios[0].id);
   const [activeEvidenceIds, setActiveEvidenceIds] = useState<string[]>(defaultEvidenceIds);
   const [selectedHypothesis, setSelectedHypothesis] = useState<string | null>(hypotheses[0].name);
   const [selectedAction, setSelectedAction] = useState<string | null>(actions[0].name);
   const [replayMode, setReplayMode] = useState<"step" | "live">("step");
   const [replayIndex, setReplayIndex] = useState(2);
+  const selectedScenario = scenarios.find((scenario) => scenario.id === selectedScenarioId) ?? scenarios[0];
   useEffect(() => {
     if (replayMode !== "live") {
       return undefined;
@@ -289,6 +384,16 @@ export function IncidentSimulator() {
 
     return () => window.clearInterval(timer);
   }, [replayMode]);
+
+  function chooseScenario(id: string) {
+    setSelectedScenarioId(id);
+    setActive(0);
+    setActiveEvidenceIds(defaultEvidenceIds);
+    setSelectedHypothesis(hypotheses[0].name);
+    setSelectedAction(actions[0].name);
+    setReplayMode("step");
+    setReplayIndex(2);
+  }
 
   const visibleReplayChapters = replayChapters.slice(0, replayIndex + 1);
   const currentReplayChapter = replayChapters[replayIndex];
@@ -302,23 +407,44 @@ export function IncidentSimulator() {
     return Math.min(100, Math.round(progress + hypothesisScore + actionScore + evidenceScore));
   }, [active, activeEvidenceIds, selectedAction, selectedHypothesis]);
   const selectedHypothesisDetail = hypotheses.find((item) => item.name === selectedHypothesis);
+  const selectedHypothesisIndex = selectedHypothesisDetail == null ? -1 : hypotheses.indexOf(selectedHypothesisDetail);
   const selectedActionDetail = actions.find((item) => item.name === selectedAction);
+  const selectedActionIndex = selectedActionDetail == null ? -1 : actions.indexOf(selectedActionDetail);
+  const selectedHypothesisLabel =
+    selectedHypothesisDetail == null || selectedHypothesisIndex < 0 ? "Not selected" : scenarioHypothesisLabel(selectedScenario, selectedHypothesisIndex);
+  const selectedHypothesisRationale =
+    selectedHypothesisDetail == null || selectedHypothesisIndex < 0
+      ? "Select a hypothesis to build the review packet."
+      : scenarioHypothesisRationale(selectedScenario, selectedHypothesisIndex, selectedHypothesisDetail.rationale);
+  const selectedActionLabel = selectedActionDetail == null || selectedActionIndex < 0 ? "Not selected" : scenarioActionLabel(selectedScenario, selectedActionIndex);
   const selectedHypothesisConfidence = selectedHypothesis == null ? 0 : adjustedConfidence(selectedHypothesis, activeEvidenceIds);
   const activeEvidenceTypes = activeEvidenceIds
     .map((id) => evidence.find((item) => item.id === id)?.type)
     .filter(Boolean)
     .join(" / ");
   const CurrentIcon = steps[active].icon;
+  const branchOutcome =
+    selectedActionDetail?.quality === "Best"
+      ? "Approved-review path: safest recommendation, strong auditability, and reusable outcome memory."
+      : selectedActionDetail?.quality === "Risky"
+        ? "Automation-risk path: fast but not release-ready because irreversible change skipped owner approval."
+        : "Delay-risk path: avoids unsafe automation but leaves customer impact unresolved despite enough review evidence.";
   const report = [
-    "ReasonOps Investigation Room Report",
-    `Case: ${operationalIntelligenceSystem.caseId} - ${operationalIntelligenceSystem.caseTitle}`,
+    "ReasonOps Harness Console Report",
+    `Case: ${selectedScenario.caseId} - ${selectedScenario.title}`,
+    `Trigger: ${selectedScenario.trigger}`,
+    `Impact: ${selectedScenario.impact}`,
     `Mode: ${steps[active].mode}`,
-    `Hypothesis: ${selectedHypothesisDetail?.name ?? "Not selected"}`,
+    `Replay cursor: ${currentReplayChapter.id} - ${currentReplayChapter.label}`,
+    `Hypothesis: ${selectedHypothesisLabel}`,
     `Hypothesis confidence: ${selectedHypothesisDetail ? `${selectedHypothesisConfidence}%` : "Not scored"}`,
     `Evidence included: ${activeEvidenceIds.length ? activeEvidenceIds.join(", ") : "None"}`,
-    `Action: ${selectedActionDetail?.name ?? "Not selected"}`,
+    `Action: ${selectedActionLabel}`,
     `Action quality: ${selectedActionDetail?.quality ?? "Not scored"}`,
+    `Branch outcome: ${branchOutcome}`,
     `Readiness score: ${score}%`,
+    `Learning target: ${selectedScenario.learningTarget}`,
+    "Release gate: publish only if evidence coverage, uncertainty, confidentiality, human review, and actionability remain green.",
     "Operating model: evidence before conclusions, timeline before RCA, evaluation before trust, human review before irreversible action."
   ].join("\n");
 
@@ -337,6 +463,23 @@ export function IncidentSimulator() {
               A public-safe incident room that demonstrates Ravikanth&apos;s operating model: evidence intake, transaction replay,
               hypothesis ranking, human review, and eval-gated trust.
             </p>
+            <div className="mt-5 grid gap-2 md:grid-cols-3">
+              {scenarios.map((scenario) => {
+                const selected = scenario.id === selectedScenarioId;
+                return (
+                  <button
+                    key={scenario.id}
+                    type="button"
+                    onClick={() => chooseScenario(scenario.id)}
+                    className={`rounded-lg border p-3 text-left transition ${selected ? "border-mint/35 bg-mint/[0.09]" : "border-white/10 bg-black/20 hover:border-white/25"}`}
+                  >
+                    <p className={selected ? "font-mono text-xs text-mint" : "font-mono text-xs text-slate-500"}>{scenario.caseId}</p>
+                    <p className="mt-2 text-sm font-semibold text-white">{scenario.title}</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-400">{scenario.trigger}</p>
+                  </button>
+                );
+              })}
+            </div>
             <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} />
             <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3">
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
@@ -384,7 +527,7 @@ export function IncidentSimulator() {
               <ReplaySignalCard
                 label="Confidence moves"
                 value={`${selectedHypothesisConfidence}%`}
-                detail={selectedHypothesisDetail?.name ?? "Hypothesis pending"}
+                detail={selectedHypothesisLabel}
                 tone="signal"
               />
               <ReplaySignalCard
@@ -403,11 +546,15 @@ export function IncidentSimulator() {
           </div>
           <div className="rounded-lg border border-white/10 bg-black/20 p-4 backdrop-blur md:p-5">
             <div className="mb-5 rounded-lg border border-signal/25 bg-signal/[0.07] p-4">
-              <p className="font-mono text-xs text-signal">{operationalIntelligenceSystem.caseId}</p>
-              <h3 className="mt-2 text-lg font-semibold text-white">{operationalIntelligenceSystem.caseTitle}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-300">{operationalIntelligenceSystem.caseSummary}</p>
+              <p className="font-mono text-xs text-signal">{selectedScenario.caseId}</p>
+              <h3 className="mt-2 text-lg font-semibold text-white">{selectedScenario.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{selectedScenario.summary}</p>
+              <div className="mt-3 rounded border border-white/10 bg-black/20 p-3">
+                <p className="text-xs font-semibold uppercase text-slate-500">Operator goal</p>
+                <p className="mt-1 text-sm leading-6 text-slate-200">{selectedScenario.operatorGoal}</p>
+              </div>
               <Link
-                href={`/ask?prompt=${encodeURIComponent("Explain the OI-ROOM-001 Investigation Room case and the public-safe decision packet.")}`}
+                href={`/ask?prompt=${encodeURIComponent(`Explain the ${selectedScenario.caseId} Investigation Room case and the public-safe decision packet.`)}`}
                 className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-mint"
               >
                 Ask about this case <ArrowRight size={15} />
@@ -532,6 +679,7 @@ export function IncidentSimulator() {
               selectedAction={selectedAction}
               replayIndex={replayIndex}
               visibleReplayChapters={visibleReplayChapters}
+              scenario={selectedScenario}
             />
 
             {active === 0 && (
@@ -539,12 +687,12 @@ export function IncidentSimulator() {
             )}
             {active === 1 && <TimelineReplay />}
             {active === 2 && (
-              <HypothesisBoard activeEvidenceIds={activeEvidenceIds} selectedHypothesis={selectedHypothesis} onSelect={setSelectedHypothesis} />
+              <HypothesisBoard activeEvidenceIds={activeEvidenceIds} selectedHypothesis={selectedHypothesis} onSelect={setSelectedHypothesis} scenario={selectedScenario} />
             )}
             {active === 3 && (
-              <ActionGate selectedHypothesisDetail={selectedHypothesisDetail} selectedAction={selectedAction} onSelect={setSelectedAction} />
+              <ActionGate selectedHypothesisDetail={selectedHypothesisDetail} selectedAction={selectedAction} onSelect={setSelectedAction} branchOutcome={branchOutcome} scenario={selectedScenario} />
             )}
-            {active === 4 && <EvalBoard report={report} />}
+            {active === 4 && <EvalBoard report={report} branchOutcome={branchOutcome} scenario={selectedScenario} score={score} />}
           </motion.div>
         </main>
 
@@ -552,15 +700,15 @@ export function IncidentSimulator() {
           <p className="text-xs font-semibold uppercase text-slate-500">Decision packet</p>
           <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.03] p-4">
             <BrainCircuit className="text-mint" />
-            <p className="mt-3 font-semibold text-white">{selectedHypothesisDetail?.name ?? "Hypothesis pending"}</p>
-            <p className="mt-2 text-sm leading-6 text-slate-400">{selectedHypothesisDetail?.rationale ?? "Select a hypothesis to build the review packet."}</p>
+            <p className="mt-3 font-semibold text-white">{selectedHypothesisLabel}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-400">{selectedHypothesisRationale}</p>
             <p className="mt-3 font-mono text-sm text-mint">{selectedHypothesisConfidence}% confidence from active evidence</p>
             <p className="mt-2 text-xs leading-5 text-slate-500">Active evidence: {activeEvidenceTypes || "None"}</p>
           </div>
           <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.03] p-4">
             <UserCheck className="text-signal" />
             <p className="mt-3 font-semibold text-white">{selectedActionDetail?.quality ?? "Action pending"}</p>
-            <p className="mt-2 text-sm leading-6 text-slate-400">{selectedActionDetail?.name ?? "Choose the action that preserves human accountability."}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-400">{selectedActionDetail == null ? "Choose the action that preserves human accountability." : selectedActionLabel}</p>
           </div>
           <div className="mt-4 rounded-lg border border-mint/20 bg-mint/[0.06] p-4">
             <p className="text-sm font-semibold text-mint">Operating law</p>
@@ -734,7 +882,8 @@ function VisualReplayLayer({
   selectedHypothesis,
   selectedAction,
   replayIndex,
-  visibleReplayChapters
+  visibleReplayChapters,
+  scenario
 }: {
   active: number;
   activeEvidenceIds: string[];
@@ -742,6 +891,7 @@ function VisualReplayLayer({
   selectedAction: string | null;
   replayIndex: number;
   visibleReplayChapters: typeof replayChapters;
+  scenario: (typeof scenarios)[number];
 }) {
   const activeSet = new Set(activeEvidenceIds);
   const selectedConfidence = selectedHypothesis == null ? 0 : adjustedConfidence(selectedHypothesis, activeEvidenceIds);
@@ -925,10 +1075,11 @@ function VisualReplayLayer({
             {hypotheses.map((hypothesis) => {
               const confidence = adjustedConfidence(hypothesis.name, activeEvidenceIds);
               const selected = hypothesis.name === selectedHypothesis;
+              const hypothesisIndex = hypotheses.indexOf(hypothesis);
               return (
                 <div key={hypothesis.name}>
                   <div className="flex items-start justify-between gap-3">
-                    <p className={selected ? "text-sm font-semibold text-white" : "text-sm text-slate-300"}>{hypothesis.name}</p>
+                    <p className={selected ? "text-sm font-semibold text-white" : "text-sm text-slate-300"}>{scenarioHypothesisLabel(scenario, hypothesisIndex)}</p>
                     <p className="font-mono text-sm text-mint">{confidence}%</p>
                   </div>
                   <div className="mt-2 h-2 rounded-full bg-white/10">
@@ -1162,11 +1313,13 @@ function TimelineReplay() {
 function HypothesisBoard({
   activeEvidenceIds,
   selectedHypothesis,
-  onSelect
+  onSelect,
+  scenario
 }: {
   activeEvidenceIds: string[];
   selectedHypothesis: string | null;
   onSelect: (value: string) => void;
+  scenario: (typeof scenarios)[number];
 }) {
   return (
     <div className="space-y-4">
@@ -1178,6 +1331,7 @@ function HypothesisBoard({
       {hypotheses.map((item) => {
         const selected = selectedHypothesis === item.name;
         const confidence = adjustedConfidence(item.name, activeEvidenceIds);
+        const hypothesisIndex = hypotheses.indexOf(item);
         return (
           <button
             key={item.name}
@@ -1186,13 +1340,13 @@ function HypothesisBoard({
             className={`w-full rounded-lg border p-4 text-left transition ${selected ? "border-signal/50 bg-signal/[0.08]" : "border-white/10 bg-white/[0.03] hover:border-white/25"}`}
           >
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <span className="font-semibold text-white">{item.name}</span>
+              <span className="font-semibold text-white">{scenarioHypothesisLabel(scenario, hypothesisIndex)}</span>
               <span className="font-mono text-mint">{confidence}%</span>
             </div>
             <div className="mt-4 h-2 rounded-full bg-white/10">
               <div className="h-2 rounded-full bg-signal" style={{ width: `${confidence}%` }} />
             </div>
-            <p className="mt-3 text-sm leading-6 text-slate-300">{item.rationale}</p>
+            <p className="mt-3 text-sm leading-6 text-slate-300">{scenarioHypothesisRationale(scenario, hypothesisIndex, item.rationale)}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {item.signals.map((signal) => (
                 <span key={signal} className="rounded border border-white/10 bg-black/20 px-2 py-1 text-xs text-slate-300">{signal}</span>
@@ -1208,11 +1362,15 @@ function HypothesisBoard({
 function ActionGate({
   selectedHypothesisDetail,
   selectedAction,
-  onSelect
+  onSelect,
+  branchOutcome,
+  scenario
 }: {
   selectedHypothesisDetail: (typeof hypotheses)[number] | undefined;
   selectedAction: string | null;
   onSelect: (value: string) => void;
+  branchOutcome: string;
+  scenario: (typeof scenarios)[number];
 }) {
   return (
     <div>
@@ -1228,16 +1386,24 @@ function ActionGate({
             <h3 className="text-xl font-semibold text-white">Reviewable RCA draft</h3>
           </div>
           <p className="mt-4 leading-8 text-slate-200">
-            The selected explanation is <span className="font-semibold text-white">{selectedHypothesisDetail?.name ?? "still pending"}</span>.
+            The selected explanation is{" "}
+            <span className="font-semibold text-white">
+              {selectedHypothesisDetail == null ? "still pending" : scenarioHypothesisLabel(scenario, hypotheses.indexOf(selectedHypothesisDetail))}
+            </span>.
             A strong RCA connects timing, impact scope, topology alignment, and a reversible mitigation path.
           </p>
           <div className="mt-5 flex items-start gap-3 rounded border border-amber/30 bg-amber/10 p-4 text-amber">
             <AlertTriangle size={20} />
             <p className="text-sm leading-6">Missing context: direct owner confirmation and post-mitigation validation. Human approval required before change.</p>
           </div>
+          <div className="mt-4 rounded border border-white/10 bg-black/20 p-4">
+            <p className="text-xs font-semibold uppercase text-slate-500">Scenario pressure</p>
+            <p className="mt-2 text-sm leading-6 text-slate-200">{scenario.impact}</p>
+            <p className="mt-2 text-xs leading-5 text-slate-500">{scenario.operatorGoal}</p>
+          </div>
         </div>
         <div className="space-y-3">
-          {actions.map((action) => (
+          {actions.map((action, index) => (
             <button
               key={action.name}
               type="button"
@@ -1245,19 +1411,34 @@ function ActionGate({
               className={`w-full rounded-lg border p-4 text-left transition ${selectedAction === action.name ? "border-signal bg-signal/10" : "border-white/10 bg-white/[0.03] hover:border-white/25"}`}
             >
               <div className="flex items-center justify-between gap-3">
-                <span className="font-semibold text-white">{action.name}</span>
+                <span className="font-semibold text-white">{scenarioActionLabel(scenario, index)}</span>
                 <span className={action.quality === "Best" ? "text-mint" : "text-amber"}>{action.quality}</span>
               </div>
               <p className="mt-2 text-sm leading-6 text-slate-300">{action.rationale}</p>
             </button>
           ))}
+          <div className="rounded-lg border border-signal/25 bg-signal/[0.07] p-4">
+            <p className="text-xs font-semibold uppercase text-slate-500">Branch outcome</p>
+            <p className="mt-2 text-sm leading-6 text-slate-200">{branchOutcome}</p>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-function EvalBoard({ report }: { report: string }) {
+function EvalBoard({
+  report,
+  branchOutcome,
+  scenario,
+  score
+}: {
+  report: string;
+  branchOutcome: string;
+  scenario: (typeof scenarios)[number];
+  score: number;
+}) {
+  const releaseVerdict = score >= 85 ? "Ready for reviewed recommendation" : score >= 70 ? "Needs operator review before recommendation" : "Not release-ready";
   return (
     <div>
       <PanelIntro
@@ -1267,6 +1448,29 @@ function EvalBoard({ report }: { report: string }) {
       />
       <div className="grid gap-5 xl:grid-cols-[1fr_0.9fr]">
         <div className="space-y-3">
+          <div className="rounded-lg border border-mint/25 bg-mint/[0.07] p-4">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase text-slate-500">Release verdict</p>
+                <h3 className="mt-2 text-xl font-semibold text-white">{releaseVerdict}</h3>
+              </div>
+              <p className="font-mono text-4xl font-semibold text-mint">{score}%</p>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-slate-300">{branchOutcome}</p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {[
+              ["Case", `${scenario.caseId} - ${scenario.title}`],
+              ["Learning target", scenario.learningTarget],
+              ["Operator goal", scenario.operatorGoal],
+              ["Public-safe boundary", "No private logs, names, screenshots, dashboards, or proprietary architecture."]
+            ].map(([label, value]) => (
+              <div key={label} className="rounded border border-white/10 bg-white/[0.03] p-3">
+                <p className="text-xs font-semibold uppercase text-slate-500">{label}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{value}</p>
+              </div>
+            ))}
+          </div>
           {evalChecks.map(([name, status, detail]) => (
             <div key={name} className="grid gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-4 md:grid-cols-[12rem_5rem_1fr]">
               <span className="font-semibold text-white">{name}</span>
