@@ -245,7 +245,7 @@ export function IncidentSimulator() {
               hypothesis ranking, human review, and eval-gated trust.
             </p>
             <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} />
-            <div className="mt-5 grid grid-cols-3 gap-2 md:gap-3">
+            <div className="mt-5 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
               <ReplaySignalCard
                 label="Evidence replay"
                 value={`${activeEvidenceIds.length} active`}
@@ -263,6 +263,12 @@ export function IncidentSimulator() {
                 value={selectedActionDetail?.quality ?? "Pending"}
                 detail="Human approval before irreversible change"
                 tone="amber"
+              />
+              <ReplaySignalCard
+                label="Budget guard"
+                value={`${Math.min(20, 4 + activeEvidenceIds.length + active * 3)}/20`}
+                detail="Bounded investigation calls before escalation"
+                tone="signal"
               />
             </div>
           </div>
@@ -344,6 +350,17 @@ export function IncidentSimulator() {
             </div>
             <p className="mt-2 text-sm leading-6">No internal logs, proprietary names, screenshots, or confidential architecture.</p>
           </div>
+          <div className="mt-4 rounded-lg border border-signal/20 bg-signal/[0.06] p-4">
+            <p className="text-xs font-semibold uppercase text-slate-500">Control plane DNA</p>
+            <div className="mt-3 space-y-2">
+              {operationalIntelligenceSystem.decisionPacket.operatingControls.map((control) => (
+                <div key={control} className="flex items-center gap-2 text-sm text-slate-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+                  {control}
+                </div>
+              ))}
+            </div>
+          </div>
         </aside>
 
         <main className="min-h-[34rem] p-5 md:p-6">
@@ -417,6 +434,12 @@ export function IncidentSimulator() {
             >
               Trace this in the Map <ArrowRight size={15} />
             </Link>
+          </div>
+          <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.03] p-4">
+            <p className="text-sm font-semibold text-white">Receipt model</p>
+            <p className="mt-2 text-sm leading-6 text-slate-400">
+              Every evidence item, hypothesis movement, and action recommendation should be inspectable, replayable, and challengeable by the operator.
+            </p>
           </div>
         </aside>
       </div>

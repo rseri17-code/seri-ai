@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowRight, Boxes, GitBranch, ShieldCheck } from "lucide-react";
+import { ArrowRight, Boxes, GitBranch, Radar, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
-import { canonicalDefinition, operationalLayers, products } from "@/content/site";
+import { builderDna, canonicalDefinition, operationalLayers, products } from "@/content/site";
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -66,6 +66,20 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             ))}
           </div>
         </Card>
+      </div>
+
+      <div className="mt-12">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-signal">Builder DNA</p>
+        <h2 className="mt-3 text-3xl font-semibold text-white">ReasonOps inherits Ravikanth&apos;s proof-driven operating model.</h2>
+        <div className="mt-6 grid gap-3 md:grid-cols-3">
+          {builderDna.principles.map((principle) => (
+            <Card key={principle.name} className="p-4">
+              <Radar className="mb-4 text-signal" />
+              <h3 className="font-semibold text-white">{principle.name}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{principle.description}</p>
+            </Card>
+          ))}
+        </div>
       </div>
 
       <div className="mt-12">

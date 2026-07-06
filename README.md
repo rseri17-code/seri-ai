@@ -34,6 +34,19 @@ Shared loop:
 
 When adding new product surfaces, connect them to `operationalIntelligenceSystem` in `content/site.ts` so the thesis, artifact, and assistant stay aligned.
 
+## Ravikanth Builder DNA
+
+The public site should reflect Ravikanth's actual product instincts:
+
+- deterministic first
+- proof-driven
+- bounded autonomy
+- evidence receipts
+- replay as trust
+- operator control plane
+
+These ideas are public-safe translations of AI-native incident investigation work. Do not copy private implementation details, employer systems, confidential screenshots, logs, or proprietary architecture into the site.
+
 ## Stack
 
 - Next.js App Router, React, TypeScript

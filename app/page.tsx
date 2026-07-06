@@ -4,7 +4,7 @@ import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
-import { articles, operationalIntelligenceSystem, patterns, principles, projects, site } from "@/content/site";
+import { articles, builderDna, operationalIntelligenceSystem, patterns, principles, projects, site } from "@/content/site";
 
 export default function Home() {
   return (
@@ -97,6 +97,28 @@ export default function Home() {
                   <h3 className="font-semibold text-white">{title}</h3>
                   <p className="text-sm leading-6 text-slate-400">{text}</p>
                 </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section eyebrow="Builder DNA" title="This is what reflects Ravikanth.">
+        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+          <Card className="border-signal/30 bg-signal/[0.055]">
+            <ShieldCheck className="mb-5 text-signal" />
+            <h3 className="text-3xl font-semibold text-white">{builderDna.title}</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">{builderDna.thesis}</p>
+            <p className="mt-5 rounded border border-white/10 bg-black/20 p-4 text-sm leading-6 text-slate-400">
+              {builderDna.publicSafeSource}
+            </p>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {builderDna.principles.map((principle, index) => (
+              <Card key={principle.name} className="p-4">
+                <span className="font-mono text-xs text-mint">{String(index + 1).padStart(2, "0")}</span>
+                <h3 className="mt-3 font-semibold text-white">{principle.name}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{principle.description}</p>
               </Card>
             ))}
           </div>

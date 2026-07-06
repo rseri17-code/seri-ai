@@ -3,19 +3,19 @@ import evalReportData from "./eval-report.json";
 export const site = {
   name: "seri.ai",
   owner: "Ravikanth Seri",
-  tagline: "The operating model for AI-native enterprise operations.",
+  tagline: "Proof-driven AI systems for enterprise operations.",
   positioning: "Operational Intelligence, not another AI resume.",
   description:
-    "seri.ai is Ravikanth Seri's public product lab for Operational Intelligence: the reasoning layer that connects observability, transactions, topology, agents, knowledge graphs, evaluation, and human review.",
+    "seri.ai is Ravikanth Seri's public product lab for Operational Intelligence: deterministic investigation loops, evidence receipts, replayable reasoning, operational memory, confidence calibration, and human review for AI-native enterprise operations.",
   brandBelief:
     "The next enterprise advantage is not more telemetry. It is the ability to explain what changed, why it matters, what evidence supports the conclusion, and what action a human should review.",
   productPromise:
-    "A visitor should leave with one memory: Ravikanth is building the public language and product pattern for enterprises whose systems must understand, explain, and improve their own operations.",
+    "A visitor should leave with one memory: Ravikanth builds operational AI like production infrastructure: bounded, observable, replayable, evidence-weighted, and accountable.",
   operatingSystem: [
     "Evidence before conclusions",
     "Transactions before isolated signals",
-    "Context before automation",
-    "Evaluation before trust",
+    "Receipts before trust",
+    "Replay before belief",
     "Human judgment before irreversible action"
   ],
   compliance:
@@ -50,6 +50,49 @@ export const canonicalDefinition = {
     "What is affected?",
     "What should a human review next?",
     "What should the system learn for next time?"
+  ]
+};
+
+export const builderDna = {
+  title: "What makes Ravikanth's work different",
+  thesis:
+    "Ravikanth is not trying to make a chatbot for operations. He is building the discipline for operational AI systems that can investigate, prove, remember, replay, and improve.",
+  publicSafeSource:
+    "This language is distilled from public-safe product work around AI-native incident investigation and operational control planes. It avoids internal employer systems, proprietary names, screenshots, logs, and confidential architecture.",
+  principles: [
+    {
+      name: "Deterministic first",
+      description: "Known operational paths should be reproducible before an LLM is allowed to add judgment."
+    },
+    {
+      name: "Proof-driven",
+      description: "Every conclusion needs evidence references, missing-context statements, and confidence movement."
+    },
+    {
+      name: "Bounded autonomy",
+      description: "Tool use, time, scope, and irreversible actions need explicit budgets and policy gates."
+    },
+    {
+      name: "Receipts everywhere",
+      description: "Each tool call, observation, hypothesis, and decision should leave an auditable trail."
+    },
+    {
+      name: "Replay as trust",
+      description: "The best investigation systems can replay the same evidence path without re-running the world."
+    },
+    {
+      name: "Operator control plane",
+      description: "The UI should expose evidence, risk, confidence, memory, and approval gates in one place."
+    }
+  ],
+  productTranslation: [
+    "Incident command center",
+    "Execution graph",
+    "Evidence drawer",
+    "Memory trace",
+    "Replay mode",
+    "Risk and confidence layer",
+    "Human approval controls"
   ]
 };
 
@@ -194,6 +237,8 @@ export const operationalIntelligenceSystem = {
   ],
   askPrompts: [
     "Explain the OI-ROOM-001 case using the Operational Intelligence layers.",
+    "How does Ravikanth think about deterministic-first incident investigation?",
+    "Why do evidence receipts and replay matter for operational AI?",
     "What makes Investigation Room different from a dashboard demo?",
     "How should AI evaluation work for operational incident investigation?",
     "Why does Operational Intelligence require transaction, topology, and evidence together?",
@@ -203,7 +248,8 @@ export const operationalIntelligenceSystem = {
     hypothesis: "Configuration regression in a dependency path",
     action: "Recommend rollback review with owner approval",
     guardrail: "No internal logs, proprietary product names, screenshots, or confidential architecture.",
-    evalStandard: "Evidence coverage, uncertainty, confidentiality, human review, and actionability must pass before trust."
+    evalStandard: "Evidence coverage, deterministic replay, budget discipline, uncertainty, confidentiality, human review, and actionability must pass before trust.",
+    operatingControls: ["20-call budget", "policy gate", "evidence receipts", "hash-checked replay", "confidence calibration", "approval checkpoint"]
   }
 };
 
@@ -1295,6 +1341,11 @@ export const resume = {
 export const approvedKnowledge = [
   site.description,
   site.tagline,
+  builderDna.title,
+  builderDna.thesis,
+  builderDna.publicSafeSource,
+  ...builderDna.principles.flatMap((principle) => [principle.name, principle.description]),
+  ...builderDna.productTranslation,
   ...articles.flatMap((article) => [article.title, article.dek, ...article.body]),
   ...products.flatMap((product) => [
     product.name,
