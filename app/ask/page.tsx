@@ -32,8 +32,8 @@ export default async function AskPage({
             <BrainCircuit className="mb-4 text-mint" />
             <h2 className="text-2xl font-semibold text-white">Ask against the same system spine that powers the Map and Investigation Room.</h2>
             <p className="mt-3 leading-7 text-slate-300">
-              This assistant should answer in Ravikanth&apos;s public voice, grounded only in approved public content. When context is unknown,
-              confidential, or outside the public-safe boundary, it should say so clearly.
+              Explore Ravikanth&apos;s public thinking on proof-driven operational AI: evidence graphs, hypothesis lifecycles,
+              replayable investigations, decision traces, evaluation, and operator control planes.
             </p>
           </Card>
           <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
