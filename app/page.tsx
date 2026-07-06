@@ -4,7 +4,7 @@ import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
-import { articles, builderDna, operationalIntelligenceSystem, patterns, principles, projects, sentinelContextModel, site } from "@/content/site";
+import { articles, builderDna, harnessThesis, operationalIntelligenceSystem, patterns, principles, projects, sentinelContextModel, site } from "@/content/site";
 
 export default function Home() {
   return (
@@ -55,9 +55,9 @@ export default function Home() {
             </div>
             <div className="mt-8 grid max-w-3xl grid-cols-3 gap-3">
               {[
-                ["Reason", "over signals"],
-                ["Evaluate", "before trust"],
-                ["Review", "before action"]
+                ["Harness", "over model"],
+                ["Receipts", "before trust"],
+                ["Replay", "before action"]
               ].map(([value, label]) => (
                 <div key={label} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
                   <p className="text-2xl font-semibold text-white">{value}</p>
@@ -80,8 +80,8 @@ export default function Home() {
             <Sparkles className="mb-5 text-mint" />
             <h3 className="text-3xl font-semibold text-white">seri.ai is a public product thesis with working artifacts.</h3>
             <p className="mt-4 text-lg leading-8 text-slate-300">
-              It should make Ravikanth memorable for a specific category: enterprise systems that reason from evidence,
-              reconstruct transaction impact, evaluate AI behavior, and keep human accountability in the loop.
+              It should make Ravikanth memorable for a specific category: Agentic SRE harnesses that reason from evidence,
+              reconstruct transaction impact, evaluate AI behavior, preserve operational memory, and keep human accountability in the loop.
             </p>
           </Card>
           <div className="grid gap-3">
@@ -97,6 +97,32 @@ export default function Home() {
                   <h3 className="font-semibold text-white">{title}</h3>
                   <p className="text-sm leading-6 text-slate-400">{text}</p>
                 </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section eyebrow="Agentic SRE thesis" title={harnessThesis.headline}>
+        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+          <Card className="border-signal/30 bg-signal/[0.055]">
+            <BrainCircuit className="mb-5 text-signal" />
+            <h3 className="text-3xl font-semibold text-white">The model is not the moat. The operating harness is.</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">{harnessThesis.statement}</p>
+            <p className="mt-5 rounded border border-white/10 bg-black/20 p-4 text-sm leading-6 text-slate-300">{harnessThesis.category}</p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {harnessThesis.loop.map((step) => (
+                <span key={step} className="rounded border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-semibold uppercase text-slate-300">
+                  {step}
+                </span>
+              ))}
+            </div>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {harnessThesis.beliefs.map((belief) => (
+              <Card key={belief.title} className="p-4">
+                <h3 className="font-semibold text-white">{belief.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{belief.body}</p>
               </Card>
             ))}
           </div>
@@ -125,7 +151,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Sentinel context, public-safe" title="The product ambition underneath the thesis.">
+      <Section eyebrow="Public-safe product model" title="The product ambition underneath the thesis.">
         <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <BrainCircuit className="mb-5 text-mint" />

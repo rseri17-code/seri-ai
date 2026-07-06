@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowRight, Boxes, GitBranch, Radar, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
-import { builderDna, canonicalDefinition, operationalLayers, products } from "@/content/site";
+import { builderDna, canonicalDefinition, harnessThesis, operationalLayers, products } from "@/content/site";
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -66,6 +66,19 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             ))}
           </div>
         </Card>
+      </div>
+
+      <div className="mt-12 rounded-lg border border-signal/25 bg-signal/[0.055] p-5 md:p-6">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-signal">Agentic SRE thesis</p>
+        <h2 className="mt-3 text-3xl font-semibold text-white">{harnessThesis.headline}</h2>
+        <p className="mt-4 max-w-4xl leading-8 text-slate-300">{harnessThesis.statement}</p>
+        <div className="mt-6 grid gap-3 md:grid-cols-3">
+          {harnessThesis.proofObjects.map((object) => (
+            <div key={object} className="rounded border border-white/10 bg-black/20 p-4 text-sm font-semibold text-slate-100">
+              {object}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mt-12">

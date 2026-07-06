@@ -3,14 +3,14 @@ import evalReportData from "./eval-report.json";
 export const site = {
   name: "seri.ai",
   owner: "Ravikanth Seri",
-  tagline: "Proof-driven AI systems for enterprise operations.",
-  positioning: "Operational Intelligence, not another AI resume.",
+  tagline: "Agentic SRE harnesses for evidence-backed, self-healing operations.",
+  positioning: "The public home of evidence-backed Agentic SRE.",
   description:
-    "seri.ai is Ravikanth Seri's public product lab for Operational Intelligence: deterministic investigation loops, evidence receipts, replayable reasoning, operational memory, confidence calibration, and human review for AI-native enterprise operations.",
+    "seri.ai is Ravikanth Seri's public product lab for Operational Intelligence: deterministic Agentic SRE harnesses, evidence receipts, replayable reasoning, operational memory, confidence calibration, and human review for AI-native enterprise operations.",
   brandBelief:
-    "The next enterprise advantage is not more telemetry. It is the ability to explain what changed, why it matters, what evidence supports the conclusion, and what action a human should review.",
+    "The next enterprise advantage is not a smarter model in isolation. It is the harness around the model: evidence, policy, replay, memory, evaluation, and human review working as one operating system.",
   productPromise:
-    "A visitor should leave with one memory: Ravikanth builds operational AI like production infrastructure: bounded, observable, replayable, evidence-weighted, and accountable.",
+    "A visitor should leave with one memory: Ravikanth builds Agentic SRE systems like production infrastructure: deterministic where possible, bounded where autonomous, replayable where trusted, and accountable where action matters.",
   operatingSystem: [
     "Evidence before conclusions",
     "Transactions before isolated signals",
@@ -39,6 +39,34 @@ export const site = {
   ]
 };
 
+export const harnessThesis = {
+  headline: "The harness is the product.",
+  statement:
+    "The real differentiator in Agentic SRE is not the model. It is the operating harness that lets a model investigate with evidence, stay inside policy, expose its reasoning, learn from outcomes, and hand control back to humans before high-risk action.",
+  category:
+    "ReasonOps is the product expression of that belief: a public-safe operating model for evidence-backed, self-healing operations.",
+  beliefs: [
+    {
+      title: "Models reason. Harnesses remember.",
+      body: "A model can reason about one incident. A harness accumulates operational experience across incidents, outcomes, false leads, approvals, and replayed decisions."
+    },
+    {
+      title: "Incidents are temporary. Operational knowledge should not be.",
+      body: "Every investigation should leave reusable memory: what was proven, what was rejected, what action worked, and what should be checked first next time."
+    },
+    {
+      title: "Evidence-backed self-healing beats autonomy theater.",
+      body: "The goal is not an agent that acts confidently. The goal is a system that can prove why action is justified, where uncertainty remains, and which human gate must approve change."
+    },
+    {
+      title: "Shared context is the enterprise problem.",
+      body: "Private context is cheap. The durable advantage is shared operational context: transactions, topology, evidence, owners, risks, and decisions that teams can trust together."
+    }
+  ],
+  loop: ["Intake", "Evidence", "Graph", "Hypothesis", "Decision", "Replay", "Outcome", "Learning"],
+  proofObjects: ["Evidence graph", "Hypothesis lifecycle", "Decision trace", "Replay seed", "Outcome memory", "Evaluation harness"]
+};
+
 export const canonicalDefinition = {
   short: "Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
   support:
@@ -56,7 +84,7 @@ export const canonicalDefinition = {
 export const builderDna = {
   title: "What makes Ravikanth's work different",
   thesis:
-    "Ravikanth is not trying to make a chatbot for operations. He is building the discipline for operational AI systems that can investigate, prove, remember, replay, and improve.",
+    "Ravikanth is not trying to make a chatbot for operations. He is building Agentic SRE harnesses that can investigate, prove, remember, replay, self-correct, and improve.",
   publicSafeSource:
     "This language is distilled from public-safe product work around AI-native incident investigation and operational control planes. It avoids internal employer systems, proprietary names, screenshots, logs, and confidential architecture.",
   principles: [
@@ -97,9 +125,9 @@ export const builderDna = {
 };
 
 export const sentinelContextModel = {
-  title: "The public-safe model behind Ravikanth's work",
+  title: "The public-safe model behind Ravikanth's Agentic SRE work",
   framing:
-    "The work behind seri.ai is shaped by a real product ambition: operational AI should behave like evidence infrastructure. It should not just summarize incidents. It should collect typed evidence, build hypotheses, show decision provenance, preserve replay seeds, learn from outcomes, and expose the whole process to an operator.",
+    "The work behind seri.ai is shaped by a real product ambition: operational AI should behave like evidence infrastructure. It should not just summarize incidents. It should collect typed evidence, build hypotheses, show decision provenance, preserve replay seeds, learn from outcomes, self-correct inside a bounded harness, and expose the whole process to an operator.",
   compliance:
     "This model is intentionally generic. It avoids private system names, vendor-specific implementation details, credentials, logs, screenshots, dashboards, and confidential architecture.",
   primitives: [
@@ -283,9 +311,11 @@ export const operationalIntelligenceSystem = {
   ],
   askPrompts: [
     "Explain the OI-ROOM-001 case using the Operational Intelligence layers.",
+    "Why does Ravikanth say the harness is the product in Agentic SRE?",
+    "What is an evidence-backed self-healing operations system?",
     "How does Ravikanth think about deterministic-first incident investigation?",
     "Why do evidence receipts and replay matter for operational AI?",
-    "Explain the public-safe Sentinel-inspired model behind seri.ai.",
+    "Explain the public-safe Agentic SRE harness model behind seri.ai.",
     "What is the difference between evidence graph, hypothesis lifecycle, decision trace, and replay seed?",
     "What makes Investigation Room different from a dashboard demo?",
     "How should AI evaluation work for operational incident investigation?",
@@ -1389,6 +1419,12 @@ export const resume = {
 export const approvedKnowledge = [
   site.description,
   site.tagline,
+  harnessThesis.headline,
+  harnessThesis.statement,
+  harnessThesis.category,
+  ...harnessThesis.beliefs.flatMap((belief) => [belief.title, belief.body]),
+  ...harnessThesis.loop,
+  ...harnessThesis.proofObjects,
   builderDna.title,
   builderDna.thesis,
   builderDna.publicSafeSource,

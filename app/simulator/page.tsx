@@ -14,10 +14,10 @@ export default function SimulatorPage() {
                 <ShieldCheck size={16} />
                 Signature artifact
               </div>
-              <h1 className="text-3xl font-semibold text-white md:text-5xl">ReasonOps Investigation Room</h1>
+              <h1 className="text-3xl font-semibold text-white md:text-5xl">ReasonOps Harness Console</h1>
               <p className="mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 sm:block">
-                A public-safe interactive artifact for AI-native incident investigation. Run {operationalIntelligenceSystem.caseId},
-                trace the Operational Intelligence layers, and see how evidence becomes a reviewable decision.
+                A public-safe artifact for evidence-backed Agentic SRE. Run {operationalIntelligenceSystem.caseId},
+                trace execution, receipts, replay, memory, confidence, and approval gates, then see how evidence becomes a reviewable decision.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
