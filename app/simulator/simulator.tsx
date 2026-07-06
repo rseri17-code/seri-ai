@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
@@ -182,6 +182,56 @@ const replayTrace = [
   ["Compare", "Scored competing explanations"],
   ["Gate", "Kept irreversible action behind human review"]
 ];
+const replayChapters = [
+  {
+    id: "RX-01",
+    label: "Signal normalized",
+    time: "09:24:08",
+    evidenceId: "signal",
+    summary: "Customer journey degradation enters the harness as typed evidence.",
+    stage: "Intake"
+  },
+  {
+    id: "RX-02",
+    label: "Change correlated",
+    time: "09:25:41",
+    evidenceId: "change",
+    summary: "A public-safe change record is linked to the symptom window.",
+    stage: "Collect"
+  },
+  {
+    id: "RX-03",
+    label: "Path reconstructed",
+    time: "09:27:12",
+    evidenceId: "topology",
+    summary: "The affected transaction path is connected to dependency groups.",
+    stage: "Graph"
+  },
+  {
+    id: "RX-04",
+    label: "Noise rejected",
+    time: "09:30:27",
+    evidenceId: "noise",
+    summary: "An unrelated alert is kept visible but prevented from dominating RCA.",
+    stage: "Score"
+  },
+  {
+    id: "RX-05",
+    label: "Review packet drafted",
+    time: "09:43:03",
+    evidenceId: "topology",
+    summary: "The recommended rollback review remains behind a human approval gate.",
+    stage: "Gate"
+  },
+  {
+    id: "RX-06",
+    label: "Outcome memory queued",
+    time: "09:51:30",
+    evidenceId: "change",
+    summary: "The case becomes a future replay fixture after operator validation.",
+    stage: "Learn"
+  }
+];
 const evidenceImpact: Record<string, string> = {
   signal: "Raises incident priority because customer journey impact is visible.",
   change: "Raises regression confidence because the symptom window follows a recorded change.",
@@ -226,6 +276,23 @@ export function IncidentSimulator() {
   const [activeEvidenceIds, setActiveEvidenceIds] = useState<string[]>(defaultEvidenceIds);
   const [selectedHypothesis, setSelectedHypothesis] = useState<string | null>(hypotheses[0].name);
   const [selectedAction, setSelectedAction] = useState<string | null>(actions[0].name);
+  const [replayMode, setReplayMode] = useState<"step" | "live">("step");
+  const [replayIndex, setReplayIndex] = useState(2);
+  useEffect(() => {
+    if (replayMode !== "live") {
+      return undefined;
+    }
+
+    const timer = window.setInterval(() => {
+      setReplayIndex((value) => (value + 1) % replayChapters.length);
+    }, 1800);
+
+    return () => window.clearInterval(timer);
+  }, [replayMode]);
+
+  const visibleReplayChapters = replayChapters.slice(0, replayIndex + 1);
+  const currentReplayChapter = replayChapters[replayIndex];
+  const replayProgress = Math.round(((replayIndex + 1) / replayChapters.length) * 100);
   const score = useMemo(() => {
     const progress = ((active + 1) / steps.length) * 45;
     const hypothesisConfidence = selectedHypothesis == null ? 0 : adjustedConfidence(selectedHypothesis, activeEvidenceIds);
@@ -271,6 +338,42 @@ export function IncidentSimulator() {
               hypothesis ranking, human review, and eval-gated trust.
             </p>
             <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} />
+            <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3">
+              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase text-slate-500">Replay cursor</p>
+                  <p className="mt-1 text-sm font-semibold text-white">
+                    {currentReplayChapter.id} · {currentReplayChapter.label} · {replayProgress}% complete
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setReplayMode((mode) => (mode === "live" ? "step" : "live"))}
+                    className={replayMode === "live" ? "rounded bg-signal px-3 py-2 text-xs font-semibold text-ink" : "rounded border border-white/15 px-3 py-2 text-xs font-semibold text-white"}
+                  >
+                    {replayMode === "live" ? "Live replay" : "Step replay"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setReplayIndex((value) => Math.max(0, value - 1))}
+                    className="rounded border border-white/15 px-3 py-2 text-xs font-semibold text-white"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setReplayIndex((value) => Math.min(replayChapters.length - 1, value + 1))}
+                    className="rounded border border-mint/35 px-3 py-2 text-xs font-semibold text-mint"
+                  >
+                    Advance
+                  </button>
+                </div>
+              </div>
+              <div className="mt-3 h-1.5 rounded-full bg-white/10">
+                <motion.div className="h-1.5 rounded-full bg-signal" animate={{ width: `${replayProgress}%` }} transition={{ duration: 0.35 }} />
+              </div>
+            </div>
             <div className="mt-5 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
               <ReplaySignalCard
                 label="Evidence replay"
@@ -336,6 +439,8 @@ export function IncidentSimulator() {
         confidence={selectedHypothesisConfidence}
         activeEvidenceIds={activeEvidenceIds}
         selectedActionQuality={selectedActionDetail?.quality ?? "Pending"}
+        replayIndex={replayIndex}
+        currentReplayChapter={currentReplayChapter}
       />
 
       <div className="grid grid-cols-5 border-b border-white/10">
@@ -425,6 +530,8 @@ export function IncidentSimulator() {
               activeEvidenceIds={activeEvidenceIds}
               selectedHypothesis={selectedHypothesis}
               selectedAction={selectedAction}
+              replayIndex={replayIndex}
+              visibleReplayChapters={visibleReplayChapters}
             />
 
             {active === 0 && (
@@ -515,13 +622,17 @@ function ControlPlaneConsole({
   score,
   confidence,
   activeEvidenceIds,
-  selectedActionQuality
+  selectedActionQuality,
+  replayIndex,
+  currentReplayChapter
 }: {
   active: number;
   score: number;
   confidence: number;
   activeEvidenceIds: string[];
   selectedActionQuality: string;
+  replayIndex: number;
+  currentReplayChapter: (typeof replayChapters)[number];
 }) {
   const budgetUsed = Math.min(20, 4 + activeEvidenceIds.length + active * 3);
   const risk = selectedActionQuality === "Risky" ? "High" : score > 78 ? "Managed" : "Open";
@@ -550,7 +661,7 @@ function ControlPlaneConsole({
         <div className="rounded-lg border border-white/10 bg-[#071018] p-4">
           <div className="flex items-center justify-between gap-3">
             <p className="text-xs font-semibold uppercase text-slate-500">Execution graph</p>
-            <span className="rounded border border-mint/25 bg-mint/10 px-2 py-1 font-mono text-xs text-mint">deterministic path</span>
+            <span className="rounded border border-mint/25 bg-mint/10 px-2 py-1 font-mono text-xs text-mint">{currentReplayChapter.id} active</span>
           </div>
           <div className="mt-4 grid gap-2 md:grid-cols-6">
             {executionStages.map((stage, index) => {
@@ -567,16 +678,19 @@ function ControlPlaneConsole({
             })}
           </div>
           <div className="mt-4 grid gap-2 md:grid-cols-4">
-            {receiptLedger.map(([id, label, subject, state]) => (
-              <div key={id} className="rounded border border-white/10 bg-black/20 p-3">
+            {receiptLedger.map(([id, label, subject, state], index) => {
+              const activeReceipt = index <= replayIndex;
+              return (
+              <div key={id} className={`rounded border p-3 ${activeReceipt ? "border-mint/25 bg-mint/[0.06]" : "border-white/10 bg-black/20 opacity-60"}`}>
                 <div className="flex items-center justify-between gap-2">
                   <p className="font-mono text-xs text-signal">{id}</p>
-                  <p className="text-xs text-mint">{state}</p>
+                  <p className={activeReceipt ? "text-xs text-mint" : "text-xs text-slate-500"}>{activeReceipt ? state : "queued"}</p>
                 </div>
                 <p className="mt-2 text-sm font-semibold text-white">{label}</p>
                 <p className="mt-1 text-xs leading-5 text-slate-400">{subject}</p>
               </div>
-            ))}
+            );
+            })}
           </div>
         </div>
 
@@ -598,6 +712,8 @@ function ControlPlaneConsole({
               <Play className="text-signal" size={15} />
               <p className="text-xs font-semibold uppercase text-slate-500">Replay modes</p>
             </div>
+            <p className="mt-3 font-mono text-sm text-white">{currentReplayChapter.time} · {currentReplayChapter.label}</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">{currentReplayChapter.summary}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {replayModes.map(([label]) => (
                 <span key={label} className="rounded border border-white/10 bg-black/20 px-2 py-1 text-xs text-slate-300">
@@ -616,16 +732,20 @@ function VisualReplayLayer({
   active,
   activeEvidenceIds,
   selectedHypothesis,
-  selectedAction
+  selectedAction,
+  replayIndex,
+  visibleReplayChapters
 }: {
   active: number;
   activeEvidenceIds: string[];
   selectedHypothesis: string | null;
   selectedAction: string | null;
+  replayIndex: number;
+  visibleReplayChapters: typeof replayChapters;
 }) {
   const activeSet = new Set(activeEvidenceIds);
   const selectedConfidence = selectedHypothesis == null ? 0 : adjustedConfidence(selectedHypothesis, activeEvidenceIds);
-  const pathProgress = Math.max(18, Math.min(100, (active + 1) * 20));
+  const pathProgress = Math.max(18, Math.min(100, ((replayIndex + 1) / replayChapters.length) * 100));
   const selectedActionQuality = actions.find((action) => action.name === selectedAction)?.quality ?? "Pending";
   const primaryBaseline = adjustedConfidence(hypotheses[0].name, defaultEvidenceIds);
   const primaryNow = adjustedConfidence(hypotheses[0].name, activeEvidenceIds);
@@ -652,11 +772,12 @@ function VisualReplayLayer({
           <div className="mt-4 space-y-3">
             {evidence.map((item) => {
               const enabled = activeSet.has(item.id);
+              const replayed = visibleReplayChapters.some((chapter) => chapter.evidenceId === item.id);
               return (
-                <div key={item.id} className={`rounded-lg border p-3 ${enabled ? "border-mint/30 bg-mint/[0.07]" : "border-white/10 bg-white/[0.03] opacity-60"}`}>
+                <div key={item.id} className={`rounded-lg border p-3 ${enabled && replayed ? "border-mint/30 bg-mint/[0.07]" : enabled ? "border-signal/25 bg-signal/[0.05]" : "border-white/10 bg-white/[0.03] opacity-60"}`}>
                   <div className="flex items-center justify-between gap-3">
                     <p className="text-sm font-semibold text-white">{item.type}</p>
-                    <p className={enabled ? "font-mono text-xs text-mint" : "font-mono text-xs text-slate-500"}>{enabled ? "active" : "off"}</p>
+                    <p className={enabled && replayed ? "font-mono text-xs text-mint" : enabled ? "font-mono text-xs text-signal" : "font-mono text-xs text-slate-500"}>{enabled && replayed ? "replayed" : enabled ? "armed" : "off"}</p>
                   </div>
                   <p className="mt-2 text-xs leading-5 text-slate-400">{evidenceImpact[item.id]}</p>
                 </div>
@@ -704,7 +825,7 @@ function VisualReplayLayer({
                 {replayEdges.map(([from, to, evidenceId], index) => {
                   const fromNode = nodeById.get(from);
                   const toNode = nodeById.get(to);
-                  const activeEdge = activeSet.has(evidenceId);
+                  const activeEdge = activeSet.has(evidenceId) && index <= replayIndex;
                   if (fromNode == null || toNode == null) {
                     return null;
                   }
@@ -727,18 +848,19 @@ function VisualReplayLayer({
                 })}
                 {replayNodes.map((node, index) => {
                   const enabled = activeSet.has(node.evidence);
-                  const focus = index <= active + 1 || node.id === "review";
+                  const focus = index <= replayIndex + 1 || node.id === "review";
+                  const replayed = visibleReplayChapters.some((chapter) => chapter.evidenceId === node.evidence);
                   return (
-                    <g key={node.id} className={enabled ? "sim-graph-node-active" : "sim-graph-node-muted"} filter={enabled ? "url(#node-glow)" : undefined}>
+                    <g key={node.id} className={enabled && replayed ? "sim-graph-node-active" : "sim-graph-node-muted"} filter={enabled && replayed ? "url(#node-glow)" : undefined}>
                       <motion.circle
                         cx={node.x}
                         cy={node.y}
-                        r={enabled ? 4.7 : 3.7}
-                        fill={enabled ? (node.id === "review" ? "#f3c969" : "#5ff2b5") : "#334155"}
+                        r={enabled && replayed ? 4.9 : enabled ? 4.1 : 3.7}
+                        fill={enabled && replayed ? (node.id === "review" ? "#f3c969" : "#5ff2b5") : enabled ? "#73a7ff" : "#334155"}
                         stroke={focus ? "#ffffff" : "rgba(255,255,255,0.35)"}
                         strokeWidth={focus ? 0.65 : 0.35}
-                        animate={{ scale: enabled && focus ? [1, 1.08, 1] : 1 }}
-                        transition={{ duration: 1.8, repeat: enabled && focus ? Infinity : 0 }}
+                        animate={{ scale: enabled && replayed && focus ? [1, 1.12, 1] : 1 }}
+                        transition={{ duration: 1.55, repeat: enabled && replayed && focus ? Infinity : 0 }}
                       />
                       <text x={node.x} y={node.y + 8.5} textAnchor="middle" className="sim-graph-label">
                         {node.label}
@@ -754,7 +876,7 @@ function VisualReplayLayer({
 
             <div className="mt-4 grid gap-3 md:grid-cols-4">
               {timeline.slice(1).map(([time, label], index) => {
-                const unlocked = index <= active;
+                const unlocked = index <= replayIndex;
                 return (
                   <div key={`${time}-${label}`} className={`min-h-28 rounded-lg border p-3 ${unlocked ? "border-signal/35 bg-signal/[0.08]" : "border-white/10 bg-white/[0.03] opacity-55"}`}>
                     <p className="font-mono text-xs text-signal">{time}</p>
@@ -765,7 +887,7 @@ function VisualReplayLayer({
               })}
             </div>
 
-            <div className="mt-5 rounded-lg border border-white/10 bg-black/25 p-4">
+          <div className="mt-5 rounded-lg border border-white/10 bg-black/25 p-4">
               <div className="flex items-center gap-3">
                 <Network className="text-signal" />
                 <div className="h-2 flex-1 rounded-full bg-white/10">
@@ -776,6 +898,18 @@ function VisualReplayLayer({
               <p className="mt-3 text-sm leading-6 text-slate-300">
                 ReasonOps treats the transaction path as the unit of explanation, then shows why confidence moved before an RCA is trusted.
               </p>
+            </div>
+            <div className="mt-4 grid gap-2 md:grid-cols-3">
+              {visibleReplayChapters.slice(-3).map((chapter) => (
+                <div key={chapter.id} className="rounded border border-white/10 bg-black/20 p-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="font-mono text-xs text-mint">{chapter.time}</p>
+                    <p className="text-xs text-signal">{chapter.stage}</p>
+                  </div>
+                  <p className="mt-2 text-sm font-semibold text-white">{chapter.label}</p>
+                  <p className="mt-1 text-xs leading-5 text-slate-400">{chapter.summary}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -812,7 +946,7 @@ function VisualReplayLayer({
             <p className="text-xs font-semibold uppercase text-slate-500">Decision trace</p>
             <div className="mt-3 space-y-2">
               {replayTrace.map(([label, detail], index) => {
-                const complete = index <= active;
+                const complete = index <= Math.min(active, replayIndex);
                 return (
                   <div key={label} className="flex gap-3">
                     <span className={`mt-1 h-2.5 w-2.5 rounded-full ${complete ? "bg-mint" : "bg-slate-600"}`} />

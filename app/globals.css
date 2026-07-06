@@ -98,12 +98,14 @@ a {
 .reasonops-room::after {
   background:
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(120deg, transparent 0%, rgba(95, 242, 181, 0.055) 42%, transparent 64%);
   background-size: 32px 32px;
   content: "";
   inset: 0;
   pointer-events: none;
   position: absolute;
+  animation: reasonopsSweep 9s ease-in-out infinite;
 }
 
 .reasonops-room > * {
@@ -149,5 +151,18 @@ a {
 
   100% {
     transform: translateY(35%);
+  }
+}
+
+@keyframes reasonopsSweep {
+  0%,
+  100% {
+    opacity: 0.5;
+    background-position: 0 0, 0 0, -18rem 0;
+  }
+
+  50% {
+    opacity: 0.9;
+    background-position: 0 0, 0 0, 26rem 0;
   }
 }
