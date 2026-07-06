@@ -18,7 +18,7 @@ import {
   Sparkles,
   UserCheck
 } from "lucide-react";
-import { operationalIntelligenceSystem } from "@/content/site";
+import { operationalIntelligenceSystem, sentinelContextModel } from "@/content/site";
 
 const steps = [
   {
@@ -440,6 +440,16 @@ export function IncidentSimulator() {
             <p className="mt-2 text-sm leading-6 text-slate-400">
               Every evidence item, hypothesis movement, and action recommendation should be inspectable, replayable, and challengeable by the operator.
             </p>
+          </div>
+          <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.03] p-4">
+            <p className="text-sm font-semibold text-white">Next control-plane surfaces</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {sentinelContextModel.controlPlane.slice(0, 6).map((surface) => (
+                <span key={surface} className="rounded border border-white/10 bg-black/20 px-2 py-1 text-xs text-slate-300">
+                  {surface}
+                </span>
+              ))}
+            </div>
           </div>
         </aside>
       </div>

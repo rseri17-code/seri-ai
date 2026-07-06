@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight, CheckCircle2, FileText } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
-import { canonicalDefinition, operationalLayers } from "@/content/site";
+import { canonicalDefinition, operationalLayers, sentinelContextModel } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Operational Intelligence Is the New Control Plane | seri.ai",
@@ -36,6 +36,11 @@ const argumentsForCategory = [
     title: "Evaluation is the control system",
     body:
       "Enterprise AI quality cannot be based on vibes. Replay, grounding, evidence coverage, refusal behavior, confidence calibration, and escalation judgment are the release gates for trustworthy operational AI."
+  },
+  {
+    title: "Evidence must become infrastructure",
+    body:
+      "The future system is not a transcript plus a model answer. It is an evidence graph, hypothesis lifecycle, decision trace, replay seed, outcome memory, and learning loop that operators can inspect."
   },
   {
     title: "Humans remain accountable",
@@ -78,6 +83,17 @@ export default function ManifestoPage() {
               <CheckCircle2 className="mb-4 text-mint" />
               <h2 className="text-2xl font-semibold text-white">{item.title}</h2>
               <p className="mt-4 leading-8 text-slate-300">{item.body}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Field model" title={sentinelContextModel.publicThesis}>
+        <div className="grid gap-4 md:grid-cols-3">
+          {sentinelContextModel.primitives.map((primitive) => (
+            <Card key={primitive.name}>
+              <h2 className="text-xl font-semibold text-white">{primitive.name}</h2>
+              <p className="mt-4 leading-7 text-slate-300">{primitive.description}</p>
             </Card>
           ))}
         </div>

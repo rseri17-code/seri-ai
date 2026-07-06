@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight, BrainCircuit, GitBranch, Layers, Network, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
-import { canonicalDefinition, operationalIntelligenceSystem, operationalLayers } from "@/content/site";
+import { canonicalDefinition, operationalIntelligenceSystem, operationalLayers, sentinelContextModel } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Operational Intelligence Map | seri.ai",
@@ -142,6 +142,18 @@ export default function MapPage() {
             </Link>
             );
           })}
+        </div>
+      </Section>
+
+      <Section eyebrow="Evidence infrastructure" title="The primitives behind the map.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {sentinelContextModel.primitives.map((primitive) => (
+            <Card key={primitive.name} className="h-full p-4">
+              <ShieldCheck className="mb-4 text-mint" />
+              <h2 className="font-semibold text-white">{primitive.name}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{primitive.description}</p>
+            </Card>
+          ))}
         </div>
       </Section>
 

@@ -96,6 +96,52 @@ export const builderDna = {
   ]
 };
 
+export const sentinelContextModel = {
+  title: "The public-safe model behind Ravikanth's work",
+  framing:
+    "The work behind seri.ai is shaped by a real product ambition: operational AI should behave like evidence infrastructure. It should not just summarize incidents. It should collect typed evidence, build hypotheses, show decision provenance, preserve replay seeds, learn from outcomes, and expose the whole process to an operator.",
+  compliance:
+    "This model is intentionally generic. It avoids private system names, vendor-specific implementation details, credentials, logs, screenshots, dashboards, and confidential architecture.",
+  primitives: [
+    {
+      name: "Evidence Graph",
+      description: "Represent logs, metrics, traces, changes, topology, tickets, and outcomes as typed evidence nodes with relationships."
+    },
+    {
+      name: "Hypothesis Lifecycle",
+      description: "Track what was proposed, supported, refuted, ruled out, confirmed, and how confidence moved over time."
+    },
+    {
+      name: "Decision Trace",
+      description: "Record why a recommendation was made, which evidence supported it, which alternatives lost, and what a human reviewed."
+    },
+    {
+      name: "Replay Seed",
+      description: "Preserve enough structured context to replay an investigation without re-running production systems."
+    },
+    {
+      name: "Outcome Memory",
+      description: "Link recommendations to what actually happened so future investigations can use proven patterns instead of folklore."
+    },
+    {
+      name: "Learning Loop",
+      description: "Turn replay, benchmark, operator feedback, false leads, and resolution outcomes into deterministic improvement signals."
+    }
+  ],
+  controlPlane: [
+    "Incident command center",
+    "Execution graph",
+    "Evidence drawer",
+    "Hypothesis ledger",
+    "Risk and confidence strip",
+    "Memory trace",
+    "Replay controls",
+    "Approval gate"
+  ],
+  publicThesis:
+    "The category is not AIOps plus a chatbot. The category is operational reasoning with evidence, provenance, replay, learning, and accountable control."
+};
+
 export const operationalLayers = [
   {
     slug: "signal-layer",
@@ -239,6 +285,8 @@ export const operationalIntelligenceSystem = {
     "Explain the OI-ROOM-001 case using the Operational Intelligence layers.",
     "How does Ravikanth think about deterministic-first incident investigation?",
     "Why do evidence receipts and replay matter for operational AI?",
+    "Explain the public-safe Sentinel-inspired model behind seri.ai.",
+    "What is the difference between evidence graph, hypothesis lifecycle, decision trace, and replay seed?",
     "What makes Investigation Room different from a dashboard demo?",
     "How should AI evaluation work for operational incident investigation?",
     "Why does Operational Intelligence require transaction, topology, and evidence together?",
@@ -1346,6 +1394,12 @@ export const approvedKnowledge = [
   builderDna.publicSafeSource,
   ...builderDna.principles.flatMap((principle) => [principle.name, principle.description]),
   ...builderDna.productTranslation,
+  sentinelContextModel.title,
+  sentinelContextModel.framing,
+  sentinelContextModel.compliance,
+  sentinelContextModel.publicThesis,
+  ...sentinelContextModel.primitives.flatMap((primitive) => [primitive.name, primitive.description]),
+  ...sentinelContextModel.controlPlane,
   ...articles.flatMap((article) => [article.title, article.dek, ...article.body]),
   ...products.flatMap((product) => [
     product.name,

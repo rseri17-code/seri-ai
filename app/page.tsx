@@ -4,7 +4,7 @@ import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
-import { articles, builderDna, operationalIntelligenceSystem, patterns, principles, projects, site } from "@/content/site";
+import { articles, builderDna, operationalIntelligenceSystem, patterns, principles, projects, sentinelContextModel, site } from "@/content/site";
 
 export default function Home() {
   return (
@@ -119,6 +119,25 @@ export default function Home() {
                 <span className="font-mono text-xs text-mint">{String(index + 1).padStart(2, "0")}</span>
                 <h3 className="mt-3 font-semibold text-white">{principle.name}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-300">{principle.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section eyebrow="Sentinel context, public-safe" title="The product ambition underneath the thesis.">
+        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <Card className="border-mint/25 bg-mint/[0.045]">
+            <BrainCircuit className="mb-5 text-mint" />
+            <h3 className="text-3xl font-semibold text-white">{sentinelContextModel.title}</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">{sentinelContextModel.framing}</p>
+            <p className="mt-5 rounded border border-white/10 bg-black/20 p-4 text-sm leading-6 text-slate-400">{sentinelContextModel.compliance}</p>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {sentinelContextModel.primitives.map((primitive) => (
+              <Card key={primitive.name} className="p-4">
+                <h3 className="font-semibold text-white">{primitive.name}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{primitive.description}</p>
               </Card>
             ))}
           </div>

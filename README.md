@@ -47,6 +47,22 @@ The public site should reflect Ravikanth's actual product instincts:
 
 These ideas are public-safe translations of AI-native incident investigation work. Do not copy private implementation details, employer systems, confidential screenshots, logs, or proprietary architecture into the site.
 
+## Sentinel Context Translation
+
+Sentinel-style product work should influence `seri.ai` as public-safe category language, not as exposed implementation detail.
+
+Translate the intent into:
+
+- evidence graph
+- hypothesis lifecycle
+- decision trace
+- replay seed
+- outcome memory
+- continuous learning loop
+- operator control plane
+
+Avoid copying private repository internals, vendor-specific wiring, generated receipts, logs, credentials, customer data, screenshots, or exact architecture diagrams.
+
 ## Stack
 
 - Next.js App Router, React, TypeScript
