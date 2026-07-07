@@ -69,7 +69,7 @@ export default function ManifestoPage() {
                 Explore the map <ArrowRight size={18} />
               </Link>
               <Link href="/investigation-room" className="rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Enter Investigation Room
+                Open Operations Room
               </Link>
             </div>
           </Card>

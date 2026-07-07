@@ -159,7 +159,7 @@ export default function Home() {
             {[
               ["01", "Operational Intelligence", "The field model for operational reasoning."],
               ["02", "ReasonOps", "The harness and control-plane expression."],
-              ["03", "Investigation Room", "A replayable RCA and eval artifact."],
+              ["03", "Operations Room", "A replayable RCA and eval-gate artifact."],
               ["04", "Reasoning Interface", "A constrained public assistant with refusal and citation behavior."]
             ].map(([number, title, text]) => (
               <Card key={title} className="flex items-center gap-4 p-4">
@@ -264,7 +264,7 @@ export default function Home() {
             ["/map", "Map", "The visual operating system for layers, products, patterns, artifacts, and public assets."],
             ["/products/reasonops", "ReasonOps", "The product expression: operational reasoning for AI-native enterprises."],
             ["/radar", "Radar", "Current market signals around AI observability, AgentOps, AIOps evals, and OpenTelemetry."],
-            ["/investigation-room", "Investigation Room", "A hands-on artifact for evidence-first AI incident investigation."]
+            ["/investigation-room", "Operations Room", "A hands-on workbench for evidence-first AI incident investigation."]
           ].map(([href, title, text]) => (
             <Link key={href} href={href}>
               <Card className="h-full bg-ink/75 transition hover:-translate-y-1 hover:border-signal/40">
@@ -310,7 +310,7 @@ export default function Home() {
         </Card>
       </Section>
 
-      <Section eyebrow="Signature artifact" title="ReasonOps Harness Console">
+      <Section eyebrow="Signature artifact" title="ReasonOps Operations Room">
         <Card className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <ClipboardCheck className="mb-5 text-signal" />
@@ -320,7 +320,7 @@ export default function Home() {
               selected recommendation, branch comparison, release gate, and public-safe boundary.
             </p>
             <Link href="/investigation-room" className="mt-6 inline-flex items-center gap-2 rounded bg-signal px-5 py-3 font-semibold text-ink">
-              Run the Harness <ArrowRight size={18} />
+              Open Operations Room <ArrowRight size={18} />
             </Link>
           </div>
           <div className="grid gap-3">
@@ -339,7 +339,7 @@ export default function Home() {
           {[
             ["/start-here", "Start Here", "Audience-specific paths for executives, recruiters, architects, engineers, and founders."],
             ["/map", "Map", "The visual operating system for Operational Intelligence."],
-            ["/investigation-room", "Investigation Room", "A hands-on artifact for AI-native incident investigation."],
+            ["/investigation-room", "Operations Room", "A hands-on workbench for AI-native incident investigation."],
             ["/principles", "Principles", `${principles.length} principles for trustworthy operational AI.`],
             ["/patterns", "Patterns", `${patterns.length} architecture patterns for AI-native operations.`]
           ].map(([href, title, text]) => (

@@ -179,7 +179,7 @@ export default function MapPage() {
           {[
             ["/manifesto", "Manifesto", "The canonical argument for the category."],
             ["/products/reasonops", "ReasonOps", "The product expression of the thesis."],
-            ["/investigation-room", "Investigation Room", "The signature artifact."],
+            ["/investigation-room", "Operations Room", "The signature workbench."],
             ["/ask", "Reasoning Interface", "The grounded assistant over approved public content."]
           ].map(([href, title, text]) => (
             <Link key={href} href={href}>

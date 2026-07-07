@@ -14,15 +14,15 @@ export default function SimulatorPage() {
                 <ShieldCheck size={16} />
                 Signature artifact
               </div>
-              <h1 className="text-3xl font-semibold text-white md:text-5xl">ReasonOps Harness Console</h1>
+              <h1 className="text-3xl font-semibold text-white md:text-5xl">ReasonOps Operations Room</h1>
               <p className="mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 sm:block">
-                A public-safe artifact for evidence-backed Agentic SRE. Run {operationalIntelligenceSystem.caseId},
-                trace execution, receipts, replay, memory, confidence, and approval gates, then see how evidence becomes a reviewable decision.
+                A public-safe investigation workbench for evidence-backed Agentic SRE. Run {operationalIntelligenceSystem.caseId},
+                replay evidence, compare branches, inspect eval gates, export the RCA packet, and keep irreversible action behind human review.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
               <Link href="/ask" className="inline-flex items-center gap-2 rounded bg-mint px-4 py-2 text-sm font-semibold text-ink">
-                Ask about the model <ArrowRight size={18} />
+                Query reasoning interface <ArrowRight size={18} />
               </Link>
               <Link href="/ideas/incident-investigation-as-a-product-experience" className="rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white">
                 Read the essay

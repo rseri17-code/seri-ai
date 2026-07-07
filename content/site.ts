@@ -31,7 +31,7 @@ export const site = {
     { href: "/library", label: "Library" },
     { href: "/patterns", label: "Patterns" },
     { href: "/products/reasonops", label: "ReasonOps" },
-    { href: "/investigation-room", label: "Investigation Room" },
+    { href: "/investigation-room", label: "Operations Room" },
     { href: "/radar", label: "Radar" },
     { href: "/ask", label: "Reasoning Interface" },
     { href: "/background", label: "Background" },
@@ -239,7 +239,7 @@ export const operationalIntelligenceSystem = {
   caseSummary:
     "A public-safe investigation scenario where a critical customer journey degrades after a non-secret configuration change. The system must connect signal, transaction, topology, evidence, reasoning, memory, evaluation, decision, learning, and operator context before recommending a human-reviewed action.",
   promise:
-    "The same case powers the Map, Investigation Room, and Reasoning Interface so visitors experience Operational Intelligence as a system, not a set of pages.",
+    "The same case powers the Map, Operations Room, and Reasoning Interface so visitors experience Operational Intelligence as a system, not a set of pages.",
   loop: [
     {
       name: "Map the operating model",
@@ -317,7 +317,7 @@ export const operationalIntelligenceSystem = {
     "Why do evidence receipts and replay matter for operational AI?",
     "Explain the public-safe Agentic SRE harness model behind seri.ai.",
     "What is the difference between evidence graph, hypothesis lifecycle, decision trace, and replay seed?",
-    "What makes Investigation Room different from a dashboard demo?",
+    "What makes the Operations Room different from a dashboard demo?",
     "How should AI evaluation work for operational incident investigation?",
     "Why does Operational Intelligence require transaction, topology, and evidence together?",
     "What should an AI assistant refuse to answer in a public-safe Operational Intelligence site?"
@@ -538,12 +538,12 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "ai-incident-investigation-simulator",
-    name: "ReasonOps Harness Console",
+    name: "ReasonOps Operations Room",
     status: "Production Pattern",
-    summary: "A public-safe control-plane artifact for evidence-backed incident reasoning, branch comparison, and RCA evaluation.",
+    summary: "A public-safe operational workbench for evidence-backed incident reasoning, branch comparison, RCA export, and release-gate evaluation.",
     capabilities: ["timeline reconstruction", "hypothesis ranking", "branch comparison", "exportable RCA packet"],
     detail:
-      "A public-safe harness console where visitors run operational scenarios through signals, transaction impact, topology clues, hypotheses, confidence movement, branch comparison, eval gates, and exportable RCA packets without exposing internal logs or confidential architecture."
+      "A public-safe operations room where visitors run operational scenarios through signals, transaction impact, topology clues, hypotheses, confidence movement, branch comparison, eval gates, and exportable RCA packets without exposing internal logs or confidential architecture."
   },
   {
     slug: "operational-intelligence-copilot",

@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 const artifacts = [
   {
     href: "/investigation-room",
-    title: "Investigation Room",
-    type: "Artifact",
-    description: "Interactive evidence-first AI incident investigation room with graph, timeline, hypotheses, confidence, RCA, and evals.",
+    title: "ReasonOps Operations Room",
+    type: "Workbench",
+    description: "Interactive evidence-first operations room with graph replay, timeline, hypotheses, confidence, RCA packet, and release gates.",
     icon: ClipboardCheck
   },
   {

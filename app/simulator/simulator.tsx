@@ -32,7 +32,7 @@ const steps = [
     mode: "Signal intake"
   },
   {
-    label: "Timeline",
+    label: "Replay",
     title: "Replay the transaction path",
     description: "Align changes, symptoms, topology, and customer impact into a shared operational sequence.",
     icon: Activity,
@@ -46,14 +46,14 @@ const steps = [
     mode: "Confidence model"
   },
   {
-    label: "RCA",
+    label: "Action Gate",
     title: "Gate the recommended action",
     description: "Create a reviewable conclusion with missing context, owner approval, and a reversible path.",
     icon: ClipboardCheck,
     mode: "Human review"
   },
   {
-    label: "Eval",
+    label: "Release Gate",
     title: "Grade the investigation behavior",
     description: "Treat the assistant behavior as a product surface: groundedness, refusal, escalation, usefulness.",
     icon: ShieldCheck,
@@ -240,6 +240,12 @@ const memorySignals = [
   ["Outcome memory", "Was the recommended action accepted and effective?"],
   ["False lead", "Which evidence looked relevant but failed the hypothesis?"],
   ["Pattern signature", "Which graph shape should be recognized next time?"]
+];
+const workbenchProof = [
+  ["Scenario-driven", "Three public-safe cases exercise incident, answer drift, and transaction latency patterns."],
+  ["Evidence-controllable", "Operators can remove weak or noisy facts and watch confidence move."],
+  ["Branch-aware", "Best, risky, and weak actions produce different operational outcomes."],
+  ["Release-gated", "The answer is graded before the recommendation is trusted."]
 ];
 const investigationLanes = ["Customer journey", "Change record", "Dependency path", "Human owner"];
 const defaultEvidenceIds = evidence.filter((item) => item.used).map((item) => item.id);
@@ -452,7 +458,7 @@ export function IncidentSimulator() {
   ];
   const branchReportLines = actions.map((action, index) => `- ${action.quality}: ${scenarioActionLabel(selectedScenario, index)} | ${branchOutcomeForAction(action.quality)}`);
   const report = [
-    "ReasonOps Harness Console Report",
+    "ReasonOps Operations Room Report",
     "================================",
     "",
     "Executive summary",
@@ -513,12 +519,12 @@ export function IncidentSimulator() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-mint/30 bg-mint/10 px-3 py-1 text-xs font-semibold uppercase text-mint">
               <Sparkles size={14} />
-              ReasonOps Investigation Room
+              ReasonOps Operations Room
             </div>
-            <h2 className="mt-3 text-3xl font-semibold text-white md:text-5xl">Turn operational noise into a reviewable decision.</h2>
+            <h2 className="mt-3 text-3xl font-semibold text-white md:text-5xl">Investigate, evaluate, and gate operational action.</h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
-              A public-safe harness console for evidence intake, transaction replay, hypothesis ranking,
-              branch comparison, human review, and eval-gated trust.
+              A public-safe operations room for evidence intake, transaction replay, hypothesis ranking,
+              branch comparison, human review, release gating, and reusable operational memory.
             </p>
             <div className="mt-5 grid gap-2 md:grid-cols-3">
               {scenarios.map((scenario) => {
@@ -536,6 +542,14 @@ export function IncidentSimulator() {
                   </button>
                 );
               })}
+            </div>
+            <div className="mt-4 grid gap-2 md:grid-cols-4">
+              {workbenchProof.map(([label, detail]) => (
+                <div key={label} className="rounded-lg border border-white/10 bg-black/25 p-3">
+                  <p className="text-xs font-semibold uppercase text-mint">{label}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{detail}</p>
+                </div>
+              ))}
             </div>
             <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} />
             <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3">
@@ -611,14 +625,14 @@ export function IncidentSimulator() {
                 <p className="mt-1 text-sm leading-6 text-slate-200">{selectedScenario.operatorGoal}</p>
               </div>
               <Link
-                href={`/ask?prompt=${encodeURIComponent(`Explain the ${selectedScenario.caseId} Investigation Room case and the public-safe decision packet.`)}`}
+                href={`/ask?prompt=${encodeURIComponent(`Explain the ${selectedScenario.caseId} Operations Room case and the public-safe decision packet.`)}`}
                 className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-mint"
               >
                 Ask about this case <ArrowRight size={15} />
               </Link>
             </div>
             <div className="flex items-center justify-between">
-              <p className="text-sm text-slate-400">Investigation readiness</p>
+              <p className="text-sm text-slate-400">Release readiness</p>
               <p className="font-mono text-sm text-mint">public-safe</p>
             </div>
             <div className="mt-3 flex items-end gap-3">
