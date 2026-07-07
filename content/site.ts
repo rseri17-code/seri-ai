@@ -3,10 +3,10 @@ import evalReportData from "./eval-report.json";
 export const site = {
   name: "seri.ai",
   owner: "Ravikanth Seri",
-  tagline: "Operational Intelligence for systems that must explain themselves.",
-  positioning: "Evidence-backed Agentic SRE, replay, evals, and operational memory.",
+  tagline: "Operational Intelligence for AI-native operations.",
+  positioning: "Evidence graphs, replayable investigations, eval-gated agents, and human-reviewed action.",
   description:
-    "An inspectable operating layer for AI-native enterprise operations: evidence graphs, transaction replay, hypothesis ranking, evaluation gates, operational memory, and human-approved action.",
+    "seri.ai is the reasoning layer between observability data, AI agents, and human operational decisions. It turns signals, transactions, topology, memory, and policy into inspectable evidence and accountable action.",
   brandBelief:
     "The next enterprise advantage is not a smarter model in isolation. It is the harness around the model: evidence, policy, replay, memory, evaluation, and human review working as one operating system.",
   productPromise:

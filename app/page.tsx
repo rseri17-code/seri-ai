@@ -1,10 +1,28 @@
 import Link from "next/link";
-import { ArrowRight, BrainCircuit, ClipboardCheck, FileText, GitBranch, Linkedin, MessagesSquare, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BrainCircuit, ClipboardCheck, FileText, GitBranch, Linkedin, MessagesSquare, Network, Route, ShieldCheck, Sparkles, Workflow } from "lucide-react";
 import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { articles, builderDna, harnessThesis, operationalIntelligenceSystem, patterns, principles, projects, sentinelContextModel, site } from "@/content/site";
+
+const platformLayers = [
+  ["Observe", "Ingest signals from logs, metrics, traces, events, changes, tickets, topology, and transaction journeys."],
+  ["Correlate", "Connect evidence into typed relationships: what changed, what is affected, who owns it, and what prior memory applies."],
+  ["Reason", "Rank hypotheses with confidence movement, missing-context statements, and explicit losing explanations."],
+  ["Evaluate", "Gate AI behavior for grounding, citation quality, refusal, escalation judgment, and action risk."],
+  ["Act", "Prepare bounded recommendations, preserve review gates, and keep humans accountable for irreversible change."],
+  ["Learn", "Turn outcomes, rejected paths, and post-incident decisions into reusable operational memory."]
+];
+
+const operationalOutcomes = [
+  ["Reduce investigation ambiguity", "Move teams from alert noise to evidence-backed hypotheses."],
+  ["Make AI behavior auditable", "Expose what the agent used, ignored, inferred, and refused."],
+  ["Protect operational judgment", "Keep high-impact actions behind policy, confidence, and human review."],
+  ["Compound operational memory", "Make every incident improve the next investigation instead of disappearing into chat history."]
+];
+
+const proofLoop = ["Signal", "Transaction", "Topology", "Evidence", "Hypothesis", "Eval", "Review", "Memory"];
 
 export default function Home() {
   return (
@@ -29,14 +47,11 @@ export default function Home() {
               <p className="text-sm leading-6 text-slate-200">{site.productPromise}</p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/start-here" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Start Here <ArrowRight size={18} />
+              <Link href="/investigation-room" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+                Open Operations Room <ArrowRight size={18} />
               </Link>
               <Link href="/map" className="inline-flex items-center gap-2 rounded border border-signal/40 px-5 py-3 font-semibold text-signal">
-                Explore the Map
-              </Link>
-              <Link href="/investigation-room" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Run the Harness
+                View Platform Map
               </Link>
               <Link href="/library" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
                 Read the Library
@@ -73,6 +88,62 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      <Section eyebrow="Platform layer" title="The missing layer between observability platforms and AI action.">
+        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <Card className="border-signal/30 bg-signal/[0.055]">
+            <Network className="mb-5 text-signal" />
+            <h3 className="text-3xl font-semibold text-white">Observability platforms see the stack. Incident platforms coordinate the response. seri.ai explains the operational reasoning.</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">
+              The durable category is not another dashboard or another chatbot. It is the reasoning and evaluation layer that makes operational AI inspectable, bounded, and useful under pressure.
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-2">
+              {["Observability context", "Incident reasoning", "Agent evaluation", "Human approval"].map((item) => (
+                <span key={item} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase text-slate-300">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {platformLayers.map(([name, description], index) => (
+              <Card key={name} className="p-4">
+                <span className="font-mono text-xs text-mint">{String(index + 1).padStart(2, "0")}</span>
+                <h3 className="mt-3 text-lg font-semibold text-white">{name}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section eyebrow="Operational outcomes" title="What problem does this solve?">
+        <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="grid gap-3 md:grid-cols-2">
+            {operationalOutcomes.map(([title, body]) => (
+              <Card key={title} className="h-full p-5">
+                <Workflow className="mb-4 text-mint" />
+                <h3 className="text-xl font-semibold text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
+              </Card>
+            ))}
+          </div>
+          <Card className="border-mint/25 bg-mint/[0.045]">
+            <Route className="mb-5 text-mint" />
+            <h3 className="text-3xl font-semibold text-white">From signal to accountable action.</h3>
+            <p className="mt-4 leading-7 text-slate-300">
+              Every step should leave a receipt: the source signal, transaction impact, topology path, evidence used, hypothesis movement, eval result, review gate, and memory candidate.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {proofLoop.map((step) => (
+                <span key={step} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase text-slate-300">
+                  {step}
+                </span>
+              ))}
+            </div>
+          </Card>
+        </div>
+      </Section>
 
       <Section eyebrow="Product spine" title="One operating model, multiple proof surfaces.">
         <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
