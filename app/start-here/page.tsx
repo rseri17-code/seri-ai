@@ -6,7 +6,7 @@ import { startHerePaths } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Start Here | Ravikanth Seri — Operational Intelligence",
-  description: "Audience-specific paths through Ravikanth Seri's public Operational Intelligence, agentic systems, enterprise AI architecture, and evaluation work."
+  description: "Audience-specific paths through Operational Intelligence, agentic systems, enterprise AI architecture, and evaluation work."
 };
 
 export default function StartHerePage() {
@@ -25,7 +25,7 @@ export default function StartHerePage() {
                 </Link>
               ))}
             </div>
-            <p className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-signal">Ask Ravikanth</p>
+            <p className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-signal">Query the system</p>
             <p className="mt-2 rounded border border-white/10 bg-ink p-3 text-sm text-slate-200">{path.ask}</p>
             <p className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-amber">Most relevant</p>
             <div className="mt-3 flex flex-wrap gap-2">

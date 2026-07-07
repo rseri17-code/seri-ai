@@ -21,7 +21,14 @@ const edges = [
   ["evals", "review"]
 ];
 
-const decisions = ["What changed?", "What is affected?", "What evidence supports it?", "What should a human review?"];
+const decisions = ["Evidence receipts locked", "Hypothesis confidence moving", "Rollback action gated", "RCA packet ready"];
+
+const caseTelemetry = [
+  ["case", "OI-ROOM-001"],
+  ["signal", "checkout degradation"],
+  ["confidence", "+31 pts"],
+  ["gate", "human review"]
+];
 
 function nodeColor(tone: string) {
   if (tone === "amber") return "#f3c969";
@@ -40,11 +47,11 @@ export function HeroIntelligenceMap() {
         <div className="flex items-center justify-between gap-3">
           <div>
             <p className="text-xs font-semibold uppercase text-slate-400">ReasonOps console</p>
-            <p className="mt-1 text-lg font-semibold text-white">Operational Intelligence graph</p>
+            <p className="mt-1 text-lg font-semibold text-white">Live evidence replay</p>
           </div>
           <div className="flex items-center gap-2 rounded-full border border-mint/30 bg-mint/10 px-3 py-1 text-xs font-semibold text-mint">
             <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_14px_rgba(95,242,181,0.8)]" />
-            Live thesis
+            Replay active
           </div>
         </div>
       </div>
@@ -122,10 +129,21 @@ export function HeroIntelligenceMap() {
         </div>
 
         <div className="grid gap-3">
+          <div className="rounded-lg border border-signal/25 bg-signal/[0.08] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Incident packet</p>
+            <div className="mt-3 grid gap-2">
+              {caseTelemetry.map(([label, value]) => (
+                <div key={label} className="flex items-center justify-between gap-3 rounded border border-white/10 bg-black/20 px-3 py-2">
+                  <span className="text-[11px] uppercase text-slate-500">{label}</span>
+                  <span className="text-right text-xs font-semibold text-slate-100">{value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="rounded-lg border border-mint/25 bg-mint/[0.08] p-4">
             <BrainCircuit className="text-mint" />
             <p className="mt-3 text-xl font-semibold text-white">Reasoning layer</p>
-            <p className="mt-2 text-sm leading-6 text-slate-300">Connects signals, transactions, graph context, evals, and human review.</p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">Connects signals, transactions, graph context, evals, and human review into an auditable decision trace.</p>
           </div>
           {decisions.map((decision) => (
             <div key={decision} className="flex items-start gap-2 rounded border border-white/10 bg-white/[0.04] px-3 py-2 text-sm leading-6 text-slate-200">

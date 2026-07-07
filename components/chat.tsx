@@ -23,8 +23,8 @@ export function Chat({
       role: "assistant",
       content:
         mode === "interview"
-          ? "I can help interview Ravikanth's public experience and thinking. Ask about Operational Intelligence, AI-native incident investigation, transaction intelligence, or evaluation."
-          : "Ask me about Ravikanth's public thinking on Operational Intelligence, agentic systems, observability, knowledge graphs, and AI evaluation."
+          ? "Interview mode is grounded in approved public evidence: operational intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
+          : "Query the public Operational Intelligence knowledge layer: evidence graphs, agentic systems, observability, transaction intelligence, knowledge graphs, and AI evaluation."
     }
   ]);
   const [input, setInput] = useState(initialPrompt);
@@ -57,12 +57,12 @@ export function Chat({
     suggestedPrompts ??
     (mode === "interview"
       ? [
-          "How does Ravikanth think about AI evaluation for enterprise operations?",
+          "How should AI evaluation work for enterprise operations?",
           "What makes Operational Intelligence different from observability?",
-          "What leadership strengths show up in Ravikanth's public resume?"
+          "What leadership evidence appears in the public resume?"
         ]
       : [
-          "Explain Operational Intelligence in Ravikanth's voice.",
+          "Explain Operational Intelligence as an operating layer.",
           "How should agents investigate incidents safely?",
           "What is Transaction Intelligence?"
         ]);

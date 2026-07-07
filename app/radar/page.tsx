@@ -25,7 +25,7 @@ export default function RadarPage() {
               rel="noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded bg-mint px-4 py-3 font-semibold text-ink"
             >
-              Follow Ravikanth on LinkedIn <ArrowUpRight size={16} />
+              Follow the public signal <ArrowUpRight size={16} />
             </a>
           </Card>
           <div className="grid gap-4 md:grid-cols-3">
@@ -50,7 +50,7 @@ export default function RadarPage() {
                   <h2 className="mt-3 text-2xl font-semibold text-white">{trend.name}</h2>
                   <div className="mt-5 flex items-center gap-2 text-sm text-mint">
                     <Route size={16} />
-                    <span>Ravikanth angle</span>
+                    <span>seri.ai read</span>
                   </div>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{trend.ravikanthAngle}</p>
                 </div>

@@ -3,10 +3,10 @@ import evalReportData from "./eval-report.json";
 export const site = {
   name: "seri.ai",
   owner: "Ravikanth Seri",
-  tagline: "Agentic SRE harnesses for evidence-backed, self-healing operations.",
-  positioning: "The public home of evidence-backed Agentic SRE.",
+  tagline: "Operational Intelligence for systems that must explain themselves.",
+  positioning: "Evidence-backed Agentic SRE, replay, evals, and operational memory.",
   description:
-    "seri.ai is a field lab for Operational Intelligence: evidence graphs, replayable incident reasoning, evaluation gates, operational memory, and human-approved action for AI-native enterprise operations.",
+    "An inspectable operating layer for AI-native enterprise operations: evidence graphs, transaction replay, hypothesis ranking, evaluation gates, operational memory, and human-approved action.",
   brandBelief:
     "The next enterprise advantage is not a smarter model in isolation. It is the harness around the model: evidence, policy, replay, memory, evaluation, and human review working as one operating system.",
   productPromise:
@@ -33,7 +33,7 @@ export const site = {
     { href: "/products/reasonops", label: "ReasonOps" },
     { href: "/investigation-room", label: "Investigation Room" },
     { href: "/radar", label: "Radar" },
-    { href: "/ask", label: "Ask Ravikanth" },
+    { href: "/ask", label: "Reasoning Interface" },
     { href: "/background", label: "Background" },
     { href: "/contact", label: "Contact" }
   ]
@@ -125,9 +125,9 @@ export const builderDna = {
 };
 
 export const sentinelContextModel = {
-  title: "The public-safe model behind Ravikanth's Agentic SRE work",
+  title: "The public-safe model behind the Agentic SRE harness",
   framing:
-    "The work behind seri.ai is shaped by a real product ambition: operational AI should behave like evidence infrastructure. It should not just summarize incidents. It should collect typed evidence, build hypotheses, show decision provenance, preserve replay seeds, learn from outcomes, self-correct inside a bounded harness, and expose the whole process to an operator.",
+    "Operational AI should behave like evidence infrastructure. It should not just summarize incidents. It should collect typed evidence, build hypotheses, show decision provenance, preserve replay seeds, learn from outcomes, self-correct inside a bounded harness, and expose the whole process to an operator.",
   compliance:
     "This model is intentionally generic. It avoids private system names, vendor-specific implementation details, credentials, logs, screenshots, dashboards, and confidential architecture.",
   primitives: [
@@ -239,7 +239,7 @@ export const operationalIntelligenceSystem = {
   caseSummary:
     "A public-safe investigation scenario where a critical customer journey degrades after a non-secret configuration change. The system must connect signal, transaction, topology, evidence, reasoning, memory, evaluation, decision, learning, and operator context before recommending a human-reviewed action.",
   promise:
-    "The same case powers the Map, Investigation Room, and Ask Ravikanth so visitors experience Operational Intelligence as a system, not a set of pages.",
+    "The same case powers the Map, Investigation Room, and Reasoning Interface so visitors experience Operational Intelligence as a system, not a set of pages.",
   loop: [
     {
       name: "Map the operating model",
@@ -254,7 +254,7 @@ export const operationalIntelligenceSystem = {
     {
       name: "Interrogate the reasoning",
       href: "/ask?prompt=Explain%20the%20OI-ROOM-001%20case%20using%20the%20Operational%20Intelligence%20layers.",
-      description: "Ask the public-grounded assistant to explain the case in Ravikanth's language."
+      description: "Ask the public-grounded assistant to explain the case using the Operational Intelligence layers."
     }
   ],
   layerStates: [
@@ -635,7 +635,7 @@ export const products = [
     roadmap: [
       "Multi-scenario incident simulator",
       "Operational Intelligence glossary",
-      "Live eval report for Ask Ravikanth",
+      "Live eval report for the Reasoning Interface",
       "Public reference architecture diagrams",
       "Knowledge graph explorer prototype",
       "Newsletter-driven operating notes"
@@ -651,7 +651,7 @@ export const architectureCards = [
   },
   {
     title: "Grounded Ask Layer",
-    pattern: "Question -> retrieval -> evidence filter -> Ravikanth-style answer -> refusal check",
+    pattern: "Question -> retrieval -> evidence filter -> operator-grade answer -> refusal check",
     tags: ["RAG", "pgvector", "guardrails"]
   },
   {
@@ -682,7 +682,7 @@ export const thesisRadar = {
   title: "Operational Intelligence Thesis Radar",
   updatedAt: "2026-07-05",
   thesis:
-    "The market is converging on a two-way operating model: AI is changing how enterprises run operations, and operations disciplines are becoming mandatory for trustworthy AI. Ravikanth's thesis sits at that intersection.",
+    "The market is converging on a two-way operating model: AI is changing how enterprises run operations, and operations disciplines are becoming mandatory for trustworthy AI. Operational Intelligence sits at that intersection.",
   framing: [
     {
       name: "Ops for observability",
@@ -708,7 +708,7 @@ export const thesisRadar = {
       whyItMatters:
         "This validates the shift from AI experiments to AI operations. Enterprises need to manage reliability, cost, drift, and agent behavior as one operating surface.",
       ravikanthAngle:
-        "Ravikanth can frame AI observability as a control plane for operational trust, not a dashboard for model metrics.",
+        "AI observability should be framed as a control plane for operational trust, not a dashboard for model metrics.",
       sources: [
         {
           label: "TechRadar: AI observability and production readiness",
@@ -727,7 +727,7 @@ export const thesisRadar = {
       whyItMatters:
         "Traditional software observability does not capture the probabilistic and adaptive behavior of agents. AgentOps gives enterprises a vocabulary for operating agents safely.",
       ravikanthAngle:
-        "This directly supports Ravikanth's bounded-agency thesis: agents should collect, compare, draft, and recommend inside explicit operating contracts.",
+        "This supports the bounded-agency thesis: agents should collect, compare, draft, and recommend inside explicit operating contracts.",
       sources: [
         {
           label: "AgentOps automation pipeline, 2025",
@@ -765,7 +765,7 @@ export const thesisRadar = {
       whyItMatters:
         "The telemetry standard is following the market into AI-native operations. AI interactions are becoming observable operational events.",
       ravikanthAngle:
-        "Ravikanth's observability-for-AI thesis can lean on OpenTelemetry as the shared language for agent traces, tool calls, and model behavior.",
+        "Observability for AI can lean on OpenTelemetry as the shared language for agent traces, tool calls, and model behavior.",
       sources: [
         {
           label: "OpenTelemetry GenAI semantic conventions",
@@ -795,7 +795,7 @@ export const thesisRadar = {
       whyItMatters:
         "The constraint is no longer access to AI. It is whether enterprise systems are instrumented, governed, and ready to absorb AI into real workflows.",
       ravikanthAngle:
-        "This is Ravikanth's category opening: Operational Intelligence explains what enterprises must build before autonomous operations can be trusted.",
+        "This is the category opening: Operational Intelligence explains what enterprises must build before autonomous operations can be trusted.",
       sources: [
         {
           label: "TechRadar: AI race is operational",
@@ -829,7 +829,7 @@ export const thesisRadar = {
       whyItMatters:
         "This validates a human-in-the-loop operating model. The enterprise pattern is not blind autonomy; it is supervised acceleration.",
       ravikanthAngle:
-        "Ravikanth should keep emphasizing human judgment before irreversible action as a central brand principle.",
+        "Human judgment before irreversible action remains the central operating principle.",
       sources: [
         {
           label: "TechRadar: AI-led defense overseen by humans",
@@ -855,10 +855,10 @@ export const categoryBrief = {
   contrarianInsight:
     "The dashboard is not the destination. The destination is an operational reasoning layer that can explain what changed, why it matters, which evidence supports the conclusion, and what action a human should review.",
   wedge:
-    "Ravikanth's wedge is the intersection of production infrastructure, observability, identity, Kubernetes, AI agent runtime governance, and incident investigation. That combination lets seri.ai talk about AI-native operations from operator reality, not abstract AI enthusiasm.",
+    "The wedge is the intersection of production infrastructure, observability, identity, Kubernetes, AI agent runtime governance, and incident investigation. That combination lets seri.ai talk about AI-native operations from operator reality, not abstract AI enthusiasm.",
   proofPoints: [
     "A public simulator that turns the evidence-first investigation model into an interactive artifact.",
-    "A public trust report that exposes how Ask Ravikanth should behave, refuse, cite, and admit uncertainty.",
+    "A public trust report that exposes how the Reasoning Interface should behave, refuse, cite, and admit uncertainty.",
     "A thesis radar that maps current market movement around AI observability, AgentOps, AIOps evaluation, OpenTelemetry GenAI semantics, and operational readiness.",
     "A public resume narrative grounded in production AI agent systems, observability, runtime governance, Kubernetes, and identity modernization."
   ],
@@ -872,7 +872,7 @@ export const categoryBrief = {
   nextMoves: [
     "Turn the simulator into a multi-scenario investigation workbench.",
     "Publish flagship essays with diagrams for the operating model, graph model, eval model, and agent governance model.",
-    "Add continuous eval reports that test Ask Ravikanth against live retrieval and model responses when production keys are configured.",
+    "Add continuous eval reports that test the Reasoning Interface against live retrieval and model responses when production keys are configured.",
     "Build a public Operational Intelligence glossary that makes the category language reusable."
   ]
 };
@@ -1247,9 +1247,9 @@ export const startHerePaths = [
   },
   {
     audience: "Recruiters",
-    care: "Background is supporting evidence. The primary signal is Ravikanth's category thinking, architecture depth, and product judgment.",
+    care: "Background is supporting evidence. The primary signal is category thinking, architecture depth, and product judgment.",
     readFirst: ["/background", "/map", "/artifacts"],
-    ask: "What public body of work supports Ravikanth's Operational Intelligence thesis?",
+    ask: "What public body of work supports the Operational Intelligence thesis?",
     matters: ["/products/reasonops", "/contact"]
   },
   {
@@ -1289,7 +1289,7 @@ export const changelog = [
     date: "2026-07-05",
     title: "Added public eval report and upgraded simulator decisioning",
     description:
-      "seri.ai now exposes a trust report for Ask Ravikanth behavior and turns the incident simulator into a scored investigation workflow with choices, confidence, and exportable RCA summary.",
+      "seri.ai now exposes a trust report for Reasoning Interface behavior and turns the incident simulator into a scored investigation workflow with choices, confidence, and exportable RCA summary.",
     tags: ["evals", "trust", "simulator", "decisioning"]
   },
   {
@@ -1305,7 +1305,7 @@ export const changelog = [
     date: "2026-07-05",
     title: "Added public wiki, principles, patterns, and living product layer",
     description:
-      "seri.ai now supports approved public notes, Ravikanth's principles, architecture pattern pages, start-here paths, current focus areas, content search, citations, and content validation.",
+      "seri.ai now supports approved public notes, operating principles, architecture pattern pages, start-here paths, current focus areas, content search, citations, and content validation.",
     tags: ["wiki", "principles", "patterns", "citations"]
   },
   {
@@ -1313,7 +1313,7 @@ export const changelog = [
     date: "2026-07-05",
     title: "Initial Operational Intelligence platform",
     description:
-      "Launched the first version of seri.ai with Ask Ravikanth, ideas, project pages, architecture lab, resume, contact, Supabase schema, and AI provider adapters.",
+      "Launched the first version of seri.ai with a public reasoning assistant, ideas, project pages, architecture lab, resume, contact, Supabase schema, and AI provider adapters.",
     tags: ["launch", "ask-ravi", "projects"]
   }
 ];

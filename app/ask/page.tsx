@@ -6,8 +6,8 @@ import { BrainCircuit, ClipboardCheck, GitBranch, ShieldCheck, type LucideIcon }
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ask Ravikanth | Public-grounded Operational Intelligence AI",
-  description: "Ask Ravikanth Seri's public AI assistant about Operational Intelligence, agentic systems, transaction intelligence, enterprise observability, and AI evaluation."
+  title: "Reasoning Interface | Public-grounded Operational Intelligence AI",
+  description: "Query the public Operational Intelligence assistant about agentic systems, transaction intelligence, enterprise observability, incident reasoning, and AI evaluation."
 };
 
 const askContextCards: Array<{ label: string; value: string; Icon: LucideIcon }> = [
@@ -26,13 +26,13 @@ export default async function AskPage({
 
   return (
     <>
-      <Section eyebrow="Ask Ravikanth" title="The public reasoning interface for Operational Intelligence.">
+      <Section eyebrow="Reasoning interface" title="Query the public Operational Intelligence layer.">
         <div className="mb-5 grid gap-4 lg:grid-cols-[1fr_0.9fr]">
           <Card className="border-mint/25 bg-mint/[0.055]">
             <BrainCircuit className="mb-4 text-mint" />
             <h2 className="text-2xl font-semibold text-white">Ask against the same system spine that powers the Map and Investigation Room.</h2>
             <p className="mt-3 leading-7 text-slate-300">
-              Explore Ravikanth&apos;s public thinking on proof-driven operational AI: evidence graphs, hypothesis lifecycles,
+              Explore proof-driven operational AI through evidence graphs, hypothesis lifecycles,
               replayable investigations, decision traces, evaluation, and operator control planes.
             </p>
           </Card>

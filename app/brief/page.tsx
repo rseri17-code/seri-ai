@@ -34,7 +34,7 @@ export default function BriefPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Why now" title="The market is moving toward Ravikanth's thesis.">
+      <Section eyebrow="Why now" title="The market is moving toward Operational Intelligence.">
         <div className="grid gap-4 md:grid-cols-2">
           {categoryBrief.whyNow.map((item) => (
             <Card key={item}>
@@ -45,7 +45,7 @@ export default function BriefPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Wedge" title="Why Ravikanth can own this angle.">
+      <Section eyebrow="Wedge" title="Why this angle is credible.">
         <Card>
           <BrainCircuit className="mb-5 text-signal" />
           <p className="text-xl leading-9 text-slate-200">{categoryBrief.wedge}</p>

@@ -70,7 +70,7 @@ export default function ArtifactsPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Release model" title="seri.ai should compound like a product, not freeze like a profile.">
+      <Section eyebrow="Release model" title="seri.ai should compound through proof objects.">
         <Card className="grid gap-5 md:grid-cols-[1fr_1.2fr] md:items-center">
           <div>
             <p className="text-2xl font-semibold text-white">{releaseModel.cadence}</p>

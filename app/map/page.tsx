@@ -164,7 +164,7 @@ export default function MapPage() {
               <Card className="h-full p-4 transition hover:border-signal/40">
                 <p className="text-xs font-semibold uppercase text-signal">{item.layer}</p>
                 <h2 className="mt-2 text-lg font-semibold text-white">{item.question}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-400">Ask Ravikanth with this layer as the grounding frame.</p>
+                <p className="mt-3 text-sm leading-6 text-slate-400">Query the reasoning layer with this frame.</p>
               </Card>
             </Link>
           ))}
@@ -178,7 +178,7 @@ export default function MapPage() {
             ["/manifesto", "Manifesto", "The canonical argument for the category."],
             ["/products/reasonops", "ReasonOps", "The product expression of the thesis."],
             ["/investigation-room", "Investigation Room", "The signature artifact."],
-            ["/ask", "Ask Ravikanth", "The grounded assistant over public content."]
+            ["/ask", "Reasoning Interface", "The grounded assistant over approved public content."]
           ].map(([href, title, text]) => (
             <Link key={href} href={href}>
               <Card className="h-full transition hover:border-signal/40">

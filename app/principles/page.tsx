@@ -5,13 +5,13 @@ import { Section } from "@/components/section";
 import { principles } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Ravikanth's Principles | Operational Intelligence and Enterprise AI",
-  description: "Ravikanth Seri's public principles for Operational Intelligence, trustworthy agents, evidence-driven RCA, and enterprise AI evaluation."
+  title: "Operating Principles | Operational Intelligence and Enterprise AI",
+  description: "Public operating principles for Operational Intelligence, trustworthy agents, evidence-driven RCA, and enterprise AI evaluation."
 };
 
 export default function PrinciplesPage() {
   return (
-    <Section eyebrow="Ravikanth's principles" title="A compact operating philosophy for AI-native enterprise operations.">
+    <Section eyebrow="Operating principles" title="A compact operating philosophy for AI-native enterprise operations.">
       <div className="grid gap-4">
         {principles.map((principle, index) => (
           <Card key={principle.slug} className="scroll-mt-28" >

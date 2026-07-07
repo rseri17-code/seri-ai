@@ -5,8 +5,8 @@ import { Section } from "@/components/section";
 import { evalReport } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Evals | Ask Ravikanth Public Trust Report",
-  description: "Public evaluation rubric for Ask Ravikanth groundedness, refusal behavior, citation usefulness, and known limitations."
+  title: "Evals | Public Operational Intelligence Trust Report",
+  description: "Public evaluation rubric for groundedness, refusal behavior, citation usefulness, and known limitations in the Operational Intelligence assistant."
 };
 
 export default function EvalsPage() {
@@ -41,7 +41,7 @@ export default function EvalsPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Regression fixtures" title="The questions Ask Ravikanth must handle correctly.">
+      <Section eyebrow="Regression fixtures" title="The questions the public assistant must handle correctly.">
         <div className="space-y-3">
           {evalReport.fixtures.map((fixture) => (
             <Card key={fixture.prompt} className="grid gap-4 md:grid-cols-[1fr_1fr_7rem] md:items-center">

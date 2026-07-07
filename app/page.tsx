@@ -42,7 +42,7 @@ export default function Home() {
                 Read the Library
               </Link>
               <Link href="/ask" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Ask Ravikanth
+                Query the System
               </Link>
               <a
                 href={site.links.linkedin}
@@ -50,7 +50,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white"
               >
-                Follow the thinking <Linkedin size={18} />
+                LinkedIn signal <Linkedin size={18} />
               </a>
             </div>
             <div className="mt-8 grid max-w-3xl grid-cols-3 gap-3">
@@ -89,7 +89,7 @@ export default function Home() {
               ["01", "Operational Intelligence", "The field model for operational reasoning."],
               ["02", "ReasonOps", "The harness and control-plane expression."],
               ["03", "Investigation Room", "A replayable RCA and eval artifact."],
-              ["04", "Ask Ravikanth", "A constrained assistant grounded in public work."]
+              ["04", "Reasoning Interface", "A constrained public assistant with refusal and citation behavior."]
             ].map(([number, title, text]) => (
               <Card key={title} className="flex items-center gap-4 p-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded border border-signal/35 bg-signal/10 font-mono text-sm text-signal">{number}</span>
@@ -151,7 +151,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Public-safe product model" title="The product ambition underneath the thesis.">
+      <Section eyebrow="Public-safe product model" title="The control plane underneath the thesis.">
         <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <BrainCircuit className="mb-5 text-mint" />
@@ -189,7 +189,7 @@ export default function Home() {
         <div className="executive-rail rounded-lg border border-white/10 p-3">
           <div className="grid gap-3 md:grid-cols-4">
           {[
-            ["/manifesto", "Manifesto", "The category argument: why Operational Intelligence, why now, and what seri.ai is building."],
+            ["/manifesto", "Manifesto", "The category argument: why Operational Intelligence, why now, and what the operating layer must become."],
             ["/map", "Map", "The visual operating system for layers, products, patterns, artifacts, and public assets."],
             ["/products/reasonops", "ReasonOps", "The product expression: operational reasoning for AI-native enterprises."],
             ["/radar", "Radar", "Current market signals around AI observability, AgentOps, AIOps evals, and OpenTelemetry."],
@@ -218,14 +218,14 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Follow the work" title="Track the thinking in public.">
+      <Section eyebrow="Public signal" title="Trace the thesis as it evolves.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <Linkedin className="mb-4 text-signal" />
-            <h3 className="text-2xl font-semibold text-white">LinkedIn is the public trail of the thinking in motion.</h3>
+            <h3 className="text-2xl font-semibold text-white">LinkedIn is the public change log behind the category.</h3>
             <p className="mt-3 leading-7 text-slate-300">
-              For visitors who want the ongoing signal behind seri.ai: posts, architecture ideas, career narrative,
-              certifications, and what Ravikanth is actively building around Operational Intelligence and AI-native operations.
+              For visitors who want the ongoing signal: posts, architecture notes, certification evidence,
+              and product thinking around Operational Intelligence, Agentic SRE, and AI-native operations.
             </p>
           </div>
           <a
@@ -324,12 +324,12 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Ask Ravikanth" title="A grounded assistant, constrained to public knowledge.">
+      <Section eyebrow="Reasoning interface" title="Public-grounded answers with refusal behavior.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <MessagesSquare className="mb-4 text-mint" />
-            <h3 className="text-2xl font-semibold text-white">Ask about Ravikanth&apos;s public ideas and architecture patterns.</h3>
-            <p className="mt-2 text-slate-300">The assistant refuses confidential or unknown topics and cites the approved context it used.</p>
+            <h3 className="text-2xl font-semibold text-white">Query the public knowledge layer behind the operating model.</h3>
+            <p className="mt-2 text-slate-300">The assistant uses approved public context, cites what it used, and refuses confidential or unsupported claims.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link href="/ask" className="rounded bg-white px-5 py-3 font-semibold text-ink">

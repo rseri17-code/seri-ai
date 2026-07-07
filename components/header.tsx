@@ -48,7 +48,7 @@ export function Header() {
           ))}
         </div>
         <Link href="/ask" className="rounded border border-mint/40 bg-mint/10 px-4 py-2 text-sm font-medium text-mint hover:bg-mint/15">
-          Ask Ravikanth
+          Query System
         </Link>
       </nav>
     </header>
