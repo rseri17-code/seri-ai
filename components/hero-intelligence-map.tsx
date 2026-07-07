@@ -1,33 +1,52 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Activity, BrainCircuit, CheckCircle2, GitBranch, Network, ShieldCheck, UserCheck } from "lucide-react";
+import { AlertTriangle, BrainCircuit, CheckCircle2, Clock3, FileCheck2, ShieldCheck } from "lucide-react";
 
 const nodes = [
-  { id: "signals", label: "Signals", detail: "metrics, traces, events", x: 14, y: 30, tone: "mint" },
-  { id: "transactions", label: "Transactions", detail: "journey impact", x: 15, y: 70, tone: "signal" },
-  { id: "graph", label: "Knowledge graph", detail: "owners, topology, memory", x: 47, y: 18, tone: "amber" },
-  { id: "reasoning", label: "ReasonOps", detail: "evidence to explanation", x: 50, y: 52, tone: "mint" },
-  { id: "evals", label: "Evaluation", detail: "grounding, refusal, risk", x: 47, y: 84, tone: "signal" },
-  { id: "review", label: "Human review", detail: "approval before action", x: 84, y: 52, tone: "amber" }
+  { id: "signal", label: "Signal", detail: "latency + retry spike", x: 15, y: 31, tone: "mint" },
+  { id: "journey", label: "Journey", detail: "checkout path impacted", x: 17, y: 72, tone: "signal" },
+  { id: "change", label: "Change", detail: "config delta", x: 43, y: 18, tone: "amber" },
+  { id: "graph", label: "Graph", detail: "owner + topology", x: 48, y: 53, tone: "mint" },
+  { id: "memory", label: "Memory", detail: "similar pattern", x: 45, y: 86, tone: "signal" },
+  { id: "decision", label: "Decision", detail: "review-gated action", x: 82, y: 54, tone: "amber" }
 ];
 
 const edges = [
-  ["signals", "reasoning"],
-  ["transactions", "reasoning"],
-  ["graph", "reasoning"],
-  ["reasoning", "evals"],
-  ["reasoning", "review"],
-  ["evals", "review"]
+  ["signal", "graph"],
+  ["journey", "graph"],
+  ["change", "graph"],
+  ["memory", "graph"],
+  ["graph", "decision"],
+  ["change", "decision"],
+  ["memory", "decision"]
 ];
 
-const decisions = ["Evidence receipts locked", "Hypothesis confidence moving", "Rollback action gated", "RCA packet ready"];
+const replayEvents = [
+  ["00:00", "Impact detected", "Completion dropped across checkout journey"],
+  ["00:04", "Evidence linked", "Retry spike aligns with non-secret config change"],
+  ["00:07", "Hypothesis ranked", "Misroute pattern moves to leading explanation"],
+  ["00:11", "Action gated", "Rollback candidate requires human approval"]
+];
 
 const caseTelemetry = [
-  ["case", "OI-ROOM-001"],
-  ["signal", "checkout degradation"],
-  ["confidence", "+31 pts"],
-  ["gate", "human review"]
+  ["Case", "OI-ROOM-001"],
+  ["Mode", "Replay + eval"],
+  ["Impact", "Checkout degradation"],
+  ["Gate", "Human review"]
+];
+
+const hypotheses = [
+  ["H1", "Config-driven routing regression", "82%", "supported"],
+  ["H2", "Downstream latency saturation", "41%", "partial"],
+  ["H3", "Telemetry-only alert noise", "18%", "rejected"]
+];
+
+const evalGates = [
+  ["Grounded", "pass"],
+  ["Cites evidence", "pass"],
+  ["Names uncertainty", "pass"],
+  ["Action bounded", "review"]
 ];
 
 function nodeColor(tone: string) {
@@ -43,22 +62,41 @@ export function HeroIntelligenceMap() {
     <div className="relative overflow-hidden rounded-lg border border-white/10 bg-[#071018] shadow-2xl shadow-black/40">
       <div className="absolute inset-0 intelligence-field opacity-70" />
       <div className="absolute inset-0 hero-scanline" />
-      <div className="relative z-10 border-b border-white/10 p-4">
-        <div className="flex items-center justify-between gap-3">
+      <div className="relative z-10 border-b border-white/10 bg-black/20 p-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-xs font-semibold uppercase text-slate-400">ReasonOps console</p>
-            <p className="mt-1 text-lg font-semibold text-white">Live evidence replay</p>
+            <p className="mt-1 text-lg font-semibold text-white">Operational Intelligence Room</p>
           </div>
-          <div className="flex items-center gap-2 rounded-full border border-mint/30 bg-mint/10 px-3 py-1 text-xs font-semibold text-mint">
-            <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_14px_rgba(95,242,181,0.8)]" />
-            Replay active
+          <div className="flex flex-wrap gap-2">
+            {["Replay active", "Evidence locked", "RCA draft ready"].map((item, index) => (
+              <span
+                key={item}
+                className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold ${
+                  index === 0 ? "border-mint/30 bg-mint/10 text-mint" : index === 1 ? "border-signal/30 bg-signal/10 text-signal" : "border-amber/30 bg-amber/10 text-amber"
+                }`}
+              >
+                <span className="h-2 w-2 rounded-full bg-current shadow-[0_0_14px_currentColor]" />
+                {item}
+              </span>
+            ))}
           </div>
         </div>
       </div>
 
-      <div className="relative z-10 grid gap-4 p-4 xl:grid-cols-[1fr_18rem]">
-        <div className="overflow-hidden rounded-lg border border-white/10 bg-black/25">
-          <svg className="h-[31rem] w-full" viewBox="0 0 100 100" role="img" aria-label="Operational Intelligence graph connecting signals, transactions, graph context, reasoning, evaluation, and human review">
+      <div className="relative z-10 grid gap-3 p-4">
+        <div className="grid gap-3 md:grid-cols-4">
+          {caseTelemetry.map(([label, value]) => (
+            <div key={label} className="rounded border border-white/10 bg-black/25 px-3 py-2">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</p>
+              <p className="mt-1 truncate text-sm font-semibold text-white">{value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid gap-3 xl:grid-cols-[1.05fr_0.95fr]">
+          <div className="overflow-hidden rounded-lg border border-white/10 bg-black/25">
+            <svg className="h-[26rem] w-full" viewBox="0 0 100 100" role="img" aria-label="Operational Intelligence graph connecting signals, transactions, graph context, reasoning, evaluation, and human review">
             <defs>
               <linearGradient id="hero-edge" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#5ff2b5" />
@@ -72,8 +110,20 @@ export function HeroIntelligenceMap() {
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
+              <radialGradient id="hero-radar" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="rgba(95,242,181,0.25)" />
+                <stop offset="100%" stopColor="rgba(95,242,181,0)" />
+              </radialGradient>
             </defs>
             <rect x="0" y="0" width="100" height="100" fill="rgba(7,16,24,0.74)" />
+            <motion.circle
+              cx="48"
+              cy="53"
+              r="29"
+              fill="url(#hero-radar)"
+              animate={{ opacity: [0.18, 0.52, 0.18], scale: [0.92, 1.08, 0.92] }}
+              transition={{ duration: 4.8, repeat: Infinity }}
+            />
             <g opacity="0.24">
               {Array.from({ length: 8 }).map((_, index) => (
                 <line key={`h-${index}`} x1="6" x2="94" y1={12 + index * 11} y2={12 + index * 11} stroke="rgba(255,255,255,0.14)" strokeWidth="0.25" />
@@ -106,15 +156,15 @@ export function HeroIntelligenceMap() {
               );
             })}
             {nodes.map((node, index) => (
-              <g key={node.id} filter={node.id === "reasoning" ? "url(#hero-glow)" : undefined}>
+              <g key={node.id} filter={node.id === "graph" || node.id === "decision" ? "url(#hero-glow)" : undefined}>
                 <motion.circle
                   cx={node.x}
                   cy={node.y}
-                  r={node.id === "reasoning" ? 6.8 : 5.4}
+                  r={node.id === "graph" ? 7.1 : node.id === "decision" ? 6.5 : 5.2}
                   fill={nodeColor(node.tone)}
                   stroke="rgba(255,255,255,0.78)"
                   strokeWidth="0.65"
-                  animate={{ scale: node.id === "reasoning" ? [1, 1.08, 1] : [1, 1.04, 1] }}
+                  animate={{ scale: node.id === "graph" || node.id === "decision" ? [1, 1.1, 1] : [1, 1.04, 1] }}
                   transition={{ duration: 2.1, delay: index * 0.12, repeat: Infinity }}
                 />
                 <text x={node.x} y={node.y + 10} textAnchor="middle" className="sim-graph-label">
@@ -125,48 +175,76 @@ export function HeroIntelligenceMap() {
                 </text>
               </g>
             ))}
-          </svg>
-        </div>
+            </svg>
+          </div>
 
-        <div className="grid gap-3">
-          <div className="rounded-lg border border-signal/25 bg-signal/[0.08] p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Incident packet</p>
-            <div className="mt-3 grid gap-2">
-              {caseTelemetry.map(([label, value]) => (
-                <div key={label} className="flex items-center justify-between gap-3 rounded border border-white/10 bg-black/20 px-3 py-2">
-                  <span className="text-[11px] uppercase text-slate-500">{label}</span>
-                  <span className="text-right text-xs font-semibold text-slate-100">{value}</span>
-                </div>
-              ))}
+          <div className="grid gap-3">
+            <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+              <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
+                <Clock3 size={16} className="text-mint" />
+                Evidence replay
+              </div>
+              <div className="space-y-2">
+                {replayEvents.map(([time, title, detail], index) => (
+                  <motion.div
+                    key={title}
+                    className="grid grid-cols-[3.25rem_1fr] gap-3 rounded border border-white/10 bg-black/20 p-3"
+                    animate={{ borderColor: index === 2 ? ["rgba(255,255,255,0.1)", "rgba(95,242,181,0.5)", "rgba(255,255,255,0.1)"] : "rgba(255,255,255,0.1)" }}
+                    transition={{ duration: 2.6, delay: index * 0.28, repeat: Infinity }}
+                  >
+                    <span className="font-mono text-xs text-signal">{time}</span>
+                    <span>
+                      <span className="block text-sm font-semibold text-slate-100">{title}</span>
+                      <span className="mt-1 block text-xs leading-5 text-slate-400">{detail}</span>
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="rounded-lg border border-mint/25 bg-mint/[0.08] p-4">
-            <BrainCircuit className="text-mint" />
-            <p className="mt-3 text-xl font-semibold text-white">Reasoning layer</p>
-            <p className="mt-2 text-sm leading-6 text-slate-300">Connects signals, transactions, graph context, evals, and human review into an auditable decision trace.</p>
-          </div>
-          {decisions.map((decision) => (
-            <div key={decision} className="flex items-start gap-2 rounded border border-white/10 bg-white/[0.04] px-3 py-2 text-sm leading-6 text-slate-200">
-              <CheckCircle2 size={15} className="mt-1 shrink-0 text-mint" />
-              {decision}
-            </div>
-          ))}
-          <div className="grid grid-cols-3 gap-2">
-            {[
-              [Activity, "Signals"],
-              [Network, "Impact"],
-              [GitBranch, "Graph"],
-              [ShieldCheck, "Evals"],
-              [UserCheck, "Review"]
-            ].map(([Icon, label]) => {
-              const TypedIcon = Icon as typeof Activity;
-              return (
-                <div key={String(label)} className="rounded border border-white/10 bg-white/[0.04] p-2 text-center">
-                  <TypedIcon className="mx-auto text-signal" size={17} />
-                  <p className="mt-1 text-[11px] text-slate-300">{String(label)}</p>
+
+            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-1">
+              <div className="rounded-lg border border-mint/25 bg-mint/[0.08] p-4">
+                <BrainCircuit className="text-mint" />
+                <p className="mt-3 text-lg font-semibold text-white">Hypothesis ranking</p>
+                <div className="mt-3 space-y-2">
+                  {hypotheses.map(([id, name, score, state]) => (
+                    <div key={id} className="rounded border border-white/10 bg-black/20 p-3">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="text-xs font-semibold text-slate-400">{id}</span>
+                        <span className={state === "supported" ? "text-xs font-semibold text-mint" : state === "partial" ? "text-xs font-semibold text-amber" : "text-xs font-semibold text-slate-500"}>{score}</span>
+                      </div>
+                      <p className="mt-1 text-sm font-semibold leading-5 text-white">{name}</p>
+                      <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-slate-500">{state}</p>
+                    </div>
+                  ))}
                 </div>
-              );
-            })}
+              </div>
+
+              <div className="rounded-lg border border-signal/25 bg-signal/[0.08] p-4">
+                <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
+                  <ShieldCheck size={16} className="text-signal" />
+                  Evaluation gates
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {evalGates.map(([label, state]) => (
+                    <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                      <div className="flex items-center gap-2">
+                        {state === "pass" ? <CheckCircle2 size={14} className="text-mint" /> : <AlertTriangle size={14} className="text-amber" />}
+                        <span className="text-xs font-semibold text-slate-200">{label}</span>
+                      </div>
+                      <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-slate-500">{state}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-3 rounded border border-amber/25 bg-amber/[0.08] p-3">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-amber">
+                    <FileCheck2 size={15} />
+                    RCA packet exportable
+                  </div>
+                  <p className="mt-1 text-xs leading-5 text-slate-300">Evidence receipts, losing hypotheses, confidence movement, and review gate preserved.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

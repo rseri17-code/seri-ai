@@ -22,7 +22,7 @@ export default function Home() {
               <HeroIntelligenceMap />
             </div>
             <div className="mt-6 max-w-3xl rounded-lg border border-mint/20 bg-mint/[0.06] p-5">
-              <p className="text-sm font-semibold uppercase text-mint">The category bet</p>
+              <p className="text-sm font-semibold uppercase text-mint">Operating contract</p>
               <p className="mt-3 text-xl leading-9 text-white">{site.brandBelief}</p>
             </div>
             <div className="mt-4 max-w-3xl rounded-lg border border-signal/25 bg-signal/[0.06] p-4">
@@ -55,9 +55,9 @@ export default function Home() {
             </div>
             <div className="mt-8 grid max-w-3xl grid-cols-3 gap-3">
               {[
-                ["Harness", "over model"],
-                ["Receipts", "before trust"],
-                ["Replay", "before action"]
+                ["82%", "lead hypothesis"],
+                ["+31", "confidence movement"],
+                ["4/4", "eval gates visible"]
               ].map(([value, label]) => (
                 <div key={label} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
                   <p className="text-2xl font-semibold text-white">{value}</p>
