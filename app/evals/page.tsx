@@ -12,13 +12,15 @@ export const metadata: Metadata = {
 export default function EvalsPage() {
   return (
     <>
-      <Section eyebrow="Public trust report" title={evalReport.title}>
+      <Section eyebrow="AI release gate" title="Operational AI should not ship without behavior evidence.">
         <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
           <Card>
             <ShieldAlert className="mb-5 text-mint" />
-            <p className="text-lg leading-8 text-slate-200">{evalReport.summary}</p>
+            <p className="text-lg leading-8 text-slate-200">
+              {evalReport.summary} The point is not to make the assistant sound impressive. The point is to prove how it behaves when context is partial, confidential, ambiguous, or operationally risky.
+            </p>
             <div className="mt-6 rounded-lg border border-mint/25 bg-mint/10 p-5">
-              <p className="text-sm uppercase tracking-[0.18em] text-mint">Current product score</p>
+              <p className="text-sm uppercase tracking-[0.18em] text-mint">Current trust score</p>
               <p className="mt-2 text-6xl font-semibold text-white">{evalReport.score}</p>
               <p className="mt-2 text-sm text-slate-300">Last reviewed {evalReport.lastRun}</p>
               <p className="mt-1 text-sm text-slate-300">Backed by {evalReport.generatedBy}</p>

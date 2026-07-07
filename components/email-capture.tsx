@@ -22,7 +22,7 @@ export function EmailCapture() {
         }
       }}
     >
-      <h2 className="text-xl font-semibold text-white">Get Ravikanth&apos;s Operational Intelligence Notes</h2>
+      <h2 className="text-xl font-semibold text-white">Get Operational Intelligence Notes</h2>
       <p className="mt-2 text-sm leading-6 text-slate-300">Occasional public notes on Operational Intelligence, agentic systems, and enterprise AI architecture.</p>
       <div className="mt-4 flex flex-col gap-2 sm:flex-row">
         <input

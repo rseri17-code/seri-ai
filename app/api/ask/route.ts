@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   if (!isPublicSafe(question)) {
     return NextResponse.json({
       answer:
-        "I can't discuss internal or employer-specific platforms, proprietary projects, private screenshots, logs, dashboards, or confidential architecture. I can explain the public architectural patterns Ravikanth works on, such as Operational Intelligence, AI incident investigation, transaction intelligence, and evidence-driven RCA.",
+        "I can't discuss internal or employer-specific platforms, proprietary projects, private screenshots, logs, dashboards, or confidential architecture. I can explain public architectural patterns such as Operational Intelligence, AI incident investigation, transaction intelligence, evidence-driven RCA, and eval-gated agent workflows.",
       sources: []
     });
   }

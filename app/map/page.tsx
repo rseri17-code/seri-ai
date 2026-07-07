@@ -40,11 +40,13 @@ export default function MapPage() {
 
   return (
     <>
-      <Section eyebrow="Operational Intelligence Map" title={canonicalDefinition.short}>
+      <Section eyebrow="Operational Intelligence Map" title="The operating model from signal to accountable action.">
         <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
           <Card className="overflow-hidden p-0">
             <div className="border-b border-white/10 p-5">
-              <p className="text-sm leading-7 text-slate-300">{canonicalDefinition.support}</p>
+              <p className="text-sm leading-7 text-slate-300">
+                {canonicalDefinition.short}. {canonicalDefinition.support}
+              </p>
             </div>
             <div className="relative overflow-hidden bg-[#071018]">
               <div className="absolute inset-0 intelligence-field opacity-50" />
@@ -89,7 +91,7 @@ export default function MapPage() {
         </div>
       </Section>
 
-      <Section eyebrow="System mode" title="One case, three product surfaces.">
+      <Section eyebrow="System mode" title="One case, multiple proof surfaces.">
         <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.055]">
             <p className="font-mono text-sm text-mint">{operationalIntelligenceSystem.caseId}</p>
@@ -157,7 +159,7 @@ export default function MapPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Layer questions" title="Interrogate the map like a research system.">
+      <Section eyebrow="Layer questions" title="Interrogate the map like an operating system.">
         <div className="grid gap-3 md:grid-cols-2">
           {operationalIntelligenceSystem.layerStates.slice(0, 6).map((item) => (
             <Link key={item.layer} href={`/ask?prompt=${encodeURIComponent(item.question)}`}>

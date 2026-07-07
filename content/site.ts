@@ -311,9 +311,9 @@ export const operationalIntelligenceSystem = {
   ],
   askPrompts: [
     "Explain the OI-ROOM-001 case using the Operational Intelligence layers.",
-    "Why does Ravikanth say the harness is the product in Agentic SRE?",
+    "Why is the harness the product in Agentic SRE?",
     "What is an evidence-backed self-healing operations system?",
-    "How does Ravikanth think about deterministic-first incident investigation?",
+    "How should deterministic-first incident investigation work?",
     "Why do evidence receipts and replay matter for operational AI?",
     "Explain the public-safe Agentic SRE harness model behind seri.ai.",
     "What is the difference between evidence graph, hypothesis lifecycle, decision trace, and replay seed?",
@@ -578,20 +578,20 @@ export const products = [
   {
     slug: "reasonops",
     name: "ReasonOps",
-    tagline: "Operational reasoning for AI-native enterprises.",
+    tagline: "The runtime contract for AI-native operations.",
     summary:
-      "ReasonOps is the operational intelligence layer that helps enterprises understand what changed, why it matters, what evidence supports it, and what humans should do next.",
+      "ReasonOps turns observability context, agent workflows, operational memory, and policy gates into inspectable reasoning that humans can trust under pressure.",
     relationship:
-      "Operational Intelligence is the category. ReasonOps is the product/platform expression inside seri.ai.",
+      "Operational Intelligence is the category. ReasonOps is the platform expression: observe, correlate, reason, evaluate, act, and learn with receipts.",
     whatItIs: [
-      "A public-safe platform concept for evidence-grounded enterprise operations.",
-      "A reasoning layer above observability, topology, transactions, memory, agents, and evaluation.",
-      "A product model for AI-native incident investigation, operational memory, and governed recommendations."
+      "A public-safe platform surface for evidence-grounded enterprise operations.",
+      "A reasoning and evaluation layer above observability, topology, transactions, memory, and agents.",
+      "A runtime contract for AI-native incident investigation, operational memory, and governed recommendations."
     ],
     whyItMatters: [
-      "Enterprises already have signals, but they often lack shared meaning.",
-      "AI agents need operational context, boundaries, observability, and evaluation before they can be trusted.",
-      "Operators need systems that explain evidence, uncertainty, and next actions instead of adding another dashboard."
+      "Enterprises already have signals, but they often lack shared reasoning.",
+      "AI agents need operational context, boundaries, observability, and evaluation before they should recommend action.",
+      "Operators need systems that expose evidence, uncertainty, and review gates instead of adding another opaque assistant."
     ],
     capabilities: [
       "Evidence-driven RCA",
@@ -1256,7 +1256,7 @@ export const startHerePaths = [
     audience: "Architects",
     care: "The site offers public-safe patterns for agents, retrieval, topology, evaluation, and transaction-aware reasoning.",
     readFirst: ["/map", "/patterns", "/wiki/evaluation-and-replay"],
-    ask: "How would Ravikanth design an evidence-driven incident investigation system?",
+    ask: "How should an evidence-driven incident investigation system be designed?",
     matters: ["/patterns/shared-context-for-enterprise-agents", "/patterns/topology-aware-reasoning"]
   },
   {
