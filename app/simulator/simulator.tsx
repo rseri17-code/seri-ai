@@ -517,8 +517,8 @@ export function IncidentSimulator() {
             </div>
             <h2 className="mt-3 text-3xl font-semibold text-white md:text-5xl">Turn operational noise into a reviewable decision.</h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
-              A public-safe incident room that demonstrates Ravikanth&apos;s operating model: evidence intake, transaction replay,
-              hypothesis ranking, human review, and eval-gated trust.
+              A public-safe harness console for evidence intake, transaction replay, hypothesis ranking,
+              branch comparison, human review, and eval-gated trust.
             </p>
             <div className="mt-5 grid gap-2 md:grid-cols-3">
               {scenarios.map((scenario) => {

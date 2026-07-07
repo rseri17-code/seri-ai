@@ -36,7 +36,7 @@ export default function Home() {
                 Explore the Map
               </Link>
               <Link href="/investigation-room" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Enter Investigation Room
+                Run the Harness
               </Link>
               <Link href="/library" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
                 Read the Library
@@ -74,22 +74,22 @@ export default function Home() {
         </div>
       </section>
 
-      <Section eyebrow="Product spine" title="The system visitors should understand in one glance.">
+      <Section eyebrow="Product spine" title="One operating model, multiple proof surfaces.">
         <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <Sparkles className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">seri.ai is a public product thesis with working artifacts.</h3>
+            <h3 className="text-3xl font-semibold text-white">Operational Intelligence needs receipts, replay, memory, and review.</h3>
             <p className="mt-4 text-lg leading-8 text-slate-300">
-              It should make Ravikanth memorable for a specific category: Agentic SRE harnesses that reason from evidence,
-              reconstruct transaction impact, evaluate AI behavior, preserve operational memory, and keep human accountability in the loop.
+              seri.ai organizes that operating model into inspectable artifacts: a reasoning map, a harness console,
+              grounded public knowledge, architecture patterns, and evaluation-backed product notes.
             </p>
           </Card>
           <div className="grid gap-3">
             {[
-              ["01", "Operational Intelligence", "The category language."],
-              ["02", "ReasonOps", "The product expression."],
-              ["03", "Investigation Room", "The signature artifact."],
-              ["04", "Ask Ravikanth", "The grounded public assistant."]
+              ["01", "Operational Intelligence", "The field model for operational reasoning."],
+              ["02", "ReasonOps", "The harness and control-plane expression."],
+              ["03", "Investigation Room", "A replayable RCA and eval artifact."],
+              ["04", "Ask Ravikanth", "A constrained assistant grounded in public work."]
             ].map(([number, title, text]) => (
               <Card key={title} className="flex items-center gap-4 p-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded border border-signal/35 bg-signal/10 font-mono text-sm text-signal">{number}</span>
@@ -129,7 +129,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Builder DNA" title="This is what reflects Ravikanth.">
+      <Section eyebrow="Operating model" title="How the harness earns trust.">
         <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
           <Card className="border-signal/30 bg-signal/[0.055]">
             <ShieldCheck className="mb-5 text-signal" />
@@ -170,7 +170,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Living product" title="A public Operational Intelligence knowledge platform.">
+      <Section eyebrow="Living system" title="Operational Intelligence as an inspectable product surface.">
         <div className="grid gap-4 md:grid-cols-3">
           {operationalIntelligenceSystem.loop.map((item, index) => (
             <Link key={item.href} href={item.href}>
@@ -185,7 +185,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Executive path" title="If you only have five minutes, start here.">
+      <Section eyebrow="Executive path" title="Inspect the thesis in five minutes.">
         <div className="executive-rail rounded-lg border border-white/10 p-3">
           <div className="grid gap-3 md:grid-cols-4">
           {[
@@ -207,7 +207,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Ravikanth's operating system" title="A point of view visitors can remember.">
+      <Section eyebrow="Operating laws" title="The rules behind the system.">
         <div className="grid gap-3 md:grid-cols-5">
           {site.operatingSystem.map((belief, index) => (
             <Card key={belief} className="h-full">
@@ -218,7 +218,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Follow the work" title="Understand what Ravikanth is posting and building.">
+      <Section eyebrow="Follow the work" title="Track the thinking in public.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <Linkedin className="mb-4 text-signal" />
@@ -239,17 +239,17 @@ export default function Home() {
         </Card>
       </Section>
 
-      <Section eyebrow="Signature artifact" title="AI Incident Investigation Room">
+      <Section eyebrow="Signature artifact" title="ReasonOps Harness Console">
         <Card className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <ClipboardCheck className="mb-5 text-signal" />
-            <h3 className="text-3xl font-semibold text-white">Step through Ravikanth&apos;s evidence-first investigation model.</h3>
+            <h3 className="text-3xl font-semibold text-white">Run a public-safe incident through evidence, replay, branch comparison, and eval.</h3>
             <p className="mt-4 leading-7 text-slate-300">
-              The Investigation Room turns the site from a profile into a product experience: evidence board, transaction timeline,
-              hypothesis ranking, reviewable RCA, and an evaluation rubric.
+              The console produces an exportable RCA packet with evidence receipts, timeline reconstruction,
+              selected recommendation, branch comparison, release gate, and public-safe boundary.
             </p>
             <Link href="/investigation-room" className="mt-6 inline-flex items-center gap-2 rounded bg-signal px-5 py-3 font-semibold text-ink">
-              Enter Investigation Room <ArrowRight size={18} />
+              Run the Harness <ArrowRight size={18} />
             </Link>
           </div>
           <div className="grid gap-3">

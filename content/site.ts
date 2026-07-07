@@ -6,11 +6,11 @@ export const site = {
   tagline: "Agentic SRE harnesses for evidence-backed, self-healing operations.",
   positioning: "The public home of evidence-backed Agentic SRE.",
   description:
-    "seri.ai is Ravikanth Seri's public product lab for Operational Intelligence: deterministic Agentic SRE harnesses, evidence receipts, replayable reasoning, operational memory, confidence calibration, and human review for AI-native enterprise operations.",
+    "seri.ai is a field lab for Operational Intelligence: evidence graphs, replayable incident reasoning, evaluation gates, operational memory, and human-approved action for AI-native enterprise operations.",
   brandBelief:
     "The next enterprise advantage is not a smarter model in isolation. It is the harness around the model: evidence, policy, replay, memory, evaluation, and human review working as one operating system.",
   productPromise:
-    "A visitor should leave with one memory: Ravikanth builds Agentic SRE systems like production infrastructure: deterministic where possible, bounded where autonomous, replayable where trusted, and accountable where action matters.",
+    "The operating principle is simple: deterministic where possible, bounded where autonomous, replayable where trusted, and accountable where action matters.",
   operatingSystem: [
     "Evidence before conclusions",
     "Transactions before isolated signals",
@@ -82,9 +82,9 @@ export const canonicalDefinition = {
 };
 
 export const builderDna = {
-  title: "What makes Ravikanth's work different",
+  title: "The operating model",
   thesis:
-    "Ravikanth is not trying to make a chatbot for operations. He is building Agentic SRE harnesses that can investigate, prove, remember, replay, self-correct, and improve.",
+    "This is not a chatbot layer for operations. It is a harness model for systems that investigate, prove, remember, replay, self-correct, and improve.",
   publicSafeSource:
     "This language is distilled from public-safe product work around AI-native incident investigation and operational control planes. It avoids internal employer systems, proprietary names, screenshots, logs, and confidential architecture.",
   principles: [
@@ -538,12 +538,12 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "ai-incident-investigation-simulator",
-    name: "AI Incident Investigation Simulator",
-    status: "Prototype",
-    summary: "An interactive artifact that demonstrates Ravikanth's evidence-first approach to AI-native incident investigation.",
-    capabilities: ["timeline reconstruction", "hypothesis ranking", "RCA evaluation", "human review"],
+    name: "ReasonOps Harness Console",
+    status: "Production Pattern",
+    summary: "A public-safe control-plane artifact for evidence-backed incident reasoning, branch comparison, and RCA evaluation.",
+    capabilities: ["timeline reconstruction", "hypothesis ranking", "branch comparison", "exportable RCA packet"],
     detail:
-      "A public-safe simulator where visitors step through signals, transaction impact, topology clues, hypotheses, confidence, evaluation checks, and reviewable next actions without exposing internal logs or confidential architecture."
+      "A public-safe harness console where visitors run operational scenarios through signals, transaction impact, topology clues, hypotheses, confidence movement, branch comparison, eval gates, and exportable RCA packets without exposing internal logs or confidential architecture."
   },
   {
     slug: "operational-intelligence-copilot",

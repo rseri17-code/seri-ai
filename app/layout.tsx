@@ -7,7 +7,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "seri.ai | The home of Operational Intelligence",
   description:
-    "A public product lab, knowledge base, and operating system for Operational Intelligence: the reasoning layer between enterprise telemetry and human decision.",
+    "A public operating system for Operational Intelligence: evidence-backed Agentic SRE harnesses, replayable incident reasoning, and human-reviewed action.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://seri.ai"),
   openGraph: {
     title: "seri.ai | Operational Intelligence",
