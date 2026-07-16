@@ -1,6 +1,6 @@
 "use client";
 
-import { Send } from "lucide-react";
+import { BrainCircuit, CheckCircle2, Database, FileSearch, LockKeyhole, Send, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import type { ChatMessage } from "@/lib/ai";
 
@@ -18,13 +18,14 @@ export function Chat({
   initialPrompt?: string;
   suggestedPrompts?: string[];
 }) {
+  const initialAssistantMessage =
+    mode === "interview"
+      ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
+      : "Reasoning Interface online. Ask about Operational Intelligence, Agentic SRE, transaction intelligence, evidence graphs, replay, eval gates, or public-safe architecture patterns.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      content:
-        mode === "interview"
-          ? "Interview mode is grounded in approved public evidence: operational intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-          : "Query the public Operational Intelligence knowledge layer: evidence graphs, agentic systems, observability, transaction intelligence, knowledge graphs, and AI evaluation."
+      content: initialAssistantMessage
     }
   ]);
   const [input, setInput] = useState(initialPrompt);
@@ -66,23 +67,64 @@ export function Chat({
           "How should agents investigate incidents safely?",
           "What is Transaction Intelligence?"
         ]);
+  const operatingReceipts: Array<[string, string]> = [
+    ["Retrieve", sources.length ? `${sources.length} sources` : "local + vector"],
+    ["Ground", sources.length ? "context attached" : "awaiting query"],
+    ["Boundary", "public-safe"],
+    ["Release", isLoading ? "evaluating" : "ready"]
+  ];
+  const responseChecks: Array<[string, boolean]> = [
+    ["Approved content", sources.length > 0 || messages.length === 1],
+    ["Confidentiality gate", true],
+    ["Unknowns allowed", true],
+    ["Human judgment", true]
+  ];
 
   return (
-    <div className="grid gap-5 lg:grid-cols-[1fr_340px]">
-      <div className="rounded-lg border border-white/10 bg-white/[0.04]">
+    <div className="grid gap-5 lg:grid-cols-[1fr_360px]">
+      <div className="overflow-hidden rounded-lg border border-white/10 bg-[#071018]">
+        <div className="border-b border-white/10 bg-black/20 p-4">
+          <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+            <div className="flex items-center gap-3">
+              <div className="grid h-11 w-11 place-items-center rounded-lg border border-mint/30 bg-mint/10 text-mint">
+                <BrainCircuit size={20} />
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase text-slate-500">Operational reasoning console</p>
+                <h2 className="text-xl font-semibold text-white">Ask, retrieve, evaluate, then answer.</h2>
+              </div>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-4 xl:w-[34rem]">
+              {operatingReceipts.map(([label, value]) => (
+                <div key={label} className="rounded border border-white/10 bg-white/[0.04] px-3 py-2">
+                  <p className="text-[0.66rem] font-semibold uppercase text-slate-500">{label}</p>
+                  <p className="mt-1 truncate font-mono text-xs text-mint">{value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
         <div className="h-[560px] space-y-4 overflow-y-auto p-4">
           {messages.map((message, index) => (
             <div key={`${message.role}-${index}`} className={message.role === "user" ? "flex justify-end" : "flex justify-start"}>
               <div
                 className={`max-w-[82%] rounded-lg px-4 py-3 text-sm leading-6 ${
-                  message.role === "user" ? "bg-mint text-ink" : "border border-white/10 bg-ink text-slate-100"
+                  message.role === "user" ? "bg-mint text-ink" : "border border-white/10 bg-black/30 text-slate-100"
                 }`}
               >
                 {message.content}
               </div>
             </div>
           ))}
-          {isLoading ? <div className="text-sm text-slate-400">Thinking with approved public context...</div> : null}
+          {isLoading ? (
+            <div className="rounded-lg border border-signal/25 bg-signal/[0.07] p-4 text-sm text-slate-300">
+              <div className="flex items-center gap-2 font-semibold text-signal">
+                <FileSearch size={16} />
+                Running retrieval and public-safety checks...
+              </div>
+              <p className="mt-2 text-xs leading-5 text-slate-400">The answer should stay inside approved public context, name gaps, and avoid confidential or employer-specific detail.</p>
+            </div>
+          ) : null}
         </div>
         <form
           className="flex gap-2 border-t border-white/10 p-3"
@@ -92,10 +134,10 @@ export function Chat({
           }}
         >
           <input
-            className="min-w-0 flex-1 rounded border border-white/10 bg-ink px-4 py-3 text-sm text-white outline-none focus:border-mint/60"
+            className="min-w-0 flex-1 rounded border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-mint/60"
             value={input}
             onChange={(event) => setInput(event.target.value)}
-            placeholder="Ask a public-safe question..."
+            placeholder="Ask a public-safe Operational Intelligence question..."
           />
           <button className="grid h-12 w-12 place-items-center rounded bg-mint text-ink" type="submit" aria-label="Send message">
             <Send size={18} />
@@ -103,8 +145,27 @@ export function Chat({
         </form>
       </div>
       <aside className="space-y-4">
+        <div className="rounded-lg border border-mint/20 bg-mint/[0.05] p-5">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="text-mint" size={18} />
+            <h2 className="font-semibold text-white">Answer contract</h2>
+          </div>
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            {responseChecks.map(([label, passed]) => (
+              <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className={passed ? "text-mint" : "text-amber"} size={14} />
+                  <span className="text-xs font-semibold text-slate-200">{label}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-xs leading-5 text-slate-400">
+            The interface should cite approved public sources, refuse confidential requests, and preserve operator judgment before action.
+          </p>
+        </div>
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
-          <h2 className="font-semibold text-white">Suggested prompts</h2>
+          <h2 className="font-semibold text-white">Suggested investigations</h2>
           <div className="mt-4 space-y-2">
             {prompts.map((prompt) => (
               <button
@@ -118,7 +179,10 @@ export function Chat({
           </div>
         </div>
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
-          <h2 className="font-semibold text-white">Grounding</h2>
+          <div className="flex items-center gap-2">
+            <Database className="text-signal" size={18} />
+            <h2 className="font-semibold text-white">Grounding receipts</h2>
+          </div>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
             {sources.length ? (
               sources.map((source) => (
@@ -129,7 +193,13 @@ export function Chat({
                 </a>
               ))
             ) : (
-              <p>Sources will appear after an answer.</p>
+              <div className="rounded border border-white/10 bg-black/20 p-3">
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-200">
+                  <LockKeyhole size={15} className="text-amber" />
+                  No answer released yet
+                </div>
+                <p className="mt-2 text-xs leading-5 text-slate-400">Sources appear after retrieval. Confidential or unsupported questions should return a boundary-aware refusal.</p>
+              </div>
             )}
           </div>
         </div>

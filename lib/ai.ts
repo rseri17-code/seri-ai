@@ -59,10 +59,10 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
   }
 
   if (!context.length) {
-    return "That is not yet covered in Ravikanth's public knowledge base. I can discuss the published material on Operational Intelligence, agentic systems, transaction intelligence, observability, knowledge graphs, AI evaluation, and architecture patterns.";
+    return "The public knowledge base does not cover that yet. The system can answer from published material on Operational Intelligence, agentic systems, transaction intelligence, observability, knowledge graphs, AI evaluation, and architecture patterns.";
   }
 
-  return `From Ravikanth's public point of view: ${context
+  return `Public-grounded Operational Intelligence answer: ${context
     .slice(0, 3)
     .map((item) => `${item.content} Source: ${item.title} (${item.url}).`)
     .join(" ")}`;
