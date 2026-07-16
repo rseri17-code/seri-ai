@@ -13,6 +13,43 @@ type GenerateArgs = {
   history?: ChatMessage[];
 };
 
+function inferFrameworkLayers(question: string) {
+  const lower = question.toLowerCase();
+  const layers: string[] = [];
+  if (/observability|signal|telemetry|metric|log|trace|alert|dashboard/.test(lower)) layers.push("Signal Layer");
+  if (/transaction|journey|customer|workflow|latency/.test(lower)) layers.push("Transaction Layer");
+  if (/topology|dependency|service|blast|owner/.test(lower)) layers.push("Topology Layer");
+  if (/evidence|receipt|fact|source|provenance|citation/.test(lower)) layers.push("Evidence Layer");
+  if (/hypothesis|reason|root cause|rca|causal/.test(lower)) layers.push("Reasoning Layer");
+  if (/memory|replay seed|lesson|remember/.test(lower)) layers.push("Memory Layer");
+  if (/eval|evaluation|gate|trust|benchmark|quality/.test(lower)) layers.push("Evaluation Layer");
+  if (/decision|action|recommend|risk|rollback/.test(lower)) layers.push("Decision Layer");
+  if (/learn|outcome|post|future/.test(lower)) layers.push("Learning Layer");
+  if (/human|operator|approve|override|review|escalate/.test(lower)) layers.push("Operator Layer");
+  return [...new Set(layers)].slice(0, 4);
+}
+
+function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
+  const layers = inferFrameworkLayers(question);
+  const primarySource = context[0];
+  const sourceLine = primarySource ? `${primarySource.title} (${primarySource.url})` : "No matching approved public source";
+  const direct =
+    context.length > 0
+      ? primarySource.content.slice(0, 420)
+      : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
+
+  return [
+    `Direct answer: ${direct}`,
+    `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
+    `Public source: ${sourceLine}.`,
+    "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, evaluation gates, and human-reviewed action.",
+    "Tradeoff or limitation: this local fallback is deterministic and lexical; semantic retrieval and model-generated synthesis improve when production AI and vector search keys are configured.",
+    "Related page or artifact: start with /framework, then /investigation-room, then /evals or /work depending on the question.",
+    "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public-safe knowledge base.",
+    "Suggested next question: Show how the shared case moves through the ten-layer framework."
+  ].join("\n\n");
+}
+
 export async function generateRaviAnswer({ question, context, history = [] }: GenerateArgs) {
   const provider = process.env.AI_PROVIDER ?? "openai";
   const prompt = [
@@ -68,13 +105,10 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
   }
 
   if (!context.length) {
-    return "The public knowledge base does not cover that yet. The system can answer from published material on Operational Intelligence, agentic systems, transaction intelligence, observability, knowledge graphs, AI evaluation, and architecture patterns.";
+    return localFallbackAnswer(question, context);
   }
 
-  return `Public-grounded Operational Intelligence answer: ${context
-    .slice(0, 3)
-    .map((item) => `${item.content} Source: ${item.title} (${item.url}).`)
-    .join(" ")}`;
+  return localFallbackAnswer(question, context);
 }
 
 export async function embedText(input: string) {

@@ -67,7 +67,8 @@ export default function Home() {
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
               {site.positioning}
             </div>
-            <h1 className="max-w-5xl text-5xl font-semibold text-white md:text-7xl">{site.tagline}</h1>
+            <h1 className="max-w-5xl text-5xl font-semibold text-white md:text-7xl">{site.owner}</h1>
+            <p className="mt-4 max-w-4xl text-3xl font-semibold leading-tight text-mint md:text-5xl">{site.tagline}</p>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">{site.description}</p>
             <div className="mt-5 max-w-3xl rounded-lg border border-white/10 bg-black/25 p-4">
               <p className="text-xs font-semibold uppercase text-slate-500">Built by {site.owner}</p>

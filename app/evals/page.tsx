@@ -24,6 +24,8 @@ export default function EvalsPage() {
               <p className="mt-2 text-6xl font-semibold text-white">{evalReport.fixtures.length}/{evalReport.fixtures.length}</p>
               <p className="mt-2 text-sm text-slate-300">Last reviewed {evalReport.lastRun}</p>
               <p className="mt-1 text-sm text-slate-300">Backed by {evalReport.generatedBy}</p>
+              <p className="mt-1 text-sm text-slate-300">Version {evalReport.version}</p>
+              <p className="mt-1 text-sm text-slate-300">Model-based evaluation: {evalReport.modelBasedEvaluationUsed ? "used" : "not used"}</p>
               <p className="mt-4 text-sm leading-6 text-slate-300">{evalReport.method}</p>
             </div>
           </Card>

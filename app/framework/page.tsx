@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, BrainCircuit, CheckCircle2, GitBranch, Layers, ShieldCheck } from "lucide-react";
+import { ArrowRight, BrainCircuit, CheckCircle2, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
+import { FrameworkTeacher } from "@/components/framework-teacher";
 import { Section } from "@/components/section";
 import { operationalIntelligenceFramework } from "@/content/site";
 
@@ -48,55 +49,8 @@ export default function FrameworkPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Ten layers" title="From telemetry to accountable operational action.">
-        <div className="grid gap-4 md:grid-cols-2">
-          {operationalIntelligenceFramework.layers.map((layer, index) => (
-            <Card key={layer.name} className="h-full p-5">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <span className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</span>
-                  <h2 className="mt-2 text-2xl font-semibold text-white">{layer.name}</h2>
-                </div>
-                {index % 3 === 0 ? <Layers className="text-mint" /> : index % 3 === 1 ? <GitBranch className="text-signal" /> : <ShieldCheck className="text-amber" />}
-              </div>
-              <div className="mt-5 grid gap-3">
-                <div className="rounded border border-white/10 bg-black/20 p-3">
-                  <p className="text-xs font-semibold uppercase text-slate-500">Definition</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{layer.definition}</p>
-                </div>
-                <div className="rounded border border-white/10 bg-black/20 p-3">
-                  <p className="text-xs font-semibold uppercase text-slate-500">Problem solved</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{layer.problemSolved}</p>
-                </div>
-                <div className="rounded border border-white/10 bg-black/20 p-3">
-                  <p className="text-xs font-semibold uppercase text-slate-500">Input</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{layer.input}</p>
-                </div>
-                <div className="rounded border border-mint/20 bg-mint/[0.06] p-3">
-                  <p className="text-xs font-semibold uppercase text-mint">Output</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-200">{layer.output}</p>
-                </div>
-                <div className="rounded border border-amber/20 bg-amber/[0.06] p-3">
-                  <p className="text-xs font-semibold uppercase text-amber">Failure mode</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{layer.failureMode}</p>
-                </div>
-              </div>
-              <p className="mt-4 text-sm font-semibold text-white">{layer.operatorQuestion}</p>
-              <div className="mt-4 grid gap-2 sm:grid-cols-3">
-                {[
-                  ["Pattern", layer.relatedPattern],
-                  ["Artifact", layer.relatedArtifact],
-                  ["Library", layer.relatedLibraryAsset]
-                ].map(([label, href]) => (
-                  <Link key={`${label}-${href}`} href={href} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs text-slate-300 hover:border-mint/40">
-                    <span className="block font-semibold uppercase text-slate-500">{label}</span>
-                    <span className="mt-1 block break-words text-slate-300">{href}</span>
-                  </Link>
-                ))}
-              </div>
-            </Card>
-          ))}
-        </div>
+      <Section eyebrow="Teaching sequence" title="Follow one synthetic investigation through all ten layers.">
+        <FrameworkTeacher />
       </Section>
 
       <Section eyebrow="Design rules" title="How the framework should constrain systems.">

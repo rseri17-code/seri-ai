@@ -2,7 +2,8 @@ import { Chat } from "@/components/chat";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { operationalIntelligenceSystem } from "@/content/site";
-import { BrainCircuit, ClipboardCheck, GitBranch, ShieldCheck, type LucideIcon } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, ShieldCheck, type LucideIcon } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,6 +15,16 @@ const askContextCards: Array<{ label: string; value: string; Icon: LucideIcon }>
   { label: "Case", value: operationalIntelligenceSystem.caseId, Icon: ClipboardCheck },
   { label: "Hypothesis", value: operationalIntelligenceSystem.decisionPacket.hypothesis, Icon: GitBranch },
   { label: "Guardrail", value: "public-safe only", Icon: ShieldCheck }
+];
+
+const guidePaths = [
+  ["/framework", "Learn the framework", "Walk through the ten layers with OI-ROOM-001.", "Walk me through the ten-layer framework."],
+  ["/investigation-room", "Run the case", "Interact with evidence, hypotheses, replay, gates, and operator controls.", "Show how the shared case moves through the framework."],
+  ["/work", "Understand the work", "See systems, frameworks, artifacts, writing, and background together.", "What is Ravikanth building and what public work supports it?"],
+  ["/patterns", "Apply patterns", "Use reusable architecture solutions behind the operating model.", "Which patterns support evidence-driven investigation?"],
+  ["/library", "Read deeper", "Open authored explanations and field notes.", "Which library asset explains why dashboards are not intelligence?"],
+  ["/evals", "Inspect trust", "Review deterministic fixtures and known limitations.", "How does the evaluation gate work?"],
+  ["/background", "Check credibility", "Review career evidence without making the site a resume.", "What public background supports this work?"]
 ];
 
 export default async function AskPage({
@@ -56,6 +67,31 @@ export default async function AskPage({
           </div>
         </div>
         <Chat initialPrompt={initialPrompt} suggestedPrompts={operationalIntelligenceSystem.askPrompts} />
+      </Section>
+
+      <Section eyebrow="Guide paths" title="Use Ask Ravikanth as the navigation layer for the whole system.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {guidePaths.map(([href, title, detail, prompt]) => (
+            <Card key={href} className="h-full p-4">
+              <div className="flex items-start justify-between gap-4">
+                <div className="grid h-10 w-10 place-items-center rounded-lg border border-signal/30 bg-signal/10 text-signal">
+                  {href === "/library" ? <BookOpen size={18} /> : href === "/framework" ? <Map size={18} /> : <BrainCircuit size={18} />}
+                </div>
+                <Link href={href} className="text-slate-500 hover:text-mint" aria-label={`Open ${title}`}>
+                  <ArrowRight size={17} />
+                </Link>
+              </div>
+              <h2 className="mt-4 text-xl font-semibold text-white">{title}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{detail}</p>
+              <Link
+                href={`/ask?prompt=${encodeURIComponent(prompt)}`}
+                className="mt-4 inline-flex items-center gap-2 rounded border border-mint/35 px-3 py-2 text-xs font-semibold text-mint"
+              >
+                Ask: {prompt}
+              </Link>
+            </Card>
+          ))}
+        </div>
       </Section>
     </>
   );

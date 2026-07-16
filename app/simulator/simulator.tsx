@@ -109,7 +109,15 @@ const evidence = [
     fact: "Transaction completion rate drops for a critical customer journey.",
     confidence: "High",
     used: true,
-    weight: 92
+    weight: 92,
+    sourceType: "synthetic transaction monitor",
+    timestamp: "09:24",
+    scope: "customer journey",
+    provenance: "public-safe scenario fixture",
+    reliability: "high: repeated across retry and completion signals",
+    relatedEntity: "checkout transaction",
+    relatedHypothesis: "configuration regression",
+    stance: "supports"
   },
   {
     id: "change",
@@ -117,7 +125,15 @@ const evidence = [
     fact: "A configuration update occurred shortly before the symptom window.",
     confidence: "Medium",
     used: true,
-    weight: 74
+    weight: 74,
+    sourceType: "synthetic change record",
+    timestamp: "09:18",
+    scope: "dependency group",
+    provenance: "approved public-safe change metadata",
+    reliability: "medium: temporal fit requires more evidence",
+    relatedEntity: "routing configuration",
+    relatedHypothesis: "configuration regression",
+    stance: "supports"
   },
   {
     id: "topology",
@@ -125,7 +141,15 @@ const evidence = [
     fact: "The affected journey crosses three public-safe dependency groups.",
     confidence: "Medium",
     used: true,
-    weight: 68
+    weight: 68,
+    sourceType: "synthetic topology map",
+    timestamp: "09:27",
+    scope: "gateway, service, data path",
+    provenance: "public-safe dependency model",
+    reliability: "medium: dependency freshness is assumed",
+    relatedEntity: "dependency path",
+    relatedHypothesis: "configuration regression",
+    stance: "supports"
   },
   {
     id: "noise",
@@ -133,7 +157,15 @@ const evidence = [
     fact: "A separate warning appears in an unrelated dependency group.",
     confidence: "Low",
     used: false,
-    weight: 18
+    weight: 18,
+    sourceType: "synthetic alert stream",
+    timestamp: "09:29",
+    scope: "unrelated dependency group",
+    provenance: "public-safe alert fixture",
+    reliability: "low: no transaction alignment",
+    relatedEntity: "background warning",
+    relatedHypothesis: "unrelated warning cascade",
+    stance: "weakens"
   }
 ];
 
@@ -215,11 +247,46 @@ const scenarioCopy = {
 };
 
 const evalChecks = [
-  ["Evidence coverage", "Pass", "Uses signals, topology, timeline, and change context."],
-  ["Uncertainty", "Pass", "Names missing context and avoids absolute claims."],
-  ["Confidentiality", "Pass", "Uses generic public-safe names only."],
-  ["Human review", "Pass", "Requires approval before operational action."],
-  ["Actionability", "Pass", "Suggests a focused rollback review and monitoring plan."]
+  {
+    name: "Evidence completeness",
+    status: "Pass",
+    definition: "The conclusion must use enough independent public-safe evidence to justify a reviewed recommendation.",
+    evidence: "Signal, change, topology, and transaction timing receipts are available.",
+    limitation: "Direct owner confirmation is still outside the synthetic fixture.",
+    reason: "The recommendation is allowed only as a review packet, not as autonomous action."
+  },
+  {
+    name: "Claim support",
+    status: "Pass",
+    definition: "Every RCA claim must trace back to evidence or be marked as inference.",
+    evidence: "The leading hypothesis cites timing, transaction impact, and dependency-path alignment.",
+    limitation: "The case cannot prove production causality because it is a public-safe synthetic scenario.",
+    reason: "The UI separates observed facts from inferred cause."
+  },
+  {
+    name: "Contradiction handling",
+    status: "Pass",
+    definition: "The system must keep weak or contradictory evidence visible instead of hiding it.",
+    evidence: "The unrelated warning remains visible as a noisy candidate.",
+    limitation: "More contradictory evidence would be needed for a harder case.",
+    reason: "The noise item can be included or excluded and changes confidence."
+  },
+  {
+    name: "Replay readiness",
+    status: "Pass",
+    definition: "The case must preserve enough context to replay the reasoning path later.",
+    evidence: "Case identity, evidence references, timeline, hypotheses, action boundary, and learning target are exported.",
+    limitation: "Replay is deterministic within the fixture, not a production event replay.",
+    reason: "The exported packet is a replay seed, not just an incident summary."
+  },
+  {
+    name: "Human-review requirement",
+    status: "Pass",
+    definition: "High-impact operational action must stay behind accountable human review.",
+    evidence: "The best action is rollback review with owner approval.",
+    limitation: "The synthetic controls do not execute real changes.",
+    reason: "The operator can approve, reject, request evidence, escalate, or preserve unresolved state."
+  }
 ];
 
 const executionStages = [
@@ -396,6 +463,7 @@ export function IncidentSimulator() {
   const [selectedAction, setSelectedAction] = useState<string | null>(actions[0].name);
   const [replayMode, setReplayMode] = useState<"step" | "live">("step");
   const [replayIndex, setReplayIndex] = useState(2);
+  const [guidedMode, setGuidedMode] = useState(true);
   const selectedScenario = scenarios.find((scenario) => scenario.id === selectedScenarioId) ?? scenarios[0];
   useEffect(() => {
     if (replayMode !== "live") {
@@ -421,6 +489,7 @@ export function IncidentSimulator() {
 
   const visibleReplayChapters = replayChapters.slice(0, replayIndex + 1);
   const currentReplayChapter = replayChapters[replayIndex];
+  const currentStepLayers = steps[active].frameworkLayers;
   const replayProgress = Math.round(((replayIndex + 1) / replayChapters.length) * 100);
   const score = useMemo(() => {
     const progress = ((active + 1) / steps.length) * 45;
@@ -581,6 +650,27 @@ export function IncidentSimulator() {
                 </div>
               ))}
             </div>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setGuidedMode(true);
+                  setActive(0);
+                  setReplayIndex(0);
+                  setReplayMode("step");
+                }}
+                className={guidedMode ? "rounded bg-mint px-4 py-2 text-sm font-semibold text-ink" : "rounded border border-mint/35 px-4 py-2 text-sm font-semibold text-mint"}
+              >
+                Walk me through the investigation
+              </button>
+              <button
+                type="button"
+                onClick={() => setGuidedMode(false)}
+                className={!guidedMode ? "rounded bg-signal px-4 py-2 text-sm font-semibold text-ink" : "rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white"}
+              >
+                Expert exploration
+              </button>
+            </div>
             <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} />
             <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3">
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
@@ -730,6 +820,33 @@ export function IncidentSimulator() {
 
       <div className="grid gap-0 lg:grid-cols-[18rem_1fr_20rem]">
         <aside className="border-b border-white/10 p-5 lg:border-b-0 lg:border-r">
+          <p className="text-xs font-semibold uppercase text-slate-500">Framework walkthrough</p>
+          <div className="mt-4 space-y-2">
+            {operationalIntelligenceSystem.layerStates.map((item, index) => {
+              const activeLayer = currentStepLayers.includes(item.layer);
+              return (
+                <button
+                  key={item.layer}
+                  type="button"
+                  onClick={() => {
+                    const nextStep = steps.findIndex((step) => step.frameworkLayers.includes(item.layer));
+                    if (nextStep >= 0) setActive(nextStep);
+                  }}
+                  className={`w-full rounded border p-2 text-left transition ${
+                    activeLayer ? "border-mint/35 bg-mint/[0.08]" : "border-white/10 bg-white/[0.03] hover:border-white/25"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className={activeLayer ? "font-mono text-xs text-mint" : "font-mono text-xs text-slate-500"}>{String(index + 1).padStart(2, "0")}</span>
+                    <span className="text-[0.65rem] uppercase text-slate-500">{activeLayer ? "active" : "jump"}</span>
+                  </div>
+                  <p className="mt-1 text-xs font-semibold text-white">{item.layer}</p>
+                  <p className="mt-1 text-[0.7rem] leading-4 text-slate-400">{item.question}</p>
+                </button>
+              );
+            })}
+          </div>
+          <div className="mt-6 border-t border-white/10 pt-5">
           <p className="text-xs font-semibold uppercase text-slate-500">Investigation lanes</p>
           <div className="mt-4 space-y-3">
             {investigationLanes.map((lane, index) => (
@@ -740,6 +857,7 @@ export function IncidentSimulator() {
                 </div>
               </div>
             ))}
+          </div>
           </div>
           <div className="mt-6 rounded-lg border border-amber/20 bg-amber/10 p-4 text-amber">
             <div className="flex items-center gap-2">
@@ -1397,6 +1515,23 @@ function EvidenceBoard({
               <span className={activeSet.has(item.id) ? "text-mint" : "text-slate-500"}>{activeSet.has(item.id) ? "Included" : "Excluded"}</span>
             </div>
             <p className="mt-4 min-h-16 text-slate-100">{item.fact}</p>
+            <div className="mt-4 grid gap-2 text-xs text-slate-300">
+              {[
+                ["Source", item.sourceType],
+                ["Timestamp", item.timestamp],
+                ["Scope", item.scope],
+                ["Provenance", item.provenance],
+                ["Reliability", item.reliability],
+                ["Entity", item.relatedEntity],
+                ["Hypothesis", item.relatedHypothesis],
+                ["Effect", item.stance]
+              ].map(([label, value]) => (
+                <div key={label} className="flex items-start justify-between gap-3 rounded border border-white/10 bg-black/20 px-2 py-1.5">
+                  <span className="shrink-0 font-semibold uppercase text-slate-500">{label}</span>
+                  <span className="text-right leading-5 text-slate-300">{value}</span>
+                </div>
+              ))}
+            </div>
             <div className="mt-4 flex items-center gap-3">
               <div className="h-2 flex-1 rounded-full bg-white/10">
                 <div className={`h-2 rounded-full ${item.used ? "bg-mint" : "bg-amber"}`} style={{ width: `${item.weight}%` }} />
@@ -1629,11 +1764,27 @@ function EvalBoard({
               </div>
             ))}
           </div>
-          {evalChecks.map(([name, status, detail]) => (
-            <div key={name} className="grid gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-4 md:grid-cols-[12rem_5rem_1fr]">
-              <span className="font-semibold text-white">{name}</span>
-              <span className="text-mint">{status}</span>
-              <span className="text-slate-300">{detail}</span>
+          {evalChecks.map((check) => (
+            <div key={check.name} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+              <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <p className="font-semibold text-white">{check.name}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{check.definition}</p>
+                </div>
+                <span className="rounded border border-mint/30 bg-mint/10 px-2 py-1 text-xs font-semibold text-mint">{check.status}</span>
+              </div>
+              <div className="mt-4 grid gap-3 md:grid-cols-3">
+                {[
+                  ["Evidence", check.evidence],
+                  ["Limitation", check.limitation],
+                  ["Pass reason", check.reason]
+                ].map(([label, value]) => (
+                  <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                    <p className="text-xs font-semibold uppercase text-slate-500">{label}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-300">{value}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>

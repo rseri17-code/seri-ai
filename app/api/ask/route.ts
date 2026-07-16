@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   if (!isPublicSafe(question)) {
     return NextResponse.json({
       answer:
-        "I can't discuss internal or employer-specific platforms, proprietary projects, private screenshots, logs, dashboards, or confidential architecture. I can explain public architectural patterns such as Operational Intelligence, AI incident investigation, transaction intelligence, evidence-driven RCA, and eval-gated agent workflows.",
+        "I can't discuss employer-specific or confidential systems, proprietary projects, private screenshots, logs, dashboards, or internal architecture. I can explain the public architecture patterns behind the question, including evidence-driven investigation, transaction journey reconstruction, replayable reasoning, evaluation gates, operational memory, and human-in-the-loop review.",
       sources: []
     });
   }
