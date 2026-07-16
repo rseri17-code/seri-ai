@@ -47,6 +47,15 @@ const productProof = [
   }
 ];
 
+const ravikanthIndex = [
+  ["/now", "Now", "What Ravikanth is actively building: Agentic SRE, ReasonOps, evidence graphs, replay seeds, eval gates, and operator control planes."],
+  ["/library", "Writing", "Essays and field notes that turn Operational Intelligence from a topic into a language."],
+  ["/investigation-room", "Artifact", "A working Operations Room that makes the thesis inspectable through a public-safe incident case."],
+  ["/patterns", "Patterns", "Architecture patterns for evidence-driven RCA, transaction intelligence, operational memory, and human-gated AI."],
+  ["/background", "Background", "Career evidence stays secondary, but shows the enterprise systems context behind the point of view."],
+  ["/ask", "Reasoning Interface", "A grounded interface for interrogating the public knowledge layer and its boundaries."]
+];
+
 export default function Home() {
   return (
     <>
@@ -119,6 +128,23 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      <Section eyebrow="Ravikanth's work index" title="Start with the work, then follow the person behind it.">
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {ravikanthIndex.map(([href, title, text], index) => (
+            <Link key={href} href={href}>
+              <Card className="h-full transition hover:-translate-y-1 hover:border-mint/40">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</span>
+                  <ArrowRight size={16} className="text-slate-500" />
+                </div>
+                <h3 className="mt-4 text-2xl font-semibold text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
 
       <Section eyebrow="Ravikanth's operating model" title="A personal point of view, expressed as an inspectable system.">
         <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
