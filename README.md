@@ -76,6 +76,8 @@ Avoid copying private repository internals, vendor-specific wiring, generated re
 ## Core Routes
 
 - `/` — home
+- `/work` — canonical index of Ravikanth's public systems, frameworks, artifacts, writing, and background
+- `/framework` — Operational Intelligence Framework reference
 - `/start-here` — audience-specific paths
 - `/map` — Operational Intelligence knowledge map
 - `/manifesto` — founding thesis: Operational Intelligence Is the New Control Plane

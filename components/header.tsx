@@ -6,6 +6,8 @@ import { site } from "@/content/site";
 
 const primaryNav = [
   { href: "/", label: "Home" },
+  { href: "/work", label: "Work" },
+  { href: "/framework", label: "Framework" },
   { href: "/start-here", label: "Start Here" },
   { href: "/map", label: "Map" },
   { href: "/library", label: "Library" },

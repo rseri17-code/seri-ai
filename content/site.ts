@@ -30,6 +30,8 @@ export const site = {
   },
   nav: [
     { href: "/", label: "Home" },
+    { href: "/work", label: "Work" },
+    { href: "/framework", label: "Framework" },
     { href: "/start-here", label: "Start Here" },
     { href: "/map", label: "Map" },
     { href: "/library", label: "Library" },
@@ -236,6 +238,124 @@ export const operationalLayers = [
     href: "/investigation-room"
   }
 ];
+
+export const operationalIntelligenceFramework = {
+  title: "Operational Intelligence Framework",
+  subtitle: "The reasoning layer between enterprise telemetry and human decision.",
+  promise:
+    "A public-safe reference model for systems that turn signals, transactions, topology, evidence, memory, evaluation, and human review into accountable operational decisions.",
+  thesis:
+    "Enterprises do not primarily lack telemetry. They lack a shared, inspectable reasoning system that can reconstruct what changed, why it matters, what evidence supports it, what is affected, what action is reviewable, and what should be learned.",
+  operatorQuestions: [
+    "What changed?",
+    "What transaction or journey is affected?",
+    "Which topology path explains the blast radius?",
+    "What evidence supports or weakens each hypothesis?",
+    "What should a human review before action?",
+    "What should the system remember after resolution?"
+  ],
+  layers: [
+    {
+      name: "Signal Layer",
+      input: "Logs, metrics, traces, alerts, events, changes, incidents, infrastructure, network, user-impact, and business signals.",
+      output: "Typed operational observations with source, timestamp, scope, and initial reliability.",
+      failureMode: "Alert noise is mistaken for customer or business impact.",
+      operatorQuestion: "Which signals show real operational impact instead of local noise?",
+      related: ["/library", "/patterns/evidence-driven-rca"]
+    },
+    {
+      name: "Transaction Layer",
+      input: "Requests, workflows, jobs, events, customer actions, batch runs, and business processes across systems.",
+      output: "A reconstructed journey that shows where the work moved, slowed, failed, or changed identity.",
+      failureMode: "Teams debug isolated services without understanding the end-to-end journey.",
+      operatorQuestion: "What transaction path turns raw telemetry into business meaning?",
+      related: ["/patterns/transaction-journey-reconstruction", "/wiki/transaction-journeys"]
+    },
+    {
+      name: "Topology Layer",
+      input: "Services, infrastructure, ownership, dependencies, runtime relationships, network paths, data stores, and business context.",
+      output: "A dependency and ownership map that explains blast radius and review boundaries.",
+      failureMode: "Static topology produces stale ownership, false dependency assumptions, or broad blast-radius claims.",
+      operatorQuestion: "Which dependency path best explains the symptom window?",
+      related: ["/patterns/topology-aware-reasoning"]
+    },
+    {
+      name: "Evidence Layer",
+      input: "Validated facts from systems of record with provenance, scope, timestamps, and reliability.",
+      output: "An evidence ledger that separates observed facts from interpretation.",
+      failureMode: "A confident RCA is written before facts are verified.",
+      operatorQuestion: "What evidence supports, contradicts, or fails to support the leading hypothesis?",
+      related: ["/patterns/evidence-driven-rca", "/wiki/evidence-before-conclusions"]
+    },
+    {
+      name: "Reasoning Layer",
+      input: "Evidence, timelines, topology, transaction paths, memory, contradictions, and missing context.",
+      output: "Hypotheses with confidence movement, causal reasoning, alternatives, caveats, and explanation.",
+      failureMode: "Correlation is treated as causation and losing explanations disappear.",
+      operatorQuestion: "Why is one hypothesis stronger than the alternatives?",
+      related: ["/products/reasonops", "/patterns/agentic-incident-investigation"]
+    },
+    {
+      name: "Memory Layer",
+      input: "Past incidents, failure patterns, mitigations, decisions, outcomes, ownership, and lessons.",
+      output: "Reusable operational memory that informs future investigations without leaking confidential detail.",
+      failureMode: "Every incident starts from zero because lessons disappear after resolution.",
+      operatorQuestion: "What prior pattern matters here, and what must not be reused?",
+      related: ["/patterns/operational-memory", "/wiki/operational-memory"]
+    },
+    {
+      name: "Evaluation Layer",
+      input: "Answers, evidence packets, replay seeds, refusal cases, red herrings, and expected decision behavior.",
+      output: "Release gates for grounding, evidence coverage, contradiction handling, confidence calibration, and usefulness.",
+      failureMode: "Fluent output is trusted without testing operational behavior.",
+      operatorQuestion: "How do we know the reasoning system behaved safely and usefully?",
+      related: ["/evals", "/patterns/evaluation-and-replay", "/wiki/evaluation-and-replay"]
+    },
+    {
+      name: "Decision Layer",
+      input: "Ranked hypotheses, risk, ownership, escalation paths, action options, confidence, and missing evidence.",
+      output: "A reviewable recommendation with boundaries, alternatives, owner context, and approval requirements.",
+      failureMode: "The system recommends irreversible action without accountable review.",
+      operatorQuestion: "What should a human approve, reject, defer, or escalate?",
+      related: ["/patterns/human-in-the-loop-operational-ai", "/investigation-room"]
+    },
+    {
+      name: "Learning Layer",
+      input: "Resolution outcomes, operator feedback, accepted mitigations, false leads, and replay results.",
+      output: "Updated memory, patterns, eval fixtures, confidence rules, and future investigation behavior.",
+      failureMode: "Post-incident learning never reaches the next investigation.",
+      operatorQuestion: "What should the system learn for next time?",
+      related: ["/now", "/changelog"]
+    },
+    {
+      name: "Operator Layer",
+      input: "Evidence paths, hypotheses, confidence, risk, review gates, missing context, and proposed actions.",
+      output: "A human control surface for judgment, intervention, approval, override, and accountability.",
+      failureMode: "Operators see polished answers but cannot inspect or challenge the reasoning.",
+      operatorQuestion: "Can the accountable human inspect and challenge the conclusion before action?",
+      related: ["/investigation-room", "/ask"]
+    }
+  ],
+  designPrinciples: [
+    "Evidence before conclusions",
+    "Transaction journeys before isolated signals",
+    "Shared context before private agent context",
+    "Replay before trust",
+    "Evaluation before release",
+    "Human review before consequential action"
+  ],
+  evaluationCriteria: [
+    "Evidence coverage",
+    "Root-cause match",
+    "Red-herring resistance",
+    "Contradiction handling",
+    "Confidence calibration",
+    "Decision trace quality",
+    "Refusal quality",
+    "Replay consistency",
+    "Operational usefulness"
+  ]
+};
 
 export const operationalIntelligenceSystem = {
   caseId: "OI-ROOM-001",

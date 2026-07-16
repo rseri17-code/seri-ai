@@ -49,10 +49,11 @@ const productProof = [
 
 const ravikanthIndex = [
   ["/now", "Now", "What Ravikanth is actively building: Agentic SRE, ReasonOps, evidence graphs, replay seeds, eval gates, and operator control planes."],
+  ["/framework", "Framework", "The ten-layer Operational Intelligence model from signal to accountable action."],
+  ["/work", "Work", "The canonical index of systems, frameworks, domains, artifacts, writing, and background."],
   ["/library", "Writing", "Essays and field notes that turn Operational Intelligence from a topic into a language."],
   ["/investigation-room", "Artifact", "A working Operations Room that makes the thesis inspectable through a public-safe incident case."],
   ["/patterns", "Patterns", "Architecture patterns for evidence-driven RCA, transaction intelligence, operational memory, and human-gated AI."],
-  ["/background", "Background", "Career evidence stays secondary, but shows the enterprise systems context behind the point of view."],
   ["/ask", "Reasoning Interface", "A grounded interface for interrogating the public knowledge layer and its boundaries."]
 ];
 
@@ -89,6 +90,12 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/investigation-room" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
                 Open Operations Room <ArrowRight size={18} />
+              </Link>
+              <Link href="/framework" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+                Explore Framework
+              </Link>
+              <Link href="/work" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
+                Review Work
               </Link>
               <Link href="/map" className="inline-flex items-center gap-2 rounded border border-signal/40 px-5 py-3 font-semibold text-signal">
                 View Platform Map
@@ -129,7 +136,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Section eyebrow="Ravikanth's work index" title="Start with the work, then follow the person behind it.">
+      <Section eyebrow="Operating index" title="Start with the work. The builder becomes obvious through the system.">
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {ravikanthIndex.map(([href, title, text], index) => (
             <Link key={href} href={href}>
@@ -146,11 +153,11 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Ravikanth's operating model" title="A personal point of view, expressed as an inspectable system.">
+      <Section eyebrow="Operating model" title="A point of view expressed as an inspectable system.">
         <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <ShieldCheck className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">seri.ai represents Ravikanth through the systems he thinks in.</h3>
+            <h3 className="text-3xl font-semibold text-white">seri.ai represents the builder through the systems, constraints, and taste embedded in the work.</h3>
             <p className="mt-4 text-lg leading-8 text-slate-300">
               The site should reveal the builder behind the work without becoming a resume. Visitors should see the operating model:
               evidence enters, hypotheses compete, action is gated, evals decide trust, and memory compounds.
