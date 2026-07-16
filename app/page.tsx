@@ -24,6 +24,29 @@ const operationalOutcomes = [
 
 const proofLoop = ["Signal", "Transaction", "Topology", "Evidence", "Hypothesis", "Eval", "Review", "Memory"];
 
+const productProof = [
+  {
+    label: "Shared case",
+    value: operationalIntelligenceSystem.caseId,
+    detail: "One public-safe incident powers the map, room, assistant, and eval story."
+  },
+  {
+    label: "Evidence contract",
+    value: "Receipts",
+    detail: "Every conclusion must point to signal, transaction, topology, memory, or policy evidence."
+  },
+  {
+    label: "Trust gate",
+    value: "Eval before action",
+    detail: "Grounding, uncertainty, confidentiality, actionability, and human review are release criteria."
+  },
+  {
+    label: "Learning loop",
+    value: "Outcome memory",
+    detail: "Resolved decisions become replay seeds, eval fixtures, and future operational memory."
+  }
+];
+
 export default function Home() {
   return (
     <>
@@ -89,6 +112,32 @@ export default function Home() {
         </div>
       </section>
 
+      <Section eyebrow="Why this is a product" title="The site is an operating model you can inspect, not a profile you read.">
+        <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
+          <Card className="border-mint/25 bg-mint/[0.045]">
+            <ShieldCheck className="mb-5 text-mint" />
+            <h3 className="text-3xl font-semibold text-white">seri.ai makes Operational Intelligence concrete through one repeatable case.</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">
+              A visitor should not have to infer the thesis from biography. They should see the runtime contract:
+              evidence enters, hypotheses compete, action is gated, evals decide trust, and memory compounds.
+            </p>
+            <Link href="/investigation-room" className="mt-6 inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+              Run the operating model <ArrowRight size={18} />
+            </Link>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {productProof.map((item, index) => (
+              <Card key={item.label} className="p-4">
+                <span className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</span>
+                <p className="mt-3 text-xs font-semibold uppercase text-slate-500">{item.label}</p>
+                <h3 className="mt-2 text-2xl font-semibold text-white">{item.value}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{item.detail}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       <Section eyebrow="Platform layer" title="The missing layer between observability platforms and AI action.">
         <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-signal/30 bg-signal/[0.055]">
@@ -151,7 +200,7 @@ export default function Home() {
             <Sparkles className="mb-5 text-mint" />
             <h3 className="text-3xl font-semibold text-white">Operational Intelligence needs receipts, replay, memory, and review.</h3>
             <p className="mt-4 text-lg leading-8 text-slate-300">
-              seri.ai organizes that operating model into inspectable artifacts: a reasoning map, a harness console,
+              seri.ai organizes that operating model into inspectable artifacts: a reasoning map, an Operations Room,
               grounded public knowledge, architecture patterns, and evaluation-backed product notes.
             </p>
           </Card>

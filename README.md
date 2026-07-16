@@ -96,7 +96,7 @@ Avoid copying private repository internals, vendor-specific wiring, generated re
 - `/changelog` — living product history
 - `/search` — search across wiki, principles, patterns, artifacts, and essays
 
-Legacy routes such as `/ideas`, `/projects`, `/resume`, and `/simulator` may remain for compatibility, but new navigation should prefer Library, Artifacts, Background, and Investigation Room.
+Legacy routes such as `/ideas`, `/projects`, `/resume`, and `/simulator` may remain for compatibility, but new navigation should prefer Library, Artifacts, Background, and Operations Room.
 
 ## Operational Intelligence Vocabulary
 
@@ -161,7 +161,7 @@ Required for full production behavior:
 - `ADMIN_TOKEN`
 - `NEXT_PUBLIC_POSTHOG_KEY`
 
-Without model or database keys, `/ask` runs with the local approved-content fallback so the app remains demoable.
+Without model or database keys, `/ask` runs with the local approved-content fallback so the app remains locally inspectable.
 
 ## How To Add Wiki Notes
 
