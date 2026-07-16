@@ -29,35 +29,40 @@ const steps = [
     title: "Build the evidence board",
     description: "Separate observable facts from interpretation before the system is allowed to name a cause.",
     icon: Radar,
-    mode: "Signal intake"
+    mode: "Signal intake",
+    frameworkLayers: ["Signal Layer", "Transaction Layer", "Topology Layer", "Evidence Layer"]
   },
   {
     label: "Replay",
     title: "Replay the transaction path",
     description: "Align changes, symptoms, topology, and customer impact into a shared operational sequence.",
     icon: Activity,
-    mode: "Temporal reasoning"
+    mode: "Temporal reasoning",
+    frameworkLayers: ["Transaction Layer", "Topology Layer", "Memory Layer"]
   },
   {
     label: "Hypotheses",
     title: "Rank competing explanations",
     description: "Score each explanation against evidence instead of letting the loudest alert win.",
     icon: GitBranch,
-    mode: "Confidence model"
+    mode: "Confidence model",
+    frameworkLayers: ["Evidence Layer", "Reasoning Layer"]
   },
   {
     label: "Action Gate",
     title: "Gate the recommended action",
     description: "Create a reviewable conclusion with missing context, owner approval, and a reversible path.",
     icon: ClipboardCheck,
-    mode: "Human review"
+    mode: "Human review",
+    frameworkLayers: ["Decision Layer", "Operator Layer"]
   },
   {
     label: "Release Gate",
     title: "Grade the investigation behavior",
     description: "Treat the assistant behavior as a product surface: groundedness, refusal, escalation, usefulness.",
     icon: ShieldCheck,
-    mode: "Trust release"
+    mode: "Trust release",
+    frameworkLayers: ["Evaluation Layer", "Learning Layer"]
   }
 ];
 
@@ -776,6 +781,17 @@ export function IncidentSimulator() {
                   </div>
                 </div>
                 <p className="mt-3 max-w-3xl leading-7 text-slate-300">{steps[active].description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {steps[active].frameworkLayers.map((layer) => (
+                    <Link
+                      key={layer}
+                      href={`/ask?prompt=${encodeURIComponent(`Explain how the ${layer} applies to the ${selectedScenario.caseId} Operations Room case.`)}`}
+                      className="rounded border border-mint/25 bg-mint/[0.07] px-3 py-1.5 text-xs font-semibold text-mint"
+                    >
+                      {layer}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 

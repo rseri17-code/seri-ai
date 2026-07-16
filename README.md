@@ -198,6 +198,30 @@ Run validation before publishing:
 npm run validate:content
 ```
 
+## Launch Validation
+
+Before public release, run:
+
+```bash
+npm run validate:content
+npm run evals
+npm run typecheck
+npm run lint
+npm run validate:links
+npm run scan:public-safety
+npm test
+npm run build
+git diff --check
+```
+
+`/evals` reports deterministic fixture coverage. It is not a live model-quality benchmark unless production model keys and answer-level grading are added.
+
+## Canonical Content Registry
+
+Major public surfaces should be registered in `contentRegistry` inside `content/site.ts` before they are promoted through Work, Map, Ask, Library, or Patterns.
+
+Each registry item should include route, status, content type, framework layers, related patterns, related artifacts, related products, related library assets, public-safe classification, and SEO metadata.
+
 ## How To Publish Notes
 
 1. Keep the note public-safe and vendor-neutral.

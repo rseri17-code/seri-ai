@@ -25,12 +25,12 @@ if (!coverageFixture || !/essays|principles|architecture/i.test(coverageFixture.
   errors.push("Missing grounded Operational Intelligence coverage fixture.");
 }
 
-if (!Number.isInteger(report.score) || report.score < 80 || report.score > 100) {
-  errors.push("Eval report score must be an integer from 80 to 100.");
+if (!report.method || !/deterministic fixture/i.test(report.method)) {
+  errors.push("Eval report must state its deterministic fixture validation method.");
 }
 
 for (const dimension of report.dimensions) {
-  if (!dimension.name || !dimension.target || !Number.isInteger(dimension.score)) {
+  if (!dimension.name || !dimension.target || !dimension.status) {
     errors.push(`Invalid eval dimension: ${JSON.stringify(dimension)}`);
   }
 }

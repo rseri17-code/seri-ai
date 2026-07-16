@@ -25,7 +25,16 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
     "",
     `Question: ${question}`,
     "",
-    "Answer requirements: cite the relevant source titles inline when useful. If the approved context does not cover the question, say the public knowledge base does not cover it yet."
+    [
+      "Answer contract:",
+      "1. Start with a direct answer.",
+      "2. Name the most relevant Operational Intelligence Framework layer when applicable.",
+      "3. Cite the supporting public source title inline when useful.",
+      "4. State one tradeoff, limitation, or missing-context boundary when applicable.",
+      "5. Point to a related page or artifact when helpful.",
+      "6. Explicitly say what is unknown or outside the public-safe knowledge base.",
+      "If the approved context does not cover the question, say the public knowledge base does not cover it yet."
+    ].join("\n")
   ].join("\n");
 
   if (provider === "anthropic" && process.env.ANTHROPIC_API_KEY) {

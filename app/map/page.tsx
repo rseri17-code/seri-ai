@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight, BrainCircuit, GitBranch, Layers, Network, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
-import { canonicalDefinition, operationalIntelligenceSystem, operationalLayers, sentinelContextModel } from "@/content/site";
+import { canonicalDefinition, operationalIntelligenceFramework, operationalIntelligenceSystem, sentinelContextModel } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Operational Intelligence Map | seri.ai",
@@ -11,28 +11,40 @@ export const metadata: Metadata = {
     "The public knowledge map for Operational Intelligence: signal, transaction, topology, evidence, reasoning, memory, evaluation, decision, learning, and operator layers."
 };
 
-const mapNodes = [
-  { label: "Signal", x: 12, y: 30, href: "/library" },
-  { label: "Transaction", x: 14, y: 70, href: "/patterns/transaction-journey-reconstruction" },
-  { label: "Topology", x: 38, y: 18, href: "/patterns/topology-aware-reasoning" },
-  { label: "Evidence", x: 40, y: 50, href: "/patterns/evidence-driven-rca" },
-  { label: "Memory", x: 38, y: 82, href: "/patterns/operational-memory" },
-  { label: "ReasonOps", x: 64, y: 50, href: "/products/reasonops" },
-  { label: "Evaluation", x: 82, y: 26, href: "/patterns/evaluation-and-replay" },
-  { label: "Decision", x: 88, y: 58, href: "/patterns/human-in-the-loop-operational-ai" },
-  { label: "Learning", x: 80, y: 84, href: "/now" }
-];
+const layerPositions = [
+  [10, 28],
+  [10, 72],
+  [30, 18],
+  [33, 50],
+  [55, 50],
+  [33, 84],
+  [76, 24],
+  [84, 50],
+  [76, 82],
+  [94, 68]
+] as const;
+
+const mapNodes = operationalIntelligenceFramework.layers.map((layer, index) => ({
+  label: layer.name.replace(" Layer", ""),
+  fullName: layer.name,
+  summary: layer.definition,
+  href: layer.relatedPattern,
+  x: layerPositions[index][0],
+  y: layerPositions[index][1]
+}));
 
 const mapEdges = [
   ["Signal", "Evidence"],
   ["Transaction", "Evidence"],
-  ["Topology", "ReasonOps"],
-  ["Evidence", "ReasonOps"],
-  ["Memory", "ReasonOps"],
-  ["ReasonOps", "Evaluation"],
-  ["ReasonOps", "Decision"],
+  ["Topology", "Evidence"],
+  ["Evidence", "Reasoning"],
+  ["Memory", "Reasoning"],
+  ["Reasoning", "Evaluation"],
+  ["Reasoning", "Decision"],
   ["Evaluation", "Learning"],
-  ["Decision", "Learning"]
+  ["Decision", "Operator"],
+  ["Learning", "Memory"],
+  ["Operator", "Learning"]
 ];
 
 export default function MapPage() {
@@ -70,7 +82,7 @@ export default function MapPage() {
                 {mapNodes.map((node) => (
                   <a key={node.label} href={node.href}>
                     <g className="cursor-pointer">
-                      <circle cx={node.x} cy={node.y} r={node.label === "ReasonOps" ? 7.4 : 5.7} fill={node.label === "ReasonOps" ? "#5ff2b5" : "#73a7ff"} stroke="rgba(255,255,255,0.82)" strokeWidth="0.7" />
+                      <circle cx={node.x} cy={node.y} r={node.label === "Reasoning" ? 7.4 : 5.7} fill={node.label === "Reasoning" ? "#5ff2b5" : "#73a7ff"} stroke="rgba(255,255,255,0.82)" strokeWidth="0.7" />
                       <text x={node.x} y={node.y + 10} textAnchor="middle" className="sim-graph-label">
                         {node.label}
                       </text>
@@ -122,15 +134,15 @@ export default function MapPage() {
 
       <Section eyebrow="Vocabulary" title="The ten layers of Operational Intelligence.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-          {operationalLayers.map((layer, index) => {
+          {operationalIntelligenceFramework.layers.map((layer, index) => {
             const layerState = operationalIntelligenceSystem.layerStates.find((item) => item.layer === layer.name);
             const askHref = `/ask?prompt=${encodeURIComponent(layerState?.question ?? `Explain the ${layer.name} in Operational Intelligence.`)}`;
             return (
-            <Link key={layer.slug} href={layerState ? askHref : layer.href}>
+            <Link key={layer.name} href={layerState ? askHref : layer.relatedPattern}>
               <Card className="h-full p-4 transition hover:border-mint/40">
                 {index % 4 === 0 ? <Layers className="mb-4 text-mint" /> : index % 4 === 1 ? <Network className="mb-4 text-signal" /> : index % 4 === 2 ? <GitBranch className="mb-4 text-amber" /> : <ShieldCheck className="mb-4 text-mint" />}
                 <h2 className="font-semibold text-white">{layer.name}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{layer.description}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{layer.definition}</p>
                 {layerState ? (
                   <>
                     <p className="mt-4 border-t border-white/10 pt-4 text-xs font-semibold uppercase text-slate-500">Case state</p>

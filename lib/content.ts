@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, patterns, principles, projects } from "@/content/site";
+import { articles, contentRegistry, patterns, principles, projects } from "@/content/site";
 
 export type WikiStatus = "draft" | "published" | "archived";
 
@@ -25,7 +25,7 @@ export type PublicSource = {
   description: string;
   content: string;
   url: string;
-  type: "wiki" | "principle" | "pattern" | "project" | "article";
+  type: "wiki" | "principle" | "pattern" | "project" | "article" | "registry";
   category: string;
   tags: string[];
   status: "published";
@@ -173,7 +173,31 @@ export function buildPublicSourceIndex(): PublicSource[] {
     status: "published" as const
   }));
 
-  return [...wiki, ...principleSources, ...patternSources, ...projectSources, ...articleSources];
+  const registrySources = contentRegistry
+    .filter((item) => item.status === "published")
+    .map((item) => ({
+      id: `registry:${item.slug}`,
+      title: item.title,
+      description: item.summary,
+      content: [
+        item.title,
+        item.summary,
+        item.type,
+        item.frameworkLayers.join(", "),
+        item.relatedPrinciples.join(", "),
+        item.relatedPatterns.join(", "),
+        item.relatedArtifacts.join(", "),
+        item.relatedProducts.join(", "),
+        item.relatedLibraryAssets.join(", ")
+      ].join(". "),
+      url: item.route,
+      type: "registry" as const,
+      category: item.type,
+      tags: [item.type, ...item.frameworkLayers],
+      status: "published" as const
+    }));
+
+  return [...registrySources, ...wiki, ...principleSources, ...patternSources, ...projectSources, ...articleSources];
 }
 
 export function searchPublicContent(query: string, category = "All", tag = "All") {

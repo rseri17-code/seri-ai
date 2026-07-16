@@ -4,7 +4,7 @@ import type { LucideIcon } from "lucide-react";
 import { ArrowRight, Boxes, BrainCircuit, FileText, GitBranch, Layers, UserRound } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
-import { articles, operationalIntelligenceFramework, patterns, projects, resume } from "@/content/site";
+import { articles, contentRegistry, operationalIntelligenceFramework, patterns, projects, resume } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Work | Ravikanth Seri",
@@ -14,32 +14,54 @@ export const metadata: Metadata = {
 
 type WorkItem = [href: string, label: string, detail: string];
 
+const registryItem = (slug: string) => {
+  const item = contentRegistry.find((entry) => entry.slug === slug);
+  if (!item) {
+    throw new Error(`Missing content registry item: ${slug}`);
+  }
+  return item;
+};
+
+const registryWorkItem = (slug: string): WorkItem => {
+  const item = registryItem(slug);
+  const suffix = item.status === "published" ? "" : " (planned)";
+  return [item.route, `${item.title}${suffix}`, item.summary];
+};
+
 const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }> = [
   {
     title: "Systems",
     Icon: Boxes,
     items: [
-      ["/products/reasonops", "ReasonOps", "Public product/system expression for evidence-backed operational reasoning."],
-      ["/investigation-room", "Operations Room", "Interactive proof artifact for replayable, eval-gated incident investigation."],
-      ["/ask", "Reasoning Interface", "Grounded public interface over Ravikanth's approved knowledge layer."]
+      registryWorkItem("reasonops"),
+      registryWorkItem("operations-room"),
+      registryWorkItem("ask-ravikanth")
     ]
   },
   {
     title: "Frameworks",
     Icon: Layers,
     items: [
-      ["/framework", operationalIntelligenceFramework.title, "The ten-layer model from signal to accountable action."],
-      ["/manifesto", "Founding thesis", "Why Operational Intelligence exists as the reasoning layer between telemetry and decision."],
-      ["/evals", "Evaluation model", "Public trust report and behavior gates for the Reasoning Interface."]
+      registryWorkItem("operational-intelligence-framework"),
+      registryWorkItem("agentic-sre-harness-model"),
+      registryWorkItem("evidence-graph-model"),
+      ["/patterns/agentic-incident-investigation", "Hypothesis Lifecycle", "How competing explanations are proposed, supported, weakened, rejected, or promoted."],
+      registryWorkItem("replay-seed-model"),
+      registryWorkItem("public-evaluation-gate"),
+      ["/patterns/human-in-the-loop-operational-ai", "Operator Control Plane", "Human approval, override, escalation, and accountability for enterprise agent action."]
     ]
   },
   {
     title: "Domains",
     Icon: BrainCircuit,
     items: [
+      ["/framework", "Operational Intelligence", operationalIntelligenceFramework.subtitle],
       ["/radar", "Agentic SRE", "Operational agents with evidence, replay, evals, memory, and human review."],
       ["/patterns/transaction-journey-reconstruction", "Transaction Intelligence", "Customer and workflow journeys as the unit of operational reasoning."],
-      ["/patterns/operational-memory", "Operational Memory", "Reusable incident decisions, mitigations, patterns, and replay seeds."]
+      ["/patterns/operational-memory", "Operational Memory", "Reusable incident decisions, mitigations, patterns, and replay seeds."],
+      ["/ideas/incident-investigation-as-a-product-experience", "AI-native Incident Investigation", "Incident investigation as a guided product experience, not a frantic search session."],
+      ["/patterns/topology-aware-reasoning", "Topology-aware reasoning", "Dependency and ownership context for blast-radius and action boundaries."],
+      ["/patterns/evaluation-and-replay", "Evaluation and replay", "Release gates and replay seeds for trustworthy operational AI."]
     ]
   },
   {

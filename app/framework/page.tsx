@@ -61,6 +61,14 @@ export default function FrameworkPage() {
               </div>
               <div className="mt-5 grid gap-3">
                 <div className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="text-xs font-semibold uppercase text-slate-500">Definition</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{layer.definition}</p>
+                </div>
+                <div className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="text-xs font-semibold uppercase text-slate-500">Problem solved</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{layer.problemSolved}</p>
+                </div>
+                <div className="rounded border border-white/10 bg-black/20 p-3">
                   <p className="text-xs font-semibold uppercase text-slate-500">Input</p>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{layer.input}</p>
                 </div>
@@ -74,10 +82,15 @@ export default function FrameworkPage() {
                 </div>
               </div>
               <p className="mt-4 text-sm font-semibold text-white">{layer.operatorQuestion}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {layer.related.map((href) => (
-                  <Link key={href} href={href} className="rounded border border-white/10 bg-black/20 px-2 py-1 text-xs text-slate-300 hover:border-mint/40">
-                    {href}
+              <div className="mt-4 grid gap-2 sm:grid-cols-3">
+                {[
+                  ["Pattern", layer.relatedPattern],
+                  ["Artifact", layer.relatedArtifact],
+                  ["Library", layer.relatedLibraryAsset]
+                ].map(([label, href]) => (
+                  <Link key={`${label}-${href}`} href={href} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs text-slate-300 hover:border-mint/40">
+                    <span className="block font-semibold uppercase text-slate-500">{label}</span>
+                    <span className="mt-1 block break-words text-slate-300">{href}</span>
                   </Link>
                 ))}
               </div>

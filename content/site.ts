@@ -257,83 +257,133 @@ export const operationalIntelligenceFramework = {
   layers: [
     {
       name: "Signal Layer",
+      definition: "The Signal Layer captures observable operational facts before interpretation.",
+      problemSolved: "It prevents noisy telemetry from being treated as impact without source, time, scope, and reliability.",
       input: "Logs, metrics, traces, alerts, events, changes, incidents, infrastructure, network, user-impact, and business signals.",
       output: "Typed operational observations with source, timestamp, scope, and initial reliability.",
       failureMode: "Alert noise is mistaken for customer or business impact.",
       operatorQuestion: "Which signals show real operational impact instead of local noise?",
-      related: ["/library", "/patterns/evidence-driven-rca"]
+      related: ["/library", "/patterns/evidence-driven-rca"],
+      relatedPattern: "/patterns/evidence-driven-rca",
+      relatedArtifact: "/investigation-room",
+      relatedLibraryAsset: "/ideas/operational-intelligence-is-the-new-control-plane"
     },
     {
       name: "Transaction Layer",
+      definition: "The Transaction Layer reconstructs the journey of work across service and business boundaries.",
+      problemSolved: "It gives operational reasoning a business-relevant unit instead of isolated service symptoms.",
       input: "Requests, workflows, jobs, events, customer actions, batch runs, and business processes across systems.",
       output: "A reconstructed journey that shows where the work moved, slowed, failed, or changed identity.",
       failureMode: "Teams debug isolated services without understanding the end-to-end journey.",
       operatorQuestion: "What transaction path turns raw telemetry into business meaning?",
-      related: ["/patterns/transaction-journey-reconstruction", "/wiki/transaction-journeys"]
+      related: ["/patterns/transaction-journey-reconstruction", "/wiki/transaction-journeys"],
+      relatedPattern: "/patterns/transaction-journey-reconstruction",
+      relatedArtifact: "/map",
+      relatedLibraryAsset: "/ideas/transaction-intelligence-for-complex-enterprises"
     },
     {
       name: "Topology Layer",
+      definition: "The Topology Layer maps dependencies, ownership, runtime relationships, and blast-radius boundaries.",
+      problemSolved: "It stops the system from guessing impact without knowing how operational components relate.",
       input: "Services, infrastructure, ownership, dependencies, runtime relationships, network paths, data stores, and business context.",
       output: "A dependency and ownership map that explains blast radius and review boundaries.",
       failureMode: "Static topology produces stale ownership, false dependency assumptions, or broad blast-radius claims.",
       operatorQuestion: "Which dependency path best explains the symptom window?",
-      related: ["/patterns/topology-aware-reasoning"]
+      related: ["/patterns/topology-aware-reasoning"],
+      relatedPattern: "/patterns/topology-aware-reasoning",
+      relatedArtifact: "/map",
+      relatedLibraryAsset: "/ideas/knowledge-graphs-as-operational-memory"
     },
     {
       name: "Evidence Layer",
+      definition: "The Evidence Layer separates verified facts from interpretation.",
+      problemSolved: "It prevents fluent RCA language from appearing before the system can show what supports it.",
       input: "Validated facts from systems of record with provenance, scope, timestamps, and reliability.",
       output: "An evidence ledger that separates observed facts from interpretation.",
       failureMode: "A confident RCA is written before facts are verified.",
       operatorQuestion: "What evidence supports, contradicts, or fails to support the leading hypothesis?",
-      related: ["/patterns/evidence-driven-rca", "/wiki/evidence-before-conclusions"]
+      related: ["/patterns/evidence-driven-rca", "/wiki/evidence-before-conclusions"],
+      relatedPattern: "/patterns/evidence-driven-rca",
+      relatedArtifact: "/investigation-room",
+      relatedLibraryAsset: "/wiki/evidence-before-conclusions"
     },
     {
       name: "Reasoning Layer",
+      definition: "The Reasoning Layer compares hypotheses against evidence, topology, transactions, memory, and missing context.",
+      problemSolved: "It turns correlation into reviewable explanation without hiding alternatives or uncertainty.",
       input: "Evidence, timelines, topology, transaction paths, memory, contradictions, and missing context.",
       output: "Hypotheses with confidence movement, causal reasoning, alternatives, caveats, and explanation.",
       failureMode: "Correlation is treated as causation and losing explanations disappear.",
       operatorQuestion: "Why is one hypothesis stronger than the alternatives?",
-      related: ["/products/reasonops", "/patterns/agentic-incident-investigation"]
+      related: ["/products/reasonops", "/patterns/agentic-incident-investigation"],
+      relatedPattern: "/patterns/agentic-incident-investigation",
+      relatedArtifact: "/investigation-room",
+      relatedLibraryAsset: "/ideas/agentic-incident-investigation"
     },
     {
       name: "Memory Layer",
+      definition: "The Memory Layer preserves approved lessons, patterns, decisions, and replay seeds for reuse.",
+      problemSolved: "It keeps every incident from starting over after the ticket closes.",
       input: "Past incidents, failure patterns, mitigations, decisions, outcomes, ownership, and lessons.",
       output: "Reusable operational memory that informs future investigations without leaking confidential detail.",
       failureMode: "Every incident starts from zero because lessons disappear after resolution.",
       operatorQuestion: "What prior pattern matters here, and what must not be reused?",
-      related: ["/patterns/operational-memory", "/wiki/operational-memory"]
+      related: ["/patterns/operational-memory", "/wiki/operational-memory"],
+      relatedPattern: "/patterns/operational-memory",
+      relatedArtifact: "/investigation-room",
+      relatedLibraryAsset: "/wiki/operational-memory"
     },
     {
       name: "Evaluation Layer",
+      definition: "The Evaluation Layer tests answer behavior, grounding, refusal, replay, and action readiness before trust.",
+      problemSolved: "It prevents polished answers from shipping without evidence that they behave safely under operational pressure.",
       input: "Answers, evidence packets, replay seeds, refusal cases, red herrings, and expected decision behavior.",
       output: "Release gates for grounding, evidence coverage, contradiction handling, confidence calibration, and usefulness.",
       failureMode: "Fluent output is trusted without testing operational behavior.",
       operatorQuestion: "How do we know the reasoning system behaved safely and usefully?",
-      related: ["/evals", "/patterns/evaluation-and-replay", "/wiki/evaluation-and-replay"]
+      related: ["/evals", "/patterns/evaluation-and-replay", "/wiki/evaluation-and-replay"],
+      relatedPattern: "/patterns/evaluation-and-replay",
+      relatedArtifact: "/evals",
+      relatedLibraryAsset: "/ideas/ai-evaluation-is-operational-risk-management"
     },
     {
       name: "Decision Layer",
+      definition: "The Decision Layer turns reasoning into bounded, reviewable recommendations.",
+      problemSolved: "It makes action explicit, reversible where possible, and accountable to the right human gate.",
       input: "Ranked hypotheses, risk, ownership, escalation paths, action options, confidence, and missing evidence.",
       output: "A reviewable recommendation with boundaries, alternatives, owner context, and approval requirements.",
       failureMode: "The system recommends irreversible action without accountable review.",
       operatorQuestion: "What should a human approve, reject, defer, or escalate?",
-      related: ["/patterns/human-in-the-loop-operational-ai", "/investigation-room"]
+      related: ["/patterns/human-in-the-loop-operational-ai", "/investigation-room"],
+      relatedPattern: "/patterns/human-in-the-loop-operational-ai",
+      relatedArtifact: "/investigation-room",
+      relatedLibraryAsset: "/ideas/agentic-systems-need-operating-models"
     },
     {
       name: "Learning Layer",
+      definition: "The Learning Layer converts outcomes into approved future memory, eval fixtures, and operating rules.",
+      problemSolved: "It closes the loop between resolution, operator feedback, replay, and future system behavior.",
       input: "Resolution outcomes, operator feedback, accepted mitigations, false leads, and replay results.",
       output: "Updated memory, patterns, eval fixtures, confidence rules, and future investigation behavior.",
       failureMode: "Post-incident learning never reaches the next investigation.",
       operatorQuestion: "What should the system learn for next time?",
-      related: ["/now", "/changelog"]
+      related: ["/now", "/changelog"],
+      relatedPattern: "/patterns/operational-memory",
+      relatedArtifact: "/changelog",
+      relatedLibraryAsset: "/ideas/knowledge-graphs-as-operational-memory"
     },
     {
       name: "Operator Layer",
+      definition: "The Operator Layer is the human control surface for judgment, challenge, approval, and accountability.",
+      problemSolved: "It keeps operational AI inspectable and contestable when decisions affect systems or customers.",
       input: "Evidence paths, hypotheses, confidence, risk, review gates, missing context, and proposed actions.",
       output: "A human control surface for judgment, intervention, approval, override, and accountability.",
       failureMode: "Operators see polished answers but cannot inspect or challenge the reasoning.",
       operatorQuestion: "Can the accountable human inspect and challenge the conclusion before action?",
-      related: ["/investigation-room", "/ask"]
+      related: ["/investigation-room", "/ask"],
+      relatedPattern: "/patterns/human-in-the-loop-operational-ai",
+      relatedArtifact: "/ask",
+      relatedLibraryAsset: "/ideas/agentic-systems-need-operating-models"
     }
   ],
   designPrinciples: [
@@ -1544,6 +1594,226 @@ export const resume = {
   ]
 };
 
+export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
+export type ContentStatus = "published" | "planned" | "draft";
+
+export type ContentRegistryItem = {
+  title: string;
+  slug: string;
+  summary: string;
+  type: ContentType;
+  route: string;
+  status: ContentStatus;
+  frameworkLayers: string[];
+  relatedPrinciples: string[];
+  relatedPatterns: string[];
+  relatedArtifacts: string[];
+  relatedProducts: string[];
+  relatedLibraryAssets: string[];
+  publicSafe: "public-safe";
+  createdAt: string;
+  updatedAt: string;
+  seo: {
+    title: string;
+    description: string;
+  };
+};
+
+const registryDate = "2026-07-16";
+const allFrameworkLayers = operationalIntelligenceFramework.layers.map((layer) => layer.name);
+
+export const contentRegistry: ContentRegistryItem[] = [
+  {
+    title: "Operational Intelligence Framework",
+    slug: "operational-intelligence-framework",
+    summary: operationalIntelligenceFramework.promise,
+    type: "framework",
+    route: "/framework",
+    status: "published",
+    frameworkLayers: allFrameworkLayers,
+    relatedPrinciples: operationalIntelligenceFramework.designPrinciples,
+    relatedPatterns: patterns.slice(0, 6).map((pattern) => `/patterns/${pattern.slug}`),
+    relatedArtifacts: ["/map", "/investigation-room", "/evals"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/ideas/operational-intelligence-is-the-new-control-plane", "/ideas/the-operational-intelligence-stack"],
+    publicSafe: "public-safe",
+    createdAt: registryDate,
+    updatedAt: registryDate,
+    seo: {
+      title: "Operational Intelligence Framework",
+      description: operationalIntelligenceFramework.subtitle
+    }
+  },
+  {
+    title: "ReasonOps",
+    slug: "reasonops",
+    summary: products[0].summary,
+    type: "product",
+    route: "/products/reasonops",
+    status: "published",
+    frameworkLayers: ["Reasoning Layer", "Evaluation Layer", "Decision Layer", "Operator Layer"],
+    relatedPrinciples: products[0].principles,
+    relatedPatterns: ["/patterns/agentic-incident-investigation", "/patterns/evaluation-and-replay", "/patterns/human-in-the-loop-operational-ai"],
+    relatedArtifacts: ["/investigation-room", "/evals"],
+    relatedProducts: [],
+    relatedLibraryAssets: ["/manifesto", "/ideas/agentic-systems-need-operating-models"],
+    publicSafe: "public-safe",
+    createdAt: registryDate,
+    updatedAt: registryDate,
+    seo: {
+      title: products[0].name,
+      description: products[0].summary
+    }
+  },
+  {
+    title: "Operations Room",
+    slug: "operations-room",
+    summary: operationalIntelligenceSystem.caseSummary,
+    type: "artifact",
+    route: "/investigation-room",
+    status: "published",
+    frameworkLayers: allFrameworkLayers,
+    relatedPrinciples: ["Evidence before conclusions", "Replay before trust", "Human review before consequential action"],
+    relatedPatterns: ["/patterns/evidence-driven-rca", "/patterns/agentic-incident-investigation", "/patterns/evaluation-and-replay"],
+    relatedArtifacts: ["/map", "/evals"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/ideas/incident-investigation-as-a-product-experience"],
+    publicSafe: "public-safe",
+    createdAt: registryDate,
+    updatedAt: registryDate,
+    seo: {
+      title: "Operations Room",
+      description: operationalIntelligenceSystem.caseSummary
+    }
+  },
+  {
+    title: "Ask Ravikanth",
+    slug: "ask-ravikanth",
+    summary: "A public-grounded reasoning interface over approved Operational Intelligence content.",
+    type: "system",
+    route: "/ask",
+    status: "published",
+    frameworkLayers: ["Reasoning Layer", "Evidence Layer", "Evaluation Layer", "Operator Layer"],
+    relatedPrinciples: ["Evidence before conclusions", "Evaluation before trust"],
+    relatedPatterns: ["/patterns/evidence-driven-rca", "/patterns/evaluation-and-replay"],
+    relatedArtifacts: ["/evals", "/investigation-room"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/library"],
+    publicSafe: "public-safe",
+    createdAt: registryDate,
+    updatedAt: registryDate,
+    seo: {
+      title: "Ask Ravikanth",
+      description: "Public-safe Operational Intelligence reasoning interface."
+    }
+  },
+  {
+    title: "Public Evaluation Gate",
+    slug: "public-evaluation-gate",
+    summary: evalReport.summary,
+    type: "artifact",
+    route: "/evals",
+    status: "published",
+    frameworkLayers: ["Evaluation Layer", "Evidence Layer", "Operator Layer"],
+    relatedPrinciples: ["Evaluation before release", "Replay before trust"],
+    relatedPatterns: ["/patterns/evaluation-and-replay"],
+    relatedArtifacts: ["/investigation-room"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/ideas/evaluating-ai-for-operational-work", "/ideas/ai-evaluation-is-operational-risk-management"],
+    publicSafe: "public-safe",
+    createdAt: registryDate,
+    updatedAt: registryDate,
+    seo: {
+      title: "Public Evaluation Gate",
+      description: "Reproducible public trust fixtures and limitations for Ask Ravikanth."
+    }
+  },
+  {
+    title: "Professional Background",
+    slug: "professional-background",
+    summary: resume.summary,
+    type: "background",
+    route: "/background",
+    status: "published",
+    frameworkLayers: ["Operator Layer", "Evaluation Layer", "Reasoning Layer"],
+    relatedPrinciples: ["Human review before consequential action"],
+    relatedPatterns: [],
+    relatedArtifacts: ["/resume"],
+    relatedProducts: [],
+    relatedLibraryAssets: [],
+    publicSafe: "public-safe",
+    createdAt: registryDate,
+    updatedAt: registryDate,
+    seo: {
+      title: "Ravikanth Seri Background",
+      description: resume.summary
+    }
+  },
+  {
+    title: "Agentic SRE Harness Model",
+    slug: "agentic-sre-harness-model",
+    summary: harnessThesis.statement,
+    type: "framework",
+    route: "/manifesto",
+    status: "published",
+    frameworkLayers: ["Evidence Layer", "Reasoning Layer", "Evaluation Layer", "Decision Layer", "Operator Layer"],
+    relatedPrinciples: harnessThesis.beliefs.map((belief) => belief.title),
+    relatedPatterns: ["/patterns/agentic-incident-investigation", "/patterns/human-in-the-loop-operational-ai"],
+    relatedArtifacts: ["/investigation-room"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/ideas/agentic-systems-need-operating-models"],
+    publicSafe: "public-safe",
+    createdAt: registryDate,
+    updatedAt: registryDate,
+    seo: {
+      title: "Agentic SRE Harness Model",
+      description: harnessThesis.statement
+    }
+  },
+  {
+    title: "Evidence Graph Model",
+    slug: "evidence-graph-model",
+    summary: "Typed evidence nodes and relationships for incident investigation and operational memory.",
+    type: "framework",
+    route: "/patterns/evidence-driven-rca",
+    status: "published",
+    frameworkLayers: ["Signal Layer", "Topology Layer", "Evidence Layer", "Reasoning Layer"],
+    relatedPrinciples: ["Evidence before conclusions"],
+    relatedPatterns: ["/patterns/evidence-driven-rca", "/patterns/topology-aware-reasoning"],
+    relatedArtifacts: ["/investigation-room", "/map"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/ideas/knowledge-graphs-as-operational-memory"],
+    publicSafe: "public-safe",
+    createdAt: registryDate,
+    updatedAt: registryDate,
+    seo: {
+      title: "Evidence Graph Model",
+      description: "A public-safe evidence graph model for incident investigation."
+    }
+  },
+  {
+    title: "Replay Seed Model",
+    slug: "replay-seed-model",
+    summary: "The minimum approved context needed to replay an investigation without re-running production systems.",
+    type: "framework",
+    route: "/wiki/evaluation-and-replay",
+    status: "published",
+    frameworkLayers: ["Memory Layer", "Evaluation Layer", "Learning Layer"],
+    relatedPrinciples: ["Replay before trust", "Evaluation before release"],
+    relatedPatterns: ["/patterns/evaluation-and-replay", "/patterns/operational-memory"],
+    relatedArtifacts: ["/evals", "/investigation-room"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/wiki/evaluation-and-replay", "/wiki/operational-memory"],
+    publicSafe: "public-safe",
+    createdAt: registryDate,
+    updatedAt: registryDate,
+    seo: {
+      title: "Replay Seed Model",
+      description: "Replay seeds as public-safe operational memory."
+    }
+  }
+];
+
 export const approvedKnowledge = [
   site.description,
   site.tagline,
@@ -1612,5 +1882,17 @@ export const approvedKnowledge = [
   ...resume.experience.flatMap((item) => [item.role, item.organization, item.period, item.impact, ...item.bullets]),
   ...resume.skills.flatMap((skill) => [skill.group, ...skill.items]),
   ...resume.education,
-  ...resume.certifications
+  ...resume.certifications,
+  ...contentRegistry.flatMap((item) => [
+    item.title,
+    item.summary,
+    item.type,
+    item.route,
+    ...item.frameworkLayers,
+    ...item.relatedPrinciples,
+    ...item.relatedPatterns,
+    ...item.relatedArtifacts,
+    ...item.relatedProducts,
+    ...item.relatedLibraryAssets
+  ])
 ];
