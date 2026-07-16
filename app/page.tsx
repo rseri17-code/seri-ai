@@ -59,6 +59,10 @@ export default function Home() {
             </div>
             <h1 className="max-w-5xl text-5xl font-semibold text-white md:text-7xl">{site.tagline}</h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">{site.description}</p>
+            <div className="mt-5 max-w-3xl rounded-lg border border-white/10 bg-black/25 p-4">
+              <p className="text-xs font-semibold uppercase text-slate-500">Built by {site.owner}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{site.authorLine}</p>
+            </div>
             <div className="mt-6 lg:hidden">
               <HeroIntelligenceMap />
             </div>
@@ -112,13 +116,13 @@ export default function Home() {
         </div>
       </section>
 
-      <Section eyebrow="Why this is a product" title="The site is an operating model you can inspect, not a profile you read.">
+      <Section eyebrow="Ravikanth's operating model" title="A personal point of view, expressed as an inspectable system.">
         <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <ShieldCheck className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">seri.ai makes Operational Intelligence concrete through one repeatable case.</h3>
+            <h3 className="text-3xl font-semibold text-white">seri.ai represents Ravikanth through the systems he thinks in.</h3>
             <p className="mt-4 text-lg leading-8 text-slate-300">
-              A visitor should not have to infer the thesis from biography. They should see the runtime contract:
+              The site should reveal the builder behind the work without becoming a resume. Visitors should see the operating model:
               evidence enters, hypotheses compete, action is gated, evals decide trust, and memory compounds.
             </p>
             <Link href="/investigation-room" className="mt-6 inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
