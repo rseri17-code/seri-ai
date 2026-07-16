@@ -2,6 +2,7 @@ import { Award, Download, MapPin, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
+import { TrackedAnchor } from "@/components/tracked-link";
 import { resume } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <Section eyebrow="Interactive resume" title={resume.headline}>
+    <Section eyebrow="Interactive resume" title={resume.headline} level="h1">
       <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="space-y-5">
         <Card>
@@ -27,13 +28,15 @@ export default function ResumePage() {
               </span>
             ))}
           </div>
-          <a
+          <TrackedAnchor
             href="/ravi-seri-public-resume.txt"
             download
+            eventName="resume_download"
+            eventProperties={{ format: "txt" }}
             className="mt-6 inline-flex items-center gap-2 rounded bg-mint px-4 py-3 font-semibold text-ink"
           >
             <Download size={18} /> Download resume
-          </a>
+          </TrackedAnchor>
         </Card>
         <Card>
           <h2 className="text-xl font-semibold text-white">Strengths</h2>

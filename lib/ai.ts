@@ -42,10 +42,10 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     `Direct answer: ${direct}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
-    "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, evaluation gates, and human-reviewed action.",
+    "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, replay, evaluation gates, operational memory, and human-reviewed action.",
     "Tradeoff or limitation: this local fallback is deterministic and lexical; semantic retrieval and model-generated synthesis improve when production AI and vector search keys are configured.",
-    "Related page or artifact: start with /framework, then /investigation-room, then /evals or /work depending on the question.",
-    "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public-safe knowledge base.",
+    "Related page or artifact: start with /framework, then /investigation-room, /evals, /work, /resume, or /background depending on the question.",
+    "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public knowledge base and the public-safe knowledge base.",
     "Suggested next question: Show how the shared case moves through the ten-layer framework."
   ].join("\n\n");
 }

@@ -4,6 +4,7 @@ import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
+import { TrackedLink } from "@/components/tracked-link";
 import { articles, builderDna, harnessThesis, operationalIntelligenceSystem, patterns, principles, projects, sentinelContextModel, site } from "@/content/site";
 
 const platformLayers = [
@@ -89,24 +90,24 @@ export default function Home() {
               <p className="text-sm leading-6 text-slate-200">{site.productPromise}</p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/investigation-room" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+              <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "open_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
                 Open Operations Room <ArrowRight size={18} />
-              </Link>
-              <Link href="/framework" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+              </TrackedLink>
+              <TrackedLink href="/framework" eventName="homepage_cta_click" eventProperties={{ cta: "explore_framework" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
                 Explore Framework
-              </Link>
-              <Link href="/work" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
+              </TrackedLink>
+              <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "review_work" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
                 Review Work
-              </Link>
-              <Link href="/map" className="inline-flex items-center gap-2 rounded border border-signal/40 px-5 py-3 font-semibold text-signal">
+              </TrackedLink>
+              <TrackedLink href="/map" eventName="homepage_cta_click" eventProperties={{ cta: "view_platform_map" }} className="inline-flex items-center gap-2 rounded border border-signal/40 px-5 py-3 font-semibold text-signal">
                 View Platform Map
-              </Link>
-              <Link href="/library" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
+              </TrackedLink>
+              <TrackedLink href="/library" eventName="homepage_cta_click" eventProperties={{ cta: "read_library" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
                 Read the Library
-              </Link>
-              <Link href="/ask" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
+              </TrackedLink>
+              <TrackedLink href="/ask" eventName="homepage_cta_click" eventProperties={{ cta: "query_system" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
                 Query the System
-              </Link>
+              </TrackedLink>
               <a
                 href={site.links.linkedin}
                 target="_blank"

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PatternsPage() {
   return (
-    <Section eyebrow="Patterns" title="Architecture patterns for AI-native operational systems.">
+    <Section eyebrow="Patterns" title="Architecture patterns for AI-native operational systems." level="h1">
       <div className="grid gap-4 md:grid-cols-2">
         {patterns.map((pattern) => (
           <Link key={pattern.slug} href={`/patterns/${pattern.slug}`}>

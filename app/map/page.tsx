@@ -52,7 +52,7 @@ export default function MapPage() {
 
   return (
     <>
-      <Section eyebrow="Operational Intelligence Map" title="The operating model from signal to accountable action.">
+      <Section eyebrow="Operational Intelligence Map" title="The operating model from signal to accountable action." level="h1">
         <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
           <Card className="overflow-hidden p-0">
             <div className="border-b border-white/10 p-5">

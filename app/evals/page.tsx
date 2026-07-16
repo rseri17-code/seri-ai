@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function EvalsPage() {
   return (
     <>
-      <Section eyebrow="AI release gate" title="Operational AI should not ship without behavior evidence.">
+      <Section eyebrow="AI release gate" title="Operational AI should not ship without behavior evidence." level="h1">
         <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
           <Card>
             <ShieldAlert className="mb-5 text-mint" />

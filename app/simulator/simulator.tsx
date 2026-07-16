@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
@@ -22,6 +22,7 @@ import {
   UserCheck
 } from "lucide-react";
 import { operationalIntelligenceSystem, sentinelContextModel } from "@/content/site";
+import { captureSafeEvent } from "@/lib/analytics-events";
 
 const steps = [
   {
@@ -117,7 +118,8 @@ const evidence = [
     reliability: "high: repeated across retry and completion signals",
     relatedEntity: "checkout transaction",
     relatedHypothesis: "configuration regression",
-    stance: "supports"
+    stance: "supports",
+    classification: "Observation"
   },
   {
     id: "change",
@@ -133,7 +135,8 @@ const evidence = [
     reliability: "medium: temporal fit requires more evidence",
     relatedEntity: "routing configuration",
     relatedHypothesis: "configuration regression",
-    stance: "supports"
+    stance: "supports",
+    classification: "Observation"
   },
   {
     id: "topology",
@@ -149,7 +152,8 @@ const evidence = [
     reliability: "medium: dependency freshness is assumed",
     relatedEntity: "dependency path",
     relatedHypothesis: "configuration regression",
-    stance: "supports"
+    stance: "supports",
+    classification: "Inference"
   },
   {
     id: "noise",
@@ -165,16 +169,46 @@ const evidence = [
     reliability: "low: no transaction alignment",
     relatedEntity: "background warning",
     relatedHypothesis: "unrelated warning cascade",
-    stance: "weakens"
+    stance: "weakens",
+    classification: "Observation"
+  },
+  {
+    id: "contradiction",
+    type: "Contradiction",
+    fact: "Synthetic capacity headroom remains stable while the customer journey degrades.",
+    confidence: "Medium",
+    used: false,
+    weight: 42,
+    sourceType: "synthetic capacity sample",
+    timestamp: "09:28",
+    scope: "dependency group",
+    provenance: "public-safe contradiction fixture",
+    reliability: "medium: contradicts capacity saturation but does not prove configuration cause",
+    relatedEntity: "capacity envelope",
+    relatedHypothesis: "capacity saturation",
+    stance: "contradicts",
+    classification: "Confirmed fact"
   }
 ];
 
 const timeline = [
-  ["09:00", "Baseline", "Journey completion and latency are within expected range.", "Stable"],
-  ["09:18", "Change", "A non-secret configuration update is recorded for a dependency group.", "Correlate"],
-  ["09:24", "Symptom", "Completion rate declines and retries increase.", "Investigate"],
-  ["09:31", "Impact", "Customer-facing workflow experiences intermittent failure.", "Prioritize"],
-  ["09:43", "Mitigation", "Rollback candidate is identified for human approval.", "Review"]
+  ["09:00", "Baseline", "Journey completion and latency are within expected range.", "Stable", "P50 142ms / P95 311ms"],
+  ["09:18", "Change", "A non-secret configuration update is recorded for a dependency group.", "Correlate", "Gateway 46ms, service 83ms, data 114ms"],
+  ["09:24", "Symptom", "Completion rate declines and retries increase.", "Investigate", "Gateway 91ms, service 214ms, data 387ms"],
+  ["09:31", "Impact", "Customer-facing workflow experiences intermittent failure.", "Prioritize", "End-to-end 1.8s, retry hop +620ms"],
+  ["09:43", "Mitigation", "Rollback candidate is identified for human approval.", "Review", "Expected recovery path under 5 minutes"]
+];
+
+const missingEvidence = [
+  "Direct owner confirmation for the rollback candidate is not present in the synthetic case.",
+  "Post-mitigation validation is required before the outcome becomes operational memory."
+];
+
+const hypothesisTransitions = [
+  ["Proposed", "Configuration regression enters because timing aligns with the symptom window."],
+  ["Supported", "Signal, change, and topology receipts move the leading hypothesis above competing explanations."],
+  ["Challenged", "Capacity headroom contradicts the capacity-saturation branch and keeps uncertainty visible."],
+  ["Review-ready", "The recommendation remains a human-approved review packet, not autonomous execution."]
 ];
 
 const hypotheses = [
@@ -444,12 +478,20 @@ function adjustedConfidence(name: string, activeEvidenceIds: string[]) {
   if (name === hypotheses[0].name) {
     return Math.min(
       94,
-      20 + (activeSet.has("signal") ? 26 : 0) + (activeSet.has("change") ? 24 : 0) + (activeSet.has("topology") ? 22 : 0) - (activeSet.has("noise") ? 10 : 0)
+      20 +
+        (activeSet.has("signal") ? 26 : 0) +
+        (activeSet.has("change") ? 24 : 0) +
+        (activeSet.has("topology") ? 22 : 0) +
+        (activeSet.has("contradiction") ? 6 : 0) -
+        (activeSet.has("noise") ? 10 : 0)
     );
   }
 
   if (name === hypotheses[1].name) {
-    return Math.min(76, 26 + (activeSet.has("signal") ? 12 : 0) + (activeSet.has("topology") ? 8 : 0) + (activeSet.has("noise") ? 12 : 0));
+    return Math.min(
+      76,
+      26 + (activeSet.has("signal") ? 12 : 0) + (activeSet.has("topology") ? 8 : 0) + (activeSet.has("noise") ? 12 : 0) - (activeSet.has("contradiction") ? 14 : 0)
+    );
   }
 
   return Math.min(52, 12 + (activeSet.has("noise") ? 24 : 0) + (activeSet.has("signal") ? 4 : 0));
@@ -464,6 +506,7 @@ export function IncidentSimulator() {
   const [replayMode, setReplayMode] = useState<"step" | "live">("step");
   const [replayIndex, setReplayIndex] = useState(2);
   const [guidedMode, setGuidedMode] = useState(true);
+  const guidedCompletionCaptured = useRef(false);
   const selectedScenario = scenarios.find((scenario) => scenario.id === selectedScenarioId) ?? scenarios[0];
   useEffect(() => {
     if (replayMode !== "live") {
@@ -499,6 +542,16 @@ export function IncidentSimulator() {
     const evidenceScore = Math.max(0, activeEvidenceIds.filter((id) => id !== "noise").length * 4 - (activeEvidenceIds.includes("noise") ? 6 : 0));
     return Math.min(100, Math.round(progress + hypothesisScore + actionScore + evidenceScore));
   }, [active, activeEvidenceIds, selectedAction, selectedHypothesis]);
+  useEffect(() => {
+    if (guidedMode && active === steps.length - 1 && !guidedCompletionCaptured.current) {
+      guidedCompletionCaptured.current = true;
+      captureSafeEvent("operations_room_guided_completion", {
+        case_id: selectedScenario.caseId,
+        replay_index: replayIndex,
+        score
+      });
+    }
+  }, [active, guidedMode, replayIndex, score, selectedScenario.caseId]);
   const selectedHypothesisDetail = hypotheses.find((item) => item.name === selectedHypothesis);
   const selectedHypothesisIndex = selectedHypothesisDetail == null ? -1 : hypotheses.indexOf(selectedHypothesisDetail);
   const selectedActionDetail = actions.find((item) => item.name === selectedAction);
@@ -655,9 +708,11 @@ export function IncidentSimulator() {
                 type="button"
                 onClick={() => {
                   setGuidedMode(true);
+                  guidedCompletionCaptured.current = false;
                   setActive(0);
                   setReplayIndex(0);
                   setReplayMode("step");
+                  captureSafeEvent("operations_room_guided_start", { case_id: selectedScenario.caseId });
                 }}
                 className={guidedMode ? "rounded bg-mint px-4 py-2 text-sm font-semibold text-ink" : "rounded border border-mint/35 px-4 py-2 text-sm font-semibold text-mint"}
               >
@@ -665,7 +720,10 @@ export function IncidentSimulator() {
               </button>
               <button
                 type="button"
-                onClick={() => setGuidedMode(false)}
+                onClick={() => {
+                  setGuidedMode(false);
+                  captureSafeEvent("operations_room_expert_mode", { case_id: selectedScenario.caseId });
+                }}
                 className={!guidedMode ? "rounded bg-signal px-4 py-2 text-sm font-semibold text-ink" : "rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white"}
               >
                 Expert exploration
@@ -1271,6 +1329,9 @@ function VisualReplayLayer({
                   );
                 })}
               </svg>
+              <p className="sr-only">
+                Accessible graph summary: signal, change, topology, contradiction, and noise evidence connect into a transaction path, competing RCA hypotheses, and a human review gate.
+              </p>
             </div>
 
             <div className="mt-4 grid gap-3 md:grid-cols-4">
@@ -1493,6 +1554,14 @@ function EvidenceBoard({
         title="Facts are toggled before conclusions are trusted."
         description="Toggle evidence to test whether the explanation survives missing, weak, or noisy signals. The replay workbench and confidence ledger should move immediately."
       />
+      <div className="mb-4 grid gap-3 md:grid-cols-2">
+        {missingEvidence.map((item) => (
+          <div key={item} className="rounded-lg border border-amber/25 bg-amber/[0.07] p-4">
+            <p className="text-xs font-semibold uppercase text-amber">Missing evidence condition</p>
+            <p className="mt-2 text-sm leading-6 text-slate-200">{item}</p>
+          </div>
+        ))}
+      </div>
       <div className="grid gap-4 md:grid-cols-2">
         {evidence.map((item, index) => (
           <motion.button
@@ -1513,6 +1582,9 @@ function EvidenceBoard({
             <div className="flex items-center justify-between gap-3">
               <span className="text-sm font-semibold text-signal">{item.type}</span>
               <span className={activeSet.has(item.id) ? "text-mint" : "text-slate-500"}>{activeSet.has(item.id) ? "Included" : "Excluded"}</span>
+            </div>
+            <div className="mt-3 inline-flex rounded border border-white/10 bg-black/25 px-2 py-1 text-xs font-semibold uppercase text-slate-300">
+              {item.classification}
             </div>
             <p className="mt-4 min-h-16 text-slate-100">{item.fact}</p>
             <div className="mt-4 grid gap-2 text-xs text-slate-300">
@@ -1556,18 +1628,19 @@ function TimelineReplay() {
       />
       <div className="relative space-y-3">
         <div className="absolute bottom-8 left-5 top-8 w-px bg-gradient-to-b from-mint via-signal to-amber" />
-        {timeline.map(([time, label, detail, state], index) => (
+        {timeline.map(([time, label, detail, state, timing], index) => (
           <motion.div
             key={`${time}-${label}`}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.06 }}
-            className="relative grid gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-4 pl-12 md:grid-cols-[6rem_8rem_1fr_7rem]"
+            className="relative grid gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-4 pl-12 md:grid-cols-[6rem_8rem_1fr_10rem_7rem]"
           >
             <span className="absolute left-[1.05rem] top-6 h-4 w-4 rounded-full border border-mint bg-ink shadow-[0_0_18px_rgba(95,242,181,0.5)]" />
             <span className="font-mono text-sm text-mint">{time}</span>
             <span className="font-semibold text-white">{label}</span>
             <span className="text-slate-300">{detail}</span>
+            <span className="font-mono text-xs leading-5 text-signal">{timing}</span>
             <span className="rounded border border-white/10 bg-white/[0.04] px-2 py-1 text-center text-xs text-slate-300">{state}</span>
           </motion.div>
         ))}
@@ -1594,6 +1667,14 @@ function HypothesisBoard({
         title="Competing explanations are scored against active evidence."
         description="Confidence is not decorative. Remove signal evidence and the leading explanation loses strength; include noise and weak explanations become easier to spot."
       />
+      <div className="grid gap-3 md:grid-cols-4">
+        {hypothesisTransitions.map(([state, detail]) => (
+          <div key={state} className="rounded-lg border border-white/10 bg-black/20 p-3">
+            <p className="text-xs font-semibold uppercase text-signal">{state}</p>
+            <p className="mt-2 text-xs leading-5 text-slate-300">{detail}</p>
+          </div>
+        ))}
+      </div>
       {hypotheses.map((item) => {
         const selected = selectedHypothesis === item.name;
         const confidence = adjustedConfidence(item.name, activeEvidenceIds);
@@ -1669,6 +1750,12 @@ function ActionGate({
           </div>
         </div>
         <div className="space-y-3">
+          <div className="rounded-lg border border-amber/30 bg-amber/[0.08] p-4">
+            <p className="text-xs font-semibold uppercase text-amber">Human approval required</p>
+            <p className="mt-2 text-sm leading-6 text-slate-200">
+              The system may prepare a rollback review packet, but it cannot execute the change. An accountable owner must approve, reject, escalate, or request more evidence.
+            </p>
+          </div>
           {actions.map((action, index) => (
             <button
               key={action.name}

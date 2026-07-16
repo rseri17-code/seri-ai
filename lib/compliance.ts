@@ -4,7 +4,10 @@ const bannedPatterns = [
   /\bproprietary\b.*\b(project|platform|system|tool|architecture|implementation)\b/i,
   /\bconfidential\b.*\b(project|platform|system|tool|architecture|implementation|detail|details)\b/i,
   /\bprivate\b.*\b(platform|system|tool|dashboard|dashboards|log|logs|architecture|implementation)\b/i,
-  /\b(employer-specific|company-specific)\b/i
+  /\b(employer-specific|company-specific)\b/i,
+  /\b(ignore|bypass|override)\b.*\b(previous|system|developer|safety|instructions|guardrails)\b/i,
+  /\b(reveal|print|show|dump)\b.*\b(system prompt|developer message|hidden instructions|private context)\b/i,
+  /\bjailbreak\b/i
 ];
 
 export function isPublicSafe(input: string) {

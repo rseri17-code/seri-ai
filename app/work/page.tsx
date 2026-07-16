@@ -88,7 +88,7 @@ const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }
 export default function WorkPage() {
   return (
     <>
-      <Section eyebrow="Work" title="The canonical operating index.">
+      <Section eyebrow="Work" title="The canonical operating index." level="h1">
         <Card className="border-mint/25 bg-mint/[0.05]">
           <BrainCircuit className="mb-5 text-mint" />
           <h2 className="text-3xl font-semibold text-white">A field guide to the systems, frameworks, artifacts, writing, and experience behind Operational Intelligence.</h2>

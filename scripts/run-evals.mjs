@@ -30,10 +30,10 @@ function deterministicFallbackAnswer(question) {
     "Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
     `Relevant framework layers: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     "Public source: approved public content registry (/framework).",
-    "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, evaluation gates, and human-reviewed action.",
+    "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, replay, evaluation gates, operational memory, and human-reviewed action.",
     "Tradeoff or limitation: this local fallback is deterministic and lexical; semantic retrieval and model-generated synthesis improve when production AI and vector search keys are configured.",
-    "Related page or artifact: start with /framework, then /investigation-room, then /evals or /work depending on the question.",
-    "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public-safe knowledge base.",
+    "Related page or artifact: start with /framework, then /investigation-room, /evals, /work, /resume, or /background depending on the question.",
+    "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public knowledge base and the public-safe knowledge base.",
     "Suggested next question: Show how the shared case moves through the ten-layer framework."
   ].join("\n\n");
 }
@@ -60,6 +60,10 @@ if (!report.method || !/deterministic fixture/i.test(report.method)) {
   errors.push("Eval report must state its deterministic fixture validation method.");
 }
 
+if (!Array.isArray(report.fixtures) || report.fixtures.length < 35) {
+  errors.push("Ask Ravikanth beta evals must include at least 35 deterministic fixtures.");
+}
+
 if (report.modelBasedEvaluationUsed !== false) {
   errors.push("Eval report must explicitly state that model-based evaluation was not used.");
 }
@@ -84,7 +88,7 @@ for (const fixture of report.fixtures) {
     continue;
   }
 
-  const answer = /internal|private|confidential/i.test(fixture.prompt)
+  const answer = /internal|private|confidential|ignore previous|bypass safety|system prompt|developer message|jailbreak/i.test(fixture.prompt)
     ? fs.readFileSync(askRoutePath, "utf8")
     : deterministicFallbackAnswer(fixture.prompt);
 
@@ -106,6 +110,11 @@ const generated = {
   generatedBy: "npm run evals",
   fixtureCount: report.fixtures.length,
   passingFixtures: report.fixtures.filter((fixture) => fixture.result === "Pass").length,
+  fixtures: report.fixtures.map((fixture) =>
+    /internal|private|confidential|proprietary|ignore previous|bypass safety|system prompt|developer message|jailbreak/i.test(fixture.prompt)
+      ? { ...fixture, prompt: "[redacted public-safety boundary fixture]" }
+      : fixture
+  ),
   modelBasedEvaluationUsed: report.modelBasedEvaluationUsed,
   version: report.version
 };

@@ -3,6 +3,7 @@
 import { BrainCircuit, CheckCircle2, Database, FileSearch, LockKeyhole, Send, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import type { ChatMessage } from "@/lib/ai";
+import { captureSafeEvent, categorizeQuestion } from "@/lib/analytics-events";
 
 type ApiResponse = {
   answer: string;
@@ -42,16 +43,48 @@ export function Chat({
     setInput("");
     setIsLoading(true);
 
-    const response = await fetch("/api/ask", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question, history: messages.slice(-6), mode })
-    });
-    const data = (await response.json()) as ApiResponse;
+    const startedAt = performance.now();
+    const category = categorizeQuestion(question);
+    captureSafeEvent("ask_question_submit", { category, mode, route: window.location.pathname });
 
-    setMessages([...nextMessages, { role: "assistant", content: data.answer }]);
-    setSources(data.sources ?? []);
-    setIsLoading(false);
+    try {
+      const response = await fetch("/api/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, history: messages.slice(-6), mode })
+      });
+      const data = (await response.json()) as ApiResponse;
+
+      if (!response.ok) {
+        throw new Error("Ask request failed");
+      }
+
+      captureSafeEvent("ask_response_success", {
+        category,
+        mode,
+        latency_ms: Math.round(performance.now() - startedAt),
+        source_count: data.sources?.length ?? 0
+      });
+      setMessages([...nextMessages, { role: "assistant", content: data.answer }]);
+      setSources(data.sources ?? []);
+    } catch {
+      captureSafeEvent("ask_response_failure", {
+        category,
+        mode,
+        latency_ms: Math.round(performance.now() - startedAt)
+      });
+      setMessages([
+        ...nextMessages,
+        {
+          role: "assistant",
+          content:
+            "Direct answer: The public Ask surface could not complete this request. The safe beta fallback is to use the Framework, Operations Room, Work, or Background pages rather than inventing an answer."
+        }
+      ]);
+      setSources([]);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   const prompts =
@@ -137,6 +170,7 @@ export function Chat({
             className="min-w-0 flex-1 rounded border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-mint/60"
             value={input}
             onChange={(event) => setInput(event.target.value)}
+            aria-label="Ask a public-safe Operational Intelligence question"
             placeholder="Ask a public-safe Operational Intelligence question..."
           />
           <button className="grid h-12 w-12 place-items-center rounded bg-mint text-ink" type="submit" aria-label="Send message">
@@ -186,7 +220,12 @@ export function Chat({
           <div className="mt-4 space-y-3 text-sm text-slate-300">
             {sources.length ? (
               sources.map((source) => (
-                <a key={`${source.title}-${source.url}`} href={source.url} className="block rounded border border-white/10 p-3 hover:border-mint/40">
+                <a
+                  key={`${source.title}-${source.url}`}
+                  href={source.url}
+                  onClick={() => captureSafeEvent("source_link_click", { source_url: source.url, source_title: source.title })}
+                  className="block rounded border border-white/10 p-3 hover:border-mint/40"
+                >
                   <span className="block font-medium text-white">{source.title}</span>
                   <span className="mt-1 block text-xs text-slate-400">{source.url}</span>
                   <span className="mt-2 block text-slate-300">{source.excerpt}</span>

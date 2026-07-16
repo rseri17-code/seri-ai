@@ -5,6 +5,7 @@ import { ArrowRight, GitBranch, Layers, Play, ShieldCheck } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Card } from "@/components/card";
 import { operationalIntelligenceFramework, operationalIntelligenceSystem } from "@/content/site";
+import { captureSafeEvent } from "@/lib/analytics-events";
 
 export function FrameworkTeacher() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -24,7 +25,14 @@ export function FrameworkTeacher() {
               <button
                 key={layer.name}
                 type="button"
-                onClick={() => setActiveIndex(index)}
+                onClick={() => {
+                  setActiveIndex(index);
+                  captureSafeEvent("framework_layer_select", {
+                    layer: layer.name,
+                    layer_index: index + 1,
+                    operations_stage: layer.operationsStage
+                  });
+                }}
                 className={`rounded-lg border p-3 text-left transition ${
                   selected ? "border-mint/40 bg-mint/[0.08]" : "border-white/10 bg-black/20 hover:border-white/25"
                 }`}

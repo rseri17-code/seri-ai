@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function FrameworkPage() {
   return (
     <>
-      <Section eyebrow="Framework" title={operationalIntelligenceFramework.title}>
+      <Section eyebrow="Framework" title={operationalIntelligenceFramework.title} level="h1">
         <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.05]">
             <BrainCircuit className="mb-5 text-mint" />

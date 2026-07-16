@@ -28,6 +28,11 @@ a {
   text-decoration: none;
 }
 
+:focus-visible {
+  outline: 2px solid #5ff2b5;
+  outline-offset: 3px;
+}
+
 ::selection {
   background: rgba(95, 242, 181, 0.35);
 }
@@ -230,5 +235,16 @@ a {
   50% {
     opacity: 0.9;
     background-position: 0 0, 0 0, 26rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
   }
 }

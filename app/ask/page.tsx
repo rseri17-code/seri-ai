@@ -37,7 +37,7 @@ export default async function AskPage({
 
   return (
     <>
-      <Section eyebrow="Reasoning interface" title="A public-safe control surface for Operational Intelligence questions.">
+      <Section eyebrow="Reasoning interface" title="A public-safe control surface for Operational Intelligence questions." level="h1">
         <div className="mb-5 grid gap-4 lg:grid-cols-[1fr_0.9fr]">
           <Card className="border-mint/25 bg-mint/[0.055]">
             <BrainCircuit className="mb-4 text-mint" />

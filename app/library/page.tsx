@@ -15,7 +15,7 @@ export default function LibraryPage() {
 
   return (
     <>
-      <Section eyebrow="Library" title="Public assets for Operational Intelligence.">
+      <Section eyebrow="Library" title="Public assets for Operational Intelligence." level="h1">
         <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
           <Card className="h-fit">
             <BookOpen className="mb-5 text-mint" />
