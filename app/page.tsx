@@ -63,6 +63,10 @@ export default function Home() {
               <p className="text-xs font-semibold uppercase text-slate-500">Built by {site.owner}</p>
               <p className="mt-2 text-sm leading-6 text-slate-300">{site.authorLine}</p>
             </div>
+            <div className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.07] p-4">
+              <p className="text-xs font-semibold uppercase text-amber">Current build signal</p>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{site.nowSignal}</p>
+            </div>
             <div className="mt-6 lg:hidden">
               <HeroIntelligenceMap />
             </div>

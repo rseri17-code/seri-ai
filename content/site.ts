@@ -9,6 +9,8 @@ export const site = {
     "seri.ai is the reasoning layer between observability data, AI agents, and human operational decisions. It turns signals, transactions, topology, memory, and policy into inspectable evidence and accountable action.",
   authorLine:
     "Built by Ravikanth Seri as the public home for his work on Operational Intelligence, Agentic SRE, transaction intelligence, observability, AI-native incident investigation, knowledge graphs, and AI evaluation.",
+  nowSignal:
+    "Right now Ravikanth is building public-safe Agentic SRE patterns: evidence graphs, hypothesis lifecycles, replay seeds, outcome memory, eval gates, and operator control planes for AI-native incident investigation.",
   brandBelief:
     "The next enterprise advantage is not a smarter model in isolation. It is the harness around the model: evidence, policy, replay, memory, evaluation, and human review working as one operating system.",
   productPromise:
@@ -1208,24 +1210,27 @@ export const patterns: Pattern[] = [
 
 export const nowPage = {
   currentFocus: [
-    "Operational Intelligence as a category for AI-native enterprises.",
-    "Evidence-driven incident investigation patterns.",
-    "Transaction Intelligence as a bridge between telemetry and business impact."
+    "Operational Intelligence as the reasoning layer between observability, AI agents, and human operational decisions.",
+    "Agentic SRE systems that investigate with evidence, expose uncertainty, and keep irreversible action behind review.",
+    "Transaction Intelligence as the bridge between telemetry, customer impact, topology, ownership, and business meaning."
   ],
   building: [
-    "A public knowledge base for Operational Intelligence.",
-    "Architecture patterns for safe, grounded enterprise agents.",
-    "Evaluation and replay workflows for operational AI assistants."
+    "ReasonOps as a public-safe operating model for evidence-backed, self-healing enterprise operations.",
+    "An Operations Room that turns signal, change, topology, hypotheses, action gates, and eval checks into a reviewable RCA packet.",
+    "A Reasoning Interface that retrieves approved public context, cites sources, refuses confidential questions, and names missing evidence.",
+    "A pattern library for evidence graphs, hypothesis lifecycles, decision traces, replay seeds, outcome memory, and operator control planes."
   ],
   studying: [
-    "Knowledge graph retrieval for enterprise context.",
-    "Multi-agent orchestration boundaries.",
-    "How teams trust AI recommendations during high-pressure incidents."
+    "Knowledge graph retrieval for enterprise topology, transaction journeys, ownership, and operational memory.",
+    "Multi-agent orchestration boundaries: tool budgets, freshness checks, approval gates, and fail-closed execution.",
+    "How teams decide whether to trust AI recommendations during high-pressure incidents.",
+    "How AI observability, evals, and replay can detect reasoning drift before operational trust is lost."
   ],
   writing: [
     "Why dashboards are not intelligence.",
-    "How evidence-driven RCA should work.",
-    "What transaction journeys reveal that service views miss."
+    "How evidence-driven RCA should work in AI-native operations.",
+    "What transaction journeys reveal that service views miss.",
+    "Why the harness, not the model, is the durable product in Agentic SRE."
   ],
   avoiding: [
     "Generic AI thought leadership.",
@@ -1235,7 +1240,8 @@ export const nowPage = {
   questions: [
     "What should operational memory remember, forget, and refuse?",
     "How should AI explain what it ignored?",
-    "What makes an agent trustworthy enough for enterprise operations?"
+    "What makes an agent trustworthy enough for enterprise operations?",
+    "What is the minimum evidence packet before an AI system recommends operational action?"
   ]
 };
 
