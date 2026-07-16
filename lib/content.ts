@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { articles, contentRegistry, patterns, principles, projects } from "@/content/site";
 
-export type WikiStatus = "draft" | "published" | "archived";
+export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
 export type WikiNote = {
   slug: string;
@@ -28,6 +28,13 @@ export type PublicSource = {
   type: "wiki" | "principle" | "pattern" | "project" | "article" | "registry";
   category: string;
   tags: string[];
+  author: string;
+  assetType: string;
+  date: string;
+  frameworkLayers: string[];
+  principles: string[];
+  patterns: string[];
+  products: string[];
   status: "published";
 };
 
@@ -113,6 +120,13 @@ export function buildPublicSourceIndex(): PublicSource[] {
     type: "wiki" as const,
     category: note.category,
     tags: note.tags,
+    author: "Ravikanth Seri",
+    assetType: "field-note",
+    date: note.updatedAt,
+    frameworkLayers: note.tags.filter((tag) => tag.endsWith("Layer")),
+    principles: [],
+    patterns: note.related.map((slug) => `/patterns/${slug}`),
+    products: [],
     status: "published" as const
   }));
 
@@ -125,6 +139,13 @@ export function buildPublicSourceIndex(): PublicSource[] {
     type: "principle" as const,
     category: "Principles",
     tags: principle.tags,
+    author: "Ravikanth Seri",
+    assetType: "principle",
+    date: "2026-07-16",
+    frameworkLayers: [],
+    principles: [],
+    patterns: principle.related.filter((item) => item.startsWith("/patterns/")),
+    products: [],
     status: "published" as const
   }));
 
@@ -146,6 +167,13 @@ export function buildPublicSourceIndex(): PublicSource[] {
     type: "pattern" as const,
     category: "Architecture Patterns",
     tags: pattern.tags,
+    author: "Ravikanth Seri",
+    assetType: "pattern",
+    date: "2026-07-16",
+    frameworkLayers: [],
+    principles: pattern.relatedPrinciples,
+    patterns: pattern.related.filter((item) => item.startsWith("/patterns/")),
+    products: [],
     status: "published" as const
   }));
 
@@ -158,6 +186,13 @@ export function buildPublicSourceIndex(): PublicSource[] {
     type: "project" as const,
     category: "Projects",
     tags: project.capabilities,
+    author: "Ravikanth Seri",
+    assetType: "artifact",
+    date: "2026-07-16",
+    frameworkLayers: [],
+    principles: [],
+    patterns: [],
+    products: [],
     status: "published" as const
   }));
 
@@ -170,6 +205,13 @@ export function buildPublicSourceIndex(): PublicSource[] {
     type: "article" as const,
     category: article.theme,
     tags: [article.theme],
+    author: "Ravikanth Seri",
+    assetType: "article",
+    date: article.date,
+    frameworkLayers: [],
+    principles: [],
+    patterns: [],
+    products: [],
     status: "published" as const
   }));
 
@@ -194,6 +236,13 @@ export function buildPublicSourceIndex(): PublicSource[] {
       type: "registry" as const,
       category: item.type,
       tags: [item.type, ...item.frameworkLayers],
+      author: "Ravikanth Seri",
+      assetType: item.type,
+      date: item.updatedAt,
+      frameworkLayers: item.frameworkLayers,
+      principles: item.relatedPrinciples,
+      patterns: item.relatedPatterns,
+      products: item.relatedProducts,
       status: "published" as const
     }));
 

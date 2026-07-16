@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { changelog } from "@/content/site";
+import { getPublicationChangelog } from "@/lib/publishing";
 
 export const metadata: Metadata = {
   title: "Changelog | seri.ai",
@@ -9,10 +10,12 @@ export const metadata: Metadata = {
 };
 
 export default function ChangelogPage() {
+  const entries = [...getPublicationChangelog().slice(0, 20), ...changelog];
+
   return (
     <Section eyebrow="Changelog" title="seri.ai as a living product.">
       <div className="space-y-4">
-        {changelog.map((entry) => (
+        {entries.map((entry) => (
           <Card key={entry.version}>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h2 className="text-2xl font-semibold text-white">{entry.version} — {entry.title}</h2>

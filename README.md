@@ -165,6 +165,23 @@ Required for full production behavior:
 
 Without model or database keys, `/ask` runs with the local approved-content fallback so the app remains locally inspectable.
 
+## Publishing Workflow
+
+Publishing is now the primary workflow:
+
+`Draft → Review → Approve → Publish → Index → Notify Ask → Update related pages → Update search → Update RSS → Update sitemap → Update changelog`
+
+The publishing engine in `lib/publishing.ts` turns every public asset into a node with:
+
+- framework-layer relationships
+- related patterns, artifacts, products, and principles
+- Ask Ravikanth questions
+- search facets
+- version history
+- RSS eligibility
+- changelog entries
+- monthly newsletter export content
+
 ## How To Add Wiki Notes
 
 Create a new `.mdx` file in `content/wiki`.
@@ -189,6 +206,8 @@ Write the public-safe note here.
 Valid statuses:
 
 - `draft` — validated but hidden from public routes and search
+- `review` — ready for editorial review but hidden publicly
+- `approved` — approved for release but hidden until explicitly published
 - `published` — visible publicly and available to Ask Ravikanth
 - `archived` — retained but hidden
 
@@ -197,6 +216,29 @@ Run validation before publishing:
 ```bash
 npm run validate:content
 ```
+
+## MDX Publishing Components
+
+Use the primitives in `components/mdx-primitives.tsx` to keep field notes visually and structurally consistent:
+
+- `FrameworkDiagram`
+- `EvidenceCard`
+- `HypothesisTimeline`
+- `DecisionTable`
+- `TradeoffMatrix`
+- `OperatorQuestion`
+- `FailureMode`
+- `ReplaySeed`
+- `EvaluationGate`
+- `TransactionJourney`
+- `ArchitecturePattern`
+- `Callout`
+- `ResearchNote`
+- `Quote`
+- `Diagram`
+- `InteractiveCode`
+
+These components are the design language for seri.ai publishing. New writing should use them before inventing one-off layouts.
 
 ## Launch Validation
 

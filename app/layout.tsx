@@ -12,7 +12,10 @@ export const metadata: Metadata = {
     "An inspectable operating layer for Operational Intelligence: evidence-backed Agentic SRE harnesses, replayable incident reasoning, evaluation gates, and human-reviewed action.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://seri.ai"),
   alternates: {
-    canonical: "/"
+    canonical: "/",
+    types: {
+      "application/rss+xml": "/rss.xml"
+    }
   },
   openGraph: {
     title: "seri.ai | Operational Intelligence for Agentic SRE",

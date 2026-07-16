@@ -4,7 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const wikiDir = path.join(root, "content", "wiki");
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
-const validStatuses = new Set(["draft", "published", "archived"]);
+const validStatuses = new Set(["draft", "review", "approved", "published", "archived"]);
 const errors = [];
 
 function parseFrontmatter(raw, file) {
@@ -44,7 +44,7 @@ for (const file of files) {
   }
 
   if (!validStatuses.has(metadata.status)) {
-    errors.push(`${file}: status must be draft, published, or archived`);
+    errors.push(`${file}: status must be draft, review, approved, published, or archived`);
   }
 
   if (!Array.isArray(metadata.tags) || metadata.tags.length === 0) {

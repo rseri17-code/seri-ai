@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-import { articles, patterns, products, projects } from "@/content/site";
-import { getPublishedWikiNotes } from "@/lib/content";
+import { buildPublishingIndex } from "@/lib/publishing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://seri.ai";
@@ -27,15 +26,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/wiki"
   ];
 
-  const dynamicRoutes = [
-    ...articles.map((article) => `/ideas/${article.slug}`),
-    ...patterns.map((pattern) => `/patterns/${pattern.slug}`),
-    ...projects.map((project) => `/projects/${project.slug}`),
-    ...products.map((product) => `/products/${product.slug}`),
-    ...getPublishedWikiNotes().map((note) => `/wiki/${note.slug}`)
-  ];
+  const dynamicRoutes = buildPublishingIndex()
+    .filter((asset) => asset.status === "published")
+    .map((asset) => asset.url);
 
-  return [...staticRoutes, ...dynamicRoutes].map((route) => ({
+  return [...new Set([...staticRoutes, ...dynamicRoutes])].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date("2026-07-16"),
     changeFrequency: route === "" ? "weekly" : "monthly",

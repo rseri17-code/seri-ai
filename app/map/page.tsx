@@ -4,6 +4,7 @@ import { ArrowRight, BrainCircuit, GitBranch, Layers, Network, ShieldCheck } fro
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { canonicalDefinition, operationalIntelligenceFramework, operationalIntelligenceSystem, sentinelContextModel } from "@/content/site";
+import { buildKnowledgeGraph } from "@/lib/publishing";
 
 export const metadata: Metadata = {
   title: "Operational Intelligence Map | seri.ai",
@@ -49,6 +50,8 @@ const mapEdges = [
 
 export default function MapPage() {
   const nodeMap = new Map(mapNodes.map((node) => [node.label, node]));
+  const publishingGraph = buildKnowledgeGraph();
+  const graphPreview = publishingGraph.nodes.slice(0, 12);
 
   return (
     <>
@@ -168,6 +171,35 @@ export default function MapPage() {
               <p className="mt-3 text-sm leading-6 text-slate-300">{primitive.description}</p>
             </Card>
           ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Publishing graph" title="Every published asset becomes a connected knowledge node.">
+        <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
+          <Card className="border-mint/25 bg-mint/[0.05]">
+            <Network className="mb-5 text-mint" />
+            <h2 className="text-3xl font-semibold text-white">{publishingGraph.nodes.length} nodes, {publishingGraph.relationships.length} relationships</h2>
+            <p className="mt-4 leading-7 text-slate-300">
+              Articles, field notes, patterns, artifacts, products, principles, and framework entries are indexed as one public-safe graph.
+              Relationships are inferred from framework layers, tags, principles, patterns, products, and artifacts.
+            </p>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {graphPreview.map((asset) => (
+              <Link key={asset.id} href={asset.url}>
+                <Card className="h-full p-4 transition hover:border-mint/40">
+                  <p className="text-xs font-semibold uppercase text-signal">{asset.assetType}</p>
+                  <h2 className="mt-2 font-semibold text-white">{asset.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{asset.description}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {asset.frameworkLayers.slice(0, 3).map((layer) => (
+                      <span key={layer} className="rounded border border-white/10 px-2 py-1 text-[0.7rem] text-slate-300">{layer}</span>
+                    ))}
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </div>
       </Section>
 
