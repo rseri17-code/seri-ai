@@ -656,6 +656,7 @@ export function IncidentSimulator() {
                 Ask about this case <ArrowRight size={15} />
               </Link>
             </div>
+            <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} compact />
             <div className="flex items-center justify-between">
               <p className="text-sm text-slate-400">Release readiness</p>
               <p className="font-mono text-sm text-mint">public-safe</p>
@@ -1253,7 +1254,7 @@ function ReplaySignalCard({
   );
 }
 
-function MiniReplayGraph({ activeEvidenceIds }: { activeEvidenceIds: string[] }) {
+function MiniReplayGraph({ activeEvidenceIds, compact = false }: { activeEvidenceIds: string[]; compact?: boolean }) {
   const activeSet = new Set(activeEvidenceIds);
   const miniNodes = [
     { id: "journey", label: "Journey", x: 12, y: 55, evidence: "signal" },
@@ -1273,12 +1274,12 @@ function MiniReplayGraph({ activeEvidenceIds }: { activeEvidenceIds: string[] })
   const nodeMap = new Map(miniNodes.map((node) => [node.id, node]));
 
   return (
-    <div className="mt-4 overflow-hidden rounded-lg border border-white/10 bg-black/25">
+    <div className={`${compact ? "mb-5" : "mt-4"} overflow-hidden rounded-lg border border-white/10 bg-black/25`}>
       <div className="flex items-center justify-between border-b border-white/10 px-3 py-2">
         <p className="text-xs font-semibold uppercase text-slate-500">Live visual graph</p>
         <p className="font-mono text-xs text-mint">{activeEvidenceIds.length} evidence paths</p>
       </div>
-      <svg className="h-40 w-full" viewBox="0 0 100 100" role="img" aria-label="Live visual graph preview of evidence, transaction path, RCA, and review gate">
+      <svg className={`${compact ? "h-32" : "h-40"} w-full`} viewBox="0 0 100 100" role="img" aria-label="Live visual graph preview of evidence, transaction path, RCA, and review gate">
         <defs>
           <linearGradient id="mini-replay-edge" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#5ff2b5" />
