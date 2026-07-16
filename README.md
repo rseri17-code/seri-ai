@@ -14,13 +14,13 @@ Canonical definition:
 
 > Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.
 
-seri.ai is the public operating system. Operational Intelligence is the category. ReasonOps is the product/platform expression. Investigation Room is the interactive artifact. Ask Ravikanth is the grounded public assistant. Background is secondary evidence.
+seri.ai is the public operating system. Operational Intelligence is the category. ReasonOps is the product/platform expression. Operations Room is the interactive artifact. Ask Ravikanth is the grounded public assistant. Background is secondary evidence.
 
 The site is built around public-safe content only. Do not publish employer-specific product names, internal platform names, confidential projects, internal screenshots, logs, dashboards, proprietary architecture, or company-specific implementation details.
 
 ## Product Spine
 
-The Map, Investigation Room, and Ask Ravikanth should feel like one system, not separate pages.
+The Map, Operations Room, and Ask Ravikanth should feel like one system, not separate pages.
 
 Shared case:
 
@@ -82,7 +82,7 @@ Avoid copying private repository internals, vendor-specific wiring, generated re
 - `/library` — essays, memos, notes, field guides, and public assets
 - `/patterns` — architecture pattern library
 - `/products/reasonops` — ReasonOps product/platform concept
-- `/investigation-room` — signature evidence-first incident investigation artifact
+- `/investigation-room` — signature evidence-first Operations Room artifact
 - `/artifacts` — public-safe proof objects and release model
 - `/ask` — public-grounded Ask Ravikanth assistant
 - `/evals` — public trust report for Ask Ravikanth behavior

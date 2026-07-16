@@ -441,6 +441,19 @@ export function IncidentSimulator() {
     .map((id) => evidence.find((item) => item.id === id)?.type)
     .filter(Boolean)
     .join(" / ");
+  const commandStrip: Array<[string, string, string, "mint" | "signal" | "amber"]> = [
+    ["Active case", selectedScenario.caseId, selectedScenario.trigger, "mint"],
+    ["Replay state", `${currentReplayChapter.id} / ${replayProgress}%`, currentReplayChapter.stage, "signal"],
+    ["Release gate", `${score}%`, score >= 85 ? "Review-ready" : "Needs review", "mint"],
+    ["Evidence", `${activeEvidenceIds.length}/${evidence.length}`, activeEvidenceTypes || "No facts selected", "signal"],
+    ["Action control", selectedActionDetail?.quality ?? "Pending", "Human approval required", "amber"]
+  ];
+  const releaseChecks: Array<[string, boolean]> = [
+    ["Grounded", activeEvidenceIds.length >= 3],
+    ["Cited", replayIndex >= 2],
+    ["Bounded", selectedActionDetail?.quality !== "Risky"],
+    ["Human gate", selectedActionDetail?.quality === "Best"]
+  ];
   const CurrentIcon = steps[active].icon;
   const branchOutcome = branchOutcomeForAction(selectedActionDetail?.quality ?? "Weak");
   const evidenceReportLines = evidence.map((item) => {
@@ -512,8 +525,8 @@ export function IncidentSimulator() {
   ].join("\n");
 
   return (
-    <div className="reasonops-room overflow-hidden rounded-lg border border-white/10 bg-[#080b12] shadow-2xl shadow-black/50">
-      <div className="relative border-b border-white/10 p-5 md:p-6">
+    <div className="reasonops-room ops-command-shell overflow-hidden rounded-lg border border-white/10 bg-[#080b12] shadow-2xl shadow-black/50">
+      <div className="relative border-b border-white/10 p-4 md:p-6">
         <div className="absolute inset-0 intelligence-field opacity-50" />
         <div className="relative z-10 grid gap-5 lg:grid-cols-[1fr_22rem] lg:items-center">
           <div>
@@ -521,11 +534,23 @@ export function IncidentSimulator() {
               <Sparkles size={14} />
               ReasonOps Operations Room
             </div>
-            <h2 className="mt-3 text-3xl font-semibold text-white md:text-5xl">Investigate, evaluate, and gate operational action.</h2>
+            <h2 className="mt-3 max-w-5xl text-3xl font-semibold text-white md:text-5xl">Investigate, evaluate, and gate operational action.</h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
               A public-safe operations room for evidence intake, transaction replay, hypothesis ranking,
               branch comparison, human review, release gating, and reusable operational memory.
             </p>
+            <div className="ops-command-strip mt-5 grid gap-2 md:grid-cols-5">
+              {commandStrip.map(([label, value, detail, tone]) => (
+                <div key={label} className={`ops-command-cell ${tone === "amber" ? "ops-command-cell-amber" : tone === "signal" ? "ops-command-cell-signal" : ""}`}>
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-[0.68rem] font-semibold uppercase text-slate-500">{label}</p>
+                    <span className={`ops-status-dot ${tone === "amber" ? "bg-amber" : tone === "signal" ? "bg-signal" : "bg-mint"}`} />
+                  </div>
+                  <p className="mt-2 truncate font-mono text-sm font-semibold text-white md:text-base">{value}</p>
+                  <p className="mt-1 truncate text-xs text-slate-400">{detail}</p>
+                </div>
+              ))}
+            </div>
             <div className="mt-5 grid gap-2 md:grid-cols-3">
               {scenarios.map((scenario) => {
                 const selected = scenario.id === selectedScenarioId;
@@ -545,7 +570,7 @@ export function IncidentSimulator() {
             </div>
             <div className="mt-4 grid gap-2 md:grid-cols-4">
               {workbenchProof.map(([label, detail]) => (
-                <div key={label} className="rounded-lg border border-white/10 bg-black/25 p-3">
+                <div key={label} className="ops-proof-tile rounded-lg border border-white/10 bg-black/25 p-3">
                   <p className="text-xs font-semibold uppercase text-mint">{label}</p>
                   <p className="mt-2 text-xs leading-5 text-slate-400">{detail}</p>
                 </div>
@@ -646,7 +671,17 @@ export function IncidentSimulator() {
                 transition={{ duration: 0.45 }}
               />
             </div>
-            <p className="mt-4 text-sm leading-6 text-slate-400">Score increases when the system proves evidence, confidence, and human review discipline.</p>
+            <div className="mt-5 grid grid-cols-2 gap-2">
+              {releaseChecks.map(([label, passed]) => (
+                <div key={label} className={`rounded border p-2 ${passed ? "border-mint/25 bg-mint/[0.07]" : "border-amber/25 bg-amber/[0.07]"}`}>
+                  <div className="flex items-center gap-2">
+                    <span className={`h-2 w-2 rounded-full ${passed ? "bg-mint" : "bg-amber"}`} />
+                    <p className="text-xs font-semibold text-white">{label}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-sm leading-6 text-slate-400">Score increases when the system proves evidence, confidence, confidentiality, and human review discipline.</p>
           </div>
         </div>
       </div>

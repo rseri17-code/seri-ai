@@ -95,6 +95,26 @@ a {
   position: relative;
 }
 
+.ops-command-shell {
+  background:
+    linear-gradient(180deg, rgba(115, 167, 255, 0.08), transparent 21rem),
+    linear-gradient(125deg, rgba(95, 242, 181, 0.08), rgba(8, 11, 18, 0) 36%),
+    #080b12;
+}
+
+.ops-command-shell::before {
+  background:
+    linear-gradient(90deg, transparent, rgba(95, 242, 181, 0.55), rgba(115, 167, 255, 0.32), transparent),
+    linear-gradient(90deg, rgba(95, 242, 181, 0.18), transparent 32%, rgba(243, 201, 105, 0.15) 76%, transparent);
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
 .reasonops-room::after {
   background:
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
@@ -111,6 +131,52 @@ a {
 .reasonops-room > * {
   position: relative;
   z-index: 1;
+}
+
+.ops-command-strip {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    rgba(0, 0, 0, 0.24);
+  padding: 0.5rem;
+}
+
+.ops-command-cell {
+  border: 1px solid rgba(95, 242, 181, 0.18);
+  border-radius: 7px;
+  background:
+    linear-gradient(180deg, rgba(95, 242, 181, 0.075), rgba(255, 255, 255, 0.02)),
+    rgba(0, 0, 0, 0.28);
+  min-width: 0;
+  padding: 0.75rem;
+}
+
+.ops-command-cell-signal {
+  border-color: rgba(115, 167, 255, 0.18);
+  background:
+    linear-gradient(180deg, rgba(115, 167, 255, 0.08), rgba(255, 255, 255, 0.018)),
+    rgba(0, 0, 0, 0.28);
+}
+
+.ops-command-cell-amber {
+  border-color: rgba(243, 201, 105, 0.2);
+  background:
+    linear-gradient(180deg, rgba(243, 201, 105, 0.08), rgba(255, 255, 255, 0.018)),
+    rgba(0, 0, 0, 0.28);
+}
+
+.ops-status-dot {
+  border-radius: 999px;
+  box-shadow: 0 0 18px currentColor;
+  height: 0.48rem;
+  width: 0.48rem;
+}
+
+.ops-proof-tile {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    rgba(0, 0, 0, 0.28);
 }
 
 .sim-graph-label {
