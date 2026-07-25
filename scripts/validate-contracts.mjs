@@ -42,6 +42,7 @@ const llmsBuilderPath = "lib/llms.ts";
 const robotsPath = "app/robots.ts";
 const openGraphImagePath = "app/opengraph-image.tsx";
 const twitterImagePath = "app/twitter-image.tsx";
+const aiPath = "lib/ai.ts";
 
 const contactRoute = read(contactRoutePath);
 const contactPage = read(contactPagePath);
@@ -58,6 +59,7 @@ const llmsBuilder = read(llmsBuilderPath);
 const robots = read(robotsPath);
 const openGraphImage = read(openGraphImagePath);
 const twitterImage = read(twitterImagePath);
+const ai = read(aiPath);
 
 expectIncludes(contactRoutePath, contactRoute, [
   "practitioner-review",
@@ -153,6 +155,18 @@ expectIncludes(openGraphImagePath, openGraphImage, [
   "630"
 ]);
 expectIncludes(twitterImagePath, twitterImage, ["opengraph-image"]);
+expectIncludes(aiPath, ai, [
+  "inferRelatedArtifacts",
+  "Claim discipline",
+  "Public profile links",
+  "github.com/rseri17-code",
+  "linkedin.com/in/ravikanthseri",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/wiki/operational-intelligence-publication-pack",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/contact"
+]);
 
 if (errors.length) {
   console.error(errors.join("\n"));
