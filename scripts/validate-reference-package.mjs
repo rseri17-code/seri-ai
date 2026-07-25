@@ -1,0 +1,202 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import jitiFactory from "jiti";
+
+const root = process.cwd();
+const jiti = jitiFactory(fileURLToPath(import.meta.url), {
+  interopDefault: true,
+  alias: { "@": root }
+});
+
+const { buildPublishingIndex, getShareableReferenceRoutes } = jiti("../lib/publishing.ts");
+const sitemap = jiti("../app/sitemap.ts").default;
+
+const errors = [];
+
+const referenceLinks = [
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/investigation-room"
+];
+
+const markdownAssets = [
+  {
+    file: "public/publication-pack/operational-intelligence-diagrams.md",
+    route: "/publication-pack/operational-intelligence-diagrams.md",
+    minWords: 450,
+    required: [
+      "Architecture Diagram",
+      "stateDiagram-v2",
+      "sequenceDiagram",
+      "Evidence Graph Diagram",
+      "Replay and Learning Loop"
+    ]
+  },
+  {
+    file: "public/publication-pack/operational-intelligence-comparison-tables.md",
+    route: "/publication-pack/operational-intelligence-comparison-tables.md",
+    minWords: 450,
+    required: [
+      "Adjacent Discipline Comparison",
+      "Claim Classification",
+      "Conformance Levels",
+      "Established",
+      "Original",
+      "Unsupported"
+    ]
+  },
+  {
+    file: "public/publication-pack/decision-packet-example.md",
+    route: "/publication-pack/decision-packet-example.md",
+    minWords: 250,
+    required: [
+      "Decision Packet",
+      "Approval class",
+      "Contradictory evidence",
+      "Missing evidence",
+      "MUST NOT execute"
+    ]
+  },
+  {
+    file: "public/publication-pack/oi-room-001-printable-walkthrough.md",
+    route: "/publication-pack/oi-room-001-printable-walkthrough.md",
+    minWords: 450,
+    required: [
+      "Transaction Hops",
+      "Evidence Table",
+      "Hypothesis Table",
+      "Evaluation Gates",
+      "Operator Decision"
+    ]
+  },
+  {
+    file: "public/publication-pack/operational-intelligence-executive-summary.md",
+    route: "/publication-pack/operational-intelligence-executive-summary.md",
+    minWords: 230,
+    required: [
+      "reasoning layer between enterprise telemetry and human decision",
+      "Signal, Transaction, Topology, Evidence, Reasoning, Memory, Evaluation, Decision, Learning, and Operator",
+      "does not replace observability",
+      "evidence before conclusions"
+    ]
+  },
+  {
+    file: "public/publication-pack/operational-intelligence-glossary-card.md",
+    route: "/publication-pack/operational-intelligence-glossary-card.md",
+    minWords: 220,
+    required: [
+      "Operational Intelligence",
+      "Transaction Intelligence",
+      "Evidence Graph",
+      "Replay Seed",
+      "Evaluation Gate",
+      "Operator Control Plane",
+      "Operational Memory"
+    ]
+  },
+  {
+    file: "public/publication-pack/operational-intelligence-evidence-pack.md",
+    route: "/publication-pack/operational-intelligence-evidence-pack.md",
+    minWords: 1_700,
+    required: [
+      "OI-ROOM-001 Benchmark Rubric",
+      "Control Comparisons",
+      "Minimum Conformance Checklist",
+      "Falsification Criteria",
+      "Structured practitioner review path: /contact"
+    ]
+  }
+];
+
+const pdfAssets = [
+  "public/downloads/operational-intelligence-executive-summary.pdf",
+  "public/downloads/operational-intelligence-glossary-card.pdf",
+  "public/downloads/oi-room-001-printable-walkthrough.pdf",
+  "public/downloads/operational-intelligence-publication-pack.pdf",
+  "public/downloads/operational-intelligence-evidence-pack.pdf"
+];
+
+function read(file) {
+  const full = path.join(root, file);
+  if (!fs.existsSync(full)) {
+    errors.push(`${file}: missing`);
+    return "";
+  }
+  return fs.readFileSync(full, "utf8");
+}
+
+function wordCount(text) {
+  return text.split(/\s+/).filter(Boolean).length;
+}
+
+function assertIncludes(file, content, values) {
+  for (const value of values) {
+    if (!content.includes(value)) {
+      errors.push(`${file}: missing "${value}"`);
+    }
+  }
+}
+
+const shareableRoutes = new Set(getShareableReferenceRoutes());
+const publishingUrls = new Set(buildPublishingIndex().map((asset) => asset.url));
+const sitemapUrls = new Set(sitemap().map((entry) => new URL(entry.url).pathname));
+
+for (const asset of markdownAssets) {
+  const content = read(asset.file);
+  if (!content) continue;
+
+  if (wordCount(content) < asset.minWords) {
+    errors.push(`${asset.file}: ${wordCount(content)} words, expected at least ${asset.minWords}`);
+  }
+
+  assertIncludes(asset.file, content, ["Version:", "Status:", "Updated:", "## Related References", ...referenceLinks, ...asset.required]);
+
+  if (!shareableRoutes.has(asset.route)) {
+    errors.push(`${asset.route}: missing from getShareableReferenceRoutes()`);
+  }
+  if (!publishingUrls.has(asset.route)) {
+    errors.push(`${asset.route}: missing from buildPublishingIndex()`);
+  }
+  if (!sitemapUrls.has(asset.route)) {
+    errors.push(`${asset.route}: missing from sitemap()`);
+  }
+}
+
+for (const file of pdfAssets) {
+  const full = path.join(root, file);
+  if (!fs.existsSync(full)) {
+    errors.push(`${file}: missing`);
+    continue;
+  }
+  const buffer = fs.readFileSync(full);
+  if (buffer.length < 3_000) {
+    errors.push(`${file}: ${buffer.length} bytes, expected at least 3000 bytes`);
+  }
+  if (!buffer.subarray(0, 4).equals(Buffer.from("%PDF"))) {
+    errors.push(`${file}: does not start with a PDF header`);
+  }
+
+  const route = `/${file.replace(/^public\//, "")}`;
+  if (!shareableRoutes.has(route)) {
+    errors.push(`${route}: missing from getShareableReferenceRoutes()`);
+  }
+  if (!sitemapUrls.has(route)) {
+    errors.push(`${route}: missing from sitemap()`);
+  }
+}
+
+const publicationPack = read("content/wiki/operational-intelligence-publication-pack.mdx");
+assertIncludes("content/wiki/operational-intelligence-publication-pack.mdx", publicationPack, [
+  "Reference asset matrix",
+  "PDF exports are available for sharing",
+  ...markdownAssets.map((asset) => asset.route),
+  ...pdfAssets.map((file) => `/${file.replace(/^public\//, "")}`)
+]);
+
+if (errors.length) {
+  console.error(errors.join("\n"));
+  process.exit(1);
+}
+
+console.log(`Validated ${markdownAssets.length} reference Markdown assets and ${pdfAssets.length} PDF exports.`);

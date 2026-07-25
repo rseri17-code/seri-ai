@@ -4,6 +4,12 @@ Version: 1.0
 Status: Shareable reference  
 Updated: 2026-07-25
 
+## Related References
+
+- Canonical Doctrine: [/wiki/operational-intelligence-canonical-doctrine](/wiki/operational-intelligence-canonical-doctrine)
+- Reference Architecture: [/wiki/operational-intelligence-reference-architecture](/wiki/operational-intelligence-reference-architecture)
+- Operations Room: [/investigation-room](/investigation-room)
+
 Operational Intelligence: the reasoning layer between enterprise telemetry and human decision.
 
 Transaction Intelligence: reasoning over customer, process, or business journeys rather than isolated components.
@@ -33,4 +39,3 @@ Decision Packet: a reviewable recommendation or action option with evidence, ris
 Operator Control Plane: the human governance layer that controls approval, escalation, override, refusal, and accountability.
 
 Operational Memory: reviewed reusable context accumulated from incidents, decisions, patterns, outcomes, replay seeds, and lessons.
-

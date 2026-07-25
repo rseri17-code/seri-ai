@@ -247,10 +247,12 @@ Before public release, run:
 ```bash
 npm run validate:content
 npm run validate:contracts
+npm run validate:reference
 npm run evals
 npm run typecheck
 npm run lint
 npm run validate:links
+npm run validate:performance
 npm run scan:public-safety
 npm test
 npm run build
@@ -353,13 +355,15 @@ curl -X POST http://localhost:3000/api/ingest \
 ```bash
 npm run validate:content
 npm run validate:contracts
+npm run validate:reference
 npm run evals
 npm run typecheck
+npm run validate:performance
 npm run build
 ```
 
-`npm run build` runs content validation, publication contract checks, and the Ask Ravikanth trust fixtures before building.
-`npm test` runs content validation, publication contract checks, the Ask Ravikanth trust fixtures, and TypeScript checks.
+`npm run build` runs content validation, publication contract checks, reference-package checks, retrieval checks, accessibility checks, and the Ask Ravikanth trust fixtures before building. It runs the performance budget after the production build.
+`npm test` runs content validation, publication contract checks, reference-package checks, retrieval checks, accessibility checks, the Ask Ravikanth trust fixtures, and TypeScript checks.
 
 ## Deployment
 

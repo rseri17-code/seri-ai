@@ -4,6 +4,12 @@ Version: 1.0
 Status: Draft for Technical Review  
 Updated: 2026-07-25
 
+## Related References
+
+- Canonical Doctrine: [/wiki/operational-intelligence-canonical-doctrine](/wiki/operational-intelligence-canonical-doctrine)
+- Reference Architecture: [/wiki/operational-intelligence-reference-architecture](/wiki/operational-intelligence-reference-architecture)
+- Operations Room: [/investigation-room](/investigation-room)
+
 ## Scenario
 
 Synthetic case OI-ROOM-001: checkout latency and partial failure during a narrow window.
@@ -63,4 +69,3 @@ Learning record after review:
 - Add contradiction-handling fixture.
 - Add missing-evidence fixture.
 - Store reviewed outcome as memory only after operator review.
-

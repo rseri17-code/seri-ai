@@ -4,6 +4,12 @@ Version: 1.0
 Status: Draft for Technical Review  
 Updated: 2026-07-25
 
+## Related References
+
+- Canonical Doctrine: [/wiki/operational-intelligence-canonical-doctrine](/wiki/operational-intelligence-canonical-doctrine)
+- Reference Architecture: [/wiki/operational-intelligence-reference-architecture](/wiki/operational-intelligence-reference-architecture)
+- Operations Room: [/investigation-room](/investigation-room)
+
 ## Adjacent Discipline Comparison
 
 | Discipline | Primary Unit | Established Strength | Operational Intelligence Overlap | Operational Intelligence Distinction |
@@ -40,4 +46,3 @@ Updated: 2026-07-25
 | Replay | Replay seed | Replay record | Versioned replay corpus |
 | Memory | Reviewed records | Expiration and correction | Policy-aware retrieval |
 | Operator approval | Approval class | Audited decision | Governed escalation and override |
-

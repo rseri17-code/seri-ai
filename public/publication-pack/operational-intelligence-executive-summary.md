@@ -4,6 +4,12 @@ Version: 1.0
 Status: Shareable summary  
 Updated: 2026-07-25
 
+## Related References
+
+- Canonical Doctrine: [/wiki/operational-intelligence-canonical-doctrine](/wiki/operational-intelligence-canonical-doctrine)
+- Reference Architecture: [/wiki/operational-intelligence-reference-architecture](/wiki/operational-intelligence-reference-architecture)
+- Operations Room: [/investigation-room](/investigation-room)
+
 Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.
 
 Enterprises already have dashboards, logs, traces, tickets, alerts, runbooks, postmortems, changes, and operational chats. The gap is not visibility alone. The gap is turning operational fragments into accountable judgment under uncertainty.
@@ -21,4 +27,3 @@ OI-ROOM-001 demonstrates the model through a synthetic checkout latency investig
 The doctrine explains why Operational Intelligence exists. The reference architecture specifies how an implementation should behave. Deployments bind the implementation to organizational policy, identity, authorization, data classification, audit, and operational risk.
 
 The purpose is not autonomous heroics. The purpose is better operational judgment: faster alignment, clearer evidence, safer recommendations, reusable memory, and decisions humans can inspect.
-

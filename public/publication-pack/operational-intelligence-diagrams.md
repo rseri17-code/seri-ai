@@ -6,6 +6,12 @@ Updated: 2026-07-25
 
 These diagrams make the Canonical Doctrine and Reference Architecture easier to inspect. They do not introduce new framework layers or terminology.
 
+## Related References
+
+- Canonical Doctrine: [/wiki/operational-intelligence-canonical-doctrine](/wiki/operational-intelligence-canonical-doctrine)
+- Reference Architecture: [/wiki/operational-intelligence-reference-architecture](/wiki/operational-intelligence-reference-architecture)
+- Operations Room: [/investigation-room](/investigation-room)
+
 ## Architecture Diagram
 
 ```mermaid
@@ -116,4 +122,3 @@ flowchart LR
   Result --> Fixture["Future Fixture"]
   Memory --> Retrieval["Future retrieval"]
 ```
-

@@ -4,6 +4,12 @@ Version: 1.0
 Status: Public-safe synthetic walkthrough  
 Updated: 2026-07-25
 
+## Related References
+
+- Canonical Doctrine: [/wiki/operational-intelligence-canonical-doctrine](/wiki/operational-intelligence-canonical-doctrine)
+- Reference Architecture: [/wiki/operational-intelligence-reference-architecture](/wiki/operational-intelligence-reference-architecture)
+- Operations Room: [/investigation-room](/investigation-room)
+
 ## Purpose
 
 OI-ROOM-001 is a synthetic case used to demonstrate how Operational Intelligence converts telemetry and context into evidence, hypotheses, evaluation, decision review, and learning.
@@ -67,4 +73,3 @@ OI-ROOM-001 is a synthetic case used to demonstrate how Operational Intelligence
 ## Operator Decision
 
 The correct system behavior is not autonomous rollback. The correct behavior is a reviewable decision packet that allows the operator to approve, reject, escalate, or request more evidence.
-

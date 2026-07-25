@@ -1,10 +1,18 @@
 # Operational Intelligence Evidence Pack
 
-Status: public-safe evaluation model for technical review.
+Version: 1.0
+Status: public-safe evaluation model for technical review
+Updated: 2026-07-25
 
 This evidence pack defines what would make Operational Intelligence credible to experienced engineers. It does not claim production impact from synthetic material. It defines the benchmark, review, and falsification structure required to strengthen the doctrine over time.
 
 Structured practitioner review path: /contact
+
+## Related References
+
+- Canonical Doctrine: [/wiki/operational-intelligence-canonical-doctrine](/wiki/operational-intelligence-canonical-doctrine)
+- Reference Architecture: [/wiki/operational-intelligence-reference-architecture](/wiki/operational-intelligence-reference-architecture)
+- Operations Room: [/investigation-room](/investigation-room)
 
 ## 1. Evidence Question
 
@@ -128,7 +136,7 @@ This flow is intentionally vendor-neutral. It does not require a specific model 
 | Replay seeds are useful for regression testing operational AI behavior. | Derived from evaluation practice | Eval report, reference architecture | Partial | Current fixtures test assistant behavior, not full workflow replay | Add replay-backed workflow fixtures |
 | Operator control should gate consequential actions. | Established governance principle applied to OI | Reference architecture, OI-ROOM-001 | Strong | Needs policy examples for different risk classes | Add approval class examples to future revisions |
 
-## 9. What Would Weaken the Doctrine
+## 9. Falsification Criteria
 
 The doctrine should be revised if evidence shows that:
 
