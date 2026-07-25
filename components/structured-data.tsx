@@ -39,7 +39,12 @@ export function StructuredData() {
         "description": site.description,
         "inLanguage": "en-US",
         "author": { "@id": `${siteUrl}/#ravikanth-seri` },
-        "publisher": { "@id": `${siteUrl}/#ravikanth-seri` }
+        "publisher": { "@id": `${siteUrl}/#ravikanth-seri` },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": `${siteUrl}/search?q={search_term_string}`,
+          "query-input": "required name=search_term_string"
+        }
       },
       {
         "@type": "Person",

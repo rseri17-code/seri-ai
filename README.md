@@ -251,6 +251,7 @@ npm run validate:reference
 npm run validate:doctrine
 npm run validate:routes
 npm run validate:publishing
+npm run validate:discovery
 npm run validate:analytics
 npm run validate:api
 npm run evals
@@ -364,6 +365,7 @@ npm run validate:reference
 npm run validate:doctrine
 npm run validate:routes
 npm run validate:publishing
+npm run validate:discovery
 npm run validate:analytics
 npm run validate:api
 npm run evals
@@ -372,8 +374,8 @@ npm run validate:performance
 npm run build
 ```
 
-`npm run build` runs content validation, publication contract checks, reference-package checks, doctrine-quality checks, route-integrity checks, publishing-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravikanth trust fixtures before building. It runs the performance budget after the production build.
-`npm test` runs content validation, publication contract checks, reference-package checks, doctrine-quality checks, route-integrity checks, publishing-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravikanth trust fixtures, and TypeScript checks.
+`npm run build` runs content validation, publication contract checks, reference-package checks, doctrine-quality checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravikanth trust fixtures before building. It runs the performance budget after the production build.
+`npm test` runs content validation, publication contract checks, reference-package checks, doctrine-quality checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravikanth trust fixtures, and TypeScript checks.
 
 ## Deployment
 
