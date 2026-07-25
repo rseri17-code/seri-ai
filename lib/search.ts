@@ -9,6 +9,8 @@ export type SearchHit = {
 const doctrineUrl = "/wiki/operational-intelligence-canonical-doctrine";
 const referenceArchitectureUrl = "/wiki/operational-intelligence-reference-architecture";
 const evidencePackUrl = "/wiki/operational-intelligence-evidence-pack";
+const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
+const workUrl = "/work";
 const doctrineTerms = new Set([
   "definition",
   "define",
@@ -78,12 +80,52 @@ const evidencePackTerms = new Set([
   "review",
   "feedback",
   "ledger",
+  "checklist",
+  "minimum",
+  "observable",
+  "proof",
+  "failure",
+  "signals",
   "latency",
   "regression",
   "negative"
 ]);
+const publicationPackTerms = new Set([
+  "publication",
+  "download",
+  "downloads",
+  "diagram",
+  "diagrams",
+  "pdf",
+  "printable",
+  "executive",
+  "summary",
+  "comparison",
+  "tables",
+  "decision",
+  "packet",
+  "glossary",
+  "card",
+  "walkthrough"
+]);
+const workTerms = new Set([
+  "ravikanth",
+  "work",
+  "portfolio",
+  "proof",
+  "profile",
+  "github",
+  "linkedin",
+  "code",
+  "open",
+  "source",
+  "open-source",
+  "building",
+  "projects"
+]);
 
 export function localSearch(query: string, limit = 5): SearchHit[] {
+  const lowerQuery = query.toLowerCase();
   const terms = query
     .toLowerCase()
     .split(/\W+/)
@@ -106,7 +148,21 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const doctrineBoost = source.url === doctrineUrl && terms.some((term) => doctrineTerms.has(term)) ? 6 : 0;
       const referenceArchitectureBoost = source.url === referenceArchitectureUrl && terms.some((term) => referenceArchitectureTerms.has(term)) ? 7 : 0;
       const evidencePackBoost = source.url === evidencePackUrl && terms.some((term) => evidencePackTerms.has(term)) ? 7 : 0;
-      const score = baseScore + doctrineBoost + referenceArchitectureBoost + evidencePackBoost;
+      const publicationPackBoost = source.url === publicationPackUrl && terms.some((term) => publicationPackTerms.has(term)) ? 9 : 0;
+      const workBoost = source.url === workUrl && terms.some((term) => workTerms.has(term)) ? 10 : 0;
+      const conformanceChecklistBoost = source.url === evidencePackUrl && /minimum conformance|conformance checklist|observable proof|failure signal/.test(lowerQuery) ? 10 : 0;
+      const downloadPackBoost = source.url === publicationPackUrl && /download|diagram|pdf|printable|executive summary|comparison table|decision packet|glossary card|walkthrough/.test(lowerQuery) ? 8 : 0;
+      const publicProfileBoost = source.url === workUrl && /public code|open source|open-source|github|linkedin|public proof|engineering portfolio/.test(lowerQuery) ? 10 : 0;
+      const score =
+        baseScore +
+        doctrineBoost +
+        referenceArchitectureBoost +
+        evidencePackBoost +
+        publicationPackBoost +
+        workBoost +
+        conformanceChecklistBoost +
+        downloadPackBoost +
+        publicProfileBoost;
       return { source, content: source.content, score };
     })
     .filter((hit) => hit.score > 0)

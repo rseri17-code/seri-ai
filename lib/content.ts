@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, patterns, principles, projects } from "@/content/site";
+import { articles, contentRegistry, patterns, principles, projects, resume, site } from "@/content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -246,7 +246,37 @@ export function buildPublicSourceIndex(): PublicSource[] {
       status: "published" as const
     }));
 
-  return [...registrySources, ...wiki, ...principleSources, ...patternSources, ...projectSources, ...articleSources];
+  const profileSources = [
+    {
+      id: "profile:ravikanth-seri-public-work",
+      title: "Ravikanth Seri Public Work and Proof",
+      description: "Public index of Ravikanth Seri's Operational Intelligence work, public proof, GitHub, LinkedIn, projects, systems, and professional background.",
+      content: [
+        site.owner,
+        site.authorLine,
+        site.nowSignal,
+        resume.headline,
+        resume.summary,
+        resume.publicProof.flatMap((item) => [item.label, item.value, item.description]).join(". "),
+        resume.strengths.join(". "),
+        resume.architectureHighlights.join(". ")
+      ].join(". "),
+      url: "/work",
+      type: "registry" as const,
+      category: "background",
+      tags: ["work", "public proof", "GitHub", "LinkedIn", "portfolio", "Operational Intelligence"],
+      author: "Ravikanth Seri",
+      assetType: "profile",
+      date: "2026-07-25",
+      frameworkLayers: [],
+      principles: [],
+      patterns: [],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    }
+  ];
+
+  return [...profileSources, ...registrySources, ...wiki, ...principleSources, ...patternSources, ...projectSources, ...articleSources];
 }
 
 export function searchPublicContent(query: string, category = "All", tag = "All") {
