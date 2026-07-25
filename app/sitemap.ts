@@ -10,12 +10,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/start-here",
     "/map",
     "/library",
+    "/ideas",
     "/patterns",
     "/products",
+    "/projects",
     "/artifacts",
+    "/architecture-lab",
     "/investigation-room",
+    "/simulator",
     "/ask",
     "/evals",
+    "/interview",
+    "/interview-mode",
     "/background",
     "/resume",
     "/contact",
@@ -24,7 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/radar",
     "/principles",
     "/wiki",
-    "/llms.txt"
+    "/llms.txt",
+    "/rss.xml",
+    "/robots.txt",
+    "/sitemap.xml"
   ];
 
   const dynamicRoutes = buildPublishingIndex()

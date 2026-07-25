@@ -248,6 +248,7 @@ Before public release, run:
 npm run validate:content
 npm run validate:contracts
 npm run validate:reference
+npm run validate:routes
 npm run validate:analytics
 npm run validate:api
 npm run evals
@@ -358,6 +359,7 @@ curl -X POST http://localhost:3000/api/ingest \
 npm run validate:content
 npm run validate:contracts
 npm run validate:reference
+npm run validate:routes
 npm run validate:analytics
 npm run validate:api
 npm run evals
@@ -366,8 +368,8 @@ npm run validate:performance
 npm run build
 ```
 
-`npm run build` runs content validation, publication contract checks, reference-package checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravikanth trust fixtures before building. It runs the performance budget after the production build.
-`npm test` runs content validation, publication contract checks, reference-package checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravikanth trust fixtures, and TypeScript checks.
+`npm run build` runs content validation, publication contract checks, reference-package checks, route-integrity checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravikanth trust fixtures before building. It runs the performance budget after the production build.
+`npm test` runs content validation, publication contract checks, reference-package checks, route-integrity checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravikanth trust fixtures, and TypeScript checks.
 
 ## Deployment
 
