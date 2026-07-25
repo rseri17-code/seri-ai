@@ -28,6 +28,24 @@ a {
   text-decoration: none;
 }
 
+.skip-link {
+  background: #5ff2b5;
+  border-radius: 8px;
+  color: #071018;
+  font-weight: 700;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  position: fixed;
+  top: 1rem;
+  transform: translateY(-180%);
+  transition: transform 160ms ease;
+  z-index: 100;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
 :focus-visible {
   outline: 2px solid #5ff2b5;
   outline-offset: 3px;

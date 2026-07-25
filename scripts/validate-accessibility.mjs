@@ -91,6 +91,21 @@ if (!globalsCss.includes("prefers-reduced-motion: reduce")) {
 if (!/animation-duration:\s*0\.00?1ms|animation:\s*none/.test(globalsCss)) {
   errors.push("app/globals.css: reduced-motion block should disable or minimize animation");
 }
+if (!globalsCss.includes(".skip-link") || !globalsCss.includes(".skip-link:focus-visible")) {
+  errors.push("app/globals.css: missing skip-link focus styling");
+}
+
+const rootLayout = read("app/layout.tsx");
+[
+  "href=\"#main-content\"",
+  "Skip to main content",
+  "id=\"main-content\"",
+  "tabIndex={-1}"
+].forEach((required) => {
+  if (!rootLayout.includes(required)) {
+    errors.push(`app/layout.tsx: missing skip-link contract "${required}"`);
+  }
+});
 
 const header = read("components/header.tsx");
 [
