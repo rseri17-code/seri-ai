@@ -5,10 +5,13 @@
 - Added production guards for Ask Ravikanth and contact APIs: request validation, rate limiting, timeout handling, safe JSON parsing, and service-failure fallbacks.
 - Added explicit runtime environment status for optional AI, vector search, contact persistence, and analytics services.
 - Hardened public-safety handling for prompt-injection and confidential/private/proprietary requests.
-- Expanded Ask Ravikanth deterministic beta fixtures from 9 to 40 and enforced the minimum fixture count in `npm run evals`.
+- Expanded Ask Ravikanth deterministic beta fixtures from 9 to 54 and enforced the minimum fixture count in `npm run evals`.
 - Redacted public eval report prompts for adversarial public-safety fixtures while preserving internal deterministic coverage.
-- Added privacy-conscious analytics hooks for homepage CTA clicks, framework layer selection, Operations Room guided start/completion, Ask submission/success/failure, source-link clicks, Work and Background visits, resume download, contact initiation, and beta feedback.
-- Added a non-intrusive beta feedback form through the existing contact API.
+- Added privacy-conscious analytics hooks for homepage CTA clicks, framework layer selection, Operations Room guided start/completion, Ask submission/success/failure, source-link clicks, Work and Background visits, resume download, contact initiation, beta feedback, and practitioner review.
+- Added a non-intrusive beta feedback form and a structured practitioner review form through the existing contact API.
+- Added the Operational Intelligence Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, downloadable PDFs, homepage reference shelf, and Ask guide paths for serious technical reviewers.
+- Added JSON-LD structured data, `/llms.txt`, canonicalized sitemap entries, and generated Open Graph/Twitter image routes so the reference system is discoverable by browsers, crawlers, social previews, and AI readers.
+- Added `npm run validate:contracts` to protect the practitioner-review and publication-asset contract during `npm test` and `npm run build`.
 - Added Vercel security headers, production error and loading states, canonical metadata placeholders, Open Graph/Twitter metadata, and reduced-motion CSS.
 - Added semantic page-level `h1` support to primary sections on required beta routes.
 - Added Operations Room beta details without changing the product model: per-hop timing, hypothesis-state transitions, contradictory evidence, missing-evidence conditions, explicit human approval, and observation/inference/confirmed-fact labels.
@@ -39,10 +42,10 @@ Canonical domain placeholders:
 
 ## Ask Fixture Coverage
 
-- Fixture count: 40.
-- Passing fixtures: 40.
+- Fixture count: 54.
+- Passing fixtures: 54.
 - Model-based evaluation used: false.
-- Coverage includes canonical definition, ten framework layers, Operational Intelligence versus observability/AIOps, Transaction Intelligence, evidence graphs, hypothesis lifecycle, replay seeds, evaluation gates, operator control plane, public work/background navigation, unsupported metrics, unknown questions, confidential employer questions, prompt-injection attempts, citation presence/validity, related-page routing, and public-safe refusal/redirection.
+- Coverage includes canonical definition, ten framework layers, Operational Intelligence versus observability/AIOps, Transaction Intelligence, evidence graphs, hypothesis lifecycle, replay seeds, evaluation gates, operator control plane, public work/background navigation, unsupported metrics, unknown questions, confidential employer questions, prompt-injection attempts, citation presence/validity, related-page routing, public-safe refusal/redirection, Canonical Doctrine routing, Reference Architecture routing, Publication Pack routing, Evidence Pack routing, OI-ROOM-001 benchmark/control-case routing, and falsification-criteria routing.
 - Limitation: this is deterministic fixture coverage and answer-shape validation, not live model-quality scoring.
 
 ## Analytics Events
@@ -63,6 +66,7 @@ Canonical domain placeholders:
 - `contact_submit_result`
 - `beta_feedback_toggle`
 - `beta_feedback_submit`
+- `practitioner_review_submit`
 
 Analytics intentionally avoids capturing raw prompt text. Ask events capture safe metadata such as category, route, mode, latency, source count, and success/failure.
 
@@ -96,6 +100,9 @@ All returned `200` from the local production server:
 - `/contact`
 - `/sitemap.xml`
 - `/robots.txt`
+- `/llms.txt`
+- `/opengraph-image`
+- `/twitter-image`
 
 API smoke tests:
 
@@ -106,7 +113,7 @@ API smoke tests:
 
 ## Public-Safety Result
 
-`npm run scan:public-safety` passed across 93 files.
+`npm run scan:public-safety` passed across 118 files.
 
 The public eval report redacts adversarial fixture prompts that intentionally contain public-safety boundary language.
 
@@ -115,6 +122,7 @@ The public eval report redacts adversarial fixture prompts that intentionally co
 Passed:
 
 - `npm run validate:content`
+- `npm run validate:contracts`
 - `npm run evals`
 - `npm run typecheck`
 - `npm run lint`
@@ -124,7 +132,7 @@ Passed:
 - `npm run build`
 - `git diff --check`
 
-Local production build verified with `npm run start -- -p 3010`.
+Latest production artifact verified with `npm run build`. Earlier beta smoke testing verified the required routes against a local production server.
 
 ## Deployment
 
@@ -136,7 +144,7 @@ Local production build verified with `npm run start -- -p 3010`.
 
 - Local verification ran without configured AI/vector/database/analytics services; fallback behavior was verified, not live provider quality.
 - PostHog events require `NEXT_PUBLIC_POSTHOG_KEY` in Vercel.
-- Contact and beta feedback persistence require Supabase configuration and the existing `contact_messages` table.
+- Contact, beta feedback, and practitioner review persistence require Supabase configuration and the existing `contact_messages` table with `kind` and `metadata` columns.
 - Deterministic Ask evals do not replace future live model grading, human review, or production traffic analysis.
 - Browser focus behavior should receive a manual keyboard pass during beta because the automated browser keypress focus check was inconclusive.
 

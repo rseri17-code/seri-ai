@@ -6,6 +6,83 @@ export type SearchHit = {
   score: number;
 };
 
+const doctrineUrl = "/wiki/operational-intelligence-canonical-doctrine";
+const referenceArchitectureUrl = "/wiki/operational-intelligence-reference-architecture";
+const evidencePackUrl = "/wiki/operational-intelligence-evidence-pack";
+const doctrineTerms = new Set([
+  "definition",
+  "define",
+  "doctrine",
+  "canonical",
+  "framework",
+  "layer",
+  "layers",
+  "glossary",
+  "boundary",
+  "boundaries",
+  "observability",
+  "aiops",
+  "agentops",
+  "incident",
+  "transaction",
+  "evidence",
+  "hypothesis",
+  "replay",
+  "evaluation",
+  "operator"
+]);
+const referenceArchitectureTerms = new Set([
+  "architecture",
+  "architectural",
+  "implement",
+  "implementation",
+  "conformance",
+  "contract",
+  "contracts",
+  "schema",
+  "schemas",
+  "state",
+  "machine",
+  "lifecycle",
+  "governance",
+  "approval",
+  "retention",
+  "security",
+  "authorization",
+  "evaluation",
+  "metric",
+  "metrics",
+  "replay",
+  "decision",
+  "operator",
+  "invariant",
+  "invariants"
+]);
+const evidencePackTerms = new Set([
+  "evidence",
+  "benchmark",
+  "benchmarks",
+  "rubric",
+  "fixture",
+  "fixtures",
+  "proof",
+  "prove",
+  "credible",
+  "credibility",
+  "falsifiable",
+  "falsification",
+  "control",
+  "baseline",
+  "comparison",
+  "practitioner",
+  "review",
+  "feedback",
+  "ledger",
+  "latency",
+  "regression",
+  "negative"
+]);
+
 export function localSearch(query: string, limit = 5): SearchHit[] {
   const terms = query
     .toLowerCase()
@@ -25,7 +102,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         source.products.join(" "),
         source.assetType
       ].join(" ").toLowerCase();
-      const score = terms.reduce((sum, term) => sum + (lower.includes(term) ? 1 : 0) + (source.title.toLowerCase().includes(term) ? 2 : 0), 0);
+      const baseScore = terms.reduce((sum, term) => sum + (lower.includes(term) ? 1 : 0) + (source.title.toLowerCase().includes(term) ? 2 : 0), 0);
+      const doctrineBoost = source.url === doctrineUrl && terms.some((term) => doctrineTerms.has(term)) ? 6 : 0;
+      const referenceArchitectureBoost = source.url === referenceArchitectureUrl && terms.some((term) => referenceArchitectureTerms.has(term)) ? 7 : 0;
+      const evidencePackBoost = source.url === evidencePackUrl && terms.some((term) => evidencePackTerms.has(term)) ? 7 : 0;
+      const score = baseScore + doctrineBoost + referenceArchitectureBoost + evidencePackBoost;
       return { source, content: source.content, score };
     })
     .filter((hit) => hit.score > 0)

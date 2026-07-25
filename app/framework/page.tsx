@@ -4,6 +4,7 @@ import { ArrowRight, BrainCircuit, CheckCircle2, ShieldCheck } from "lucide-reac
 import { Card } from "@/components/card";
 import { FrameworkTeacher } from "@/components/framework-teacher";
 import { Section } from "@/components/section";
+import { TechnicalReviewPath } from "@/components/technical-review-path";
 import { operationalIntelligenceFramework } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -51,6 +52,10 @@ export default function FrameworkPage() {
 
       <Section eyebrow="Teaching sequence" title="Follow one synthetic investigation through all ten layers.">
         <FrameworkTeacher />
+      </Section>
+
+      <Section eyebrow="Review path" title="How to challenge the framework.">
+        <TechnicalReviewPath />
       </Section>
 
       <Section eyebrow="Design rules" title="How the framework should constrain systems.">

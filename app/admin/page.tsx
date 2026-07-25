@@ -7,6 +7,13 @@ export default function AdminPage() {
   const publishingAssets = buildPublishingIndex();
   const publishingGraph = buildKnowledgeGraph();
   const newsletterExport = buildMonthlyNewsletterExport("2026-07");
+  const practitionerReviewContract = [
+    ["Storage", "contact_messages.kind = practitioner-review"],
+    ["Queryable view", "practitioner_reviews"],
+    ["Fields", "reviewer role, doctrine verdict, strongest claim, weakest claim, evidence needed, implementation question"],
+    ["Release gate", "npm run validate:contracts"],
+    ["Public entry", "/contact"]
+  ];
 
   return (
     <Section eyebrow="Admin" title="Content operations dashboard.">
@@ -46,6 +53,21 @@ export default function AdminPage() {
       <Card className="mt-5">
         <h2 className="text-xl font-semibold text-white">Editorial workflow</h2>
         <p className="mt-3 text-slate-300">Draft → Review → Approve → Publish → Index → Notify Ask → Update related pages → Update search → Update RSS → Update sitemap → Update changelog</p>
+      </Card>
+      <Card className="mt-5">
+        <h2 className="text-xl font-semibold text-white">Practitioner review operations</h2>
+        <p className="mt-3 leading-7 text-slate-300">
+          Skeptical review should become product evidence. The contact API stores structured practitioner reviews,
+          and Supabase exposes a queryable view for doctrine verdicts, challenged claims, evidence requests, and implementation blockers.
+        </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-5">
+          {practitionerReviewContract.map(([label, value]) => (
+            <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+              <p className="text-xs font-semibold uppercase text-slate-500">{label}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{value}</p>
+            </div>
+          ))}
+        </div>
       </Card>
       <Card className="mt-5">
         <h2 className="text-xl font-semibold text-white">This Month on seri.ai export</h2>

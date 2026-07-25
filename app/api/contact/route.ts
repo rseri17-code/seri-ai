@@ -9,12 +9,18 @@ const ContactSchema = z.object({
   email: z.string().email().max(180).optional().or(z.literal("")),
   topic: z.string().max(80),
   message: z.string().min(1).max(3000),
-  kind: z.enum(["contact", "beta-feedback"]).default("contact"),
+  kind: z.enum(["contact", "beta-feedback", "practitioner-review"]).default("contact"),
   visitorType: z.string().max(80).optional(),
   clear: z.string().max(1000).optional(),
   confusing: z.string().max(1000).optional(),
   memorable: z.string().max(1000).optional(),
-  missing: z.string().max(1000).optional()
+  missing: z.string().max(1000).optional(),
+  reviewerRole: z.string().max(80).optional(),
+  doctrineVerdict: z.string().max(120).optional(),
+  strongestClaim: z.string().max(1000).optional(),
+  weakestClaim: z.string().max(1000).optional(),
+  evidenceNeeded: z.string().max(1000).optional(),
+  implementationQuestion: z.string().max(1000).optional()
 });
 
 export async function POST(request: Request) {
@@ -42,12 +48,37 @@ export async function POST(request: Request) {
             `Missing: ${parsed.data.missing ?? "unspecified"}`,
             `Notes: ${parsed.data.message}`
           ].join("\n")
-        : parsed.data.message;
+        : parsed.data.kind === "practitioner-review"
+          ? [
+              "Practitioner review",
+              `Reviewer role: ${parsed.data.reviewerRole ?? "unspecified"}`,
+              `Doctrine verdict: ${parsed.data.doctrineVerdict ?? "unspecified"}`,
+              `Strongest claim: ${parsed.data.strongestClaim ?? "unspecified"}`,
+              `Weakest claim: ${parsed.data.weakestClaim ?? "unspecified"}`,
+              `Evidence needed: ${parsed.data.evidenceNeeded ?? "unspecified"}`,
+              `Implementation question: ${parsed.data.implementationQuestion ?? "unspecified"}`,
+              `Notes: ${parsed.data.message}`
+            ].join("\n")
+          : parsed.data.message;
     const row = {
       name: parsed.data.name,
       email: parsed.data.email || "unknown@example.invalid",
       topic: parsed.data.topic,
-      message
+      kind: parsed.data.kind,
+      message,
+      metadata: {
+        visitorType: parsed.data.visitorType,
+        clear: parsed.data.clear,
+        confusing: parsed.data.confusing,
+        memorable: parsed.data.memorable,
+        missing: parsed.data.missing,
+        reviewerRole: parsed.data.reviewerRole,
+        doctrineVerdict: parsed.data.doctrineVerdict,
+        strongestClaim: parsed.data.strongestClaim,
+        weakestClaim: parsed.data.weakestClaim,
+        evidenceNeeded: parsed.data.evidenceNeeded,
+        implementationQuestion: parsed.data.implementationQuestion
+      }
     };
 
     try {

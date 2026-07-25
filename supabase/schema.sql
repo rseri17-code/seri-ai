@@ -24,9 +24,49 @@ create table if not exists contact_messages (
   name text not null,
   email text not null,
   topic text not null,
+  kind text not null default 'contact' check (kind in ('contact', 'beta-feedback', 'practitioner-review')),
   message text not null,
+  metadata jsonb not null default '{}'::jsonb,
   created_at timestamptz not null default now()
 );
+
+alter table contact_messages
+add column if not exists kind text not null default 'contact';
+
+alter table contact_messages
+add column if not exists metadata jsonb not null default '{}'::jsonb;
+
+do $$
+begin
+  if not exists (
+    select 1
+    from pg_constraint
+    where conname = 'contact_messages_kind_check'
+  ) then
+    alter table contact_messages
+    add constraint contact_messages_kind_check
+    check (kind in ('contact', 'beta-feedback', 'practitioner-review'));
+  end if;
+end $$;
+
+create index if not exists contact_messages_kind_created_at_idx
+on contact_messages (kind, created_at desc);
+
+create or replace view practitioner_reviews as
+select
+  id,
+  name,
+  email,
+  created_at,
+  metadata->>'reviewerRole' as reviewer_role,
+  metadata->>'doctrineVerdict' as doctrine_verdict,
+  metadata->>'strongestClaim' as strongest_claim,
+  metadata->>'weakestClaim' as weakest_claim,
+  metadata->>'evidenceNeeded' as evidence_needed,
+  metadata->>'implementationQuestion' as implementation_question,
+  message
+from contact_messages
+where kind = 'practitioner-review';
 
 create table if not exists newsletter_subscribers (
   id uuid primary key default gen_random_uuid(),

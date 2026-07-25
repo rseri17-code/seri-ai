@@ -49,7 +49,75 @@ export type PublishingRelationship = {
 
 const author = "Ravikanth Seri";
 const defaultDate = "2026-07-16";
+const referenceDate = "2026-07-25";
 const frameworkLayerNames = operationalIntelligenceFramework.layers.map((layer) => layer.name);
+
+const referencePublicationAssets = [
+  {
+    slug: "operational-intelligence-reference-architecture-v1",
+    title: "Operational Intelligence Reference Architecture v1.0 Markdown",
+    description: "Versioned Markdown specification for implementation-neutral Operational Intelligence contracts, schemas, state machines, governance, evaluation, and conformance.",
+    url: "/operational-intelligence-reference-architecture-v1.md",
+    content: "Operational Intelligence Reference Architecture v1.0. Implementation contracts, schemas, state machines, governance controls, evaluation gates, approval classes, conformance levels, OI-ROOM-001, and public-safe reference architecture."
+  },
+  {
+    slug: "operational-intelligence-diagrams",
+    title: "Operational Intelligence Diagram Pack",
+    description: "Architecture diagrams, state-machine diagrams, sequence diagrams, evidence graph diagrams, and replay-loop diagrams for Operational Intelligence.",
+    url: "/publication-pack/operational-intelligence-diagrams.md",
+    content: "Operational Intelligence diagram pack. Architecture diagram, state machine, sequence diagram, evidence graph, replay loop, OI-ROOM-001, ten-layer framework, operator control plane, evaluation gate."
+  },
+  {
+    slug: "operational-intelligence-comparison-tables",
+    title: "Operational Intelligence Comparison Tables",
+    description: "Comparison tables separating Operational Intelligence from observability, AIOps, AgentOps, ITIL, incident command, SRE, knowledge graphs, and AI evaluation.",
+    url: "/publication-pack/operational-intelligence-comparison-tables.md",
+    content: "Operational Intelligence comparison tables. Observability, AIOps, AgentOps, ITIL, incident command, SRE, knowledge graphs, AI evaluation, established claims, derived claims, original synthesis, unsupported differentiation."
+  },
+  {
+    slug: "decision-packet-example",
+    title: "Decision Packet Example",
+    description: "A public-safe example of a reviewable Operational Intelligence decision packet with evidence, risks, alternatives, approval class, and fallback.",
+    url: "/publication-pack/decision-packet-example.md",
+    content: "Decision packet example. Evidence-backed recommendation, rollback review packet, risk, reversibility, owner, alternatives, operator approval, public-safe OI-ROOM-001."
+  },
+  {
+    slug: "oi-room-001-printable-walkthrough",
+    title: "OI-ROOM-001 Printable Walkthrough",
+    description: "Printable walkthrough of the synthetic OI-ROOM-001 case through evidence, hypotheses, evaluation gates, decision packet, operator approval, and learning.",
+    url: "/publication-pack/oi-room-001-printable-walkthrough.md",
+    content: "OI-ROOM-001 printable walkthrough. Synthetic incident, transaction timing, evidence graph, contradictory evidence, missing evidence, hypothesis lifecycle, evaluation gates, decision packet, human approval, learning record."
+  },
+  {
+    slug: "operational-intelligence-executive-summary",
+    title: "Operational Intelligence Executive Summary",
+    description: "One-page executive summary for the Operational Intelligence doctrine, operating rule, ten layers, and category boundary.",
+    url: "/publication-pack/operational-intelligence-executive-summary.md",
+    content: "Operational Intelligence executive summary. Reasoning layer between enterprise telemetry and human decision, ten layers, operating rule, not a replacement for observability, SRE, incident management, ITSM, or human command."
+  },
+  {
+    slug: "operational-intelligence-glossary-card",
+    title: "Operational Intelligence Glossary Card",
+    description: "Canonical glossary reference for Operational Intelligence, Transaction Intelligence, Evidence Graph, Replay Seed, Evaluation Gate, Operator Control Plane, and Operational Memory.",
+    url: "/publication-pack/operational-intelligence-glossary-card.md",
+    content: "Operational Intelligence glossary card. Operational Intelligence, Transaction Intelligence, Evidence Graph, Observation, Inference, Confirmed Fact, Contradiction, Missing Evidence, Hypothesis Lifecycle, Replay Seed, Evaluation Gate, Decision Packet, Operator Control Plane, Operational Memory."
+  },
+  {
+    slug: "operational-intelligence-evidence-pack-markdown",
+    title: "Operational Intelligence Evidence Pack Markdown",
+    description: "Benchmark rubric, control comparisons, practitioner review model, evidence ledger, and falsification criteria for Operational Intelligence.",
+    url: "/publication-pack/operational-intelligence-evidence-pack.md",
+    content: "Operational Intelligence evidence pack. Benchmark rubric, control comparisons, practitioner review, evidence ledger, falsification criteria, OI-ROOM-001 benchmark, dashboard-only baseline, chatbot-only baseline, operator review."
+  }
+];
+
+const referenceDownloadRoutes = [
+  "/downloads/operational-intelligence-executive-summary.pdf",
+  "/downloads/operational-intelligence-glossary-card.pdf",
+  "/downloads/oi-room-001-printable-walkthrough.pdf",
+  "/downloads/operational-intelligence-publication-pack.pdf",
+  "/downloads/operational-intelligence-evidence-pack.pdf"
+];
 
 const layerKeywords: Record<string, string[]> = {
   "Signal Layer": ["signal", "observability", "telemetry", "metric", "log", "trace", "alert", "dashboard"],
@@ -322,6 +390,34 @@ function registryAsset(item: ContentRegistryItem): PublishingAsset {
   return { ...asset, askQuestions: inferAskQuestions(asset) };
 }
 
+function referencePublicationAsset(item: (typeof referencePublicationAssets)[number]): PublishingAsset {
+  const frameworkLayers = inferFrameworkLayers(item.content, frameworkLayerNames);
+  const asset: PublishingAsset = {
+    id: `reference:${item.slug}`,
+    slug: item.slug,
+    title: item.title,
+    description: item.description,
+    url: item.url,
+    assetType: "artifact",
+    status: "published",
+    author,
+    date: referenceDate,
+    updatedAt: referenceDate,
+    readingTime: readingTime(item.content),
+    topic: "Reference Assets",
+    tags: unique(["Operational Intelligence", "Reference Assets", ...frameworkLayers]),
+    frameworkLayers,
+    principles: ["Evidence before conclusions", "Evaluation is not a feature; it is the control system", "Human review before consequential action"],
+    patterns: ["/patterns/evidence-driven-rca", "/patterns/evaluation-and-replay", "/patterns/human-in-the-loop-operational-ai"],
+    artifacts: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack"],
+    products: ["/products/reasonops"],
+    askQuestions: [],
+    content: item.content,
+    versionHistory: baseVersion(referenceDate, "Published as a shareable Operational Intelligence reference artifact.")
+  };
+  return { ...asset, askQuestions: inferAskQuestions(asset) };
+}
+
 function contentMatches(content: string, terms: string[]) {
   const lower = content.toLowerCase();
   return terms.some((term) => lower.includes(term.toLowerCase()));
@@ -330,6 +426,7 @@ function contentMatches(content: string, terms: string[]) {
 export function buildPublishingIndex() {
   const assets = [
     ...contentRegistry.map(registryAsset),
+    ...referencePublicationAssets.map(referencePublicationAsset),
     ...articles.map(articleAsset),
     ...patterns.map(patternAsset),
     ...projects.map(projectAsset),
@@ -347,6 +444,10 @@ export function buildPublishingIndex() {
   }
 
   return [...byUrl.values()].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || a.title.localeCompare(b.title));
+}
+
+export function getShareableReferenceRoutes() {
+  return unique([...referencePublicationAssets.map((asset) => asset.url), ...referenceDownloadRoutes]);
 }
 
 export function buildKnowledgeGraph() {

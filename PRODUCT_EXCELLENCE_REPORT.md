@@ -23,7 +23,9 @@ Date: 2026-07-16
 - Added Ask guide paths to Framework, Operations Room, Work, Patterns, Library, Evals, and Background.
 - Deepened five canonical assets with executive summary, thesis, limitations, proposed model, architecture implications, tradeoffs, public-safe examples, and framework relationships.
 - Updated homepage hero hierarchy to lead with Ravikanth Seri, then Operational Intelligence.
-- Added deterministic answer-shape checks to `npm run evals`.
+- Added deterministic answer-shape checks and reference-asset routing checks to `npm run evals`.
+- Added the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, rendered reference diagrams, claim classification ledger, technical review path, and practitioner review loop.
+- Added structured data, `/llms.txt`, sitemap/robots discovery, and generated Open Graph/Twitter preview images so the public reference system is readable by people, crawlers, and AI agents.
 
 ## User Journeys Reviewed
 
@@ -43,6 +45,10 @@ Date: 2026-07-16
 - The Agentic SRE Harness Model
 - Transaction Intelligence as the Missing Layer
 - Evaluation and Replay for AI-Native Operations
+- Operational Intelligence Canonical Doctrine v1.0
+- Operational Intelligence Reference Architecture v1.0
+- Operational Intelligence Publication Pack
+- Operational Intelligence Evidence Pack
 
 ## Operations Room Improvements
 
@@ -67,20 +73,21 @@ Date: 2026-07-16
 
 ## Public-Safety Result
 
-`npm run scan:public-safety` passed across 84 files.
+`npm run scan:public-safety` passed across 118 files.
 
 No confidential employer product names, private system names, internal logs, screenshots, credentials, customer data, internal incidents, or proprietary architecture were exposed in this loop.
 
 ## Tests Executed
 
 - `npm run validate:content` — passed
-- `npm run evals` — 9 fixtures passing with answer-shape checks
+- `npm run validate:contracts` — passed
+- `npm run evals` — 54 fixtures passing with answer-shape, reference-routing, public-proof, claim-discipline, and technical-review path checks
 - `npm run typecheck` — passed
 - `npm run lint` — passed with Next.js lint deprecation warning
-- `npm run validate:links` — passed across 69 files
-- `npm run scan:public-safety` — passed across 84 files
+- `npm run validate:links` — passed across 87 files
+- `npm run scan:public-safety` — passed across 118 files
 - `npm test` — passed
-- `npm run build` — passed, 69 routes generated
+- `npm run build` — passed, 77 routes generated
 - `git diff --check` — passed
 
 ## Render Review
@@ -88,12 +95,15 @@ No confidential employer product names, private system names, internal logs, scr
 - Desktop dev render returned HTTP 200 for `/`, `/framework`, `/investigation-room`, `/ask`, and `/evals`.
 - Mobile viewport at 390px showed no horizontal overflow for `/`, `/framework`, `/investigation-room`, and `/ask`.
 - Key new text was present on mobile: Ravikanth Seri hero, Framework teaching sequence, Operations Room framework walkthrough, and Ask guide paths.
+- Publication Pack browser check verified 4 rendered reference diagrams, 6-row asset matrix, PDF links, and no mobile overflow.
+- Canonical Doctrine browser check verified 8 claim-ledger rows and no mobile overflow.
+- Framework and Evals browser checks verified the technical review path and no mobile overflow.
+- `/llms.txt`, `/opengraph-image`, and `/twitter-image` were locally verified through HTTP responses.
 
 ## Remaining Limitations
 
-- Ask model-based evaluation is still not enabled.
-- Operations Room is much more teachable, but the full synthetic case could still support deeper per-hop transaction detail and more hypothesis state transitions.
-- The five canonical assets are deeper, but they can still become stronger with diagrams and public examples over time.
+- Ask model-based evaluation is still not enabled; deterministic checks now cover public-safety, routing, and reference-asset behavior.
+- The doctrine/reference system is much stronger, but it still needs practitioner review, independent implementation feedback, baseline comparisons, and real-world evidence before claiming full category authority.
 - `next lint` is deprecated and should eventually be migrated to ESLint CLI.
 
 ## Final Launch Verdict

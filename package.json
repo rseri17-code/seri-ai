@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run validate:content && npm run evals && next build",
+    "build": "npm run validate:content && npm run validate:contracts && npm run evals && next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npm run validate:content && npm run evals && npm run typecheck",
+    "test": "npm run validate:content && npm run validate:contracts && npm run evals && npm run typecheck",
     "typecheck": "tsc --noEmit",
     "validate:content": "node scripts/validate-content.mjs",
+    "validate:contracts": "node scripts/validate-contracts.mjs",
     "validate:links": "node scripts/validate-links.mjs",
     "scan:public-safety": "node scripts/scan-public-safety.mjs",
     "evals": "node scripts/run-evals.mjs"

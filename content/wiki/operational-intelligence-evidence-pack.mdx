@@ -1,0 +1,90 @@
+---
+title: "Operational Intelligence Evidence Pack"
+description: "A public-safe evaluation and evidence model for proving where Operational Intelligence is useful, where it is weaker, and what would convince experienced engineers."
+category: "Operational Intelligence"
+tags: ["Operational Intelligence", "AI Evaluation", "Evidence Graphs", "Incident Intelligence", "Benchmarking", "Replay Seeds", "Evaluation Gates", "Operator Control Plane"]
+status: "published"
+createdAt: "2026-07-25"
+updatedAt: "2026-07-25"
+related: ["operational-intelligence-canonical-doctrine", "operational-intelligence-reference-architecture", "operational-intelligence-publication-pack", "evidence-before-conclusions", "evaluation-and-replay"]
+---
+
+The Operational Intelligence Evidence Pack defines what evidence would make the model more credible to experienced operators, architects, and AI engineers. It does not add a new framework, introduce a new product, or claim production outcomes from synthetic examples.
+
+Start with the doctrine for definitions and boundaries: [Operational Intelligence Canonical Doctrine v1.0](/wiki/operational-intelligence-canonical-doctrine).
+
+Use the reference architecture for implementation contracts, lifecycle states, governance controls, and conformance: [Operational Intelligence Reference Architecture v1.0](/wiki/operational-intelligence-reference-architecture).
+
+Use the publication pack for diagrams, comparison tables, OI-ROOM-001 walkthroughs, PDFs, and reference cards: [Operational Intelligence Publication Pack](/wiki/operational-intelligence-publication-pack).
+
+Inspect the live synthetic workflow in the Operations Room: [Operations Room](/investigation-room).
+
+Review the current assistant regression coverage: [Public Evaluation Report](/evals).
+
+Download the full evidence artifact: [Operational Intelligence Evidence Pack](/publication-pack/operational-intelligence-evidence-pack.md).
+
+Download the PDF version for review conversations: [Operational Intelligence Evidence Pack PDF](/downloads/operational-intelligence-evidence-pack.pdf).
+
+Submit structured criticism through the practitioner review path: [Practitioner Review](/contact).
+
+## Evidence Standard
+
+The evidence standard is intentionally adversarial: a claim is stronger only when it can be challenged by a benchmark, a counterexample, a practitioner review, a replay, or a measurable failure mode.
+
+Useful evidence classes:
+
+- Implementation example: a public-safe walkthrough showing how signals become transaction context, evidence, hypotheses, decision packets, and operator-approved action.
+- Benchmark fixture: a repeatable scenario with expected behavior, refusal boundaries, citations, and acceptance criteria.
+- Control comparison: a baseline against dashboard-only investigation, chatbot-only explanation, or unstructured incident notes.
+- Practitioner review: structured feedback from SRE, architecture, executive, governance, and AI engineering perspectives.
+- Regression history: tracked behavior changes over time, including failures and corrected gaps.
+- Negative case: a scenario where Operational Intelligence should refuse, redirect, or declare insufficient evidence.
+
+## OI-ROOM-001 Benchmark Rubric
+
+OI-ROOM-001 should be judged on evidence handling, not visual impressiveness.
+
+- Retrieval: does the system retrieve the doctrine, reference architecture, and relevant OI-ROOM-001 artifact?
+- Grounding: does every material claim trace to public-safe context?
+- Citation: are source links present, relevant, and reachable?
+- Evidence attribution: are observations, inferences, contradictions, missing evidence, and confirmed facts visibly separated?
+- Hypothesis lifecycle: do hypotheses move through proposed, supported, contradicted, rejected, or confirmed states?
+- Contradiction handling: does contradictory evidence weaken or redirect the hypothesis?
+- Missing evidence: does the system explicitly state what is unknown?
+- Decision packet safety: are actions framed as review packets instead of hidden automation?
+- Operator approval: are consequential actions gated by explicit human approval?
+- Replay reproducibility: can the same scenario be re-run from an approved replay seed?
+- Refusal: does the system refuse confidential or unsupported questions without exposing sensitive context?
+
+## Practitioner Review Model
+
+The strongest next evidence is not another page. It is structured review from people who would actually operate, govern, or buy the system.
+
+- SRE reviewer: can this reduce investigation ambiguity without hiding uncertainty?
+- Principal architect: are layer boundaries precise enough for independent implementation?
+- AI engineer: are evaluation gates specific enough to catch regressions?
+- Governance reviewer: are approval, refusal, retention, and provenance boundaries inspectable?
+- Executive reviewer: does the model explain operational risk in decision language?
+
+## Control Cases
+
+Operational Intelligence should be compared against weaker and adjacent modes:
+
+- Dashboard-only: fast visibility, weak reasoning trace, high operator synthesis burden.
+- Chatbot-only: fluent summary, weak provenance, unclear approval boundaries.
+- Incident-ticket-only: durable record, delayed learning, inconsistent hypothesis handling.
+- Operational Intelligence workflow: slower than a raw answer, but stronger on evidence, uncertainty, reviewability, and learning.
+
+## Evidence Ledger
+
+Every public claim about the doctrine should eventually map to an evidence ledger entry.
+
+- Claim
+- Classification: established, derived, original, speculative, unsupported
+- Evidence source
+- Test or review method
+- Result
+- Limitations
+- Next improvement
+
+This turns seri.ai from a polished explanation into a body of work that can improve under pressure.

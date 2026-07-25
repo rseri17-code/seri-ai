@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { buildPublishingIndex } from "@/lib/publishing";
+import { buildPublishingIndex, getShareableReferenceRoutes } from "@/lib/publishing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://seri.ai";
@@ -23,17 +23,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/now",
     "/radar",
     "/principles",
-    "/wiki"
+    "/wiki",
+    "/llms.txt"
   ];
 
   const dynamicRoutes = buildPublishingIndex()
     .filter((asset) => asset.status === "published")
     .map((asset) => asset.url);
 
-  return [...new Set([...staticRoutes, ...dynamicRoutes])].map((route) => ({
+  const shareableReferenceRoutes = getShareableReferenceRoutes();
+
+  return [...new Set([...staticRoutes, ...dynamicRoutes, ...shareableReferenceRoutes].map((route) => route.split("#")[0]))].map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date("2026-07-16"),
+    lastModified: new Date(route.includes("operational-intelligence") || route.includes("publication-pack") || route.includes("oi-room-001") || route === "/llms.txt" ? "2026-07-25" : "2026-07-16"),
     changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/framework" || route === "/work" ? 0.9 : 0.7
+    priority: route === "" ? 1 : route === "/framework" || route === "/work" ? 0.9 : route.includes("operational-intelligence") || route.includes("publication-pack") || route === "/llms.txt" ? 0.8 : 0.7
   }));
 }

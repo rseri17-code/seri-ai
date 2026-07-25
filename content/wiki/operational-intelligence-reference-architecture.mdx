@@ -1,0 +1,28 @@
+---
+title: "Operational Intelligence Reference Architecture v1.0"
+description: "A draft technical-review specification that turns the Operational Intelligence doctrine into implementation-neutral contracts, schemas, state machines, evaluation gates, and conformance levels."
+category: "Operational Intelligence"
+tags: ["Operational Intelligence", "Reference Architecture", "AI Evaluation", "Governance", "Signal Layer", "Transaction Layer", "Topology Layer", "Evidence Layer", "Reasoning Layer", "Memory Layer", "Evaluation Layer", "Decision Layer", "Learning Layer", "Operator Layer"]
+status: "published"
+createdAt: "2026-07-17"
+updatedAt: "2026-07-17"
+related: ["operational-intelligence-canonical-doctrine", "evidence-before-conclusions", "transaction-journeys", "operational-memory", "evaluation-and-replay"]
+---
+
+Publication status: Draft for Technical Review, not Final Standard.
+
+The Operational Intelligence Reference Architecture v1.0 operationalizes the Canonical Doctrine. The doctrine defines why Operational Intelligence exists. The reference architecture defines how an implementation should behave so two independent engineering teams can build substantially similar systems without depending on a specific vendor, cloud provider, AI model, framework, or product.
+
+The full technical-review artifact is available as a versioned Markdown specification: [Operational Intelligence Reference Architecture v1.0](/operational-intelligence-reference-architecture-v1.md).
+
+The specification defines architecture principles, RFC-style invariants, ten layer contracts, canonical data-model objects, state machines, governance controls, evaluation requirements, OI-ROOM-001 walkthrough artifacts, conformance levels, security guidance, implementation tradeoffs, limitations, and future evolution.
+
+The reference architecture is intentionally implementation-neutral. It does not recommend a database, model provider, observability vendor, cloud platform, agent framework, or graph technology. Implementations may use event-driven, batch, streaming, graph, retrieval, workflow, or hybrid architectures if they satisfy the stated invariants and conformance requirements.
+
+The minimum architectural invariant is simple: every operational recommendation must identify supporting evidence or explicitly state that evidence is unavailable. Every claim needs provenance. Every hypothesis must be falsifiable. Every consequential action needs approval boundaries. Every learned memory must be reviewable. Every replay must be reproducible. Every refusal must be explainable without exposing sensitive information.
+
+The specification should be used by architects, SRE leaders, AI platform engineers, governance teams, and senior engineers when evaluating whether a system conforms to the Operational Intelligence model. It is not a marketing document and should not be treated as a final standard until it survives technical review.
+
+Relationship to the doctrine: this document does not redefine Operational Intelligence, introduce new layers, or change terminology. It turns the doctrine into behavioral contracts, data contracts, lifecycle states, and evaluation expectations.
+
+Relationship to Ask Ravikanth: questions about implementation behavior, conformance levels, state machines, data schemas, approval classes, evaluation gates, or OI-ROOM-001 walkthrough details should prefer this reference architecture. Questions about definitions, boundaries, and category framing should prefer the Canonical Doctrine.

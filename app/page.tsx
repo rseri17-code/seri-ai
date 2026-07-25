@@ -58,6 +58,29 @@ const ravikanthIndex = [
   ["/ask", "Reasoning Interface", "A grounded interface for interrogating the public knowledge layer and its boundaries."]
 ];
 
+const referenceShelf = [
+  {
+    href: "/wiki/operational-intelligence-canonical-doctrine",
+    title: "Canonical Doctrine",
+    body: "The definition, boundaries, ten-layer framework, OI-ROOM-001 case, glossary, and foundational references."
+  },
+  {
+    href: "/wiki/operational-intelligence-reference-architecture",
+    title: "Reference Architecture",
+    body: "Implementation-neutral contracts, schemas, state machines, governance controls, evaluation gates, and conformance levels."
+  },
+  {
+    href: "/wiki/operational-intelligence-publication-pack",
+    title: "Publication Pack",
+    body: "Diagrams, comparison tables, decision packet example, printable walkthrough, executive summary, glossary card, and PDFs."
+  },
+  {
+    href: "/wiki/operational-intelligence-evidence-pack",
+    title: "Evidence Pack",
+    body: "Benchmark rubric, control comparisons, practitioner review model, evidence ledger, and falsification criteria."
+  }
+];
+
 export default function Home() {
   return (
     <>
@@ -152,6 +175,37 @@ export default function Home() {
               </Card>
             </Link>
           ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Reference system" title="The doctrine is versioned, inspectable, and meant to be challenged.">
+        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <Card className="border-signal/30 bg-signal/[0.055]">
+            <FileText className="mb-5 text-signal" />
+            <h3 className="text-3xl font-semibold text-white">Operational Intelligence is treated as a public technical reference, not a slogan.</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">
+              The model now has a doctrine, a reference architecture, a publication pack, and an evidence pack. That means a visitor can inspect the thesis, test its boundaries, download the artifacts, and challenge the claims.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/wiki/operational-intelligence-canonical-doctrine" className="inline-flex items-center gap-2 rounded bg-signal px-5 py-3 font-semibold text-ink">
+                Read the doctrine <ArrowRight size={18} />
+              </Link>
+              <Link href="/downloads/operational-intelligence-publication-pack.pdf" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
+                Download pack <FileText size={18} />
+              </Link>
+            </div>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {referenceShelf.map((item, index) => (
+              <Link key={item.href} href={item.href}>
+                <Card className="h-full p-4 transition hover:-translate-y-1 hover:border-signal/40">
+                  <span className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </div>
       </Section>
 

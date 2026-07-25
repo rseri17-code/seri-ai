@@ -24,7 +24,19 @@ function routeFromPage(file) {
   return route === "/" ? "/" : route.replace(/\/\([^)]*\)/g, "");
 }
 
-const routes = new Set(walk(appDir).map(routeFromPage).filter(Boolean));
+function routeFromHandler(file) {
+  const relative = path.relative(appDir, file).replace(/\\/g, "/");
+  if (!relative.endsWith("/route.ts")) return null;
+  return `/${relative.replace(/\/route\.ts$/, "")}`;
+}
+
+function routeFromMetadataImage(file) {
+  const relative = path.relative(appDir, file).replace(/\\/g, "/");
+  if (!/^(opengraph-image|twitter-image)\.(tsx|ts|jsx|js)$/.test(relative)) return null;
+  return `/${relative.replace(/\.(tsx|ts|jsx|js)$/, "")}`;
+}
+
+const routes = new Set(walk(appDir).flatMap((file) => [routeFromPage(file), routeFromHandler(file), routeFromMetadataImage(file)]).filter(Boolean));
 routes.add("/sitemap.xml");
 routes.add("/robots.txt");
 

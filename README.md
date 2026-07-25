@@ -246,6 +246,7 @@ Before public release, run:
 
 ```bash
 npm run validate:content
+npm run validate:contracts
 npm run evals
 npm run typecheck
 npm run lint
@@ -331,6 +332,8 @@ The assistant must refuse confidential or employer-specific questions. It should
 3. Add Supabase environment variables to Vercel.
 4. Ingest approved public content through `/api/ingest` if you want pgvector retrieval beyond local content.
 
+The `contact_messages` table stores normal contact messages, beta feedback, and practitioner reviews. Practitioner reviews use `kind = 'practitioner-review'` and preserve structured fields in `metadata` so feedback can be analyzed without scraping prose. The `practitioner_reviews` view exposes reviewer role, doctrine verdict, strongest claim, weakest claim, evidence needed, implementation question, and notes for review operations.
+
 Example ingestion:
 
 ```bash
@@ -349,13 +352,14 @@ curl -X POST http://localhost:3000/api/ingest \
 
 ```bash
 npm run validate:content
+npm run validate:contracts
 npm run evals
 npm run typecheck
 npm run build
 ```
 
-`npm run build` runs content validation and the Ask Ravikanth trust fixtures before building.
-`npm test` runs content validation, the Ask Ravikanth trust fixtures, and TypeScript checks.
+`npm run build` runs content validation, publication contract checks, and the Ask Ravikanth trust fixtures before building.
+`npm test` runs content validation, publication contract checks, the Ask Ravikanth trust fixtures, and TypeScript checks.
 
 ## Deployment
 
@@ -375,7 +379,7 @@ npm run build
 
 - Add SSO-backed admin authentication.
 - Connect newsletter capture to Resend, ConvertKit, or another email provider.
-- Add automated eval fixtures for Ask Ravikanth refusal behavior and citation quality.
+- Add live model-quality grading once production AI keys and reviewer-labeled answer rubrics are available.
 - Move patterns and principles to MDX if editorial workflow grows.
 - Add source-level citation labels for Supabase-ingested documents.
 - Add scheduled content review for stale notes.

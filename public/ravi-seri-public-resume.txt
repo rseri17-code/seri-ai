@@ -25,6 +25,11 @@ Architecture highlights:
 - Implemented runtime governance models including fail-closed execution, freshness validation, tool budget enforcement, policy-aware safeguards, and approval checkpoints.
 - Designed telemetry and workload coordination architectures across Kubernetes, cloud platforms, and hybrid enterprise infrastructure.
 
+Public proof:
+- GitHub: github.com/rseri17-code
+- LinkedIn: linkedin.com/in/ravikanthseri
+- Reference assets: Operational Intelligence Canonical Doctrine, Reference Architecture, Publication Pack, and Evidence Pack.
+
 Experience:
 
 AIOps Lead Architect | Major regulated financial-services enterprise | 2025 - Present

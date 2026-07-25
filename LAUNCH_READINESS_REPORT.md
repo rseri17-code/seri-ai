@@ -20,11 +20,12 @@ This loop consolidated the product spine:
 - Framework, Map, Work, Ask, and Evals now share the canonical layer vocabulary.
 - Map uses the ten canonical framework layers.
 - Ask prompt contract now requires direct answer, relevant framework layer, public source, tradeoff or limitation, related page, and explicit unknowns.
-- Evals now present reproducible fixture coverage instead of an unsupported trust score.
+- Evals now present reproducible 54-fixture coverage instead of an unsupported trust score.
 - Work uses the canonical content registry and labels planned items clearly.
 - Public-safety and internal-link validation scripts were added.
 - Sitemap and robots routes were added.
 - Required release docs were added.
+- The Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, PDF exports, rendered reference diagrams, claim ledger, technical review path, JSON-LD structured data, generated social preview images, and `/llms.txt` discovery manifest were added.
 
 ## Routes Verified
 
@@ -44,6 +45,9 @@ Production build prerendered or registered these launch-critical routes:
 - `/contact`
 - `/sitemap.xml`
 - `/robots.txt`
+- `/llms.txt`
+- `/opengraph-image`
+- `/twitter-image`
 
 Rendered browser review confirmed Home, Map, Operations Room, Evals, and Work loaded without application errors. Direct browser navigation to `/framework`, `/sitemap.xml`, and `/robots.txt` was blocked by the in-app browser extension during this pass, but `npm run build` registered those routes successfully.
 
@@ -51,14 +55,15 @@ Rendered browser review confirmed Home, Map, Operations Room, Evals, and Work lo
 
 Executed and passing:
 
-- `npm run validate:content` — validated 6 wiki notes, 5 published.
-- `npm run evals` — evaluated 9 Ask Ravikanth trust fixtures, 9 passing.
+- `npm run validate:content` — validated 10 wiki notes, 9 published.
+- `npm run validate:contracts` — validated practitioner review, publication assets, structured data, `/llms.txt`, and social preview contracts.
+- `npm run evals` — evaluated 54 Ask Ravikanth trust fixtures, 54 passing.
 - `npm run typecheck` — passed.
 - `npm run lint` — passed with Next's `next lint` deprecation warning.
-- `npm run validate:links` — validated internal links across 68 files.
-- `npm run scan:public-safety` — passed across 83 files.
-- `npm test` — passed content validation, evals, and typecheck.
-- `npm run build` — passed and generated 69 routes.
+- `npm run validate:links` — validated internal links across 87 files.
+- `npm run scan:public-safety` — passed across 118 files.
+- `npm test` — passed content validation, contract validation, evals, and typecheck.
+- `npm run build` — passed and generated 77 routes.
 - `git diff --check` — passed.
 
 ## Public-Safety Findings
@@ -72,11 +77,10 @@ No confidential employer product names, internal screenshots, logs, dashboards, 
 
 ## Remaining Gaps
 
-- Operations Room should explicitly label every stage with framework mapping.
-- Ask evals should eventually run actual local/API answer checks, not only fixture metadata checks.
-- Canonical library assets need more depth before the site can be called complete from a thought-leadership standpoint.
-- Route-level `error.tsx` and `loading.tsx` files are still absent.
-- Mobile and keyboard navigation need screenshot-based audit before an unqualified launch.
+- Ask evals now include deterministic answer-shape and reference-routing checks, but still do not replace live model-quality grading.
+- The doctrine and reference assets are stronger, but still need external practitioner review, independent implementation feedback, and real baseline comparisons before claiming category authority.
+- `next lint` is deprecated and should eventually be migrated to the ESLint CLI.
+- Mobile rendering has been browser-checked on the updated reference surfaces, but a full manual keyboard/accessibility pass is still recommended before broader launch.
 
 ## Launch Recommendation
 

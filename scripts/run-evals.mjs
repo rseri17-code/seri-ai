@@ -24,15 +24,55 @@ function inferFrameworkLayers(question) {
   return [...new Set(layers)].slice(0, 4);
 }
 
+function inferRelatedArtifacts(question) {
+  const lower = question.toLowerCase();
+  const artifacts = new Set(["/framework"]);
+  if (/doctrine|definition|define|canonical|boundary|boundaries|glossary|what is operational intelligence/.test(lower)) {
+    artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
+  }
+  if (/reference architecture|architecture|implement|implementation|contract|schema|state machine|conformance|governance/.test(lower)) {
+    artifacts.add("/wiki/operational-intelligence-reference-architecture");
+  }
+  if (/publication pack|diagram|pdf|printable|executive summary|comparison table|decision packet|glossary card/.test(lower)) {
+    artifacts.add("/wiki/operational-intelligence-publication-pack");
+  }
+  if (/evidence pack|benchmark|rubric|control case|baseline|practitioner|review|falsifiable|falsification|evidence ledger|claim ledger|claim classification|established|derived|original|speculative|unsupported|prove|credible|skeptical|convince|useful/.test(lower)) {
+    artifacts.add("/wiki/operational-intelligence-evidence-pack");
+  }
+  if (/oi-room-001|operations room|investigation|incident|simulator|transaction timing/.test(lower)) {
+    artifacts.add("/investigation-room");
+  }
+  if (/eval|evaluation|gate|trust|fixture|benchmark|baseline/.test(lower)) {
+    artifacts.add("/evals");
+  }
+  if (/skeptical technical reviewer|technical reviewer|challenge the operational intelligence model|challenge.*model/.test(lower)) {
+    artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
+    artifacts.add("/wiki/operational-intelligence-reference-architecture");
+    artifacts.add("/wiki/operational-intelligence-evidence-pack");
+    artifacts.add("/evals");
+  }
+  if (/work|public work|project|building|product thesis|github|open source|open-source|code|repository/.test(lower)) {
+    artifacts.add("/work");
+  }
+  if (/resume|background/.test(lower)) {
+    artifacts.add("/resume");
+    artifacts.add("/background");
+  }
+  return [...artifacts].slice(0, 6);
+}
+
 function deterministicFallbackAnswer(question) {
   const layers = inferFrameworkLayers(question);
+  const relatedArtifacts = inferRelatedArtifacts(question);
   return [
     "Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
     `Relevant framework layers: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
-    "Public source: approved public content registry (/framework).",
+    "Public source: approved public content registry, including the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, framework, and public wiki sources.",
+    "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before presenting the doctrine as credible.",
+    "Public profile links: github.com/rseri17-code and linkedin.com/in/ravikanthseri.",
     "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, replay, evaluation gates, operational memory, and human-reviewed action.",
     "Tradeoff or limitation: this local fallback is deterministic and lexical; semantic retrieval and model-generated synthesis improve when production AI and vector search keys are configured.",
-    "Related page or artifact: start with /framework, then /investigation-room, /evals, /work, /resume, or /background depending on the question.",
+    `Related page or artifact: ${relatedArtifacts.join(", ")}.`,
     "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public knowledge base and the public-safe knowledge base.",
     "Suggested next question: Show how the shared case moves through the ten-layer framework."
   ].join("\n\n");

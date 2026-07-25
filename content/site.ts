@@ -1503,9 +1503,9 @@ export const startHerePaths = [
   {
     audience: "Executives",
     care: "Operational Intelligence turns AI from experimentation into a way to improve enterprise decision loops.",
-    readFirst: ["/manifesto", "/map", "/products/reasonops"],
+    readFirst: ["/wiki/operational-intelligence-canonical-doctrine", "/publication-pack/operational-intelligence-executive-summary.md", "/map"],
     ask: "How should executives evaluate AI systems for operational work?",
-    matters: ["/radar", "/investigation-room", "/evals"]
+    matters: ["/products/reasonops", "/investigation-room", "/wiki/operational-intelligence-evidence-pack"]
   },
   {
     audience: "Recruiters",
@@ -1517,16 +1517,16 @@ export const startHerePaths = [
   {
     audience: "Architects",
     care: "The site offers public-safe patterns for agents, retrieval, topology, evaluation, and transaction-aware reasoning.",
-    readFirst: ["/map", "/patterns", "/wiki/evaluation-and-replay"],
+    readFirst: ["/wiki/operational-intelligence-reference-architecture", "/publication-pack/operational-intelligence-diagrams.md", "/patterns"],
     ask: "How should an evidence-driven incident investigation system be designed?",
-    matters: ["/patterns/shared-context-for-enterprise-agents", "/patterns/topology-aware-reasoning"]
+    matters: ["/wiki/operational-intelligence-evidence-pack", "/patterns/shared-context-for-enterprise-agents", "/patterns/topology-aware-reasoning"]
   },
   {
     audience: "Engineers",
     care: "The material connects reliability work to practical AI system boundaries, evidence, and evaluation.",
-    readFirst: ["/library", "/wiki/evidence-before-conclusions", "/patterns/agentic-incident-investigation"],
+    readFirst: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/evidence-before-conclusions", "/patterns/agentic-incident-investigation"],
     ask: "How should an engineer keep incident agents grounded?",
-    matters: ["/wiki/shared-context-for-enterprise-agents", "/patterns/transaction-journey-reconstruction"]
+    matters: ["/wiki/operational-intelligence-evidence-pack", "/wiki/shared-context-for-enterprise-agents", "/patterns/transaction-journey-reconstruction"]
   },
   {
     audience: "Founders",
@@ -1538,6 +1538,14 @@ export const startHerePaths = [
 ];
 
 export const changelog = [
+  {
+    version: "v0.7",
+    date: "2026-07-25",
+    title: "Added publication-ready Operational Intelligence reference assets",
+    description:
+      "seri.ai now exposes the canonical doctrine, reference architecture, publication pack, evidence pack, printable artifacts, PDF exports, and homepage discovery path for technical review.",
+    tags: ["doctrine", "reference-architecture", "evidence", "publication"]
+  },
   {
     version: "v0.5",
     date: "2026-07-05",
@@ -1602,6 +1610,26 @@ export const resume = {
     "Built end-to-end agent observability patterns using OpenTelemetry-style instrumentation, evaluator scoring, orchestration introspection, telemetry receipts, and drift analysis.",
     "Implemented runtime governance models including fail-closed execution, freshness validation, tool budget enforcement, policy-aware safeguards, and approval checkpoints.",
     "Designed telemetry and workload coordination architectures across Kubernetes, cloud platforms, and hybrid enterprise infrastructure."
+  ],
+  publicProof: [
+    {
+      label: "GitHub",
+      value: "github.com/rseri17-code",
+      href: "https://github.com/rseri17-code",
+      description: "Public code and open-source work connected to Operational Intelligence, AI systems, and engineering artifacts."
+    },
+    {
+      label: "LinkedIn",
+      value: "linkedin.com/in/ravikanthseri",
+      href: "https://www.linkedin.com/in/ravikanthseri/",
+      description: "Ongoing public signal for posts, architecture thinking, certifications, and what Ravikanth is building."
+    },
+    {
+      label: "Reference assets",
+      value: "Doctrine, architecture, evidence, and publication packs",
+      href: "/wiki/operational-intelligence-publication-pack",
+      description: "Shareable public artifacts that make the Operational Intelligence thesis reviewable and portable."
+    }
   ],
   experience: [
     {
@@ -1708,6 +1736,90 @@ const allFrameworkLayers = operationalIntelligenceFramework.layers.map((layer) =
 
 export const contentRegistry: ContentRegistryItem[] = [
   {
+    title: "Operational Intelligence Canonical Doctrine v1.0",
+    slug: "operational-intelligence-canonical-doctrine",
+    summary: "The definitive public doctrine for Operational Intelligence definitions, boundaries, framework layers, OI-ROOM-001, glossary, citations, and original contribution.",
+    type: "framework",
+    route: "/wiki/operational-intelligence-canonical-doctrine",
+    status: "published",
+    frameworkLayers: allFrameworkLayers,
+    relatedPrinciples: ["Evidence before conclusions", "Transaction journeys matter more than isolated service views", "Evaluation is not a feature; it is the control system", "Operators need clarity, not more dashboards"],
+    relatedPatterns: ["/patterns/evidence-driven-rca", "/patterns/transaction-journey-reconstruction", "/patterns/agentic-incident-investigation", "/patterns/evaluation-and-replay", "/patterns/operational-memory"],
+    relatedArtifacts: ["/framework", "/map", "/investigation-room", "/evals", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack", "/ideas/operational-intelligence-is-the-new-control-plane", "/ideas/the-operational-intelligence-stack"],
+    publicSafe: "public-safe",
+    createdAt: "2026-07-17",
+    updatedAt: "2026-07-25",
+    seo: {
+      title: "Operational Intelligence Canonical Doctrine v1.0",
+      description: "The canonical public doctrine for Operational Intelligence."
+    }
+  },
+  {
+    title: "Operational Intelligence Reference Architecture v1.0",
+    slug: "operational-intelligence-reference-architecture",
+    summary: "Draft technical-review specification for implementing Operational Intelligence with layer contracts, schemas, state machines, governance, evaluation, and conformance levels.",
+    type: "framework",
+    route: "/wiki/operational-intelligence-reference-architecture",
+    status: "published",
+    frameworkLayers: allFrameworkLayers,
+    relatedPrinciples: ["Evidence before conclusions", "Evaluation is not a feature; it is the control system", "Trustworthy agents need boundaries, not just intelligence", "The best AI systems improve the human decision loop"],
+    relatedPatterns: ["/patterns/evidence-driven-rca", "/patterns/transaction-journey-reconstruction", "/patterns/evaluation-and-replay", "/patterns/human-in-the-loop-operational-ai", "/patterns/operational-memory"],
+    relatedArtifacts: ["/framework", "/map", "/investigation-room", "/evals", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack", "/operational-intelligence-reference-architecture-v1.md"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack"],
+    publicSafe: "public-safe",
+    createdAt: "2026-07-17",
+    updatedAt: "2026-07-25",
+    seo: {
+      title: "Operational Intelligence Reference Architecture v1.0",
+      description: "Draft technical-review specification for implementing Operational Intelligence."
+    }
+  },
+  {
+    title: "Operational Intelligence Publication Pack",
+    slug: "operational-intelligence-publication-pack",
+    summary: "Shareable diagrams, comparison tables, decision packet example, OI-ROOM-001 walkthrough, executive summary, glossary card, and PDF exports for the Operational Intelligence body of work.",
+    type: "artifact",
+    route: "/wiki/operational-intelligence-publication-pack",
+    status: "published",
+    frameworkLayers: allFrameworkLayers,
+    relatedPrinciples: ["Evidence before conclusions", "Transaction journeys matter more than isolated service views", "Evaluation is not a feature; it is the control system", "Operators need clarity, not more dashboards"],
+    relatedPatterns: ["/patterns/evidence-driven-rca", "/patterns/transaction-journey-reconstruction", "/patterns/evaluation-and-replay", "/patterns/operational-memory"],
+    relatedArtifacts: ["/framework", "/map", "/investigation-room", "/evals", "/wiki/operational-intelligence-evidence-pack", "/operational-intelligence-reference-architecture-v1.md", "/downloads/operational-intelligence-publication-pack.pdf"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-evidence-pack"],
+    publicSafe: "public-safe",
+    createdAt: "2026-07-25",
+    updatedAt: "2026-07-25",
+    seo: {
+      title: "Operational Intelligence Publication Pack",
+      description: "Shareable diagrams, tables, walkthroughs, cards, and PDFs for Operational Intelligence."
+    }
+  },
+  {
+    title: "Operational Intelligence Evidence Pack",
+    slug: "operational-intelligence-evidence-pack",
+    summary: "Public-safe benchmark rubric, control comparisons, practitioner review model, evidence ledger, and falsification criteria for evaluating Operational Intelligence.",
+    type: "artifact",
+    route: "/wiki/operational-intelligence-evidence-pack",
+    status: "published",
+    frameworkLayers: allFrameworkLayers,
+    relatedPrinciples: ["Evidence before conclusions", "Evaluation is not a feature; it is the control system", "Trustworthy agents need boundaries, not just intelligence", "The best AI systems improve the human decision loop"],
+    relatedPatterns: ["/patterns/evidence-driven-rca", "/patterns/evaluation-and-replay", "/patterns/human-in-the-loop-operational-ai", "/patterns/operational-memory"],
+    relatedArtifacts: ["/framework", "/map", "/investigation-room", "/evals", "/contact", "/wiki/operational-intelligence-publication-pack", "/publication-pack/operational-intelligence-evidence-pack.md"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack"],
+    publicSafe: "public-safe",
+    createdAt: "2026-07-25",
+    updatedAt: "2026-07-25",
+    seo: {
+      title: "Operational Intelligence Evidence Pack",
+      description: "Benchmark rubric, review model, and falsification criteria for Operational Intelligence."
+    }
+  },
+  {
     title: "Operational Intelligence Framework",
     slug: "operational-intelligence-framework",
     summary: operationalIntelligenceFramework.promise,
@@ -1717,9 +1829,9 @@ export const contentRegistry: ContentRegistryItem[] = [
     frameworkLayers: allFrameworkLayers,
     relatedPrinciples: operationalIntelligenceFramework.designPrinciples,
     relatedPatterns: patterns.slice(0, 6).map((pattern) => `/patterns/${pattern.slug}`),
-    relatedArtifacts: ["/map", "/investigation-room", "/evals"],
+    relatedArtifacts: ["/map", "/investigation-room", "/evals", "/wiki/operational-intelligence-evidence-pack"],
     relatedProducts: ["/products/reasonops"],
-    relatedLibraryAssets: ["/ideas/operational-intelligence-is-the-new-control-plane", "/ideas/the-operational-intelligence-stack"],
+    relatedLibraryAssets: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack", "/ideas/operational-intelligence-is-the-new-control-plane", "/ideas/the-operational-intelligence-stack"],
     publicSafe: "public-safe",
     createdAt: registryDate,
     updatedAt: registryDate,
@@ -1963,6 +2075,7 @@ export const approvedKnowledge = [
   resume.summary,
   ...resume.strengths,
   ...resume.architectureHighlights,
+  ...resume.publicProof.flatMap((item) => [item.label, item.value, item.description]),
   ...resume.experience.flatMap((item) => [item.role, item.organization, item.period, item.impact, ...item.bullets]),
   ...resume.skills.flatMap((skill) => [skill.group, ...skill.items]),
   ...resume.education,

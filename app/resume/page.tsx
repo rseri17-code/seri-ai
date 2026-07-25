@@ -1,4 +1,4 @@
-import { Award, Download, MapPin, ShieldCheck } from "lucide-react";
+import { Award, Download, ExternalLink, MapPin, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
@@ -45,6 +45,27 @@ export default function ResumePage() {
               <p key={strength} className="rounded border border-white/10 bg-ink px-4 py-3 text-slate-200">
                 {strength}
               </p>
+            ))}
+          </div>
+        </Card>
+        <Card>
+          <h2 className="text-xl font-semibold text-white">Public proof</h2>
+          <div className="mt-5 space-y-3">
+            {resume.publicProof.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+                className="block rounded border border-white/10 bg-ink px-4 py-3 transition hover:border-mint/40"
+              >
+                <span className="flex items-center justify-between gap-3">
+                  <span className="font-semibold text-white">{item.label}</span>
+                  <ExternalLink size={16} className="text-slate-500" />
+                </span>
+                <span className="mt-2 block text-sm text-mint">{item.value}</span>
+                <span className="mt-2 block text-sm leading-6 text-slate-300">{item.description}</span>
+              </a>
             ))}
           </div>
         </Card>

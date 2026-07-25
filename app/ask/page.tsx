@@ -18,6 +18,10 @@ const askContextCards: Array<{ label: string; value: string; Icon: LucideIcon }>
 ];
 
 const guidePaths = [
+  ["/wiki/operational-intelligence-canonical-doctrine", "Review doctrine", "Start with the canonical definition, boundaries, ten layers, glossary, and OI-ROOM-001 framing.", "Where should a technical reviewer start if they want the canonical doctrine?"],
+  ["/wiki/operational-intelligence-reference-architecture", "Check architecture", "Inspect implementation contracts, state machines, schemas, governance controls, and conformance.", "Which asset defines implementation contracts, schemas, state machines, and conformance?"],
+  ["/wiki/operational-intelligence-evidence-pack", "Inspect evidence", "Challenge the thesis through benchmarks, control cases, practitioner review, and falsification criteria.", "What evidence would convince a skeptical engineer that this model is useful?"],
+  ["/wiki/operational-intelligence-publication-pack", "Download references", "Use diagrams, comparison tables, a decision packet, printable walkthroughs, and PDFs.", "Where can I download diagrams, comparison tables, a decision packet, and printable walkthroughs?"],
   ["/framework", "Learn the framework", "Walk through the ten layers with OI-ROOM-001.", "Walk me through the ten-layer framework."],
   ["/investigation-room", "Run the case", "Interact with evidence, hypotheses, replay, gates, and operator controls.", "Show how the shared case moves through the framework."],
   ["/work", "Understand the work", "See systems, frameworks, artifacts, writing, and background together.", "What is Ravikanth building and what public work supports it?"],

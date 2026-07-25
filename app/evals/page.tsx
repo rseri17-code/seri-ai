@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CheckCircle2, ShieldAlert, Target } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
+import { TechnicalReviewPath } from "@/components/technical-review-path";
 import { evalReport } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -73,6 +74,10 @@ export default function EvalsPage() {
             </Card>
           ))}
         </div>
+      </Section>
+
+      <Section eyebrow="External review" title="The next trust signal is practitioner criticism.">
+        <TechnicalReviewPath />
       </Section>
     </>
   );

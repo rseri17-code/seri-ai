@@ -67,7 +67,10 @@ const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }
   {
     title: "Artifacts",
     Icon: GitBranch,
-    items: projects.slice(0, 3).map((project) => [`/projects/${project.slug}`, project.name, project.summary])
+    items: [
+      ...projects.slice(0, 3).map((project) => [`/projects/${project.slug}`, project.name, project.summary] as WorkItem),
+      ...resume.publicProof.map((item) => [item.href, item.label, item.description] as WorkItem)
+    ]
   },
   {
     title: "Writing",
