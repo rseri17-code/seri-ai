@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowRight, FileText, ShieldCheck } from "lucide-react";
 import { IncidentSimulator } from "./simulator";
 import { operationalIntelligenceSystem } from "@/content/site";
 
@@ -23,6 +23,12 @@ export default function SimulatorPage() {
             <div className="flex flex-wrap gap-2">
               <Link href="/ask" className="inline-flex items-center gap-2 rounded bg-mint px-4 py-2 text-sm font-semibold text-ink">
                 Query reasoning interface <ArrowRight size={18} />
+              </Link>
+              <Link href="/wiki/operational-intelligence-publication-pack" className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white">
+                Review packet <FileText size={16} />
+              </Link>
+              <Link href="/downloads/oi-room-001-printable-walkthrough.pdf" className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white">
+                Walkthrough PDF <FileText size={16} />
               </Link>
               <Link href="/ideas/incident-investigation-as-a-product-experience" className="rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white">
                 Read the essay

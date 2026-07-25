@@ -204,6 +204,47 @@ assertIncludes("content/wiki/operational-intelligence-publication-pack.mdx", pub
   ...pdfAssets.map((asset) => `/${asset.file.replace(/^public\//, "")}`)
 ]);
 
+const doctrine = read("content/wiki/operational-intelligence-canonical-doctrine.mdx");
+assertIncludes("content/wiki/operational-intelligence-canonical-doctrine.mdx", doctrine, [
+  "Reviewer packet",
+  "Shareable exports",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/wiki/operational-intelligence-publication-pack",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/investigation-room",
+  "/publication-pack/operational-intelligence-executive-summary.md",
+  "/publication-pack/operational-intelligence-glossary-card.md",
+  "/publication-pack/oi-room-001-printable-walkthrough.md",
+  "/downloads/operational-intelligence-executive-summary.pdf",
+  "/downloads/operational-intelligence-glossary-card.pdf",
+  "/downloads/oi-room-001-printable-walkthrough.pdf",
+  "/downloads/operational-intelligence-publication-pack.pdf"
+]);
+
+const referenceArchitecture = read("content/wiki/operational-intelligence-reference-architecture.mdx");
+assertIncludes("content/wiki/operational-intelligence-reference-architecture.mdx", referenceArchitecture, [
+  "Reviewer packet",
+  "Shareable exports",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-publication-pack",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/investigation-room",
+  "/publication-pack/operational-intelligence-diagrams.md",
+  "/publication-pack/operational-intelligence-comparison-tables.md",
+  "/publication-pack/decision-packet-example.md",
+  "/publication-pack/oi-room-001-printable-walkthrough.md",
+  "/downloads/oi-room-001-printable-walkthrough.pdf",
+  "/downloads/operational-intelligence-publication-pack.pdf"
+]);
+
+const operationsRoomPage = read("app/simulator/page.tsx");
+assertIncludes("app/simulator/page.tsx", operationsRoomPage, [
+  "/wiki/operational-intelligence-publication-pack",
+  "/downloads/oi-room-001-printable-walkthrough.pdf",
+  "Review packet",
+  "Walkthrough PDF"
+]);
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
