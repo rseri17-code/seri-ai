@@ -110,11 +110,11 @@ const markdownAssets = [
 ];
 
 const pdfAssets = [
-  "public/downloads/operational-intelligence-executive-summary.pdf",
-  "public/downloads/operational-intelligence-glossary-card.pdf",
-  "public/downloads/oi-room-001-printable-walkthrough.pdf",
-  "public/downloads/operational-intelligence-publication-pack.pdf",
-  "public/downloads/operational-intelligence-evidence-pack.pdf"
+  { file: "public/downloads/operational-intelligence-executive-summary.pdf", minBytes: 3_000 },
+  { file: "public/downloads/operational-intelligence-glossary-card.pdf", minBytes: 3_000 },
+  { file: "public/downloads/oi-room-001-printable-walkthrough.pdf", minBytes: 4_500 },
+  { file: "public/downloads/operational-intelligence-publication-pack.pdf", minBytes: 7_500 },
+  { file: "public/downloads/operational-intelligence-evidence-pack.pdf", minBytes: 9_000 }
 ];
 
 function read(file) {
@@ -163,15 +163,16 @@ for (const asset of markdownAssets) {
   }
 }
 
-for (const file of pdfAssets) {
+for (const asset of pdfAssets) {
+  const { file, minBytes } = asset;
   const full = path.join(root, file);
   if (!fs.existsSync(full)) {
     errors.push(`${file}: missing`);
     continue;
   }
   const buffer = fs.readFileSync(full);
-  if (buffer.length < 3_000) {
-    errors.push(`${file}: ${buffer.length} bytes, expected at least 3000 bytes`);
+  if (buffer.length < minBytes) {
+    errors.push(`${file}: ${buffer.length} bytes, expected at least ${minBytes} bytes`);
   }
   if (!buffer.subarray(0, 4).equals(Buffer.from("%PDF"))) {
     errors.push(`${file}: does not start with a PDF header`);
@@ -186,12 +187,21 @@ for (const file of pdfAssets) {
   }
 }
 
+const pdfGenerator = read("scripts/generate-publication-pdfs.py");
+assertIncludes("scripts/generate-publication-pdfs.py", pdfGenerator, [
+  "def flow_diagram",
+  "def evidence_graph_visual",
+  "def review_packet_visual",
+  "Control Comparison Template",
+  "Practitioner Review Rubric"
+]);
+
 const publicationPack = read("content/wiki/operational-intelligence-publication-pack.mdx");
 assertIncludes("content/wiki/operational-intelligence-publication-pack.mdx", publicationPack, [
   "Reference asset matrix",
   "PDF exports are available for sharing",
   ...markdownAssets.map((asset) => asset.route),
-  ...pdfAssets.map((file) => `/${file.replace(/^public\//, "")}`)
+  ...pdfAssets.map((asset) => `/${asset.file.replace(/^public\//, "")}`)
 ]);
 
 if (errors.length) {

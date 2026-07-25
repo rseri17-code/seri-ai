@@ -14,6 +14,7 @@ from reportlab.platypus import (
     Table,
     TableStyle,
 )
+from reportlab.graphics.shapes import Drawing, Line, Polygon, Rect, String
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -92,6 +93,84 @@ def table(rows, widths):
         )
     )
     return t
+
+
+def flow_diagram(labels, title=None, columns=5):
+    width = 7.0 * inch
+    box_w = width / columns - 0.08 * inch
+    box_h = 0.48 * inch
+    gap_x = 0.1 * inch
+    gap_y = 0.28 * inch
+    rows = (len(labels) + columns - 1) // columns
+    height = rows * (box_h + gap_y) + (0.36 * inch if title else 0)
+    drawing = Drawing(width, height)
+
+    y_offset = 0
+    if title:
+        drawing.add(String(0, height - 12, title, fontName="Helvetica-Bold", fontSize=10, fillColor=DARK))
+        y_offset = 0.36 * inch
+
+    centers = []
+    for index, label in enumerate(labels):
+        row = index // columns
+        col = index % columns
+        x = col * (box_w + gap_x)
+        y = height - y_offset - (row + 1) * box_h - row * gap_y
+        fill = colors.HexColor("#ecfeff") if index % 2 == 0 else colors.HexColor("#eff6ff")
+        drawing.add(Rect(x, y, box_w, box_h, strokeColor=BRAND, fillColor=fill, strokeWidth=1.1, rx=4, ry=4))
+        drawing.add(String(x + 8, y + 18, label, fontName="Helvetica-Bold", fontSize=7.4, fillColor=DARK))
+        centers.append((x + box_w, y + box_h / 2, x, y + box_h / 2))
+
+    for index in range(len(labels) - 1):
+        same_row = index // columns == (index + 1) // columns
+        if same_row:
+            x1, y1, _, _ = centers[index]
+            _, _, x2, y2 = centers[index + 1]
+            drawing.add(Line(x1 + 2, y1, x2 - 5, y2, strokeColor=MUTED, strokeWidth=0.8))
+            drawing.add(Polygon([x2 - 5, y2 + 3, x2, y2, x2 - 5, y2 - 3], fillColor=MUTED, strokeColor=MUTED))
+    return drawing
+
+
+def evidence_graph_visual():
+    drawing = Drawing(7.0 * inch, 2.2 * inch)
+    nodes = [
+        ("E1 Obs", 10, 120, "#ecfeff"),
+        ("E2 Obs", 10, 72, "#ecfeff"),
+        ("E3 Change", 10, 24, "#ecfeff"),
+        ("H1 Supported", 190, 96, "#f0fdf4"),
+        ("H2 Contradicted", 190, 28, "#fff7ed"),
+        ("E4 Contradiction", 370, 78, "#fef2f2"),
+        ("E5 Missing", 370, 24, "#f8fafc"),
+        ("Decision Packet", 515, 72, "#eef2ff"),
+    ]
+    for label, x, y, fill in nodes:
+        drawing.add(Rect(x, y, 112, 30, strokeColor=LINE, fillColor=colors.HexColor(fill), strokeWidth=0.8, rx=4, ry=4))
+        drawing.add(String(x + 7, y + 11, label, fontName="Helvetica-Bold", fontSize=7.3, fillColor=DARK))
+    edges = [
+        (122, 135, 190, 111, MINT),
+        (122, 87, 190, 111, MINT),
+        (122, 39, 190, 111, MINT),
+        (302, 111, 515, 87, MINT),
+        (302, 43, 515, 87, BRAND),
+        (370, 93, 302, 43, colors.HexColor("#ef4444")),
+        (370, 39, 302, 111, MUTED),
+    ]
+    for x1, y1, x2, y2, color in edges:
+        drawing.add(Line(x1, y1, x2, y2, strokeColor=color, strokeWidth=1.0))
+    drawing.add(String(10, 2, "Observation, contradiction, and missing evidence remain visible before a reviewable decision packet is drafted.", fontName="Helvetica", fontSize=7.2, fillColor=MUTED))
+    return drawing
+
+
+def review_packet_visual():
+    rows = [
+        ["Decision Packet Field", "Required content"],
+        ["Recommendation", "Action framed as a reviewable option, not autonomous execution."],
+        ["Evidence", "Supporting, contradictory, and missing evidence cited separately."],
+        ["Risk", "Blast radius, reversibility, uncertainty, and owner named."],
+        ["Approval", "Operator, approval class, fallback, and escalation path."],
+        ["Learning", "Replay seed, eval fixture, and memory update after review."],
+    ]
+    return table(rows, [2.0 * inch, 4.9 * inch])
 
 
 def build_pdf(filename, title, subtitle, story):
@@ -230,10 +309,21 @@ def publication_pack():
         ),
         p("Architecture Flow", "H1Seri"),
         p("Signal -> Transaction -> Topology -> Evidence -> Reasoning -> Memory -> Evaluation -> Decision -> Operator -> Learning. Learning feeds reviewed memory and future evaluation fixtures."),
+        flow_diagram(["Signal", "Transaction", "Topology", "Evidence", "Reasoning", "Memory", "Evaluation", "Decision", "Operator", "Learning"], "Ten-layer operational reasoning path"),
         p("Evaluation Rule", "H1Seri"),
         p("No aggregate trust score replaces dimension-level results. Retrieval, grounding, citation, refusal, evidence attribution, hypothesis quality, contradiction handling, replay quality, latency, operator approval, and recommendation safety must be evaluated separately."),
         p("Evidence Question", "H1Seri"),
         p("The question that moves the model forward is: what evidence would convince another experienced engineer that this model is useful? The answer should come from implementation examples, benchmarks, case studies, evaluations, practitioner feedback, and backward-compatible refinements."),
+        PageBreak(),
+        p("Evidence Graph Shape", "H1Seri"),
+        p("A publication-ready Operational Intelligence artifact must show how evidence supports, contradicts, limits, or informs a hypothesis. The graph below uses only the synthetic OI-ROOM-001 case."),
+        evidence_graph_visual(),
+        Spacer(1, 10),
+        p("Decision Packet Structure", "H1Seri"),
+        review_packet_visual(),
+        Spacer(1, 10),
+        p("Cross-reference rule", "H1Seri"),
+        p("Definitions and boundaries should point to the Canonical Doctrine. Implementation behavior should point to the Reference Architecture. Shareable diagrams, tables, walkthroughs, and PDFs should point to the Publication Pack. Proof, benchmarks, practitioner review, and falsification should point to the Evidence Pack."),
     ]
     return build_pdf("operational-intelligence-publication-pack.pdf", "Operational Intelligence Publication Pack", "Shareable navigation layer for the doctrine, reference architecture, Operations Room, diagrams, tables, and examples.", story)
 
@@ -302,6 +392,32 @@ def evidence_pack():
                 ["Learning loop", "Reviewed outcome updates memory, patterns, docs, and fixtures.", "Learning remains unstructured narrative."],
             ],
             [1.65 * inch, 3.0 * inch, 2.25 * inch],
+        ),
+        PageBreak(),
+        p("Control Comparison Template", "H1Seri"),
+        table(
+            [
+                ["Criterion", "Dashboard-only", "Chatbot-only", "Operational Intelligence"],
+                ["Evidence trail", "Signals visible but reasoning is external", "Often summarized without stable receipts", "Claims cite typed evidence and unknowns"],
+                ["Hypotheses", "Human-maintained outside the tool", "May collapse to first plausible answer", "Lifecycle states and falsification criteria are visible"],
+                ["Contradictions", "Require manual noticing", "May be hidden by fluent narrative", "Contradictory evidence is first-class"],
+                ["Action safety", "Handled by process outside dashboard", "Risk of over-suggesting action", "Decision packet names risk, owner, and approval class"],
+                ["Learning", "Postmortem and memory are separate", "Conversation history is weak memory", "Reviewed outcome becomes replay, fixture, and memory"],
+            ],
+            [1.35 * inch, 1.85 * inch, 1.85 * inch, 1.85 * inch],
+        ),
+        Spacer(1, 10),
+        p("Practitioner Review Rubric", "H1Seri"),
+        table(
+            [
+                ["Reviewer", "Question they should be able to answer", "Weak signal"],
+                ["SRE", "Where does the model improve investigation without replacing incident command?", "Cannot distinguish OI from observability or AIOps"],
+                ["Architect", "Can two teams implement the contracts similarly?", "Layer boundaries are interpreted incompatibly"],
+                ["AI engineer", "Which gates prevent unsafe model behavior?", "Only aggregate scores or confidence prose are shown"],
+                ["Governance reviewer", "Where are approval, audit, refusal, and data boundaries enforced?", "Autonomy scope is implicit"],
+                ["Executive", "What evidence would justify further investment?", "Only narrative claims, no benchmark or feedback path"],
+            ],
+            [1.25 * inch, 3.35 * inch, 2.3 * inch],
         ),
         p("Weakening Conditions", "H1Seri"),
         p("The doctrine should be revised if experienced SRE teams cannot distinguish it from existing practice, if independent teams interpret the layers incompatibly, if evidence graphs add complexity without clarity, or if evaluation gates fail to catch obvious regressions."),
