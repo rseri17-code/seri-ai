@@ -29,6 +29,45 @@ const canonicalRoutes = [
   "/contact"
 ];
 
+const routeMetadataContracts = [
+  {
+    file: "app/admin/page.tsx",
+    required: ["export const metadata", "Content Operations Dashboard | seri.ai", "index: false", "follow: false"]
+  },
+  {
+    file: "app/architecture-lab/page.tsx",
+    required: ["export const metadata", "Architecture Lab | seri.ai", "Agentic SRE", "operator-controlled AI systems"]
+  },
+  {
+    file: "app/contact/layout.tsx",
+    required: ["export const metadata", "Contact Ravikanth Seri | seri.ai", "practitioner review"]
+  },
+  {
+    file: "app/ideas/page.tsx",
+    required: ["export const metadata", "Ideas | seri.ai", "Essays, memos, and field notes"]
+  },
+  {
+    file: "app/ideas/[slug]/page.tsx",
+    required: ["generateMetadata", "article.title", "article.dek", "canonical: `/ideas/${article.slug}`", "type: \"article\""]
+  },
+  {
+    file: "app/interview-mode/page.tsx",
+    required: ["export const metadata", "Interview Mode | seri.ai", "technical reviewers"]
+  },
+  {
+    file: "app/investigation-room/page.tsx",
+    required: ["export { metadata } from \"../simulator/page\""]
+  },
+  {
+    file: "app/projects/[slug]/page.tsx",
+    required: ["generateMetadata", "project.name", "project.summary", "canonical: `/projects/${project.slug}`"]
+  },
+  {
+    file: "app/simulator/page.tsx",
+    required: ["export const metadata", "Operations Room | seri.ai", "OI-ROOM-001", "human approval"]
+  }
+];
+
 function read(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), "utf8");
 }
@@ -57,6 +96,11 @@ expectIncludes("app/layout.tsx", layout, [
   "card: \"summary_large_image\"",
   "url: \"/twitter-image\""
 ]);
+
+for (const contract of routeMetadataContracts) {
+  const content = read(contract.file);
+  expectIncludes(contract.file, content, contract.required);
+}
 
 const openGraphImage = read("app/opengraph-image.tsx");
 expectIncludes("app/opengraph-image.tsx", openGraphImage, [

@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { Chat } from "@/components/chat";
 import { Section } from "@/components/section";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Interview Mode | seri.ai",
+  description: "Structured Ask Ravikanth mode for recruiters, collaborators, event hosts, and technical reviewers exploring public Operational Intelligence work."
+};
 
 export default function InterviewModePage() {
   return (

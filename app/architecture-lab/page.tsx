@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Network, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { architectureCards } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: "Architecture Lab | seri.ai",
+  description: "Reusable architecture cards for Operational Intelligence, Agentic SRE, evidence graphs, evaluation gates, and operator-controlled AI systems."
+};
 
 export default function ArchitectureLabPage() {
   return (

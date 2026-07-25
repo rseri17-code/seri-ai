@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/card";
@@ -7,6 +8,29 @@ import { buildPublishingIndex, getRelatedAssets } from "@/lib/publishing";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = articles.find((item) => item.slug === slug);
+
+  return {
+    title: article ? `${article.title} | seri.ai Ideas` : "Ideas | seri.ai",
+    description: article?.dek,
+    alternates: article
+      ? {
+          canonical: `/ideas/${article.slug}`
+        }
+      : undefined,
+    openGraph: article
+      ? {
+          title: article.title,
+          description: article.dek,
+          type: "article",
+          url: `/ideas/${article.slug}`
+        }
+      : undefined
+  };
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {

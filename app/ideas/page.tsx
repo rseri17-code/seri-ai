@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { articles } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: "Ideas | seri.ai",
+  description: "Essays, memos, and field notes by Ravikanth Seri on Operational Intelligence, Agentic SRE, Transaction Intelligence, evidence graphs, and AI evaluation."
+};
 
 export default function IdeasPage() {
   return (

@@ -1,9 +1,32 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/card";
 import { projects } from "@/content/site";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((item) => item.slug === slug);
+
+  return {
+    title: project ? `${project.name} | seri.ai Projects` : "Projects | seri.ai",
+    description: project?.summary,
+    alternates: project
+      ? {
+          canonical: `/projects/${project.slug}`
+        }
+      : undefined,
+    openGraph: project
+      ? {
+          title: project.name,
+          description: project.summary,
+          url: `/projects/${project.slug}`
+        }
+      : undefined
+  };
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {

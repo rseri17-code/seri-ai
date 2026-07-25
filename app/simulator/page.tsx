@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, FileText, ShieldCheck } from "lucide-react";
 import { IncidentSimulator } from "./simulator";
 import { operationalIntelligenceSystem } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: "Operations Room | seri.ai",
+  description: "A public-safe Operational Intelligence workbench for OI-ROOM-001: evidence graph, hypothesis lifecycle, replay, evaluation gates, and human approval."
+};
 
 export default function SimulatorPage() {
   return (

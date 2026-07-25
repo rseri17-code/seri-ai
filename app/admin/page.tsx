@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { articles, projects, architectureCards } from "@/content/site";
 import { buildKnowledgeGraph, buildMonthlyNewsletterExport, buildPublishingIndex } from "@/lib/publishing";
+
+export const metadata: Metadata = {
+  title: "Content Operations Dashboard | seri.ai",
+  description: "Operational dashboard for seri.ai publishing, knowledge graph, practitioner review, and Ask-ready content workflows.",
+  robots: {
+    index: false,
+    follow: false
+  }
+};
 
 export default function AdminPage() {
   const publishingAssets = buildPublishingIndex();
