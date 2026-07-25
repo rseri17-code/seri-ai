@@ -142,29 +142,43 @@ function renderTable(block: string, id: string) {
   const body = rows.slice(2).map(parseTableRow);
 
   return (
-    <div id={id} key={id} className="max-w-full overflow-x-auto rounded-lg border border-white/10 bg-black/20">
-      <table className="min-w-full text-left text-sm">
-        <thead className="bg-white/[0.04] text-xs uppercase text-slate-400">
-          <tr>
-            {header.map((cell) => (
-              <th key={cell} scope="col" className="border-b border-white/10 px-4 py-3 font-semibold">
-                {inlineMarkdown(cell)}
-              </th>
+    <div id={id} key={id} className="rounded-lg border border-white/10 bg-black/20">
+      <div className="space-y-3 p-3 md:hidden">
+        {body.map((row, rowIndex) => (
+          <div key={`${id}-card-${rowIndex}`} className="rounded border border-white/10 bg-white/[0.035] p-4">
+            {row.map((cell, cellIndex) => (
+              <div key={`${id}-mobile-cell-${rowIndex}-${cellIndex}`} className="border-b border-white/10 py-3 first:pt-0 last:border-0 last:pb-0">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">{header[cellIndex] ?? `Column ${cellIndex + 1}`}</p>
+                <div className="mt-1 text-sm leading-6 text-slate-200">{inlineMarkdown(cell)}</div>
+              </div>
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {body.map((row, rowIndex) => (
-            <tr key={`${id}-row-${rowIndex}`} className="border-b border-white/10 last:border-0">
-              {row.map((cell, cellIndex) => (
-                <td key={`${id}-cell-${rowIndex}-${cellIndex}`} className="px-4 py-3 align-top text-slate-200">
+          </div>
+        ))}
+      </div>
+      <div className="hidden max-w-full overflow-x-auto md:block">
+        <table className="min-w-full text-left text-sm">
+          <thead className="bg-white/[0.04] text-xs uppercase text-slate-400">
+            <tr>
+              {header.map((cell) => (
+                <th key={cell} scope="col" className="border-b border-white/10 px-4 py-3 font-semibold">
                   {inlineMarkdown(cell)}
-                </td>
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {body.map((row, rowIndex) => (
+              <tr key={`${id}-row-${rowIndex}`} className="border-b border-white/10 last:border-0">
+                {row.map((cell, cellIndex) => (
+                  <td key={`${id}-cell-${rowIndex}-${cellIndex}`} className="px-4 py-3 align-top text-slate-200">
+                    {inlineMarkdown(cell)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

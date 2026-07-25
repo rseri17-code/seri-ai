@@ -106,6 +106,19 @@ const header = read("components/header.tsx");
   }
 });
 
+const wikiRenderer = read("app/wiki/[slug]/page.tsx");
+[
+  "md:hidden",
+  "md:block",
+  "mobile-cell",
+  "header[cellIndex]",
+  "max-w-full overflow-x-auto"
+].forEach((required) => {
+  if (!wikiRenderer.includes(required)) {
+    errors.push(`app/wiki/[slug]/page.tsx: missing responsive table contract "${required}"`);
+  }
+});
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
