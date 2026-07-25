@@ -1925,6 +1925,27 @@ export const contentRegistry: ContentRegistryItem[] = [
     }
   },
   {
+    title: "Ravikanth Seri Work Index",
+    slug: "ravikanth-seri-work-index",
+    summary: "Canonical public index of Ravikanth Seri's Operational Intelligence systems, frameworks, architecture artifacts, public writing, open-source signal, and professional background.",
+    type: "background",
+    route: "/work",
+    status: "published",
+    frameworkLayers: ["Operator Layer", "Reasoning Layer", "Evaluation Layer", "Learning Layer"],
+    relatedPrinciples: ["Evidence before conclusions", "The best AI systems improve the human decision loop", "Operational memory compounds"],
+    relatedPatterns: ["/patterns/evidence-driven-rca", "/patterns/agentic-incident-investigation", "/patterns/evaluation-and-replay"],
+    relatedArtifacts: ["/framework", "/investigation-room", "/evals", "/resume", "/background", "/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack"],
+    publicSafe: "public-safe",
+    createdAt: registryDate,
+    updatedAt: "2026-07-25",
+    seo: {
+      title: "Ravikanth Seri Work Index",
+      description: "Public index of Ravikanth Seri's Operational Intelligence systems, reference architectures, artifacts, writing, and professional background."
+    }
+  },
+  {
     title: "Professional Background",
     slug: "professional-background",
     summary: resume.summary,
