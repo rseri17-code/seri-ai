@@ -609,7 +609,7 @@
     "The knowledge base intentionally excludes confidential implementation details, so some questions will be refused or marked uncovered.",
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
-  "generatedAt": "2026-07-25T18:35:19.007Z",
+  "generatedAt": "2026-07-25T18:45:13.276Z",
   "fixtureCount": 55,
   "passingFixtures": 55
 }
