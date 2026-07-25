@@ -5,7 +5,7 @@ import { architectureCards } from "@/content/site";
 
 export default function ArchitectureLabPage() {
   return (
-    <Section eyebrow="Architecture lab" title="Reusable patterns for AI-native operational platforms.">
+    <Section eyebrow="Architecture lab" title="Reusable patterns for AI-native operational platforms." level="h1">
       <div className="grid gap-4 md:grid-cols-2">
         {architectureCards.map((card) => (
           <Card key={card.title}>

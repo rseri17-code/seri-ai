@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function SearchPage() {
   return (
-    <Section eyebrow="Search" title="Search the public Operational Intelligence knowledge base.">
+    <Section eyebrow="Search" title="Search the public Operational Intelligence knowledge base." level="h1">
       <ContentSearch sources={buildPublicSourceIndex()} />
     </Section>
   );

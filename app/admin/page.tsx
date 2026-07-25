@@ -16,7 +16,7 @@ export default function AdminPage() {
   ];
 
   return (
-    <Section eyebrow="Admin" title="Content operations dashboard.">
+    <Section eyebrow="Admin" title="Content operations dashboard." level="h1">
       <div className="grid gap-4 md:grid-cols-3">
         <Card>
           <p className="text-sm text-slate-400">Approved articles</p>

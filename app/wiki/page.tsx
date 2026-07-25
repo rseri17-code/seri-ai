@@ -16,7 +16,7 @@ export default function WikiPage() {
   const sources = buildPublicSourceIndex();
 
   return (
-    <Section eyebrow="Public wiki" title="Approved public notes for the Operational Intelligence body of work.">
+    <Section eyebrow="Public wiki" title="Approved public notes for the Operational Intelligence body of work." level="h1">
       <div className="mb-8">
         <EmailCapture />
       </div>

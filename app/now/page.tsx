@@ -20,7 +20,7 @@ export default function NowPage() {
   ];
 
   return (
-    <Section eyebrow="Now" title="What Ravikanth is actively building and thinking through.">
+    <Section eyebrow="Now" title="What Ravikanth is actively building and thinking through." level="h1">
       <Card className="mb-5 border-mint/25 bg-mint/[0.05]">
         <BrainCircuit className="mb-5 text-mint" />
         <h2 className="text-3xl font-semibold text-white">The current work is Agentic SRE as an inspectable operating system.</h2>

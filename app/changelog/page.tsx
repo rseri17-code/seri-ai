@@ -13,7 +13,7 @@ export default function ChangelogPage() {
   const entries = [...getPublicationChangelog().slice(0, 20), ...changelog];
 
   return (
-    <Section eyebrow="Changelog" title="seri.ai as a living product.">
+    <Section eyebrow="Changelog" title="seri.ai as a living product." level="h1">
       <div className="space-y-4">
         {entries.map((entry) => (
           <Card key={entry.version}>

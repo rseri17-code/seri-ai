@@ -51,7 +51,7 @@ const artifacts = [
 export default function ArtifactsPage() {
   return (
     <>
-      <Section eyebrow="Artifacts" title="Public-safe proof objects for the Operational Intelligence thesis.">
+      <Section eyebrow="Artifacts" title="Public-safe proof objects for the Operational Intelligence thesis." level="h1">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {artifacts.map((artifact) => {
             const Icon = artifact.icon;

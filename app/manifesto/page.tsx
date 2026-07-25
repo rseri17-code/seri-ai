@@ -52,7 +52,7 @@ const argumentsForCategory = [
 export default function ManifestoPage() {
   return (
     <>
-      <Section eyebrow="Founding thesis" title="Operational Intelligence Is the New Control Plane">
+      <Section eyebrow="Founding thesis" title="Operational Intelligence Is the New Control Plane" level="h1">
         <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <FileText className="mb-5 text-mint" />

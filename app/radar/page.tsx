@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RadarPage() {
   return (
     <>
-      <Section eyebrow="Thesis radar" title={thesisRadar.title}>
+      <Section eyebrow="Thesis radar" title={thesisRadar.title} level="h1">
         <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
           <Card>
             <Radar className="mb-5 text-mint" />

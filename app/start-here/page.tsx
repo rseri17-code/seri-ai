@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function StartHerePage() {
   return (
-    <Section eyebrow="Start here" title="Choose the path that matches why you came.">
+    <Section eyebrow="Start here" title="Choose the path that matches why you came." level="h1">
       <div className="grid gap-4 lg:grid-cols-2">
         {startHerePaths.map((path) => (
           <Card key={path.audience}>

@@ -21,7 +21,7 @@ const modes = [
 export default function InterviewPage() {
   return (
     <>
-      <Section eyebrow="Interview" title="Grounded interview mode over approved public evidence.">
+      <Section eyebrow="Interview" title="Grounded interview mode over approved public evidence." level="h1">
         <div className="grid gap-4 md:grid-cols-5">
           {modes.map(([title, description, Icon]) => (
             <Card key={String(title)}>

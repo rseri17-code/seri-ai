@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PrinciplesPage() {
   return (
-    <Section eyebrow="Operating principles" title="A compact operating philosophy for AI-native enterprise operations.">
+    <Section eyebrow="Operating principles" title="A compact operating philosophy for AI-native enterprise operations." level="h1">
       <div className="grid gap-4">
         {principles.map((principle, index) => (
           <Card key={principle.slug} className="scroll-mt-28" >

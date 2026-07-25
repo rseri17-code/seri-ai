@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <Section eyebrow="Products" title="Product concepts under the seri.ai operating system.">
+    <Section eyebrow="Products" title="Product concepts under the seri.ai operating system." level="h1">
       <div className="grid gap-4 md:grid-cols-2">
         {products.map((product) => (
           <Link key={product.slug} href={`/products/${product.slug}`}>

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function BriefPage() {
   return (
     <>
-      <Section eyebrow="Category brief" title={categoryBrief.title}>
+      <Section eyebrow="Category brief" title={categoryBrief.title} level="h1">
         <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
           <Card>
             <FileText className="mb-5 text-mint" />
