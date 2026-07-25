@@ -82,9 +82,20 @@ expectIncludes(contactPagePath, contactPage, [
   "practitioner_review_submit"
 ]);
 
-expectIncludes(evidenceWikiPath, evidenceWiki, ["Practitioner Review", "/contact"]);
-expectIncludes(evidenceArtifactPath, evidenceArtifact, ["Structured practitioner review path: /contact"]);
-expectIncludes(pdfScriptPath, pdfScript, ["Structured practitioner review", "/contact"]);
+const conformanceTerms = [
+  "Minimum Conformance Checklist",
+  "Evidence before conclusion",
+  "Transaction context",
+  "Topology boundary",
+  "Hypothesis lifecycle",
+  "Operator control",
+  "Replay seed",
+  "Conformance Verdicts"
+];
+
+expectIncludes(evidenceWikiPath, evidenceWiki, ["Practitioner Review", "/contact", ...conformanceTerms]);
+expectIncludes(evidenceArtifactPath, evidenceArtifact, ["Structured practitioner review path: /contact", ...conformanceTerms]);
+expectIncludes(pdfScriptPath, pdfScript, ["Structured practitioner review", "/contact", "Minimum Conformance Checklist", "Evidence before conclusion", "Replay seed"]);
 expectFile("public/downloads/operational-intelligence-evidence-pack.pdf");
 expectIncludes(supabaseSchemaPath, supabaseSchema, [
   "kind text",
@@ -100,7 +111,10 @@ expectIncludes(publishingPath, publishing, [
   "referencePublicationAssets",
   "getShareableReferenceRoutes",
   "/publication-pack/operational-intelligence-evidence-pack.md",
-  "/downloads/operational-intelligence-publication-pack.pdf"
+  "/downloads/operational-intelligence-publication-pack.pdf",
+  "minimum conformance checklist",
+  "observable proof",
+  "failure signals"
 ]);
 expectIncludes(sitemapPath, sitemap, ["getShareableReferenceRoutes", "shareableReferenceRoutes"]);
 expectIncludes(structuredDataPath, structuredData, [

@@ -2,7 +2,7 @@
   "title": "Public Operational Intelligence Trust Report",
   "summary": "seri.ai treats AI behavior as a product surface. The assistant is expected to stay grounded in approved public content, refuse confidential topics, cite useful sources, and name uncertainty instead of inventing authority.",
   "lastRun": "2026-07-25",
-  "version": "technical-review-path-2026-07-25",
+  "version": "conformance-checklist-2026-07-25",
   "modelBasedEvaluationUsed": false,
   "method": "Deterministic fixture validation plus answer-shape checks for local fallback behavior. This is not a live model-quality benchmark.",
   "generatedBy": "npm run evals",
@@ -560,6 +560,17 @@
       "result": "Pass"
     },
     {
+      "prompt": "Where is the minimum conformance checklist for evaluating whether an implementation actually follows Operational Intelligence?",
+      "expected": "Route to the Evidence Pack and Reference Architecture for conformance proofs.",
+      "requiredAnswerIncludes": [
+        "Related page or artifact",
+        "/wiki/operational-intelligence-evidence-pack",
+        "/wiki/operational-intelligence-reference-architecture",
+        "Evidence Pack"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Which public asset should Ask Ravikanth use for diagrams, PDFs, and shareable reference artifacts?",
       "expected": "Prefer the Publication Pack for diagrams and shareable artifacts.",
       "requiredAnswerIncludes": [
@@ -598,7 +609,7 @@
     "The knowledge base intentionally excludes confidential implementation details, so some questions will be refused or marked uncovered.",
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
-  "generatedAt": "2026-07-25T17:53:05.536Z",
-  "fixtureCount": 54,
-  "passingFixtures": 54
+  "generatedAt": "2026-07-25T18:35:19.007Z",
+  "fixtureCount": 55,
+  "passingFixtures": 55
 }

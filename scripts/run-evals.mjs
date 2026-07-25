@@ -36,7 +36,7 @@ function inferRelatedArtifacts(question) {
   if (/publication pack|diagram|pdf|printable|executive summary|comparison table|decision packet|glossary card/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-publication-pack");
   }
-  if (/evidence pack|benchmark|rubric|control case|baseline|practitioner|review|falsifiable|falsification|evidence ledger|claim ledger|claim classification|established|derived|original|speculative|unsupported|prove|credible|skeptical|convince|useful/.test(lower)) {
+  if (/evidence pack|benchmark|rubric|control case|baseline|practitioner|review|conformance checklist|minimum conformance|observable proof|failure signal|falsifiable|falsification|evidence ledger|claim ledger|claim classification|established|derived|original|speculative|unsupported|prove|credible|skeptical|convince|useful/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
   }
   if (/oi-room-001|operations room|investigation|incident|simulator|transaction timing/.test(lower)) {

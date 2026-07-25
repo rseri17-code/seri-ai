@@ -139,7 +139,33 @@ The doctrine should be revised if evidence shows that:
 - Evaluation gates fail to catch regressions that human reviewers consider obvious.
 - The workflow slows urgent response without improving learning, auditability, or decision quality.
 
-## 10. Next Evidence Priorities
+## 10. Minimum Conformance Checklist
+
+An implementation should not be described as Operational Intelligence unless it can show these proofs. The checklist is implementation-neutral and does not require a specific vendor, model, database, cloud, graph engine, ticketing system, or UI.
+
+| Requirement | Observable proof | Failure signal | Primary reviewer |
+| --- | --- | --- | --- |
+| Evidence before conclusion | Every material recommendation cites approved evidence or states missing evidence. | Fluent RCA with no source trail. | SRE reviewer |
+| Transaction context | The investigation identifies the affected customer, process, or business journey, not only a component. | Local service metric is treated as the whole incident. | Principal architect |
+| Topology boundary | Dependency, ownership, and blast-radius assumptions are visible and freshness is stated. | Stale service map is treated as fact. | Principal architect |
+| Evidence typing | Observations, inferences, contradictions, missing evidence, and confirmed facts are visually or structurally distinct. | Contradictory or unavailable data is hidden in prose. | SRE reviewer |
+| Hypothesis lifecycle | At least two competing hypotheses can move through proposed, supported, contradicted, rejected, or confirmed states. | The first plausible explanation becomes the answer. | SRE reviewer |
+| Evaluation gate | Retrieval, grounding, citation relevance, refusal, contradiction handling, and action safety are tested separately. | A single aggregate score implies trust. | AI engineer |
+| Decision packet | Consequential action is represented as a reviewable packet with risk, reversibility, owner, fallback, and approval class. | Assistant recommends or executes action without review context. | Governance reviewer |
+| Operator control | Human approval, escalation, override, and refusal boundaries are explicit. | Automation boundary is implied or hidden. | Governance reviewer |
+| Replay seed | The case can be reproduced from approved public-safe context and versioned expected behavior. | The demo cannot be rerun or compared after changes. | AI engineer |
+| Learning loop | Reviewed outcomes update memory, patterns, documentation, and future fixtures. | Post-incident learning remains unstructured narrative. | Executive reviewer |
+
+## 11. Conformance Verdicts
+
+- Conforms: the implementation supplies observable proof for every requirement.
+- Partially conforms: the implementation satisfies the invariant but lacks one or more measurable proofs.
+- Does not conform: the implementation violates an invariant, hides uncertainty, skips approval, invents evidence, or cannot be replayed.
+- Not assessable: the implementation does not expose enough information for an independent reviewer to decide.
+
+The current public Operations Room should be treated as a synthetic conformance example, not production evidence. Its job is to make the checklist inspectable.
+
+## 12. Next Evidence Priorities
 
 1. Run practitioner review with at least one SRE, one architect, one AI engineer, and one governance reviewer.
 2. Add replay-backed fixtures for OI-ROOM-001 beyond assistant-only Q&A.

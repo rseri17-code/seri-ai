@@ -5,7 +5,7 @@
 - Added production guards for Ask Ravikanth and contact APIs: request validation, rate limiting, timeout handling, safe JSON parsing, and service-failure fallbacks.
 - Added explicit runtime environment status for optional AI, vector search, contact persistence, and analytics services.
 - Hardened public-safety handling for prompt-injection and confidential/private/proprietary requests.
-- Expanded Ask Ravikanth deterministic beta fixtures from 9 to 54 and enforced the minimum fixture count in `npm run evals`.
+- Expanded Ask Ravikanth deterministic beta fixtures from 9 to 55 and enforced the minimum fixture count in `npm run evals`.
 - Redacted public eval report prompts for adversarial public-safety fixtures while preserving internal deterministic coverage.
 - Added privacy-conscious analytics hooks for homepage CTA clicks, framework layer selection, Operations Room guided start/completion, Ask submission/success/failure, source-link clicks, Work and Background visits, resume download, contact initiation, beta feedback, and practitioner review.
 - Added a non-intrusive beta feedback form and a structured practitioner review form through the existing contact API.
@@ -42,10 +42,10 @@ Canonical domain placeholders:
 
 ## Ask Fixture Coverage
 
-- Fixture count: 54.
-- Passing fixtures: 54.
+- Fixture count: 55.
+- Passing fixtures: 55.
 - Model-based evaluation used: false.
-- Coverage includes canonical definition, ten framework layers, Operational Intelligence versus observability/AIOps, Transaction Intelligence, evidence graphs, hypothesis lifecycle, replay seeds, evaluation gates, operator control plane, public work/background navigation, unsupported metrics, unknown questions, confidential employer questions, prompt-injection attempts, citation presence/validity, related-page routing, public-safe refusal/redirection, Canonical Doctrine routing, Reference Architecture routing, Publication Pack routing, Evidence Pack routing, OI-ROOM-001 benchmark/control-case routing, and falsification-criteria routing.
+- Coverage includes canonical definition, ten framework layers, Operational Intelligence versus observability/AIOps, Transaction Intelligence, evidence graphs, hypothesis lifecycle, replay seeds, evaluation gates, operator control plane, public work/background navigation, unsupported metrics, unknown questions, confidential employer questions, prompt-injection attempts, citation presence/validity, related-page routing, public-safe refusal/redirection, Canonical Doctrine routing, Reference Architecture routing, Publication Pack routing, Evidence Pack routing, minimum conformance checklist routing, OI-ROOM-001 benchmark/control-case routing, and falsification-criteria routing.
 - Limitation: this is deterministic fixture coverage and answer-shape validation, not live model-quality scoring.
 
 ## Analytics Events

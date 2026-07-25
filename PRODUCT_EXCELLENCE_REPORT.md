@@ -81,7 +81,7 @@ No confidential employer product names, private system names, internal logs, scr
 
 - `npm run validate:content` — passed
 - `npm run validate:contracts` — passed
-- `npm run evals` — 54 fixtures passing with answer-shape, reference-routing, public-proof, claim-discipline, and technical-review path checks
+- `npm run evals` — 55 fixtures passing with answer-shape, reference-routing, public-proof, claim-discipline, minimum-conformance, and technical-review path checks
 - `npm run typecheck` — passed
 - `npm run lint` — passed with Next.js lint deprecation warning
 - `npm run validate:links` — passed across 87 files

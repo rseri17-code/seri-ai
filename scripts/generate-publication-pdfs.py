@@ -286,6 +286,23 @@ def evidence_pack():
             ],
             [2.15 * inch, 1.35 * inch, 1.15 * inch, 2.25 * inch],
         ),
+        p("Minimum Conformance Checklist", "H1Seri"),
+        table(
+            [
+                ["Requirement", "Observable proof", "Failure signal"],
+                ["Evidence before conclusion", "Recommendations cite approved evidence or missing evidence.", "Fluent RCA with no source trail."],
+                ["Transaction context", "Affected customer, process, or business journey is identified.", "Local metric treated as the whole incident."],
+                ["Topology boundary", "Dependency, ownership, blast radius, and freshness are visible.", "Stale service map treated as fact."],
+                ["Evidence typing", "Observation, inference, contradiction, missing evidence, and fact are separated.", "Contradictions hidden in prose."],
+                ["Hypothesis lifecycle", "Competing hypotheses move through explicit states.", "First plausible explanation becomes final answer."],
+                ["Evaluation gate", "Grounding, citations, refusal, contradictions, and action safety are tested separately.", "Single aggregate score implies trust."],
+                ["Decision packet", "Action includes risk, reversibility, owner, fallback, and approval class.", "Assistant recommends action without review context."],
+                ["Operator control", "Approval, escalation, override, and refusal boundaries are explicit.", "Automation boundary is hidden."],
+                ["Replay seed", "Scenario can be reproduced from approved context and expected behavior.", "Demo cannot be rerun after changes."],
+                ["Learning loop", "Reviewed outcome updates memory, patterns, docs, and fixtures.", "Learning remains unstructured narrative."],
+            ],
+            [1.65 * inch, 3.0 * inch, 2.25 * inch],
+        ),
         p("Weakening Conditions", "H1Seri"),
         p("The doctrine should be revised if experienced SRE teams cannot distinguish it from existing practice, if independent teams interpret the layers incompatibly, if evidence graphs add complexity without clarity, or if evaluation gates fail to catch obvious regressions."),
     ]

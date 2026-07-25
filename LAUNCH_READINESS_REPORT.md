@@ -20,7 +20,7 @@ This loop consolidated the product spine:
 - Framework, Map, Work, Ask, and Evals now share the canonical layer vocabulary.
 - Map uses the ten canonical framework layers.
 - Ask prompt contract now requires direct answer, relevant framework layer, public source, tradeoff or limitation, related page, and explicit unknowns.
-- Evals now present reproducible 54-fixture coverage instead of an unsupported trust score.
+- Evals now present reproducible 55-fixture coverage instead of an unsupported trust score.
 - Work uses the canonical content registry and labels planned items clearly.
 - Public-safety and internal-link validation scripts were added.
 - Sitemap and robots routes were added.
@@ -57,7 +57,7 @@ Executed and passing:
 
 - `npm run validate:content` — validated 10 wiki notes, 9 published.
 - `npm run validate:contracts` — validated practitioner review, publication assets, structured data, `/llms.txt`, and social preview contracts.
-- `npm run evals` — evaluated 54 Ask Ravikanth trust fixtures, 54 passing.
+- `npm run evals` — evaluated 55 Ask Ravikanth trust fixtures, 55 passing.
 - `npm run typecheck` — passed.
 - `npm run lint` — passed with Next's `next lint` deprecation warning.
 - `npm run validate:links` — validated internal links across 87 files.
