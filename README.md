@@ -156,6 +156,8 @@ See `.env.example`.
 
 Required for full production behavior:
 
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_CANONICAL_DOMAIN`
 - `SUPABASE_URL`
 - `SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
@@ -249,6 +251,7 @@ npm run validate:content
 npm run validate:contracts
 npm run validate:reference
 npm run validate:doctrine
+npm run validate:deployment
 npm run validate:routes
 npm run validate:publishing
 npm run validate:discovery
@@ -363,6 +366,7 @@ npm run validate:content
 npm run validate:contracts
 npm run validate:reference
 npm run validate:doctrine
+npm run validate:deployment
 npm run validate:routes
 npm run validate:publishing
 npm run validate:discovery
@@ -374,8 +378,8 @@ npm run validate:performance
 npm run build
 ```
 
-`npm run build` runs content validation, publication contract checks, reference-package checks, doctrine-quality checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravikanth trust fixtures before building. It runs the performance budget after the production build.
-`npm test` runs content validation, publication contract checks, reference-package checks, doctrine-quality checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravikanth trust fixtures, and TypeScript checks.
+`npm run build` runs content validation, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravikanth trust fixtures before building. It runs the performance budget after the production build.
+`npm test` runs content validation, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravikanth trust fixtures, and TypeScript checks.
 
 ## Deployment
 
