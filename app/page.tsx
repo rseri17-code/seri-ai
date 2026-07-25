@@ -4,7 +4,7 @@ import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
-import { TrackedLink } from "@/components/tracked-link";
+import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
 import { articles, builderDna, harnessThesis, operationalIntelligenceSystem, patterns, principles, projects, sentinelContextModel, site } from "@/content/site";
 
 const platformLayers = [
@@ -131,14 +131,16 @@ export default function Home() {
               <TrackedLink href="/ask" eventName="homepage_cta_click" eventProperties={{ cta: "query_system" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
                 Query the System
               </TrackedLink>
-              <a
+              <TrackedAnchor
                 href={site.links.linkedin}
                 target="_blank"
                 rel="noreferrer"
+                eventName="profile_link_click"
+                eventProperties={{ destination: "linkedin", placement: "hero" }}
                 className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white"
               >
                 LinkedIn signal <Linkedin size={18} />
-              </a>
+              </TrackedAnchor>
             </div>
             <div className="mt-8 grid max-w-3xl grid-cols-3 gap-3">
               {[
@@ -445,14 +447,16 @@ export default function Home() {
               and product thinking around Operational Intelligence, Agentic SRE, and AI-native operations.
             </p>
           </div>
-          <a
+          <TrackedAnchor
             href={site.links.linkedin}
             target="_blank"
             rel="noreferrer"
+            eventName="profile_link_click"
+            eventProperties={{ destination: "linkedin", placement: "public_signal" }}
             className="inline-flex items-center justify-center gap-2 rounded bg-white px-5 py-3 font-semibold text-ink"
           >
             View LinkedIn <ArrowRight size={18} />
-          </a>
+          </TrackedAnchor>
         </Card>
       </Section>
 
