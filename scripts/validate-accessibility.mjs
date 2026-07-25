@@ -92,6 +92,20 @@ if (!/animation-duration:\s*0\.00?1ms|animation:\s*none/.test(globalsCss)) {
   errors.push("app/globals.css: reduced-motion block should disable or minimize animation");
 }
 
+const header = read("components/header.tsx");
+[
+  "aria-label={isMenuOpen ? \"Close navigation menu\" : \"Open navigation menu\"}",
+  "aria-expanded={isMenuOpen}",
+  "aria-controls=\"mobile-navigation\"",
+  "id=\"mobile-navigation\"",
+  "isMenuOpen ? \"block\" : \"hidden\"",
+  "xl:hidden"
+].forEach((required) => {
+  if (!header.includes(required)) {
+    errors.push(`components/header.tsx: missing responsive navigation contract "${required}"`);
+  }
+});
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
