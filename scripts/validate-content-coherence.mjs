@@ -272,6 +272,34 @@ for (const required of [
   expect(footerComponent.includes(required), `Footer missing global review kit contract: ${required}`);
 }
 
+const contactPage = fs.readFileSync(path.join(root, "app", "contact", "page.tsx"), "utf8");
+for (const required of [
+  "isSubmittingContact",
+  "isSubmittingReview",
+  "setIsSubmittingContact(true)",
+  "setIsSubmittingReview(true)",
+  "catch {",
+  "setStatus(\"error\")",
+  "setReviewStatus(\"error\")",
+  "disabled={isSubmittingContact}",
+  "disabled={isSubmittingReview}",
+  "Sending review..."
+]) {
+  expect(contactPage.includes(required), `/contact missing resilient submit contract: ${required}`);
+}
+
+const betaFeedback = fs.readFileSync(path.join(root, "components", "beta-feedback.tsx"), "utf8");
+for (const required of [
+  "const [isSubmitting",
+  "setIsSubmitting(true)",
+  "catch {",
+  "setStatus(\"error\")",
+  "disabled={isSubmitting}",
+  "Sending feedback..."
+]) {
+  expect(betaFeedback.includes(required), `BetaFeedback missing resilient submit contract: ${required}`);
+}
+
 const evalsPage = fs.readFileSync(path.join(root, "app", "evals", "page.tsx"), "utf8");
 for (const required of [
   "const coverageBuckets",

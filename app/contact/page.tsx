@@ -17,6 +17,8 @@ const reviewKit = [
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
   const [reviewStatus, setReviewStatus] = useState<"idle" | "sent" | "error">("idle");
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
   return (
     <Section eyebrow="Contact" title="Collaborate on Operational Intelligence, AI agents, and enterprise AI systems." level="h1">
@@ -27,20 +29,32 @@ export default function ContactPage() {
             event.preventDefault();
             const form = new FormData(event.currentTarget);
             const startedAt = performance.now();
+            setIsSubmittingContact(true);
             captureSafeEvent("contact_initiation", { topic: String(form.get("topic") || "unspecified") });
-            const response = await fetch("/api/contact", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(Object.fromEntries(form))
-            });
-            captureSafeEvent("contact_submit_result", {
-              success: response.ok,
-              topic: String(form.get("topic") || "unspecified"),
-              latency_ms: Math.round(performance.now() - startedAt)
-            });
-            setStatus(response.ok ? "sent" : "error");
-            if (response.ok) {
-              event.currentTarget.reset();
+            try {
+              const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(Object.fromEntries(form))
+              });
+              captureSafeEvent("contact_submit_result", {
+                success: response.ok,
+                topic: String(form.get("topic") || "unspecified"),
+                latency_ms: Math.round(performance.now() - startedAt)
+              });
+              setStatus(response.ok ? "sent" : "error");
+              if (response.ok) {
+                event.currentTarget.reset();
+              }
+            } catch {
+              captureSafeEvent("contact_submit_result", {
+                success: false,
+                topic: String(form.get("topic") || "unspecified"),
+                latency_ms: Math.round(performance.now() - startedAt)
+              });
+              setStatus("error");
+            } finally {
+              setIsSubmittingContact(false);
             }
           }}
         >
@@ -65,7 +79,9 @@ export default function ContactPage() {
             className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white"
             placeholder="What would you like to explore?"
           />
-          <button className="rounded bg-mint px-5 py-3 font-semibold text-ink">Send</button>
+          <button disabled={isSubmittingContact} className="rounded bg-mint px-5 py-3 font-semibold text-ink disabled:cursor-not-allowed disabled:opacity-60">
+            {isSubmittingContact ? "Sending..." : "Send"}
+          </button>
           {status === "sent" ? <p className="text-sm text-mint">Message received.</p> : null}
           {status === "error" ? <p className="text-sm text-amber">Something went wrong. Please try again.</p> : null}
         </form>
@@ -76,20 +92,33 @@ export default function ContactPage() {
             event.preventDefault();
             const form = new FormData(event.currentTarget);
             const startedAt = performance.now();
-            const response = await fetch("/api/contact", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(Object.fromEntries(form))
-            });
-            captureSafeEvent("practitioner_review_submit", {
-              success: response.ok,
-              reviewer_role: String(form.get("reviewerRole") || "unspecified"),
-              doctrine_verdict: String(form.get("doctrineVerdict") || "unspecified"),
-              latency_ms: Math.round(performance.now() - startedAt)
-            });
-            setReviewStatus(response.ok ? "sent" : "error");
-            if (response.ok) {
-              event.currentTarget.reset();
+            setIsSubmittingReview(true);
+            try {
+              const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(Object.fromEntries(form))
+              });
+              captureSafeEvent("practitioner_review_submit", {
+                success: response.ok,
+                reviewer_role: String(form.get("reviewerRole") || "unspecified"),
+                doctrine_verdict: String(form.get("doctrineVerdict") || "unspecified"),
+                latency_ms: Math.round(performance.now() - startedAt)
+              });
+              setReviewStatus(response.ok ? "sent" : "error");
+              if (response.ok) {
+                event.currentTarget.reset();
+              }
+            } catch {
+              captureSafeEvent("practitioner_review_submit", {
+                success: false,
+                reviewer_role: String(form.get("reviewerRole") || "unspecified"),
+                doctrine_verdict: String(form.get("doctrineVerdict") || "unspecified"),
+                latency_ms: Math.round(performance.now() - startedAt)
+              });
+              setReviewStatus("error");
+            } finally {
+              setIsSubmittingReview(false);
             }
           }}
         >
@@ -148,7 +177,9 @@ export default function ContactPage() {
           <textarea id="implementation-question" name="implementationQuestion" rows={3} className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="What would block a real implementation?" />
           <label className="sr-only" htmlFor="review-message">Additional notes</label>
           <textarea id="review-message" name="message" required rows={4} className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="Additional review notes" />
-          <button className="rounded bg-signal px-5 py-3 font-semibold text-ink">Send practitioner review</button>
+          <button disabled={isSubmittingReview} className="rounded bg-signal px-5 py-3 font-semibold text-ink disabled:cursor-not-allowed disabled:opacity-60">
+            {isSubmittingReview ? "Sending review..." : "Send practitioner review"}
+          </button>
           {reviewStatus === "sent" ? <p className="text-sm text-mint">Review received.</p> : null}
           {reviewStatus === "error" ? <p className="text-sm text-amber">Review could not be sent. Please try again.</p> : null}
         </form>
