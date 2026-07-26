@@ -241,6 +241,10 @@ assertIncludes("content/wiki/operational-intelligence-reference-architecture.mdx
 
 const operationsRoomPage = read("app/simulator/page.tsx");
 assertIncludes("app/simulator/page.tsx", operationsRoomPage, [
+  "const caseAskPrompt",
+  "Explain the OI-ROOM-001 case using the Operational Intelligence layers.",
+  "/ask?prompt=",
+  "encodeURIComponent(caseAskPrompt)",
   "/wiki/operational-intelligence-publication-pack",
   "/downloads/oi-room-001-printable-walkthrough.pdf",
   "Review packet",
