@@ -12,6 +12,20 @@ export const metadata: Metadata = {
 
 const artifacts = [
   {
+    href: "/wiki/operational-intelligence-publication-pack",
+    title: "Operational Intelligence Publication Pack",
+    type: "Reference Pack",
+    description: "The navigable package for diagrams, comparison tables, decision packet example, printable walkthrough, executive summary, glossary, and PDFs.",
+    icon: FileText
+  },
+  {
+    href: "/wiki/operational-intelligence-evidence-pack",
+    title: "Operational Intelligence Evidence Pack",
+    type: "Evidence Pack",
+    description: "Benchmark rubric, control comparisons, minimum conformance checklist, practitioner review path, evidence ledger, and falsification criteria.",
+    icon: ClipboardCheck
+  },
+  {
     href: "/investigation-room",
     title: "ReasonOps Operations Room",
     type: "Workbench",
@@ -48,6 +62,15 @@ const artifacts = [
   }
 ];
 
+const downloadableArtifacts = [
+  ["/publication-pack/operational-intelligence-diagrams.md", "Diagram Pack", "Architecture, state-machine, sequence, evidence graph, and replay-loop diagrams."],
+  ["/publication-pack/decision-packet-example.md", "Decision Packet Example", "A reviewable action packet with approval class, risks, alternatives, contradictory evidence, and missing evidence."],
+  ["/publication-pack/oi-room-001-printable-walkthrough.md", "OI-ROOM-001 Walkthrough", "The printable synthetic case walkthrough through evidence, hypotheses, gates, action, and learning."],
+  ["/downloads/operational-intelligence-publication-pack.pdf", "Publication Pack PDF", "Shareable PDF for the doctrine, reference architecture, diagrams, tables, and walkthrough."],
+  ["/downloads/operational-intelligence-evidence-pack.pdf", "Evidence Pack PDF", "Shareable PDF for benchmarks, control comparisons, practitioner review, and falsification criteria."],
+  ["/downloads/oi-room-001-printable-walkthrough.pdf", "Walkthrough PDF", "Printable OI-ROOM-001 investigation packet for review conversations."]
+] as const;
+
 export default function ArtifactsPage() {
   return (
     <>
@@ -67,6 +90,21 @@ export default function ArtifactsPage() {
               </Link>
             );
           })}
+        </div>
+      </Section>
+
+      <Section eyebrow="Downloadable artifacts" title="Reference objects a reviewer can inspect or share.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {downloadableArtifacts.map(([href, title, description]) => (
+            <Link key={href} href={href}>
+              <Card className="h-full transition hover:border-mint/40">
+                <p className="text-sm font-semibold uppercase text-mint">{href.endsWith(".pdf") ? "PDF export" : "Markdown artifact"}</p>
+                <h2 className="mt-3 text-xl font-semibold text-white">{title}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+                <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-signal">Open artifact <ArrowRight size={15} /></p>
+              </Card>
+            </Link>
+          ))}
         </div>
       </Section>
 

@@ -245,6 +245,20 @@ assertIncludes("app/simulator/page.tsx", operationsRoomPage, [
   "Walkthrough PDF"
 ]);
 
+const artifactsPage = read("app/artifacts/page.tsx");
+assertIncludes("app/artifacts/page.tsx", artifactsPage, [
+  "const downloadableArtifacts",
+  "Downloadable artifacts",
+  "/wiki/operational-intelligence-publication-pack",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/publication-pack/operational-intelligence-diagrams.md",
+  "/publication-pack/decision-packet-example.md",
+  "/publication-pack/oi-room-001-printable-walkthrough.md",
+  "/downloads/operational-intelligence-publication-pack.pdf",
+  "/downloads/operational-intelligence-evidence-pack.pdf",
+  "/downloads/oi-room-001-printable-walkthrough.pdf"
+]);
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
