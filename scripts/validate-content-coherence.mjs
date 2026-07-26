@@ -155,27 +155,37 @@ for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki
 const homePage = fs.readFileSync(path.join(root, "app", "page.tsx"), "utf8");
 for (const required of [
   "const reviewerPaths",
-  "Review path",
-  "Different serious visitors should be able to evaluate the thesis quickly.",
-  "Evidence-first review",
-  "The path is explicit: doctrine, architecture, evidence, artifact, feedback.",
-  "Start review path",
+  "const primaryPaths",
+  "const proofStrip",
+  "Operational Intelligence for AI-native operations.",
+  "Enterprises do not need another AI demo.",
+  "One thesis. Three ways to test it.",
+  "The model is not the moat. The operating harness is.",
+  "If the idea is real, it should survive inspection.",
+  "Different serious visitors should know exactly where to start.",
+  "The builder shows up through engineering taste.",
+  "Ask the system, but judge the receipts.",
+  "Enter Operations Room",
+  "Read Doctrine",
+  "Review Work",
+  "Download publication pack",
   "Challenge the evidence",
   "Executive",
   "SRE leader",
   "Principal architect",
   "AI engineer",
-  "Governance reviewer",
   "Recruiter or founder",
-  "/start-here",
   "/brief",
   "/investigation-room",
+  "/wiki/operational-intelligence-canonical-doctrine",
   "/wiki/operational-intelligence-reference-architecture",
   "/wiki/operational-intelligence-evidence-pack",
   "/evals",
-  "/work"
+  "/work",
+  "/ask",
+  "/background"
 ]) {
-  expect(homePage.includes(required), `/ missing reviewer path contract: ${required}`);
+  expect(homePage.includes(required), `/ missing focused homepage contract: ${required}`);
 }
 
 const frameworkPage = fs.readFileSync(path.join(root, "app", "framework", "page.tsx"), "utf8");

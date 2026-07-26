@@ -7,17 +7,9 @@ import { useEffect, useState } from "react";
 import { site } from "@/content/site";
 
 const primaryNav = [
-  { href: "/", label: "Home" },
   { href: "/work", label: "Work" },
   { href: "/wiki/operational-intelligence-canonical-doctrine", label: "Doctrine" },
-  { href: "/framework", label: "Framework" },
-  { href: "/start-here", label: "Start Here" },
-  { href: "/map", label: "Map" },
-  { href: "/library", label: "Library" },
-  { href: "/patterns", label: "Patterns" },
-  { href: "/products/reasonops", label: "ReasonOps" },
   { href: "/investigation-room", label: "Room" },
-  { href: "/radar", label: "Radar" },
   { href: "/background", label: "Background" },
   { href: "/contact", label: "Contact" }
 ];

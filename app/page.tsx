@@ -1,248 +1,170 @@
 import Link from "next/link";
-import { ArrowRight, BrainCircuit, ClipboardCheck, FileText, GitBranch, Linkedin, MessagesSquare, Network, Route, ShieldCheck, Sparkles, Workflow } from "lucide-react";
+import { ArrowRight, BrainCircuit, ClipboardCheck, FileText, GitBranch, Linkedin, Network, ShieldCheck, Sparkles } from "lucide-react";
 import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { articles, builderDna, harnessThesis, operationalIntelligenceSystem, patterns, principles, projects, sentinelContextModel, site } from "@/content/site";
+import { articles, builderDna, evalReport, harnessThesis, patterns, site } from "@/content/site";
 
-const platformLayers = [
-  ["Observe", "Ingest signals from logs, metrics, traces, events, changes, tickets, topology, and transaction journeys."],
-  ["Correlate", "Connect evidence into typed relationships: what changed, what is affected, who owns it, and what prior memory applies."],
-  ["Reason", "Rank hypotheses with confidence movement, missing-context statements, and explicit losing explanations."],
-  ["Evaluate", "Gate AI behavior for grounding, citation quality, refusal, escalation judgment, and action risk."],
-  ["Act", "Prepare bounded recommendations, preserve review gates, and keep humans accountable for irreversible change."],
-  ["Learn", "Turn outcomes, rejected paths, and post-incident decisions into reusable operational memory."]
+const proofStrip = [
+  ["Doctrine", "Canonical definition, boundaries, ten-layer model, glossary, and references."],
+  ["Architecture", "Contracts, schemas, state machines, evaluation gates, and conformance levels."],
+  ["Operations Room", "A public-safe investigation artifact for evidence, replay, hypotheses, and review."],
+  [`${evalReport.fixtures.length}/${evalReport.fixtures.length}`, "Deterministic Ask Ravikanth trust fixtures currently passing."]
 ];
 
-const operationalOutcomes = [
-  ["Reduce investigation ambiguity", "Move teams from alert noise to evidence-backed hypotheses."],
-  ["Make AI behavior auditable", "Expose what the agent used, ignored, inferred, and refused."],
-  ["Protect operational judgment", "Keep high-impact actions behind policy, confidence, and human review."],
-  ["Compound operational memory", "Make every incident improve the next investigation instead of disappearing into chat history."]
-];
-
-const proofLoop = ["Signal", "Transaction", "Topology", "Evidence", "Hypothesis", "Eval", "Review", "Memory"];
-
-const productProof = [
+const primaryPaths = [
   {
-    label: "Shared case",
-    value: operationalIntelligenceSystem.caseId,
-    detail: "One public-safe incident powers the map, room, assistant, and eval story."
+    href: "/investigation-room",
+    label: "Signature artifact",
+    title: "Enter the Operations Room",
+    body: "Inspect OI-ROOM-001 as an evidence-backed investigation: transaction path, contradictory evidence, missing context, hypothesis movement, eval gates, and human approval."
   },
-  {
-    label: "Evidence contract",
-    value: "Receipts",
-    detail: "Every conclusion must point to signal, transaction, topology, memory, or policy evidence."
-  },
-  {
-    label: "Trust gate",
-    value: "Eval before action",
-    detail: "Grounding, uncertainty, confidentiality, actionability, and human review are release criteria."
-  },
-  {
-    label: "Learning loop",
-    value: "Outcome memory",
-    detail: "Resolved decisions become replay seeds, eval fixtures, and future operational memory."
-  }
-];
-
-const ravikanthIndex = [
-  ["/now", "Now", "What Ravikanth is actively building: Agentic SRE, ReasonOps, evidence graphs, replay seeds, eval gates, and operator control planes."],
-  ["/framework", "Framework", "The ten-layer Operational Intelligence model from signal to accountable action."],
-  ["/work", "Work", "The canonical index of systems, frameworks, domains, artifacts, writing, and background."],
-  ["/library", "Writing", "Essays and field notes that turn Operational Intelligence from a topic into a language."],
-  ["/investigation-room", "Artifact", "A working Operations Room that makes the thesis inspectable through a public-safe incident case."],
-  ["/patterns", "Patterns", "Architecture patterns for evidence-driven RCA, transaction intelligence, operational memory, and human-gated AI."],
-  ["/ask", "Reasoning Interface", "A grounded interface for interrogating the public knowledge layer and its boundaries."]
-];
-
-const referenceShelf = [
   {
     href: "/wiki/operational-intelligence-canonical-doctrine",
-    title: "Canonical Doctrine",
-    body: "The definition, boundaries, ten-layer framework, OI-ROOM-001 case, glossary, and foundational references."
+    label: "Doctrine",
+    title: "Read the canonical model",
+    body: "Start with the definition of Operational Intelligence, what it is not, the ten-layer framework, glossary, boundaries, and public-safe synthetic case."
   },
   {
-    href: "/wiki/operational-intelligence-reference-architecture",
-    title: "Reference Architecture",
-    body: "Implementation-neutral contracts, schemas, state machines, governance controls, evaluation gates, and conformance levels."
-  },
-  {
-    href: "/wiki/operational-intelligence-publication-pack",
-    title: "Publication Pack",
-    body: "Diagrams, comparison tables, decision packet example, printable walkthrough, executive summary, glossary card, and PDFs."
-  },
-  {
-    href: "/wiki/operational-intelligence-evidence-pack",
-    title: "Evidence Pack",
-    body: "Benchmark rubric, control comparisons, practitioner review model, evidence ledger, and falsification criteria."
+    href: "/work",
+    label: "Builder proof",
+    title: "Review the body of work",
+    body: "See the systems, papers, patterns, reference artifacts, public work, resume proof, and professional background behind the thesis."
   }
+];
+
+const operatingRules = [
+  ["Evidence before conclusions", "The system should separate observation, inference, contradiction, missing evidence, and confirmed fact before recommending action."],
+  ["Replay before belief", "Important operational reasoning should be reproducible through approved context, replay seeds, and trust fixtures."],
+  ["Human judgment before action", "Consequential change stays behind owner review, approval class, reversibility, and escalation boundaries."]
 ];
 
 const reviewerPaths = [
-  {
-    role: "Executive",
-    ask: "Decision clarity and accountability.",
-    route: "/brief",
-    artifact: "One-page brief"
-  },
-  {
-    role: "SRE leader",
-    ask: "Evidence, hypotheses, unknowns.",
-    route: "/investigation-room",
-    artifact: "Operations Room"
-  },
-  {
-    role: "Principal architect",
-    ask: "Independent implementation.",
-    route: "/wiki/operational-intelligence-reference-architecture",
-    artifact: "Reference Architecture"
-  },
-  {
-    role: "AI engineer",
-    ask: "Retrieval, replay, refusal, gates.",
-    route: "/evals",
-    artifact: "Trust evals"
-  },
-  {
-    role: "Governance reviewer",
-    ask: "Approval, provenance, audit.",
-    route: "/wiki/operational-intelligence-evidence-pack",
-    artifact: "Evidence Pack"
-  },
-  {
-    role: "Recruiter or founder",
-    ask: "Builder proof and judgment.",
-    route: "/work",
-    artifact: "Work Index"
-  }
+  ["Executive", "/brief", "One-page brief", "Can the model improve operational judgment without autonomy theater?"],
+  ["SRE leader", "/investigation-room", "Operations Room", "Are evidence, unknowns, contradictions, and approval boundaries visible?"],
+  ["Principal architect", "/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Could two teams implement the contracts similarly?"],
+  ["AI engineer", "/evals", "Trust evals", "Do retrieval, citation, refusal, and action-safety gates hold?"],
+  ["Recruiter or founder", "/work", "Work Index", "What has Ravikanth built, written, and made inspectable?"]
 ] as const;
+
+const referenceAssets = [
+  ["/wiki/operational-intelligence-canonical-doctrine", "Canonical Doctrine", "The durable definition and boundaries."],
+  ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "The implementation-neutral technical contract."],
+  ["/wiki/operational-intelligence-publication-pack", "Publication Pack", "Diagrams, tables, walkthroughs, cards, and PDFs."],
+  ["/wiki/operational-intelligence-evidence-pack", "Evidence Pack", "Benchmark rubric, control comparisons, and falsification criteria."]
+];
 
 export default function Home() {
   return (
     <>
       <section className="grid-bg border-b border-white/10">
-        <div className="mx-auto grid min-h-[86vh] max-w-7xl content-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+        <div className="mx-auto grid min-h-[86vh] max-w-7xl content-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
           <Reveal>
-            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-slate-200">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              {site.positioning}
+              Built by {site.owner}
             </div>
-            <h1 className="max-w-5xl text-5xl font-semibold text-white md:text-7xl">{site.owner}</h1>
-            <p className="mt-4 max-w-4xl text-3xl font-semibold leading-tight text-mint md:text-5xl">{site.tagline}</p>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">{site.description}</p>
-            <div className="mt-5 max-w-3xl rounded-lg border border-white/10 bg-black/25 p-4">
-              <p className="text-xs font-semibold uppercase text-slate-500">Built by {site.owner}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">{site.authorLine}</p>
-            </div>
-            <div className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.07] p-4">
-              <p className="text-xs font-semibold uppercase text-amber">Current build signal</p>
-              <p className="mt-2 text-sm leading-6 text-slate-200">{site.nowSignal}</p>
-            </div>
-            <div className="mt-6 lg:hidden">
-              <HeroIntelligenceMap />
-            </div>
-            <div className="mt-6 max-w-3xl rounded-lg border border-mint/20 bg-mint/[0.06] p-5">
-              <p className="text-sm font-semibold uppercase text-mint">Operating contract</p>
-              <p className="mt-3 text-xl leading-9 text-white">{site.brandBelief}</p>
-            </div>
-            <div className="mt-4 max-w-3xl rounded-lg border border-signal/25 bg-signal/[0.06] p-4">
-              <p className="text-sm leading-6 text-slate-200">{site.productPromise}</p>
-            </div>
+            <h1 className="max-w-5xl text-5xl font-semibold leading-[1.02] text-white md:text-7xl">
+              Operational Intelligence for AI-native operations.
+            </h1>
+            <p className="mt-6 max-w-3xl text-xl leading-9 text-slate-200 md:text-2xl md:leading-10">
+              Enterprises do not need another AI demo. They need an inspectable operating model for evidence, hypotheses, replay, evaluation, and human-reviewed action.
+            </p>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
+              seri.ai is Ravikanth Seri&apos;s public home for that model: a doctrine, reference architecture, Operations Room, reasoning interface, and body of work around Agentic SRE and Operational Intelligence.
+            </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "open_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Open Operations Room <ArrowRight size={18} />
+              <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+                Enter Operations Room <ArrowRight size={18} />
               </TrackedLink>
-              <TrackedLink href="/framework" eventName="homepage_cta_click" eventProperties={{ cta: "explore_framework" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
-                Explore Framework
+              <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+                Read Doctrine
               </TrackedLink>
               <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "review_work" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
                 Review Work
               </TrackedLink>
-              <TrackedLink href="/map" eventName="homepage_cta_click" eventProperties={{ cta: "view_platform_map" }} className="inline-flex items-center gap-2 rounded border border-signal/40 px-5 py-3 font-semibold text-signal">
-                View Platform Map
-              </TrackedLink>
-              <TrackedLink href="/library" eventName="homepage_cta_click" eventProperties={{ cta: "read_library" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Read the Library
-              </TrackedLink>
-              <TrackedLink href="/ask" eventName="homepage_cta_click" eventProperties={{ cta: "query_system" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Query the System
-              </TrackedLink>
-              <TrackedAnchor
-                href={site.links.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                eventName="profile_link_click"
-                eventProperties={{ destination: "linkedin", placement: "hero" }}
-                className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white"
-              >
-                LinkedIn signal <Linkedin size={18} />
-              </TrackedAnchor>
             </div>
-            <div className="mt-8 grid max-w-3xl grid-cols-3 gap-3">
-              {[
-                ["82%", "lead hypothesis"],
-                ["+31", "confidence movement"],
-                ["4/4", "eval gates visible"]
-              ].map(([value, label]) => (
-                <div key={label} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
-                  <p className="text-2xl font-semibold text-white">{value}</p>
-                  <p className="mt-1 text-sm text-slate-400">{label}</p>
+            <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-2">
+              {proofStrip.map(([value, label]) => (
+                <div key={value} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+                  <p className="text-lg font-semibold text-white">{value}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
                 </div>
               ))}
             </div>
           </Reveal>
           <Reveal delay={0.12}>
-            <div className="hidden lg:block">
-              <HeroIntelligenceMap />
-            </div>
+            <HeroIntelligenceMap />
           </Reveal>
         </div>
       </section>
 
-      <Section eyebrow="Operating index" title="Start with the work. The builder becomes obvious through the system.">
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {ravikanthIndex.map(([href, title, text], index) => (
-            <Link key={href} href={href}>
+      <Section eyebrow="Start here" title="One thesis. Three ways to test it.">
+        <div className="grid gap-4 lg:grid-cols-3">
+          {primaryPaths.map((path) => (
+            <Link key={path.href} href={path.href}>
               <Card className="h-full transition hover:-translate-y-1 hover:border-mint/40">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</span>
-                  <ArrowRight size={16} className="text-slate-500" />
-                </div>
-                <h3 className="mt-4 text-2xl font-semibold text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{path.label}</p>
+                <h3 className="mt-4 text-2xl font-semibold text-white">{path.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-300">{path.body}</p>
+                <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-mint">Open <ArrowRight size={15} /></p>
               </Card>
             </Link>
           ))}
         </div>
       </Section>
 
-      <Section eyebrow="Reference system" title="The doctrine is versioned, inspectable, and meant to be challenged.">
-        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+      <Section eyebrow="Point of view" title={harnessThesis.headline}>
+        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
           <Card className="border-signal/30 bg-signal/[0.055]">
-            <FileText className="mb-5 text-signal" />
-            <h3 className="text-3xl font-semibold text-white">Operational Intelligence is treated as a public technical reference, not a slogan.</h3>
+            <BrainCircuit className="mb-5 text-signal" />
+            <h3 className="text-3xl font-semibold text-white">The model is not the moat. The operating harness is.</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">{harnessThesis.statement}</p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {harnessThesis.loop.map((step) => (
+                <span key={step} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase text-slate-300">
+                  {step}
+                </span>
+              ))}
+            </div>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-3">
+            {operatingRules.map(([title, body]) => (
+              <Card key={title} className="p-5">
+                <ShieldCheck className="mb-4 text-mint" />
+                <h3 className="text-xl font-semibold text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section eyebrow="Reference spine" title="If the idea is real, it should survive inspection.">
+        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <Card className="border-amber/25 bg-amber/[0.045]">
+            <FileText className="mb-5 text-amber" />
+            <h3 className="text-3xl font-semibold text-white">The work is versioned as a public technical reference, not packaged as a resume.</h3>
             <p className="mt-4 text-lg leading-8 text-slate-300">
-              The model now has a doctrine, a reference architecture, a publication pack, and an evidence pack. That means a visitor can inspect the thesis, test its boundaries, download the artifacts, and challenge the claims.
+              Definitions live in the doctrine. Behavior lives in the reference architecture. Shareable review assets live in the publication pack. Proof and falsification live in the evidence pack.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/wiki/operational-intelligence-canonical-doctrine" className="inline-flex items-center gap-2 rounded bg-signal px-5 py-3 font-semibold text-ink">
-                Read the doctrine <ArrowRight size={18} />
+              <Link href="/downloads/operational-intelligence-publication-pack.pdf" className="inline-flex items-center gap-2 rounded bg-amber px-5 py-3 font-semibold text-ink">
+                Download publication pack <FileText size={18} />
               </Link>
-              <Link href="/downloads/operational-intelligence-publication-pack.pdf" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Download pack <FileText size={18} />
+              <Link href="/wiki/operational-intelligence-evidence-pack" className="inline-flex items-center gap-2 rounded border border-amber/35 px-5 py-3 font-semibold text-amber">
+                Challenge the evidence
               </Link>
             </div>
           </Card>
           <div className="grid gap-3 md:grid-cols-2">
-            {referenceShelf.map((item, index) => (
-              <Link key={item.href} href={item.href}>
-                <Card className="h-full p-4 transition hover:-translate-y-1 hover:border-signal/40">
-                  <span className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
+            {referenceAssets.map(([href, title, body]) => (
+              <Link key={href} href={href}>
+                <Card className="h-full p-4 transition hover:-translate-y-1 hover:border-amber/40">
+                  <h3 className="text-xl font-semibold text-white">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
                 </Card>
               </Link>
             ))}
@@ -250,179 +172,47 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Review path" title="Different serious visitors should be able to evaluate the thesis quickly.">
-        <Card className="border-amber/25 bg-amber/[0.045]">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber">Evidence-first review</p>
-          <h3 className="mt-3 text-3xl font-semibold text-white">The path is explicit: doctrine, architecture, evidence, artifact, feedback.</h3>
-          <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">Each reviewer gets a clear question, an asset to inspect, and a public-safe path to challenge the model.</p>
-          <div className="mt-5 grid gap-2 md:grid-cols-2 xl:grid-cols-3">
-            {reviewerPaths.map((path) => (
-              <Link key={path.role} href={path.route} className="rounded border border-white/10 bg-black/20 p-3 transition hover:border-amber/40">
-                <p className="text-xs font-semibold uppercase text-amber">{path.role}</p>
-                <p className="mt-2 font-semibold text-white">{path.artifact}</p>
-                <p className="mt-1 text-sm text-slate-400">{path.ask}</p>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-5 flex flex-wrap gap-3">
-            <Link href="/start-here" className="inline-flex items-center gap-2 rounded bg-amber px-5 py-3 font-semibold text-ink">Start review path <ArrowRight size={18} /></Link>
-            <Link href="/wiki/operational-intelligence-evidence-pack" className="inline-flex items-center gap-2 rounded border border-amber/35 px-5 py-3 font-semibold text-amber">Challenge the evidence</Link>
-          </div>
-        </Card>
-      </Section>
-
-      <Section eyebrow="Operating model" title="A point of view expressed as an inspectable system.">
-        <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
-          <Card className="border-mint/25 bg-mint/[0.045]">
-            <ShieldCheck className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">seri.ai represents the builder through the systems, constraints, and taste embedded in the work.</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
-              The site should reveal the builder behind the work without becoming a resume. Visitors should see the operating model:
-              evidence enters, hypotheses compete, action is gated, evals decide trust, and memory compounds.
-            </p>
-            <Link href="/investigation-room" className="mt-6 inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-              Run the operating model <ArrowRight size={18} />
+      <Section eyebrow="Reviewer paths" title="Different serious visitors should know exactly where to start.">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+          {reviewerPaths.map(([role, href, artifact, question]) => (
+            <Link key={role} href={href}>
+              <Card className="h-full p-4 transition hover:border-signal/40">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{role}</p>
+                <h3 className="mt-3 text-lg font-semibold text-white">{artifact}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{question}</p>
+              </Card>
             </Link>
-          </Card>
-          <div className="grid gap-3 md:grid-cols-2">
-            {productProof.map((item, index) => (
-              <Card key={item.label} className="p-4">
-                <span className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</span>
-                <p className="mt-3 text-xs font-semibold uppercase text-slate-500">{item.label}</p>
-                <h3 className="mt-2 text-2xl font-semibold text-white">{item.value}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{item.detail}</p>
-              </Card>
-            ))}
-          </div>
+          ))}
         </div>
       </Section>
 
-      <Section eyebrow="Platform layer" title="The missing layer between observability platforms and AI action.">
-        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-          <Card className="border-signal/30 bg-signal/[0.055]">
-            <Network className="mb-5 text-signal" />
-            <h3 className="text-3xl font-semibold text-white">Observability platforms see the stack. Incident platforms coordinate the response. seri.ai explains the operational reasoning.</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
-              The durable category is not another dashboard or another chatbot. It is the reasoning and evaluation layer that makes operational AI inspectable, bounded, and useful under pressure.
-            </p>
-            <div className="mt-6 grid grid-cols-2 gap-2">
-              {["Observability context", "Incident reasoning", "Agent evaluation", "Human approval"].map((item) => (
-                <span key={item} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase text-slate-300">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </Card>
-          <div className="grid gap-3 md:grid-cols-2">
-            {platformLayers.map(([name, description], index) => (
-              <Card key={name} className="p-4">
-                <span className="font-mono text-xs text-mint">{String(index + 1).padStart(2, "0")}</span>
-                <h3 className="mt-3 text-lg font-semibold text-white">{name}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section eyebrow="Operational outcomes" title="What problem does this solve?">
-        <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="grid gap-3 md:grid-cols-2">
-            {operationalOutcomes.map(([title, body]) => (
-              <Card key={title} className="h-full p-5">
-                <Workflow className="mb-4 text-mint" />
-                <h3 className="text-xl font-semibold text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
-              </Card>
-            ))}
-          </div>
-          <Card className="border-mint/25 bg-mint/[0.045]">
-            <Route className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">From signal to accountable action.</h3>
-            <p className="mt-4 leading-7 text-slate-300">
-              Every step should leave a receipt: the source signal, transaction impact, topology path, evidence used, hypothesis movement, eval result, review gate, and memory candidate.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {proofLoop.map((step) => (
-                <span key={step} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase text-slate-300">
-                  {step}
-                </span>
-              ))}
-            </div>
-          </Card>
-        </div>
-      </Section>
-
-      <Section eyebrow="Product spine" title="One operating model, multiple proof surfaces.">
-        <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+      <Section eyebrow="Builder signature" title="The builder shows up through engineering taste.">
+        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <Sparkles className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">Operational Intelligence needs receipts, replay, memory, and review.</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
-              seri.ai organizes that operating model into inspectable artifacts: a reasoning map, an Operations Room,
-              grounded public knowledge, architecture patterns, and evaluation-backed product notes.
-            </p>
-          </Card>
-          <div className="grid gap-3">
-            {[
-              ["01", "Operational Intelligence", "The field model for operational reasoning."],
-              ["02", "ReasonOps", "The harness and control-plane expression."],
-              ["03", "Operations Room", "A replayable RCA and eval-gate artifact."],
-              ["04", "Reasoning Interface", "A constrained public assistant with refusal and citation behavior."]
-            ].map(([number, title, text]) => (
-              <Card key={title} className="flex items-center gap-4 p-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded border border-signal/35 bg-signal/10 font-mono text-sm text-signal">{number}</span>
-                <div>
-                  <h3 className="font-semibold text-white">{title}</h3>
-                  <p className="text-sm leading-6 text-slate-400">{text}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section eyebrow="Agentic SRE thesis" title={harnessThesis.headline}>
-        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-          <Card className="border-signal/30 bg-signal/[0.055]">
-            <BrainCircuit className="mb-5 text-signal" />
-            <h3 className="text-3xl font-semibold text-white">The model is not the moat. The operating harness is.</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">{harnessThesis.statement}</p>
-            <p className="mt-5 rounded border border-white/10 bg-black/20 p-4 text-sm leading-6 text-slate-300">{harnessThesis.category}</p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {harnessThesis.loop.map((step) => (
-                <span key={step} className="rounded border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-semibold uppercase text-slate-300">
-                  {step}
-                </span>
-              ))}
+            <h3 className="text-3xl font-semibold text-white">{builderDna.title}</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">{builderDna.thesis}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <TrackedAnchor
+                href={site.links.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                eventName="profile_link_click"
+                eventProperties={{ destination: "linkedin", placement: "homepage_builder_signature" }}
+                className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white"
+              >
+                View LinkedIn <Linkedin size={18} />
+              </TrackedAnchor>
+              <Link href="/background" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+                Background
+              </Link>
             </div>
           </Card>
           <div className="grid gap-3 md:grid-cols-2">
-            {harnessThesis.beliefs.map((belief) => (
-              <Card key={belief.title} className="p-4">
-                <h3 className="font-semibold text-white">{belief.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{belief.body}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section eyebrow="Operating model" title="How the harness earns trust.">
-        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-          <Card className="border-signal/30 bg-signal/[0.055]">
-            <ShieldCheck className="mb-5 text-signal" />
-            <h3 className="text-3xl font-semibold text-white">{builderDna.title}</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">{builderDna.thesis}</p>
-            <p className="mt-5 rounded border border-white/10 bg-black/20 p-4 text-sm leading-6 text-slate-400">
-              {builderDna.publicSafeSource}
-            </p>
-          </Card>
-          <div className="grid gap-3 md:grid-cols-2">
-            {builderDna.principles.map((principle, index) => (
+            {builderDna.principles.slice(0, 4).map((principle) => (
               <Card key={principle.name} className="p-4">
-                <span className="font-mono text-xs text-mint">{String(index + 1).padStart(2, "0")}</span>
-                <h3 className="mt-3 font-semibold text-white">{principle.name}</h3>
+                <Network className="mb-4 text-signal" />
+                <h3 className="font-semibold text-white">{principle.name}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-300">{principle.description}</p>
               </Card>
             ))}
@@ -430,194 +220,48 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Public-safe product model" title="The control plane underneath the thesis.">
-        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-          <Card className="border-mint/25 bg-mint/[0.045]">
-            <BrainCircuit className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">{sentinelContextModel.title}</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">{sentinelContextModel.framing}</p>
-            <p className="mt-5 rounded border border-white/10 bg-black/20 p-4 text-sm leading-6 text-slate-400">{sentinelContextModel.compliance}</p>
-          </Card>
-          <div className="grid gap-3 md:grid-cols-2">
-            {sentinelContextModel.primitives.map((primitive) => (
-              <Card key={primitive.name} className="p-4">
-                <h3 className="font-semibold text-white">{primitive.name}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{primitive.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section eyebrow="Living system" title="Operational Intelligence as an inspectable product surface.">
-        <div className="grid gap-4 md:grid-cols-3">
-          {operationalIntelligenceSystem.loop.map((item, index) => (
-            <Link key={item.href} href={item.href}>
-            <Card className={index === 1 ? "h-full border-signal/30 bg-signal/[0.06] transition hover:border-signal/50" : "h-full transition hover:border-mint/40"}>
-              <BrainCircuit className={index === 1 ? "mb-5 text-signal" : "mb-5 text-mint"} />
-              <h3 className="text-xl font-semibold text-white">{item.name}</h3>
-              <p className="mt-3 text-slate-300">{item.description}</p>
-              <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-mint">Open <ArrowRight size={15} /></p>
-            </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Executive path" title="Inspect the thesis in five minutes.">
-        <div className="executive-rail rounded-lg border border-white/10 p-3">
-          <div className="grid gap-3 md:grid-cols-4">
-          {[
-            ["/manifesto", "Manifesto", "The category argument: why Operational Intelligence, why now, and what the operating layer must become."],
-            ["/map", "Map", "The visual operating system for layers, products, patterns, artifacts, and public assets."],
-            ["/products/reasonops", "ReasonOps", "The product expression: operational reasoning for AI-native enterprises."],
-            ["/radar", "Radar", "Current market signals around AI observability, AgentOps, AIOps evals, and OpenTelemetry."],
-            ["/investigation-room", "Operations Room", "A hands-on workbench for evidence-first AI incident investigation."]
-          ].map(([href, title, text]) => (
-            <Link key={href} href={href}>
-              <Card className="h-full bg-ink/75 transition hover:-translate-y-1 hover:border-signal/40">
-                <FileText className="mb-4 text-signal" />
-                <h3 className="text-xl font-semibold text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{text}</p>
-              </Card>
-            </Link>
-          ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section eyebrow="Operating laws" title="The rules behind the system.">
-        <div className="grid gap-3 md:grid-cols-5">
-          {site.operatingSystem.map((belief, index) => (
-            <Card key={belief} className="h-full">
-              <span className="font-mono text-sm text-signal">0{index + 1}</span>
-              <h3 className="mt-4 text-xl font-semibold text-white">{belief}</h3>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Public signal" title="Trace the thesis as it evolves.">
-        <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
-          <div>
-            <Linkedin className="mb-4 text-signal" />
-            <h3 className="text-2xl font-semibold text-white">LinkedIn is the public change log behind the category.</h3>
-            <p className="mt-3 leading-7 text-slate-300">
-              For visitors who want the ongoing signal: posts, architecture notes, certification evidence,
-              and product thinking around Operational Intelligence, Agentic SRE, and AI-native operations.
-            </p>
-          </div>
-          <TrackedAnchor
-            href={site.links.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            eventName="profile_link_click"
-            eventProperties={{ destination: "linkedin", placement: "public_signal" }}
-            className="inline-flex items-center justify-center gap-2 rounded bg-white px-5 py-3 font-semibold text-ink"
-          >
-            View LinkedIn <ArrowRight size={18} />
-          </TrackedAnchor>
-        </Card>
-      </Section>
-
-      <Section eyebrow="Signature artifact" title="ReasonOps Operations Room">
-        <Card className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
+      <Section eyebrow="Recent signal" title="The public body of work should keep compounding.">
+        <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
+          <Card>
             <ClipboardCheck className="mb-5 text-signal" />
-            <h3 className="text-3xl font-semibold text-white">Run a public-safe incident through evidence, replay, branch comparison, and eval.</h3>
-            <p className="mt-4 leading-7 text-slate-300">
-              The console produces an exportable RCA packet with evidence receipts, timeline reconstruction,
-              selected recommendation, branch comparison, release gate, and public-safe boundary.
-            </p>
-            <Link href="/investigation-room" className="mt-6 inline-flex items-center gap-2 rounded bg-signal px-5 py-3 font-semibold text-ink">
-              Open Operations Room <ArrowRight size={18} />
-            </Link>
-          </div>
-          <div className="grid gap-3">
-            {["Evidence before conclusions", "Timeline before root cause", "Confidence before action", "Evaluation before trust"].map((item, index) => (
-              <div key={item} className="flex items-center gap-4 rounded-lg border border-white/10 bg-ink p-4">
-                <span className="grid h-9 w-9 place-items-center rounded bg-signal/15 font-mono text-sm text-signal">{index + 1}</span>
-                <span className="font-medium text-slate-100">{item}</span>
-              </div>
-            ))}
-          </div>
-        </Card>
-      </Section>
-
-      <Section eyebrow="Start here" title="Choose a path through the system.">
-        <div className="grid gap-4 md:grid-cols-4">
-          {[
-            ["/start-here", "Start Here", "Audience-specific paths for executives, recruiters, architects, engineers, and founders."],
-            ["/map", "Map", "The visual operating system for Operational Intelligence."],
-            ["/investigation-room", "Operations Room", "A hands-on workbench for AI-native incident investigation."],
-            ["/principles", "Principles", `${principles.length} principles for trustworthy operational AI.`],
-            ["/patterns", "Patterns", `${patterns.length} architecture patterns for AI-native operations.`]
-          ].map(([href, title, text]) => (
-            <Link key={href} href={href}>
-              <Card className="h-full transition hover:border-mint/40">
-                <h3 className="text-xl font-semibold text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{text}</p>
-              </Card>
-            </Link>
-          ))}
+            <h3 className="text-2xl font-semibold text-white">Latest field notes</h3>
+            <div className="mt-5 grid gap-3">
+              {articles.slice(0, 3).map((article) => (
+                <Link key={article.slug} href={`/ideas/${article.slug}`} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-mint/40">
+                  <p className="text-xs font-semibold uppercase text-mint">{article.theme}</p>
+                  <h4 className="mt-2 font-semibold text-white">{article.title}</h4>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">{article.dek}</p>
+                </Link>
+              ))}
+            </div>
+          </Card>
+          <Card>
+            <GitBranch className="mb-5 text-mint" />
+            <h3 className="text-2xl font-semibold text-white">Architecture patterns</h3>
+            <div className="mt-5 grid gap-3">
+              {patterns.slice(0, 3).map((pattern) => (
+                <Link key={pattern.slug} href={`/patterns/${pattern.slug}`} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-signal/40">
+                  <h4 className="font-semibold text-white">{pattern.title}</h4>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">{pattern.description}</p>
+                </Link>
+              ))}
+            </div>
+          </Card>
         </div>
       </Section>
 
-      <Section eyebrow="Library" title="Recent public assets">
-        <div className="grid gap-4 md:grid-cols-2">
-          {articles.slice(0, 4).map((article) => (
-            <Link key={article.slug} href={`/ideas/${article.slug}`}>
-              <Card className="h-full transition hover:border-mint/40">
-                <p className="text-sm text-mint">{article.theme}</p>
-                <h3 className="mt-3 text-2xl font-semibold text-white">{article.title}</h3>
-                <p className="mt-3 text-slate-300">{article.dek}</p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Architecture patterns" title="Patterns for AI-native operational systems.">
-        <div className="grid gap-4 lg:grid-cols-4">
-          {patterns.slice(0, 4).map((card) => (
-            <Link key={card.slug} href={`/patterns/${card.slug}`}>
-              <Card className="h-full transition hover:border-signal/40">
-              <GitBranch className="mb-4 text-signal" />
-              <h3 className="font-semibold text-white">{card.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{card.description}</p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Artifacts" title="Public-safe proof objects, not confidential case studies.">
-        <div className="grid gap-4 md:grid-cols-3">
-          {projects.map((project) => (
-            <Link key={project.slug} href={`/projects/${project.slug}`}>
-              <Card className="h-full transition hover:border-signal/50">
-                <p className="text-sm text-amber">{project.status}</p>
-                <h3 className="mt-3 text-xl font-semibold text-white">{project.name}</h3>
-                <p className="mt-3 text-slate-300">{project.summary}</p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Reasoning interface" title="Public-grounded answers with refusal behavior.">
+      <Section eyebrow="Reasoning interface" title="Ask the system, but judge the receipts.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <MessagesSquare className="mb-4 text-mint" />
-            <h3 className="text-2xl font-semibold text-white">Query the public knowledge layer behind the operating model.</h3>
-            <p className="mt-2 text-slate-300">The assistant uses approved public context, cites what it used, and refuses confidential or unsupported claims.</p>
+            <h3 className="text-2xl font-semibold text-white">Ask Ravikanth is a navigation and reasoning layer over approved public content.</h3>
+            <p className="mt-3 leading-7 text-slate-300">It should cite sources, refuse confidential questions, name unknowns, and route serious visitors to the right artifact.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link href="/ask" className="rounded bg-white px-5 py-3 font-semibold text-ink">
-              Open chat
+              Query System
             </Link>
             <Link href="/evals" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
-              Evals <ShieldCheck size={18} />
+              View evals <ShieldCheck size={18} />
             </Link>
           </div>
         </Card>
