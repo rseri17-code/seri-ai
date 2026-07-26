@@ -202,7 +202,10 @@ for (const required of [
   "Evidence Pack",
   "Publication Pack",
   "Operations Room",
-  "{labelFor(href)}"
+  "{labelFor(href)}",
+  "/ask?prompt=",
+  "encodeURIComponent(path.ask)",
+  "{path.ask}"
 ]) {
   expect(startHerePage.includes(required), `/start-here missing audience onboarding contract: ${required}`);
 }

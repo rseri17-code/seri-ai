@@ -75,7 +75,9 @@ export default function StartHerePage() {
               ))}
             </div>
             <p className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-signal">Query the system</p>
-            <p className="mt-2 rounded border border-white/10 bg-ink p-3 text-sm text-slate-200">{path.ask}</p>
+            <Link href={`/ask?prompt=${encodeURIComponent(path.ask)}`} className="mt-2 block rounded border border-signal/25 bg-ink p-3 text-sm leading-6 text-slate-200 transition hover:border-signal/50 hover:text-signal">
+              {path.ask}
+            </Link>
             <p className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-amber">Most relevant</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {path.matters.map((href) => (
