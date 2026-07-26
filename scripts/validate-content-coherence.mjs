@@ -202,6 +202,30 @@ for (const required of [
   expect(architectureLabPage.includes(required), `/architecture-lab missing implementation contract surface: ${required}`);
 }
 
+const nowPage = fs.readFileSync(path.join(root, "app", "now", "page.tsx"), "utf8");
+for (const required of [
+  "const builderLedger",
+  "const proofCheckpoints",
+  "Builder ledger",
+  "Proof loop",
+  "Doctrine frozen at v1.0",
+  "Reference architecture published",
+  "Operations Room live",
+  "Ask Ravikanth trust fixtures",
+  "Publication pack available",
+  "Evidence pack open for review",
+  "what would convince another experienced engineer",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/wiki/operational-intelligence-publication-pack",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/investigation-room",
+  "/evals",
+  "/contact"
+]) {
+  expect(nowPage.includes(required), `/now missing living builder ledger contract: ${required}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

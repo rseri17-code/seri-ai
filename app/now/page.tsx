@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { BrainCircuit, Compass, Hammer, HelpCircle, PenLine, SearchCheck, Shield, type LucideIcon } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, BrainCircuit, ClipboardCheck, Compass, Hammer, HelpCircle, PenLine, SearchCheck, Shield, type LucideIcon } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { nowPage } from "@/content/site";
@@ -8,6 +9,47 @@ export const metadata: Metadata = {
   title: "Now | Ravikanth Seri",
   description: "Ravikanth Seri's current public focus areas across Operational Intelligence, agentic systems, transaction intelligence, and AI evaluation."
 };
+
+const builderLedger = [
+  [
+    "/wiki/operational-intelligence-canonical-doctrine",
+    "Doctrine frozen at v1.0",
+    "Definitions, boundaries, ten layers, glossary, claim classification, and public-safe OI-ROOM-001 framing."
+  ],
+  [
+    "/wiki/operational-intelligence-reference-architecture",
+    "Reference architecture published",
+    "Implementation contracts, state machines, schemas, evaluation gates, approval classes, and conformance levels."
+  ],
+  [
+    "/investigation-room",
+    "Operations Room live",
+    "Synthetic incident workbench for evidence, transaction timing, hypotheses, replay, evaluation, and human approval."
+  ],
+  [
+    "/evals",
+    "Ask Ravikanth trust fixtures",
+    "Deterministic behavior checks for grounding, refusal, citation presence, related routing, and public-safe boundaries."
+  ],
+  [
+    "/wiki/operational-intelligence-publication-pack",
+    "Publication pack available",
+    "Diagrams, comparison tables, decision packet, printable walkthrough, executive summary, glossary card, and PDFs."
+  ],
+  [
+    "/wiki/operational-intelligence-evidence-pack",
+    "Evidence pack open for review",
+    "Benchmark rubric, control comparisons, falsification criteria, conformance checklist, and practitioner review path."
+  ]
+] as const;
+
+const proofCheckpoints = [
+  "Collect practitioner criticism from SRE, architecture, AI engineering, governance, founder, and executive reviewers.",
+  "Compare OI-ROOM-001 against dashboard-only and chatbot-only baselines.",
+  "Add more public-safe replay cases only when they test a distinct failure mode.",
+  "Use review feedback to revise v1.x assets without drifting the canonical terminology.",
+  "Keep Ask Ravikanth grounded in published assets rather than private memory or personality imitation."
+] as const;
 
 export default function NowPage() {
   const sections: Array<[string, string[], LucideIcon]> = [
@@ -20,32 +62,74 @@ export default function NowPage() {
   ];
 
   return (
-    <Section eyebrow="Now" title="What Ravikanth is actively building and thinking through." level="h1">
-      <Card className="mb-5 border-mint/25 bg-mint/[0.05]">
-        <BrainCircuit className="mb-5 text-mint" />
-        <h2 className="text-3xl font-semibold text-white">The current work is Agentic SRE as an inspectable operating system.</h2>
-        <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
-          The live thread is not generic AI adoption. It is the architecture of operational agents that can collect evidence,
-          build hypotheses, replay reasoning, evaluate behavior, preserve memory, and hand accountable decisions back to humans.
-        </p>
-      </Card>
-      <div className="grid gap-4 md:grid-cols-2">
-        {sections.map(([title, items, Icon]) => (
-          <Card key={title as string} className="h-full">
-            <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-lg border border-signal/30 bg-signal/10 text-signal">
-                <Icon size={18} />
+    <>
+      <Section eyebrow="Now" title="What Ravikanth is actively building and thinking through." level="h1">
+        <Card className="mb-5 border-mint/25 bg-mint/[0.05]">
+          <BrainCircuit className="mb-5 text-mint" />
+          <h2 className="text-3xl font-semibold text-white">The current work is Agentic SRE as an inspectable operating system.</h2>
+          <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
+            The live thread is not generic AI adoption. It is the architecture of operational agents that can collect evidence,
+            build hypotheses, replay reasoning, evaluate behavior, preserve memory, and hand accountable decisions back to humans.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/work" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+              Review the work <ArrowRight size={18} />
+            </Link>
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+              Challenge the model
+            </Link>
+          </div>
+        </Card>
+        <div className="grid gap-4 md:grid-cols-2">
+          {sections.map(([title, items, Icon]) => (
+            <Card key={title as string} className="h-full">
+              <div className="flex items-center gap-3">
+                <div className="grid h-10 w-10 place-items-center rounded-lg border border-signal/30 bg-signal/10 text-signal">
+                  <Icon size={18} />
+                </div>
+                <h2 className="text-xl font-semibold text-white">{title as string}</h2>
               </div>
-              <h2 className="text-xl font-semibold text-white">{title as string}</h2>
-            </div>
-            <ul className="mt-4 space-y-3 text-slate-300">
-              {(items as string[]).map((item) => (
-                <li key={item} className="leading-7">{item}</li>
-              ))}
-            </ul>
-          </Card>
-        ))}
-      </div>
-    </Section>
+              <ul className="mt-4 space-y-3 text-slate-300">
+                {(items as string[]).map((item) => (
+                  <li key={item} className="leading-7">{item}</li>
+                ))}
+              </ul>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Builder ledger" title="Current public assets that make the work inspectable.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {builderLedger.map(([href, title, description], index) => (
+            <Link key={href} href={href}>
+              <Card className="h-full transition hover:border-mint/40">
+                <ClipboardCheck className="mb-4 text-mint" />
+                <p className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</p>
+                <h2 className="mt-3 text-xl font-semibold text-white">{title}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-mint">
+                  Inspect asset <ArrowRight size={15} />
+                </span>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Proof loop" title="The next work is evidence, not more slogans.">
+        <Card className="border-signal/25 bg-signal/[0.055]">
+          <h2 className="text-3xl font-semibold text-white">The useful question now is: what would convince another experienced engineer that the model works?</h2>
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            {proofCheckpoints.map((checkpoint, index) => (
+              <div key={checkpoint} className="rounded border border-white/10 bg-black/20 p-4">
+                <p className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</p>
+                <p className="mt-3 leading-7 text-slate-200">{checkpoint}</p>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </Section>
+    </>
   );
 }
