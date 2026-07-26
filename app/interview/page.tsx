@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BriefcaseBusiness, Cpu, Network, Rocket, Users } from "lucide-react";
 import { Card } from "@/components/card";
 import { Chat } from "@/components/chat";
@@ -18,6 +19,24 @@ const modes = [
   ["Operational Intelligence Founder", "ReasonOps, market thesis, product wedge, and public body of work.", BriefcaseBusiness]
 ];
 
+const proofPacket = [
+  ["/work", "Work index", "Systems, frameworks, domains, artifacts, writing, and background in one review path."],
+  ["/resume", "Interactive resume", "Career evidence, architecture highlights, public proof, skills, education, and certifications."],
+  ["/projects/operational-intelligence-copilot", "Copilot proof page", "Evidence path, framework handoff, failure modes, and related reference assets."],
+  ["/architecture-lab", "Architecture lab", "Reusable implementation contracts for evidence, replay, evaluation, and operator control."],
+  ["/evals", "Trust report", "Deterministic behavior fixtures for Ask Ravikanth and public-safe refusal."],
+  ["/contact", "Practitioner review", "Structured path for external critique and follow-up."]
+] as const;
+
+const interviewPrompts = [
+  "Explain Ravikanth's architecture judgment using only public evidence.",
+  "What makes Ravikanth credible for Agentic SRE and Operational Intelligence work?",
+  "How does his background connect observability, identity, Kubernetes, and AI agents?",
+  "What should a principal architect challenge in the Operational Intelligence doctrine?",
+  "Which public artifacts best show product and systems thinking?",
+  "What questions should an interviewer ask about evaluation gates and operator control?"
+];
+
 export default function InterviewPage() {
   return (
     <>
@@ -32,8 +51,20 @@ export default function InterviewPage() {
           ))}
         </div>
       </Section>
+      <Section eyebrow="Proof packet" title="Review the evidence before asking interview questions.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {proofPacket.map(([href, title, description]) => (
+            <Link key={href} href={href}>
+              <Card className="h-full transition hover:border-mint/40">
+                <h2 className="text-xl font-semibold text-white">{title}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
       <Section eyebrow="Ask interview questions" title="Answers stay grounded in approved public content.">
-        <Chat mode="interview" />
+        <Chat mode="interview" suggestedPrompts={interviewPrompts} />
       </Section>
     </>
   );
