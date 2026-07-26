@@ -178,6 +178,22 @@ for (const required of [
   expect(homePage.includes(required), `/ missing reviewer path contract: ${required}`);
 }
 
+const frameworkPage = fs.readFileSync(path.join(root, "app", "framework", "page.tsx"), "utf8");
+for (const required of [
+  "Operator questions",
+  "/ask?prompt=",
+  "encodeURIComponent(question)",
+  "Run the Operations Room",
+  "View the Map",
+  "Teaching sequence",
+  "FrameworkTeacher",
+  "TechnicalReviewPath",
+  "Design principles",
+  "Evaluation criteria"
+]) {
+  expect(frameworkPage.includes(required), `/framework missing executable framework contract: ${required}`);
+}
+
 const workPage = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
 for (const required of [
   "const reviewSpine",

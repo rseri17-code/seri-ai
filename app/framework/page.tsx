@@ -38,12 +38,12 @@ export default function FrameworkPage() {
             <p className="text-xs font-semibold uppercase text-slate-500">Operator questions</p>
             <div className="mt-4 grid gap-3">
               {operationalIntelligenceFramework.operatorQuestions.map((question, index) => (
-                <div key={question} className="flex items-start gap-3 rounded border border-white/10 bg-black/20 p-3">
+                <Link key={question} href={`/ask?prompt=${encodeURIComponent(question)}`} className="flex items-start gap-3 rounded border border-white/10 bg-black/20 p-3 transition hover:border-signal/40">
                   <span className="grid h-8 w-8 shrink-0 place-items-center rounded border border-mint/30 bg-mint/10 font-mono text-xs text-mint">
                     {index + 1}
                   </span>
                   <p className="leading-7 text-slate-200">{question}</p>
-                </div>
+                </Link>
               ))}
             </div>
           </Card>
