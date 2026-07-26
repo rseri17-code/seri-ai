@@ -320,6 +320,29 @@ for (const required of [
   expect(interviewPage.includes(required), `/interview missing evidence-led interview contract: ${required}`);
 }
 
+const resumePage = fs.readFileSync(path.join(root, "app", "resume", "page.tsx"), "utf8");
+for (const required of [
+  "const capabilityEvidence",
+  "const careerThroughline",
+  "Career throughline",
+  "Capability evidence matrix",
+  "AI-native operations architecture",
+  "Operational Intelligence doctrine",
+  "Evidence-driven incident systems",
+  "Enterprise platform modernization",
+  "Evaluation and runtime governance",
+  "Public technical leadership",
+  "Inspect proof",
+  "/projects/operational-intelligence-copilot",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/investigation-room",
+  "/patterns/topology-aware-reasoning",
+  "/evals",
+  "/work"
+]) {
+  expect(resumePage.includes(required), `/resume missing capability evidence contract: ${required}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

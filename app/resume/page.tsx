@@ -1,4 +1,5 @@
-import { Award, Download, ExternalLink, MapPin, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { Award, Download, ExternalLink, GitBranch, MapPin, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
@@ -9,6 +10,45 @@ export const metadata: Metadata = {
   title: "Resume | Ravikanth Seri — Operational Intelligence and Enterprise AI",
   description: "Interactive public resume for Ravikanth Seri focused on Operational Intelligence, agentic systems, observability strategy, and enterprise AI."
 };
+
+const capabilityEvidence = [
+  [
+    "AI-native operations architecture",
+    "Production agent systems, deterministic orchestration, tool boundaries, replay, and human review.",
+    "/projects/operational-intelligence-copilot"
+  ],
+  [
+    "Operational Intelligence doctrine",
+    "A public category model connecting telemetry, transactions, topology, evidence, memory, evals, and operator judgment.",
+    "/wiki/operational-intelligence-canonical-doctrine"
+  ],
+  [
+    "Evidence-driven incident systems",
+    "Operations Room, decision packets, evidence graphs, hypothesis lifecycles, and eval-gated recommendations.",
+    "/investigation-room"
+  ],
+  [
+    "Enterprise platform modernization",
+    "Kubernetes, identity modernization, observability integration, distributed systems, and regulated operational environments.",
+    "/patterns/topology-aware-reasoning"
+  ],
+  [
+    "Evaluation and runtime governance",
+    "Behavior fixtures, refusal tests, citation checks, release gates, tool controls, and approval boundaries.",
+    "/evals"
+  ],
+  [
+    "Public technical leadership",
+    "Writing, architecture notes, public artifacts, LinkedIn signal, and reviewable reference packs.",
+    "/work"
+  ]
+] as const;
+
+const careerThroughline = [
+  ["2008-2022", "Built the operating foundation across middleware, infrastructure, identity, Linux, distributed systems, automation, and production support."],
+  ["2022-2025", "Led modernization patterns across Kubernetes, identity, observability, OpenTelemetry-style tracing, and enterprise integration."],
+  ["2025-now", "Applies that operating background to production AI agent systems, AIOps, evaluation, replay, runtime governance, and Operational Intelligence."]
+] as const;
 
 export default function ResumePage() {
   return (
@@ -49,6 +89,20 @@ export default function ResumePage() {
           </div>
         </Card>
         <Card>
+          <div className="flex items-center gap-3">
+            <GitBranch className="text-signal" />
+            <h2 className="text-xl font-semibold text-white">Career throughline</h2>
+          </div>
+          <div className="mt-5 space-y-3">
+            {careerThroughline.map(([period, statement]) => (
+              <div key={period} className="rounded border border-white/10 bg-ink px-4 py-3">
+                <p className="font-mono text-xs text-signal">{period}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{statement}</p>
+              </div>
+            ))}
+          </div>
+        </Card>
+        <Card>
           <h2 className="text-xl font-semibold text-white">Public proof</h2>
           <div className="mt-5 space-y-3">
             {resume.publicProof.map((item) => (
@@ -71,6 +125,21 @@ export default function ResumePage() {
         </Card>
         </div>
         <div className="space-y-4">
+          <Card className="border-mint/25 bg-mint/[0.045]">
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="text-mint" />
+              <h2 className="text-xl font-semibold text-white">Capability evidence matrix</h2>
+            </div>
+            <div className="mt-5 grid gap-3 md:grid-cols-2">
+              {capabilityEvidence.map(([capability, proof, href]) => (
+                <Link key={capability} href={href} className="rounded border border-white/10 bg-ink p-4 transition hover:border-mint/40">
+                  <h3 className="font-semibold text-white">{capability}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{proof}</p>
+                  <p className="mt-3 text-xs font-semibold uppercase text-mint">Inspect proof</p>
+                </Link>
+              ))}
+            </div>
+          </Card>
           <Card>
             <div className="flex items-center gap-3">
               <ShieldCheck className="text-mint" />
