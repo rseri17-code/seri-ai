@@ -248,6 +248,20 @@ for (const required of [
   expect(ideaPage.includes(required), `/ideas/[slug] missing article retrieval prompt contract: ${required}`);
 }
 
+const wikiPage = fs.readFileSync(path.join(root, "app", "wiki", "page.tsx"), "utf8");
+for (const required of [
+  "const referenceSpine",
+  "Reference spine",
+  "operational-intelligence-canonical-doctrine",
+  "operational-intelligence-reference-architecture",
+  "operational-intelligence-publication-pack",
+  "operational-intelligence-evidence-pack",
+  "Start with the durable doctrine",
+  "spineNotes.map"
+]) {
+  expect(wikiPage.includes(required), `/wiki missing canonical reference spine: ${required}`);
+}
+
 const contentSearch = fs.readFileSync(path.join(root, "components", "content-search.tsx"), "utf8");
 for (const required of [
   "const visibleResults",

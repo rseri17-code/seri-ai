@@ -14,11 +14,34 @@ export const metadata: Metadata = {
 export default function WikiPage() {
   const notes = getPublishedWikiNotes();
   const sources = buildPublicSourceIndex();
+  const referenceSpine = [
+    "operational-intelligence-canonical-doctrine",
+    "operational-intelligence-reference-architecture",
+    "operational-intelligence-publication-pack",
+    "operational-intelligence-evidence-pack"
+  ];
+  const spineNotes = referenceSpine.flatMap((slug) => {
+    const note = notes.find((item) => item.slug === slug);
+    return note ? [note] : [];
+  });
 
   return (
     <Section eyebrow="Public wiki" title="Approved public notes for the Operational Intelligence body of work." level="h1">
       <div className="mb-8">
         <EmailCapture />
+      </div>
+      <div className="mb-10 rounded-lg border border-mint/20 bg-mint/[0.045] p-5">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-mint">Reference spine</p>
+        <p className="mt-3 max-w-3xl leading-7 text-slate-300">Start with the durable doctrine, implementation contracts, shareable artifacts, and evidence standard before reading individual notes.</p>
+        <div className="mt-5 grid gap-3 md:grid-cols-2">
+          {spineNotes.map((note) => (
+            <Link key={note.slug} href={note.url} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-mint/40">
+              <p className="text-xs font-semibold uppercase text-signal">{note.category}</p>
+              <h2 className="mt-2 text-xl font-semibold text-white">{note.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{note.description}</p>
+            </Link>
+          ))}
+        </div>
       </div>
       <div className="mb-10 grid gap-4 md:grid-cols-2">
         {notes.map((note) => (
