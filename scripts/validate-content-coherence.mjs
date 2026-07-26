@@ -270,6 +270,31 @@ for (const required of [
   expect(briefPage.includes(required), `/brief missing executive decision/proof contract: ${required}`);
 }
 
+const changelogPage = fs.readFileSync(path.join(root, "app", "changelog", "page.tsx"), "utf8");
+for (const required of [
+  "buildPublishingIndex",
+  "releaseStats",
+  "releaseProof",
+  "Release proof",
+  "Release discipline",
+  "Release ledger",
+  "Published assets",
+  "Publication entries",
+  "Latest update",
+  "Manual releases",
+  "Version deliberately",
+  "Prefer stronger assets",
+  "Preserve public safety",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/wiki/operational-intelligence-publication-pack",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/evals",
+  "/rss.xml"
+]) {
+  expect(changelogPage.includes(required), `/changelog missing release ledger contract: ${required}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
