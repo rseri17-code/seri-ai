@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Award, Download, ExternalLink, GitBranch, MapPin, ShieldCheck } from "lucide-react";
+import { Award, BrainCircuit, Download, ExternalLink, GitBranch, MapPin, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
@@ -50,6 +50,12 @@ const careerThroughline = [
   ["2025-now", "Applies that operating background to production AI agent systems, AIOps, evaluation, replay, runtime governance, and Operational Intelligence."]
 ] as const;
 
+const architectThesis = [
+  "Ravikanth's point of view comes from operating complex systems first, then applying AI to the parts of operations where evidence, timing, ownership, and decision quality matter.",
+  "Operational Intelligence is the synthesis: not a chatbot resume, not a dashboard layer, and not autonomy theater, but a reviewable control system for enterprise operational reasoning.",
+  "The public work on seri.ai is designed to prove that thesis through doctrine, reference architecture, simulations, eval fixtures, patterns, and portable artifacts."
+] as const;
+
 export default function ResumePage() {
   return (
     <Section eyebrow="Interactive resume" title={resume.headline} level="h1">
@@ -77,6 +83,19 @@ export default function ResumePage() {
           >
             <Download size={18} /> Download resume
           </TrackedAnchor>
+        </Card>
+        <Card className="border-signal/25 bg-signal/[0.045]">
+          <div className="flex items-center gap-3">
+            <BrainCircuit className="text-signal" />
+            <h2 className="text-xl font-semibold text-white">Architect thesis</h2>
+          </div>
+          <div className="mt-5 space-y-3">
+            {architectThesis.map((statement) => (
+              <p key={statement} className="rounded border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-slate-200">
+                {statement}
+              </p>
+            ))}
+          </div>
         </Card>
         <Card>
           <h2 className="text-xl font-semibold text-white">Strengths</h2>
