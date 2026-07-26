@@ -1,6 +1,6 @@
 # Product Excellence Report
 
-Date: 2026-07-16
+Date: 2026-07-26
 
 ## Baseline Product Deficiencies
 
@@ -26,6 +26,9 @@ Date: 2026-07-16
 - Added deterministic answer-shape checks and reference-asset routing checks to `npm run evals`.
 - Added the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, rendered reference diagrams, claim classification ledger, technical review path, and practitioner review loop.
 - Added structured data, `/llms.txt`, sitemap/robots discovery, and generated Open Graph/Twitter preview images so the public reference system is readable by people, crawlers, and AI agents.
+- Added executable Ask handoffs across Start Here, Search, Framework, Operations Room, article pages, project proof pages, and product proof pages.
+- Added reviewer share packets, public proof channels, wiki reference spine, product proof review packet, project proof Ask prompts, and resume architect thesis.
+- Expanded Ask credibility coverage for architecture judgment, public work, resume/background routing, certifications, LinkedIn signal, GitHub signal, and public-safe limitations.
 
 ## User Journeys Reviewed
 
@@ -73,7 +76,7 @@ Date: 2026-07-16
 
 ## Public-Safety Result
 
-`npm run scan:public-safety` passed across 118 files.
+`npm run scan:public-safety` passed across 119 files.
 
 No confidential employer product names, private system names, internal logs, screenshots, credentials, customer data, internal incidents, or proprietary architecture were exposed in this loop.
 
@@ -81,11 +84,11 @@ No confidential employer product names, private system names, internal logs, scr
 
 - `npm run validate:content` — passed
 - `npm run validate:contracts` — passed
-- `npm run evals` — 55 fixtures passing with answer-shape, reference-routing, public-proof, claim-discipline, minimum-conformance, and technical-review path checks
+- `npm run evals` — 66 fixtures passing with answer-shape, reference-routing, public-proof, claim-discipline, credibility, minimum-conformance, and technical-review path checks
 - `npm run typecheck` — passed
 - `npm run lint` — passed with Next.js lint deprecation warning
-- `npm run validate:links` — passed across 87 files
-- `npm run scan:public-safety` — passed across 118 files
+- `npm run validate:links` — passed across 88 files
+- `npm run scan:public-safety` — passed across 119 files
 - `npm test` — passed
 - `npm run build` — passed, 77 routes generated
 - `git diff --check` — passed
