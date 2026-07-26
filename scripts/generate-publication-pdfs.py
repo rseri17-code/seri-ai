@@ -334,6 +334,8 @@ def evidence_pack():
         p("What evidence would convince another experienced engineer that this operating model is useful? Operational Intelligence becomes stronger when claims can be tested, challenged, compared, and revised."),
         p("Review path", "H1Seri"),
         p("Structured practitioner review is captured through /contact so SRE, architecture, AI engineering, governance, executive, and product reviewers can challenge the doctrine with specific evidence requests."),
+        p("Version Discipline", "H1Seri"),
+        p("The Canonical Doctrine and Reference Architecture should evolve as versioned reference assets. Future v1.x changes should be incremental, evidence-based, and backward-compatible unless review or benchmarks prove that a term, layer boundary, or invariant is actively misleading."),
         p("Evidence Classes", "H1Seri"),
         table(
             [

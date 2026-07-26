@@ -40,6 +40,20 @@ Useful evidence classes:
 - Regression history: tracked behavior changes over time, including failures and corrected gaps.
 - Negative case: a scenario where Operational Intelligence should refuse, redirect, or declare insufficient evidence.
 
+## Version Discipline
+
+The Canonical Doctrine and Reference Architecture should now evolve as versioned reference assets, not as open-ended product copy. Future v1.x changes should be incremental, evidence-based, and backward-compatible unless practitioner review or benchmark results prove that a term, layer boundary, or invariant is actively misleading.
+
+Revision evidence should answer one of five questions:
+
+- What implementation example shows the model working better than a weaker baseline?
+- What benchmark or replay caught a failure that prose review would have missed?
+- What practitioner feedback exposed ambiguity in a definition, layer boundary, or approval rule?
+- What control comparison shows where the model adds value over observability, AIOps, incident management, ITSM, or chatbot-only assistance?
+- What negative case proves the model knows when to refuse, redirect, or state insufficient evidence?
+
+Any proposed change that cannot answer one of those questions should remain a note, not a doctrine revision.
+
 ## OI-ROOM-001 Benchmark Rubric
 
 OI-ROOM-001 should be judged on evidence handling, not visual impressiveness.

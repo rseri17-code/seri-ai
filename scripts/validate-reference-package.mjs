@@ -101,6 +101,8 @@ const markdownAssets = [
     minWords: 1_700,
     required: [
       "OI-ROOM-001 Benchmark Rubric",
+      "Version Discipline",
+      "Future v1.x changes should be incremental, evidence-based, and backward-compatible",
       "Control Comparisons",
       "Minimum Conformance Checklist",
       "Falsification Criteria",

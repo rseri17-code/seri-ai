@@ -35,7 +35,21 @@ Operational Intelligence becomes stronger when claims can be tested, challenged,
 | Regression history | Shows maturity over time | Failures tracked and corrected across releases | Only passing scores shown |
 | Negative case | Tests boundaries | Refuses confidential, unsupported, or unsafe requests | Answers everything confidently |
 
-## 3. Implementation-Neutral Flow
+## 3. Version Discipline
+
+The Canonical Doctrine and Reference Architecture should evolve as versioned reference assets. Future v1.x changes should be incremental, evidence-based, and backward-compatible unless practitioner review or benchmark results show that a term, layer boundary, or invariant is actively misleading.
+
+Revision evidence should answer one of five questions:
+
+- What implementation example shows the model working better than a weaker baseline?
+- What benchmark or replay caught a failure that prose review would have missed?
+- What practitioner feedback exposed ambiguity in a definition, layer boundary, or approval rule?
+- What control comparison shows where the model adds value over observability, AIOps, incident management, ITSM, or chatbot-only assistance?
+- What negative case proves the model knows when to refuse, redirect, or state insufficient evidence?
+
+Any proposed change that cannot answer one of those questions should remain a note, not a doctrine revision.
+
+## 4. Implementation-Neutral Flow
 
 1. Ingest public-safe operational signals.
 2. Reconstruct the transaction journey.
@@ -50,7 +64,7 @@ Operational Intelligence becomes stronger when claims can be tested, challenged,
 
 This flow is intentionally vendor-neutral. It does not require a specific model provider, observability vendor, database, cloud provider, graph engine, agent framework, or ticketing system.
 
-## 4. OI-ROOM-001 Benchmark Rubric
+## 5. OI-ROOM-001 Benchmark Rubric
 
 | Dimension | Acceptance question | Evidence required |
 | --- | --- | --- |
@@ -67,7 +81,7 @@ This flow is intentionally vendor-neutral. It does not require a specific model 
 | Refusal | Does the system refuse confidential or unsupported questions? | Public-safe refusal and redirection |
 | Latency | Is the experience usable for beta review? | Measured route and API latency where available |
 
-## 5. Control Comparisons
+## 6. Control Comparisons
 
 | Mode | What it is good at | What it tends to miss | OI expectation |
 | --- | --- | --- | --- |
@@ -77,7 +91,7 @@ This flow is intentionally vendor-neutral. It does not require a specific model 
 | Runbook-only | Known procedural response | Novel ambiguity, contradictory evidence | Use as evidence, not as proof |
 | OI workflow | Reviewable operational judgment | Requires disciplined context and evaluation | Improve decision quality under uncertainty |
 
-## 6. Practitioner Review Questions
+## 7. Practitioner Review Questions
 
 ### SRE Reviewer
 
@@ -114,7 +128,7 @@ This flow is intentionally vendor-neutral. It does not require a specific model 
 - Does it clarify business impact?
 - Does it make accountability clearer?
 
-## 7. Evidence Ledger Template
+## 8. Evidence Ledger Template
 
 | Field | Description |
 | --- | --- |
@@ -126,7 +140,7 @@ This flow is intentionally vendor-neutral. It does not require a specific model 
 | Limitation | What the evidence does not prove |
 | Next improvement | Concrete action to strengthen the claim |
 
-## 8. Current Evidence Ledger
+## 9. Current Evidence Ledger
 
 | Claim | Classification | Evidence source | Result | Limitation | Next improvement |
 | --- | --- | --- | --- | --- | --- |
@@ -136,7 +150,7 @@ This flow is intentionally vendor-neutral. It does not require a specific model 
 | Replay seeds are useful for regression testing operational AI behavior. | Derived from evaluation practice | Eval report, reference architecture | Partial | Current fixtures test assistant behavior, not full workflow replay | Add replay-backed workflow fixtures |
 | Operator control should gate consequential actions. | Established governance principle applied to OI | Reference architecture, OI-ROOM-001 | Strong | Needs policy examples for different risk classes | Add approval class examples to future revisions |
 
-## 9. Falsification Criteria
+## 10. Falsification Criteria
 
 The doctrine should be revised if evidence shows that:
 
@@ -147,7 +161,7 @@ The doctrine should be revised if evidence shows that:
 - Evaluation gates fail to catch regressions that human reviewers consider obvious.
 - The workflow slows urgent response without improving learning, auditability, or decision quality.
 
-## 10. Minimum Conformance Checklist
+## 11. Minimum Conformance Checklist
 
 An implementation should not be described as Operational Intelligence unless it can show these proofs. The checklist is implementation-neutral and does not require a specific vendor, model, database, cloud, graph engine, ticketing system, or UI.
 
@@ -164,7 +178,7 @@ An implementation should not be described as Operational Intelligence unless it 
 | Replay seed | The case can be reproduced from approved public-safe context and versioned expected behavior. | The demo cannot be rerun or compared after changes. | AI engineer |
 | Learning loop | Reviewed outcomes update memory, patterns, documentation, and future fixtures. | Post-incident learning remains unstructured narrative. | Executive reviewer |
 
-## 11. Conformance Verdicts
+## 12. Conformance Verdicts
 
 - Conforms: the implementation supplies observable proof for every requirement.
 - Partially conforms: the implementation satisfies the invariant but lacks one or more measurable proofs.
@@ -173,7 +187,7 @@ An implementation should not be described as Operational Intelligence unless it 
 
 The current public Operations Room should be treated as a synthetic conformance example, not production evidence. Its job is to make the checklist inspectable.
 
-## 12. Next Evidence Priorities
+## 13. Next Evidence Priorities
 
 1. Run practitioner review with at least one SRE, one architect, one AI engineer, and one governance reviewer.
 2. Add replay-backed fixtures for OI-ROOM-001 beyond assistant-only Q&A.
