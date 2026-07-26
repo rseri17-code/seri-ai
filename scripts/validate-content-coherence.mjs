@@ -181,6 +181,27 @@ for (const required of [
   expect(startHerePage.includes(required), `/start-here missing audience onboarding contract: ${required}`);
 }
 
+const architectureLabPage = fs.readFileSync(path.join(root, "app", "architecture-lab", "page.tsx"), "utf8");
+for (const required of [
+  "const labContracts",
+  "const reviewSequence",
+  "Implementation-facing patterns",
+  "Evidence contract",
+  "Replay contract",
+  "Evaluation contract",
+  "Operator control contract",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/wiki/operational-intelligence-publication-pack",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/publication-pack/decision-packet-example.md",
+  "/publication-pack/oi-room-001-printable-walkthrough.md",
+  "Failure mode",
+  "Layer handoff"
+]) {
+  expect(architectureLabPage.includes(required), `/architecture-lab missing implementation contract surface: ${required}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
