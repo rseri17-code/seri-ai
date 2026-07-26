@@ -41,6 +41,33 @@ function inferRelatedArtifacts(question: string) {
   if (/publication pack|diagram|pdf|printable|executive summary|comparison table|decision packet|glossary card/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-publication-pack");
   }
+  if (/diagram|state machine|sequence diagram|evidence graph diagram|replay loop/.test(lower)) {
+    artifacts.add("/publication-pack/operational-intelligence-diagrams.md");
+  }
+  if (/comparison table|adjacent discipline|claim classification|observability versus|aiops versus|agentops/.test(lower)) {
+    artifacts.add("/publication-pack/operational-intelligence-comparison-tables.md");
+  }
+  if (/decision packet|approval class|rollback review/.test(lower)) {
+    artifacts.add("/publication-pack/decision-packet-example.md");
+  }
+  if (/printable walkthrough|oi-room-001 walkthrough|transaction timing/.test(lower)) {
+    artifacts.add("/publication-pack/oi-room-001-printable-walkthrough.md");
+  }
+  if (/executive summary|one-page summary|one page summary/.test(lower)) {
+    artifacts.add("/publication-pack/operational-intelligence-executive-summary.md");
+  }
+  if (/glossary|reference card|canonical terms/.test(lower)) {
+    artifacts.add("/publication-pack/operational-intelligence-glossary-card.md");
+  }
+  if (/publication pack pdf|download.*publication/.test(lower)) {
+    artifacts.add("/downloads/operational-intelligence-publication-pack.pdf");
+  }
+  if (/evidence pack pdf|download.*evidence/.test(lower)) {
+    artifacts.add("/downloads/operational-intelligence-evidence-pack.pdf");
+  }
+  if (/walkthrough pdf|download.*walkthrough|printable.*pdf/.test(lower)) {
+    artifacts.add("/downloads/oi-room-001-printable-walkthrough.pdf");
+  }
   if (/evidence pack|benchmark|rubric|control case|baseline|practitioner|review|conformance checklist|minimum conformance|observable proof|failure signal|falsifiable|falsification|evidence ledger|claim ledger|claim classification|established|derived|original|speculative|unsupported|prove|credible|skeptical|convince|useful/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
   }
@@ -67,9 +94,43 @@ function inferRelatedArtifacts(question: string) {
   return [...artifacts].slice(0, 7);
 }
 
+function inferReferenceAssetMatches(question: string) {
+  const lower = question.toLowerCase();
+  const matches: string[] = [];
+  if (/diagram|state machine|sequence diagram|evidence graph diagram|replay loop/.test(lower)) {
+    matches.push("Diagram Pack: /publication-pack/operational-intelligence-diagrams.md");
+  }
+  if (/comparison table|adjacent discipline|claim classification|observability versus|aiops versus|agentops/.test(lower)) {
+    matches.push("Comparison Tables: /publication-pack/operational-intelligence-comparison-tables.md");
+  }
+  if (/decision packet|approval class|rollback review/.test(lower)) {
+    matches.push("Decision Packet Example: /publication-pack/decision-packet-example.md");
+  }
+  if (/printable walkthrough|oi-room-001 walkthrough|transaction timing/.test(lower)) {
+    matches.push("OI-ROOM-001 Printable Walkthrough: /publication-pack/oi-room-001-printable-walkthrough.md");
+  }
+  if (/executive summary|one-page summary|one page summary/.test(lower)) {
+    matches.push("Executive Summary: /publication-pack/operational-intelligence-executive-summary.md");
+  }
+  if (/glossary|reference card|canonical terms/.test(lower)) {
+    matches.push("Glossary Card: /publication-pack/operational-intelligence-glossary-card.md");
+  }
+  if (/publication pack pdf|download.*publication/.test(lower)) {
+    matches.push("Publication Pack PDF: /downloads/operational-intelligence-publication-pack.pdf");
+  }
+  if (/evidence pack pdf|download.*evidence/.test(lower)) {
+    matches.push("Evidence Pack PDF: /downloads/operational-intelligence-evidence-pack.pdf");
+  }
+  if (/walkthrough pdf|download.*walkthrough|printable.*pdf/.test(lower)) {
+    matches.push("OI-ROOM-001 Walkthrough PDF: /downloads/oi-room-001-printable-walkthrough.pdf");
+  }
+  return matches;
+}
+
 function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
   const layers = inferFrameworkLayers(question);
   const relatedArtifacts = inferRelatedArtifacts(question);
+  const referenceAssetMatches = inferReferenceAssetMatches(question);
   const primarySource = context[0];
   const sourceLine = primarySource ? `${primarySource.title} (${primarySource.url})` : "No matching approved public source";
   const direct =
@@ -82,6 +143,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",
+    referenceAssetMatches.length ? `Reference asset match: ${referenceAssetMatches.join("; ")}.` : "Reference asset match: use the Canonical Doctrine, Reference Architecture, Publication Pack, and Evidence Pack as the primary review spine.",
     "Public profile links: github.com/rseri17-code and linkedin.com/in/ravikanthseri.",
     "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, replay, evaluation gates, operational memory, and human-reviewed action.",
     "Tradeoff or limitation: this local fallback is deterministic and lexical; semantic retrieval and model-generated synthesis improve when production AI and vector search keys are configured.",

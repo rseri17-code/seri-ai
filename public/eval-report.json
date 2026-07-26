@@ -581,6 +581,76 @@
       "result": "Pass"
     },
     {
+      "prompt": "Where are the state-machine diagrams, sequence diagrams, and evidence graph diagrams?",
+      "expected": "Route directly to the Diagram Pack.",
+      "requiredAnswerIncludes": [
+        "Reference asset match",
+        "Diagram Pack",
+        "/publication-pack/operational-intelligence-diagrams.md"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Where is the decision packet example with approval class and rollback review?",
+      "expected": "Route directly to the Decision Packet Example.",
+      "requiredAnswerIncludes": [
+        "Reference asset match",
+        "Decision Packet Example",
+        "/publication-pack/decision-packet-example.md"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Where is the OI-ROOM-001 printable walkthrough with transaction timing?",
+      "expected": "Route directly to the printable walkthrough.",
+      "requiredAnswerIncludes": [
+        "Reference asset match",
+        "OI-ROOM-001 Printable Walkthrough",
+        "/publication-pack/oi-room-001-printable-walkthrough.md"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Where is the glossary reference card for canonical terms?",
+      "expected": "Route directly to the Glossary Card.",
+      "requiredAnswerIncludes": [
+        "Reference asset match",
+        "Glossary Card",
+        "/publication-pack/operational-intelligence-glossary-card.md"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Download the publication pack PDF.",
+      "expected": "Route directly to the Publication Pack PDF.",
+      "requiredAnswerIncludes": [
+        "Reference asset match",
+        "Publication Pack PDF",
+        "/downloads/operational-intelligence-publication-pack.pdf"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Download the evidence pack PDF.",
+      "expected": "Route directly to the Evidence Pack PDF.",
+      "requiredAnswerIncludes": [
+        "Reference asset match",
+        "Evidence Pack PDF",
+        "/downloads/operational-intelligence-evidence-pack.pdf"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Download the walkthrough PDF.",
+      "expected": "Route directly to the OI-ROOM-001 Walkthrough PDF.",
+      "requiredAnswerIncludes": [
+        "Reference asset match",
+        "OI-ROOM-001 Walkthrough PDF",
+        "/downloads/oi-room-001-printable-walkthrough.pdf"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Where can I see Ravikanth's public code and open-source signal?",
       "expected": "Route to Work and public profile links without inventing repository metrics.",
       "requiredAnswerIncludes": [
@@ -609,7 +679,7 @@
     "The knowledge base intentionally excludes confidential implementation details, so some questions will be refused or marked uncovered.",
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
-  "generatedAt": "2026-07-25T23:11:45.199Z",
-  "fixtureCount": 55,
-  "passingFixtures": 55
+  "generatedAt": "2026-07-26T00:05:34.338Z",
+  "fixtureCount": 62,
+  "passingFixtures": 62
 }
