@@ -671,6 +671,53 @@
         "Related page"
       ],
       "result": "Pass"
+    },
+    {
+      "prompt": "What makes Ravikanth credible for Agentic SRE and Operational Intelligence work?",
+      "expected": "Route to Work, Resume, Background, public profile links, and evidence discipline.",
+      "requiredAnswerIncludes": [
+        "Claim discipline",
+        "Public profile links",
+        "/work",
+        "/resume",
+        "/background"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Explain Ravikanth's architecture judgment using only public evidence.",
+      "expected": "Route to reference architecture, resume, background, and public-safe limitations.",
+      "requiredAnswerIncludes": [
+        "Reference Architecture",
+        "/wiki/operational-intelligence-reference-architecture",
+        "/resume",
+        "/background",
+        "Explicit unknowns"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "How does Ravikanth's experience connect observability, identity, Kubernetes, and AI agents?",
+      "expected": "Route to resume and background without exposing confidential implementation details.",
+      "requiredAnswerIncludes": [
+        "Public source",
+        "/resume",
+        "/background",
+        "Tradeoff or limitation",
+        "Explicit unknowns"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Where can I understand Ravikanth's certifications and LinkedIn signal?",
+      "expected": "Route to resume, background, and public profile links.",
+      "requiredAnswerIncludes": [
+        "Public profile links",
+        "linkedin.com/in/ravikanthseri",
+        "/resume",
+        "/background"
+      ],
+      "result": "Pass"
     }
   ],
   "knownLimits": [
@@ -679,7 +726,7 @@
     "The knowledge base intentionally excludes confidential implementation details, so some questions will be refused or marked uncovered.",
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
-  "generatedAt": "2026-07-26T03:40:26.950Z",
-  "fixtureCount": 62,
-  "passingFixtures": 62
+  "generatedAt": "2026-07-26T03:50:07.590Z",
+  "fixtureCount": 66,
+  "passingFixtures": 66
 }

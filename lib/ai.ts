@@ -87,7 +87,7 @@ function inferRelatedArtifacts(question: string) {
   if (/work|public work|project|building|product thesis|github|open source|open-source|code|repository/.test(lower)) {
     artifacts.add("/work");
   }
-  if (/resume|background|experience|career|certification|credential|linkedin/.test(lower)) {
+  if (/resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence/.test(lower)) {
     artifacts.add("/resume");
     artifacts.add("/background");
   }
