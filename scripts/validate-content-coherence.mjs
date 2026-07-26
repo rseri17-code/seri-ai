@@ -207,6 +207,45 @@ for (const required of [
   expect(startHerePage.includes(required), `/start-here missing audience onboarding contract: ${required}`);
 }
 
+const searchPage = fs.readFileSync(path.join(root, "app", "search", "page.tsx"), "utf8");
+for (const required of [
+  "const researchPrompts",
+  "buildKnowledgeGraph",
+  "buildPublishingIndex",
+  "Searchable sources",
+  "Published assets",
+  "Graph relationships",
+  "Reference downloads",
+  "Canonical research prompts",
+  "A research console for the doctrine, reference architecture, proof objects, and public work.",
+  "Search is part of the product contract",
+  "What is Operational Intelligence and what is it not?",
+  "Which contracts make two implementations comparable?",
+  "What would convince a skeptical engineer that this model is useful?",
+  "How does OI-ROOM-001 move from evidence to a decision packet?",
+  "Which trust fixtures gate Ask Ravikanth behavior?",
+  "Where is Ravikanth's public work connected to proof objects?",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/investigation-room",
+  "/evals",
+  "/work"
+]) {
+  expect(searchPage.includes(required), `/search missing research console contract: ${required}`);
+}
+
+const contentSearch = fs.readFileSync(path.join(root, "components", "content-search.tsx"), "utf8");
+for (const required of [
+  "const visibleResults",
+  "results.slice(0, 12)",
+  "Showing 12 canonical starting points",
+  "Search or filter to inspect the full public corpus.",
+  "visibleResults.map"
+]) {
+  expect(contentSearch.includes(required), `ContentSearch missing bounded initial search contract: ${required}`);
+}
+
 const architectureLabPage = fs.readFileSync(path.join(root, "app", "architecture-lab", "page.tsx"), "utf8");
 for (const required of [
   "const labContracts",

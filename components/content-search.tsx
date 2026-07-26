@@ -82,6 +82,7 @@ export function ContentSearch({ sources }: { sources: PublicSource[] }) {
     pattern !== "All" ? `pattern: ${pattern}` : null,
     product !== "All" ? `product: ${product}` : null
   ].filter(Boolean);
+  const visibleResults = activeFilters.length ? results : results.slice(0, 12);
 
   return (
     <div className="space-y-5">
@@ -164,8 +165,13 @@ export function ContentSearch({ sources }: { sources: PublicSource[] }) {
           </button>
         </div>
       ) : null}
+      {!activeFilters.length && results.length > visibleResults.length ? (
+        <div className="rounded border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-slate-300">
+          Showing 12 canonical starting points. Search or filter to inspect the full public corpus.
+        </div>
+      ) : null}
       <div className="grid gap-4 md:grid-cols-2">
-        {results.map((source) => (
+        {visibleResults.map((source) => (
           <Link key={source.id} href={source.url} className="rounded-lg border border-white/10 bg-white/[0.04] p-5 transition hover:border-mint/40">
             <div className="flex items-center justify-between gap-3 text-xs text-slate-400">
               <span>{source.type}</span>
