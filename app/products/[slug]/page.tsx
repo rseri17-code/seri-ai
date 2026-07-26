@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Boxes, GitBranch, Network, Radar, Route, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
 import { builderDna, canonicalDefinition, harnessThesis, operationalLayers, products } from "@/content/site";
+import { buildPublishingIndex } from "@/lib/publishing";
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -14,9 +15,27 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const product = products.find((item) => item.slug === slug);
   return {
     title: product ? `${product.name} | seri.ai Products` : "Products | seri.ai",
-    description: product?.summary
+    description: product?.summary,
+    alternates: product
+      ? {
+          canonical: `/products/${product.slug}`
+        }
+      : undefined,
+    openGraph: product
+      ? {
+          title: product.name,
+          description: product.summary,
+          url: `/products/${product.slug}`
+        }
+      : undefined
   };
 }
+
+const artifactLabels: Record<string, string> = {
+  "/investigation-room": "Operations Room",
+  "/evals": "Trust fixtures",
+  "/map": "Operational map"
+};
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -25,6 +44,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   if (!product) {
     notFound();
   }
+  const asset = buildPublishingIndex().find((item) => item.url === `/products/${product.slug}`);
 
   return (
     <article className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
@@ -48,6 +68,37 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           Explore the map
         </Link>
       </div>
+
+      {asset ? (
+        <div className="mt-8 grid gap-4 lg:grid-cols-[1fr_1fr]">
+          <Card className="border-signal/25 bg-signal/[0.045]">
+            <h2 className="text-2xl font-semibold text-white">Product review packet</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">Inspect the existing public artifacts that make the product thesis reviewable.</p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+              {asset.artifacts.map((href) => (
+                <Link key={href} href={href} className="rounded border border-white/10 bg-black/20 p-3 text-sm font-semibold text-slate-100 transition hover:border-signal/40">
+                  {artifactLabels[href] ?? href}
+                  <span className="mt-2 flex items-center gap-2 text-xs text-mint">
+                    Inspect <ArrowRight size={14} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </Card>
+
+          <Card className="border-mint/25 bg-mint/[0.045]">
+            <h2 className="text-2xl font-semibold text-white">Ask this product</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">Use indexed public content to challenge where this product belongs in Operational Intelligence.</p>
+            <div className="mt-5 space-y-2">
+              {asset.askQuestions.slice(0, 3).map((question) => (
+                <Link key={question} href={`/ask?prompt=${encodeURIComponent(question)}`} className="block rounded border border-white/10 bg-black/20 p-3 text-sm leading-6 text-slate-200 transition hover:border-mint/40 hover:text-mint">
+                  {question}
+                </Link>
+              ))}
+            </div>
+          </Card>
+        </div>
+      ) : null}
 
       <div className="mt-12 grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
         <Card className="border-signal/30 bg-signal/[0.055]">

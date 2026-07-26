@@ -404,6 +404,24 @@ for (const required of [
   expect(projectPage.includes(required), `/projects/[slug] missing project proof contract: ${required}`);
 }
 
+const productPage = fs.readFileSync(path.join(root, "app", "products", "[slug]", "page.tsx"), "utf8");
+for (const required of [
+  "Product review packet",
+  "Ask this product",
+  "buildPublishingIndex",
+  "asset.artifacts.map",
+  "asset.askQuestions.slice(0, 3)",
+  "/ask?prompt=",
+  "encodeURIComponent(question)",
+  "/investigation-room",
+  "/evals",
+  "/map",
+  "canonical",
+  "openGraph"
+]) {
+  expect(productPage.includes(required), `/products/[slug] missing product proof contract: ${required}`);
+}
+
 const briefPage = fs.readFileSync(path.join(root, "app", "brief", "page.tsx"), "utf8");
 for (const required of [
   "const decisionBrief",
