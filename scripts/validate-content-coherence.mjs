@@ -246,6 +246,18 @@ for (const required of [
   expect(contentSearch.includes(required), `ContentSearch missing bounded initial search contract: ${required}`);
 }
 
+const chatComponent = fs.readFileSync(path.join(root, "components", "chat.tsx"), "utf8");
+for (const required of [
+  "useEffect",
+  "useRef",
+  "initialPromptRef",
+  "autoSubmittedRef",
+  "void sendMessage(prompt)",
+  "react-hooks/exhaustive-deps"
+]) {
+  expect(chatComponent.includes(required), `Chat missing prompt deep-link auto-submit contract: ${required}`);
+}
+
 const evalsPage = fs.readFileSync(path.join(root, "app", "evals", "page.tsx"), "utf8");
 for (const required of [
   "const coverageBuckets",

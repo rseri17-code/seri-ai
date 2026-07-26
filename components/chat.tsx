@@ -1,7 +1,7 @@
 "use client";
 
 import { BrainCircuit, CheckCircle2, Database, FileSearch, LockKeyhole, Send, ShieldCheck } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ChatMessage } from "@/lib/ai";
 import { captureSafeEvent, categorizeQuestion } from "@/lib/analytics-events";
 
@@ -32,6 +32,8 @@ export function Chat({
   const [input, setInput] = useState(initialPrompt);
   const [sources, setSources] = useState<Array<{ title: string; url: string; excerpt: string }>>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const initialPromptRef = useRef(initialPrompt);
+  const autoSubmittedRef = useRef(false);
 
   async function sendMessage(question = input) {
     if (!question.trim() || isLoading) {
@@ -86,6 +88,17 @@ export function Chat({
       setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    const prompt = initialPromptRef.current.trim();
+    if (!prompt || autoSubmittedRef.current) {
+      return;
+    }
+
+    autoSubmittedRef.current = true;
+    void sendMessage(prompt);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const prompts =
     suggestedPrompts ??
