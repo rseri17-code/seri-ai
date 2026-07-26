@@ -32,6 +32,46 @@ const cases = [
   {
     query: "Where can I see Ravikanth public code and open-source signal?",
     expectedFirstUrl: "/work"
+  },
+  {
+    query: "Where are the Operational Intelligence state machine and evidence graph diagrams?",
+    expectedFirstUrl: "/publication-pack/operational-intelligence-diagrams.md"
+  },
+  {
+    query: "Show the comparison tables for observability versus AIOps versus Operational Intelligence.",
+    expectedFirstUrl: "/publication-pack/operational-intelligence-comparison-tables.md"
+  },
+  {
+    query: "Where is the decision packet example with approval class and rollback review?",
+    expectedFirstUrl: "/publication-pack/decision-packet-example.md"
+  },
+  {
+    query: "Find the OI-ROOM-001 printable walkthrough with transaction timing.",
+    expectedFirstUrl: "/publication-pack/oi-room-001-printable-walkthrough.md"
+  },
+  {
+    query: "Where is the one-page executive summary?",
+    expectedFirstUrl: "/publication-pack/operational-intelligence-executive-summary.md"
+  },
+  {
+    query: "Where is the glossary reference card for replay seed and operator control plane?",
+    expectedFirstUrl: "/publication-pack/operational-intelligence-glossary-card.md"
+  },
+  {
+    query: "Find the evidence pack markdown with falsification criteria and observable proof.",
+    expectedFirstUrl: "/publication-pack/operational-intelligence-evidence-pack.md"
+  },
+  {
+    query: "Download the publication pack PDF for sharing diagrams and tables.",
+    expectedFirstUrl: "/downloads/operational-intelligence-publication-pack.pdf"
+  },
+  {
+    query: "Download the evidence pack PDF.",
+    expectedFirstUrl: "/downloads/operational-intelligence-evidence-pack.pdf"
+  },
+  {
+    query: "Download the walkthrough PDF.",
+    expectedFirstUrl: "/downloads/oi-room-001-printable-walkthrough.pdf"
   }
 ];
 

@@ -11,6 +11,18 @@ const referenceArchitectureUrl = "/wiki/operational-intelligence-reference-archi
 const evidencePackUrl = "/wiki/operational-intelligence-evidence-pack";
 const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
 const workUrl = "/work";
+const directReferenceBoosts: Array<[RegExp, string]> = [
+  [/diagram|diagrams|state machine diagram|sequence diagram|evidence graph diagram|replay loop/, "/publication-pack/operational-intelligence-diagrams.md"],
+  [/comparison table|adjacent discipline|claim classification|observability versus|aiops versus|agentops/, "/publication-pack/operational-intelligence-comparison-tables.md"],
+  [/decision packet|approval class|rollback review|review packet/, "/publication-pack/decision-packet-example.md"],
+  [/printable walkthrough|oi-room-001 walkthrough|walkthrough pdf|transaction timing/, "/publication-pack/oi-room-001-printable-walkthrough.md"],
+  [/executive summary|one-page summary|one page summary/, "/publication-pack/operational-intelligence-executive-summary.md"],
+  [/glossary|reference card|canonical terms|replay seed|operator control plane/, "/publication-pack/operational-intelligence-glossary-card.md"],
+  [/evidence pack markdown|falsification criteria/, "/publication-pack/operational-intelligence-evidence-pack.md"],
+  [/publication pack pdf|download.*publication|shareable pdf.*diagram/, "/downloads/operational-intelligence-publication-pack.pdf"],
+  [/evidence pack pdf|download.*evidence/, "/downloads/operational-intelligence-evidence-pack.pdf"],
+  [/walkthrough pdf|download.*walkthrough|printable.*pdf/, "/downloads/oi-room-001-printable-walkthrough.pdf"]
+];
 const doctrineTerms = new Set([
   "definition",
   "define",
@@ -152,7 +164,14 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const workBoost = source.url === workUrl && terms.some((term) => workTerms.has(term)) ? 10 : 0;
       const conformanceChecklistBoost = source.url === evidencePackUrl && /minimum conformance|conformance checklist|observable proof|failure signal/.test(lowerQuery) ? 10 : 0;
       const downloadPackBoost = source.url === publicationPackUrl && /download|diagram|pdf|printable|executive summary|comparison table|decision packet|glossary card|walkthrough/.test(lowerQuery) ? 8 : 0;
+      const broadPublicationPackBoost =
+        source.url === publicationPackUrl &&
+        /download|where can i|where are|find/.test(lowerQuery) &&
+        ["diagram", "comparison", "decision", "printable", "walkthrough", "glossary", "executive"].filter((term) => lowerQuery.includes(term)).length >= 3
+          ? 50
+          : 0;
       const publicProfileBoost = source.url === workUrl && /public code|open source|open-source|github|linkedin|public proof|engineering portfolio/.test(lowerQuery) ? 10 : 0;
+      const directReferenceBoost = directReferenceBoosts.some(([pattern, url]) => source.url === url && pattern.test(lowerQuery)) ? 40 : 0;
       const score =
         baseScore +
         doctrineBoost +
@@ -160,6 +179,8 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         evidencePackBoost +
         publicationPackBoost +
         workBoost +
+        directReferenceBoost +
+        broadPublicationPackBoost +
         conformanceChecklistBoost +
         downloadPackBoost +
         publicProfileBoost;
