@@ -152,6 +152,19 @@ for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki
   expect(contentRegistry.some((item) => item.route === route), `critical registry route missing: ${route}`);
 }
 
+const workPage = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
+for (const required of [
+  "const reviewSpine",
+  "Review spine",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/wiki/operational-intelligence-publication-pack",
+  "/investigation-room"
+]) {
+  expect(workPage.includes(required), `/work missing reviewer proof spine contract: ${required}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

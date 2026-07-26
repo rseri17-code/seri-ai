@@ -28,6 +28,34 @@ const registryWorkItem = (slug: string): WorkItem => {
   return [item.route, `${item.title}${suffix}`, item.summary];
 };
 
+const reviewSpine: WorkItem[] = [
+  [
+    "/wiki/operational-intelligence-canonical-doctrine",
+    "Canonical Doctrine",
+    "The definition, boundaries, ten-layer model, glossary, claim posture, and public-safe OI-ROOM-001 case."
+  ],
+  [
+    "/wiki/operational-intelligence-reference-architecture",
+    "Reference Architecture",
+    "Implementation-neutral contracts, schemas, state machines, governance controls, evaluation gates, and conformance levels."
+  ],
+  [
+    "/wiki/operational-intelligence-evidence-pack",
+    "Evidence Pack",
+    "Benchmark rubric, control comparisons, minimum conformance checklist, practitioner review, and falsification criteria."
+  ],
+  [
+    "/wiki/operational-intelligence-publication-pack",
+    "Publication Pack",
+    "Diagrams, comparison tables, decision packet example, printable walkthrough, executive summary, glossary card, and PDFs."
+  ],
+  [
+    "/investigation-room",
+    "Operations Room",
+    "The synthetic public-safe artifact where the framework becomes an inspectable investigation workflow."
+  ]
+];
+
 const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }> = [
   {
     title: "Systems",
@@ -99,6 +127,20 @@ export default function WorkPage() {
             This is the fastest way to understand the builder and the product thesis together: Operational Intelligence as a public-safe, inspectable operating model for Agentic SRE, evidence-backed reasoning, eval-gated action, and compounding operational memory.
           </p>
         </Card>
+      </Section>
+
+      <Section eyebrow="Review spine" title="Start here if you are evaluating the work seriously.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {reviewSpine.map(([href, label, detail], index) => (
+            <Link key={href} href={href}>
+              <Card className="h-full transition hover:border-mint/40">
+                <p className="font-mono text-sm text-mint">{String(index + 1).padStart(2, "0")}</p>
+                <h2 className="mt-4 text-xl font-semibold text-white">{label}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{detail}</p>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </Section>
 
       <Section eyebrow="Index" title="Explore the body of work without guessing where to click.">
