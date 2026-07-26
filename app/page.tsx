@@ -81,6 +81,45 @@ const referenceShelf = [
   }
 ];
 
+const reviewerPaths = [
+  {
+    role: "Executive",
+    ask: "Decision clarity and accountability.",
+    route: "/brief",
+    artifact: "One-page brief"
+  },
+  {
+    role: "SRE leader",
+    ask: "Evidence, hypotheses, unknowns.",
+    route: "/investigation-room",
+    artifact: "Operations Room"
+  },
+  {
+    role: "Principal architect",
+    ask: "Independent implementation.",
+    route: "/wiki/operational-intelligence-reference-architecture",
+    artifact: "Reference Architecture"
+  },
+  {
+    role: "AI engineer",
+    ask: "Retrieval, replay, refusal, gates.",
+    route: "/evals",
+    artifact: "Trust evals"
+  },
+  {
+    role: "Governance reviewer",
+    ask: "Approval, provenance, audit.",
+    route: "/wiki/operational-intelligence-evidence-pack",
+    artifact: "Evidence Pack"
+  },
+  {
+    role: "Recruiter or founder",
+    ask: "Builder proof and judgment.",
+    route: "/work",
+    artifact: "Work Index"
+  }
+] as const;
+
 export default function Home() {
   return (
     <>
@@ -209,6 +248,27 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </Section>
+
+      <Section eyebrow="Review path" title="Different serious visitors should be able to evaluate the thesis quickly.">
+        <Card className="border-amber/25 bg-amber/[0.045]">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber">Evidence-first review</p>
+          <h3 className="mt-3 text-3xl font-semibold text-white">The path is explicit: doctrine, architecture, evidence, artifact, feedback.</h3>
+          <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">Each reviewer gets a clear question, an asset to inspect, and a public-safe path to challenge the model.</p>
+          <div className="mt-5 grid gap-2 md:grid-cols-2 xl:grid-cols-3">
+            {reviewerPaths.map((path) => (
+              <Link key={path.role} href={path.route} className="rounded border border-white/10 bg-black/20 p-3 transition hover:border-amber/40">
+                <p className="text-xs font-semibold uppercase text-amber">{path.role}</p>
+                <p className="mt-2 font-semibold text-white">{path.artifact}</p>
+                <p className="mt-1 text-sm text-slate-400">{path.ask}</p>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href="/start-here" className="inline-flex items-center gap-2 rounded bg-amber px-5 py-3 font-semibold text-ink">Start review path <ArrowRight size={18} /></Link>
+            <Link href="/wiki/operational-intelligence-evidence-pack" className="inline-flex items-center gap-2 rounded border border-amber/35 px-5 py-3 font-semibold text-amber">Challenge the evidence</Link>
+          </div>
+        </Card>
       </Section>
 
       <Section eyebrow="Operating model" title="A point of view expressed as an inspectable system.">

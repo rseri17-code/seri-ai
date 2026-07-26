@@ -152,6 +152,32 @@ for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki
   expect(contentRegistry.some((item) => item.route === route), `critical registry route missing: ${route}`);
 }
 
+const homePage = fs.readFileSync(path.join(root, "app", "page.tsx"), "utf8");
+for (const required of [
+  "const reviewerPaths",
+  "Review path",
+  "Different serious visitors should be able to evaluate the thesis quickly.",
+  "Evidence-first review",
+  "The path is explicit: doctrine, architecture, evidence, artifact, feedback.",
+  "Start review path",
+  "Challenge the evidence",
+  "Executive",
+  "SRE leader",
+  "Principal architect",
+  "AI engineer",
+  "Governance reviewer",
+  "Recruiter or founder",
+  "/start-here",
+  "/brief",
+  "/investigation-room",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/evals",
+  "/work"
+]) {
+  expect(homePage.includes(required), `/ missing reviewer path contract: ${required}`);
+}
+
 const workPage = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
 for (const required of [
   "const reviewSpine",
