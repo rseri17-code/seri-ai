@@ -71,6 +71,13 @@ const downloadableArtifacts = [
   ["/downloads/oi-room-001-printable-walkthrough.pdf", "Walkthrough PDF", "Printable OI-ROOM-001 investigation packet for review conversations."]
 ] as const;
 
+const reviewerSharePackets = [
+  ["Executive reviewer", "/downloads/operational-intelligence-executive-summary.pdf", "Send the one-page summary first, then the Evidence Pack if the conversation turns to proof."],
+  ["Systems architect", "/wiki/operational-intelligence-reference-architecture", "Start with contracts, state machines, schemas, conformance, and the diagram pack."],
+  ["SRE or operations reviewer", "/downloads/oi-room-001-printable-walkthrough.pdf", "Use OI-ROOM-001 to inspect evidence flow, hypotheses, missing evidence, approval, and learning."],
+  ["AI governance reviewer", "/downloads/operational-intelligence-evidence-pack.pdf", "Use the evidence pack for benchmarks, refusal boundaries, practitioner review, and falsification criteria."]
+] as const;
+
 export default function ArtifactsPage() {
   return (
     <>
@@ -102,6 +109,20 @@ export default function ArtifactsPage() {
                 <h2 className="mt-3 text-xl font-semibold text-white">{title}</h2>
                 <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
                 <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-signal">Open artifact <ArrowRight size={15} /></p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Reviewer share packets" title="Send the smallest artifact that matches the review question.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {reviewerSharePackets.map(([audience, href, description]) => (
+            <Link key={audience} href={href}>
+              <Card className="h-full border-signal/20 bg-signal/[0.04] transition hover:border-signal/45">
+                <p className="text-sm font-semibold uppercase text-signal">{audience}</p>
+                <p className="mt-4 text-sm leading-6 text-slate-300">{description}</p>
+                <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-mint">Open packet <ArrowRight size={15} /></p>
               </Card>
             </Link>
           ))}

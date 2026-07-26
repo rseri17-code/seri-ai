@@ -250,12 +250,20 @@ assertIncludes("app/simulator/page.tsx", operationsRoomPage, [
 const artifactsPage = read("app/artifacts/page.tsx");
 assertIncludes("app/artifacts/page.tsx", artifactsPage, [
   "const downloadableArtifacts",
+  "const reviewerSharePackets",
   "Downloadable artifacts",
+  "Reviewer share packets",
+  "Executive reviewer",
+  "Systems architect",
+  "SRE or operations reviewer",
+  "AI governance reviewer",
   "/wiki/operational-intelligence-publication-pack",
   "/wiki/operational-intelligence-evidence-pack",
+  "/wiki/operational-intelligence-reference-architecture",
   "/publication-pack/operational-intelligence-diagrams.md",
   "/publication-pack/decision-packet-example.md",
   "/publication-pack/oi-room-001-printable-walkthrough.md",
+  "/downloads/operational-intelligence-executive-summary.pdf",
   "/downloads/operational-intelligence-publication-pack.pdf",
   "/downloads/operational-intelligence-evidence-pack.pdf",
   "/downloads/oi-room-001-printable-walkthrough.pdf"
