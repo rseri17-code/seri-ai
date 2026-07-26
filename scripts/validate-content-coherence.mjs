@@ -165,6 +165,22 @@ for (const required of [
   expect(workPage.includes(required), `/work missing reviewer proof spine contract: ${required}`);
 }
 
+const startHerePage = fs.readFileSync(path.join(root, "app", "start-here", "page.tsx"), "utf8");
+for (const required of [
+  "const routeLabels",
+  "const reviewSpine",
+  "function labelFor",
+  "Serious technical review path",
+  "Canonical Doctrine",
+  "Reference Architecture",
+  "Evidence Pack",
+  "Publication Pack",
+  "Operations Room",
+  "{labelFor(href)}"
+]) {
+  expect(startHerePage.includes(required), `/start-here missing audience onboarding contract: ${required}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
