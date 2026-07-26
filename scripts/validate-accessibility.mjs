@@ -138,6 +138,25 @@ const wikiRenderer = read("app/wiki/[slug]/page.tsx");
   }
 });
 
+const contentSearch = read("components/content-search.tsx");
+[
+  "const suggestedQueries",
+  "Search workbench",
+  "aria-live=\"polite\"",
+  "Reset search",
+  "No matching public asset",
+  "aria-label=\"Search public Operational Intelligence content\"",
+  "aria-label=\"Filter by topic\"",
+  "aria-label=\"Filter by tag\"",
+  "Filter by ${label}",
+  "publication pack PDF",
+  "operator control plane"
+].forEach((required) => {
+  if (!contentSearch.includes(required)) {
+    errors.push(`components/content-search.tsx: missing search accessibility contract "${required}"`);
+  }
+});
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
