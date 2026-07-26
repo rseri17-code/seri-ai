@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 import jitiFactory from "jiti";
 
@@ -102,6 +104,22 @@ const publishingSearchCases = [
 for (const [query, expectedUrl] of publishingSearchCases) {
   const topUrls = searchPublishingIndex({ query }).slice(0, 5).map((asset) => asset.url);
   expect(topUrls.includes(expectedUrl), `publishing search for "${query}" did not include ${expectedUrl} in top 5; got ${topUrls.join(", ")}`);
+}
+
+const libraryPage = fs.readFileSync(path.join(root, "app", "library", "page.tsx"), "utf8");
+for (const required of [
+  "const referenceShelf",
+  "const corpusStats",
+  "Reference shelf",
+  "The canonical assets before the essays",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/wiki/operational-intelligence-publication-pack",
+  "/publication-pack/operational-intelligence-diagrams.md",
+  "/downloads/operational-intelligence-publication-pack.pdf"
+]) {
+  expect(libraryPage.includes(required), `/library missing publication corpus contract: ${required}`);
 }
 
 if (errors.length) {
