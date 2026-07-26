@@ -58,11 +58,19 @@ export default function SearchPage() {
           <Card className="p-5">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-signal">Canonical research prompts</p>
             <div className="mt-4 grid gap-2 md:grid-cols-2">
-              {researchPrompts.map(([label, , href]) => (
-                <Link key={label} href={href} className="flex items-center justify-between gap-3 rounded border border-white/10 bg-black/20 px-3 py-2 text-sm font-semibold text-slate-200 transition hover:border-signal/40 hover:text-white">
-                  <span>{label}</span>
-                  <ArrowRight size={15} className="text-signal" />
-                </Link>
+              {researchPrompts.map(([label, prompt, href]) => (
+                <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="text-sm font-semibold text-white">{label}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{prompt}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <Link href={`/ask?prompt=${encodeURIComponent(prompt)}`} className="inline-flex items-center gap-2 rounded bg-signal px-3 py-2 text-xs font-semibold text-ink">
+                      Ask <ArrowRight size={13} />
+                    </Link>
+                    <Link href={href} className="inline-flex items-center gap-2 rounded border border-white/10 px-3 py-2 text-xs font-semibold text-slate-200 hover:border-signal/40">
+                      Source <ArrowRight size={13} />
+                    </Link>
+                  </div>
+                </div>
               ))}
             </div>
           </Card>
