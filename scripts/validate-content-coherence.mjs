@@ -247,6 +247,29 @@ for (const required of [
   expect(projectPage.includes(required), `/projects/[slug] missing project proof contract: ${required}`);
 }
 
+const briefPage = fs.readFileSync(path.join(root, "app", "brief", "page.tsx"), "utf8");
+for (const required of [
+  "const decisionBrief",
+  "const executiveProofPath",
+  "Decision brief",
+  "Proof path",
+  "executive summary",
+  "Canonical doctrine",
+  "Reference architecture",
+  "Operations Room",
+  "Evidence pack",
+  "Practitioner review",
+  "/publication-pack/operational-intelligence-executive-summary.md",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/investigation-room",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/contact",
+  "Inspect evidence"
+]) {
+  expect(briefPage.includes(required), `/brief missing executive decision/proof contract: ${required}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

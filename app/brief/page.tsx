@@ -10,6 +10,22 @@ export const metadata: Metadata = {
   description: "An executive brief on Operational Intelligence, AI-native operations, observability for AI, and ops for observability."
 };
 
+const decisionBrief = [
+  ["Category", "Operational Intelligence is the reasoning layer between enterprise telemetry and accountable human decision."],
+  ["Why now", "AI agents are entering operational workflows faster than enterprise evidence, governance, and evaluation systems are maturing."],
+  ["Risk", "Without evidence graphs, replay, refusal behavior, and approval gates, AI operations becomes confident automation without accountable reasoning."],
+  ["Wedge", "Start with incident investigation because it exposes telemetry quality, transaction context, topology, ownership, memory, evals, and human review in one workflow."]
+] as const;
+
+const executiveProofPath = [
+  ["/publication-pack/operational-intelligence-executive-summary.md", "One-page executive summary", "The fastest shareable framing for leaders."],
+  ["/wiki/operational-intelligence-canonical-doctrine", "Canonical doctrine", "Definitions, boundaries, ten layers, glossary, and claim posture."],
+  ["/wiki/operational-intelligence-reference-architecture", "Reference architecture", "Implementation contracts, state machines, schemas, gates, and governance."],
+  ["/investigation-room", "Operations Room", "A public-safe synthetic case that makes the thesis inspectable."],
+  ["/wiki/operational-intelligence-evidence-pack", "Evidence pack", "Benchmarks, control comparisons, conformance, practitioner review, and falsification criteria."],
+  ["/contact", "Practitioner review", "A structured path for critical feedback from operators, architects, AI engineers, and governance reviewers."]
+] as const;
+
 export default function BriefPage() {
   return (
     <>
@@ -31,6 +47,17 @@ export default function BriefPage() {
               See it as a product <ArrowRight size={18} />
             </Link>
           </Card>
+        </div>
+      </Section>
+
+      <Section eyebrow="Decision brief" title="The executive readout in one screen.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {decisionBrief.map(([label, statement]) => (
+            <Card key={label} className="h-full">
+              <p className="text-sm font-semibold uppercase text-mint">{label}</p>
+              <p className="mt-3 text-lg leading-8 text-slate-200">{statement}</p>
+            </Card>
+          ))}
         </div>
       </Section>
 
@@ -59,6 +86,23 @@ export default function BriefPage() {
               <CheckCircle2 className="mb-4 text-mint" />
               <p className="leading-7 text-slate-300">{point}</p>
             </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Proof path" title="How a serious reviewer should evaluate the brief.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {executiveProofPath.map(([href, title, description], index) => (
+            <Link key={href} href={href}>
+              <Card className="h-full transition hover:border-mint/40">
+                <p className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</p>
+                <h2 className="mt-3 text-xl font-semibold text-white">{title}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-mint">
+                  Inspect evidence <ArrowRight size={15} />
+                </span>
+              </Card>
+            </Link>
           ))}
         </div>
       </Section>
