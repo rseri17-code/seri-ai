@@ -1,8 +1,8 @@
 # Operational Intelligence Glossary Reference Card
 
-Version: 1.0  
-Status: Shareable reference  
-Updated: 2026-07-25
+Version: 1.0
+Status: Publication-ready shareable reference
+Updated: 2026-07-26
 
 ## Related References
 
@@ -39,3 +39,11 @@ Decision Packet: a reviewable recommendation or action option with evidence, ris
 Operator Control Plane: the human governance layer that controls approval, escalation, override, refusal, and accountability.
 
 Operational Memory: reviewed reusable context accumulated from incidents, decisions, patterns, outcomes, replay seeds, and lessons.
+
+## Boundary Rules
+
+Operational Intelligence starts when telemetry, topology, changes, tickets, or operational memory are converted into typed evidence for a decision path.
+
+Operational Intelligence ends before human accountability is bypassed. Consequential action remains controlled by service owners, incident command, change management, or governance policy.
+
+Observability remains the source of operational signals. Incident management remains the command and coordination process. ITSM remains the service-management process. Operational Intelligence makes the reasoning between those systems inspectable.

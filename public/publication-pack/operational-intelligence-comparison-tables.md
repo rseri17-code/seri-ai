@@ -1,8 +1,8 @@
 # Operational Intelligence Comparison Tables
 
-Version: 1.0  
-Status: Draft for Technical Review  
-Updated: 2026-07-25
+Version: 1.0
+Status: Publication-ready reference artifact
+Updated: 2026-07-26
 
 ## Related References
 

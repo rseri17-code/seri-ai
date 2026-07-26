@@ -1,8 +1,8 @@
 # Operational Intelligence Executive Summary
 
-Version: 1.0  
-Status: Shareable summary  
-Updated: 2026-07-25
+Version: 1.0
+Status: Publication-ready shareable summary
+Updated: 2026-07-26
 
 ## Related References
 
@@ -27,3 +27,15 @@ OI-ROOM-001 demonstrates the model through a synthetic checkout latency investig
 The doctrine explains why Operational Intelligence exists. The reference architecture specifies how an implementation should behave. Deployments bind the implementation to organizational policy, identity, authorization, data classification, audit, and operational risk.
 
 The purpose is not autonomous heroics. The purpose is better operational judgment: faster alignment, clearer evidence, safer recommendations, reusable memory, and decisions humans can inspect.
+
+## What Evidence Should Convince a Reviewer?
+
+The model should be judged by observable behavior, not by branding:
+
+- Can an SRE distinguish it from observability, AIOps, and incident management?
+- Can two teams implement the layer contracts similarly?
+- Does it expose contradictions and missing evidence before recommendation?
+- Does it improve investigation quality compared with dashboard-only or chatbot-only baselines?
+- Does it refuse confidential or unsupported questions?
+- Does it preserve human approval for consequential action?
+- Does reviewed learning become replayable fixtures, memory, and future retrieval?

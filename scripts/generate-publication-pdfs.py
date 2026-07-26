@@ -161,6 +161,33 @@ def evidence_graph_visual():
     return drawing
 
 
+def decision_handoff_visual():
+    drawing = Drawing(7.0 * inch, 1.9 * inch)
+    nodes = [
+        ("Supported\nhypothesis", 8, 92, "#f0fdf4"),
+        ("Contradiction", 8, 48, "#fef2f2"),
+        ("Missing\nevidence", 8, 4, "#f8fafc"),
+        ("Decision\npacket", 185, 48, "#eef2ff"),
+        ("Evaluation\ngate", 345, 48, "#ecfeff"),
+        ("Operator\napproval", 505, 48, "#fff7ed"),
+    ]
+    for label, x, y, fill in nodes:
+        drawing.add(Rect(x, y, 118, 34, strokeColor=LINE, fillColor=colors.HexColor(fill), strokeWidth=0.8, rx=4, ry=4))
+        for line_index, part in enumerate(label.split("\n")):
+            drawing.add(String(x + 8, y + 19 - line_index * 9, part, fontName="Helvetica-Bold", fontSize=7.1, fillColor=DARK))
+    edges = [
+        (126, 109, 185, 65, MINT),
+        (126, 65, 185, 65, colors.HexColor("#ef4444")),
+        (126, 21, 185, 65, MUTED),
+        (303, 65, 345, 65, BRAND),
+        (463, 65, 505, 65, BRAND),
+    ]
+    for x1, y1, x2, y2, color in edges:
+        drawing.add(Line(x1, y1, x2, y2, strokeColor=color, strokeWidth=1.0))
+    drawing.add(String(8, 138, "Decision packet handoff: the assistant prepares a bounded packet; accountable humans approve, reject, escalate, or request evidence.", fontName="Helvetica", fontSize=7.4, fillColor=MUTED))
+    return drawing
+
+
 def review_packet_visual():
     rows = [
         ["Decision Packet Field", "Required content"],
@@ -210,6 +237,17 @@ def executive_summary():
         p("Every recommendation needs supporting evidence or an explicit statement that evidence is unavailable. Every claim needs provenance. Every hypothesis must be falsifiable. Every consequential action needs approval boundaries."),
         p("What it is not", "H1Seri"),
         p("It does not replace observability, SRE, incident management, ITSM, security response, or human command. It makes the decision path inspectable."),
+        p("Reviewer evidence", "H1Seri"),
+        table(
+            [
+                ["Question", "Pass signal"],
+                ["Can an SRE distinguish it from observability, AIOps, and incident management?", "Boundaries and overlaps are explicit."],
+                ["Can two teams implement the contracts similarly?", "Layer responsibilities, outputs, and states are stable."],
+                ["Does it expose contradictions and missing evidence?", "Contradictions and missing evidence affect hypothesis state."],
+                ["Does it preserve human approval?", "Consequential action remains a decision packet, not execution."],
+            ],
+            [3.45 * inch, 3.45 * inch],
+        ),
     ]
     return build_pdf("operational-intelligence-executive-summary.pdf", "Operational Intelligence Executive Summary", "One-page shareable summary for executives, architects, and engineering leaders.", story)
 
@@ -232,7 +270,11 @@ def glossary():
         ["Operator Control Plane", "Human governance layer for approval, escalation, override, refusal, and accountability."],
         ["Operational Memory", "Reviewed reusable context from incidents, decisions, patterns, outcomes, replay seeds, and lessons."],
     ]
-    story = [table(rows, [1.75 * inch, 5.15 * inch])]
+    story = [
+        table(rows, [1.75 * inch, 5.15 * inch]),
+        p("Boundary rules", "H1Seri"),
+        p("Operational Intelligence starts when operational sources are converted into typed evidence for a decision path. It ends before human accountability is bypassed. Observability remains the signal source; incident management remains command and coordination; ITSM remains the service-management process."),
+    ]
     return build_pdf("operational-intelligence-glossary-card.pdf", "Operational Intelligence Glossary Card", "Canonical terms for the doctrine, reference architecture, and Operations Room.", story)
 
 
@@ -243,19 +285,32 @@ def walkthrough():
         p("Timeline", "H1Seri"),
         table(
             [
-                ["Time", "Event", "Primary Layers"],
-                ["T0", "Normal checkout baseline exists", "Signal, Transaction"],
-                ["T1", "Checkout latency increases", "Signal"],
-                ["T2", "Payment authorization hop slows", "Transaction, Evidence"],
-                ["T3", "Related deployment event appears", "Signal, Topology"],
-                ["T4", "Downstream health check remains normal", "Evidence"],
-                ["T5", "Async trace segment is missing", "Evidence, Transaction"],
-                ["T6", "Hypotheses are proposed and updated", "Reasoning"],
-                ["T7", "Rollback review packet is drafted", "Decision"],
-                ["T8", "Operator approval is required", "Operator"],
-                ["T9", "Outcome becomes replay seed and eval fixture", "Learning, Memory, Evaluation"],
+                ["Time", "Event", "Primary Layers", "Review output"],
+                ["T0", "Normal checkout baseline exists", "Signal, Transaction", "Baseline window recorded"],
+                ["T1", "Checkout latency increases", "Signal", "Observation E1 opened"],
+                ["T2", "Payment authorization hop slows", "Transaction, Evidence", "Observation E2 attached to hop 3"],
+                ["T3", "Related deployment event appears", "Signal, Topology", "Observation E3 linked to owner and change window"],
+                ["T4", "Downstream health check remains normal", "Evidence", "Contradiction E4 attached to H2"],
+                ["T5", "Async trace segment is missing", "Evidence, Transaction", "Missing evidence E5 attached"],
+                ["T6", "Hypotheses are proposed and updated", "Reasoning", "H1 supported, H2 contradicted, H3 proposed"],
+                ["T7", "Rollback review packet is drafted", "Decision", "Decision packet OI-DP-001 prepared"],
+                ["T8", "Operator approval is required", "Operator", "Owner approves, rejects, escalates, or requests evidence"],
+                ["T9", "Outcome becomes replay seed and eval fixture", "Learning, Memory, Evaluation", "Reviewed result updates memory and fixtures"],
             ],
-            [0.65 * inch, 3.7 * inch, 2.55 * inch],
+            [0.45 * inch, 2.25 * inch, 1.55 * inch, 2.65 * inch],
+        ),
+        p("Transaction hops", "H1Seri"),
+        table(
+            [
+                ["Hop", "Description", "Synthetic timing", "Evidence state"],
+                ["1", "User initiates checkout", "near baseline", "Observation"],
+                ["2", "Cart validation completes", "near baseline", "Observation"],
+                ["3", "Payment authorization slows", "elevated relative to baseline", "Observation"],
+                ["4", "Dependency boundary checked", "downstream health normal", "Observation plus contradiction"],
+                ["5", "Async confirmation trace", "unavailable", "Missing evidence"],
+                ["6", "Checkout completion", "delayed relative to baseline", "Confirmed fact after review"],
+            ],
+            [0.42 * inch, 2.1 * inch, 2.0 * inch, 2.38 * inch],
         ),
         p("Evidence", "H1Seri"),
         table(
@@ -281,10 +336,32 @@ def walkthrough():
             ],
             [0.5 * inch, 2.65 * inch, 1.25 * inch, 2.5 * inch],
         ),
+        p("State transitions", "H1Seri"),
+        table(
+            [
+                ["Transition", "Trigger", "Required behavior"],
+                ["H1 Proposed -> Supported", "E1, E2, E3, and E6 align", "Explain that support is not proof."],
+                ["H2 Proposed -> Contradicted", "E4 conflicts with downstream-degradation explanation", "Surface contradiction before recommendation."],
+                ["H3 Proposed -> Proposed", "E5 leaves instrumentation uncertainty unresolved", "Preserve unknown instead of forcing RCA."],
+            ],
+            [2.0 * inch, 2.45 * inch, 2.45 * inch],
+        ),
         p("Decision Packet", "H1Seri"),
         p("Recommended action: prepare a rollback review packet. Approval class: reversible action. Required operator: authorized service owner or incident commander. The assistant may draft the packet but MUST NOT execute the rollback."),
         p("Learning Record", "H1Seri"),
         p("Create replay seed, contradiction-handling fixture, missing-evidence fixture, and reviewed memory only after operator review."),
+        p("Printable review checklist", "H1Seri"),
+        table(
+            [
+                ["Question", "Pass condition"],
+                ["Can the reviewer identify the affected journey?", "Checkout journey and payment authorization hop are visible."],
+                ["Can the reviewer separate observation from inference?", "E1-E3 are observations; H1-H3 are hypotheses."],
+                ["Is contradictory evidence visible?", "E4 weakens H2."],
+                ["Is missing evidence visible?", "E5 limits confidence."],
+                ["Is consequential action gated?", "Rollback remains a packet requiring approval."],
+            ],
+            [3.15 * inch, 3.75 * inch],
+        ),
     ]
     return build_pdf("oi-room-001-printable-walkthrough.pdf", "OI-ROOM-001 Printable Walkthrough", "Synthetic public-safe walkthrough for evaluating the Operational Intelligence model.", story)
 
@@ -318,6 +395,9 @@ def publication_pack():
         p("Evidence Graph Shape", "H1Seri"),
         p("A publication-ready Operational Intelligence artifact must show how evidence supports, contradicts, limits, or informs a hypothesis. The graph below uses only the synthetic OI-ROOM-001 case."),
         evidence_graph_visual(),
+        Spacer(1, 10),
+        p("Decision Handoff", "H1Seri"),
+        decision_handoff_visual(),
         Spacer(1, 10),
         p("Decision Packet Structure", "H1Seri"),
         review_packet_visual(),
