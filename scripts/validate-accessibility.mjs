@@ -127,10 +127,14 @@ const wikiRenderer = read("app/wiki/[slug]/page.tsx");
   "md:block",
   "mobile-cell",
   "header[cellIndex]",
-  "max-w-full overflow-x-auto"
+  "max-w-full overflow-x-auto",
+  "function headingText",
+  "headingToc",
+  "fallbackToc",
+  "const toc = (headingToc.length ? headingToc : fallbackToc).slice(0, 10)"
 ].forEach((required) => {
   if (!wikiRenderer.includes(required)) {
-    errors.push(`app/wiki/[slug]/page.tsx: missing responsive table contract "${required}"`);
+    errors.push(`app/wiki/[slug]/page.tsx: missing wiki reading contract "${required}"`);
   }
 });
 

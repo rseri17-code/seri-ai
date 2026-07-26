@@ -69,6 +69,12 @@ type MarkdownBlock = {
   language?: string;
 };
 
+function headingText(block: MarkdownBlock) {
+  if (block.kind !== "markdown") return null;
+  const match = block.content.match(/^(#{1,3})\s+(.+)$/);
+  return match ? plainText(match[2]).slice(0, 84) : null;
+}
+
 function markdownBlocks(markdown: string): MarkdownBlock[] {
   const blocks: MarkdownBlock[] = [];
   const lines = markdown.split("\n");
@@ -275,9 +281,17 @@ export default async function WikiNotePage({ params }: { params: Promise<{ slug:
   const asset = buildPublishingIndex().find((item) => item.url === note.url);
   const relatedAssets = asset ? getRelatedAssets(asset, 4) : [];
   const blocks = markdownBlocks(note.body);
-  const toc = blocks
+  const headingToc = blocks
+    .map((block, index) => {
+      const title = headingText(block);
+      return title ? { id: `section-${index + 1}`, title } : null;
+    })
+    .filter((item): item is { id: string; title: string } => Boolean(item));
+  const fallbackToc = blocks
+    .filter((block) => block.kind === "markdown")
     .map((block, index) => ({ id: `section-${index + 1}`, title: plainText(block.content).split(".")[0].slice(0, 84) }))
     .slice(0, 6);
+  const toc = (headingToc.length ? headingToc : fallbackToc).slice(0, 10);
 
   return (
     <>
