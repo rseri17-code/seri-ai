@@ -258,6 +258,20 @@ for (const required of [
   expect(chatComponent.includes(required), `Chat missing prompt deep-link auto-submit contract: ${required}`);
 }
 
+const footerComponent = fs.readFileSync(path.join(root, "components", "footer.tsx"), "utf8");
+for (const required of [
+  "const reviewKit",
+  "Public review kit",
+  "GitHub",
+  "LinkedIn",
+  "RSS",
+  "/artifacts",
+  "/start-here",
+  "/search"
+]) {
+  expect(footerComponent.includes(required), `Footer missing global review kit contract: ${required}`);
+}
+
 const evalsPage = fs.readFileSync(path.join(root, "app", "evals", "page.tsx"), "utf8");
 for (const required of [
   "const coverageBuckets",
