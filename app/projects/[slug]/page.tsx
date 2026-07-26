@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, ClipboardCheck, GitBranch, Route, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
 import { operationalIntelligenceFramework, projects } from "@/content/site";
+import { buildPublishingIndex } from "@/lib/publishing";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -99,6 +100,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   }
   const contract = projectContracts[project.slug as keyof typeof projectContracts];
   const relatedLayers = contract.layerIndexes.map((index) => operationalIntelligenceFramework.layers[index]);
+  const asset = buildPublishingIndex().find((item) => item.url === `/projects/${project.slug}`);
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
@@ -161,19 +163,35 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </Card>
       </div>
 
-      <Card className="mt-5">
-        <h2 className="text-2xl font-semibold text-white">Review this project through the reference system</h2>
-        <div className="mt-5 grid gap-3 md:grid-cols-3">
-          {contract.references.map(([href, label]) => (
-            <Link key={href} href={href} className="rounded border border-white/10 bg-ink p-4 transition hover:border-signal/40">
-              <span className="font-semibold text-white">{label}</span>
-              <span className="mt-3 flex items-center gap-2 text-sm font-semibold text-mint">
-                Inspect <ArrowRight size={15} />
-              </span>
-            </Link>
-          ))}
-        </div>
-      </Card>
+      <div className="mt-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+        <Card>
+          <h2 className="text-2xl font-semibold text-white">Review this project through the reference system</h2>
+          <div className="mt-5 grid gap-3 md:grid-cols-3 lg:grid-cols-1">
+            {contract.references.map(([href, label]) => (
+              <Link key={href} href={href} className="rounded border border-white/10 bg-ink p-4 transition hover:border-signal/40">
+                <span className="font-semibold text-white">{label}</span>
+                <span className="mt-3 flex items-center gap-2 text-sm font-semibold text-mint">
+                  Inspect <ArrowRight size={15} />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </Card>
+
+        {asset ? (
+          <Card className="border-signal/25 bg-signal/[0.045]">
+            <h2 className="text-2xl font-semibold text-white">Ask this project</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">Use the indexed proof object to test how this artifact connects to the Operational Intelligence model.</p>
+            <div className="mt-5 space-y-2">
+              {asset.askQuestions.slice(0, 3).map((question) => (
+                <Link key={question} href={`/ask?prompt=${encodeURIComponent(question)}`} className="block rounded border border-white/10 bg-black/20 p-3 text-sm leading-6 text-slate-200 transition hover:border-mint/40 hover:text-mint">
+                  {question}
+                </Link>
+              ))}
+            </div>
+          </Card>
+        ) : null}
+      </div>
     </section>
   );
 }
