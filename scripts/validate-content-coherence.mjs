@@ -235,6 +235,19 @@ for (const required of [
   expect(searchPage.includes(required), `/search missing research console contract: ${required}`);
 }
 
+const ideaPage = fs.readFileSync(path.join(root, "app", "ideas", "[slug]", "page.tsx"), "utf8");
+for (const required of [
+  "Ask this article",
+  "asset.askQuestions.slice(0, 3)",
+  "/ask?prompt=",
+  "encodeURIComponent(question)",
+  "Framework layers",
+  "Related reading",
+  "Version history"
+]) {
+  expect(ideaPage.includes(required), `/ideas/[slug] missing article retrieval prompt contract: ${required}`);
+}
+
 const contentSearch = fs.readFileSync(path.join(root, "components", "content-search.tsx"), "utf8");
 for (const required of [
   "const visibleResults",

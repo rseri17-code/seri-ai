@@ -96,6 +96,18 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 </div>
               </Card>
             ) : null}
+            {asset ? (
+              <Card className="p-4">
+                <h2 className="text-sm font-semibold uppercase text-slate-500">Ask this article</h2>
+                <div className="mt-3 space-y-2">
+                  {asset.askQuestions.slice(0, 3).map((question) => (
+                    <Link key={question} href={`/ask?prompt=${encodeURIComponent(question)}`} className="block text-sm leading-5 text-slate-300 hover:text-mint">
+                      {question}
+                    </Link>
+                  ))}
+                </div>
+              </Card>
+            ) : null}
           </aside>
         </div>
         {asset ? (
