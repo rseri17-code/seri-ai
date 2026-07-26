@@ -246,6 +246,26 @@ for (const required of [
   expect(contentSearch.includes(required), `ContentSearch missing bounded initial search contract: ${required}`);
 }
 
+const evalsPage = fs.readFileSync(path.join(root, "app", "evals", "page.tsx"), "utf8");
+for (const required of [
+  "const coverageBuckets",
+  "Coverage matrix",
+  "What the deterministic fixtures are protecting.",
+  "Doctrine and definition",
+  "Framework layers",
+  "Adjacent-domain comparison",
+  "Evidence handling",
+  "Artifacts and routing",
+  "Safety and refusal",
+  "Interpretation rule",
+  "These fixtures prove deterministic public-safety and answer-shape behavior.",
+  "They do not prove live model quality",
+  "replay-backed workflow tests",
+  "practitioner review"
+]) {
+  expect(evalsPage.includes(required), `/evals missing coverage matrix contract: ${required}`);
+}
+
 const architectureLabPage = fs.readFileSync(path.join(root, "app", "architecture-lab", "page.tsx"), "utf8");
 for (const required of [
   "const labContracts",

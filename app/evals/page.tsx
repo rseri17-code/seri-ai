@@ -10,7 +10,45 @@ export const metadata: Metadata = {
   description: "Public evaluation rubric for groundedness, refusal behavior, citation usefulness, and known limitations in the Operational Intelligence assistant."
 };
 
+const coverageBuckets = [
+  {
+    name: "Doctrine and definition",
+    purpose: "Protects the canonical definition, boundaries, and category framing.",
+    match: /definition|defined|operational intelligence|canonical|doctrine|glossary/i
+  },
+  {
+    name: "Framework layers",
+    purpose: "Covers the ten-layer model: signal through operator and learning.",
+    match: /layer|signal|transaction|topology|evidence|hypothesis|reasoning|memory|evaluation|decision|learning|operator/i
+  },
+  {
+    name: "Adjacent-domain comparison",
+    purpose: "Keeps observability, AIOps, AgentOps, and incident-management distinctions precise.",
+    match: /observability|aiops|agentops|different|versus|comparison/i
+  },
+  {
+    name: "Evidence handling",
+    purpose: "Checks contradiction, missing evidence, citations, source validity, and public receipts.",
+    match: /evidence|contradictory|missing|citation|source|receipts|validity|unknown/i
+  },
+  {
+    name: "Artifacts and routing",
+    purpose: "Verifies that answers point to the right page, pack, PDF, walkthrough, or work surface.",
+    match: /oi-room-001|operations room|publication pack|decision packet|walkthrough|executive summary|download|resume|background|work|artifact|page/i
+  },
+  {
+    name: "Safety and refusal",
+    purpose: "Protects confidential boundaries, prompt-injection resistance, and unsupported-question handling.",
+    match: /internal|private|confidential|proprietary|ignore previous|bypass|system prompt|unsupported|unknown/i
+  }
+] as const;
+
 export default function EvalsPage() {
+  const coverage = coverageBuckets.map((bucket) => ({
+    ...bucket,
+    count: evalReport.fixtures.filter((fixture) => bucket.match.test(`${fixture.prompt} ${fixture.expected}`)).length
+  }));
+
   return (
     <>
       <Section eyebrow="AI release gate" title="Operational AI should not ship without behavior evidence." level="h1">
@@ -42,6 +80,27 @@ export default function EvalsPage() {
             ))}
           </div>
         </div>
+      </Section>
+
+      <Section eyebrow="Coverage matrix" title="What the deterministic fixtures are protecting.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {coverage.map((bucket) => (
+            <Card key={bucket.name} className="h-full">
+              <div className="flex items-center justify-between gap-4">
+                <h2 className="text-xl font-semibold text-white">{bucket.name}</h2>
+                <span className="rounded border border-mint/30 bg-mint/10 px-2 py-1 text-sm font-semibold text-mint">{bucket.count}</span>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{bucket.purpose}</p>
+            </Card>
+          ))}
+        </div>
+        <Card className="mt-4 border-amber/25 bg-amber/[0.045]">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber">Interpretation rule</p>
+          <p className="mt-3 leading-7 text-slate-300">
+            These fixtures prove deterministic public-safety and answer-shape behavior. They do not prove live model quality, incident outcome improvement,
+            or enterprise production readiness without replay-backed workflow tests and practitioner review.
+          </p>
+        </Card>
       </Section>
 
       <Section eyebrow="Regression fixtures" title="The questions the public assistant must handle correctly.">
