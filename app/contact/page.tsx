@@ -14,6 +14,13 @@ const reviewKit = [
   ["/downloads/operational-intelligence-evidence-pack.pdf", "Evidence Pack PDF", "Printable review packet for skeptical evaluation."]
 ] as const;
 
+const publicChannels = [
+  ["https://www.linkedin.com/in/ravikanthseri/", "LinkedIn", "Public posts, certifications, and current building signal."],
+  ["https://github.com/rseri17-code", "GitHub", "Public code, experiments, and engineering artifacts."],
+  ["/work", "Work Index", "Systems, frameworks, artifacts, writing, and background in one review path."],
+  ["/wiki/operational-intelligence-evidence-pack", "Evidence Pack", "Benchmarks, review criteria, falsification, and conformance checks."]
+] as const;
+
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
   const [reviewStatus, setReviewStatus] = useState<"idle" | "sent" | "error">("idle");
@@ -22,6 +29,20 @@ export default function ContactPage() {
 
   return (
     <Section eyebrow="Contact" title="Collaborate on Operational Intelligence, AI agents, and enterprise AI systems." level="h1">
+      <div className="mx-auto mb-6 grid max-w-6xl gap-3 md:grid-cols-4">
+        {publicChannels.map(([href, label, description]) => (
+          <Link
+            key={href}
+            href={href}
+            target={href.startsWith("http") ? "_blank" : undefined}
+            rel={href.startsWith("http") ? "noreferrer" : undefined}
+            className="rounded-lg border border-white/10 bg-white/[0.04] p-4 transition hover:border-mint/40"
+          >
+            <span className="text-sm font-semibold text-white">{label}</span>
+            <span className="mt-2 block text-xs leading-5 text-slate-400">{description}</span>
+          </Link>
+        ))}
+      </div>
       <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <form
           className="space-y-4 rounded-lg border border-white/10 bg-white/[0.04] p-6"

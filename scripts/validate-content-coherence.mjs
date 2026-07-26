@@ -324,6 +324,12 @@ for (const required of [
 
 const contactPage = fs.readFileSync(path.join(root, "app", "contact", "page.tsx"), "utf8");
 for (const required of [
+  "const publicChannels",
+  "https://www.linkedin.com/in/ravikanthseri/",
+  "https://github.com/rseri17-code",
+  "/work",
+  "/wiki/operational-intelligence-evidence-pack",
+  "target={href.startsWith(\"http\") ? \"_blank\" : undefined}",
   "isSubmittingContact",
   "isSubmittingReview",
   "setIsSubmittingContact(true)",
