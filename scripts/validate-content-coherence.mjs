@@ -226,6 +226,27 @@ for (const required of [
   expect(nowPage.includes(required), `/now missing living builder ledger contract: ${required}`);
 }
 
+const projectPage = fs.readFileSync(path.join(root, "app", "projects", "[slug]", "page.tsx"), "utf8");
+for (const required of [
+  "const projectContracts",
+  "Operating contract",
+  "Evidence path",
+  "Framework handoff",
+  "Failure modes to avoid",
+  "Review this project through the reference system",
+  "ai-incident-investigation-simulator",
+  "operational-intelligence-copilot",
+  "transaction-graph-explorer",
+  "ai-evaluation-workbench",
+  "/publication-pack/decision-packet-example.md",
+  "/publication-pack/oi-room-001-printable-walkthrough.md",
+  "/patterns/transaction-journey-reconstruction",
+  "/patterns/evaluation-and-replay",
+  "/wiki/evaluation-and-replay"
+]) {
+  expect(projectPage.includes(required), `/projects/[slug] missing project proof contract: ${required}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
