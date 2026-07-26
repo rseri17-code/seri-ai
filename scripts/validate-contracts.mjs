@@ -74,6 +74,7 @@ expectIncludes(contactRoutePath, contactRoute, [
 
 expectIncludes(contactPagePath, contactPage, [
   "Practitioner review",
+  "Review kit",
   "practitioner-review",
   "reviewerRole",
   "doctrineVerdict",
@@ -81,7 +82,15 @@ expectIncludes(contactPagePath, contactPage, [
   "weakestClaim",
   "evidenceNeeded",
   "implementationQuestion",
-  "practitioner_review_submit"
+  "practitioner_review_submit",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/wiki/operational-intelligence-publication-pack",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/investigation-room",
+  "/downloads/operational-intelligence-evidence-pack.pdf",
+  "Ground feedback in evidence",
+  "Do not include confidential logs"
 ]);
 
 const conformanceTerms = [

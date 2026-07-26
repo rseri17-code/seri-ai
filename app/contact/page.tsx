@@ -1,8 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { Section } from "@/components/section";
 import { captureSafeEvent } from "@/lib/analytics-events";
+
+const reviewKit = [
+  ["/wiki/operational-intelligence-canonical-doctrine", "Canonical Doctrine", "Definitions, boundaries, ten layers, glossary, and claims."],
+  ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Implementation contracts, state machines, data objects, gates, and governance."],
+  ["/wiki/operational-intelligence-publication-pack", "Publication Pack", "Diagrams, comparison tables, decision packet, walkthrough, and shareable PDFs."],
+  ["/wiki/operational-intelligence-evidence-pack", "Evidence Pack", "Benchmarks, control comparisons, falsification criteria, and conformance checklist."],
+  ["/investigation-room", "Operations Room", "Interactive synthetic OI-ROOM-001 walkthrough."],
+  ["/downloads/operational-intelligence-evidence-pack.pdf", "Evidence Pack PDF", "Printable review packet for skeptical evaluation."]
+] as const;
 
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
@@ -89,6 +99,24 @@ export default function ContactPage() {
           <p className="text-sm leading-6 text-slate-300">
             Use this if you are evaluating the Operational Intelligence doctrine, reference architecture, evidence pack, or Operations Room as an operator, architect, AI engineer, governance reviewer, or executive.
           </p>
+          <div className="rounded border border-white/10 bg-ink/70 p-4">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Review kit</h3>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {reviewKit.map(([href, label, description]) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="rounded border border-white/10 bg-white/[0.03] p-3 text-sm transition hover:border-signal/45 hover:bg-signal/[0.08]"
+                >
+                  <span className="block font-semibold text-white">{label}</span>
+                  <span className="mt-1 block leading-5 text-slate-400">{description}</span>
+                </Link>
+              ))}
+            </div>
+            <p className="mt-3 text-xs leading-5 text-slate-400">
+              Ground feedback in evidence. Do not include confidential logs, internal screenshots, proprietary names, private architecture, employer data, or customer data.
+            </p>
+          </div>
           <label className="sr-only" htmlFor="review-name">Name</label>
           <input id="review-name" name="name" required className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="Name" />
           <label className="sr-only" htmlFor="review-email">Email</label>
