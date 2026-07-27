@@ -68,24 +68,25 @@ export default function Home() {
   return (
     <>
       <section className="grid-bg border-b border-white/10">
-        <div className="mx-auto grid max-w-7xl content-start gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:min-h-[86vh] lg:grid-cols-[0.92fr_1.08fr] lg:content-center lg:px-8">
-          <div>
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-7 sm:px-6 sm:py-10 lg:min-h-[90vh] lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <div>
             <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Evidence-first operating model
+              Evidence-to-decision operating model
             </div>
-            <h1 className="max-w-5xl text-5xl font-semibold leading-[1.02] text-white md:text-7xl">
-              Operational Intelligence for AI-native operations.
+            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.03] text-white sm:text-5xl md:text-6xl">
+              See how an AI-native operation should reason.
             </h1>
-            <p className="mt-6 max-w-3xl text-xl leading-9 text-slate-200 md:text-2xl md:leading-10">
-              The hard problem in enterprise AI is not answering faster. It is reconstructing what changed, proving what matters, preserving uncertainty, and deciding which action deserves human trust.
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200 md:text-2xl md:leading-10">
+              Operational Intelligence turns signals, transactions, topology, evidence, memory, evaluation, and operator judgment into decisions a serious enterprise can inspect.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
-              Built by Ravikanth Seri, seri.ai makes the operating model inspectable: a canonical doctrine, reference architecture, live synthetic Operations Room, trust evals, and field notes for AI systems that reason from evidence.
+              Start with OI-ROOM-001: a public-safe synthetic investigation that preserves contradictory evidence, missing context, hypothesis movement, replay, eval gates, and human approval before action.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Enter Operations Room <ArrowRight size={18} />
+                Inspect OI-ROOM-001 <ArrowRight size={18} />
               </TrackedLink>
               <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
                 Read Doctrine
@@ -94,17 +95,34 @@ export default function Home() {
                 Review Work
               </TrackedLink>
             </div>
-            <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-2">
-              {proofStrip.map(([value, label]) => (
-                <div key={value} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
-                  <p className="text-lg font-semibold text-white">{value}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
+            </div>
+            <div className="lg:self-center">
+              <HeroIntelligenceMap />
+            </div>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-black/25 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">What the first artifact proves</p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["Observation", "What happened without premature cause."],
+                ["Inference", "Which hypotheses gained or lost support."],
+                ["Fact", "What survived evidence, contradiction, and review."],
+                ["Action", "What remains gated by accountable human approval."]
+              ].map(([value, label]) => (
+                <div key={value} className="rounded border border-white/10 bg-white/[0.04] p-3">
+                  <p className="font-semibold text-white">{value}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{label}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div>
-            <HeroIntelligenceMap />
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {proofStrip.map(([value, label]) => (
+              <div key={value} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+                <p className="text-lg font-semibold text-white">{value}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
