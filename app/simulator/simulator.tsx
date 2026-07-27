@@ -607,8 +607,8 @@ export function IncidentSimulator() {
     ["Unknowns", `${missingEvidence.length} explicit missing-evidence conditions`, "amber"]
   ];
   const report = [
-    "ReasonOps Operations Room Report",
-    "================================",
+    "Operational Intelligence Operations Room Report",
+    "===============================================",
     "",
     "Executive summary",
     "-----------------",
@@ -668,7 +668,7 @@ export function IncidentSimulator() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-mint/30 bg-mint/10 px-3 py-1 text-xs font-semibold uppercase text-mint">
               <Sparkles size={14} />
-              ReasonOps Operations Room
+              Operational Intelligence Operations Room
             </div>
             <h2 className="mt-3 max-w-5xl text-3xl font-semibold text-white md:text-5xl">Investigate, evaluate, and gate operational action.</h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">

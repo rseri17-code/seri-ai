@@ -4,7 +4,7 @@ import type { LucideIcon } from "lucide-react";
 import { ArrowRight, Boxes, BrainCircuit, ClipboardCheck, FileText, GitBranch, Layers, ShieldCheck, UserRound } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
-import { articles, contentRegistry, operationalIntelligenceFramework, patterns, projects, resume } from "@/content/site";
+import { articles, contentRegistry, evalReport, operationalIntelligenceFramework, patterns, projects, resume } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Work | Ravikanth Seri",
@@ -69,7 +69,7 @@ const proofLedger = [
   },
   {
     claim: "The AI surface is bounded by citations, refusals, and deterministic trust fixtures.",
-    evidence: "Ask Ravikanth and 66 passing public trust evals",
+    evidence: `Ask Ravikanth and ${evalReport.fixtures.length} passing public trust evals`,
     href: "/evals"
   },
   {

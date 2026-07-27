@@ -27,7 +27,7 @@ const artifacts = [
   },
   {
     href: "/investigation-room",
-    title: "ReasonOps Operations Room",
+    title: "Operational Intelligence Operations Room",
     type: "Workbench",
     description: "Interactive evidence-first operations room with graph replay, timeline, hypotheses, confidence, RCA packet, and release gates.",
     icon: ClipboardCheck

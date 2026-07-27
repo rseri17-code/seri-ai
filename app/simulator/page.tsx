@@ -22,7 +22,7 @@ export default function SimulatorPage() {
                 <ShieldCheck size={16} />
                 Signature artifact
               </div>
-              <h1 className="text-3xl font-semibold text-white md:text-5xl">ReasonOps Operations Room</h1>
+              <h1 className="text-3xl font-semibold text-white md:text-5xl">Operational Intelligence Operations Room</h1>
               <p className="mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 sm:block">
                 A public-safe investigation workbench for evidence-backed Agentic SRE. Run {operationalIntelligenceSystem.caseId},
                 replay evidence, compare branches, inspect eval gates, export the RCA packet, and keep irreversible action behind human review.

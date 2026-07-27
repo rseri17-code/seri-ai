@@ -50,7 +50,7 @@ export default async function AskPage({
 
   return (
     <>
-      <Section eyebrow="Ask Ravikanth" title="Ask about Ravikanth, his work, and the operating model behind seri.ai." level="h1">
+      <Section eyebrow="Ask Ravikanth" title="Interrogate Ravikanth's public work, architecture judgment, and Operational Intelligence thesis." level="h1">
         <div className="mb-5 grid gap-4 lg:grid-cols-[1fr_0.9fr]">
           <Card className="border-mint/25 bg-mint/[0.055]">
             <div className="mb-4 flex items-center gap-4">
@@ -66,11 +66,11 @@ export default async function AskPage({
                 <BrainCircuit size={22} />
               </div>
             </div>
-            <h2 className="text-2xl font-semibold text-white">A public-grounded companion for understanding Ravikanth&apos;s thinking, proof, and technical direction.</h2>
+            <h2 className="text-2xl font-semibold text-white">A review interface for the ideas, artifacts, and evidence behind seri.ai.</h2>
             <p className="mt-3 leading-7 text-slate-300">
-              Ask about Ravikanth&apos;s public work, Operational Intelligence doctrine, Operations Room, projects, background,
-              resume evidence, GitHub, LinkedIn signal, architecture judgment, and AI-native operations thesis. Answers stay grounded,
-              cite public sources, name uncertainty, and refuse confidential topics.
+              Ask about Operational Intelligence, Agentic SRE, architecture tradeoffs, public projects, background, GitHub,
+              LinkedIn signal, and the evidence behind the thesis. Strong answers cite sources, name uncertainty, and point
+              you to the artifact worth inspecting next.
             </p>
             <div className="mt-5 grid gap-2 md:grid-cols-4">
               {["Know the work", "Ground claims", "Refuse secrets", "Route reviewers"].map((step) => (

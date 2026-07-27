@@ -796,7 +796,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "ai-incident-investigation-simulator",
-    name: "ReasonOps Operations Room",
+    name: "Operational Intelligence Operations Room",
     status: "Production Pattern",
     summary: "A public-safe operational workbench for evidence-backed incident reasoning, branch comparison, RCA export, and release-gate evaluation.",
     capabilities: ["timeline reconstruction", "hypothesis ranking", "branch comparison", "exportable RCA packet"],
@@ -1885,7 +1885,7 @@ export const contentRegistry: ContentRegistryItem[] = [
   {
     title: "Ask Ravikanth",
     slug: "ask-ravikanth",
-    summary: "A public-grounded companion over Ravikanth Seri's approved public work, Operational Intelligence content, projects, background, and reference artifacts.",
+    summary: "A cited review interface over Ravikanth Seri's approved public work, Operational Intelligence content, projects, background, and reference artifacts.",
     type: "system",
     route: "/ask",
     status: "published",

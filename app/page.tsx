@@ -72,16 +72,16 @@ export default function Home() {
           <div>
             <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Built by {site.owner}
+              Field doctrine by {site.owner}
             </div>
             <h1 className="max-w-5xl text-5xl font-semibold leading-[1.02] text-white md:text-7xl">
               Operational Intelligence for AI-native operations.
             </h1>
             <p className="mt-6 max-w-3xl text-xl leading-9 text-slate-200 md:text-2xl md:leading-10">
-              Enterprises do not need another AI demo. They need an inspectable operating model for evidence, hypotheses, replay, evaluation, and human-reviewed action.
+              The hard problem in enterprise AI is not answering faster. It is knowing what changed, what evidence proves it, what remains uncertain, and which action a human should trust.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
-              seri.ai is Ravikanth Seri&apos;s public home for that model: a doctrine, reference architecture, Operations Room, Ask Ravikanth companion, and body of work around Agentic SRE and Operational Intelligence.
+              seri.ai is Ravikanth Seri&apos;s public operating model for Agentic SRE: doctrine, reference architecture, synthetic Operations Room, trust evals, and field notes for building AI systems that reason with evidence.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
@@ -299,11 +299,11 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Reasoning interface" title="Ask the system, but judge the receipts.">
+      <Section eyebrow="Ask Ravikanth" title="Ask the work, then inspect the receipts.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <h3 className="text-2xl font-semibold text-white">Ask Ravikanth is a public companion for the person, the work, and the operating model.</h3>
-            <p className="mt-3 leading-7 text-slate-300">It should answer questions about Ravikanth&apos;s public work, cite sources, refuse confidential questions, name unknowns, and route serious visitors to the right artifact.</p>
+            <h3 className="text-2xl font-semibold text-white">Ask Ravikanth turns the public body of work into a review surface.</h3>
+            <p className="mt-3 leading-7 text-slate-300">Use it to interrogate the doctrine, trace evidence to source pages, compare claims against artifacts, and find the right route through Ravikanth&apos;s work without guessing.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link href="/ask" className="rounded bg-white px-5 py-3 font-semibold text-ink">

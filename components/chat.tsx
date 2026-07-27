@@ -23,7 +23,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Ask Ravikanth is online. Ask about Ravikanth's public work, architecture judgment, Operational Intelligence thesis, projects, background, GitHub, LinkedIn signal, or public-safe technical writing.";
+      : "Ask me about Ravikanth's public work, architecture judgment, Operational Intelligence thesis, projects, background, GitHub, LinkedIn signal, or technical writing. I will answer from approved public sources and name gaps when the evidence is not there.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -176,9 +176,9 @@ export function Chat({
             <div className="rounded-lg border border-signal/25 bg-signal/[0.07] p-4 text-sm text-slate-300">
               <div className="flex items-center gap-2 font-semibold text-signal">
                 <FileSearch size={16} />
-                Running retrieval and public-safety checks...
+                Reading the public evidence...
               </div>
-              <p className="mt-2 text-xs leading-5 text-slate-400">The answer should stay inside approved public context, name gaps, and avoid confidential or employer-specific detail.</p>
+              <p className="mt-2 text-xs leading-5 text-slate-400">The response will cite available sources, separate evidence from inference, and avoid unsupported claims.</p>
             </div>
           ) : null}
         </div>
@@ -218,7 +218,7 @@ export function Chat({
             ))}
           </div>
           <p className="mt-4 text-xs leading-5 text-slate-400">
-            The interface should cite approved public sources, refuse confidential requests, and preserve operator judgment before action.
+            Strong answers cite public sources, name uncertainty, and avoid claims the public evidence cannot support.
           </p>
         </div>
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
@@ -260,7 +260,7 @@ export function Chat({
                   <LockKeyhole size={15} className="text-amber" />
                   No answer released yet
                 </div>
-                <p className="mt-2 text-xs leading-5 text-slate-400">Sources appear after retrieval. Confidential or unsupported questions should return a boundary-aware refusal.</p>
+                <p className="mt-2 text-xs leading-5 text-slate-400">Sources appear after retrieval. Unsupported questions should return a clear boundary instead of a guess.</p>
               </div>
             )}
           </div>
