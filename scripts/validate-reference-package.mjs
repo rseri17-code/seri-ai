@@ -251,6 +251,24 @@ assertIncludes("app/simulator/page.tsx", operationsRoomPage, [
   "Walkthrough PDF"
 ]);
 
+const operationsRoomWorkbench = read("app/simulator/simulator.tsx");
+assertIncludes("app/simulator/simulator.tsx", operationsRoomWorkbench, [
+  "const decisionPacketRows",
+  "Operator review contract",
+  "Packet state",
+  "Approval class",
+  "Reversible operational change",
+  "Required owner",
+  "Authorized service owner or incident commander",
+  "Action boundary",
+  "Active receipts",
+  "Explicit unknowns",
+  "No execution",
+  "Blocked by policy",
+  "More evidence needed",
+  "Approval required"
+]);
+
 const artifactsPage = read("app/artifacts/page.tsx");
 assertIncludes("app/artifacts/page.tsx", artifactsPage, [
   "const downloadableArtifacts",

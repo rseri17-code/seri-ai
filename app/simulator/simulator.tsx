@@ -597,6 +597,15 @@ export function IncidentSimulator() {
     `- Learning target: ${selectedScenario.learningTarget}`
   ];
   const branchReportLines = actions.map((action, index) => `- ${action.quality}: ${scenarioActionLabel(selectedScenario, index)} | ${branchOutcomeForAction(action.quality)}`);
+  const actionGateStatus = selectedActionDetail?.quality === "Best" ? "Approval required" : selectedActionDetail?.quality === "Risky" ? "Blocked by policy" : "More evidence needed";
+  const decisionPacketRows: Array<[string, string, "mint" | "signal" | "amber"]> = [
+    ["Packet state", score >= 85 ? "Review-ready" : "Draft under review", score >= 85 ? "mint" : "amber"],
+    ["Approval class", "Reversible operational change", "amber"],
+    ["Required owner", "Authorized service owner or incident commander", "signal"],
+    ["Action boundary", actionGateStatus, selectedActionDetail?.quality === "Risky" ? "amber" : "mint"],
+    ["Active receipts", `${activeEvidenceIds.length} evidence items / ${visibleReplayChapters.length} replay chapters`, "signal"],
+    ["Unknowns", `${missingEvidence.length} explicit missing-evidence conditions`, "amber"]
+  ];
   const report = [
     "ReasonOps Operations Room Report",
     "================================",
@@ -1004,18 +1013,52 @@ export function IncidentSimulator() {
         </main>
 
         <aside className="border-t border-white/10 p-5 lg:border-l lg:border-t-0">
-          <p className="text-xs font-semibold uppercase text-slate-500">Decision packet</p>
-          <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.03] p-4">
-            <BrainCircuit className="text-mint" />
-            <p className="mt-3 font-semibold text-white">{selectedHypothesisLabel}</p>
-            <p className="mt-2 text-sm leading-6 text-slate-400">{selectedHypothesisRationale}</p>
-            <p className="mt-3 font-mono text-sm text-mint">{selectedHypothesisConfidence}% confidence from active evidence</p>
-            <p className="mt-2 text-xs leading-5 text-slate-500">Active evidence: {activeEvidenceTypes || "None"}</p>
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-xs font-semibold uppercase text-slate-500">Decision packet</p>
+            <span className="rounded border border-amber/30 bg-amber/10 px-2 py-1 font-mono text-xs text-amber">No execution</span>
           </div>
           <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.03] p-4">
-            <UserCheck className="text-signal" />
-            <p className="mt-3 font-semibold text-white">{selectedActionDetail?.quality ?? "Action pending"}</p>
-            <p className="mt-2 text-sm leading-6 text-slate-400">{selectedActionDetail == null ? "Choose the action that preserves human accountability." : selectedActionLabel}</p>
+            <div className="flex items-start gap-3">
+              <BrainCircuit className="mt-1 shrink-0 text-mint" />
+              <div>
+                <p className="text-xs font-semibold uppercase text-slate-500">Selected hypothesis</p>
+                <p className="mt-2 font-semibold text-white">{selectedHypothesisLabel}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{selectedHypothesisRationale}</p>
+                <p className="mt-3 font-mono text-sm text-mint">{selectedHypothesisConfidence}% confidence from active evidence</p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.03] p-4">
+            <div className="flex items-start gap-3">
+              <UserCheck className="mt-1 shrink-0 text-signal" />
+              <div>
+                <p className="text-xs font-semibold uppercase text-slate-500">Recommended action</p>
+                <p className="mt-2 font-semibold text-white">{selectedActionDetail?.quality ?? "Action pending"}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{selectedActionDetail == null ? "Choose the action that preserves human accountability." : selectedActionLabel}</p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 rounded-lg border border-white/10 bg-black/20 p-4">
+            <p className="text-sm font-semibold text-white">Operator review contract</p>
+            <div className="mt-3 space-y-2">
+              {decisionPacketRows.map(([label, value, tone]) => (
+                <div key={label} className="rounded border border-white/10 bg-white/[0.03] p-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="text-xs font-semibold uppercase text-slate-500">{label}</p>
+                    <span className={`h-2 w-2 shrink-0 rounded-full ${tone === "amber" ? "bg-amber" : tone === "signal" ? "bg-signal" : "bg-mint"}`} />
+                  </div>
+                  <p className={`mt-2 text-sm font-semibold leading-5 ${tone === "amber" ? "text-amber" : tone === "signal" ? "text-signal" : "text-mint"}`}>{value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-4 rounded-lg border border-amber/25 bg-amber/[0.07] p-4">
+            <p className="text-sm font-semibold text-amber">Explicit unknowns</p>
+            <div className="mt-3 space-y-2">
+              {missingEvidence.map((item) => (
+                <p key={item} className="text-sm leading-6 text-slate-300">{item}</p>
+              ))}
+            </div>
           </div>
           <div className="mt-4 rounded-lg border border-mint/20 bg-mint/[0.06] p-4">
             <p className="text-sm font-semibold text-mint">Operating law</p>
