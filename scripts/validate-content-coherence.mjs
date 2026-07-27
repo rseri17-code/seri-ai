@@ -207,12 +207,26 @@ for (const required of [
 const workPage = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
 for (const required of [
   "const reviewSpine",
+  "const proofLedger",
+  "Evidence that the builder and the thesis are the same thing.",
+  "Proof ledger",
+  "The serious question is not what exists. It is what each artifact proves.",
+  "Ravikanth is building an operating model, not a resume site.",
+  "The thesis is inspectable through a working public-safe artifact.",
+  "The AI surface is bounded by citations, refusals, and deterministic trust fixtures.",
+  "The body of work connects engineering taste to professional proof.",
+  "Operating standard",
+  "Definition discipline",
+  "Action discipline",
+  "Learning discipline",
   "Review spine",
   "/wiki/operational-intelligence-canonical-doctrine",
   "/wiki/operational-intelligence-reference-architecture",
   "/wiki/operational-intelligence-evidence-pack",
   "/wiki/operational-intelligence-publication-pack",
-  "/investigation-room"
+  "/investigation-room",
+  "/evals",
+  "/background"
 ]) {
   expect(workPage.includes(required), `/work missing reviewer proof spine contract: ${required}`);
 }

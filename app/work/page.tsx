@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight, Boxes, BrainCircuit, FileText, GitBranch, Layers, UserRound } from "lucide-react";
+import { ArrowRight, Boxes, BrainCircuit, ClipboardCheck, FileText, GitBranch, Layers, ShieldCheck, UserRound } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { articles, contentRegistry, operationalIntelligenceFramework, patterns, projects, resume } from "@/content/site";
@@ -9,7 +9,7 @@ import { articles, contentRegistry, operationalIntelligenceFramework, patterns, 
 export const metadata: Metadata = {
   title: "Work | Ravikanth Seri",
   description:
-    "A canonical index of Ravikanth Seri's public work across Operational Intelligence, Agentic SRE, ReasonOps, architecture patterns, artifacts, writing, and background."
+    "Evidence-led proof of Ravikanth Seri's public work across Operational Intelligence, Agentic SRE, ReasonOps, reference architecture, artifacts, writing, and background."
 };
 
 type WorkItem = [href: string, label: string, detail: string];
@@ -54,6 +54,47 @@ const reviewSpine: WorkItem[] = [
     "Operations Room",
     "The synthetic public-safe artifact where the framework becomes an inspectable investigation workflow."
   ]
+];
+
+const proofLedger = [
+  {
+    claim: "Ravikanth is building an operating model, not a resume site.",
+    evidence: "Doctrine, Reference Architecture, Evidence Pack, Publication Pack",
+    href: "/wiki/operational-intelligence-canonical-doctrine"
+  },
+  {
+    claim: "The thesis is inspectable through a working public-safe artifact.",
+    evidence: "Operations Room and OI-ROOM-001 walkthrough",
+    href: "/investigation-room"
+  },
+  {
+    claim: "The AI surface is bounded by citations, refusals, and deterministic trust fixtures.",
+    evidence: "Ask Ravikanth and 66 passing public trust evals",
+    href: "/evals"
+  },
+  {
+    claim: "The body of work connects engineering taste to professional proof.",
+    evidence: "Projects, patterns, resume, public profiles, and background",
+    href: "/background"
+  }
+];
+
+const operatingStandards: Array<{ title: string; body: string; Icon: LucideIcon }> = [
+  {
+    title: "Definition discipline",
+    body: "Terms, boundaries, and claims are versioned instead of implied.",
+    Icon: ShieldCheck
+  },
+  {
+    title: "Action discipline",
+    body: "Recommendations preserve evidence, missing context, reversibility, and owner approval.",
+    Icon: ClipboardCheck
+  },
+  {
+    title: "Learning discipline",
+    body: "Reviewed outcomes become replay seeds, eval fixtures, memory, and stronger retrieval.",
+    Icon: GitBranch
+  }
 ];
 
 const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }> = [
@@ -119,14 +160,35 @@ const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }
 export default function WorkPage() {
   return (
     <>
-      <Section eyebrow="Work" title="The canonical operating index." level="h1">
+      <Section eyebrow="Work" title="Evidence that the builder and the thesis are the same thing." level="h1">
         <Card className="border-mint/25 bg-mint/[0.05]">
           <BrainCircuit className="mb-5 text-mint" />
           <h2 className="text-3xl font-semibold text-white">A field guide to the systems, frameworks, artifacts, writing, and experience behind Operational Intelligence.</h2>
           <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
-            This is the fastest way to understand the builder and the product thesis together: Operational Intelligence as a public-safe, inspectable operating model for Agentic SRE, evidence-backed reasoning, eval-gated action, and compounding operational memory.
+            This page is the credibility surface. It connects Ravikanth&apos;s public work to a single thesis: Operational Intelligence as a public-safe, inspectable operating model for Agentic SRE, evidence-backed reasoning, eval-gated action, and compounding operational memory.
           </p>
         </Card>
+      </Section>
+
+      <Section eyebrow="Proof ledger" title="The serious question is not what exists. It is what each artifact proves.">
+        <div className="grid gap-4 md:grid-cols-2">
+          {proofLedger.map((item, index) => (
+            <Link key={item.claim} href={item.href}>
+              <Card className="h-full border-white/10 bg-white/[0.035] transition hover:-translate-y-1 hover:border-mint/40">
+                <div className="flex items-start gap-4">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded border border-mint/30 bg-mint/10 font-mono text-sm text-mint">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h2 className="text-xl font-semibold text-white">{item.claim}</h2>
+                    <p className="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-signal">Evidence</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-300">{item.evidence}</p>
+                  </div>
+                </div>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </Section>
 
       <Section eyebrow="Review spine" title="Start here if you are evaluating the work seriously.">
@@ -139,6 +201,18 @@ export default function WorkPage() {
                 <p className="mt-3 text-sm leading-6 text-slate-300">{detail}</p>
               </Card>
             </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Operating standard" title="What strong reviewers should expect to see.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {operatingStandards.map(({ title, body, Icon }) => (
+            <Card key={title} className="h-full p-5">
+              <Icon className="mb-4 text-mint" />
+              <h2 className="text-xl font-semibold text-white">{title}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
+            </Card>
           ))}
         </div>
       </Section>
