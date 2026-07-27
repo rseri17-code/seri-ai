@@ -16,6 +16,8 @@ Date: 2026-07-26
 
 - Reframed the homepage around the harder enterprise-AI problem: evidence, uncertainty, change understanding, and trusted human action.
 - Reframed Ask Ravi as a cited review interface over Ravikanth's public work and artifacts rather than a generic assistant explanation.
+- Added explicit Ask Ravi AI-assistant disclosure and a regression fixture proving it does not claim to be Ravikanth personally.
+- Added privacy-safe Ask API operational metadata: answer mode, retrieval mode, source count, server latency, rate-limit budget, timeout budget, vector match budget, and returned-source budget.
 - Standardized the signature artifact as "Operational Intelligence Operations Room" across the room, exported report title, artifacts index, and project registry.
 - Replaced stale fixture-count copy with the live `evalReport.fixtures.length` value.
 - Replaced rendered portrait usage with a neutral `ProfileMark` identity treatment until portrait authorization is explicit.
@@ -29,11 +31,11 @@ Date: 2026-07-26
 | Content authority | Doctrine, reference architecture, publication pack, evidence pack, public-safe case, citations, claim posture. | Strong, needs external practitioner review. |
 | Technical depth | Ten-layer framework, state/contract artifacts, Operations Room, eval gates, reference PDFs. | Strong, needs measured case-study evidence. |
 | UX and visual quality | Optimized build renders styled dark interface; stale dev server issue identified separately. | Improving, not yet visually exceptional. |
-| Ask Ravi usefulness and safety | 71 deterministic fixtures pass; fallback, refusal, routing, citation, and AI-disclosure contracts validated. | Strong deterministic beta, needs live model quality telemetry. |
+| Ask Ravi usefulness and safety | 71 deterministic fixtures pass; fallback, refusal, routing, citation, AI-disclosure, and safe operational metadata contracts validated. | Strong deterministic beta, needs live model quality telemetry. |
 | Accessibility | `validate:a11y` covers 35 pages and 19 components. | Strong automated coverage, needs manual keyboard/screen-reader pass. |
 | Performance | `npm run build` passed performance budgets; home first-load JS reported at 150 kB, Operations Room at 194 kB. | Acceptable, keep watching Operations Room payload. |
 | SEO and discovery | Canonical metadata, JSON-LD, sitemap, robots, RSS, OG/Twitter images, `/llms.txt`. | Strong. |
-| Reliability and SRE maturity | API fallback/rate-limit contracts and deployment config validators pass. | Good beta posture, needs production observability evidence. |
+| Reliability and SRE maturity | API fallback/rate-limit contracts, timeout budgets, safe Ask response metadata, and deployment config validators pass. | Good beta posture, needs production dashboards and alert evidence. |
 | Security and privacy | Public-safety scan passes; unconfirmed portrait removed; portrait source references now blocked. | Improved, needs documented consent before real portrait use. |
 | Maintainability | Content/route/publishing/retrieval/analytics validators pass; no generated timestamp churn committed. | Strong. |
 | Mobile | Existing validators and prior browser checks cover mobile overflow; current iteration did not complete new visual browser screenshots due in-app browser instability. | Needs fresh manual visual pass on production deployment. |
@@ -42,7 +44,7 @@ Date: 2026-07-26
 
 1. Confirm portrait provenance: intended image, permission to reuse, source, optimization target, alt text, and public placement.
 2. Run a fresh production visual QA pass outside the unstable in-app browser for home, Ask, Operations Room, Work, Background, Doctrine, and mobile 390px.
-3. Add live Ask observability evidence: latency buckets, failure rate, source count, refusal category, and cost-safe metadata without prompt capture.
+3. Add live Ask observability dashboards: latency buckets, failure rate, source count, refusal category, answer mode, retrieval mode, and cost-safe metadata without prompt capture.
 4. Add practitioner review evidence for the doctrine and reference architecture.
 5. Add measured comparison artifacts: dashboard-only versus chatbot-only versus Operational Intelligence workflow on OI-ROOM-001.
 6. Migrate deprecated `next lint` to ESLint CLI.

@@ -61,6 +61,12 @@ try {
   expect(typeof askPublicBody.answer === "string" && askPublicBody.answer.includes("Direct answer:"), "/api/ask public fallback missing direct answer");
   expect(askPublicBody.answer.includes("Related page or artifact"), "/api/ask public fallback missing related artifact guidance");
   expect(Array.isArray(askPublicBody.sources) && askPublicBody.sources.length > 0, "/api/ask public fallback missing public sources");
+  expect(askPublicBody.meta?.answer_mode, "/api/ask public fallback missing answer_mode metadata");
+  expect(askPublicBody.meta?.retrieval_mode, "/api/ask public fallback missing retrieval_mode metadata");
+  expect(typeof askPublicBody.meta?.latency_ms === "number", "/api/ask public fallback missing latency_ms metadata");
+  expect(askPublicBody.meta?.budget?.synthesis_timeout_ms === 12000, "/api/ask public fallback missing synthesis timeout budget");
+  expect(askPublicBody.meta?.budget?.returned_source_limit === 4, "/api/ask public fallback missing returned source budget");
+  expect(!JSON.stringify(askPublicBody.meta).toLowerCase().includes("define operational intelligence"), "/api/ask metadata must not include raw prompt text");
   expect(!askPublicBody.answer.includes("OPENAI_API_KEY"), "/api/ask leaked environment naming in answer");
 
   const askConfidential = await askPost(
@@ -73,6 +79,8 @@ try {
   expect(askConfidential.status === 200, `/api/ask confidential boundary returned ${askConfidential.status}`);
   expect(askConfidentialBody.answer.includes("can't discuss employer-specific or confidential systems"), "/api/ask confidential boundary missing refusal");
   expect(Array.isArray(askConfidentialBody.sources) && askConfidentialBody.sources.length === 0, "/api/ask confidential boundary should not attach sources");
+  expect(askConfidentialBody.meta?.answer_mode === "public_safety_refusal", "/api/ask confidential boundary missing refusal metadata");
+  expect(askConfidentialBody.meta?.retrieval_mode === "blocked", "/api/ask confidential boundary missing blocked retrieval metadata");
 
   const askInvalid = await askPost(request("http://localhost/api/ask", { question: "", mode: "ask" }));
   expect(askInvalid.status === 400, `/api/ask invalid payload returned ${askInvalid.status}`);

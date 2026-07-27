@@ -9,6 +9,12 @@ import { captureSafeEvent, categorizeQuestion } from "@/lib/analytics-events";
 type ApiResponse = {
   answer: string;
   sources: Array<{ title: string; url: string; excerpt: string }>;
+  meta?: {
+    answer_mode?: string;
+    retrieval_mode?: string;
+    source_count?: number;
+    latency_ms?: number;
+  };
 };
 
 export function Chat({
@@ -32,6 +38,7 @@ export function Chat({
   ]);
   const [input, setInput] = useState(initialPrompt);
   const [sources, setSources] = useState<Array<{ title: string; url: string; excerpt: string }>>([]);
+  const [responseMeta, setResponseMeta] = useState<ApiResponse["meta"]>();
   const [isLoading, setIsLoading] = useState(false);
   const initialPromptRef = useRef(initialPrompt);
   const autoSubmittedRef = useRef(false);
@@ -66,10 +73,14 @@ export function Chat({
         category,
         mode,
         latency_ms: Math.round(performance.now() - startedAt),
-        source_count: data.sources?.length ?? 0
+        source_count: data.sources?.length ?? 0,
+        answer_mode: data.meta?.answer_mode ?? "unknown",
+        retrieval_mode: data.meta?.retrieval_mode ?? "unknown",
+        server_latency_ms: data.meta?.latency_ms ?? null
       });
       setMessages([...nextMessages, { role: "assistant", content: data.answer }]);
       setSources(data.sources ?? []);
+      setResponseMeta(data.meta);
     } catch {
       captureSafeEvent("ask_response_failure", {
         category,
@@ -85,6 +96,7 @@ export function Chat({
         }
       ]);
       setSources([]);
+      setResponseMeta(undefined);
     } finally {
       setIsLoading(false);
     }
@@ -115,10 +127,10 @@ export function Chat({
           "How does Ravikanth think about Operational Intelligence?"
         ]);
   const operatingReceipts: Array<[string, string]> = [
-    ["Retrieve", sources.length ? `${sources.length} sources` : "local + vector"],
-    ["Ground", sources.length ? "context attached" : "awaiting query"],
+    ["Retrieve", responseMeta?.retrieval_mode ?? (sources.length ? "public sources" : "local + vector")],
+    ["Ground", sources.length ? `${sources.length} sources` : "awaiting query"],
     ["Boundary", "public-safe"],
-    ["Release", isLoading ? "evaluating" : "ready"]
+    ["Release", isLoading ? "evaluating" : responseMeta?.answer_mode ?? "ready"]
   ];
   const responseChecks: Array<[string, boolean]> = [
     ["AI disclosure", true],
