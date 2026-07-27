@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight, BrainCircuit, ClipboardCheck, FileText, GitBranch, Linkedin, Network, ShieldCheck, Sparkles } from "lucide-react";
 import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
-import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
 import { articles, builderDna, evalReport, harnessThesis, patterns, site } from "@/content/site";
@@ -60,8 +59,8 @@ export default function Home() {
   return (
     <>
       <section className="grid-bg border-b border-white/10">
-        <div className="mx-auto grid min-h-[86vh] max-w-7xl content-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
-          <Reveal>
+        <div className="mx-auto grid max-w-7xl content-start gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:min-h-[86vh] lg:grid-cols-[0.92fr_1.08fr] lg:content-center lg:px-8">
+          <div>
             <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
               Built by {site.owner}
@@ -94,10 +93,10 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </Reveal>
-          <Reveal delay={0.12}>
+          </div>
+          <div>
             <HeroIntelligenceMap />
-          </Reveal>
+          </div>
         </div>
       </section>
 

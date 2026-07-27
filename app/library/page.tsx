@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { BookOpen, Filter } from "lucide-react";
 import { Card } from "@/components/card";
+import { EmailCapture } from "@/components/email-capture";
 import { Section } from "@/components/section";
 import { articles, assetTypes } from "@/content/site";
 import { buildPublishingIndex } from "@/lib/publishing";
@@ -18,6 +19,14 @@ const referenceShelf = [
   ["/wiki/operational-intelligence-publication-pack", "Publication Pack", "Diagrams, comparison tables, decision packet, walkthrough, executive summary, glossary, and PDFs."],
   ["/publication-pack/operational-intelligence-diagrams.md", "Diagram Pack", "Architecture diagrams, state machines, sequence diagrams, evidence graph diagrams, and replay loops."],
   ["/downloads/operational-intelligence-publication-pack.pdf", "Publication PDF", "Shareable review artifact for technical reviewers, executives, architects, and founders."]
+] as const;
+
+const canonicalReadingPath = [
+  ["/wiki/operational-intelligence-canonical-doctrine", "Define the doctrine", "Start with the precise definition, boundaries, claims, glossary, and OI-ROOM-001 case."],
+  ["/wiki/operational-intelligence-reference-architecture", "Inspect the architecture", "Move from thesis to contracts, state machines, schemas, evaluation gates, and conformance."],
+  ["/investigation-room", "Run the artifact", "Watch the model behave through evidence, transaction timing, contradiction, missing evidence, and approval."],
+  ["/wiki/operational-intelligence-evidence-pack", "Challenge the evidence", "Use falsification criteria, control comparisons, and practitioner review questions."],
+  ["/ideas/operational-intelligence-is-the-new-control-plane", "Read the point of view", "Follow the category argument into essays, memos, and field notes."]
 ] as const;
 
 export default function LibraryPage() {
@@ -68,6 +77,36 @@ export default function LibraryPage() {
                 </Card>
               </Link>
             ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section eyebrow="Canonical reading path" title="Read the work in the order a serious reviewer should inspect it.">
+        <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="grid gap-3">
+            {canonicalReadingPath.map(([href, title, description], index) => (
+              <Link key={href} href={href}>
+                <Card className="flex h-full items-start gap-4 p-4 transition hover:border-mint/40">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded border border-signal/30 bg-signal/10 font-mono text-sm text-signal">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h2 className="text-xl font-semibold text-white">{title}</h2>
+                    <p className="mt-2 text-sm leading-6 text-slate-300">{description}</p>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+          <div className="space-y-4">
+            <EmailCapture />
+            <Link href="/rss.xml">
+              <Card className="transition hover:border-mint/40">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">RSS</p>
+                <h2 className="mt-3 text-xl font-semibold text-white">Follow the publication feed.</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">Every published asset is indexed into RSS, sitemap, search, Ask Ravikanth retrieval, and the monthly export.</p>
+              </Card>
+            </Link>
           </div>
         </div>
       </Section>

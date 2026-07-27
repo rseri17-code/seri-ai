@@ -109,7 +109,18 @@ for (const [query, expectedUrl] of publishingSearchCases) {
 const libraryPage = fs.readFileSync(path.join(root, "app", "library", "page.tsx"), "utf8");
 for (const required of [
   "const referenceShelf",
+  "const canonicalReadingPath",
   "const corpusStats",
+  "Canonical reading path",
+  "Read the work in the order a serious reviewer should inspect it.",
+  "Define the doctrine",
+  "Inspect the architecture",
+  "Run the artifact",
+  "Challenge the evidence",
+  "Read the point of view",
+  "EmailCapture",
+  "/rss.xml",
+  "Follow the publication feed.",
   "Reference shelf",
   "The canonical assets before the essays",
   "/wiki/operational-intelligence-canonical-doctrine",
