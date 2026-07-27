@@ -58,10 +58,10 @@ export default function Image() {
             Operational Intelligence
           </div>
           <div style={{ fontSize: 72, fontWeight: 800, letterSpacing: -1.5, lineHeight: 1.03, maxWidth: 920 }}>
-            The reasoning layer between enterprise telemetry and human decision.
+            AI-native operations need evidence before action.
           </div>
           <div style={{ color: "#cbd5e1", fontSize: 30, lineHeight: 1.35, marginTop: 30, maxWidth: 980 }}>
-            Evidence graphs, replayable investigations, eval-gated agents, and human-reviewed action.
+            An inspectable operating model for hypotheses, replay, evaluation gates, and accountable human review.
           </div>
         </div>
         <div style={{ display: "flex", gap: 12, position: "relative" }}>

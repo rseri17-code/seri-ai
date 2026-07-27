@@ -86,8 +86,9 @@ const siteUrl = "https://seri.ai";
 const layout = read("app/layout.tsx");
 expectIncludes("app/layout.tsx", layout, [
   "metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? \"https://seri.ai\")",
-  "seri.ai | Operational Intelligence for Agentic SRE",
-  "evidence-backed Agentic SRE harnesses",
+  "seri.ai | Operational Intelligence for AI-native Operations",
+  "Ravikanth Seri's public home for Operational Intelligence",
+  "A public technical reference for evidence-backed operational reasoning",
   "canonical: \"/\"",
   "\"application/rss+xml\": \"/rss.xml\"",
   "siteName: \"seri.ai\"",
@@ -108,8 +109,8 @@ expectIncludes("app/opengraph-image.tsx", openGraphImage, [
   "width: 1200",
   "height: 630",
   "contentType = \"image/png\"",
-  "The reasoning layer between enterprise telemetry and human decision.",
-  "Evidence graphs, replayable investigations, eval-gated agents, and human-reviewed action."
+  "AI-native operations need evidence before action.",
+  "An inspectable operating model for hypotheses, replay, evaluation gates, and accountable human review."
 ]);
 
 const structuredData = read("components/structured-data.tsx");

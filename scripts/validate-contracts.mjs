@@ -157,8 +157,8 @@ expectIncludes(robotsPath, robots, ["/llms.txt"]);
 expectIncludes(openGraphImagePath, openGraphImage, [
   "ImageResponse",
   "Operational Intelligence",
-  "reasoning layer between enterprise telemetry and human decision",
-  "Evidence graphs",
+  "AI-native operations need evidence before action",
+  "inspectable operating model for hypotheses, replay, evaluation gates, and accountable human review",
   "Human review",
   "1200",
   "630"

@@ -8,9 +8,9 @@ import { StructuredData } from "@/components/structured-data";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "seri.ai | Operational Intelligence for Agentic SRE",
+  title: "seri.ai | Operational Intelligence for AI-native Operations",
   description:
-    "An inspectable operating layer for Operational Intelligence: evidence-backed Agentic SRE harnesses, replayable incident reasoning, evaluation gates, and human-reviewed action.",
+    "Ravikanth Seri's public home for Operational Intelligence: an inspectable operating model for evidence, hypotheses, replay, evaluation, and human-reviewed action.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://seri.ai"),
   alternates: {
     canonical: "/",
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    title: "seri.ai | Operational Intelligence for Agentic SRE",
-    description: "Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
+    title: "seri.ai | Operational Intelligence for AI-native Operations",
+    description: "A public technical reference for evidence-backed operational reasoning, replayable investigations, evaluation gates, and accountable human decision.",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "seri.ai - Operational Intelligence for AI-native operations" }],
     url: "/",
     siteName: "seri.ai",
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "seri.ai | Operational Intelligence for Agentic SRE",
-    description: "Evidence, replay, eval gates, and human-reviewed action for enterprise operations.",
+    title: "seri.ai | Operational Intelligence for AI-native Operations",
+    description: "Evidence, hypotheses, replay, eval gates, and human-reviewed action for enterprise operations.",
     images: [{ url: "/twitter-image", alt: "seri.ai - Operational Intelligence for AI-native operations" }]
   }
 };
