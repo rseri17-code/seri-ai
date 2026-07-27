@@ -56,6 +56,15 @@ const architectThesis = [
   "The public work on seri.ai is designed to prove that thesis through doctrine, reference architecture, simulations, eval fixtures, patterns, and portable artifacts."
 ] as const;
 
+const impactLedger = [
+  ["15+ years", "Distributed enterprise systems, infrastructure, middleware, identity, reliability, and modernization."],
+  ["120+ apps", "Zero-downtime identity migration across enterprise applications while preserving existing contracts."],
+  ["80% ticket reduction", "Python automation and API integration that reduced recurring identity support load."],
+  ["200 hours / quarter", "Recovered engineering time through repeatable onboarding and operational automation."],
+  ["66/66 evals", "Public deterministic trust fixtures for Ask Ravikanth's grounding, refusal, citation, and routing behavior."],
+  ["v1.0 doctrine", "Versioned Operational Intelligence doctrine, reference architecture, publication pack, and evidence pack."]
+] as const;
+
 export default function ResumePage() {
   return (
     <Section eyebrow="Interactive resume" title={resume.headline} level="h1">
@@ -83,6 +92,23 @@ export default function ResumePage() {
           >
             <Download size={18} /> Download resume
           </TrackedAnchor>
+        </Card>
+        <Card className="border-mint/25 bg-mint/[0.045]">
+          <div className="flex items-center gap-3">
+            <ShieldCheck className="text-mint" />
+            <h2 className="text-xl font-semibold text-white">Impact ledger</h2>
+          </div>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            Public-safe proof points that explain the operating background behind the Operational Intelligence thesis.
+          </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {impactLedger.map(([value, label]) => (
+              <div key={value} className="rounded border border-white/10 bg-black/20 p-4">
+                <p className="text-2xl font-semibold text-white">{value}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{label}</p>
+              </div>
+            ))}
+          </div>
         </Card>
         <Card className="border-signal/25 bg-signal/[0.045]">
           <div className="flex items-center gap-3">
