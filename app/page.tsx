@@ -55,6 +55,15 @@ const referenceAssets = [
   ["/wiki/operational-intelligence-evidence-pack", "Evidence Pack", "Benchmark rubric, control comparisons, and falsification criteria."]
 ];
 
+const inspectionLedger = [
+  ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "Definition, boundaries, ten layers, glossary, and claim posture."],
+  ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Contracts, state machines, schemas, gates, and conformance levels."],
+  ["/investigation-room", "Operations Room", "Synthetic investigation with evidence graph, replay, contradiction, missing evidence, and approval."],
+  ["/evals", "Trust Evals", `${evalReport.fixtures.length} deterministic fixtures covering grounding, refusal, routing, and citations.`],
+  ["/library", "Publishing System", "Searchable, cited, linked assets connected to framework layers, patterns, RSS, and Ask retrieval."],
+  ["/work", "Builder Evidence", "Public-safe experience, systems judgment, resume proof, GitHub, LinkedIn, and current work."]
+] as const;
+
 export default function Home() {
   return (
     <>
@@ -99,6 +108,47 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Section eyebrow="Inspection ledger" title="The first promise is that the work can be inspected.">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {inspectionLedger.map(([href, title, body]) => (
+            <Link key={href} href={href}>
+              <Card className="h-full p-4 transition hover:-translate-y-1 hover:border-mint/40">
+                <div className="flex items-start justify-between gap-4">
+                  <h2 className="text-xl font-semibold text-white">{title}</h2>
+                  <ArrowRight size={16} className="mt-1 shrink-0 text-mint" />
+                </div>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <TrackedAnchor
+            href={site.links.github}
+            target="_blank"
+            rel="noreferrer"
+            eventName="profile_link_click"
+            eventProperties={{ destination: "github", placement: "homepage_inspection_ledger" }}
+            className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-3 text-sm font-semibold text-white"
+          >
+            GitHub <ArrowRight size={15} />
+          </TrackedAnchor>
+          <TrackedAnchor
+            href={site.links.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            eventName="profile_link_click"
+            eventProperties={{ destination: "linkedin", placement: "homepage_inspection_ledger" }}
+            className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-3 text-sm font-semibold text-white"
+          >
+            LinkedIn <Linkedin size={15} />
+          </TrackedAnchor>
+          <Link href="/rss.xml" className="inline-flex items-center gap-2 rounded border border-mint/40 px-4 py-3 text-sm font-semibold text-mint">
+            RSS <ArrowRight size={15} />
+          </Link>
+        </div>
+      </Section>
 
       <Section eyebrow="Start here" title="One thesis. Three ways to test it.">
         <div className="grid gap-4 lg:grid-cols-3">
