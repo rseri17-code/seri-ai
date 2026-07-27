@@ -1,8 +1,8 @@
 "use client";
 
-import { BrainCircuit, CheckCircle2, Database, FileSearch, LockKeyhole, Send, ShieldCheck } from "lucide-react";
-import Image from "next/image";
+import { CheckCircle2, Database, FileSearch, LockKeyhole, Send, ShieldCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { ProfileMark } from "@/components/profile-mark";
 import type { ChatMessage } from "@/lib/ai";
 import { captureSafeEvent, categorizeQuestion } from "@/lib/analytics-events";
 
@@ -133,18 +133,7 @@ export function Chat({
         <div className="border-b border-white/10 bg-black/20 p-4">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex items-center gap-3">
-              <div className="relative h-12 w-12 shrink-0">
-                <Image
-                  src="/images/ravikanth-seri-linkedin.jpg"
-                  alt="Ravikanth Seri"
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 rounded-full border border-mint/35 object-cover"
-                />
-                <span className="absolute -bottom-1 -right-1 grid h-5 w-5 place-items-center rounded-full border border-ink bg-mint text-ink">
-                  <BrainCircuit size={12} />
-                </span>
-              </div>
+              <ProfileMark size="sm" />
               <div>
                 <p className="text-xs font-semibold uppercase text-slate-500">Ask Ravikanth</p>
                 <h2 className="text-xl font-semibold text-white">Ask about the person, the work, and the operating model.</h2>

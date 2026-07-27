@@ -2,6 +2,51 @@
 
 Date: 2026-07-26
 
+## Iteration Update - 2026-07-27
+
+### Baseline Observed
+
+- A stale local dev server could render the homepage without Tailwind styling, making the product appear like raw HTML even though the optimized build renders correctly.
+- The public product voice still contained demo-like phrases such as "another AI demo," "public-grounded companion," and "Ask Ravikanth is online."
+- The Operations Room used "ReasonOps Operations Room" in high-visibility surfaces, creating terminology drift against the frozen Operational Intelligence spine.
+- Work proof copy referenced an older Ask fixture count while current evals report 70 fixtures.
+- The LinkedIn portrait was present in the public bundle without a written provenance record confirming the intended image and reuse authorization under the updated standard.
+
+### Improvements Implemented
+
+- Reframed the homepage around the harder enterprise-AI problem: evidence, uncertainty, change understanding, and trusted human action.
+- Reframed Ask Ravikanth as a cited review interface over Ravikanth's public work and artifacts rather than a generic assistant explanation.
+- Standardized the signature artifact as "Operational Intelligence Operations Room" across the room, exported report title, artifacts index, and project registry.
+- Replaced stale fixture-count copy with the live `evalReport.fixtures.length` value.
+- Replaced rendered portrait usage with a neutral `ProfileMark` identity treatment until portrait authorization is explicit.
+- Removed the unconfirmed portrait asset from `public/images`.
+- Added a validation guard that fails if application source references `ravikanth-seri-linkedin.jpg` before authorization is documented.
+
+### Evidence-Based Scorecard
+
+| Category | Current Evidence | Status |
+| --- | --- | --- |
+| Content authority | Doctrine, reference architecture, publication pack, evidence pack, public-safe case, citations, claim posture. | Strong, needs external practitioner review. |
+| Technical depth | Ten-layer framework, state/contract artifacts, Operations Room, eval gates, reference PDFs. | Strong, needs measured case-study evidence. |
+| UX and visual quality | Optimized build renders styled dark interface; stale dev server issue identified separately. | Improving, not yet visually exceptional. |
+| Ask Ravi usefulness and safety | 70 deterministic fixtures pass; fallback, refusal, routing, citation contracts validated. | Strong deterministic beta, needs live model quality telemetry. |
+| Accessibility | `validate:a11y` covers 35 pages and 19 components. | Strong automated coverage, needs manual keyboard/screen-reader pass. |
+| Performance | `npm run build` passed performance budgets; home first-load JS reported at 150 kB, Operations Room at 194 kB. | Acceptable, keep watching Operations Room payload. |
+| SEO and discovery | Canonical metadata, JSON-LD, sitemap, robots, RSS, OG/Twitter images, `/llms.txt`. | Strong. |
+| Reliability and SRE maturity | API fallback/rate-limit contracts and deployment config validators pass. | Good beta posture, needs production observability evidence. |
+| Security and privacy | Public-safety scan passes; unconfirmed portrait removed; portrait source references now blocked. | Improved, needs documented consent before real portrait use. |
+| Maintainability | Content/route/publishing/retrieval/analytics validators pass; no generated timestamp churn committed. | Strong. |
+| Mobile | Existing validators and prior browser checks cover mobile overflow; current iteration did not complete new visual browser screenshots due in-app browser instability. | Needs fresh manual visual pass on production deployment. |
+
+### Prioritized Backlog
+
+1. Confirm portrait provenance: intended image, permission to reuse, source, optimization target, alt text, and public placement.
+2. Run a fresh production visual QA pass outside the unstable in-app browser for home, Ask, Operations Room, Work, Background, Doctrine, and mobile 390px.
+3. Add live Ask observability evidence: latency buckets, failure rate, source count, refusal category, and cost-safe metadata without prompt capture.
+4. Add practitioner review evidence for the doctrine and reference architecture.
+5. Add measured comparison artifacts: dashboard-only versus chatbot-only versus Operational Intelligence workflow on OI-ROOM-001.
+6. Migrate deprecated `next lint` to ESLint CLI.
+
 ## Baseline Product Deficiencies
 
 - `/framework` explained the ten layers but still behaved like a reference grid instead of a teaching sequence.

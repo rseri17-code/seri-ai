@@ -1,7 +1,7 @@
 import { Chat } from "@/components/chat";
 import { Card } from "@/components/card";
+import { ProfileMark } from "@/components/profile-mark";
 import { Section } from "@/components/section";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, ShieldCheck, type LucideIcon } from "lucide-react";
 import type { Metadata } from "next";
@@ -54,14 +54,7 @@ export default async function AskPage({
         <div className="mb-5 grid gap-4 lg:grid-cols-[1fr_0.9fr]">
           <Card className="border-mint/25 bg-mint/[0.055]">
             <div className="mb-4 flex items-center gap-4">
-              <Image
-                src="/images/ravikanth-seri-linkedin.jpg"
-                alt="Ravikanth Seri"
-                width={64}
-                height={64}
-                className="h-16 w-16 rounded-full border border-mint/35 object-cover shadow-[0_0_28px_rgba(95,242,181,0.22)]"
-                priority
-              />
+              <ProfileMark />
               <div className="grid h-12 w-12 place-items-center rounded-lg border border-mint/30 bg-mint/10 text-mint">
                 <BrainCircuit size={22} />
               </div>

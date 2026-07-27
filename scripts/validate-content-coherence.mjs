@@ -81,6 +81,18 @@ function publicFileExists(route) {
   return fs.existsSync(path.join(root, "public", route));
 }
 
+function sourceFilesUnder(relativeDir) {
+  const start = path.join(root, relativeDir);
+  if (!fs.existsSync(start)) return [];
+  const entries = fs.readdirSync(start, { withFileTypes: true });
+  return entries.flatMap((entry) => {
+    const fullPath = path.join(start, entry.name);
+    const relativePath = path.relative(root, fullPath);
+    if (entry.isDirectory()) return sourceFilesUnder(relativePath);
+    return /\.(ts|tsx|js|jsx|md|mdx)$/.test(entry.name) ? [relativePath] : [];
+  });
+}
+
 function routeExists(route) {
   const normalized = route.split("#")[0].split("?")[0];
   return knownRoutes.has(normalized) || publicFileExists(normalized);
@@ -351,8 +363,7 @@ for (const required of [
   "Reading the public evidence...",
   "Ask about Ravikanth, his work, Operational Intelligence, projects, or background...",
   "Ask about the person, the work, and the operating model.",
-  "/images/ravikanth-seri-linkedin.jpg",
-  "alt=\"Ravikanth Seri\""
+  "ProfileMark size=\"sm\""
 ]) {
   expect(chatComponent.includes(required), `Chat missing prompt deep-link auto-submit contract: ${required}`);
 }
@@ -377,10 +388,14 @@ for (const required of [
   "Where can I review Ravikanth's GitHub, LinkedIn, resume, and public artifacts?",
   "suggestedPrompts={askRavikanthPrompts}",
   "doctrine, architecture, projects, resume, GitHub, LinkedIn",
-  "/images/ravikanth-seri-linkedin.jpg",
-  "alt=\"Ravikanth Seri\""
+  "ProfileMark"
 ]) {
   expect(askPage.includes(required), `/ask missing Ask Ravikanth public companion contract: ${required}`);
+}
+
+for (const relativePath of sourceFilesUnder("app").concat(sourceFilesUnder("components"), sourceFilesUnder("content"), sourceFilesUnder("lib"))) {
+  const content = fs.readFileSync(path.join(root, relativePath), "utf8");
+  expect(!content.includes("ravikanth-seri-linkedin.jpg"), `${relativePath}: LinkedIn portrait requires explicit reuse authorization before source reference`);
 }
 
 const footerComponent = fs.readFileSync(path.join(root, "components", "footer.tsx"), "utf8");
