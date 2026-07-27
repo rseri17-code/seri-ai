@@ -12,10 +12,9 @@ export const metadata: Metadata = {
 };
 
 const askContextCards: Array<{ label: string; value: string; Icon: LucideIcon }> = [
-  { label: "Disclosure", value: "AI assistant, not Ravikanth personally", Icon: BrainCircuit },
-  { label: "Scope", value: "Ravikanth's public work and Operational Intelligence thesis", Icon: ClipboardCheck },
-  { label: "Evidence", value: "doctrine, architecture, projects, resume, GitHub, LinkedIn", Icon: GitBranch },
-  { label: "Guardrail", value: "public-safe only", Icon: ShieldCheck }
+  { label: "Source base", value: "doctrine, architecture, projects, resume, GitHub, LinkedIn", Icon: GitBranch },
+  { label: "Answer style", value: "cite evidence, name uncertainty, route to artifacts", Icon: ClipboardCheck },
+  { label: "Boundary", value: "AI assistant over approved public content, not Ravikanth personally", Icon: ShieldCheck }
 ];
 
 const askRaviPrompts = [
@@ -51,31 +50,30 @@ export default async function AskPage({
 
   return (
     <>
-      <Section eyebrow="Ask Ravi" title="Interrogate Ravikanth's public work, architecture judgment, and Operational Intelligence thesis." level="h1">
-        <div className="mb-5 grid gap-4 lg:grid-cols-[1fr_0.9fr]">
-          <Card className="border-mint/25 bg-mint/[0.055]">
-            <div className="mb-4 flex items-center gap-4">
-              <ProfileMark />
-              <div className="grid h-12 w-12 place-items-center rounded-lg border border-mint/30 bg-mint/10 text-mint">
-                <BrainCircuit size={22} />
+      <Section eyebrow="Ask Ravi" title="Ask Ravikanth's public body of work." level="h1">
+        <Chat initialPrompt={initialPrompt} suggestedPrompts={askRaviPrompts} />
+        <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1.1fr]">
+          <Card className="border-mint/25 bg-mint/[0.055] p-5">
+            <div className="mb-5 flex items-center gap-4">
+              <ProfileMark size="sm" />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Public inquiry surface</p>
+                <p className="mt-1 text-sm text-slate-400">Operational Intelligence, systems judgment, projects, background, and public artifacts.</p>
               </div>
             </div>
-            <h2 className="text-2xl font-semibold text-white">Ask the work. Inspect the receipts.</h2>
-            <p className="mt-3 leading-7 text-slate-300">
-              Ask about Operational Intelligence, Agentic SRE, architecture tradeoffs, public projects, background,
-              GitHub, LinkedIn signal, and the evidence behind the thesis. Strong answers cite sources, name uncertainty,
-              and route you to the artifact worth inspecting next. Ask Ravi is an AI assistant over approved public content,
-              not Ravikanth personally.
+            <h2 className="text-3xl font-semibold leading-tight text-white">Ask the work. Inspect the receipts.</h2>
+            <p className="mt-4 leading-7 text-slate-300">
+              Use this as a cited review layer over Ravikanth Seri&apos;s approved public work: doctrine, architecture, projects, resume, GitHub, LinkedIn signal, and the Operational Intelligence thesis.
             </p>
-            <div className="mt-5 grid gap-2 md:grid-cols-4">
-              {["Know the work", "Ground claims", "Refuse secrets", "Route reviewers"].map((step) => (
+            <div className="mt-6 grid gap-2 sm:grid-cols-2">
+              {["Ground claims", "Expose sources", "Name uncertainty", "Refuse secrets"].map((step) => (
                 <span key={step} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase text-slate-300">
                   {step}
                 </span>
               ))}
             </div>
           </Card>
-          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+          <div className="grid gap-3 md:grid-cols-3">
             {askContextCards.map(({ label, value, Icon }) => (
               <Card key={label} className="flex items-start gap-3 p-4">
                 <Icon className="mt-1 shrink-0 text-signal" size={19} />
@@ -87,7 +85,6 @@ export default async function AskPage({
             ))}
           </div>
         </div>
-        <Chat initialPrompt={initialPrompt} suggestedPrompts={askRaviPrompts} />
       </Section>
 
       <Section eyebrow="Guide paths" title="Use Ask Ravi as the navigation layer for the whole system.">

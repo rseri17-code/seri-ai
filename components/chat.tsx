@@ -29,7 +29,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Ask the public work and inspect the receipts. I can answer about Ravikanth Seri's Operational Intelligence thesis, architecture judgment, projects, background, GitHub, LinkedIn signal, and technical writing from approved public sources. I cite sources, name uncertainty, and refuse confidential or unsupported claims. Ask Ravi is an AI assistant, not Ravikanth personally.";
+      : "Ask a public-safe question about Ravikanth Seri's work. I will answer from approved public sources, cite the receipts, name uncertainty, and route you to the strongest artifact. Ask Ravi is an AI assistant, not Ravikanth personally.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -151,7 +151,7 @@ export function Chat({
                 <h2 className="text-xl font-semibold text-white">Ask about the person, the work, and the operating model.</h2>
               </div>
             </div>
-            <div className="grid gap-2 sm:grid-cols-4 xl:w-[34rem]">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 xl:w-[34rem]">
               {operatingReceipts.map(([label, value]) => (
                 <div key={label} className="rounded border border-white/10 bg-white/[0.04] px-3 py-2">
                   <p className="text-[0.66rem] font-semibold uppercase text-slate-500">{label}</p>
@@ -161,7 +161,7 @@ export function Chat({
             </div>
           </div>
         </div>
-        <div className="h-[560px] space-y-4 overflow-y-auto p-4">
+        <div className="h-[190px] space-y-4 overflow-y-auto p-4 md:h-[420px]">
           {messages.map((message, index) => (
             <div key={`${message.role}-${index}`} className={message.role === "user" ? "flex justify-end" : "flex justify-start"}>
               <div
