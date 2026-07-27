@@ -34,6 +34,13 @@ Date: 2026-07-26
 - Added deployment validation checks that require the content and publishing caches to remain present.
 - Measured result: `npm run build` completed without static-generation retry warnings after the cache change. The optimized production compile completed in 16.4 seconds in this run, compared with the prior run that reached roughly 8.3 minutes and emitted many 60-second route retry warnings.
 
+### Ask Observability Pass - 2026-07-27
+
+- Added a shared Ask observability contract for safe metadata fields, forbidden metadata fields, answer modes, retrieval modes, SLO-style targets, and alert signals.
+- Added an internal `/admin` dashboard section explaining how to monitor Ask Ravi latency, grounding, fallback behavior, retrieval degradation, safety pressure, and failure rate without storing raw visitor prompts or contact details.
+- Expanded analytics validation to require `ask_response_success`, the Ask observability contract, and the admin dashboard contract.
+- Validated that Ask telemetry remains metadata-only: allowed fields include category, mode, route, latency, answer mode, retrieval mode, and source count; forbidden fields include prompt, question, message, email, name, contact, and free-text feedback fields.
+
 ### Baseline Observed
 
 - A stale local dev server could render the homepage without Tailwind styling, making the product appear like raw HTML even though the optimized build renders correctly.
@@ -61,11 +68,11 @@ Date: 2026-07-26
 | Content authority | Doctrine, reference architecture, publication pack, evidence pack, public-safe case, citations, claim posture. | Strong, needs external practitioner review. |
 | Technical depth | Ten-layer framework, state/contract artifacts, Operations Room, eval gates, reference PDFs. | Strong, needs measured case-study evidence. |
 | UX and visual quality | Homepage copy now leads with evidence-first operating model; Operations Room graph appears before secondary controls; Ask opens as a receipt-inspection surface. | Improving, still needs production visual QA and stronger artifact dominance. |
-| Ask Ravi usefulness and safety | 71 deterministic fixtures pass; fallback, refusal, routing, citation, AI-disclosure, and safe operational metadata contracts validated. | Strong deterministic beta, needs live model quality telemetry. |
+| Ask Ravi usefulness and safety | 71 deterministic fixtures pass; fallback, refusal, routing, citation, AI-disclosure, safe operational metadata, and internal observability contracts validated. | Strong deterministic beta, needs live model quality telemetry. |
 | Accessibility | `validate:a11y` covers 35 pages and 19 components. | Strong automated coverage, needs manual keyboard/screen-reader pass. |
 | Performance | `npm run build` passed performance budgets; home first-load JS reported at 150 kB, Operations Room at 194 kB. | Acceptable, keep watching Operations Room payload. |
 | SEO and discovery | Canonical metadata, JSON-LD, sitemap, robots, RSS, OG/Twitter images, `/llms.txt`. | Strong. |
-| Reliability and SRE maturity | API fallback/rate-limit contracts, timeout budgets, safe Ask response metadata, deployment config validators, memoized static corpus indexes, and production build pass without static-generation retries in the latest run. | Stronger beta posture, still needs production dashboards and alert evidence. |
+| Reliability and SRE maturity | API fallback/rate-limit contracts, timeout budgets, safe Ask response metadata, deployment config validators, memoized static corpus indexes, Ask observability dashboard contract, and production build pass without static-generation retries in the latest run. | Stronger beta posture, still needs live production dashboard data and alert evidence. |
 | Security and privacy | Public-safety scan passes; unconfirmed portrait removed; portrait source references now blocked. | Improved, needs documented consent before real portrait use. |
 | Maintainability | Content/route/publishing/retrieval/analytics validators pass; no generated timestamp churn committed. | Strong. |
 | Mobile | Existing validators and prior browser checks cover mobile overflow; source hierarchy now places the Operations Room graph earlier. Current iteration did not complete fresh screenshots due in-app browser/local dev instability. | Needs fresh manual visual pass on production deployment. |
@@ -74,7 +81,7 @@ Date: 2026-07-26
 
 1. Confirm portrait provenance: intended image, permission to reuse, source, optimization target, alt text, and public placement.
 2. Run a fresh production visual QA pass outside the unstable in-app browser for home, Ask, Operations Room, Work, Background, Doctrine, and mobile 390px.
-3. Add live Ask observability dashboards: latency buckets, failure rate, source count, refusal category, answer mode, retrieval mode, and cost-safe metadata without prompt capture.
+3. Connect live PostHog/Vercel Ask observability dashboards to the metadata contract: latency buckets, failure rate, source count, refusal category, answer mode, retrieval mode, and cost-safe metadata without prompt capture.
 4. Add practitioner review evidence for the doctrine and reference architecture.
 5. Add measured comparison artifacts: dashboard-only versus chatbot-only versus Operational Intelligence workflow on OI-ROOM-001.
 6. Migrate deprecated `next lint` to ESLint CLI.

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { articles, projects, architectureCards } from "@/content/site";
+import { askAlertSignals, askBlockedMetadataFields, askOperationalModes, askSafeMetadataFields, askSloTargets } from "@/lib/ask-observability";
 import { buildKnowledgeGraph, buildMonthlyNewsletterExport, buildPublishingIndex } from "@/lib/publishing";
 
 export const metadata: Metadata = {
@@ -77,6 +78,81 @@ export default function AdminPage() {
               <p className="mt-2 text-sm leading-6 text-slate-200">{value}</p>
             </div>
           ))}
+        </div>
+      </Card>
+      <Card className="mt-5">
+        <h2 className="text-xl font-semibold text-white">Ask Ravi observability contract</h2>
+        <p className="mt-3 leading-7 text-slate-300">
+          Ask telemetry is intentionally metadata-only. It should help operators understand latency, grounding, fallback behavior,
+          and safety pressure without storing raw visitor prompts, contact details, or private feedback text.
+        </p>
+        <div className="mt-5 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-lg border border-mint/20 bg-mint/[0.045] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Allowed metadata</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {askSafeMetadataFields.map((field) => (
+                <span key={field} className="rounded border border-white/10 bg-black/20 px-3 py-2 font-mono text-xs text-slate-200">
+                  {field}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-lg border border-amber/20 bg-amber/[0.045] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Never capture</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {askBlockedMetadataFields.map((field) => (
+                <span key={field} className="rounded border border-white/10 bg-black/20 px-3 py-2 font-mono text-xs text-slate-200">
+                  {field}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <div className="rounded-lg border border-white/10 bg-black/20 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Answer modes</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {askOperationalModes.answerModes.map((mode) => (
+                <span key={mode} className="rounded border border-mint/20 px-3 py-2 font-mono text-xs text-mint">
+                  {mode}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-black/20 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Retrieval modes</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {askOperationalModes.retrievalModes.map((mode) => (
+                <span key={mode} className="rounded border border-signal/20 px-3 py-2 font-mono text-xs text-signal">
+                  {mode}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-mint">SLO-style targets</h3>
+            <div className="mt-3 grid gap-2">
+              {askSloTargets.map(([label, detail]) => (
+                <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="text-sm font-semibold text-white">{label}</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-300">{detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-amber">Alert signals</h3>
+            <div className="mt-3 grid gap-2">
+              {askAlertSignals.map(([label, detail]) => (
+                <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="text-sm font-semibold text-white">{label}</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-300">{detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </Card>
       <Card className="mt-5">

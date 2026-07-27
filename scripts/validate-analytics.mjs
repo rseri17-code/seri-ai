@@ -10,6 +10,7 @@ const expectedEvents = [
   "operations_room_guided_start",
   "operations_room_guided_completion",
   "ask_question_submit",
+  "ask_response_success",
   "ask_response_failure",
   "source_link_click",
   "work_page_visit",
@@ -68,6 +69,8 @@ const source = sourceFiles.map((file) => read(file)).join("\n");
 const instrumentationSource = sourceFiles.filter((file) => file !== "lib/analytics-events.ts").map((file) => read(file)).join("\n");
 const analyticsEventsSource = read("lib/analytics-events.ts");
 const analyticsComponentSource = read("components/analytics.tsx");
+const askObservabilitySource = read("lib/ask-observability.ts");
+const adminSource = read("app/admin/page.tsx");
 
 for (const event of expectedEvents) {
   if (!analyticsEventsSource.includes(`"${event}"`)) {
@@ -109,6 +112,41 @@ if (!analyticsEventsSource.includes("sanitizeEventProperties")) {
 
 if (!analyticsEventsSource.includes("safeAnalyticsEvents")) {
   errors.push("lib/analytics-events.ts: missing safeAnalyticsEvents allowlist");
+}
+
+for (const required of [
+  "askSafeMetadataFields",
+  "askBlockedMetadataFields",
+  "askOperationalModes",
+  "askSloTargets",
+  "askAlertSignals",
+  "latency_ms",
+  "server_latency_ms",
+  "answer_mode",
+  "retrieval_mode",
+  "source_count",
+  "prompt",
+  "question",
+  "message",
+  "email",
+  "contact"
+]) {
+  if (!askObservabilitySource.includes(required)) {
+    errors.push(`lib/ask-observability.ts: missing observability contract term "${required}"`);
+  }
+}
+
+for (const required of [
+  "Ask Ravi observability contract",
+  "metadata-only",
+  "askSafeMetadataFields",
+  "askBlockedMetadataFields",
+  "askSloTargets",
+  "askAlertSignals"
+]) {
+  if (!adminSource.includes(required)) {
+    errors.push(`app/admin/page.tsx: missing Ask observability dashboard contract "${required}"`);
+  }
 }
 
 if (errors.length) {
