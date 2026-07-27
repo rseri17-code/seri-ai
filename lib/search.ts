@@ -11,6 +11,8 @@ const referenceArchitectureUrl = "/wiki/operational-intelligence-reference-archi
 const evidencePackUrl = "/wiki/operational-intelligence-evidence-pack";
 const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
 const workUrl = "/work";
+const resumeUrl = "/resume";
+const backgroundUrl = "/background";
 const directReferenceBoosts: Array<[RegExp, string]> = [
   [/diagram|diagrams|state machine diagram|sequence diagram|evidence graph diagram|replay loop/, "/publication-pack/operational-intelligence-diagrams.md"],
   [/comparison table|adjacent discipline|claim classification|observability versus|aiops versus|agentops/, "/publication-pack/operational-intelligence-comparison-tables.md"],
@@ -133,7 +135,19 @@ const workTerms = new Set([
   "source",
   "open-source",
   "building",
-  "projects"
+  "projects",
+  "ravikanth's",
+  "about",
+  "who",
+  "why",
+  "trust",
+  "experience",
+  "resume",
+  "background",
+  "career",
+  "certifications",
+  "founder",
+  "recruiter"
 ]);
 
 export function localSearch(query: string, limit = 5): SearchHit[] {
@@ -162,6 +176,8 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const evidencePackBoost = source.url === evidencePackUrl && terms.some((term) => evidencePackTerms.has(term)) ? 7 : 0;
       const publicationPackBoost = source.url === publicationPackUrl && terms.some((term) => publicationPackTerms.has(term)) ? 9 : 0;
       const workBoost = source.url === workUrl && terms.some((term) => workTerms.has(term)) ? 10 : 0;
+      const resumeBoost = source.url === resumeUrl && /resume|experience|career|capability|impact|recruiter|founder|background|certification|credential|public evidence|architecture judgment/.test(lowerQuery) ? 12 : 0;
+      const backgroundBoost = source.url === backgroundUrl && /who is ravikanth|about ravikanth|background|career|experience|linkedin|certification|credential|profile/.test(lowerQuery) ? 12 : 0;
       const conformanceChecklistBoost = source.url === evidencePackUrl && /minimum conformance|conformance checklist|observable proof|failure signal/.test(lowerQuery) ? 10 : 0;
       const downloadPackBoost = source.url === publicationPackUrl && /download|diagram|pdf|printable|executive summary|comparison table|decision packet|glossary card|walkthrough/.test(lowerQuery) ? 8 : 0;
       const broadPublicationPackBoost =
@@ -171,6 +187,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
           ? 50
           : 0;
       const publicProfileBoost = source.url === workUrl && /public code|open source|open-source|github|linkedin|public proof|engineering portfolio/.test(lowerQuery) ? 10 : 0;
+      const askRavikanthBoost =
+        source.url === workUrl &&
+        /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|public work|professional achievements/.test(lowerQuery)
+          ? 16
+          : 0;
       const directReferenceBoost = directReferenceBoosts.some(([pattern, url]) => source.url === url && pattern.test(lowerQuery)) ? 40 : 0;
       const score =
         baseScore +
@@ -183,7 +204,10 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         broadPublicationPackBoost +
         conformanceChecklistBoost +
         downloadPackBoost +
-        publicProfileBoost;
+        publicProfileBoost +
+        askRavikanthBoost +
+        resumeBoost +
+        backgroundBoost;
       return { source, content: source.content, score };
     })
     .filter((hit) => hit.score > 0)

@@ -78,10 +78,10 @@ function inferRelatedArtifacts(question) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
     artifacts.add("/evals");
   }
-  if (/work|public work|project|building|product thesis|github|open source|open-source|code|repository/.test(lower)) {
+  if (/ravikanth|work|public work|project|building|product thesis|github|open source|open-source|code|repository|technical direction|engineering philosophy|professional achievement/.test(lower)) {
     artifacts.add("/work");
   }
-  if (/resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence/.test(lower)) {
+  if (/ravikanth|resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence|recruiter|founder|who is/.test(lower)) {
     artifacts.add("/resume");
     artifacts.add("/background");
   }
@@ -122,11 +122,17 @@ function inferReferenceAssetMatches(question) {
 }
 
 function deterministicFallbackAnswer(question) {
+  const lower = question.toLowerCase();
+  const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background/.test(lower);
   const layers = inferFrameworkLayers(question);
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
+  const ravikanthContext =
+    "Ask Ravikanth is meant to help visitors understand Ravikanth Seri's public work: the Operational Intelligence doctrine, ReasonOps/Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
   return [
-    "Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
+    asksAboutRavikanth
+      ? `Direct answer: ${ravikanthContext}`
+      : "Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
     `Relevant framework layers: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     "Public source: approved public content registry, including the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, framework, and public wiki sources.",
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before presenting the doctrine as credible.",

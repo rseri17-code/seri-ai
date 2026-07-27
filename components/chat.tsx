@@ -1,6 +1,7 @@
 "use client";
 
 import { BrainCircuit, CheckCircle2, Database, FileSearch, LockKeyhole, Send, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { ChatMessage } from "@/lib/ai";
 import { captureSafeEvent, categorizeQuestion } from "@/lib/analytics-events";
@@ -22,7 +23,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Reasoning Interface online. Ask about Operational Intelligence, Agentic SRE, transaction intelligence, evidence graphs, replay, eval gates, or public-safe architecture patterns.";
+      : "Ask Ravikanth is online. Ask about Ravikanth's public work, architecture judgment, Operational Intelligence thesis, projects, background, GitHub, LinkedIn signal, or public-safe technical writing.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -109,9 +110,9 @@ export function Chat({
           "What leadership evidence appears in the public resume?"
         ]
       : [
-          "Explain Operational Intelligence as an operating layer.",
-          "How should agents investigate incidents safely?",
-          "What is Transaction Intelligence?"
+          "What is Ravikanth building with seri.ai?",
+          "What public evidence shows Ravikanth's architecture judgment?",
+          "How does Ravikanth think about Operational Intelligence?"
         ]);
   const operatingReceipts: Array<[string, string]> = [
     ["Retrieve", sources.length ? `${sources.length} sources` : "local + vector"],
@@ -132,12 +133,21 @@ export function Chat({
         <div className="border-b border-white/10 bg-black/20 p-4">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-lg border border-mint/30 bg-mint/10 text-mint">
-                <BrainCircuit size={20} />
+              <div className="relative h-12 w-12 shrink-0">
+                <Image
+                  src="/images/ravikanth-seri-linkedin.jpg"
+                  alt="Ravikanth Seri"
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 rounded-full border border-mint/35 object-cover"
+                />
+                <span className="absolute -bottom-1 -right-1 grid h-5 w-5 place-items-center rounded-full border border-ink bg-mint text-ink">
+                  <BrainCircuit size={12} />
+                </span>
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase text-slate-500">Operational reasoning console</p>
-                <h2 className="text-xl font-semibold text-white">Ask, retrieve, evaluate, then answer.</h2>
+                <p className="text-xs font-semibold uppercase text-slate-500">Ask Ravikanth</p>
+                <h2 className="text-xl font-semibold text-white">Ask about the person, the work, and the operating model.</h2>
               </div>
             </div>
             <div className="grid gap-2 sm:grid-cols-4 xl:w-[34rem]">
@@ -183,8 +193,8 @@ export function Chat({
             className="min-w-0 flex-1 rounded border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-mint/60"
             value={input}
             onChange={(event) => setInput(event.target.value)}
-            aria-label="Ask a public-safe Operational Intelligence question"
-            placeholder="Ask a public-safe Operational Intelligence question..."
+            aria-label="Ask Ravikanth a public-safe question"
+            placeholder="Ask about Ravikanth, his work, Operational Intelligence, projects, or background..."
           />
           <button className="grid h-12 w-12 place-items-center rounded bg-mint text-ink" type="submit" aria-label="Send message">
             <Send size={18} />

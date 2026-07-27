@@ -128,6 +128,8 @@ function inferReferenceAssetMatches(question: string) {
 }
 
 function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
+  const lower = question.toLowerCase();
+  const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background/.test(lower);
   const layers = inferFrameworkLayers(question);
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
@@ -137,9 +139,11 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     context.length > 0
       ? primarySource.content.slice(0, 420)
       : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
+  const ravikanthContext =
+    "Ask Ravikanth is meant to help visitors understand Ravikanth Seri's public work: the Operational Intelligence doctrine, ReasonOps/Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
 
   return [
-    `Direct answer: ${direct}`,
+    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext} ${direct}` : direct}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",

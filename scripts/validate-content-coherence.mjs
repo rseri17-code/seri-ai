@@ -337,9 +337,40 @@ for (const required of [
   "initialPromptRef",
   "autoSubmittedRef",
   "void sendMessage(prompt)",
-  "react-hooks/exhaustive-deps"
+  "react-hooks/exhaustive-deps",
+  "Ask Ravikanth is online.",
+  "Ask about Ravikanth, his work, Operational Intelligence, projects, or background...",
+  "Ask about the person, the work, and the operating model.",
+  "/images/ravikanth-seri-linkedin.jpg",
+  "alt=\"Ravikanth Seri\""
 ]) {
   expect(chatComponent.includes(required), `Chat missing prompt deep-link auto-submit contract: ${required}`);
+}
+
+const headerComponent = fs.readFileSync(path.join(root, "components", "header.tsx"), "utf8");
+for (const required of [
+  "Ask Ravikanth",
+  "href=\"/ask\""
+]) {
+  expect(headerComponent.includes(required), `Header missing Ask Ravikanth companion CTA contract: ${required}`);
+}
+
+const askPage = fs.readFileSync(path.join(root, "app", "ask", "page.tsx"), "utf8");
+for (const required of [
+  "Ask Ravikanth | Public-grounded AI for Ravikanth Seri's Work",
+  "const askRavikanthPrompts",
+  "Ask about Ravikanth, his work, and the operating model behind seri.ai.",
+  "A public-grounded companion for understanding Ravikanth&apos;s thinking, proof, and technical direction.",
+  "What is Ravikanth building with seri.ai?",
+  "What public evidence shows Ravikanth's architecture judgment?",
+  "How does Ravikanth think about Operational Intelligence?",
+  "Where can I review Ravikanth's GitHub, LinkedIn, resume, and public artifacts?",
+  "suggestedPrompts={askRavikanthPrompts}",
+  "doctrine, architecture, projects, resume, GitHub, LinkedIn",
+  "/images/ravikanth-seri-linkedin.jpg",
+  "alt=\"Ravikanth Seri\""
+]) {
+  expect(askPage.includes(required), `/ask missing Ask Ravikanth public companion contract: ${required}`);
 }
 
 const footerComponent = fs.readFileSync(path.join(root, "components", "footer.tsx"), "utf8");
