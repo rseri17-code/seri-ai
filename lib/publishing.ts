@@ -51,6 +51,8 @@ const author = "Ravikanth Seri";
 const defaultDate = "2026-07-16";
 const referenceDate = "2026-07-25";
 const frameworkLayerNames = operationalIntelligenceFramework.layers.map((layer) => layer.name);
+let publishingIndexCache: PublishingAsset[] | null = null;
+let knowledgeGraphCache: { nodes: PublishingAsset[]; relationships: PublishingRelationship[] } | null = null;
 
 const referencePublicationAssets = [
   {
@@ -424,6 +426,10 @@ function contentMatches(content: string, terms: string[]) {
 }
 
 export function buildPublishingIndex() {
+  if (publishingIndexCache) {
+    return publishingIndexCache;
+  }
+
   const assets = [
     ...contentRegistry.map(registryAsset),
     ...referencePublicationAssets.map(referencePublicationAsset),
@@ -443,7 +449,8 @@ export function buildPublishingIndex() {
     }
   }
 
-  return [...byUrl.values()].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || a.title.localeCompare(b.title));
+  publishingIndexCache = [...byUrl.values()].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || a.title.localeCompare(b.title));
+  return publishingIndexCache;
 }
 
 export function getShareableReferenceRoutes() {
@@ -451,6 +458,10 @@ export function getShareableReferenceRoutes() {
 }
 
 export function buildKnowledgeGraph() {
+  if (knowledgeGraphCache) {
+    return knowledgeGraphCache;
+  }
+
   const assets = buildPublishingIndex();
   const relationships: PublishingRelationship[] = [];
 
@@ -468,7 +479,8 @@ export function buildKnowledgeGraph() {
     }
   }
 
-  return { nodes: assets, relationships };
+  knowledgeGraphCache = { nodes: assets, relationships };
+  return knowledgeGraphCache;
 }
 
 export function getRelatedAssets(asset: PublishingAsset, limit = 6) {

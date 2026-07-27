@@ -41,6 +41,9 @@ export type PublicSource = {
 const wikiDir = path.join(process.cwd(), "content", "wiki");
 
 const referenceDate = "2026-07-25";
+let allWikiNotesCache: WikiNote[] | null = null;
+let publishedWikiNotesCache: WikiNote[] | null = null;
+let publicSourceIndexCache: PublicSource[] | null = null;
 
 const referenceSources = [
   {
@@ -206,11 +209,16 @@ function readingTime(body: string) {
 }
 
 export function getAllWikiNotes(): WikiNote[] {
-  if (!fs.existsSync(wikiDir)) {
-    return [];
+  if (allWikiNotesCache) {
+    return allWikiNotesCache;
   }
 
-  return fs
+  if (!fs.existsSync(wikiDir)) {
+    allWikiNotesCache = [];
+    return allWikiNotesCache;
+  }
+
+  allWikiNotesCache = fs
     .readdirSync(wikiDir)
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => {
@@ -234,10 +242,17 @@ export function getAllWikiNotes(): WikiNote[] {
       };
     })
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+
+  return allWikiNotesCache;
 }
 
 export function getPublishedWikiNotes() {
-  return getAllWikiNotes().filter((note) => note.status === "published");
+  if (publishedWikiNotesCache) {
+    return publishedWikiNotesCache;
+  }
+
+  publishedWikiNotesCache = getAllWikiNotes().filter((note) => note.status === "published");
+  return publishedWikiNotesCache;
 }
 
 export function markdownToParagraphs(markdown: string) {
@@ -248,6 +263,10 @@ export function markdownToParagraphs(markdown: string) {
 }
 
 export function buildPublicSourceIndex(): PublicSource[] {
+  if (publicSourceIndexCache) {
+    return publicSourceIndexCache;
+  }
+
   const wiki = getPublishedWikiNotes().map((note) => ({
     id: `wiki:${note.slug}`,
     title: note.title,
@@ -424,7 +443,8 @@ export function buildPublicSourceIndex(): PublicSource[] {
     status: "published" as const
   }));
 
-  return [...profileSources, ...normalizedReferenceSources, ...registrySources, ...wiki, ...principleSources, ...patternSources, ...projectSources, ...articleSources];
+  publicSourceIndexCache = [...profileSources, ...normalizedReferenceSources, ...registrySources, ...wiki, ...principleSources, ...patternSources, ...projectSources, ...articleSources];
+  return publicSourceIndexCache;
 }
 
 export function searchPublicContent(query: string, category = "All", tag = "All") {

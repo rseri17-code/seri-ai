@@ -103,6 +103,16 @@ for (const key of ["NEXT_PUBLIC_SITE_URL", "NEXT_PUBLIC_POSTHOG_KEY", "SUPABASE_
 }
 expect(readme.includes("Without model or database keys, `/ask` runs with the local approved-content fallback"), "README.md missing optional-service fallback note");
 
+const contentSource = read("lib/content.ts");
+for (const cacheName of ["allWikiNotesCache", "publishedWikiNotesCache", "publicSourceIndexCache"]) {
+  expect(contentSource.includes(cacheName), `lib/content.ts missing build-time content cache ${cacheName}`);
+}
+
+const publishingSource = read("lib/publishing.ts");
+for (const cacheName of ["publishingIndexCache", "knowledgeGraphCache"]) {
+  expect(publishingSource.includes(cacheName), `lib/publishing.ts missing build-time publishing cache ${cacheName}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

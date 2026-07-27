@@ -27,6 +27,13 @@ Date: 2026-07-26
 - `npm run build` — passed; performance budgets passed; home first-load JS 150 kB, Operations Room first-load JS 194 kB.
 - Build-time residual risk: during static generation, multiple routes exceeded the 60-second first-attempt timeout and succeeded on retry. This does not block the current patch, but it is evidence that build-time reliability needs a focused optimization pass.
 
+### Build Reliability Pass - 2026-07-27
+
+- Added build-time memoization for static wiki notes, published wiki notes, the public source index, the publishing index, and the publishing knowledge graph.
+- Preserved public behavior while avoiding repeated corpus and graph reconstruction during prerender.
+- Added deployment validation checks that require the content and publishing caches to remain present.
+- Measured result: `npm run build` completed without static-generation retry warnings after the cache change. The optimized production compile completed in 16.4 seconds in this run, compared with the prior run that reached roughly 8.3 minutes and emitted many 60-second route retry warnings.
+
 ### Baseline Observed
 
 - A stale local dev server could render the homepage without Tailwind styling, making the product appear like raw HTML even though the optimized build renders correctly.
@@ -58,7 +65,7 @@ Date: 2026-07-26
 | Accessibility | `validate:a11y` covers 35 pages and 19 components. | Strong automated coverage, needs manual keyboard/screen-reader pass. |
 | Performance | `npm run build` passed performance budgets; home first-load JS reported at 150 kB, Operations Room at 194 kB. | Acceptable, keep watching Operations Room payload. |
 | SEO and discovery | Canonical metadata, JSON-LD, sitemap, robots, RSS, OG/Twitter images, `/llms.txt`. | Strong. |
-| Reliability and SRE maturity | API fallback/rate-limit contracts, timeout budgets, safe Ask response metadata, deployment config validators, and production build pass. | Good beta posture, but build-time static generation retries need optimization plus production dashboards and alert evidence. |
+| Reliability and SRE maturity | API fallback/rate-limit contracts, timeout budgets, safe Ask response metadata, deployment config validators, memoized static corpus indexes, and production build pass without static-generation retries in the latest run. | Stronger beta posture, still needs production dashboards and alert evidence. |
 | Security and privacy | Public-safety scan passes; unconfirmed portrait removed; portrait source references now blocked. | Improved, needs documented consent before real portrait use. |
 | Maintainability | Content/route/publishing/retrieval/analytics validators pass; no generated timestamp churn committed. | Strong. |
 | Mobile | Existing validators and prior browser checks cover mobile overflow; source hierarchy now places the Operations Room graph earlier. Current iteration did not complete fresh screenshots due in-app browser/local dev instability. | Needs fresh manual visual pass on production deployment. |
@@ -67,11 +74,10 @@ Date: 2026-07-26
 
 1. Confirm portrait provenance: intended image, permission to reuse, source, optimization target, alt text, and public placement.
 2. Run a fresh production visual QA pass outside the unstable in-app browser for home, Ask, Operations Room, Work, Background, Doctrine, and mobile 390px.
-3. Optimize build-time static generation so critical routes do not hit Next.js 60-second first-attempt timeouts.
-4. Add live Ask observability dashboards: latency buckets, failure rate, source count, refusal category, answer mode, retrieval mode, and cost-safe metadata without prompt capture.
-5. Add practitioner review evidence for the doctrine and reference architecture.
-6. Add measured comparison artifacts: dashboard-only versus chatbot-only versus Operational Intelligence workflow on OI-ROOM-001.
-7. Migrate deprecated `next lint` to ESLint CLI.
+3. Add live Ask observability dashboards: latency buckets, failure rate, source count, refusal category, answer mode, retrieval mode, and cost-safe metadata without prompt capture.
+4. Add practitioner review evidence for the doctrine and reference architecture.
+5. Add measured comparison artifacts: dashboard-only versus chatbot-only versus Operational Intelligence workflow on OI-ROOM-001.
+6. Migrate deprecated `next lint` to ESLint CLI.
 
 ## Baseline Product Deficiencies
 
