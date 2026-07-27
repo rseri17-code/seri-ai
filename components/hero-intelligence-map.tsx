@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { AlertTriangle, BrainCircuit, CheckCircle2, Clock3, FileCheck2, ShieldCheck } from "lucide-react";
 
 const nodes = [
-  { id: "signal", label: "Signal", detail: "latency + retry spike", x: 15, y: 31, tone: "mint" },
-  { id: "journey", label: "Journey", detail: "checkout path impacted", x: 17, y: 72, tone: "signal" },
-  { id: "change", label: "Change", detail: "config delta", x: 43, y: 18, tone: "amber" },
-  { id: "graph", label: "Graph", detail: "owner + topology", x: 48, y: 53, tone: "mint" },
-  { id: "memory", label: "Memory", detail: "similar pattern", x: 45, y: 86, tone: "signal" },
-  { id: "decision", label: "Decision", detail: "review-gated action", x: 82, y: 54, tone: "amber" }
+  { id: "signal", label: "Observation", detail: "latency + retries", x: 15, y: 31, tone: "mint" },
+  { id: "journey", label: "Transaction", detail: "checkout path", x: 17, y: 72, tone: "signal" },
+  { id: "change", label: "Change", detail: "reviewed event", x: 43, y: 18, tone: "amber" },
+  { id: "graph", label: "Evidence Graph", detail: "owner + topology", x: 48, y: 53, tone: "mint" },
+  { id: "memory", label: "Memory", detail: "prior pattern", x: 45, y: 86, tone: "signal" },
+  { id: "decision", label: "Decision Packet", detail: "approval required", x: 82, y: 54, tone: "amber" }
 ];
 
 const edges = [
@@ -23,30 +23,30 @@ const edges = [
 ];
 
 const replayEvents = [
-  ["00:00", "Impact detected", "Completion dropped across checkout journey"],
-  ["00:04", "Evidence linked", "Retry spike aligns with non-secret config change"],
-  ["00:07", "Hypothesis ranked", "Misroute pattern moves to leading explanation"],
-  ["00:11", "Action gated", "Rollback candidate requires human approval"]
+  ["00:00", "Observation accepted", "Checkout degradation enters as evidence, not conclusion"],
+  ["00:04", "Transaction reconstructed", "Impacted path is linked to topology and ownership"],
+  ["00:07", "Contradiction preserved", "Healthy downstream signal weakens one hypothesis"],
+  ["00:11", "Decision packet gated", "Rollback review requires accountable owner approval"]
 ];
 
 const caseTelemetry = [
   ["Case", "OI-ROOM-001"],
-  ["Mode", "Replay + eval"],
-  ["Impact", "Checkout degradation"],
-  ["Gate", "Human review"]
+  ["Artifact", "Public-safe replay"],
+  ["Status", "Review packet"],
+  ["Boundary", "Human approval"]
 ];
 
 const hypotheses = [
-  ["H1", "Config-driven routing regression", "82%", "supported"],
-  ["H2", "Downstream latency saturation", "41%", "partial"],
-  ["H3", "Telemetry-only alert noise", "18%", "rejected"]
+  ["H1", "Recent change contributed to latency", "supported", "supported"],
+  ["H2", "Downstream dependency degraded", "contradicted", "partial"],
+  ["H3", "Instrumentation artifact", "unresolved", "rejected"]
 ];
 
 const evalGates = [
-  ["Grounded", "pass"],
-  ["Cites evidence", "pass"],
-  ["Names uncertainty", "pass"],
-  ["Action bounded", "review"]
+  ["Grounding", "pass"],
+  ["Citations", "pass"],
+  ["Unknowns", "pass"],
+  ["Action", "review"]
 ];
 
 function nodeColor(tone: string) {
@@ -65,11 +65,11 @@ export function HeroIntelligenceMap() {
       <div className="relative z-10 border-b border-white/10 bg-black/20 p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold uppercase text-slate-400">ReasonOps console</p>
-            <p className="mt-1 text-lg font-semibold text-white">Operational Intelligence Room</p>
+            <p className="text-xs font-semibold uppercase text-slate-400">Operations Room artifact</p>
+            <p className="mt-1 text-lg font-semibold text-white">Evidence-to-decision review surface</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            {["Replay active", "Evidence locked", "RCA draft ready"].map((item, index) => (
+            {["Replay active", "Evidence typed", "Approval pending"].map((item, index) => (
               <span
                 key={item}
                 className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold ${
@@ -96,7 +96,7 @@ export function HeroIntelligenceMap() {
 
         <div className="grid gap-3 xl:grid-cols-[1.05fr_0.95fr]">
           <div className="overflow-hidden rounded-lg border border-white/10 bg-black/25">
-            <svg className="h-[26rem] w-full" viewBox="0 0 100 100" role="img" aria-label="Operational Intelligence graph connecting signals, transactions, graph context, reasoning, evaluation, and human review">
+            <svg className="h-[26rem] w-full" viewBox="0 0 100 100" role="img" aria-label="Operational Intelligence graph connecting observations, transactions, evidence graph context, memory, decision packet, and human approval">
             <defs>
               <linearGradient id="hero-edge" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#5ff2b5" />
@@ -205,7 +205,7 @@ export function HeroIntelligenceMap() {
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-1">
               <div className="rounded-lg border border-mint/25 bg-mint/[0.08] p-4">
                 <BrainCircuit className="text-mint" />
-                <p className="mt-3 text-lg font-semibold text-white">Hypothesis ranking</p>
+                <p className="mt-3 text-lg font-semibold text-white">Hypothesis lifecycle</p>
                 <div className="mt-3 space-y-2">
                   {hypotheses.map(([id, name, score, state]) => (
                     <div key={id} className="rounded border border-white/10 bg-black/20 p-3">
@@ -239,9 +239,9 @@ export function HeroIntelligenceMap() {
                 <div className="mt-3 rounded border border-amber/25 bg-amber/[0.08] p-3">
                   <div className="flex items-center gap-2 text-sm font-semibold text-amber">
                     <FileCheck2 size={15} />
-                    RCA packet exportable
+                    Decision packet exportable
                   </div>
-                  <p className="mt-1 text-xs leading-5 text-slate-300">Evidence receipts, losing hypotheses, confidence movement, and review gate preserved.</p>
+                  <p className="mt-1 text-xs leading-5 text-slate-300">Evidence receipts, losing hypotheses, missing evidence, and owner approval boundary preserved.</p>
                 </div>
               </div>
             </div>
