@@ -224,7 +224,7 @@ export default function MapPage() {
             ["/manifesto", "Manifesto", "The canonical argument for the category."],
             ["/products/reasonops", "ReasonOps", "The product expression of the thesis."],
             ["/investigation-room", "Operations Room", "The signature workbench."],
-            ["/ask", "Reasoning Interface", "The grounded assistant over approved public content."]
+            ["/ask", "Ask Ravikanth", "The grounded companion over Ravikanth's approved public work and Operational Intelligence content."]
           ].map(([href, title, text]) => (
             <Link key={href} href={href}>
               <Card className="h-full transition hover:border-signal/40">

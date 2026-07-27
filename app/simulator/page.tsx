@@ -30,7 +30,7 @@ export default function SimulatorPage() {
             </div>
             <div className="flex flex-wrap gap-2">
               <Link href={`/ask?prompt=${encodeURIComponent(caseAskPrompt)}`} className="inline-flex items-center gap-2 rounded bg-mint px-4 py-2 text-sm font-semibold text-ink">
-                Query reasoning interface <ArrowRight size={18} />
+                Ask Ravikanth <ArrowRight size={18} />
               </Link>
               <Link href="/wiki/operational-intelligence-publication-pack" className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white">
                 Review packet <FileText size={16} />

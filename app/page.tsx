@@ -81,7 +81,7 @@ export default function Home() {
               Enterprises do not need another AI demo. They need an inspectable operating model for evidence, hypotheses, replay, evaluation, and human-reviewed action.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
-              seri.ai is Ravikanth Seri&apos;s public home for that model: a doctrine, reference architecture, Operations Room, reasoning interface, and body of work around Agentic SRE and Operational Intelligence.
+              seri.ai is Ravikanth Seri&apos;s public home for that model: a doctrine, reference architecture, Operations Room, Ask Ravikanth companion, and body of work around Agentic SRE and Operational Intelligence.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
@@ -302,12 +302,12 @@ export default function Home() {
       <Section eyebrow="Reasoning interface" title="Ask the system, but judge the receipts.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <h3 className="text-2xl font-semibold text-white">Ask Ravikanth is a navigation and reasoning layer over approved public content.</h3>
-            <p className="mt-3 leading-7 text-slate-300">It should cite sources, refuse confidential questions, name unknowns, and route serious visitors to the right artifact.</p>
+            <h3 className="text-2xl font-semibold text-white">Ask Ravikanth is a public companion for the person, the work, and the operating model.</h3>
+            <p className="mt-3 leading-7 text-slate-300">It should answer questions about Ravikanth&apos;s public work, cite sources, refuse confidential questions, name unknowns, and route serious visitors to the right artifact.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link href="/ask" className="rounded bg-white px-5 py-3 font-semibold text-ink">
-              Query System
+              Ask Ravikanth
             </Link>
             <Link href="/evals" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
               View evals <ShieldCheck size={18} />

@@ -172,7 +172,8 @@ for (const required of [
   "If the idea is real, it should survive inspection.",
   "Different serious visitors should know exactly where to start.",
   "The builder shows up through engineering taste.",
-  "Ask the system, but judge the receipts.",
+  "Ask Ravikanth is a public companion for the person, the work, and the operating model.",
+  "Ask Ravikanth",
   "Enter Operations Room",
   "Read Doctrine",
   "Review Work",
@@ -196,6 +197,14 @@ for (const required of [
   "/background"
 ]) {
   expect(homePage.includes(required), `/ missing focused homepage contract: ${required}`);
+}
+
+const notFoundPage = fs.readFileSync(path.join(root, "app", "not-found.tsx"), "utf8");
+for (const required of [
+  "Use the map, library, or Ask Ravikanth",
+  "Ask Ravikanth"
+]) {
+  expect(notFoundPage.includes(required), `/not-found missing Ask Ravikanth recovery contract: ${required}`);
 }
 
 const frameworkPage = fs.readFileSync(path.join(root, "app", "framework", "page.tsx"), "utf8");

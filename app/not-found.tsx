@@ -9,14 +9,14 @@ export default function NotFound() {
       <Card className="max-w-3xl border-signal/25 bg-signal/[0.055]">
         <ShieldAlert className="mb-5 text-signal" />
         <p className="text-lg leading-8 text-slate-200">
-          seri.ai only exposes approved public artifacts. Use the map, library, or reasoning interface to continue through the Operational Intelligence system.
+          seri.ai only exposes approved public artifacts. Use the map, library, or Ask Ravikanth to continue through the Operational Intelligence system.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/map" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
             Open Map <ArrowRight size={18} />
           </Link>
           <Link href="/ask" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-            Query System
+            Ask Ravikanth
           </Link>
         </div>
       </Card>
