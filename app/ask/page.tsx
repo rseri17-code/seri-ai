@@ -60,12 +60,12 @@ export default async function AskPage({
                 <BrainCircuit size={22} />
               </div>
             </div>
-            <h2 className="text-2xl font-semibold text-white">A review interface for the ideas, artifacts, and evidence behind seri.ai.</h2>
+            <h2 className="text-2xl font-semibold text-white">Ask the work. Inspect the receipts.</h2>
             <p className="mt-3 leading-7 text-slate-300">
-              Ask Ravi is an AI assistant over Ravikanth Seri&apos;s approved public corpus, not Ravikanth personally.
-              Ask about Operational Intelligence, Agentic SRE, architecture tradeoffs, public projects, background, GitHub,
-              LinkedIn signal, and the evidence behind the thesis. Strong answers cite sources, name uncertainty, and point
-              you to the artifact worth inspecting next.
+              Ask about Operational Intelligence, Agentic SRE, architecture tradeoffs, public projects, background,
+              GitHub, LinkedIn signal, and the evidence behind the thesis. Strong answers cite sources, name uncertainty,
+              and route you to the artifact worth inspecting next. Ask Ravi is an AI assistant over approved public content,
+              not Ravikanth personally.
             </p>
             <div className="mt-5 grid gap-2 md:grid-cols-4">
               {["Know the work", "Ground claims", "Refuse secrets", "Route reviewers"].map((step) => (

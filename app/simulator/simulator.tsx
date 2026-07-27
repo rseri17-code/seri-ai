@@ -675,6 +675,18 @@ export function IncidentSimulator() {
               A public-safe operations room for evidence intake, transaction replay, hypothesis ranking,
               branch comparison, human review, release gating, and reusable operational memory.
             </p>
+            <div className="mt-5 rounded-lg border border-mint/20 bg-black/25 p-3 shadow-[0_0_40px_rgba(95,242,181,0.08)]">
+              <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Live investigation graph</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-300">
+                    Evidence paths update as replay advances; unsupported paths stay visible instead of disappearing.
+                  </p>
+                </div>
+                <p className="font-mono text-xs text-signal">{currentReplayChapter.id} active</p>
+              </div>
+              <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} />
+            </div>
             <div className="ops-command-strip mt-5 grid gap-2 md:grid-cols-5">
               {commandStrip.map(([label, value, detail, tone]) => (
                 <div key={label} className={`ops-command-cell ${tone === "amber" ? "ops-command-cell-amber" : tone === "signal" ? "ops-command-cell-signal" : ""}`}>
@@ -738,7 +750,6 @@ export function IncidentSimulator() {
                 Expert exploration
               </button>
             </div>
-            <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} />
             <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3">
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div>

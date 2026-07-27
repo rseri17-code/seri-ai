@@ -29,7 +29,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Ask Ravi is an AI assistant, not Ravikanth personally. It helps visitors understand Ravikanth Seri's public work from approved public work and sources. Ask about his architecture judgment, Operational Intelligence thesis, projects, background, GitHub, LinkedIn signal, or technical writing; I will cite public sources and name gaps when evidence is not there.";
+      : "Ask the public work and inspect the receipts. I can answer about Ravikanth Seri's Operational Intelligence thesis, architecture judgment, projects, background, GitHub, LinkedIn signal, and technical writing from approved public sources. I cite sources, name uncertainty, and refuse confidential or unsupported claims. Ask Ravi is an AI assistant, not Ravikanth personally.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
