@@ -89,7 +89,7 @@ const monthly = buildMonthlyNewsletterExport("2026-07");
 expect(monthly.includes("# This Month on seri.ai - 2026-07"), "monthly newsletter export missing title");
 expect(monthly.includes("## New Publications"), "monthly newsletter export missing publications section");
 expect(monthly.includes("## Framework Coverage"), "monthly newsletter export missing framework coverage section");
-expect(monthly.includes("## Ask Ravikanth Questions"), "monthly newsletter export missing Ask questions section");
+expect(monthly.includes("## Ask Ravi Questions"), "monthly newsletter export missing Ask questions section");
 for (const route of canonicalRoutes.slice(0, 4)) {
   expect(monthly.includes(route), `monthly newsletter export missing ${route}`);
 }

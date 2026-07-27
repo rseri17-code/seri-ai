@@ -39,7 +39,7 @@ export const site = {
     { href: "/products/reasonops", label: "ReasonOps" },
     { href: "/investigation-room", label: "Operations Room" },
     { href: "/radar", label: "Radar" },
-    { href: "/ask", label: "Ask Ravikanth" },
+    { href: "/ask", label: "Ask Ravi" },
     { href: "/background", label: "Background" },
     { href: "/contact", label: "Contact" }
   ]
@@ -463,7 +463,7 @@ export const operationalIntelligenceSystem = {
   caseSummary:
     "A public-safe investigation scenario where a critical customer journey degrades after a non-secret configuration change. The system must connect signal, transaction, topology, evidence, reasoning, memory, evaluation, decision, learning, and operator context before recommending a human-reviewed action.",
   promise:
-    "The same case powers the Map, Operations Room, and Ask Ravikanth so visitors experience Operational Intelligence as a system, not a set of pages.",
+    "The same case powers the Map, Operations Room, and Ask Ravi so visitors experience Operational Intelligence as a system, not a set of pages.",
   loop: [
     {
       name: "Map the operating model",
@@ -893,7 +893,7 @@ export const products = [
     roadmap: [
       "Multi-scenario incident simulator",
       "Operational Intelligence glossary",
-      "Live eval report for Ask Ravikanth",
+      "Live eval report for Ask Ravi",
       "Public reference architecture diagrams",
       "Knowledge graph explorer prototype",
       "Newsletter-driven operating notes"
@@ -1116,7 +1116,7 @@ export const categoryBrief = {
     "The wedge is the intersection of production infrastructure, observability, identity, Kubernetes, AI agent runtime governance, and incident investigation. That combination lets seri.ai talk about AI-native operations from operator reality, not abstract AI enthusiasm.",
   proofPoints: [
     "A public simulator that turns the evidence-first investigation model into an interactive artifact.",
-    "A public trust report that exposes how Ask Ravikanth should behave, refuse, cite, and admit uncertainty.",
+    "A public trust report that exposes how Ask Ravi should behave, refuse, cite, and admit uncertainty.",
     "A thesis radar that maps current market movement around AI observability, AgentOps, AIOps evaluation, OpenTelemetry GenAI semantics, and operational readiness.",
     "A public resume narrative grounded in production AI agent systems, observability, runtime governance, Kubernetes, and identity modernization."
   ],
@@ -1130,7 +1130,7 @@ export const categoryBrief = {
   nextMoves: [
     "Turn the simulator into a multi-scenario investigation workbench.",
     "Publish flagship essays with diagrams for the operating model, graph model, eval model, and agent governance model.",
-    "Add continuous eval reports that test Ask Ravikanth against live retrieval and model responses when production keys are configured.",
+    "Add continuous eval reports that test Ask Ravi against live retrieval and model responses when production keys are configured.",
     "Build a public Operational Intelligence glossary that makes the category language reusable."
   ]
 };
@@ -1471,7 +1471,7 @@ export const nowPage = {
   building: [
     "ReasonOps as a public-safe operating model for evidence-backed, self-healing enterprise operations.",
     "An Operations Room that turns signal, change, topology, hypotheses, action gates, and eval checks into a reviewable RCA packet.",
-    "Ask Ravikanth retrieves approved public context, cites sources, refuses confidential questions, and names missing evidence.",
+    "Ask Ravi retrieves approved public context, cites sources, refuses confidential questions, and names missing evidence.",
     "A pattern library for evidence graphs, hypothesis lifecycles, decision traces, replay seeds, outcome memory, and operator control planes."
   ],
   studying: [
@@ -1559,7 +1559,7 @@ export const changelog = [
     date: "2026-07-05",
     title: "Added public eval report and upgraded simulator decisioning",
     description:
-      "seri.ai now exposes a trust report for Ask Ravikanth behavior and turns the incident simulator into a scored investigation workflow with choices, confidence, and exportable RCA summary.",
+      "seri.ai now exposes a trust report for Ask Ravi behavior and turns the incident simulator into a scored investigation workflow with choices, confidence, and exportable RCA summary.",
     tags: ["evals", "trust", "simulator", "decisioning"]
   },
   {
@@ -1883,7 +1883,7 @@ export const contentRegistry: ContentRegistryItem[] = [
     }
   },
   {
-    title: "Ask Ravikanth",
+    title: "Ask Ravi",
     slug: "ask-ravikanth",
     summary: "A cited review interface over Ravikanth Seri's approved public work, Operational Intelligence content, projects, background, and reference artifacts.",
     type: "system",
@@ -1899,7 +1899,7 @@ export const contentRegistry: ContentRegistryItem[] = [
     createdAt: registryDate,
     updatedAt: registryDate,
     seo: {
-      title: "Ask Ravikanth",
+      title: "Ask Ravi",
       description: "Public-safe companion for Ravikanth Seri's public work and Operational Intelligence thesis."
     }
   },
@@ -1921,7 +1921,7 @@ export const contentRegistry: ContentRegistryItem[] = [
     updatedAt: registryDate,
     seo: {
       title: "Public Evaluation Gate",
-      description: "Reproducible public trust fixtures and limitations for Ask Ravikanth."
+      description: "Reproducible public trust fixtures and limitations for Ask Ravi."
     }
   },
   {

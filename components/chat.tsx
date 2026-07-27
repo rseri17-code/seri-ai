@@ -23,7 +23,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Ask me about Ravikanth's public work, architecture judgment, Operational Intelligence thesis, projects, background, GitHub, LinkedIn signal, or technical writing. I will answer from approved public sources and name gaps when the evidence is not there.";
+      : "Ask Ravi is an AI assistant, not Ravikanth personally. It helps visitors understand Ravikanth Seri's public work from approved public work and sources. Ask about his architecture judgment, Operational Intelligence thesis, projects, background, GitHub, LinkedIn signal, or technical writing; I will cite public sources and name gaps when evidence is not there.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -121,10 +121,10 @@ export function Chat({
     ["Release", isLoading ? "evaluating" : "ready"]
   ];
   const responseChecks: Array<[string, boolean]> = [
+    ["AI disclosure", true],
     ["Approved content", sources.length > 0 || messages.length === 1],
     ["Confidentiality gate", true],
-    ["Unknowns allowed", true],
-    ["Human judgment", true]
+    ["Unknowns allowed", true]
   ];
 
   return (
@@ -135,7 +135,7 @@ export function Chat({
             <div className="flex items-center gap-3">
               <ProfileMark size="sm" />
               <div>
-                <p className="text-xs font-semibold uppercase text-slate-500">Ask Ravikanth</p>
+                <p className="text-xs font-semibold uppercase text-slate-500">Ask Ravi</p>
                 <h2 className="text-xl font-semibold text-white">Ask about the person, the work, and the operating model.</h2>
               </div>
             </div>
@@ -182,7 +182,7 @@ export function Chat({
             className="min-w-0 flex-1 rounded border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-mint/60"
             value={input}
             onChange={(event) => setInput(event.target.value)}
-            aria-label="Ask Ravikanth a public-safe question"
+            aria-label="Ask Ravi, an AI assistant, a public-safe question"
             placeholder="Ask about Ravikanth, his work, Operational Intelligence, projects, or background..."
           />
           <button className="grid h-12 w-12 place-items-center rounded bg-mint text-ink" type="submit" aria-label="Send message">
@@ -207,7 +207,7 @@ export function Chat({
             ))}
           </div>
           <p className="mt-4 text-xs leading-5 text-slate-400">
-            Strong answers cite public sources, name uncertainty, and avoid claims the public evidence cannot support.
+            Ask Ravi is an AI assistant, not Ravikanth personally. Strong answers cite public sources, name uncertainty, and avoid claims the public evidence cannot support.
           </p>
         </div>
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">

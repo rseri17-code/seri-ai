@@ -7,17 +7,18 @@ import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, Shi
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ask Ravikanth | Public-grounded AI for Ravikanth Seri's Work",
+  title: "Ask Ravi | Public-grounded AI for Ravikanth Seri's Work",
   description: "Ask public-safe questions about Ravikanth Seri's work, Operational Intelligence thesis, architecture judgment, projects, background, writing, GitHub, LinkedIn signal, and AI systems."
 };
 
 const askContextCards: Array<{ label: string; value: string; Icon: LucideIcon }> = [
+  { label: "Disclosure", value: "AI assistant, not Ravikanth personally", Icon: BrainCircuit },
   { label: "Scope", value: "Ravikanth's public work and Operational Intelligence thesis", Icon: ClipboardCheck },
   { label: "Evidence", value: "doctrine, architecture, projects, resume, GitHub, LinkedIn", Icon: GitBranch },
   { label: "Guardrail", value: "public-safe only", Icon: ShieldCheck }
 ];
 
-const askRavikanthPrompts = [
+const askRaviPrompts = [
   "What is Ravikanth building with seri.ai?",
   "What public evidence shows Ravikanth's architecture judgment?",
   "How does Ravikanth think about Operational Intelligence?",
@@ -50,7 +51,7 @@ export default async function AskPage({
 
   return (
     <>
-      <Section eyebrow="Ask Ravikanth" title="Interrogate Ravikanth's public work, architecture judgment, and Operational Intelligence thesis." level="h1">
+      <Section eyebrow="Ask Ravi" title="Interrogate Ravikanth's public work, architecture judgment, and Operational Intelligence thesis." level="h1">
         <div className="mb-5 grid gap-4 lg:grid-cols-[1fr_0.9fr]">
           <Card className="border-mint/25 bg-mint/[0.055]">
             <div className="mb-4 flex items-center gap-4">
@@ -61,6 +62,7 @@ export default async function AskPage({
             </div>
             <h2 className="text-2xl font-semibold text-white">A review interface for the ideas, artifacts, and evidence behind seri.ai.</h2>
             <p className="mt-3 leading-7 text-slate-300">
+              Ask Ravi is an AI assistant over Ravikanth Seri&apos;s approved public corpus, not Ravikanth personally.
               Ask about Operational Intelligence, Agentic SRE, architecture tradeoffs, public projects, background, GitHub,
               LinkedIn signal, and the evidence behind the thesis. Strong answers cite sources, name uncertainty, and point
               you to the artifact worth inspecting next.
@@ -85,10 +87,10 @@ export default async function AskPage({
             ))}
           </div>
         </div>
-        <Chat initialPrompt={initialPrompt} suggestedPrompts={askRavikanthPrompts} />
+        <Chat initialPrompt={initialPrompt} suggestedPrompts={askRaviPrompts} />
       </Section>
 
-      <Section eyebrow="Guide paths" title="Use Ask Ravikanth as the navigation layer for the whole system.">
+      <Section eyebrow="Guide paths" title="Use Ask Ravi as the navigation layer for the whole system.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {guidePaths.map(([href, title, detail, prompt]) => (
             <Card key={href} className="h-full p-4">

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Interview Mode | seri.ai",
-  description: "Structured Ask Ravikanth mode for recruiters, collaborators, event hosts, and technical reviewers exploring public Operational Intelligence work."
+  description: "Structured Ask Ravi mode for recruiters, collaborators, event hosts, and technical reviewers exploring public Operational Intelligence work."
 };
 
 export default function InterviewModePage() {

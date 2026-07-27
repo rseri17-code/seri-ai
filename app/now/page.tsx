@@ -28,7 +28,7 @@ const builderLedger = [
   ],
   [
     "/evals",
-    "Ask Ravikanth trust fixtures",
+    "Ask Ravi trust fixtures",
     "Deterministic behavior checks for grounding, refusal, citation presence, related routing, and public-safe boundaries."
   ],
   [
@@ -48,7 +48,7 @@ const proofCheckpoints = [
   "Compare OI-ROOM-001 against dashboard-only and chatbot-only baselines.",
   "Add more public-safe replay cases only when they test a distinct failure mode.",
   "Use review feedback to revise v1.x assets without drifting the canonical terminology.",
-  "Keep Ask Ravikanth grounded in published assets rather than private memory or personality imitation."
+  "Keep Ask Ravi grounded in published assets rather than private memory or personality imitation."
 ] as const;
 
 export default function NowPage() {

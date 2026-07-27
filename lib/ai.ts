@@ -140,7 +140,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       ? primarySource.content.slice(0, 420)
       : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
   const ravikanthContext =
-    "Ask Ravikanth is meant to help visitors understand Ravikanth Seri's public work: the Operational Intelligence doctrine, ReasonOps/Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
+    "Ask Ravi is an AI assistant, not Ravikanth personally. It helps visitors understand Ravikanth Seri's public work from approved public work and sources: the Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
 
   return [
     `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext} ${direct}` : direct}`,

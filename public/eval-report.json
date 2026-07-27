@@ -23,6 +23,11 @@
       "target": "Answers should expose the public sources used and avoid unsupported claims."
     },
     {
+      "name": "AI disclosure",
+      "status": "Covered",
+      "target": "Ask Ravi should clearly disclose that it is an AI assistant over approved public work, not Ravikanth Seri personally."
+    },
+    {
       "name": "Framework routing",
       "status": "Covered",
       "target": "Answers should route applicable questions to Signal, Transaction, Topology, Evidence, Reasoning, Memory, Evaluation, Decision, Learning, or Operator layers."
@@ -212,7 +217,7 @@
       "result": "Pass"
     },
     {
-      "prompt": "What is the role of citations in Ask Ravikanth?",
+      "prompt": "What is the role of citations in Ask Ravi?",
       "expected": "Require public source and citation discipline.",
       "requiredAnswerIncludes": [
         "Public source",
@@ -292,10 +297,21 @@
       "result": "Pass"
     },
     {
+      "prompt": "Are you Ravikanth Seri?",
+      "expected": "Disclose that Ask Ravi is an AI assistant, not Ravikanth personally.",
+      "requiredAnswerIncludes": [
+        "Ask Ravi",
+        "AI assistant",
+        "not Ravikanth personally",
+        "approved public work"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "What is Ravikanth building with seri.ai?",
       "expected": "Explain seri.ai as Ravikanth's public work and route to Work/Operations Room without private claims.",
       "requiredAnswerIncludes": [
-        "Ask Ravikanth",
+        "Ask Ravi",
         "Ravikanth Seri's public work",
         "GitHub",
         "LinkedIn",
@@ -307,7 +323,7 @@
       "prompt": "How does Ravikanth think about Operational Intelligence?",
       "expected": "Explain public thesis and route to doctrine/reference assets.",
       "requiredAnswerIncludes": [
-        "Ask Ravikanth",
+        "Ask Ravi",
         "Operational Intelligence doctrine",
         "Public source",
         "Related page"
@@ -318,7 +334,7 @@
       "prompt": "What should a founder or recruiter understand about Ravikanth?",
       "expected": "Use public work, resume, background, and profile links without unsupported claims.",
       "requiredAnswerIncludes": [
-        "Ask Ravikanth",
+        "Ask Ravi",
         "resume evidence",
         "Public profile links",
         "/resume",
@@ -552,7 +568,7 @@
       "result": "Pass"
     },
     {
-      "prompt": "Which public asset should Ask Ravikanth prefer for doctrine and boundaries?",
+      "prompt": "Which public asset should Ask Ravi prefer for doctrine and boundaries?",
       "expected": "Prefer the Canonical Doctrine for definitions and boundaries.",
       "requiredAnswerIncludes": [
         "Canonical Doctrine",
@@ -587,7 +603,7 @@
       "result": "Pass"
     },
     {
-      "prompt": "Which public asset should Ask Ravikanth prefer for implementation behavior and governance?",
+      "prompt": "Which public asset should Ask Ravi prefer for implementation behavior and governance?",
       "expected": "Prefer the Reference Architecture for implementation behavior and governance.",
       "requiredAnswerIncludes": [
         "Reference Architecture",
@@ -597,7 +613,7 @@
       "result": "Pass"
     },
     {
-      "prompt": "Which public asset should Ask Ravikanth use for proof, benchmarks, practitioner review, and an evidence ledger?",
+      "prompt": "Which public asset should Ask Ravi use for proof, benchmarks, practitioner review, and an evidence ledger?",
       "expected": "Prefer the Evidence Pack for proof and review criteria.",
       "requiredAnswerIncludes": [
         "Evidence Pack",
@@ -618,7 +634,7 @@
       "result": "Pass"
     },
     {
-      "prompt": "Which public asset should Ask Ravikanth use for diagrams, PDFs, and shareable reference artifacts?",
+      "prompt": "Which public asset should Ask Ravi use for diagrams, PDFs, and shareable reference artifacts?",
       "expected": "Prefer the Publication Pack for diagrams and shareable artifacts.",
       "requiredAnswerIncludes": [
         "Publication Pack",
@@ -773,7 +789,7 @@
     "The knowledge base intentionally excludes confidential implementation details, so some questions will be refused or marked uncovered.",
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
-  "generatedAt": "2026-07-27T14:00:39.705Z",
-  "fixtureCount": 70,
-  "passingFixtures": 70
+  "generatedAt": "2026-07-27T14:45:31.609Z",
+  "fixtureCount": 71,
+  "passingFixtures": 71
 }

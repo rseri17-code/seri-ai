@@ -27,7 +27,7 @@ This loop consolidated the product spine:
 - Required release docs were added.
 - The Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, PDF exports, rendered reference diagrams, claim ledger, technical review path, JSON-LD structured data, generated social preview images, and `/llms.txt` discovery manifest were added.
 - Start Here, Search, Framework, Operations Room, article pages, project proof pages, product proof pages, and Contact now include explicit handoffs into Ask, source artifacts, reviewer packets, or public proof channels.
-- Ask Ravikanth now includes deterministic credibility coverage for architecture judgment, public work, resume/background routing, certifications, LinkedIn signal, GitHub signal, and public-safe limitations.
+- Ask Ravi now includes deterministic credibility coverage for architecture judgment, public work, resume/background routing, certifications, LinkedIn signal, GitHub signal, and public-safe limitations.
 
 ## Routes Verified
 
@@ -59,7 +59,7 @@ Executed and passing:
 
 - `npm run validate:content` — validated 10 wiki notes, 9 published.
 - `npm run validate:contracts` — validated practitioner review, publication assets, structured data, `/llms.txt`, and social preview contracts.
-- `npm run evals` — evaluated 66 Ask Ravikanth trust fixtures, 66 passing.
+- `npm run evals` — evaluated 71 Ask Ravi trust fixtures, 71 passing.
 - `npm run typecheck` — passed.
 - `npm run lint` — passed with Next's `next lint` deprecation warning.
 - `npm run validate:links` — validated internal links across 88 files.

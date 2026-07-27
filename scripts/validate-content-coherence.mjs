@@ -184,8 +184,8 @@ for (const required of [
   "If the idea is real, it should survive inspection.",
   "Different serious visitors should know exactly where to start.",
   "The builder shows up through engineering taste.",
-  "Ask Ravikanth turns the public body of work into a review surface.",
-  "Ask Ravikanth",
+  "Ask Ravi turns the public body of work into a review surface.",
+  "Ask Ravi",
   "Enter Operations Room",
   "Read Doctrine",
   "Review Work",
@@ -213,10 +213,10 @@ for (const required of [
 
 const notFoundPage = fs.readFileSync(path.join(root, "app", "not-found.tsx"), "utf8");
 for (const required of [
-  "Use the map, library, or Ask Ravikanth",
-  "Ask Ravikanth"
+  "Use the map, library, or Ask Ravi",
+  "Ask Ravi"
 ]) {
-  expect(notFoundPage.includes(required), `/not-found missing Ask Ravikanth recovery contract: ${required}`);
+  expect(notFoundPage.includes(required), `/not-found missing Ask Ravi recovery contract: ${required}`);
 }
 
 const frameworkPage = fs.readFileSync(path.join(root, "app", "framework", "page.tsx"), "utf8");
@@ -301,7 +301,7 @@ for (const required of [
   "Which contracts make two implementations comparable?",
   "What would convince a skeptical engineer that this model is useful?",
   "How does OI-ROOM-001 move from evidence to a decision packet?",
-  "Which trust fixtures gate Ask Ravikanth behavior?",
+  "Which trust fixtures gate Ask Ravi behavior?",
   "Where is Ravikanth's public work connected to proof objects?",
   "/wiki/operational-intelligence-canonical-doctrine",
   "/wiki/operational-intelligence-reference-architecture",
@@ -359,10 +359,12 @@ for (const required of [
   "autoSubmittedRef",
   "void sendMessage(prompt)",
   "react-hooks/exhaustive-deps",
-  "I will answer from approved public sources and name gaps when the evidence is not there.",
+  "Ask Ravi is an AI assistant, not Ravikanth personally.",
+  "I will cite public sources and name gaps when evidence is not there.",
   "Reading the public evidence...",
   "Ask about Ravikanth, his work, Operational Intelligence, projects, or background...",
   "Ask about the person, the work, and the operating model.",
+  "AI disclosure",
   "ProfileMark size=\"sm\""
 ]) {
   expect(chatComponent.includes(required), `Chat missing prompt deep-link auto-submit contract: ${required}`);
@@ -370,27 +372,28 @@ for (const required of [
 
 const headerComponent = fs.readFileSync(path.join(root, "components", "header.tsx"), "utf8");
 for (const required of [
-  "Ask Ravikanth",
+  "Ask Ravi",
   "href=\"/ask\""
 ]) {
-  expect(headerComponent.includes(required), `Header missing Ask Ravikanth companion CTA contract: ${required}`);
+  expect(headerComponent.includes(required), `Header missing Ask Ravi companion CTA contract: ${required}`);
 }
 
 const askPage = fs.readFileSync(path.join(root, "app", "ask", "page.tsx"), "utf8");
 for (const required of [
-  "Ask Ravikanth | Public-grounded AI for Ravikanth Seri's Work",
-  "const askRavikanthPrompts",
+  "Ask Ravi | Public-grounded AI for Ravikanth Seri's Work",
+  "const askRaviPrompts",
   "Interrogate Ravikanth's public work, architecture judgment, and Operational Intelligence thesis.",
   "A review interface for the ideas, artifacts, and evidence behind seri.ai.",
+  "Ask Ravi is an AI assistant over Ravikanth Seri&apos;s approved public corpus, not Ravikanth personally.",
   "What is Ravikanth building with seri.ai?",
   "What public evidence shows Ravikanth's architecture judgment?",
   "How does Ravikanth think about Operational Intelligence?",
   "Where can I review Ravikanth's GitHub, LinkedIn, resume, and public artifacts?",
-  "suggestedPrompts={askRavikanthPrompts}",
+  "suggestedPrompts={askRaviPrompts}",
   "doctrine, architecture, projects, resume, GitHub, LinkedIn",
   "ProfileMark"
 ]) {
-  expect(askPage.includes(required), `/ask missing Ask Ravikanth public companion contract: ${required}`);
+  expect(askPage.includes(required), `/ask missing Ask Ravi public companion contract: ${required}`);
 }
 
 for (const relativePath of sourceFilesUnder("app").concat(sourceFilesUnder("components"), sourceFilesUnder("content"), sourceFilesUnder("lib"))) {
@@ -496,7 +499,7 @@ for (const required of [
   "Doctrine frozen at v1.0",
   "Reference architecture published",
   "Operations Room live",
-  "Ask Ravikanth trust fixtures",
+  "Ask Ravi trust fixtures",
   "Publication pack available",
   "Evidence pack open for review",
   "what would convince another experienced engineer",
@@ -639,7 +642,7 @@ for (const required of [
   "120+ apps",
   "80% ticket reduction",
   "200 hours / quarter",
-  "66/66 evals",
+  "evalReport.fixtures.length",
   "v1.0 doctrine",
   "Public-safe proof points",
   "Architect thesis",

@@ -7,7 +7,7 @@ Date: 2026-07-26
 ### Baseline Observed
 
 - A stale local dev server could render the homepage without Tailwind styling, making the product appear like raw HTML even though the optimized build renders correctly.
-- The public product voice still contained demo-like phrases such as "another AI demo," "public-grounded companion," and "Ask Ravikanth is online."
+- The public product voice still contained demo-like phrases such as "another AI demo," "public-grounded companion," and "Ask Ravi is online."
 - The Operations Room used "ReasonOps Operations Room" in high-visibility surfaces, creating terminology drift against the frozen Operational Intelligence spine.
 - Work proof copy referenced an older Ask fixture count while current evals report 70 fixtures.
 - The LinkedIn portrait was present in the public bundle without a written provenance record confirming the intended image and reuse authorization under the updated standard.
@@ -15,7 +15,7 @@ Date: 2026-07-26
 ### Improvements Implemented
 
 - Reframed the homepage around the harder enterprise-AI problem: evidence, uncertainty, change understanding, and trusted human action.
-- Reframed Ask Ravikanth as a cited review interface over Ravikanth's public work and artifacts rather than a generic assistant explanation.
+- Reframed Ask Ravi as a cited review interface over Ravikanth's public work and artifacts rather than a generic assistant explanation.
 - Standardized the signature artifact as "Operational Intelligence Operations Room" across the room, exported report title, artifacts index, and project registry.
 - Replaced stale fixture-count copy with the live `evalReport.fixtures.length` value.
 - Replaced rendered portrait usage with a neutral `ProfileMark` identity treatment until portrait authorization is explicit.
@@ -29,7 +29,7 @@ Date: 2026-07-26
 | Content authority | Doctrine, reference architecture, publication pack, evidence pack, public-safe case, citations, claim posture. | Strong, needs external practitioner review. |
 | Technical depth | Ten-layer framework, state/contract artifacts, Operations Room, eval gates, reference PDFs. | Strong, needs measured case-study evidence. |
 | UX and visual quality | Optimized build renders styled dark interface; stale dev server issue identified separately. | Improving, not yet visually exceptional. |
-| Ask Ravi usefulness and safety | 70 deterministic fixtures pass; fallback, refusal, routing, citation contracts validated. | Strong deterministic beta, needs live model quality telemetry. |
+| Ask Ravi usefulness and safety | 71 deterministic fixtures pass; fallback, refusal, routing, citation, and AI-disclosure contracts validated. | Strong deterministic beta, needs live model quality telemetry. |
 | Accessibility | `validate:a11y` covers 35 pages and 19 components. | Strong automated coverage, needs manual keyboard/screen-reader pass. |
 | Performance | `npm run build` passed performance budgets; home first-load JS reported at 150 kB, Operations Room at 194 kB. | Acceptable, keep watching Operations Room payload. |
 | SEO and discovery | Canonical metadata, JSON-LD, sitemap, robots, RSS, OG/Twitter images, `/llms.txt`. | Strong. |
@@ -51,7 +51,7 @@ Date: 2026-07-26
 
 - `/framework` explained the ten layers but still behaved like a reference grid instead of a teaching sequence.
 - Operations Room demonstrated the operating model, but the ten framework layers were not visible enough as a guided investigation path.
-- Ask Ravikanth had a strong backend contract but the page did not clearly act as the navigation and teaching layer for the whole site.
+- Ask Ravi had a strong backend contract but the page did not clearly act as the navigation and teaching layer for the whole site.
 - Evals validated fixture metadata but did not test local fallback answer shape.
 - The homepage led with the product category before making Ravikanth Seri the first signal.
 - Several canonical assets were useful but too short to feel like durable practitioner references.
@@ -64,7 +64,7 @@ Date: 2026-07-26
 - Added a ten-layer Framework walkthrough rail inside Operations Room.
 - Expanded evidence receipts with source type, timestamp, scope, provenance, reliability, related entity, related hypothesis, and support/weakening stance.
 - Replaced shallow evaluation-gate rows with explicit gate definitions, evidence, limitations, and pass reasons.
-- Strengthened Ask Ravikanth local fallback answers to follow the product answer contract.
+- Strengthened Ask Ravi local fallback answers to follow the product answer contract.
 - Added Ask guide paths to Framework, Operations Room, Work, Patterns, Library, Evals, and Background.
 - Deepened five canonical assets with executive summary, thesis, limitations, proposed model, architecture implications, tradeoffs, public-safe examples, and framework relationships.
 - Updated homepage hero hierarchy to lead with Ravikanth Seri, then Operational Intelligence.

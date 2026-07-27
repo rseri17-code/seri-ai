@@ -69,7 +69,7 @@ const proofLedger = [
   },
   {
     claim: "The AI surface is bounded by citations, refusals, and deterministic trust fixtures.",
-    evidence: `Ask Ravikanth and ${evalReport.fixtures.length} passing public trust evals`,
+    evidence: `Ask Ravi and ${evalReport.fixtures.length} passing public trust evals`,
     href: "/evals"
   },
   {

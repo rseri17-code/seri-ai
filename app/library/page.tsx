@@ -104,7 +104,7 @@ export default function LibraryPage() {
               <Card className="transition hover:border-mint/40">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">RSS</p>
                 <h2 className="mt-3 text-xl font-semibold text-white">Follow the publication feed.</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-300">Every published asset is indexed into RSS, sitemap, search, Ask Ravikanth retrieval, and the monthly export.</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">Every published asset is indexed into RSS, sitemap, search, Ask Ravi retrieval, and the monthly export.</p>
               </Card>
             </Link>
           </div>

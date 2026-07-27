@@ -83,7 +83,7 @@ export async function POST(request: Request) {
 
   let answer: string;
   try {
-    answer = await withTimeout(generateRaviAnswer({ question, context, history }), 12_000, "Ask Ravikanth");
+    answer = await withTimeout(generateRaviAnswer({ question, context, history }), 12_000, "Ask Ravi");
   } catch {
     answer = [
       "Direct answer: The public knowledge system is available, but the AI synthesis path did not complete in time. The safest beta behavior is to fall back to the approved public sources instead of guessing.",

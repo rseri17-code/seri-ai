@@ -128,7 +128,7 @@ function deterministicFallbackAnswer(question) {
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
   const ravikanthContext =
-    "Ask Ravikanth is meant to help visitors understand Ravikanth Seri's public work: the Operational Intelligence doctrine, ReasonOps/Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
+    "Ask Ravi is an AI assistant, not Ravikanth personally. It helps visitors understand Ravikanth Seri's public work from approved public work and sources: the Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
   return [
     asksAboutRavikanth
       ? `Direct answer: ${ravikanthContext}`
@@ -169,7 +169,7 @@ if (!report.method || !/deterministic fixture/i.test(report.method)) {
 }
 
 if (!Array.isArray(report.fixtures) || report.fixtures.length < 35) {
-  errors.push("Ask Ravikanth beta evals must include at least 35 deterministic fixtures.");
+  errors.push("Ask Ravi beta evals must include at least 35 deterministic fixtures.");
 }
 
 if (report.modelBasedEvaluationUsed !== false) {
@@ -228,4 +228,4 @@ const generated = {
 };
 
 fs.writeFileSync(publicReportPath, `${JSON.stringify(generated, null, 2)}\n`);
-console.log(`Evaluated ${generated.fixtureCount} Ask Ravikanth trust fixtures (${generated.passingFixtures} passing).`);
+console.log(`Evaluated ${generated.fixtureCount} Ask Ravi trust fixtures (${generated.passingFixtures} passing).`);

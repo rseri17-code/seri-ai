@@ -6,7 +6,7 @@ Date: 2026-07-16
 
 seri.ai is a Next.js public operating system for Ravikanth Seri's work on Operational Intelligence, Agentic SRE, Transaction Intelligence, evidence-driven incident investigation, replayable reasoning, operational memory, evaluation-gated agents, and human-controlled operational action.
 
-The product already contains the required surfaces: Home, Framework, Map, Operations Room, Ask Ravikanth, Patterns, Evals, Library, Work, Background, Resume, Contact, Admin, API routes, Supabase schema, and Vercel configuration.
+The product already contains the required surfaces: Home, Framework, Map, Operations Room, Ask Ravi, Patterns, Evals, Library, Work, Background, Resume, Contact, Admin, API routes, Supabase schema, and Vercel configuration.
 
 ## Findings
 

@@ -14,7 +14,7 @@ ReasonOps = the product/platform expression.
 
 Operations Room = the signature interactive artifact.
 
-Ask Ravikanth = the public-grounded reasoning interface.
+Ask Ravi = the public-grounded reasoning interface.
 
 Operational Intelligence Framework = the canonical conceptual model.
 
@@ -45,7 +45,7 @@ Background = supporting career evidence.
 
 ## Product Spine
 
-Framework -> Map -> Operations Room -> Ask Ravikanth -> Evals
+Framework -> Map -> Operations Room -> Ask Ravi -> Evals
 
 Each surface must use the same layer vocabulary, public-safe case language, and evidence-first operating model.
 

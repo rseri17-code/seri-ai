@@ -39,7 +39,7 @@ export function buildLlmsTxt(siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http
     "",
     ...canonicalReferenceRoutes.map((route) => `- [${labelForRoute(route)}](${siteUrl}${route})`),
     "",
-    "## Ask Ravikanth Behavior Contract",
+    "## Ask Ravi Behavior Contract",
     "",
     "- Ground answers in approved public sources.",
     "- Cite or name the public source family used.",

@@ -24,7 +24,7 @@ const proofPacket = [
   ["/resume", "Interactive resume", "Career evidence, architecture highlights, public proof, skills, education, and certifications."],
   ["/projects/operational-intelligence-copilot", "Copilot proof page", "Evidence path, framework handoff, failure modes, and related reference assets."],
   ["/architecture-lab", "Architecture lab", "Reusable implementation contracts for evidence, replay, evaluation, and operator control."],
-  ["/evals", "Trust report", "Deterministic behavior fixtures for Ask Ravikanth and public-safe refusal."],
+  ["/evals", "Trust report", "Deterministic behavior fixtures for Ask Ravi and public-safe refusal."],
   ["/contact", "Practitioner review", "Structured path for external critique and follow-up."]
 ] as const;
 

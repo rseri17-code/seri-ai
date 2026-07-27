@@ -10,7 +10,7 @@ const proofStrip = [
   ["Doctrine", "Canonical definition, boundaries, ten-layer model, glossary, and references."],
   ["Architecture", "Contracts, schemas, state machines, evaluation gates, and conformance levels."],
   ["Operations Room", "A public-safe investigation artifact for evidence, replay, hypotheses, and review."],
-  [`${evalReport.fixtures.length}/${evalReport.fixtures.length}`, "Deterministic Ask Ravikanth trust fixtures currently passing."]
+  [`${evalReport.fixtures.length}/${evalReport.fixtures.length}`, "Deterministic Ask Ravi trust fixtures currently passing."]
 ];
 
 const primaryPaths = [
@@ -299,15 +299,15 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Ask Ravikanth" title="Ask the work, then inspect the receipts.">
+      <Section eyebrow="Ask Ravi" title="Ask the work, then inspect the receipts.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <h3 className="text-2xl font-semibold text-white">Ask Ravikanth turns the public body of work into a review surface.</h3>
+            <h3 className="text-2xl font-semibold text-white">Ask Ravi turns the public body of work into a review surface.</h3>
             <p className="mt-3 leading-7 text-slate-300">Use it to interrogate the doctrine, trace evidence to source pages, compare claims against artifacts, and find the right route through Ravikanth&apos;s work without guessing.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link href="/ask" className="rounded bg-white px-5 py-3 font-semibold text-ink">
-              Ask Ravikanth
+              Ask Ravi
             </Link>
             <Link href="/evals" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
               View evals <ShieldCheck size={18} />

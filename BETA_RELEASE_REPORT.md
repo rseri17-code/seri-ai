@@ -2,10 +2,10 @@
 
 ## Changes Made
 
-- Added production guards for Ask Ravikanth and contact APIs: request validation, rate limiting, timeout handling, safe JSON parsing, and service-failure fallbacks.
+- Added production guards for Ask Ravi and contact APIs: request validation, rate limiting, timeout handling, safe JSON parsing, and service-failure fallbacks.
 - Added explicit runtime environment status for optional AI, vector search, contact persistence, and analytics services.
 - Hardened public-safety handling for prompt-injection and confidential/private/proprietary requests.
-- Expanded Ask Ravikanth deterministic beta fixtures from 9 to 66 and enforced the minimum fixture count in `npm run evals`.
+- Expanded Ask Ravi deterministic beta fixtures from 9 to 66 and enforced the minimum fixture count in `npm run evals`.
 - Redacted public eval report prompts for adversarial public-safety fixtures while preserving internal deterministic coverage.
 - Added privacy-conscious analytics hooks for homepage CTA clicks, framework layer selection, Operations Room guided start/completion, Ask submission/success/failure, source-link clicks, Work and Background visits, resume download, contact initiation, beta feedback, and practitioner review.
 - Added a non-intrusive beta feedback form and a structured practitioner review form through the existing contact API.

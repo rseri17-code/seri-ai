@@ -149,7 +149,7 @@ expectIncludes("llms.txt", llms, [
   "Public-Safe Boundary",
   "Canonical Definition",
   "Primary References",
-  "Ask Ravikanth Behavior Contract",
+  "Ask Ravi Behavior Contract",
   "Public Profiles",
   "Indexed Public Assets",
   "Machine Notes",

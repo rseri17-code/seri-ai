@@ -14,13 +14,13 @@ Canonical definition:
 
 > Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.
 
-seri.ai is the public operating system. Operational Intelligence is the category. ReasonOps is the product/platform expression. Operations Room is the interactive artifact. Ask Ravikanth is the grounded public assistant. Background is secondary evidence.
+seri.ai is the public operating system. Operational Intelligence is the category. ReasonOps is the product/platform expression. Operations Room is the interactive artifact. Ask Ravi is the grounded public assistant. Background is secondary evidence.
 
 The site is built around public-safe content only. Do not publish employer-specific product names, internal platform names, confidential projects, internal screenshots, logs, dashboards, proprietary architecture, or company-specific implementation details.
 
 ## Product Spine
 
-The Map, Operations Room, and Ask Ravikanth should feel like one system, not separate pages.
+The Map, Operations Room, and Ask Ravi should feel like one system, not separate pages.
 
 Shared case:
 
@@ -86,8 +86,8 @@ Avoid copying private repository internals, vendor-specific wiring, generated re
 - `/products/reasonops` — ReasonOps product/platform concept
 - `/investigation-room` — signature evidence-first Operations Room artifact
 - `/artifacts` — public-safe proof objects and release model
-- `/ask` — public-grounded Ask Ravikanth assistant
-- `/evals` — public trust report for Ask Ravikanth behavior
+- `/ask` — public-grounded Ask Ravi assistant
+- `/evals` — public trust report for Ask Ravi behavior
 - `/radar` — market thesis radar for Operational Intelligence trends
 - `/wiki` — public notes and content search
 - `/principles` — Ravikanth's principles
@@ -177,7 +177,7 @@ The publishing engine in `lib/publishing.ts` turns every public asset into a nod
 
 - framework-layer relationships
 - related patterns, artifacts, products, and principles
-- Ask Ravikanth questions
+- Ask Ravi questions
 - search facets
 - version history
 - RSS eligibility
@@ -210,7 +210,7 @@ Valid statuses:
 - `draft` — validated but hidden from public routes and search
 - `review` — ready for editorial review but hidden publicly
 - `approved` — approved for release but hidden until explicitly published
-- `published` — visible publicly and available to Ask Ravikanth
+- `published` — visible publicly and available to Ask Ravi
 - `archived` — retained but hidden
 
 Run validation before publishing:
@@ -325,7 +325,7 @@ Each pattern must include:
 
 Patterns should describe public-safe architecture ideas, not internal implementations.
 
-## Ask Ravikanth Grounding
+## Ask Ravi Grounding
 
 `/api/ask` retrieves only published public sources from:
 
@@ -380,8 +380,8 @@ npm run validate:performance
 npm run build
 ```
 
-`npm run build` runs content validation, content-coherence checks, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravikanth trust fixtures before building. It runs the performance budget after the production build.
-`npm test` runs content validation, content-coherence checks, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravikanth trust fixtures, and TypeScript checks.
+`npm run build` runs content validation, content-coherence checks, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravi trust fixtures before building. It runs the performance budget after the production build.
+`npm test` runs content validation, content-coherence checks, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravi trust fixtures, and TypeScript checks.
 
 ## Deployment
 
