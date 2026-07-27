@@ -48,6 +48,12 @@ Date: 2026-07-26
 - Linked the runbook from `README.md` and added deployment validation so release candidates require the runbook and core operational invariants.
 - Kept the language as beta targets and operating procedure, not unsupported production availability claims.
 
+### Deterministic Eval Artifact Pass - 2026-07-27
+
+- Removed timestamp-only churn from `public/eval-report.json` by generating `generatedAt` from the versioned eval report `lastRun` date.
+- Added a coherence validator check that prevents `npm run evals` from reintroducing `new Date().toISOString()` as public report metadata.
+- Verified repeated `npm run evals` executions keep the public report stable unless fixture content or the report version date changes.
+
 ### Baseline Observed
 
 - A stale local dev server could render the homepage without Tailwind styling, making the product appear like raw HTML even though the optimized build renders correctly.
@@ -81,7 +87,7 @@ Date: 2026-07-26
 | SEO and discovery | Canonical metadata, JSON-LD, sitemap, robots, RSS, OG/Twitter images, `/llms.txt`. | Strong. |
 | Reliability and SRE maturity | API fallback/rate-limit contracts, timeout budgets, safe Ask response metadata, deployment config validators, memoized static corpus indexes, Ask observability dashboard contract, beta operations runbook, and production build pass without static-generation retries in the latest run. | Stronger beta posture, still needs live production dashboard data and alert evidence. |
 | Security and privacy | Public-safety scan passes; unconfirmed portrait removed; portrait source references now blocked. | Improved, needs documented consent before real portrait use. |
-| Maintainability | Content/route/publishing/retrieval/analytics validators pass; no generated timestamp churn committed. | Strong. |
+| Maintainability | Content/route/publishing/retrieval/analytics validators pass; eval report generation is deterministic and no longer creates timestamp-only release churn. | Strong. |
 | Mobile | Existing validators and prior browser checks cover mobile overflow; source hierarchy now places the Operations Room graph earlier. Current iteration did not complete fresh screenshots due in-app browser/local dev instability. | Needs fresh manual visual pass on production deployment. |
 
 ### Prioritized Backlog

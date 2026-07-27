@@ -373,6 +373,10 @@ for (const required of [
   expect(chatComponent.includes(required), `Chat missing prompt deep-link auto-submit contract: ${required}`);
 }
 
+const evalRunner = fs.readFileSync(path.join(root, "scripts", "run-evals.mjs"), "utf8");
+expect(evalRunner.includes("generatedAt: `${report.lastRun}T00:00:00.000Z`"), "run-evals must use deterministic generatedAt based on report.lastRun");
+expect(!evalRunner.includes("generatedAt: new Date().toISOString()"), "run-evals must not create timestamp-only public eval report churn");
+
 const headerComponent = fs.readFileSync(path.join(root, "components", "header.tsx"), "utf8");
 for (const required of [
   "Ask Ravi",

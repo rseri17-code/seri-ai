@@ -214,7 +214,7 @@ if (errors.length) {
 
 const generated = {
   ...report,
-  generatedAt: new Date().toISOString(),
+  generatedAt: `${report.lastRun}T00:00:00.000Z`,
   generatedBy: "npm run evals",
   fixtureCount: report.fixtures.length,
   passingFixtures: report.fixtures.filter((fixture) => fixture.result === "Pass").length,
