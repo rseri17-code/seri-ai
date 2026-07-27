@@ -383,6 +383,10 @@ npm run build
 `npm run build` runs content validation, content-coherence checks, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravi trust fixtures before building. It runs the performance budget after the production build.
 `npm test` runs content validation, content-coherence checks, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravi trust fixtures, and TypeScript checks.
 
+## Operations Runbook
+
+Use `OPERATIONS_RUNBOOK.md` for beta SLO targets, safe telemetry fields, Ask Ravi alert signals, incident response, rollback, and release-candidate checks.
+
 ## Deployment
 
 Deploy to Vercel:

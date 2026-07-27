@@ -41,6 +41,13 @@ Date: 2026-07-26
 - Expanded analytics validation to require `ask_response_success`, the Ask observability contract, and the admin dashboard contract.
 - Validated that Ask telemetry remains metadata-only: allowed fields include category, mode, route, latency, answer mode, retrieval mode, and source count; forbidden fields include prompt, question, message, email, name, contact, and free-text feedback fields.
 
+### Operations Runbook Pass - 2026-07-27
+
+- Added `OPERATIONS_RUNBOOK.md` for controlled public beta operation.
+- Documented beta SLO targets, SLIs, safe telemetry fields, Ask Ravi modes, alert signals, incident response, rollback, release checklist, and known limitations.
+- Linked the runbook from `README.md` and added deployment validation so release candidates require the runbook and core operational invariants.
+- Kept the language as beta targets and operating procedure, not unsupported production availability claims.
+
 ### Baseline Observed
 
 - A stale local dev server could render the homepage without Tailwind styling, making the product appear like raw HTML even though the optimized build renders correctly.
@@ -72,7 +79,7 @@ Date: 2026-07-26
 | Accessibility | `validate:a11y` covers 35 pages and 19 components. | Strong automated coverage, needs manual keyboard/screen-reader pass. |
 | Performance | `npm run build` passed performance budgets; home first-load JS reported at 150 kB, Operations Room at 194 kB. | Acceptable, keep watching Operations Room payload. |
 | SEO and discovery | Canonical metadata, JSON-LD, sitemap, robots, RSS, OG/Twitter images, `/llms.txt`. | Strong. |
-| Reliability and SRE maturity | API fallback/rate-limit contracts, timeout budgets, safe Ask response metadata, deployment config validators, memoized static corpus indexes, Ask observability dashboard contract, and production build pass without static-generation retries in the latest run. | Stronger beta posture, still needs live production dashboard data and alert evidence. |
+| Reliability and SRE maturity | API fallback/rate-limit contracts, timeout budgets, safe Ask response metadata, deployment config validators, memoized static corpus indexes, Ask observability dashboard contract, beta operations runbook, and production build pass without static-generation retries in the latest run. | Stronger beta posture, still needs live production dashboard data and alert evidence. |
 | Security and privacy | Public-safety scan passes; unconfirmed portrait removed; portrait source references now blocked. | Improved, needs documented consent before real portrait use. |
 | Maintainability | Content/route/publishing/retrieval/analytics validators pass; no generated timestamp churn committed. | Strong. |
 | Mobile | Existing validators and prior browser checks cover mobile overflow; source hierarchy now places the Operations Room graph earlier. Current iteration did not complete fresh screenshots due in-app browser/local dev instability. | Needs fresh manual visual pass on production deployment. |

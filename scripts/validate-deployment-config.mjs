@@ -102,6 +102,28 @@ for (const key of ["NEXT_PUBLIC_SITE_URL", "NEXT_PUBLIC_POSTHOG_KEY", "SUPABASE_
   expect(readme.includes(key), `README.md missing environment variable ${key}`);
 }
 expect(readme.includes("Without model or database keys, `/ask` runs with the local approved-content fallback"), "README.md missing optional-service fallback note");
+expect(readme.includes("OPERATIONS_RUNBOOK.md"), "README.md missing operations runbook link");
+
+const operationsRunbook = read("OPERATIONS_RUNBOOK.md");
+for (const required of [
+  "Beta SLO Targets",
+  "Safe Telemetry Contract",
+  "Alert Signals",
+  "Incident Response",
+  "Rollback",
+  "Release Checklist",
+  "Public-safety",
+  "answer_mode",
+  "retrieval_mode",
+  "source_count",
+  "latency_ms",
+  "server_latency_ms",
+  "npm run build",
+  "npm test",
+  "git diff --check"
+]) {
+  expect(operationsRunbook.includes(required), `OPERATIONS_RUNBOOK.md missing "${required}"`);
+}
 
 const contentSource = read("lib/content.ts");
 for (const cacheName of ["allWikiNotesCache", "publishedWikiNotesCache", "publicSourceIndexCache"]) {
