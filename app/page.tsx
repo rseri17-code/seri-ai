@@ -127,7 +127,7 @@ export default function Home() {
               </TrackedLink>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-              The work is public-safe by design: no internal employer product names, confidential projects, private screenshots, logs, dashboards, or proprietary architectures. Only approved public content, synthetic cases, and reusable engineering doctrine.
+              Every artifact is built for inspection: synthetic cases, cited public sources, explicit uncertainty, and reusable engineering doctrine instead of private operational details.
             </p>
             <div className="mt-6 rounded-lg border border-white/10 bg-black/25 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">The operating thesis</p>

@@ -3,7 +3,7 @@ import { CheckCircle2, ShieldAlert, Target } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { TechnicalReviewPath } from "@/components/technical-review-path";
-import { evalReport } from "@/content/site";
+import { askQualityRubric, evalReport } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Evals | Public Operational Intelligence Trust Report",
@@ -48,6 +48,7 @@ export default function EvalsPage() {
     ...bucket,
     count: evalReport.fixtures.filter((fixture) => bucket.match.test(`${fixture.prompt} ${fixture.expected}`)).length
   }));
+  const visibleFixtures = evalReport.fixtures.slice(0, 24);
 
   return (
     <>
@@ -103,9 +104,91 @@ export default function EvalsPage() {
         </Card>
       </Section>
 
+      <Section eyebrow="Live answer rubric" title="Deterministic fixtures are the floor. Human review measures usefulness.">
+        <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+          <Card className="border-signal/25 bg-signal/[0.045]">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-signal">Human review labels</p>
+            <h2 className="mt-4 text-3xl font-semibold text-white">{askQualityRubric.title}</h2>
+            <p className="mt-4 leading-7 text-slate-300">{askQualityRubric.purpose}</p>
+            <div className="mt-5 rounded border border-white/10 bg-black/25 p-4">
+              <p className="text-sm font-semibold text-white">Version {askQualityRubric.version}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">
+                No model-quality score is published until reviewer-labeled sessions exist. Model-quality scores fabricated:{" "}
+                {askQualityRubric.modelQualityScoresFabricated ? "yes" : "no"}.
+              </p>
+            </div>
+            <div className="mt-5 grid gap-2 sm:grid-cols-2">
+              {askQualityRubric.labels.map((label) => (
+                <div key={label.name} className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="font-semibold text-white">{label.name}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{label.meaning}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {askQualityRubric.dimensions.map((dimension) => (
+              <Card key={dimension.name} className="p-4">
+                <h2 className="text-lg font-semibold text-white">{dimension.name}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{dimension.question}</p>
+                <p className="mt-3 text-xs leading-5 text-slate-500">{dimension.evidence}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+        <Card className="mt-4 border-white/10 bg-white/[0.035]">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">Safe reporting protocol</p>
+          <div className="mt-4 grid gap-4 lg:grid-cols-2">
+            <div>
+              <p className="font-semibold text-white">Capture safe metadata only</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {askQualityRubric.reportingTemplate.safeMetadataOnly.map((field) => (
+                  <span key={field} className="rounded border border-mint/25 bg-mint/[0.06] px-2 py-1 text-xs text-mint">{field}</span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="font-semibold text-white">Do not capture</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {askQualityRubric.reportingTemplate.doNotCapture.map((field) => (
+                  <span key={field} className="rounded border border-amber/25 bg-amber/[0.06] px-2 py-1 text-xs text-amber">{field}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Card>
+      </Section>
+
+      <Section eyebrow="Review prompt set" title="The live answer review should test useful visitor questions, not toy prompts.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {askQualityRubric.reviewPromptSet.map((item) => (
+            <Card key={item.category} className="h-full p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{item.category.replaceAll("_", " ")}</p>
+              <h2 className="mt-3 text-lg font-semibold leading-7 text-white">{item.prompt}</h2>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Must inspect</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {item.mustInspect.map((artifact) => (
+                  <span key={artifact} className="rounded border border-white/10 bg-black/20 px-2 py-1 text-xs text-slate-300">{artifact}</span>
+                ))}
+              </div>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
       <Section eyebrow="Regression fixtures" title="The questions the public assistant must handle correctly.">
+        <Card className="mb-4 border-signal/25 bg-signal/[0.045]">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-signal">Bounded page weight</p>
+          <p className="mt-3 leading-7 text-slate-300">
+            Showing {visibleFixtures.length} representative fixtures on this page. The full {evalReport.fixtures.length}-fixture public report is available as JSON at{" "}
+            <a href="/eval-report.json" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
+              /eval-report.json
+            </a>
+            .
+          </p>
+        </Card>
         <div className="space-y-3">
-          {evalReport.fixtures.map((fixture) => (
+          {visibleFixtures.map((fixture) => (
             <Card key={fixture.prompt} className="grid gap-4 md:grid-cols-[1fr_1fr_7rem] md:items-center">
               <div>
                 <p className="text-sm text-slate-400">Prompt</p>

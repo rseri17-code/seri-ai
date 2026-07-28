@@ -1,4 +1,5 @@
 import evalReportData from "./eval-report.json";
+import askQualityRubricData from "./ask-quality-rubric.json";
 
 export const site = {
   name: "seri.ai",
@@ -935,6 +936,7 @@ export const architectureCards = [
 ];
 
 export const evalReport = evalReportData;
+export const askQualityRubric = askQualityRubricData;
 
 export const thesisRadar = {
   title: "Operational Intelligence Thesis Radar",

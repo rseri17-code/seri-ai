@@ -13,7 +13,9 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-slate-400 sm:px-6 lg:px-8">
         <div>
           <p className="font-medium text-slate-200">{site.positioning}</p>
-          <p className="mt-3 leading-6">{site.compliance}</p>
+          <p className="mt-3 leading-6">
+            Public boundary: approved public material and synthetic examples only. Private employer systems, logs, dashboards, screenshots, and proprietary architecture stay out of scope.
+          </p>
         </div>
         <p className="flex flex-wrap gap-x-3 gap-y-2">
           <span className="font-semibold uppercase tracking-[0.16em] text-mint">Public review kit</span>

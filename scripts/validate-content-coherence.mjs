@@ -179,7 +179,7 @@ for (const required of [
   "Ravikanth Seri on Operational Intelligence",
   "The operating thesis",
   "signals into evidence, evidence into hypotheses, hypotheses into reviewable decisions, and decisions into operational memory",
-  "public-safe by design",
+  "Every artifact is built for inspection",
   "15+ years across distributed enterprise systems",
   "production agent architecture, evaluation, and runtime governance",
   "signals enter as facts",
@@ -508,8 +508,14 @@ for (const required of [
 const evalsPage = fs.readFileSync(path.join(root, "app", "evals", "page.tsx"), "utf8");
 for (const required of [
   "const coverageBuckets",
+  "askQualityRubric",
   "Coverage matrix",
   "What the deterministic fixtures are protecting.",
+  "Live answer rubric",
+  "Human review labels",
+  "No model-quality score is published until reviewer-labeled sessions exist.",
+  "Safe reporting protocol",
+  "Review prompt set",
   "Doctrine and definition",
   "Framework layers",
   "Adjacent-domain comparison",

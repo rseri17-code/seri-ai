@@ -101,8 +101,8 @@ for (const contract of routeContracts) {
 
 const homePage = read("app/page.tsx");
 expect(
-  homePage.indexOf("Run the investigation") < homePage.indexOf("The work is public-safe by design"),
-  "/: homepage primary CTAs must render before the public-safety explanatory paragraph so mobile visitors see an action in the first viewport"
+  homePage.indexOf("Run the investigation") < homePage.indexOf("Every artifact is built for inspection"),
+  "/: homepage primary CTAs must render before the inspection/trust paragraph so mobile visitors see an action in the first viewport"
 );
 
 const simulatorPage = read("app/simulator/page.tsx");

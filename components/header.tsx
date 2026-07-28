@@ -28,8 +28,12 @@ export function Header() {
       <nav aria-label="Primary navigation">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <Link href="/" aria-label="seri.ai home" className="flex min-w-0 items-center gap-3">
-            <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-mint/40 bg-mint/10 font-semibold text-mint shadow-[0_0_22px_rgba(95,242,181,0.16)]">
-              s
+            <span aria-hidden="true" className="relative grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-mint/35 bg-[radial-gradient(circle_at_30%_20%,rgba(95,242,181,0.28),transparent_42%),rgba(95,242,181,0.08)] shadow-[0_0_22px_rgba(95,242,181,0.16)]">
+              <span className="absolute left-3 top-3 h-1.5 w-1.5 rounded-full bg-mint shadow-[0_0_12px_rgba(95,242,181,0.9)]" />
+              <span className="absolute right-3 top-4 h-1.5 w-1.5 rounded-full bg-signal shadow-[0_0_12px_rgba(125,211,252,0.8)]" />
+              <span className="absolute bottom-3 left-4 h-1.5 w-1.5 rounded-full bg-white/80" />
+              <span className="h-px w-5 rotate-12 bg-mint/45" />
+              <span className="absolute h-5 w-px -rotate-45 bg-signal/35" />
             </span>
             <span className="min-w-0">
               <span className="block truncate text-sm font-semibold">{site.name}</span>
