@@ -204,6 +204,14 @@ const missingEvidence = [
   "Post-mitigation validation is required before the outcome becomes operational memory."
 ];
 
+const evidenceTaxonomy = [
+  ["Observation", "Directly present in approved evidence.", "mint"],
+  ["Inference", "A reasoned interpretation that still needs challenge.", "signal"],
+  ["Contradiction", "Evidence that weakens or redirects a hypothesis.", "amber"],
+  ["Missing evidence", "A known gap the system must not hide.", "amber"],
+  ["Confirmed fact", "Validated by enough evidence or responsible human review.", "mint"]
+] as const;
+
 const hypothesisTransitions = [
   ["Proposed", "Configuration regression enters because timing aligns with the symptom window."],
   ["Supported", "Signal, change, and topology receipts move the leading hypothesis above competing explanations."],
@@ -686,6 +694,23 @@ export function IncidentSimulator() {
                 <p className="font-mono text-xs text-signal">{currentReplayChapter.id} active</p>
               </div>
               <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} />
+            </div>
+            <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3">
+              <div className="mb-3 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Evidence taxonomy</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-300">The room is useful only if it refuses to collapse facts, interpretations, gaps, and contradictions into one fluent RCA.</p>
+                </div>
+                <p className="font-mono text-xs text-slate-500">public-safe labels</p>
+              </div>
+              <div className="grid gap-2 md:grid-cols-5">
+                {evidenceTaxonomy.map(([label, detail, tone]) => (
+                  <div key={label} className={`rounded border p-3 ${tone === "amber" ? "border-amber/25 bg-amber/[0.07]" : tone === "signal" ? "border-signal/25 bg-signal/[0.07]" : "border-mint/25 bg-mint/[0.07]"}`}>
+                    <p className={`text-xs font-semibold uppercase ${tone === "amber" ? "text-amber" : tone === "signal" ? "text-signal" : "text-mint"}`}>{label}</p>
+                    <p className="mt-2 text-xs leading-5 text-slate-300">{detail}</p>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="ops-command-strip mt-5 grid gap-2 md:grid-cols-5">
               {commandStrip.map(([label, value, detail, tone]) => (
@@ -1608,6 +1633,14 @@ function EvidenceBoard({
         title="Facts are toggled before conclusions are trusted."
         description="Toggle evidence to test whether the explanation survives missing, weak, or noisy signals. The replay workbench and confidence ledger should move immediately."
       />
+      <div className="mb-4 grid gap-2 md:grid-cols-5">
+        {evidenceTaxonomy.map(([label, detail, tone]) => (
+          <div key={label} className={`rounded border px-3 py-2 ${tone === "amber" ? "border-amber/25 bg-amber/[0.06]" : tone === "signal" ? "border-signal/25 bg-signal/[0.06]" : "border-mint/25 bg-mint/[0.06]"}`}>
+            <p className={`text-xs font-semibold uppercase ${tone === "amber" ? "text-amber" : tone === "signal" ? "text-signal" : "text-mint"}`}>{label}</p>
+            <p className="mt-1 text-xs leading-5 text-slate-400">{detail}</p>
+          </div>
+        ))}
+      </div>
       <div className="mb-4 grid gap-3 md:grid-cols-2">
         {missingEvidence.map((item) => (
           <div key={item} className="rounded-lg border border-amber/25 bg-amber/[0.07] p-4">

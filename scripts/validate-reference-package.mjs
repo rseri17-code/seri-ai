@@ -255,6 +255,14 @@ assertIncludes("app/simulator/page.tsx", operationsRoomPage, [
 const operationsRoomWorkbench = read("app/simulator/simulator.tsx");
 assertIncludes("app/simulator/simulator.tsx", operationsRoomWorkbench, [
   "const decisionPacketRows",
+  "const evidenceTaxonomy",
+  "Evidence taxonomy",
+  "Observation",
+  "Inference",
+  "Contradiction",
+  "Missing evidence",
+  "Confirmed fact",
+  "refuses to collapse facts, interpretations, gaps, and contradictions",
   "Operator review contract",
   "Packet state",
   "Approval class",
