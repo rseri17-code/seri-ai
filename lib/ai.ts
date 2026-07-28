@@ -13,7 +13,7 @@ type GenerateArgs = {
   history?: ChatMessage[];
 };
 
-function inferFrameworkLayers(question: string) {
+export function inferFrameworkLayers(question: string) {
   const lower = question.toLowerCase();
   const layers: string[] = [];
   if (/observability|signal|telemetry|metric|log|trace|alert|dashboard/.test(lower)) layers.push("Signal Layer");
@@ -29,7 +29,7 @@ function inferFrameworkLayers(question: string) {
   return [...new Set(layers)].slice(0, 4);
 }
 
-function inferRelatedArtifacts(question: string) {
+export function inferRelatedArtifacts(question: string) {
   const lower = question.toLowerCase();
   const artifacts = new Set<string>(["/framework"]);
   if (/doctrine|definition|define|canonical|boundary|boundaries|glossary|what is operational intelligence/.test(lower)) {
@@ -125,6 +125,19 @@ function inferReferenceAssetMatches(question: string) {
     matches.push("OI-ROOM-001 Walkthrough PDF: /downloads/oi-room-001-printable-walkthrough.pdf");
   }
   return matches;
+}
+
+export function classifyAskQuestion(question: string) {
+  const lower = question.toLowerCase();
+  if (/confidential|internal|private|proprietary|dashboard|logs?|screenshots?|system prompt|developer message|jailbreak/.test(lower)) return "public_safety_boundary";
+  if (/ravikanth|resume|background|experience|career|certification|linkedin|github|recruiter|founder|who is|architecture judgment/.test(lower)) return "builder_evidence";
+  if (/oi-room-001|operations room|investigation|incident|rca|hypothesis|root cause/.test(lower)) return "operations_room";
+  if (/evidence|citation|source|graph|provenance|receipt|contradict/.test(lower)) return "evidence_reasoning";
+  if (/eval|evaluation|gate|trust|benchmark|quality|falsif/.test(lower)) return "evaluation";
+  if (/transaction|journey|workflow|latency/.test(lower)) return "transaction_intelligence";
+  if (/observability|telemetry|metric|trace|alert|signal|aiops|agentops/.test(lower)) return "adjacent_domain";
+  if (/doctrine|definition|framework|layer|architecture|schema|contract|conformance/.test(lower)) return "doctrine_architecture";
+  return "general";
 }
 
 function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {

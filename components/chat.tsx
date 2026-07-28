@@ -1,6 +1,7 @@
 "use client";
 
-import { CheckCircle2, Database, FileSearch, LockKeyhole, Send, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, Database, FileSearch, LockKeyhole, Route, Send, ShieldCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ProfileMark } from "@/components/profile-mark";
 import type { ChatMessage } from "@/lib/ai";
@@ -13,6 +14,11 @@ type ApiResponse = {
     answer_mode?: string;
     retrieval_mode?: string;
     source_count?: number;
+    question_category?: string;
+    framework_layers?: string[];
+    related_pages?: string[];
+    public_boundary?: string;
+    assistant_identity?: string;
     latency_ms?: number;
   };
 };
@@ -76,6 +82,8 @@ export function Chat({
         source_count: data.sources?.length ?? 0,
         answer_mode: data.meta?.answer_mode ?? "unknown",
         retrieval_mode: data.meta?.retrieval_mode ?? "unknown",
+        server_category: data.meta?.question_category ?? category,
+        public_boundary: data.meta?.public_boundary ?? "unknown",
         server_latency_ms: data.meta?.latency_ms ?? null
       });
       setMessages([...nextMessages, { role: "assistant", content: data.answer }]);
@@ -131,6 +139,12 @@ export function Chat({
     ["Ground", sources.length ? `${sources.length} sources` : "awaiting query"],
     ["Boundary", "public"],
     ["Release", isLoading ? "evaluating" : responseMeta?.answer_mode ?? "ready"]
+  ];
+  const answerPacket: Array<[string, string]> = [
+    ["Category", responseMeta?.question_category ?? "awaiting question"],
+    ["Layers", responseMeta?.framework_layers?.length ? responseMeta.framework_layers.join(", ") : "matched after retrieval"],
+    ["Boundary", responseMeta?.public_boundary ?? "approved public content only"],
+    ["Latency", typeof responseMeta?.latency_ms === "number" ? `${responseMeta.latency_ms} ms` : "not measured yet"]
   ];
   const responseChecks: Array<[string, boolean]> = [
     ["AI disclosure", true],
@@ -203,6 +217,33 @@ export function Chat({
         </form>
       </div>
       <aside className="space-y-4">
+        <div className="rounded-lg border border-signal/20 bg-signal/[0.05] p-5">
+          <div className="flex items-center gap-2">
+            <Route className="text-signal" size={18} />
+            <h2 className="font-semibold text-white">Answer packet</h2>
+          </div>
+          <div className="mt-4 grid gap-2">
+            {answerPacket.map(([label, value]) => (
+              <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</p>
+                <p className="mt-1 text-xs font-semibold leading-5 text-slate-200">{value}</p>
+              </div>
+            ))}
+          </div>
+          {responseMeta?.related_pages?.length ? (
+            <div className="mt-4 space-y-2">
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-500">Related artifacts</p>
+              {responseMeta.related_pages.slice(0, 4).map((href) => (
+                <Link key={href} href={href} className="flex items-center justify-between gap-3 rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold text-slate-200 hover:border-mint/40">
+                  <span className="truncate">{href}</span>
+                  <ArrowRight size={14} className="shrink-0 text-mint" />
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-4 text-xs leading-5 text-slate-400">Ask a question to generate a reviewable packet with matched scope, layers, boundary, and next artifacts.</p>
+          )}
+        </div>
         <div className="rounded-lg border border-mint/20 bg-mint/[0.05] p-5">
           <div className="flex items-center gap-2">
             <ShieldCheck className="text-mint" size={18} />

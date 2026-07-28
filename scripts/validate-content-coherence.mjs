@@ -396,6 +396,13 @@ for (const required of [
 	  "Reading the public evidence...",
 	  "Ask about Ravikanth, his work, Operational Intelligence, projects, or background...",
 	  "Question the doctrine, the artifact, and the builder proof.",
+  "Answer packet",
+  "question_category",
+  "framework_layers",
+  "related_pages",
+  "public_boundary",
+  "Related artifacts",
+  "reviewable packet with matched scope, layers, boundary, and next artifacts",
   "AI disclosure",
   "ProfileMark size=\"sm\""
 ]) {

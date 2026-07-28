@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { generateRaviAnswer } from "@/lib/ai";
+import { classifyAskQuestion, generateRaviAnswer, inferFrameworkLayers, inferRelatedArtifacts } from "@/lib/ai";
 import { isPublicSafe } from "@/lib/compliance";
 import { getRuntimeEnvironment } from "@/lib/env";
 import { clientKey, rateLimit, rateLimitedResponse, withTimeout } from "@/lib/production-guards";
@@ -41,6 +41,9 @@ export async function POST(request: Request) {
   }
 
   const { question, history } = parsed.data;
+  const questionCategory = classifyAskQuestion(question);
+  const frameworkLayers = inferFrameworkLayers(question);
+  const relatedPages = inferRelatedArtifacts(question);
   const runtime = getRuntimeEnvironment();
   if (!isPublicSafe(question)) {
     return NextResponse.json({
@@ -51,6 +54,11 @@ export async function POST(request: Request) {
         answer_mode: "public_safety_refusal",
         retrieval_mode: "blocked",
         source_count: 0,
+        question_category: questionCategory,
+        framework_layers: frameworkLayers,
+        related_pages: relatedPages,
+        public_boundary: "public-safe refusal",
+        assistant_identity: "AI assistant over approved public work",
         latency_ms: Date.now() - startedAt,
         budget: {
           rate_limit: ASK_RATE_LIMIT,
@@ -134,6 +142,11 @@ export async function POST(request: Request) {
       answer_mode: answerMode,
       retrieval_mode: retrievalMode,
       source_count: Math.min(context.length, ASK_RETURNED_SOURCE_COUNT),
+      question_category: questionCategory,
+      framework_layers: frameworkLayers,
+      related_pages: relatedPages,
+      public_boundary: "approved public content only",
+      assistant_identity: "AI assistant over approved public work",
       latency_ms: Date.now() - startedAt,
       budget: {
         rate_limit: ASK_RATE_LIMIT,

@@ -63,6 +63,11 @@ try {
   expect(Array.isArray(askPublicBody.sources) && askPublicBody.sources.length > 0, "/api/ask public fallback missing public sources");
   expect(askPublicBody.meta?.answer_mode, "/api/ask public fallback missing answer_mode metadata");
   expect(askPublicBody.meta?.retrieval_mode, "/api/ask public fallback missing retrieval_mode metadata");
+  expect(askPublicBody.meta?.question_category === "evidence_reasoning", "/api/ask public fallback missing safe question category metadata");
+  expect(Array.isArray(askPublicBody.meta?.framework_layers) && askPublicBody.meta.framework_layers.includes("Evidence Layer"), "/api/ask public fallback missing framework layer metadata");
+  expect(Array.isArray(askPublicBody.meta?.related_pages) && askPublicBody.meta.related_pages.includes("/framework"), "/api/ask public fallback missing related page metadata");
+  expect(askPublicBody.meta?.public_boundary === "approved public content only", "/api/ask public fallback missing public boundary metadata");
+  expect(askPublicBody.meta?.assistant_identity === "AI assistant over approved public work", "/api/ask public fallback missing assistant identity metadata");
   expect(typeof askPublicBody.meta?.latency_ms === "number", "/api/ask public fallback missing latency_ms metadata");
   expect(askPublicBody.meta?.budget?.synthesis_timeout_ms === 12000, "/api/ask public fallback missing synthesis timeout budget");
   expect(askPublicBody.meta?.budget?.returned_source_limit === 4, "/api/ask public fallback missing returned source budget");
@@ -81,6 +86,8 @@ try {
   expect(Array.isArray(askConfidentialBody.sources) && askConfidentialBody.sources.length === 0, "/api/ask confidential boundary should not attach sources");
   expect(askConfidentialBody.meta?.answer_mode === "public_safety_refusal", "/api/ask confidential boundary missing refusal metadata");
   expect(askConfidentialBody.meta?.retrieval_mode === "blocked", "/api/ask confidential boundary missing blocked retrieval metadata");
+  expect(askConfidentialBody.meta?.question_category === "public_safety_boundary", "/api/ask confidential boundary missing safe category metadata");
+  expect(askConfidentialBody.meta?.public_boundary === "public-safe refusal", "/api/ask confidential boundary missing public-safe boundary metadata");
 
   const askInvalid = await askPost(request("http://localhost/api/ask", { question: "", mode: "ask" }));
   expect(askInvalid.status === 400, `/api/ask invalid payload returned ${askInvalid.status}`);
