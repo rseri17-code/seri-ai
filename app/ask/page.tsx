@@ -7,13 +7,13 @@ import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, Shi
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ask Ravikanth | Operational Intelligence Evidence Interface",
+  title: "Ask Ravikanth | Operational Intelligence Public Research Interface",
   description: "Question Ravikanth Seri's Operational Intelligence thesis, architecture judgment, projects, background, writing, GitHub, LinkedIn signal, and AI systems through cited public evidence."
 };
 
 const askContextCards: Array<{ label: string; value: string; Icon: LucideIcon }> = [
-  { label: "Source base", value: "doctrine, architecture, projects, resume, GitHub, LinkedIn", Icon: GitBranch },
-  { label: "Answer style", value: "cite evidence, separate inference, route to artifacts", Icon: ClipboardCheck },
+  { label: "Sources", value: "doctrine, architecture, projects, resume, GitHub, LinkedIn", Icon: GitBranch },
+  { label: "Discipline", value: "cite evidence, separate inference, route to artifacts", Icon: ClipboardCheck },
   { label: "Boundary", value: "public evidence only; uncertainty stays visible", Icon: ShieldCheck }
 ];
 
@@ -50,20 +50,20 @@ export default async function AskPage({
 
   return (
     <>
-      <Section eyebrow="Ask Ravikanth" title="Interrogate the evidence behind Operational Intelligence." level="h1">
+      <Section eyebrow="Ask Ravikanth" title="Ask the public record to defend the thesis." level="h1">
         <Chat initialPrompt={initialPrompt} suggestedPrompts={askRaviPrompts} />
         <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.055] p-5">
             <div className="mb-5 flex items-center gap-4">
               <ProfileMark size="sm" />
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Evidence inquiry surface</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Public research interface</p>
                 <p className="mt-1 text-sm text-slate-400">Operational Intelligence, systems judgment, projects, background, and artifacts.</p>
               </div>
             </div>
-            <h2 className="text-3xl font-semibold leading-tight text-white">Do not read the thesis passively. Put pressure on it.</h2>
+            <h2 className="text-3xl font-semibold leading-tight text-white">A serious idea should answer questions with receipts.</h2>
             <p className="mt-4 leading-7 text-slate-300">
-              Use this as a cited review layer over Ravikanth Seri&apos;s doctrine, architecture, projects, resume, GitHub, LinkedIn signal, and Operational Intelligence thesis.
+              Ask Ravikanth about the doctrine, architecture, Operations Room, projects, background, and public work. The assistant cites approved sources, names uncertainty, and stops at the public-safe boundary.
             </p>
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               {["Ground claims", "Expose sources", "Separate inference", "Stop at evidence"].map((step) => (

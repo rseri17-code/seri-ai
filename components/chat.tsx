@@ -35,7 +35,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Ask how Operational Intelligence works, what OI-ROOM-001 proves, or where Ravikanth Seri's public evidence lives. I will cite sources, separate evidence from inference, and stop when the record is thin.";
+      : "Ask how Operational Intelligence works, what OI-ROOM-001 proves, or where Ravikanth Seri's public evidence lives. I will cite sources, separate evidence from inference, name uncertainty, and stop when the record is thin.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -161,8 +161,8 @@ export function Chat({
             <div className="flex items-center gap-3">
               <ProfileMark size="sm" />
               <div>
-                <p className="text-xs font-semibold uppercase text-slate-500">Evidence interface</p>
-                <h2 className="text-xl font-semibold text-white">Question the doctrine, the artifact, and the builder proof.</h2>
+                <p className="text-xs font-semibold uppercase text-slate-500">Public research interface</p>
+                <h2 className="text-xl font-semibold text-white">Question the doctrine, the Operations Room, and the builder proof.</h2>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 xl:w-[34rem]">

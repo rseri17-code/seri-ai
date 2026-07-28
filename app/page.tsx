@@ -7,10 +7,10 @@ import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
 import { homeArticles, homeBuilderDna, homeEvalReport, homeHarnessThesis, homePatterns, homeProfileLinks } from "@/content/home";
 
 const proofStrip = [
-  ["Doctrine", "A falsifiable definition, boundaries, ten-layer model, glossary, and references."],
+  ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
   ["Architecture", "Contracts, schemas, state machines, approval gates, and conformance levels."],
   ["Operations Room", "A public-safe investigation instrument for evidence, replay, hypotheses, and review."],
-  [`${homeEvalReport.fixtures.length}/${homeEvalReport.fixtures.length}`, "Deterministic Ask Ravi trust fixtures currently passing."]
+  [`${homeEvalReport.fixtures.length}/${homeEvalReport.fixtures.length}`, "Ask Ravi trust fixtures currently passing."]
 ];
 
 const categoryContrast = [
@@ -72,10 +72,10 @@ const inspectionLedger = [
 ] as const;
 
 const falsificationTests = [
-  ["Can it preserve contradiction?", "A serious system must show evidence that weakens its preferred explanation."],
-  ["Can it say what is missing?", "Unknowns must remain explicit instead of being turned into confident narrative."],
-  ["Can another team replay it?", "The investigation should leave enough context to reproduce the reasoning path."],
-  ["Can a human stop action?", "Operational change must remain behind owner review, reversibility, and approval class."]
+  ["Contradiction stays visible", "Evidence that weakens the preferred explanation remains in the packet."],
+  ["Unknowns stay named", "Missing evidence is preserved instead of converted into confident narrative."],
+  ["Reasoning can replay", "The investigation leaves enough context to reproduce how confidence moved."],
+  ["Humans keep authority", "Operational change remains behind owner review, reversibility, and approval class."]
 ];
 
 const heroProofCells = [
@@ -91,6 +91,13 @@ const heroBuilderProof = [
   ["Reliability lens", "observability, Kubernetes, identity, and incident workflows"]
 ];
 
+const heroThesis = [
+  ["Signals", "become typed evidence"],
+  ["Evidence", "moves hypotheses"],
+  ["Decisions", "carry receipts"],
+  ["Actions", "wait for approval"]
+];
+
 export default function Home() {
   return (
     <>
@@ -100,21 +107,32 @@ export default function Home() {
             <div>
             <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Operational Intelligence reference system
+              Ravikanth Seri on Operational Intelligence
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              An evidence control plane for AI-native operations.
+              A public operating manual for AI-native operations.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              seri.ai turns incident signals into typed evidence, competing hypotheses, replayable decision packets, and human-approved action boundaries.
+              seri.ai is where Ravikanth Seri develops Operational Intelligence: a disciplined way to turn signals into evidence, evidence into hypotheses, hypotheses into reviewable decisions, and decisions into operational memory.
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-              Built by Ravikanth Seri as a public body of work for engineers who want operational AI to be inspectable, replayable, falsifiable, and safe to challenge.
+              The work is public-safe by design: no internal employer product names, confidential projects, private screenshots, logs, dashboards, or proprietary architectures. Only approved public content, synthetic cases, and reusable engineering doctrine.
             </p>
+            <div className="mt-6 rounded-lg border border-white/10 bg-black/25 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">The operating thesis</p>
+              <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                {heroThesis.map(([label, proof]) => (
+                  <div key={label} className="rounded border border-white/10 bg-white/[0.035] p-3">
+                    <p className="font-semibold text-white">{label}</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-300">{proof}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="mt-5 hidden gap-2 lg:grid lg:grid-cols-3">
               {heroBuilderProof.map(([label, proof]) => (
-                <div key={label} className="rounded border border-white/10 bg-black/25 p-3">
-                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-signal">{label}</p>
+                <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</p>
                   <p className="mt-2 text-xs leading-5 text-slate-300">{proof}</p>
                 </div>
               ))}
@@ -144,7 +162,7 @@ export default function Home() {
             </div>
           </div>
           <div className="rounded-lg border border-white/10 bg-black/25 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">The minimum bar</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">What would make it credible</p>
             <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {falsificationTests.map(([value, label]) => (
                 <div key={value} className="rounded border border-white/10 bg-white/[0.04] p-3">
