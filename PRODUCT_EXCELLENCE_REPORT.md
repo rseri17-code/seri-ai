@@ -43,6 +43,15 @@ Date: 2026-07-26
 - Browser smoke on local production server verified the feedback form is absent before click, appears after clicking `Beta feedback`, and introduces no horizontal overflow.
 - Validation evidence: supported-runtime `tsc --noEmit`, supported-runtime ESLint, coherence validation, accessibility validation, analytics validation, route integrity, public-safety scan, 71/71 Ask evals, production `next build`, performance budgets, and browser smoke passed.
 
+### Server-Rendered Hero Graph Pass - 2026-07-28
+
+- Converted the homepage `HeroIntelligenceMap` from a `framer-motion` client component to a server-rendered SVG with CSS animations.
+- Preserved the Operations Room artifact visual, evidence replay, hypothesis lifecycle, and evaluation-gate presentation while removing unnecessary homepage animation runtime.
+- Measured production impact: homepage route size improved from 4.05 kB to 1.1 kB and homepage first-load JS improved from 150 kB to 107 kB.
+- Measured build impact: production compile phase improved from 32.6s to 14.4s while preserving 77 generated routes.
+- Browser smoke verified the settled desktop and 390px mobile homepage render the graph/replay content with no horizontal overflow.
+- Validation evidence: supported-runtime `tsc --noEmit`, supported-runtime ESLint, production `next build`, performance budgets, accessibility validation, coherence validation, public-safety scan, and browser smoke passed.
+
 ### Evidence Ledger Pass - 2026-07-28
 
 - Strengthened `/work` from a proof index into an adversarial evidence ledger.

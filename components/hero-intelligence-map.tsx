@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { AlertTriangle, BrainCircuit, CheckCircle2, Clock3, FileCheck2, ShieldCheck } from "lucide-react";
 
 const nodes = [
@@ -116,13 +113,12 @@ export function HeroIntelligenceMap() {
               </radialGradient>
             </defs>
             <rect x="0" y="0" width="100" height="100" fill="rgba(7,16,24,0.74)" />
-            <motion.circle
+            <circle
+              className="hero-radar-pulse"
               cx="48"
               cy="53"
               r="29"
               fill="url(#hero-radar)"
-              animate={{ opacity: [0.18, 0.52, 0.18], scale: [0.92, 1.08, 0.92] }}
-              transition={{ duration: 4.8, repeat: Infinity }}
             />
             <g opacity="0.24">
               {Array.from({ length: 8 }).map((_, index) => (
@@ -139,7 +135,8 @@ export function HeroIntelligenceMap() {
                 return null;
               }
               return (
-                <motion.line
+                <line
+                  className="hero-flow-line"
                   key={`${from}-${to}`}
                   x1={fromNode.x}
                   y1={fromNode.y}
@@ -149,23 +146,21 @@ export function HeroIntelligenceMap() {
                   strokeDasharray="4 4"
                   strokeLinecap="round"
                   strokeWidth="1.1"
-                  initial={{ pathLength: 0, opacity: 0.35 }}
-                  animate={{ pathLength: 1, opacity: [0.45, 1, 0.45] }}
-                  transition={{ duration: 2.4, delay: index * 0.14, repeat: Infinity, repeatDelay: 1.6 }}
+                  style={{ animationDelay: `${index * 140}ms` }}
                 />
               );
             })}
             {nodes.map((node, index) => (
               <g key={node.id} filter={node.id === "graph" || node.id === "decision" ? "url(#hero-glow)" : undefined}>
-                <motion.circle
+                <circle
+                  className={node.id === "graph" || node.id === "decision" ? "hero-node-pulse hero-node-pulse-strong" : "hero-node-pulse"}
                   cx={node.x}
                   cy={node.y}
                   r={node.id === "graph" ? 7.1 : node.id === "decision" ? 6.5 : 5.2}
                   fill={nodeColor(node.tone)}
                   stroke="rgba(255,255,255,0.78)"
                   strokeWidth="0.65"
-                  animate={{ scale: node.id === "graph" || node.id === "decision" ? [1, 1.1, 1] : [1, 1.04, 1] }}
-                  transition={{ duration: 2.1, delay: index * 0.12, repeat: Infinity }}
+                  style={{ animationDelay: `${index * 120}ms`, transformOrigin: `${node.x}px ${node.y}px` }}
                 />
                 <text x={node.x} y={node.y + 10} textAnchor="middle" className="sim-graph-label">
                   {node.label}
@@ -186,18 +181,17 @@ export function HeroIntelligenceMap() {
               </div>
               <div className="space-y-2">
                 {replayEvents.map(([time, title, detail], index) => (
-                  <motion.div
+                  <div
                     key={title}
-                    className="grid grid-cols-[3.25rem_1fr] gap-3 rounded border border-white/10 bg-black/20 p-3"
-                    animate={{ borderColor: index === 2 ? ["rgba(255,255,255,0.1)", "rgba(95,242,181,0.5)", "rgba(255,255,255,0.1)"] : "rgba(255,255,255,0.1)" }}
-                    transition={{ duration: 2.6, delay: index * 0.28, repeat: Infinity }}
+                    className={`grid grid-cols-[3.25rem_1fr] gap-3 rounded border border-white/10 bg-black/20 p-3 ${index === 2 ? "hero-replay-card" : ""}`}
+                    style={index === 2 ? { animationDelay: `${index * 280}ms` } : undefined}
                   >
                     <span className="font-mono text-xs text-signal">{time}</span>
                     <span>
                       <span className="block text-sm font-semibold text-slate-100">{title}</span>
                       <span className="mt-1 block text-xs leading-5 text-slate-400">{detail}</span>
                     </span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>

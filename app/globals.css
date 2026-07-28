@@ -76,6 +76,31 @@ a {
   animation: scan 7s ease-in-out infinite;
 }
 
+.hero-radar-pulse {
+  animation: heroRadarPulse 4.8s ease-in-out infinite;
+  opacity: 0.18;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-flow-line {
+  animation: heroFlowLine 4s ease-in-out infinite;
+  opacity: 0.45;
+}
+
+.hero-node-pulse {
+  animation: heroNodePulse 2.1s ease-in-out infinite;
+  transform-box: fill-box;
+}
+
+.hero-node-pulse-strong {
+  animation-name: heroNodePulseStrong;
+}
+
+.hero-replay-card {
+  animation: heroReplayCard 2.6s ease-in-out infinite;
+}
+
 .flow-path {
   fill: none;
   stroke: url("#flow-line");
@@ -240,6 +265,65 @@ a {
 
   100% {
     transform: translateY(35%);
+  }
+}
+
+@keyframes heroRadarPulse {
+  0%,
+  100% {
+    opacity: 0.18;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 0.52;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes heroFlowLine {
+  0%,
+  100% {
+    opacity: 0.45;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    opacity: 1;
+    stroke-dashoffset: -8;
+  }
+}
+
+@keyframes heroNodePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes heroNodePulseStrong {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes heroReplayCard {
+  0%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  50% {
+    border-color: rgba(95, 242, 181, 0.5);
   }
 }
 
