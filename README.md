@@ -259,6 +259,7 @@ npm run validate:reference
 npm run validate:doctrine
 npm run validate:deployment
 npm run validate:routes
+npm run validate:viewport
 npm run validate:publishing
 npm run validate:discovery
 npm run validate:analytics
@@ -375,6 +376,7 @@ npm run validate:reference
 npm run validate:doctrine
 npm run validate:deployment
 npm run validate:routes
+npm run validate:viewport
 npm run validate:publishing
 npm run validate:discovery
 npm run validate:analytics
