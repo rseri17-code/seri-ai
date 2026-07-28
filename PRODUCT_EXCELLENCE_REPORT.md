@@ -25,6 +25,15 @@ Date: 2026-07-26
 - Validation evidence: supported-runtime `tsc --noEmit`, supported-runtime ESLint, `node scripts/validate-content.mjs`, `node scripts/validate-content-coherence.mjs`, `node scripts/validate-accessibility.mjs`, `node scripts/scan-public-safety.mjs`, `node scripts/validate-route-integrity.mjs`, `node scripts/validate-deployment-config.mjs`, `node scripts/run-evals.mjs`, `next build`, `node scripts/validate-performance.mjs`, and `git diff --check` passed.
 - Remaining reliability note: Next dev cold route compilation is still heavy in local review mode (`/` compiled in 57.9s and `/investigation-room` in 13.7s before warm responses). Production first-load budgets remain within the current validator thresholds.
 
+### Homepage Content Isolation Pass - 2026-07-28
+
+- Split homepage-only copy, profile links, selected field notes, selected patterns, builder principles, and eval count into `content/home.ts`.
+- Removed the homepage dependency on the full 2,116-line `content/site.ts` registry, keeping the public UI unchanged while reducing front-door compile coupling.
+- Measured local review improvement under the supported runtime: homepage cold dev compile improved from 57.9s to 21.1s.
+- Measured production improvement: `next build` compile phase improved from 73s to 62s while preserving the 77-route static generation result and the current home first-load JS budget of 150 kB.
+- Validation evidence: supported-runtime `tsc --noEmit`, supported-runtime ESLint, content validation, coherence validation, accessibility validation, route integrity, public-safety scan, 71/71 Ask evals, production `next build`, performance budgets, and `git diff --check` passed.
+- Remaining performance note: route module count is still high in dev mode; next optimization target is shared client graph and large interactive components, not more copy edits.
+
 ### Evidence Ledger Pass - 2026-07-28
 
 - Strengthened `/work` from a proof index into an adversarial evidence ledger.

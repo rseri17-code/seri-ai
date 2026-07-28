@@ -1,0 +1,78 @@
+import evalReportData from "./eval-report.json";
+
+export const homeProfileLinks = {
+  linkedin: "https://www.linkedin.com/in/ravikanthseri/",
+  github: "https://github.com/rseri17-code"
+};
+
+export const homeEvalReport = evalReportData;
+
+export const homeHarnessThesis = {
+  headline: "The harness is the product.",
+  statement:
+    "The real differentiator in Agentic SRE is not the model. It is the operating harness that lets a model investigate with evidence, stay inside policy, expose its reasoning, learn from outcomes, and hand control back to humans before high-risk action.",
+  loop: ["Intake", "Evidence", "Graph", "Hypothesis", "Decision", "Replay", "Outcome", "Learning"]
+};
+
+export const homeBuilderDna = {
+  title: "The operating model",
+  thesis:
+    "This is not a chatbot layer for operations. It is a harness model for systems that investigate, prove, remember, replay, self-correct, and improve.",
+  principles: [
+    {
+      name: "Deterministic first",
+      description: "Known operational paths should be reproducible before an LLM is allowed to add judgment."
+    },
+    {
+      name: "Proof-driven",
+      description: "Every conclusion needs evidence references, missing-context statements, and confidence movement."
+    },
+    {
+      name: "Bounded autonomy",
+      description: "Tool use, time, scope, and irreversible actions need explicit budgets and policy gates."
+    },
+    {
+      name: "Receipts everywhere",
+      description: "Each tool call, observation, hypothesis, and decision should leave an auditable trail."
+    }
+  ]
+};
+
+export const homeArticles = [
+  {
+    slug: "operational-intelligence-is-the-new-control-plane",
+    title: "Operational Intelligence Is the New Control Plane",
+    dek: "Why enterprises need systems that reason across signals, workflows, people, and outcomes.",
+    theme: "Operational Intelligence"
+  },
+  {
+    slug: "agentic-incident-investigation",
+    title: "Agentic Incident Investigation Without Losing Control",
+    dek: "How AI agents can accelerate enterprise investigations while keeping evidence, provenance, and accountability intact.",
+    theme: "Agentic Systems"
+  },
+  {
+    slug: "transaction-intelligence-for-complex-enterprises",
+    title: "Transaction Intelligence for Complex Enterprises",
+    dek: "Moving from isolated telemetry to transaction-aware explanations of customer and business impact.",
+    theme: "Transaction Intelligence"
+  }
+];
+
+export const homePatterns = [
+  {
+    slug: "evidence-driven-rca",
+    title: "Evidence-Driven RCA",
+    description: "Root cause analysis that keeps facts, hypotheses, and uncertainty separate."
+  },
+  {
+    slug: "transaction-journey-reconstruction",
+    title: "Transaction Journey Reconstruction",
+    description: "Rebuild the customer or business journey across systems to explain impact."
+  },
+  {
+    slug: "agentic-incident-investigation",
+    title: "Agentic Incident Investigation",
+    description: "Bounded agents that decompose investigations into inspectable steps."
+  }
+];

@@ -4,13 +4,13 @@ import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { articles, builderDna, evalReport, harnessThesis, patterns, site } from "@/content/site";
+import { homeArticles, homeBuilderDna, homeEvalReport, homeHarnessThesis, homePatterns, homeProfileLinks } from "@/content/home";
 
 const proofStrip = [
   ["Doctrine", "A falsifiable definition, boundaries, ten-layer model, glossary, and references."],
   ["Architecture", "Contracts, schemas, state machines, approval gates, and conformance levels."],
   ["Operations Room", "A public-safe investigation instrument for evidence, replay, hypotheses, and review."],
-  [`${evalReport.fixtures.length}/${evalReport.fixtures.length}`, "Deterministic Ask Ravi trust fixtures currently passing."]
+  [`${homeEvalReport.fixtures.length}/${homeEvalReport.fixtures.length}`, "Deterministic Ask Ravi trust fixtures currently passing."]
 ];
 
 const categoryContrast = [
@@ -66,7 +66,7 @@ const inspectionLedger = [
   ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "Definition, boundaries, ten layers, glossary, and claim posture."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Contracts, state machines, schemas, gates, and conformance levels."],
   ["/investigation-room", "Operations Room", "Synthetic investigation with evidence graph, replay, contradiction, missing evidence, and approval."],
-  ["/evals", "Trust Evals", `${evalReport.fixtures.length} deterministic fixtures covering grounding, refusal, routing, and citations.`],
+  ["/evals", "Trust Evals", `${homeEvalReport.fixtures.length} deterministic fixtures covering grounding, refusal, routing, and citations.`],
   ["/library", "Publishing System", "Searchable, cited, linked assets connected to framework layers, patterns, RSS, and Ask retrieval."],
   ["/work", "Builder Evidence", "Public-safe experience, systems judgment, resume proof, GitHub, LinkedIn, and current work."]
 ] as const;
@@ -164,7 +164,7 @@ export default function Home() {
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
           <TrackedAnchor
-            href={site.links.github}
+            href={homeProfileLinks.github}
             target="_blank"
             rel="noreferrer"
             eventName="profile_link_click"
@@ -174,7 +174,7 @@ export default function Home() {
             GitHub <ArrowRight size={15} />
           </TrackedAnchor>
           <TrackedAnchor
-            href={site.links.linkedin}
+            href={homeProfileLinks.linkedin}
             target="_blank"
             rel="noreferrer"
             eventName="profile_link_click"
@@ -204,14 +204,14 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Point of view" title={harnessThesis.headline}>
+      <Section eyebrow="Point of view" title={homeHarnessThesis.headline}>
         <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
           <Card className="border-signal/30 bg-signal/[0.055]">
             <BrainCircuit className="mb-5 text-signal" />
             <h3 className="text-3xl font-semibold text-white">The model is not the moat. The operating harness is.</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">{harnessThesis.statement}</p>
+            <p className="mt-4 text-lg leading-8 text-slate-300">{homeHarnessThesis.statement}</p>
             <div className="mt-6 flex flex-wrap gap-2">
-              {harnessThesis.loop.map((step) => (
+              {homeHarnessThesis.loop.map((step) => (
                 <span key={step} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase text-slate-300">
                   {step}
                 </span>
@@ -278,11 +278,11 @@ export default function Home() {
         <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <Sparkles className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">{builderDna.title}</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">{builderDna.thesis}</p>
+            <h3 className="text-3xl font-semibold text-white">{homeBuilderDna.title}</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">{homeBuilderDna.thesis}</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedAnchor
-                href={site.links.linkedin}
+                href={homeProfileLinks.linkedin}
                 target="_blank"
                 rel="noreferrer"
                 eventName="profile_link_click"
@@ -297,7 +297,7 @@ export default function Home() {
             </div>
           </Card>
           <div className="grid gap-3 md:grid-cols-2">
-            {builderDna.principles.slice(0, 4).map((principle) => (
+            {homeBuilderDna.principles.map((principle) => (
               <Card key={principle.name} className="p-4">
                 <Network className="mb-4 text-signal" />
                 <h3 className="font-semibold text-white">{principle.name}</h3>
@@ -314,7 +314,7 @@ export default function Home() {
             <ClipboardCheck className="mb-5 text-signal" />
             <h3 className="text-2xl font-semibold text-white">Latest field notes</h3>
             <div className="mt-5 grid gap-3">
-              {articles.slice(0, 3).map((article) => (
+              {homeArticles.map((article) => (
                 <Link key={article.slug} href={`/ideas/${article.slug}`} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-mint/40">
                   <p className="text-xs font-semibold uppercase text-mint">{article.theme}</p>
                   <h4 className="mt-2 font-semibold text-white">{article.title}</h4>
@@ -327,7 +327,7 @@ export default function Home() {
             <GitBranch className="mb-5 text-mint" />
             <h3 className="text-2xl font-semibold text-white">Architecture patterns</h3>
             <div className="mt-5 grid gap-3">
-              {patterns.slice(0, 3).map((pattern) => (
+              {homePatterns.map((pattern) => (
                 <Link key={pattern.slug} href={`/patterns/${pattern.slug}`} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-signal/40">
                   <h4 className="font-semibold text-white">{pattern.title}</h4>
                   <p className="mt-2 text-sm leading-6 text-slate-400">{pattern.description}</p>
