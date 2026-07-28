@@ -78,27 +78,42 @@ const falsificationTests = [
   ["Can a human stop action?", "Operational change must remain behind owner review, reversibility, and approval class."]
 ];
 
+const heroProofCells = [
+  ["Observe", "signals enter as facts"],
+  ["Graph", "evidence gets typed"],
+  ["Challenge", "contradictions stay visible"],
+  ["Approve", "action waits for humans"]
+];
+
 export default function Home() {
   return (
     <>
       <section className="grid-bg border-b border-white/10">
-        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-7 sm:px-6 sm:py-10 lg:min-h-[90vh] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:px-6 sm:py-8 lg:min-h-[90vh] lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div>
-            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
+            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Operational Intelligence, under test
+              Operational Intelligence reference system
             </div>
-            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.03] text-white sm:text-5xl md:text-6xl">
-              Dashboards show symptoms. Chatbots explain fragments. Operations need evidence they can trust.
+            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
+              An evidence control plane for AI-native operations.
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200 md:text-2xl md:leading-10">
-              seri.ai is Ravikanth Seri&apos;s public operating model for AI-native incident investigation: signals become typed evidence, evidence becomes competing hypotheses, and hypotheses become reviewable decisions.
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
+              seri.ai turns incident signals into typed evidence, competing hypotheses, replayable decision packets, and human-approved action boundaries.
             </p>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
-              The point is not to make operations sound intelligent. The point is to make operational reasoning inspectable enough that another engineer can challenge it, replay it, and decide whether to trust it.
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
+              Built by Ravikanth Seri as a public body of work for engineers who want operational AI to be inspectable, replayable, falsifiable, and safe to challenge.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:hidden">
+              {heroProofCells.map(([step, proof]) => (
+                <div key={step} className="rounded border border-white/10 bg-black/25 p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">{step}</p>
+                  <p className="mt-1 text-xs leading-5 text-slate-300">{proof}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-7 flex flex-wrap gap-3">
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
                 Run the investigation <ArrowRight size={18} />
               </TrackedLink>
