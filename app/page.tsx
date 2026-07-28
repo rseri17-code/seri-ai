@@ -85,6 +85,12 @@ const heroProofCells = [
   ["Approve", "action waits for humans"]
 ];
 
+const heroBuilderProof = [
+  ["Operating base", "15+ years across distributed enterprise systems"],
+  ["AI systems", "production agent architecture, evaluation, and runtime governance"],
+  ["Reliability lens", "observability, Kubernetes, identity, and incident workflows"]
+];
+
 export default function Home() {
   return (
     <>
@@ -105,6 +111,14 @@ export default function Home() {
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
               Built by Ravikanth Seri as a public body of work for engineers who want operational AI to be inspectable, replayable, falsifiable, and safe to challenge.
             </p>
+            <div className="mt-5 hidden gap-2 lg:grid lg:grid-cols-3">
+              {heroBuilderProof.map(([label, proof]) => (
+                <div key={label} className="rounded border border-white/10 bg-black/25 p-3">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-signal">{label}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-300">{proof}</p>
+                </div>
+              ))}
+            </div>
             <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:hidden">
               {heroProofCells.map(([step, proof]) => (
                 <div key={step} className="rounded border border-white/10 bg-black/25 p-3">

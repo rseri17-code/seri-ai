@@ -105,6 +105,29 @@ const operatingStandards: Array<{ title: string; body: string; Icon: LucideIcon 
   }
 ];
 
+const operatingArc = [
+  {
+    period: "2008-2022",
+    title: "Operated and modernized enterprise platforms",
+    body: "Middleware, identity, infrastructure, distributed systems, automation, and production support formed the operational base."
+  },
+  {
+    period: "2022-2025",
+    title: "Connected reliability, identity, Kubernetes, and observability",
+    body: "Modernization work connected platform reliability, telemetry correlation, migration discipline, and automation at enterprise scale."
+  },
+  {
+    period: "2025-now",
+    title: "Turned operational experience into governed AI systems",
+    body: "The current focus is production AI-assisted operations: bounded agents, evaluation, replay, observability, retrieval, and human review."
+  },
+  {
+    period: "public work",
+    title: "Published the operating model as inspectable artifacts",
+    body: "Doctrine, reference architecture, Operations Room, evals, evidence pack, and Ask Ravi make the thesis reviewable without confidential systems, logs, screenshots, or architecture."
+  }
+];
+
 const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }> = [
   {
     title: "Systems",
@@ -176,6 +199,18 @@ export default function WorkPage() {
             This page is the credibility surface. It connects Ravikanth&apos;s public work to a single thesis: Operational Intelligence as a public-safe, inspectable operating model for Agentic SRE, evidence-backed reasoning, eval-gated action, and compounding operational memory.
           </p>
         </Card>
+      </Section>
+
+      <Section eyebrow="Operating arc" title="The thesis comes from operating systems before asking AI to reason about them.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {operatingArc.map((item) => (
+            <Card key={item.period} className="h-full p-5">
+              <p className="font-mono text-sm text-mint">{item.period}</p>
+              <h2 className="mt-4 text-xl font-semibold leading-7 text-white">{item.title}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
+            </Card>
+          ))}
+        </div>
       </Section>
 
       <Section eyebrow="Proof ledger" title="The serious question is not what exists. It is what each artifact proves.">
