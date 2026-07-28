@@ -110,6 +110,7 @@ for (const key of ["NEXT_PUBLIC_SITE_URL", "NEXT_PUBLIC_POSTHOG_KEY", "SUPABASE_
 expect(readme.includes("Without model or database keys, `/ask` runs with the local approved-content fallback"), "README.md missing optional-service fallback note");
 expect(readme.includes("Static generation is tuned for content-heavy reference routes"), "README.md missing static generation reliability note");
 expect(readme.includes("OPERATIONS_RUNBOOK.md"), "README.md missing operations runbook link");
+expect(readme.includes("WORLD_CLASS_SCORECARD.md"), "README.md missing world-class scorecard link");
 
 const operationsRunbook = read("OPERATIONS_RUNBOOK.md");
 for (const required of [
@@ -131,6 +132,27 @@ for (const required of [
   "git diff --check"
 ]) {
   expect(operationsRunbook.includes(required), `OPERATIONS_RUNBOOK.md missing "${required}"`);
+}
+
+const scorecard = read("WORLD_CLASS_SCORECARD.md");
+for (const required of [
+  "Current Evidence",
+  "Prioritized Backlog",
+  "Completion Rule",
+  "Content authority",
+  "Technical depth",
+  "UX and visual quality",
+  "Ask Ravi usefulness and safety",
+  "Accessibility",
+  "Performance",
+  "SEO and discovery",
+  "Reliability and SRE maturity",
+  "Security and privacy",
+  "Maintainability",
+  "Mobile experience",
+  "Do not call seri.ai complete because a build passes"
+]) {
+  expect(scorecard.includes(required), `WORLD_CLASS_SCORECARD.md missing "${required}"`);
 }
 
 const contentSource = read("lib/content.ts");

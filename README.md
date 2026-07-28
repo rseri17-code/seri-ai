@@ -392,6 +392,10 @@ npm run build
 
 Use `OPERATIONS_RUNBOOK.md` for beta SLO targets, safe telemetry fields, Ask Ravi alert signals, incident response, rollback, and release-candidate checks.
 
+## World-Class Scorecard
+
+Use `WORLD_CLASS_SCORECARD.md` to track current evidence, gaps, and the prioritized backlog for moving seri.ai toward a world-class technical publication and engineering portfolio. Do not treat isolated feature completion or a green build as proof that the product has reached the final bar.
+
 ## Deployment
 
 Deploy to Vercel:
