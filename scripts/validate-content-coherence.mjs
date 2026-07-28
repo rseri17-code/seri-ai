@@ -466,6 +466,10 @@ for (const required of [
 }
 
 const betaFeedback = fs.readFileSync(path.join(root, "components", "beta-feedback.tsx"), "utf8");
+const betaFeedbackForm = fs.readFileSync(path.join(root, "components", "beta-feedback-form.tsx"), "utf8");
+for (const required of ["dynamic(", "beta-feedback-form", "beta_feedback_toggle"]) {
+  expect(betaFeedback.includes(required), `BetaFeedback missing lazy toggle contract: ${required}`);
+}
 for (const required of [
   "const [isSubmitting",
   "setIsSubmitting(true)",
@@ -474,7 +478,7 @@ for (const required of [
   "disabled={isSubmitting}",
   "Sending feedback..."
 ]) {
-  expect(betaFeedback.includes(required), `BetaFeedback missing resilient submit contract: ${required}`);
+  expect(betaFeedbackForm.includes(required), `BetaFeedbackForm missing resilient submit contract: ${required}`);
 }
 
 const evalsPage = fs.readFileSync(path.join(root, "app", "evals", "page.tsx"), "utf8");

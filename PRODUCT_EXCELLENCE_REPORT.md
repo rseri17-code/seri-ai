@@ -34,6 +34,15 @@ Date: 2026-07-26
 - Validation evidence: supported-runtime `tsc --noEmit`, supported-runtime ESLint, content validation, coherence validation, accessibility validation, route integrity, public-safety scan, 71/71 Ask evals, production `next build`, performance budgets, and `git diff --check` passed.
 - Remaining performance note: route module count is still high in dev mode; next optimization target is shared client graph and large interactive components, not more copy edits.
 
+### Lazy Beta Feedback Pass - 2026-07-28
+
+- Split the beta feedback surface into a small always-visible toggle and a lazy-loaded `BetaFeedbackForm`.
+- Removed the layout-level dependency on the form body and `MessageSquare` icon while preserving the same non-intrusive beta feedback workflow and privacy-safe analytics events.
+- Updated coherence validation to require the lazy toggle contract and resilient form-submit contract separately.
+- Measured production build improvement: compile phase improved from 62s to 32.6s while preserving 77 generated routes and current first-load JS budgets.
+- Browser smoke on local production server verified the feedback form is absent before click, appears after clicking `Beta feedback`, and introduces no horizontal overflow.
+- Validation evidence: supported-runtime `tsc --noEmit`, supported-runtime ESLint, coherence validation, accessibility validation, analytics validation, route integrity, public-safety scan, 71/71 Ask evals, production `next build`, performance budgets, and browser smoke passed.
+
 ### Evidence Ledger Pass - 2026-07-28
 
 - Strengthened `/work` from a proof index into an adversarial evidence ledger.
