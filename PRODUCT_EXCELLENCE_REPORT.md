@@ -11,6 +11,12 @@ Date: 2026-07-26
 - Added coherence validation so the Work page keeps a falsifiable review posture instead of drifting into promotional portfolio copy.
 - This moves the product closer to the standard: "What evidence would convince another experienced engineer that this model is useful?"
 
+### Lint Release Hygiene Pass - 2026-07-28
+
+- Migrated `npm run lint` from the deprecated `next lint` wrapper to the ESLint CLI.
+- Replaced the legacy `.eslintrc.json` with `eslint.config.mjs` using the installed Next.js Core Web Vitals and TypeScript config through ESLint flat-config compatibility.
+- Removed the release-warning source so lint can remain part of the beta checklist without carrying known framework deprecation debt.
+
 ### Build Stability Pass - 2026-07-28
 
 - Added explicit Next.js static generation settings for content-heavy reference routes: 180-second static generation timeout, conservative concurrency, and controlled retry count.
@@ -110,7 +116,7 @@ Date: 2026-07-26
 3. Connect live PostHog/Vercel Ask observability dashboards to the metadata contract: latency buckets, failure rate, source count, refusal category, answer mode, retrieval mode, and cost-safe metadata without prompt capture.
 4. Add practitioner review evidence for the doctrine and reference architecture.
 5. Add measured comparison artifacts: dashboard-only versus chatbot-only versus Operational Intelligence workflow on OI-ROOM-001.
-6. Migrate deprecated `next lint` to ESLint CLI.
+6. Add live production telemetry evidence for route availability, Ask failure rate, answer modes, retrieval modes, and source-count distribution.
 
 ## Baseline Product Deficiencies
 
@@ -196,7 +202,7 @@ No confidential employer product names, private system names, internal logs, scr
 - `npm run validate:contracts` — passed
 - `npm run evals` — 66 fixtures passing with answer-shape, reference-routing, public-proof, claim-discipline, credibility, minimum-conformance, and technical-review path checks
 - `npm run typecheck` — passed
-- `npm run lint` — passed with Next.js lint deprecation warning
+- `npm run lint` — passed
 - `npm run validate:links` — passed across 88 files
 - `npm run scan:public-safety` — passed across 119 files
 - `npm test` — passed
@@ -217,7 +223,7 @@ No confidential employer product names, private system names, internal logs, scr
 
 - Ask model-based evaluation is still not enabled; deterministic checks now cover public-safety, routing, and reference-asset behavior.
 - The doctrine/reference system is much stronger, but it still needs practitioner review, independent implementation feedback, baseline comparisons, and real-world evidence before claiming full category authority.
-- `next lint` is deprecated and should eventually be migrated to ESLint CLI.
+- Live production telemetry and practitioner review evidence are still needed before claiming mature public authority.
 
 ## Final Launch Verdict
 

@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "npm run validate:content && npm run validate:coherence && npm run validate:contracts && npm run validate:reference && npm run validate:doctrine && npm run validate:deployment && npm run validate:routes && npm run validate:publishing && npm run validate:discovery && npm run validate:retrieval && npm run validate:analytics && npm run validate:api && npm run validate:a11y && npm run evals && next build && npm run validate:performance",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "test": "npm run validate:content && npm run validate:coherence && npm run validate:contracts && npm run validate:reference && npm run validate:doctrine && npm run validate:deployment && npm run validate:routes && npm run validate:publishing && npm run validate:discovery && npm run validate:retrieval && npm run validate:analytics && npm run validate:api && npm run validate:a11y && npm run evals && npm run typecheck",
     "typecheck": "tsc --noEmit",
     "validate:content": "node scripts/validate-content.mjs",

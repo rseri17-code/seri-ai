@@ -21,10 +21,6 @@ function lineFor(text, index) {
   return text.slice(0, index).split("\n").length;
 }
 
-function compact(value) {
-  return value.replace(/\s+/g, " ").trim();
-}
-
 const pageFiles = walk(path.join(root, "app")).filter((file) => file.endsWith("page.tsx"));
 const componentFiles = walk(path.join(root, "components")).filter((file) => file.endsWith(".tsx"));
 const tsxFiles = [...pageFiles, ...componentFiles];

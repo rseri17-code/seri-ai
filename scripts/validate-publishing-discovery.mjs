@@ -71,6 +71,7 @@ const rssGuids = extractTags(rss, "guid");
 expect(rss.startsWith("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"), "RSS feed missing XML declaration");
 expect(rss.includes("<rss version=\"2.0\">"), "RSS feed missing rss version");
 expect(rssItems.length === Math.min(50, assets.length), `RSS contains ${rssItems.length} items, expected ${Math.min(50, assets.length)}`);
+expect(rssLinks.length >= rssItems.length, "RSS feed missing item links");
 expect(new Set(rssGuids).size === rssGuids.length, "RSS feed contains duplicate guid values");
 expect(rss.includes("Operational Intelligence field notes, patterns, artifacts, and product updates."), "RSS feed missing channel description");
 
