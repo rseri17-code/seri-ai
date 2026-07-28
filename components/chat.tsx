@@ -29,7 +29,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Ask a public-safe question about Ravikanth Seri's work. I will answer from approved public sources, cite the receipts, name uncertainty, and route you to the strongest artifact. Ask Ravi is an AI assistant, not Ravikanth personally.";
+      : "Ask how Operational Intelligence works, what OI-ROOM-001 proves, or where Ravikanth Seri's public evidence lives. I will cite sources, separate evidence from inference, and stop when the record is thin.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -127,9 +127,9 @@ export function Chat({
           "How does Ravikanth think about Operational Intelligence?"
         ]);
   const operatingReceipts: Array<[string, string]> = [
-    ["Retrieve", responseMeta?.retrieval_mode ?? (sources.length ? "public sources" : "local + vector")],
+    ["Retrieve", responseMeta?.retrieval_mode ?? (sources.length ? "sources" : "local/vector")],
     ["Ground", sources.length ? `${sources.length} sources` : "awaiting query"],
-    ["Boundary", "public-safe"],
+    ["Boundary", "public"],
     ["Release", isLoading ? "evaluating" : responseMeta?.answer_mode ?? "ready"]
   ];
   const responseChecks: Array<[string, boolean]> = [
@@ -147,21 +147,21 @@ export function Chat({
             <div className="flex items-center gap-3">
               <ProfileMark size="sm" />
               <div>
-                <p className="text-xs font-semibold uppercase text-slate-500">Ask Ravi</p>
-                <h2 className="text-xl font-semibold text-white">Ask about the person, the work, and the operating model.</h2>
+                <p className="text-xs font-semibold uppercase text-slate-500">Evidence interface</p>
+                <h2 className="text-xl font-semibold text-white">Question the doctrine, the artifact, and the builder proof.</h2>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 xl:w-[34rem]">
               {operatingReceipts.map(([label, value]) => (
                 <div key={label} className="rounded border border-white/10 bg-white/[0.04] px-3 py-2">
                   <p className="text-[0.66rem] font-semibold uppercase text-slate-500">{label}</p>
-                  <p className="mt-1 truncate font-mono text-xs text-mint">{value}</p>
+                  <p className="mt-1 font-mono text-[0.72rem] leading-4 text-mint">{value}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
-        <div className="h-[190px] space-y-4 overflow-y-auto p-4 md:h-[420px]">
+        <div className="h-[165px] space-y-4 overflow-y-auto p-4 md:h-[320px]">
           {messages.map((message, index) => (
             <div key={`${message.role}-${index}`} className={message.role === "user" ? "flex justify-end" : "flex justify-start"}>
               <div
@@ -194,7 +194,7 @@ export function Chat({
             className="min-w-0 flex-1 rounded border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-mint/60"
             value={input}
             onChange={(event) => setInput(event.target.value)}
-            aria-label="Ask Ravi, an AI assistant, a public-safe question"
+            aria-label="Ask a question about Ravikanth Seri's public work"
             placeholder="Ask about Ravikanth, his work, Operational Intelligence, projects, or background..."
           />
           <button className="grid h-12 w-12 place-items-center rounded bg-mint text-ink" type="submit" aria-label="Send message">
@@ -219,7 +219,7 @@ export function Chat({
             ))}
           </div>
           <p className="mt-4 text-xs leading-5 text-slate-400">
-            Ask Ravi is an AI assistant, not Ravikanth personally. Strong answers cite public sources, name uncertainty, and avoid claims the public evidence cannot support.
+            This interface answers from Ravikanth Seri&apos;s public materials. Strong answers cite sources, name uncertainty, and stop when the evidence stops.
           </p>
         </div>
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">

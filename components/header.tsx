@@ -28,7 +28,7 @@ export function Header() {
       <nav aria-label="Primary navigation">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <Link href="/" aria-label="seri.ai home" className="flex min-w-0 items-center gap-3">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-mint/40 bg-mint/10 font-semibold text-mint shadow-[0_0_22px_rgba(95,242,181,0.16)]">
+            <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-mint/40 bg-mint/10 font-semibold text-mint shadow-[0_0_22px_rgba(95,242,181,0.16)]">
               s
             </span>
             <span className="min-w-0">
