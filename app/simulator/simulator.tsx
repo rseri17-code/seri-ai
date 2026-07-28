@@ -679,7 +679,7 @@ export function IncidentSimulator() {
               Operational Intelligence Operations Room
             </div>
             <h2 className="mt-3 max-w-5xl text-3xl font-semibold text-white md:text-5xl">Do the investigation before the narrative hardens.</h2>
-            <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
+            <p className="mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 sm:block md:text-lg md:leading-8">
               This room keeps the system honest: facts stay separate from inference, weak evidence remains visible,
               confidence moves only when receipts support it, and action waits for a human owner.
             </p>

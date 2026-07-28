@@ -99,6 +99,26 @@ for (const contract of routeContracts) {
   expect(!source.includes("min-w-[100vw]"), `${contract.route}: ${contract.file} should avoid viewport min-width because it commonly causes mobile overflow`);
 }
 
+const homePage = read("app/page.tsx");
+expect(
+  homePage.indexOf("Run the investigation") < homePage.indexOf("The work is public-safe by design"),
+  "/: homepage primary CTAs must render before the public-safety explanatory paragraph so mobile visitors see an action in the first viewport"
+);
+
+const simulatorPage = read("app/simulator/page.tsx");
+for (const required of [
+  "hidden items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white sm:inline-flex",
+  "hidden rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white sm:inline-flex"
+]) {
+  expect(simulatorPage.includes(required), `/investigation-room: app/simulator/page.tsx missing mobile secondary-link suppression contract "${required}"`);
+}
+
+const simulator = read("app/simulator/simulator.tsx");
+expect(
+  simulator.includes("mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 sm:block"),
+  "/investigation-room: mobile first viewport should prioritize the live investigation graph over explanatory intro copy"
+);
+
 const globalCss = read("app/globals.css");
 for (const required of [
   "@media (prefers-reduced-motion: reduce)",

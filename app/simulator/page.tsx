@@ -33,13 +33,13 @@ export default function SimulatorPage() {
               <Link href={`/ask?prompt=${encodeURIComponent(caseAskPrompt)}`} className="inline-flex items-center gap-2 rounded bg-mint px-4 py-2 text-sm font-semibold text-ink">
                 Ask Ravi <ArrowRight size={18} />
               </Link>
-              <Link href="/wiki/operational-intelligence-publication-pack" className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white">
+              <Link href="/wiki/operational-intelligence-publication-pack" className="hidden items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white sm:inline-flex">
                 Review packet <FileText size={16} />
               </Link>
-              <Link href="/downloads/oi-room-001-printable-walkthrough.pdf" className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white">
+              <Link href="/downloads/oi-room-001-printable-walkthrough.pdf" className="hidden items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white sm:inline-flex">
                 Walkthrough PDF <FileText size={16} />
               </Link>
-              <Link href="/ideas/incident-investigation-as-a-product-experience" className="rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white">
+              <Link href="/ideas/incident-investigation-as-a-product-experience" className="hidden rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white sm:inline-flex">
                 Read the essay
               </Link>
             </div>

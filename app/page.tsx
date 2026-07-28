@@ -115,6 +115,17 @@ export default function Home() {
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
               seri.ai is where Ravikanth Seri develops Operational Intelligence: a disciplined way to turn signals into evidence, evidence into hypotheses, hypotheses into reviewable decisions, and decisions into operational memory.
             </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+                Run the investigation <ArrowRight size={18} />
+              </TrackedLink>
+              <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+                Read Doctrine
+              </TrackedLink>
+              <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "review_work" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
+                Review Work
+              </TrackedLink>
+            </div>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
               The work is public-safe by design: no internal employer product names, confidential projects, private screenshots, logs, dashboards, or proprietary architectures. Only approved public content, synthetic cases, and reusable engineering doctrine.
             </p>
@@ -144,17 +155,6 @@ export default function Home() {
                   <p className="mt-1 text-xs leading-5 text-slate-300">{proof}</p>
                 </div>
               ))}
-            </div>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Run the investigation <ArrowRight size={18} />
-              </TrackedLink>
-              <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
-                Read Doctrine
-              </TrackedLink>
-              <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "review_work" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Review Work
-              </TrackedLink>
             </div>
             </div>
             <div className="lg:self-center">
