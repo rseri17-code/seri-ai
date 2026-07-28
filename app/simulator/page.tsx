@@ -6,7 +6,7 @@ import { operationalIntelligenceSystem } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Operations Room | seri.ai",
-  description: "A public-safe Operational Intelligence workbench for OI-ROOM-001: evidence graph, hypothesis lifecycle, replay, evaluation gates, and human approval."
+  description: "A public-safe Operational Intelligence investigation instrument for OI-ROOM-001: evidence graph, hypothesis lifecycle, replay, evaluation gates, and human approval."
 };
 
 const caseAskPrompt = "Explain the OI-ROOM-001 case using the Operational Intelligence layers.";
@@ -22,10 +22,11 @@ export default function SimulatorPage() {
                 <ShieldCheck size={16} />
                 Signature artifact
               </div>
-              <h1 className="text-3xl font-semibold text-white md:text-5xl">Operational Intelligence Operations Room</h1>
+              <h1 className="text-3xl font-semibold text-white md:text-5xl">Operations Room for evidence-backed decisions</h1>
               <p className="mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 sm:block">
-                A public-safe investigation workbench for evidence-backed Agentic SRE. Run {operationalIntelligenceSystem.caseId},
-                replay evidence, compare branches, inspect eval gates, export the RCA packet, and keep irreversible action behind human review.
+                Run {operationalIntelligenceSystem.caseId} as a controlled investigation: reconstruct the transaction path,
+                preserve contradiction, expose missing evidence, compare hypotheses, inspect eval gates, export the decision packet,
+                and keep operational change behind accountable human approval.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">

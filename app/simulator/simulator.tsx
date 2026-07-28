@@ -670,10 +670,10 @@ export function IncidentSimulator() {
               <Sparkles size={14} />
               Operational Intelligence Operations Room
             </div>
-            <h2 className="mt-3 max-w-5xl text-3xl font-semibold text-white md:text-5xl">Investigate, evaluate, and gate operational action.</h2>
+            <h2 className="mt-3 max-w-5xl text-3xl font-semibold text-white md:text-5xl">Do the investigation before the narrative hardens.</h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
-              A public-safe operations room for evidence intake, transaction replay, hypothesis ranking,
-              branch comparison, human review, release gating, and reusable operational memory.
+              This room keeps the system honest: facts stay separate from inference, weak evidence remains visible,
+              confidence moves only when receipts support it, and action waits for a human owner.
             </p>
             <div className="mt-5 rounded-lg border border-mint/20 bg-black/25 p-3 shadow-[0_0_40px_rgba(95,242,181,0.08)]">
               <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">

@@ -4,6 +4,16 @@ Date: 2026-07-26
 
 ## Iteration Update - 2026-07-27
 
+### Front Door Thesis Pass - 2026-07-28
+
+- Reframed the homepage around a sharper public thesis: dashboards show symptoms, chatbots explain fragments, but operations need evidence they can trust.
+- Added an above-the-fold falsification bar so the first artifact is judged by contradiction handling, missing-evidence honesty, replayability, and human action control.
+- Added a category-boundary comparison across dashboard, chatbot, ticket queue, and Operational Intelligence modes.
+- Tightened Operations Room entry copy from a generic workbench description into an investigation instrument: facts remain separate from inference, weak evidence remains visible, confidence moves from receipts, and action waits for a human owner.
+- Updated `npm run dev` to bind to `127.0.0.1` so local review avoids the observed `0.0.0.0:3000` permission failure.
+- Validation evidence: `node scripts/validate-content.mjs`, `node scripts/validate-content-coherence.mjs`, `node scripts/validate-accessibility.mjs`, `node scripts/scan-public-safety.mjs`, `node scripts/validate-route-integrity.mjs`, and `git diff --check` passed.
+- Validation limitation: `npm run typecheck` and `npm run lint` were stopped after extended no-output runs in the local environment. No diagnostics were emitted before stopping; they need a fresh verification pass before release claims.
+
 ### Evidence Ledger Pass - 2026-07-28
 
 - Strengthened `/work` from a proof index into an adversarial evidence ledger.

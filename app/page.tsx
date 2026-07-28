@@ -7,10 +7,17 @@ import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
 import { articles, builderDna, evalReport, harnessThesis, patterns, site } from "@/content/site";
 
 const proofStrip = [
-  ["Doctrine", "Canonical definition, boundaries, ten-layer model, glossary, and references."],
-  ["Architecture", "Contracts, schemas, state machines, evaluation gates, and conformance levels."],
-  ["Operations Room", "A public-safe investigation artifact for evidence, replay, hypotheses, and review."],
+  ["Doctrine", "A falsifiable definition, boundaries, ten-layer model, glossary, and references."],
+  ["Architecture", "Contracts, schemas, state machines, approval gates, and conformance levels."],
+  ["Operations Room", "A public-safe investigation instrument for evidence, replay, hypotheses, and review."],
   [`${evalReport.fixtures.length}/${evalReport.fixtures.length}`, "Deterministic Ask Ravi trust fixtures currently passing."]
+];
+
+const categoryContrast = [
+  ["Dashboard", "Shows the symptom", "Useful for detection; weak at preserving reasoning, uncertainty, and action provenance."],
+  ["Chatbot", "Explains a fragment", "Useful for language; risky when retrieval, evidence, refusal, and approval boundaries are thin."],
+  ["Ticket queue", "Tracks the work", "Useful for coordination; weak at reconstructing transaction evidence and causal movement."],
+  ["Operational Intelligence", "Produces a reviewable decision", "Connects signal, transaction, topology, evidence, memory, evaluation, and human judgment."]
 ];
 
 const primaryPaths = [
@@ -64,6 +71,13 @@ const inspectionLedger = [
   ["/work", "Builder Evidence", "Public-safe experience, systems judgment, resume proof, GitHub, LinkedIn, and current work."]
 ] as const;
 
+const falsificationTests = [
+  ["Can it preserve contradiction?", "A serious system must show evidence that weakens its preferred explanation."],
+  ["Can it say what is missing?", "Unknowns must remain explicit instead of being turned into confident narrative."],
+  ["Can another team replay it?", "The investigation should leave enough context to reproduce the reasoning path."],
+  ["Can a human stop action?", "Operational change must remain behind owner review, reversibility, and approval class."]
+];
+
 export default function Home() {
   return (
     <>
@@ -73,20 +87,20 @@ export default function Home() {
             <div>
             <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Evidence-to-decision operating model
+              Operational Intelligence, under test
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.03] text-white sm:text-5xl md:text-6xl">
-              See how an AI-native operation should reason.
+              Dashboards show symptoms. Chatbots explain fragments. Operations need evidence they can trust.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200 md:text-2xl md:leading-10">
-              Operational Intelligence turns signals, transactions, topology, evidence, memory, evaluation, and operator judgment into decisions a serious enterprise can inspect.
+              seri.ai is Ravikanth Seri&apos;s public operating model for AI-native incident investigation: signals become typed evidence, evidence becomes competing hypotheses, and hypotheses become reviewable decisions.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
-              Start with OI-ROOM-001: a public-safe synthetic investigation that preserves contradictory evidence, missing context, hypothesis movement, replay, eval gates, and human approval before action.
+              The point is not to make operations sound intelligent. The point is to make operational reasoning inspectable enough that another engineer can challenge it, replay it, and decide whether to trust it.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Inspect OI-ROOM-001 <ArrowRight size={18} />
+                Run the investigation <ArrowRight size={18} />
               </TrackedLink>
               <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
                 Read Doctrine
@@ -101,14 +115,9 @@ export default function Home() {
             </div>
           </div>
           <div className="rounded-lg border border-white/10 bg-black/25 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">What the first artifact proves</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">The minimum bar</p>
             <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                ["Observation", "What happened without premature cause."],
-                ["Inference", "Which hypotheses gained or lost support."],
-                ["Fact", "What survived evidence, contradiction, and review."],
-                ["Action", "What remains gated by accountable human approval."]
-              ].map(([value, label]) => (
+              {falsificationTests.map(([value, label]) => (
                 <div key={value} className="rounded border border-white/10 bg-white/[0.04] p-3">
                   <p className="font-semibold text-white">{value}</p>
                   <p className="mt-2 text-xs leading-5 text-slate-400">{label}</p>
@@ -127,7 +136,19 @@ export default function Home() {
         </div>
       </section>
 
-      <Section eyebrow="Inspection ledger" title="The first promise is that the work can be inspected.">
+      <Section eyebrow="Category boundary" title="Operational Intelligence begins where observation alone stops being enough.">
+        <div className="grid gap-3 lg:grid-cols-4">
+          {categoryContrast.map(([mode, promise, limitation]) => (
+            <Card key={mode} className={`h-full p-4 ${mode === "Operational Intelligence" ? "border-mint/35 bg-mint/[0.055]" : ""}`}>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{mode}</p>
+              <h2 className="mt-3 text-xl font-semibold text-white">{promise}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{limitation}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Inspection ledger" title="The work earns trust only if it can be inspected.">
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {inspectionLedger.map(([href, title, body]) => (
             <Link key={href} href={href}>
