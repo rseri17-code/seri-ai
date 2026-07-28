@@ -95,13 +95,20 @@ for (const header of ["X-Content-Type-Options", "Referrer-Policy", "Permissions-
 }
 
 const nextConfig = read("next.config.ts");
-expect(nextConfig.includes("const nextConfig: NextConfig = {}"), "next.config.ts should remain minimal unless a production need is introduced");
+for (const required of [
+  "staticPageGenerationTimeout: 180",
+  "staticGenerationMaxConcurrency: 4",
+  "staticGenerationRetryCount: 1"
+]) {
+  expect(nextConfig.includes(required), `next.config.ts missing production build stability setting ${required}`);
+}
 
 const readme = read("README.md");
 for (const key of ["NEXT_PUBLIC_SITE_URL", "NEXT_PUBLIC_POSTHOG_KEY", "SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "OPENAI_API_KEY", "ANTHROPIC_API_KEY", "ADMIN_TOKEN"]) {
   expect(readme.includes(key), `README.md missing environment variable ${key}`);
 }
 expect(readme.includes("Without model or database keys, `/ask` runs with the local approved-content fallback"), "README.md missing optional-service fallback note");
+expect(readme.includes("Static generation is tuned for content-heavy reference routes"), "README.md missing static generation reliability note");
 expect(readme.includes("OPERATIONS_RUNBOOK.md"), "README.md missing operations runbook link");
 
 const operationsRunbook = read("OPERATIONS_RUNBOOK.md");
@@ -119,6 +126,7 @@ for (const required of [
   "latency_ms",
   "server_latency_ms",
   "npm run build",
+  "static generation timeout",
   "npm test",
   "git diff --check"
 ]) {

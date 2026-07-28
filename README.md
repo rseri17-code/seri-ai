@@ -167,6 +167,8 @@ Required for full production behavior:
 
 Without model or database keys, `/ask` runs with the local approved-content fallback so the app remains locally inspectable.
 
+Static generation is tuned for content-heavy reference routes. `next.config.ts` keeps prerender concurrency conservative and extends the static generation timeout so release builds do not depend on retry behavior when the wiki, RSS, sitemap, and image routes grow.
+
 ## Publishing Workflow
 
 Publishing is now the primary workflow:

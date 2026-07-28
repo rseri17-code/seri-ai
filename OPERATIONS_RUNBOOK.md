@@ -63,7 +63,7 @@ Investigate when any of these move above normal baseline:
 - `source_count=0` rises for non-refusal categories.
 - `category=public_safety_boundary` rises unexpectedly.
 - `/api/contact` returns failures or contact persistence is unavailable longer than intended.
-- `npm run build` emits static-generation retry warnings.
+- `npm run build` emits static-generation retry warnings despite the configured static generation timeout and conservative prerender concurrency.
 - `npm run scan:public-safety`, `npm run evals`, or `npm run validate:analytics` fails.
 
 ## Incident Response
