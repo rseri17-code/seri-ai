@@ -60,21 +60,29 @@ const proofLedger = [
   {
     claim: "Ravikanth is building an operating model, not a resume site.",
     evidence: "Doctrine, Reference Architecture, Evidence Pack, Publication Pack",
+    inspect: "Read the definition, boundaries, ten layers, claim posture, glossary, and reference architecture handoff.",
+    weakens: "If the doctrine cannot distinguish itself from observability, AIOps, SRE, ITIL, incident command, knowledge graphs, and AI evaluation.",
     href: "/wiki/operational-intelligence-canonical-doctrine"
   },
   {
     claim: "The thesis is inspectable through a working public-safe artifact.",
     evidence: "Operations Room and OI-ROOM-001 walkthrough",
+    inspect: "Run the synthetic investigation and check whether evidence, contradiction, missing context, hypotheses, eval gates, and approval stay visible.",
+    weakens: "If the room behaves like a scripted dashboard instead of an evidence-to-decision workflow.",
     href: "/investigation-room"
   },
   {
     claim: "The AI surface is bounded by citations, refusals, and deterministic trust fixtures.",
     evidence: `Ask Ravi and ${evalReport.fixtures.length} passing public trust evals`,
+    inspect: "Review citation, refusal, routing, unknown-question, confidential-boundary, and prompt-injection fixtures.",
+    weakens: "If Ask Ravi answers unsupported questions confidently or stores private prompt text in analytics.",
     href: "/evals"
   },
   {
     claim: "The body of work connects engineering taste to professional proof.",
     evidence: "Projects, patterns, resume, public profiles, and background",
+    inspect: "Trace capabilities from the resume into public artifacts, patterns, reference assets, GitHub, LinkedIn, and the Operations Room.",
+    weakens: "If the portfolio becomes disconnected project inventory instead of a coherent operating philosophy.",
     href: "/background"
   }
 ];
@@ -183,6 +191,16 @@ export default function WorkPage() {
                     <h2 className="text-xl font-semibold text-white">{item.claim}</h2>
                     <p className="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-signal">Evidence</p>
                     <p className="mt-2 text-sm leading-6 text-slate-300">{item.evidence}</p>
+                    <div className="mt-4 grid gap-3">
+                      <div className="rounded border border-mint/20 bg-mint/[0.045] p-3">
+                        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-mint">What to inspect</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-200">{item.inspect}</p>
+                      </div>
+                      <div className="rounded border border-amber/20 bg-amber/[0.045] p-3">
+                        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-amber">What would weaken it</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-200">{item.weakens}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Card>

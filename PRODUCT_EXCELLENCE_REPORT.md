@@ -4,6 +4,19 @@ Date: 2026-07-26
 
 ## Iteration Update - 2026-07-27
 
+### Evidence Ledger Pass - 2026-07-28
+
+- Strengthened `/work` from a proof index into an adversarial evidence ledger.
+- Each primary claim now includes evidence, what a serious reviewer should inspect, and what would weaken the claim.
+- Added coherence validation so the Work page keeps a falsifiable review posture instead of drifting into promotional portfolio copy.
+- This moves the product closer to the standard: "What evidence would convince another experienced engineer that this model is useful?"
+
+### Build Stability Pass - 2026-07-28
+
+- Added explicit Next.js static generation settings for content-heavy reference routes: 180-second static generation timeout, conservative concurrency, and controlled retry count.
+- Updated deployment validation and documentation so this build behavior is intentional and release-reviewable.
+- Measured result: `npm run build` generated all 77 static pages without static-generation retry warnings in the verification run.
+
 ### Visual Hierarchy Pass - 2026-07-27
 
 - Replaced the homepage badge "Field doctrine by Ravikanth Seri" with "Evidence-first operating model" so the first signal is the category thesis, not self-description.
