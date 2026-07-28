@@ -14,6 +14,17 @@ Date: 2026-07-26
 - Validation evidence: `node scripts/validate-content.mjs`, `node scripts/validate-content-coherence.mjs`, `node scripts/validate-accessibility.mjs`, `node scripts/scan-public-safety.mjs`, `node scripts/validate-route-integrity.mjs`, and `git diff --check` passed.
 - Validation limitation: `npm run typecheck` and `npm run lint` were stopped after extended no-output runs in the local environment. No diagnostics were emitted before stopping; they need a fresh verification pass before release claims.
 
+### Runtime Contract Pass - 2026-07-28
+
+- Identified local validation drift: global Node `v26.3.1` caused Next dev/build/typecheck/lint behavior to appear hung or unreachable.
+- Added `.nvmrc` with Node 22 guidance and package `engines` requiring `>=20.18.0 <25`.
+- Pinned `next` to the exact installed/release-validated version `15.5.20` so installs do not silently drift through a caret range.
+- Updated README setup to require `nvm use`, explain the supported runtime, and document the `127.0.0.1` dev binding.
+- Verified supported-runtime behavior with the bundled Node `v24.14.0`: Next dev reached ready state in 7.4s; production build compiled successfully in 73s and generated 77 static pages.
+- Verified browser smoke after supported-runtime startup: desktop homepage rendered with the stronger thesis and no horizontal overflow; 390px mobile homepage and Operations Room rendered with no horizontal overflow.
+- Validation evidence: supported-runtime `tsc --noEmit`, supported-runtime ESLint, `node scripts/validate-content.mjs`, `node scripts/validate-content-coherence.mjs`, `node scripts/validate-accessibility.mjs`, `node scripts/scan-public-safety.mjs`, `node scripts/validate-route-integrity.mjs`, `node scripts/validate-deployment-config.mjs`, `node scripts/run-evals.mjs`, `next build`, `node scripts/validate-performance.mjs`, and `git diff --check` passed.
+- Remaining reliability note: Next dev cold route compilation is still heavy in local review mode (`/` compiled in 57.9s and `/investigation-room` in 13.7s before warm responses). Production first-load budgets remain within the current validator thresholds.
+
 ### Evidence Ledger Pass - 2026-07-28
 
 - Strengthened `/work` from a proof index into an adversarial evidence ledger.

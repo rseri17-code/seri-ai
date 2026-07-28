@@ -142,13 +142,16 @@ Target cadence:
 
 ## Local Setup
 
+Use Node 22 LTS for local development and Vercel parity. The repository declares `>=20.18.0 <25` and includes `.nvmrc`; Node 26 is outside the supported runtime contract for this release train.
+
 ```bash
+nvm use
 npm install
 cp .env.example .env.local
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open `http://127.0.0.1:3000`. The dev script binds to `127.0.0.1` so local review does not depend on wildcard host permissions.
 
 ## Environment Variables
 
