@@ -70,6 +70,21 @@ OI-ROOM-001 should be judged on evidence handling, not visual impressiveness.
 - Replay reproducibility: can the same scenario be re-run from an approved replay seed?
 - Refusal: does the system refuse confidential or unsupported questions without exposing sensitive context?
 
+## OI-ROOM-001 Control Comparison Protocol
+
+The benchmark should compare the same synthetic case across four modes. This is a protocol for future measurement, not a claim that those measurements have already been completed.
+
+| Mode | Allowed input | Expected output | Primary risk |
+| --- | --- | --- | --- |
+| Dashboard-only | Synthetic telemetry, traces, and status signals | Human-written investigation notes | Visibility without reasoning trace |
+| Chatbot-only | Same public-safe case context as unstructured text | Narrative explanation with requested citations | Fluency without durable evidence state |
+| Ticket-only | Synthetic incident ticket, comments, and resolution notes | Timeline and post-incident summary | Durable record without live hypothesis movement |
+| Operational Intelligence workflow | Typed evidence, transaction path, topology context, hypotheses, eval gates, and approval boundary | Decision packet with evidence, uncertainty, contradiction handling, replay seed, and operator approval class | Slower workflow if evidence structure does not improve judgment |
+
+Each run should use the same OI-ROOM-001 facts, red herrings, contradictory evidence, and missing-evidence condition. Reviewers should score each mode on evidence completeness, hypothesis quality, contradiction handling, missing-evidence honesty, decision safety, replayability, and reviewer confidence.
+
+The comparison should be reported as an evidence ledger entry with limitations. A favorable result would not prove the doctrine universally. An unfavorable result would be useful if it shows that the workflow adds process weight without improving decision quality.
+
 ## Practitioner Review Model
 
 The strongest next evidence is not another page. It is structured review from people who would actually operate, govern, or buy the system.

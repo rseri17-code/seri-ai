@@ -17,6 +17,14 @@ Date: 2026-07-26
 - Replaced the legacy `.eslintrc.json` with `eslint.config.mjs` using the installed Next.js Core Web Vitals and TypeScript config through ESLint flat-config compatibility.
 - Removed the release-warning source so lint can remain part of the beta checklist without carrying known framework deprecation debt.
 
+### Benchmark Protocol Pass - 2026-07-28
+
+- Added an OI-ROOM-001 control comparison protocol to the Evidence Pack.
+- The protocol compares dashboard-only, chatbot-only, ticket-only, and Operational Intelligence workflow modes using the same synthetic facts, red herrings, contradictory evidence, and missing-evidence condition.
+- It defines scoring dimensions for evidence completeness, hypothesis quality, contradiction handling, missing-evidence honesty, decision safety, replayability, and reviewer confidence.
+- The text explicitly states that this is a measurement design, not a claim that measured superiority has already been proven.
+- Updated the wiki note, public Markdown export, PDF generator, retrieval metadata, and reference-package validators so the protocol becomes part of the reviewable evidence system.
+
 ### Build Stability Pass - 2026-07-28
 
 - Added explicit Next.js static generation settings for content-heavy reference routes: 180-second static generation timeout, conservative concurrency, and controlled retry count.

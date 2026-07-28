@@ -91,7 +91,32 @@ This flow is intentionally vendor-neutral. It does not require a specific model 
 | Runbook-only | Known procedural response | Novel ambiguity, contradictory evidence | Use as evidence, not as proof |
 | OI workflow | Reviewable operational judgment | Requires disciplined context and evaluation | Improve decision quality under uncertainty |
 
-## 7. Practitioner Review Questions
+## 7. OI-ROOM-001 Control Comparison Protocol
+
+This protocol compares the same synthetic OI-ROOM-001 case across weaker and adjacent modes. It is a measurement design, not a claim that measured superiority has already been proven.
+
+| Mode | Allowed input | Expected output | Primary risk |
+| --- | --- | --- | --- |
+| Dashboard-only | Synthetic telemetry, traces, and status signals | Human-written investigation notes | Visibility without reasoning trace |
+| Chatbot-only | Same public-safe case context as unstructured text | Narrative explanation with requested citations | Fluency without durable evidence state |
+| Ticket-only | Synthetic incident ticket, comments, and resolution notes | Timeline and post-incident summary | Durable record without live hypothesis movement |
+| Operational Intelligence workflow | Typed evidence, transaction path, topology context, hypotheses, eval gates, and approval boundary | Decision packet with evidence, uncertainty, contradiction handling, replay seed, and operator approval class | Slower workflow if evidence structure does not improve judgment |
+
+Each run should use the same OI-ROOM-001 facts, red herrings, contradictory evidence, and missing-evidence condition.
+
+Reviewers should score each mode on:
+
+- Evidence completeness
+- Hypothesis quality
+- Contradiction handling
+- Missing-evidence honesty
+- Decision safety
+- Replayability
+- Reviewer confidence
+
+Report the comparison as an evidence ledger entry with limitations. A favorable result strengthens the doctrine only for the tested case. An unfavorable result should revise the doctrine if the workflow adds process weight without improving decision quality.
+
+## 8. Practitioner Review Questions
 
 ### SRE Reviewer
 
@@ -128,7 +153,7 @@ This flow is intentionally vendor-neutral. It does not require a specific model 
 - Does it clarify business impact?
 - Does it make accountability clearer?
 
-## 8. Evidence Ledger Template
+## 9. Evidence Ledger Template
 
 | Field | Description |
 | --- | --- |
@@ -140,7 +165,7 @@ This flow is intentionally vendor-neutral. It does not require a specific model 
 | Limitation | What the evidence does not prove |
 | Next improvement | Concrete action to strengthen the claim |
 
-## 9. Current Evidence Ledger
+## 10. Current Evidence Ledger
 
 | Claim | Classification | Evidence source | Result | Limitation | Next improvement |
 | --- | --- | --- | --- | --- | --- |
@@ -150,7 +175,7 @@ This flow is intentionally vendor-neutral. It does not require a specific model 
 | Replay seeds are useful for regression testing operational AI behavior. | Derived from evaluation practice | Eval report, reference architecture | Partial | Current fixtures test assistant behavior, not full workflow replay | Add replay-backed workflow fixtures |
 | Operator control should gate consequential actions. | Established governance principle applied to OI | Reference architecture, OI-ROOM-001 | Strong | Needs policy examples for different risk classes | Add approval class examples to future revisions |
 
-## 10. Falsification Criteria
+## 11. Falsification Criteria
 
 The doctrine should be revised if evidence shows that:
 
@@ -161,7 +186,7 @@ The doctrine should be revised if evidence shows that:
 - Evaluation gates fail to catch regressions that human reviewers consider obvious.
 - The workflow slows urgent response without improving learning, auditability, or decision quality.
 
-## 11. Minimum Conformance Checklist
+## 12. Minimum Conformance Checklist
 
 An implementation should not be described as Operational Intelligence unless it can show these proofs. The checklist is implementation-neutral and does not require a specific vendor, model, database, cloud, graph engine, ticketing system, or UI.
 
@@ -178,7 +203,7 @@ An implementation should not be described as Operational Intelligence unless it 
 | Replay seed | The case can be reproduced from approved public-safe context and versioned expected behavior. | The demo cannot be rerun or compared after changes. | AI engineer |
 | Learning loop | Reviewed outcomes update memory, patterns, documentation, and future fixtures. | Post-incident learning remains unstructured narrative. | Executive reviewer |
 
-## 12. Conformance Verdicts
+## 13. Conformance Verdicts
 
 - Conforms: the implementation supplies observable proof for every requirement.
 - Partially conforms: the implementation satisfies the invariant but lacks one or more measurable proofs.
@@ -187,7 +212,7 @@ An implementation should not be described as Operational Intelligence unless it 
 
 The current public Operations Room should be treated as a synthetic conformance example, not production evidence. Its job is to make the checklist inspectable.
 
-## 13. Next Evidence Priorities
+## 14. Next Evidence Priorities
 
 1. Run practitioner review with at least one SRE, one architect, one AI engineer, and one governance reviewer.
 2. Add replay-backed fixtures for OI-ROOM-001 beyond assistant-only Q&A.

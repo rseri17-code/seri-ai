@@ -489,6 +489,20 @@ def evidence_pack():
             [1.35 * inch, 1.85 * inch, 1.85 * inch, 1.85 * inch],
         ),
         Spacer(1, 10),
+        p("OI-ROOM-001 Control Comparison Protocol", "H1Seri"),
+        p("Use the same synthetic facts, red herrings, contradictory evidence, and missing-evidence condition across dashboard-only, chatbot-only, ticket-only, and Operational Intelligence workflow runs. This is a measurement design, not a claim that superiority has already been proven."),
+        table(
+            [
+                ["Mode", "Allowed input", "Expected output", "Primary risk"],
+                ["Dashboard-only", "Synthetic telemetry, traces, status signals", "Human investigation notes", "Visibility without reasoning trace"],
+                ["Chatbot-only", "Unstructured public-safe case context", "Narrative explanation with citations", "Fluency without durable evidence state"],
+                ["Ticket-only", "Synthetic ticket, comments, resolution notes", "Timeline and summary", "Record without live hypothesis movement"],
+                ["OI workflow", "Typed evidence, transaction path, topology, hypotheses, eval gates, approval boundary", "Decision packet, uncertainty, replay seed, approval class", "Slower if structure does not improve judgment"],
+            ],
+            [1.15 * inch, 2.05 * inch, 2.05 * inch, 1.75 * inch],
+        ),
+        p("Score each mode on evidence completeness, hypothesis quality, contradiction handling, missing-evidence honesty, decision safety, replayability, and reviewer confidence. Report results as evidence ledger entries with limitations."),
+        Spacer(1, 10),
         p("Practitioner Review Rubric", "H1Seri"),
         table(
             [

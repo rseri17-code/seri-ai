@@ -135,7 +135,7 @@ const referenceSources = [
     title: "Operational Intelligence Evidence Pack Markdown",
     description: "Benchmark rubric, control comparisons, practitioner review model, evidence ledger, minimum conformance checklist, and falsification criteria.",
     content:
-      "Operational Intelligence Evidence Pack Markdown. Benchmark rubric, control comparisons, practitioner review, evidence ledger, falsification criteria, minimum conformance checklist, observable proof, failure signals, OI-ROOM-001 benchmark, dashboard-only baseline, chatbot-only baseline.",
+      "Operational Intelligence Evidence Pack Markdown. Benchmark rubric, control comparisons, OI-ROOM-001 control comparison protocol, practitioner review, evidence ledger, falsification criteria, minimum conformance checklist, observable proof, failure signals, OI-ROOM-001 benchmark, dashboard-only baseline, chatbot-only baseline.",
     url: "/publication-pack/operational-intelligence-evidence-pack.md",
     type: "registry" as const,
     category: "Reference Assets",
@@ -159,7 +159,7 @@ const referenceSources = [
     title: "Operational Intelligence Evidence Pack PDF",
     description: "Shareable PDF export for evaluating Operational Intelligence with benchmarks, control comparisons, practitioner review, and falsification criteria.",
     content:
-      "Operational Intelligence Evidence Pack PDF. Downloadable evidence PDF for benchmark rubric, control comparisons, practitioner review, minimum conformance checklist, evidence ledger, and falsification criteria.",
+      "Operational Intelligence Evidence Pack PDF. Downloadable evidence PDF for benchmark rubric, control comparisons, OI-ROOM-001 control comparison protocol, practitioner review, minimum conformance checklist, evidence ledger, and falsification criteria.",
     url: "/downloads/operational-intelligence-evidence-pack.pdf",
     type: "registry" as const,
     category: "Reference Downloads",

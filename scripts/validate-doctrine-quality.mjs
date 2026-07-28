@@ -130,6 +130,7 @@ expectIncludes(referencePath, reference, [
 expectIncludes(evidencePath, evidence, [
   "Falsification Criteria",
   "Minimum Conformance Checklist",
+  "OI-ROOM-001 Control Comparison Protocol",
   "Control Comparisons",
   "Evidence Ledger Template",
   "Current Evidence Ledger",

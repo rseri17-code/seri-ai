@@ -104,6 +104,7 @@ const markdownAssets = [
       "Version Discipline",
       "Future v1.x changes should be incremental, evidence-based, and backward-compatible",
       "Control Comparisons",
+      "OI-ROOM-001 Control Comparison Protocol",
       "Minimum Conformance Checklist",
       "Falsification Criteria",
       "Structured practitioner review path: /contact"
