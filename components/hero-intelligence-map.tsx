@@ -91,9 +91,9 @@ export function HeroIntelligenceMap() {
           ))}
         </div>
 
-        <div className="grid gap-3 xl:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid gap-3">
           <div className="overflow-hidden rounded-lg border border-white/10 bg-black/25">
-            <svg className="h-[26rem] w-full" viewBox="0 0 100 100" role="img" aria-label="Operational Intelligence graph connecting observations, transactions, evidence graph context, memory, decision packet, and human approval">
+            <svg className="h-[18rem] w-full sm:h-[20rem]" viewBox="0 0 100 100" role="img" aria-label="Operational Intelligence graph connecting observations, transactions, evidence graph context, memory, decision packet, and human approval">
             <defs>
               <linearGradient id="hero-edge" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#5ff2b5" />
@@ -173,70 +173,69 @@ export function HeroIntelligenceMap() {
             </svg>
           </div>
 
-          <div className="grid gap-3">
-            <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
-              <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
+          <div className="grid gap-3 lg:grid-cols-3">
+            <div className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
+              <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-white">
                 <Clock3 size={16} className="text-mint" />
                 Evidence replay
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 {replayEvents.map(([time, title, detail], index) => (
                   <div
                     key={title}
-                    className={`grid grid-cols-[3.25rem_1fr] gap-3 rounded border border-white/10 bg-black/20 p-3 ${index === 2 ? "hero-replay-card" : ""}`}
+                    className={`grid grid-cols-[2.75rem_1fr] gap-2 rounded border border-white/10 bg-black/20 p-2 ${index === 2 ? "hero-replay-card" : ""}`}
                     style={index === 2 ? { animationDelay: `${index * 280}ms` } : undefined}
                   >
                     <span className="font-mono text-xs text-signal">{time}</span>
                     <span>
                       <span className="block text-sm font-semibold text-slate-100">{title}</span>
-                      <span className="mt-1 block text-xs leading-5 text-slate-400">{detail}</span>
+                      <span className="sr-only">{detail}</span>
                     </span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-1">
-              <div className="rounded-lg border border-mint/25 bg-mint/[0.08] p-4">
-                <BrainCircuit className="text-mint" />
-                <p className="mt-3 text-lg font-semibold text-white">Hypothesis lifecycle</p>
-                <div className="mt-3 space-y-2">
-                  {hypotheses.map(([id, name, score, state]) => (
-                    <div key={id} className="rounded border border-white/10 bg-black/20 p-3">
-                      <div className="flex items-center justify-between gap-3">
-                        <span className="text-xs font-semibold text-slate-400">{id}</span>
-                        <span className={state === "supported" ? "text-xs font-semibold text-mint" : state === "partial" ? "text-xs font-semibold text-amber" : "text-xs font-semibold text-slate-500"}>{score}</span>
-                      </div>
-                      <p className="mt-1 text-sm font-semibold leading-5 text-white">{name}</p>
-                      <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-slate-500">{state}</p>
-                    </div>
-                  ))}
-                </div>
+            <div className="rounded-lg border border-mint/25 bg-mint/[0.08] p-3">
+              <div className="flex items-center gap-2">
+                <BrainCircuit size={16} className="text-mint" />
+                <p className="text-sm font-semibold text-white">Hypothesis lifecycle</p>
               </div>
-
-              <div className="rounded-lg border border-signal/25 bg-signal/[0.08] p-4">
-                <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
-                  <ShieldCheck size={16} className="text-signal" />
-                  Evaluation gates
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  {evalGates.map(([label, state]) => (
-                    <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
-                      <div className="flex items-center gap-2">
-                        {state === "pass" ? <CheckCircle2 size={14} className="text-mint" /> : <AlertTriangle size={14} className="text-amber" />}
-                        <span className="text-xs font-semibold text-slate-200">{label}</span>
-                      </div>
-                      <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-slate-500">{state}</p>
+              <div className="mt-3 space-y-1.5">
+                {hypotheses.map(([id, name, score, state]) => (
+                  <div key={id} className="rounded border border-white/10 bg-black/20 px-3 py-2">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-xs font-semibold text-slate-400">{id}</span>
+                      <span className={state === "supported" ? "text-xs font-semibold text-mint" : state === "partial" ? "text-xs font-semibold text-amber" : "text-xs font-semibold text-slate-500"}>{score}</span>
                     </div>
-                  ))}
-                </div>
-                <div className="mt-3 rounded border border-amber/25 bg-amber/[0.08] p-3">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-amber">
-                    <FileCheck2 size={15} />
-                    Decision packet exportable
+                    <p className="mt-1 truncate text-xs font-semibold leading-4 text-white">{name}</p>
                   </div>
-                  <p className="mt-1 text-xs leading-5 text-slate-300">Evidence receipts, losing hypotheses, missing evidence, and owner approval boundary preserved.</p>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-lg border border-signal/25 bg-signal/[0.08] p-3">
+              <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
+                <ShieldCheck size={16} className="text-signal" />
+                Evaluation gates
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {evalGates.map(([label, state]) => (
+                  <div key={label} className="rounded border border-white/10 bg-black/20 p-2">
+                    <div className="flex items-center gap-2">
+                      {state === "pass" ? <CheckCircle2 size={14} className="text-mint" /> : <AlertTriangle size={14} className="text-amber" />}
+                      <span className="text-xs font-semibold text-slate-200">{label}</span>
+                    </div>
+                    <span className="sr-only">{state}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-3 rounded border border-amber/25 bg-amber/[0.08] p-2.5">
+                <div className="flex items-center gap-2 text-sm font-semibold text-amber">
+                  <FileCheck2 size={15} />
+                  Decision packet gated
                 </div>
+                <p className="mt-1 text-xs leading-4 text-slate-300">Receipts and approval boundary preserved.</p>
               </div>
             </div>
           </div>

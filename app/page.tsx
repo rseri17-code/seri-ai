@@ -78,24 +78,18 @@ const falsificationTests = [
   ["Humans keep authority", "Operational change remains behind owner review, reversibility, and approval class."]
 ];
 
-const heroProofCells = [
-  ["Observe", "signals enter as facts"],
-  ["Graph", "evidence gets typed"],
-  ["Challenge", "contradictions stay visible"],
-  ["Approve", "action waits for humans"]
-];
-
 const heroBuilderProof = [
   ["Operating base", "15+ years across distributed enterprise systems"],
   ["AI systems", "production agent architecture, evaluation, and runtime governance"],
   ["Reliability lens", "observability, Kubernetes, identity, and incident workflows"]
 ];
 
-const heroThesis = [
-  ["Signals", "become typed evidence"],
-  ["Evidence", "moves hypotheses"],
-  ["Decisions", "carry receipts"],
-  ["Actions", "wait for approval"]
+const heroFlow = [
+  "Signals",
+  "Evidence",
+  "Hypotheses",
+  "Decisions",
+  "Memory"
 ];
 
 export default function Home() {
@@ -129,16 +123,19 @@ export default function Home() {
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
               Every artifact is built for inspection: synthetic cases, cited public sources, explicit uncertainty, and reusable engineering doctrine instead of private operational details.
             </p>
-            <div className="mt-6 rounded-lg border border-white/10 bg-black/25 p-4">
+            <div className="mt-6 rounded-lg border border-white/10 bg-black/20 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">The operating thesis</p>
-              <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                {heroThesis.map(([label, proof]) => (
-                  <div key={label} className="rounded border border-white/10 bg-white/[0.035] p-3">
-                    <p className="font-semibold text-white">{label}</p>
-                    <p className="mt-1 text-sm leading-6 text-slate-300">{proof}</p>
-                  </div>
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-200">
+                {heroFlow.map((step, index) => (
+                  <span key={step} className="inline-flex items-center gap-2">
+                    <span className={index === 0 ? "text-mint" : index === heroFlow.length - 1 ? "text-amber" : "text-white"}>{step}</span>
+                    {index < heroFlow.length - 1 ? <span className="text-slate-600">/</span> : null}
+                  </span>
                 ))}
               </div>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
+                The claim is narrow: operational AI earns trust when evidence, uncertainty, replay, evaluation, and approval are part of the system.
+              </p>
             </div>
             <div className="mt-5 hidden gap-2 lg:grid lg:grid-cols-3">
               {heroBuilderProof.map(([label, proof]) => (
@@ -148,40 +145,24 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:hidden">
-              {heroProofCells.map(([step, proof]) => (
-                <div key={step} className="rounded border border-white/10 bg-black/25 p-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">{step}</p>
-                  <p className="mt-1 text-xs leading-5 text-slate-300">{proof}</p>
-                </div>
-              ))}
-            </div>
             </div>
             <div className="lg:self-center">
               <HeroIntelligenceMap />
             </div>
           </div>
-          <div className="rounded-lg border border-white/10 bg-black/25 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">What would make it credible</p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {falsificationTests.map(([value, label]) => (
-                <div key={value} className="rounded border border-white/10 bg-white/[0.04] p-3">
-                  <p className="font-semibold text-white">{value}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-400">{label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {proofStrip.map(([value, label]) => (
-              <div key={value} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
-                <p className="text-lg font-semibold text-white">{value}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
+
+      <Section eyebrow="Proof surface" title="A serious operating model should invite inspection.">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {proofStrip.map(([value, label]) => (
+            <Card key={value} className="h-full p-4">
+              <p className="text-lg font-semibold text-white">{value}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
 
       <Section eyebrow="Category boundary" title="Operational Intelligence begins where observation alone stops being enough.">
         <div className="grid gap-3 lg:grid-cols-4">
@@ -190,6 +171,17 @@ export default function Home() {
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{mode}</p>
               <h2 className="mt-3 text-xl font-semibold text-white">{promise}</h2>
               <p className="mt-3 text-sm leading-6 text-slate-300">{limitation}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Falsification tests" title="What would make the thesis credible or wrong.">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {falsificationTests.map(([value, label]) => (
+            <Card key={value} className="h-full p-4">
+              <p className="font-semibold text-white">{value}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
             </Card>
           ))}
         </div>
