@@ -92,6 +92,13 @@ const heroFlow = [
   "Memory"
 ];
 
+const mobileArtifactSignals = [
+  ["Observation", "accepted"],
+  ["Contradiction", "visible"],
+  ["Unknown", "named"],
+  ["Action", "gated"]
+] as const;
+
 export default function Home() {
   return (
     <>
@@ -123,6 +130,20 @@ export default function Home() {
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
               Everything here is public-safe and inspectable: synthetic cases, cited sources, explicit uncertainty, reusable doctrine, and no private operational details.
             </p>
+            <div className="mt-5 grid gap-2 rounded-lg border border-white/10 bg-black/20 p-3 lg:hidden">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Operations Room signal</p>
+                <p className="font-mono text-xs text-mint">OI-ROOM-001</p>
+              </div>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {mobileArtifactSignals.map(([label, value]) => (
+                  <div key={label} className="rounded border border-white/10 bg-white/[0.04] px-3 py-2">
+                    <p className="text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-slate-500">{label}</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-100">{value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="mt-6 rounded-lg border border-white/10 bg-black/20 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">The operating thesis</p>
               <div className="mt-3 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-200">

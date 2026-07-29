@@ -28,6 +28,8 @@ const routeContracts = [
       "lg:grid-cols",
       "HeroIntelligenceMap",
       "heroBuilderProof",
+      "mobileArtifactSignals",
+      "lg:hidden",
       "Enter the Operations Room"
     ]
   },
