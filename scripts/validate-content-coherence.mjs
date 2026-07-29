@@ -740,6 +740,33 @@ for (const required of [
   expect(resumePage.includes(required), `/resume missing capability evidence contract: ${required}`);
 }
 
+const backgroundPage = fs.readFileSync(path.join(root, "app", "background", "page.tsx"), "utf8");
+for (const required of [
+  "const formationArc",
+  "const credibilityQuestions",
+  "const proofLinks",
+  "homeLinkedInSignals",
+  "The operating background behind the Operational Intelligence thesis.",
+  "Ravikanth Seri builds from the operator side of enterprise AI.",
+  "Operating base",
+  "Modernization lens",
+  "Current focus",
+  "The throughline is context, evidence, and accountable action.",
+  "The LinkedIn signal and the reference architecture are telling the same story.",
+  "enterprise AI will fail operationally when context is reconstructed privately, repeatedly, and late",
+  "A serious background page should make claims easy to challenge.",
+  "What stays out of scope?",
+  "Public-safe boundary: employer-specific systems, private operational artifacts, proprietary names, and confidential architecture are excluded.",
+  "Move from background to inspectable evidence.",
+  "/resume",
+  "/work",
+  "/investigation-room",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/evals"
+]) {
+  expect(backgroundPage.includes(required), `/background missing operating-background contract: ${required}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
