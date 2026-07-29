@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight, Boxes, BrainCircuit, ClipboardCheck, FileText, GitBranch, Layers, ShieldCheck, UserRound } from "lucide-react";
+import { ArrowRight, Boxes, BrainCircuit, ClipboardCheck, FileText, GitBranch, Layers, Linkedin, ShieldCheck, UserRound } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
+import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";
 import { articles, contentRegistry, evalReport, operationalIntelligenceFramework, patterns, projects, resume } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -58,7 +59,7 @@ const reviewSpine: WorkItem[] = [
 
 const proofLedger = [
   {
-    claim: "Ravikanth is building an operating model, not a resume site.",
+    claim: "Operational Intelligence is a reference model, not a profile wrapper.",
     evidence: "Doctrine, Reference Architecture, Evidence Pack, Publication Pack",
     inspect: "Read the definition, boundaries, ten layers, claim posture, glossary, and reference architecture handoff.",
     weakens: "If the doctrine cannot distinguish itself from observability, AIOps, SRE, ITIL, incident command, knowledge graphs, and AI evaluation.",
@@ -191,12 +192,12 @@ const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }
 export default function WorkPage() {
   return (
     <>
-      <Section eyebrow="Work" title="Evidence that the builder and the thesis are the same thing." level="h1">
+      <Section eyebrow="Work" title="The operating record behind Operational Intelligence." level="h1">
         <Card className="border-mint/25 bg-mint/[0.05]">
           <BrainCircuit className="mb-5 text-mint" />
-          <h2 className="text-3xl font-semibold text-white">A field guide to the systems, frameworks, artifacts, writing, and experience behind Operational Intelligence.</h2>
+          <h2 className="text-3xl font-semibold text-white">Experience, public writing, artifacts, and systems work converge on one operating thesis.</h2>
           <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
-            This page is the credibility surface. It connects Ravikanth&apos;s public work to a single thesis: Operational Intelligence as a public-safe, inspectable operating model for Agentic SRE, evidence-backed reasoning, eval-gated action, and compounding operational memory.
+            Ravikanth&apos;s public work connects enterprise systems experience, AI-native operations, reference architecture, writing, and working artifacts into one thesis: operations need shared context, evidence-backed reasoning, eval-gated action, and compounding memory.
           </p>
         </Card>
       </Section>
@@ -210,6 +211,34 @@ export default function WorkPage() {
               <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
             </Card>
           ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Public thesis threads" title="The current writing signal behind the work.">
+        <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr]">
+          <Card className="border-signal/25 bg-signal/[0.045]">
+            <Linkedin className="mb-5 text-signal" />
+            <h2 className="text-3xl font-semibold text-white">The public posts are not side commentary. They are the working notes for the doctrine.</h2>
+            <p className="mt-4 text-lg leading-8 text-slate-300">
+              The recurring theme is operational context: who owns the system, what changed, what depends on it, which transaction is affected, what evidence is missing, and when a human should approve action.
+            </p>
+            <a
+              href={homeProfileLinks.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded border border-signal/40 px-5 py-3 font-semibold text-signal"
+            >
+              Read LinkedIn posts <Linkedin size={18} />
+            </a>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {homeLinkedInSignals.map((signal) => (
+              <Card key={signal.name} className="p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{signal.name}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{signal.description}</p>
+              </Card>
+            ))}
+          </div>
         </div>
       </Section>
 

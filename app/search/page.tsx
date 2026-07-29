@@ -18,7 +18,7 @@ const researchPrompts = [
   ["Evidence", "What would convince a skeptical engineer that this model is useful?", "/wiki/operational-intelligence-evidence-pack"],
   ["Operations Room", "How does OI-ROOM-001 move from evidence to a decision packet?", "/investigation-room"],
   ["Evaluation", "Which trust fixtures gate Ask Ravi behavior?", "/evals"],
-  ["Builder proof", "Where is Ravikanth's public work connected to proof objects?", "/work"]
+  ["Public work", "Where is Ravikanth's public work connected to proof objects?", "/work"]
 ] as const;
 
 export default function SearchPage() {
