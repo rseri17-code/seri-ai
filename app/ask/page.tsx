@@ -2,8 +2,9 @@ import { Chat } from "@/components/chat";
 import { Card } from "@/components/card";
 import { ProfileMark } from "@/components/profile-mark";
 import { Section } from "@/components/section";
+import { homeLinkedInSignals } from "@/content/home";
 import Link from "next/link";
-import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, ShieldCheck, type LucideIcon } from "lucide-react";
+import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, Network, ShieldCheck, type LucideIcon } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -19,10 +20,11 @@ const askContextCards: Array<{ label: string; value: string; Icon: LucideIcon }>
 
 const askRaviPrompts = [
   "What is Ravikanth building with seri.ai?",
+  "What does Ravikanth mean by Context Acquisition Tax?",
+  "What is the Enterprise Context Layer?",
+  "Why is the harness more important than the model for SRE agents?",
   "What public evidence shows Ravikanth's architecture judgment?",
   "How does Ravikanth think about Operational Intelligence?",
-  "Which projects best represent Ravikanth's AI and SRE work?",
-  "What should a recruiter or founder understand about Ravikanth?",
   "Where can I review Ravikanth's GitHub, LinkedIn, resume, and public artifacts?"
 ];
 
@@ -39,6 +41,33 @@ const guidePaths = [
   ["/evals", "Inspect trust", "Review deterministic fixtures and known limitations.", "How does the evaluation gate work?"],
   ["/background", "Check credibility", "Review career evidence without making the site a resume.", "What public background supports this work?"]
 ];
+
+const thesisLenses = [
+  {
+    label: "Context",
+    title: "Enterprise Context Layer",
+    prompt: "What is the Enterprise Context Layer and why does it matter for operational AI?",
+    body: homeLinkedInSignals.find((signal) => signal.name === "Enterprise Context Layer")?.description ?? ""
+  },
+  {
+    label: "Cost",
+    title: "Context Acquisition Tax",
+    prompt: "What does Ravikanth mean by Context Acquisition Tax?",
+    body: homeLinkedInSignals.find((signal) => signal.name === "Context Acquisition Tax")?.description ?? ""
+  },
+  {
+    label: "Systems",
+    title: "Harness over model",
+    prompt: "Why is the harness more important than the model for SRE agents?",
+    body: homeLinkedInSignals.find((signal) => signal.name === "Harness over model")?.description ?? ""
+  },
+  {
+    label: "Operations",
+    title: "Dynamic operational view",
+    prompt: "Why is a dynamic operational view different from a static graph?",
+    body: homeLinkedInSignals.find((signal) => signal.name === "Dynamic operational view")?.description ?? ""
+  }
+] as const;
 
 export default async function AskPage({
   searchParams
@@ -84,6 +113,29 @@ export default async function AskPage({
               </Card>
             ))}
           </div>
+        </div>
+      </Section>
+
+      <Section eyebrow="Thesis lenses" title="Start with the questions Ravikanth keeps returning to.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {thesisLenses.map((lens) => (
+            <Card key={lens.title} className="h-full p-4">
+              <div className="flex items-start justify-between gap-4">
+                <div className="grid h-10 w-10 place-items-center rounded-lg border border-mint/30 bg-mint/10 text-mint">
+                  <Network size={18} />
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{lens.label}</p>
+              </div>
+              <h2 className="mt-4 text-xl font-semibold text-white">{lens.title}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{lens.body}</p>
+              <Link
+                href={`/ask?prompt=${encodeURIComponent(lens.prompt)}`}
+                className="mt-4 inline-flex items-center gap-2 rounded border border-mint/35 px-3 py-2 text-xs font-semibold text-mint"
+              >
+                Ask this lens <ArrowRight size={14} />
+              </Link>
+            </Card>
+          ))}
         </div>
       </Section>
 

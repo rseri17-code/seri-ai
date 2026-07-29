@@ -56,7 +56,7 @@ const routeMetadataContracts = [
   },
   {
     file: "app/investigation-room/page.tsx",
-    required: ["export { metadata } from \"../simulator/page\""]
+    required: ["export const metadata", "Operations Room | seri.ai", "OI-ROOM-001", "human approval"]
   },
   {
     file: "app/projects/[slug]/page.tsx",
@@ -64,7 +64,7 @@ const routeMetadataContracts = [
   },
   {
     file: "app/simulator/page.tsx",
-    required: ["export const metadata", "Operations Room | seri.ai", "OI-ROOM-001", "human approval"]
+    required: ["export const metadata", "Compatibility route", "index: false", "redirect(\"/investigation-room\")"]
   }
 ];
 

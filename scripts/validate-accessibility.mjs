@@ -31,6 +31,9 @@ for (const file of pageFiles) {
   if (/export\s+\{\s*default\s*\}\s+from\s+["']\.\./.test(text)) {
     continue;
   }
+  if (text.includes("redirect(") && text.includes("index: false")) {
+    continue;
+  }
   if (!/<h1\b/.test(text) && !/level=["']h1["']/.test(text)) {
     errors.push(`${relative}: missing page-level h1 or Section level="h1"`);
   }

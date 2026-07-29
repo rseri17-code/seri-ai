@@ -162,7 +162,7 @@ export function Chat({
               <ProfileMark size="sm" />
               <div>
                 <p className="text-xs font-semibold uppercase text-slate-500">Public research interface</p>
-                <h2 className="text-xl font-semibold text-white">Question the doctrine, the Operations Room, and the builder proof.</h2>
+                <h2 className="text-xl font-semibold text-white">Question the doctrine, the Operations Room, and the public work.</h2>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 xl:w-[34rem]">

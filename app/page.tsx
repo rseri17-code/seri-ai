@@ -107,11 +107,11 @@ export default function Home() {
               Operational context is the new control plane.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              seri.ai is a public reference for Operational Intelligence: the discipline of turning signals into evidence, evidence into hypotheses, hypotheses into reviewable decisions, and decisions into operational memory.
+              A public technical reference from Ravikanth Seri on how AI-native operations should move from telemetry and alerts to evidence-backed decisions, replayable investigations, and accountable operational memory.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Run the investigation <ArrowRight size={18} />
+                Enter the Operations Room <ArrowRight size={18} />
               </TrackedLink>
               <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
                 Read Doctrine
@@ -121,7 +121,7 @@ export default function Home() {
               </TrackedLink>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-              Every artifact is built for inspection: synthetic cases, cited public sources, explicit uncertainty, and reusable engineering doctrine instead of private operational details.
+              Everything here is public-safe and inspectable: synthetic cases, cited sources, explicit uncertainty, reusable doctrine, and no private operational details.
             </p>
             <div className="mt-6 rounded-lg border border-white/10 bg-black/20 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">The operating thesis</p>
@@ -134,7 +134,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
-                The claim is narrow: operational AI earns trust when evidence, uncertainty, replay, evaluation, and approval are part of the system.
+                The claim is intentionally narrow: operational AI earns trust only when evidence, uncertainty, replay, evaluation, and approval are built into the system.
               </p>
             </div>
             <div className="mt-5 hidden gap-2 lg:grid lg:grid-cols-3">
@@ -153,13 +153,13 @@ export default function Home() {
         </div>
       </section>
 
-      <Section eyebrow="Public thesis stream" title="The public posts converge on one problem: enterprises do not own their operational context yet.">
+      <Section eyebrow="Public thesis stream" title="The posts converge on one enterprise failure mode: operational context is recreated instead of owned.">
         <div className="grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <Linkedin className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">The context layer has to outlive the incident, the prompt, and the person holding the thread.</h3>
+            <h3 className="text-3xl font-semibold text-white">The context layer has to outlive the incident, the prompt, and the person carrying the thread.</h3>
             <p className="mt-4 text-lg leading-8 text-slate-300">
-              The public writing behind this project keeps returning to the same operational gap: agents cannot become trustworthy investigators if ownership, change, dependency, transaction, confidence, and missing evidence are rediscovered from scratch every time.
+              Ravikanth&apos;s public writing keeps returning to the same operational gap: agents cannot become trustworthy investigators if ownership, change, dependency, transaction, confidence, and missing evidence are rediscovered from scratch every time.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedAnchor
@@ -216,13 +216,13 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Reference system" title="A serious operating model should expose the proof path without making the reader hunt for it.">
+      <Section eyebrow="Reference system" title="The proof path is part of the work, not a separate credibility layer.">
         <div className="grid gap-4 lg:grid-cols-[0.86fr_1.14fr]">
           <Card className="border-signal/25 bg-signal/[0.045]">
             <ShieldCheck className="mb-5 text-signal" />
             <h3 className="text-3xl font-semibold text-white">Inspection is part of the product contract.</h3>
             <p className="mt-4 text-lg leading-8 text-slate-300">
-              The thesis is intentionally exposed through definitions, contracts, synthetic evidence, evaluation gates, public work, and source-linked publishing. A visitor should be able to challenge the model without needing private systems or confidential examples.
+              The thesis is exposed through definitions, contracts, synthetic evidence, evaluation gates, public work, and source-linked publishing. A visitor should be able to challenge the model without needing private systems or confidential examples.
             </p>
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               {proofStrip.map(([value, label]) => (
@@ -274,7 +274,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Start here" title="One thesis. Three ways to test it.">
+      <Section eyebrow="Start here" title="One thesis. Three ways to challenge it.">
         <div className="grid gap-4 lg:grid-cols-3">
           {primaryPaths.map((path) => (
             <Link key={path.href} href={path.href}>
@@ -431,7 +431,7 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Link href="/ask" className="rounded bg-white px-5 py-3 font-semibold text-ink">
-              Ask Ravi
+              Ask Ravikanth
             </Link>
             <Link href="/evals" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
               View evals <ShieldCheck size={18} />

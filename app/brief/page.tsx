@@ -43,7 +43,7 @@ export default function BriefPage() {
             <Compass className="mb-5 text-signal" />
             <h2 className="text-2xl font-semibold text-white">Contrarian insight</h2>
             <p className="mt-4 text-lg leading-8 text-slate-200">{categoryBrief.contrarianInsight}</p>
-            <Link href="/simulator" className="mt-6 inline-flex items-center gap-2 rounded bg-signal px-4 py-3 font-semibold text-ink">
+            <Link href="/investigation-room" className="mt-6 inline-flex items-center gap-2 rounded bg-signal px-4 py-3 font-semibold text-ink">
               See it as a product <ArrowRight size={18} />
             </Link>
           </Card>

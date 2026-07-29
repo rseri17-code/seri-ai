@@ -58,7 +58,7 @@ export function Header() {
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <Link href="/ask" className="rounded border border-mint/40 bg-mint/10 px-3 py-2 text-sm font-medium text-mint hover:bg-mint/15 sm:px-4">
-              Ask Ravi
+              Ask Ravikanth
             </Link>
             <button
               type="button"

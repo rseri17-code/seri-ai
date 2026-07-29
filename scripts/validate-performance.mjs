@@ -38,7 +38,6 @@ const criticalAppPaths = [
   "/api/ask/route",
   "/api/contact/route",
   "/investigation-room/page",
-  "/simulator/page",
   "/wiki/[slug]/page",
   "/llms.txt/route",
   "/opengraph-image/route",

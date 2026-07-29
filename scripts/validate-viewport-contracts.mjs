@@ -28,7 +28,7 @@ const routeContracts = [
       "lg:grid-cols",
       "HeroIntelligenceMap",
       "heroBuilderProof",
-      "Run the investigation"
+      "Enter the Operations Room"
     ]
   },
   {
@@ -102,16 +102,16 @@ for (const contract of routeContracts) {
 
 const homePage = read("app/page.tsx");
 expect(
-  homePage.indexOf("Run the investigation") < homePage.indexOf("Every artifact is built for inspection"),
+  homePage.indexOf("Enter the Operations Room") < homePage.indexOf("Everything here is public-safe and inspectable"),
   "/: homepage primary CTAs must render before the inspection/trust paragraph so mobile visitors see an action in the first viewport"
 );
 
-const simulatorPage = read("app/simulator/page.tsx");
+const simulatorPage = read("app/investigation-room/page.tsx");
 for (const required of [
   "hidden items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white sm:inline-flex",
   "hidden rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white sm:inline-flex"
 ]) {
-  expect(simulatorPage.includes(required), `/investigation-room: app/simulator/page.tsx missing mobile secondary-link suppression contract "${required}"`);
+  expect(simulatorPage.includes(required), `/investigation-room: app/investigation-room/page.tsx missing mobile secondary-link suppression contract "${required}"`);
 }
 
 const simulator = read("app/simulator/simulator.tsx");
