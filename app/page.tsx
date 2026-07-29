@@ -35,7 +35,7 @@ const primaryPaths = [
   },
   {
     href: "/work",
-    label: "Builder proof",
+    label: "Public work",
     title: "Review the body of work",
     body: "See the systems, papers, patterns, reference artifacts, public work, resume proof, and professional background behind the thesis."
   }
@@ -193,17 +193,6 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Proof surface" title="A serious operating model should invite inspection.">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {proofStrip.map(([value, label]) => (
-            <Card key={value} className="h-full p-4">
-              <p className="text-lg font-semibold text-white">{value}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
       <Section eyebrow="Category boundary" title="Operational Intelligence begins where observation alone stops being enough.">
         <div className="grid gap-3 lg:grid-cols-4">
           {categoryContrast.map(([mode, promise, limitation]) => (
@@ -227,44 +216,61 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Inspection ledger" title="The work earns trust only if it can be inspected.">
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {inspectionLedger.map(([href, title, body]) => (
-            <Link key={href} href={href}>
-              <Card className="h-full p-4 transition hover:-translate-y-1 hover:border-mint/40">
-                <div className="flex items-start justify-between gap-4">
-                  <h2 className="text-xl font-semibold text-white">{title}</h2>
-                  <ArrowRight size={16} className="mt-1 shrink-0 text-mint" />
+      <Section eyebrow="Reference system" title="A serious operating model should expose the proof path without making the reader hunt for it.">
+        <div className="grid gap-4 lg:grid-cols-[0.86fr_1.14fr]">
+          <Card className="border-signal/25 bg-signal/[0.045]">
+            <ShieldCheck className="mb-5 text-signal" />
+            <h3 className="text-3xl font-semibold text-white">Inspection is part of the product contract.</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">
+              The thesis is intentionally exposed through definitions, contracts, synthetic evidence, evaluation gates, public work, and source-linked publishing. A visitor should be able to challenge the model without needing private systems or confidential examples.
+            </p>
+            <div className="mt-6 grid gap-2 sm:grid-cols-2">
+              {proofStrip.map(([value, label]) => (
+                <div key={value} className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="text-lg font-semibold text-white">{value}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{label}</p>
                 </div>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <TrackedAnchor
-            href={homeProfileLinks.github}
-            target="_blank"
-            rel="noreferrer"
-            eventName="profile_link_click"
-            eventProperties={{ destination: "github", placement: "homepage_inspection_ledger" }}
-            className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-3 text-sm font-semibold text-white"
-          >
-            GitHub <ArrowRight size={15} />
-          </TrackedAnchor>
-          <TrackedAnchor
-            href={homeProfileLinks.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            eventName="profile_link_click"
-            eventProperties={{ destination: "linkedin", placement: "homepage_inspection_ledger" }}
-            className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-3 text-sm font-semibold text-white"
-          >
-            LinkedIn <Linkedin size={15} />
-          </TrackedAnchor>
-          <Link href="/rss.xml" className="inline-flex items-center gap-2 rounded border border-mint/40 px-4 py-3 text-sm font-semibold text-mint">
-            RSS <ArrowRight size={15} />
-          </Link>
+              ))}
+            </div>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <TrackedAnchor
+                href={homeProfileLinks.github}
+                target="_blank"
+                rel="noreferrer"
+                eventName="profile_link_click"
+                eventProperties={{ destination: "github", placement: "homepage_reference_system" }}
+                className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-3 text-sm font-semibold text-white"
+              >
+                GitHub <ArrowRight size={15} />
+              </TrackedAnchor>
+              <TrackedAnchor
+                href={homeProfileLinks.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                eventName="profile_link_click"
+                eventProperties={{ destination: "linkedin", placement: "homepage_reference_system" }}
+                className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-3 text-sm font-semibold text-white"
+              >
+                LinkedIn <Linkedin size={15} />
+              </TrackedAnchor>
+              <Link href="/rss.xml" className="inline-flex items-center gap-2 rounded border border-mint/40 px-4 py-3 text-sm font-semibold text-mint">
+                RSS <ArrowRight size={15} />
+              </Link>
+            </div>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {inspectionLedger.map(([href, title, body]) => (
+              <Link key={href} href={href}>
+                <Card className="h-full p-4 transition hover:-translate-y-1 hover:border-mint/40">
+                  <div className="flex items-start justify-between gap-4">
+                    <h2 className="text-xl font-semibold text-white">{title}</h2>
+                    <ArrowRight size={16} className="mt-1 shrink-0 text-mint" />
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </div>
       </Section>
 
