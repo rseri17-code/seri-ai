@@ -664,20 +664,20 @@ export function IncidentSimulator() {
 
   return (
     <div className="reasonops-room ops-command-shell overflow-hidden rounded-lg border border-white/10 bg-[#080b12] shadow-2xl shadow-black/50">
-      <div className="relative border-b border-white/10 p-4 md:p-6">
+      <div className="relative border-b border-white/10 p-4 md:p-5">
         <div className="absolute inset-0 intelligence-field opacity-50" />
-        <div className="relative z-10 grid gap-5 lg:grid-cols-[1fr_22rem] lg:items-center">
+        <div className="relative z-10 grid gap-4 xl:grid-cols-[1fr_20rem] xl:items-start">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-mint/30 bg-mint/10 px-3 py-1 text-xs font-semibold uppercase text-mint">
               <Sparkles size={14} />
               Operational Intelligence Operations Room
             </div>
-            <h2 className="mt-3 max-w-5xl text-3xl font-semibold text-white md:text-5xl">Do the investigation before the narrative hardens.</h2>
-            <p className="mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 sm:block md:text-lg md:leading-8">
+            <h2 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight text-white md:text-4xl">Do the investigation before the narrative hardens.</h2>
+            <p className="mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 md:block">
               This room keeps the system honest: facts stay separate from inference, weak evidence remains visible,
               confidence moves only when receipts support it, and action waits for a human owner.
             </p>
-            <div className="mt-5 rounded-lg border border-mint/20 bg-black/25 p-3 shadow-[0_0_40px_rgba(95,242,181,0.08)]">
+            <div className="mt-4 rounded-lg border border-mint/20 bg-black/25 p-3 shadow-[0_0_40px_rgba(95,242,181,0.08)]">
               <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Live investigation graph</p>
@@ -709,7 +709,7 @@ export function IncidentSimulator() {
                 </div>
               </div>
             </div>
-            <div className="ops-command-strip mt-5 grid gap-2 md:grid-cols-5">
+            <div className="ops-command-strip mt-4 grid gap-2 md:grid-cols-5">
               {commandStrip.map(([label, value, detail, tone]) => (
                 <div key={label} className={`ops-command-cell ${tone === "amber" ? "ops-command-cell-amber" : tone === "signal" ? "ops-command-cell-signal" : ""}`}>
                   <div className="flex items-center justify-between gap-2">
@@ -721,7 +721,7 @@ export function IncidentSimulator() {
                 </div>
               ))}
             </div>
-            <div className="mt-5 grid gap-2 md:grid-cols-3">
+            <div className="mt-4 grid gap-2 md:grid-cols-3 xl:hidden">
               {scenarios.map((scenario) => {
                 const selected = scenario.id === selectedScenarioId;
                 return (
@@ -738,7 +738,7 @@ export function IncidentSimulator() {
                 );
               })}
             </div>
-            <div className="mt-4 flex flex-wrap gap-3">
+            <div className="mt-4 flex flex-wrap gap-3 xl:hidden">
               <button
                 type="button"
                 onClick={() => {
@@ -764,7 +764,7 @@ export function IncidentSimulator() {
                 Expert exploration
               </button>
             </div>
-            <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3">
+            <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3 xl:hidden">
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase text-slate-500">Replay cursor</p>
@@ -800,7 +800,7 @@ export function IncidentSimulator() {
                 <motion.div className="h-1.5 rounded-full bg-signal" animate={{ width: `${replayProgress}%` }} transition={{ duration: 0.35 }} />
               </div>
             </div>
-            <div className="mt-5 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
+            <div className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3 xl:hidden">
               <ReplaySignalCard
                 label="Evidence replay"
                 value={`${activeEvidenceIds.length} active`}
@@ -828,7 +828,7 @@ export function IncidentSimulator() {
             </div>
           </div>
           <div className="rounded-lg border border-white/10 bg-black/20 p-4 backdrop-blur md:p-5">
-            <div className="mb-5 rounded-lg border border-signal/25 bg-signal/[0.07] p-4">
+            <div className="mb-4 rounded-lg border border-signal/25 bg-signal/[0.07] p-4">
               <p className="font-mono text-xs text-signal">{selectedScenario.caseId}</p>
               <h3 className="mt-2 text-lg font-semibold text-white">{selectedScenario.title}</h3>
               <p className="mt-2 text-sm leading-6 text-slate-300">{selectedScenario.summary}</p>
@@ -842,6 +842,25 @@ export function IncidentSimulator() {
               >
                 Ask about this case <ArrowRight size={15} />
               </Link>
+            </div>
+            <div className="mb-4 hidden rounded-lg border border-white/10 bg-black/20 p-3 xl:block">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Case switch</p>
+              <div className="mt-3 grid gap-2">
+                {scenarios.map((scenario) => {
+                  const selected = scenario.id === selectedScenarioId;
+                  return (
+                    <button
+                      key={scenario.id}
+                      type="button"
+                      onClick={() => chooseScenario(scenario.id)}
+                      className={`rounded border px-3 py-2 text-left transition ${selected ? "border-mint/35 bg-mint/[0.09]" : "border-white/10 bg-white/[0.03] hover:border-white/25"}`}
+                    >
+                      <span className={selected ? "font-mono text-xs text-mint" : "font-mono text-xs text-slate-500"}>{scenario.caseId}</span>
+                      <span className="mt-1 block text-xs font-semibold leading-4 text-white">{scenario.title}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
             <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} compact />
             <div className="flex items-center justify-between">

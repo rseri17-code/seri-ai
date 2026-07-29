@@ -118,7 +118,7 @@ for (const required of [
 
 const simulator = read("app/simulator/simulator.tsx");
 expect(
-  simulator.includes("mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 sm:block"),
+  simulator.includes("mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 md:block"),
   "/investigation-room: mobile first viewport should prioritize the live investigation graph over explanatory intro copy"
 );
 
