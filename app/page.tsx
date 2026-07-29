@@ -79,24 +79,24 @@ const falsificationTests = [
 ];
 
 const heroBuilderProof = [
-  ["Operating base", "15+ years across distributed enterprise systems"],
-  ["AI systems", "production agent architecture, evaluation, and runtime governance"],
-  ["Reliability lens", "observability, Kubernetes, identity, and incident workflows"]
+  ["Enterprise systems", "15+ years across distributed platforms, reliability, and operational workflows"],
+  ["AI systems", "agent architecture, evaluation, retrieval, and runtime governance"],
+  ["Operational lens", "observability, transaction paths, incident reasoning, and human approval"]
 ];
 
 const heroFlow = [
-  "Signals",
+  "Context",
   "Evidence",
-  "Hypotheses",
-  "Decisions",
+  "Replay",
+  "Decision",
   "Memory"
 ];
 
 const mobileArtifactSignals = [
-  ["Observation", "accepted"],
-  ["Contradiction", "visible"],
+  ["Observation", "typed"],
+  ["Contradiction", "kept"],
   ["Unknown", "named"],
-  ["Action", "gated"]
+  ["Action", "owner-gated"]
 ] as const;
 
 export default function Home() {
@@ -104,35 +104,35 @@ export default function Home() {
     <>
       <section className="grid-bg border-b border-white/10">
         <div className="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:px-6 sm:py-8 lg:min-h-[90vh] lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div>
             <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Ravikanth Seri on Operational Intelligence
+              Ravikanth Seri&apos;s public operating model
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              Operational context is the new control plane.
+              Operations should explain themselves before AI acts.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              A public technical reference from Ravikanth Seri on how AI-native operations should move from telemetry and alerts to evidence-backed decisions, replayable investigations, and accountable operational memory.
+              seri.ai is Ravikanth Seri&apos;s public workbench for Operational Intelligence: the discipline of turning telemetry, topology, transactions, change, memory, and evaluation into evidence-backed operational judgment.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Enter the Operations Room <ArrowRight size={18} />
+                Run OI-ROOM-001 <ArrowRight size={18} />
               </TrackedLink>
               <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
-                Read Doctrine
+                Read the doctrine
               </TrackedLink>
               <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "review_work" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Review Work
+                Review the work
               </TrackedLink>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-              Everything here is public-safe and inspectable: synthetic cases, cited sources, explicit uncertainty, reusable doctrine, and no private operational details.
+              The material is public-safe by design: synthetic cases, cited sources, explicit uncertainty, and no private operational details.
             </p>
             <div className="mt-5 grid gap-2 rounded-lg border border-white/10 bg-black/20 p-3 lg:hidden">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Operations Room signal</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Decision packet preview</p>
                 <p className="font-mono text-xs text-mint">OI-ROOM-001</p>
               </div>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -145,7 +145,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-6 rounded-lg border border-white/10 bg-black/20 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">The operating thesis</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Operational Intelligence loop</p>
               <div className="mt-3 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-200">
                 {heroFlow.map((step, index) => (
                   <span key={step} className="inline-flex items-center gap-2">
@@ -155,7 +155,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
-                The claim is intentionally narrow: operational AI earns trust only when evidence, uncertainty, replay, evaluation, and approval are built into the system.
+                The thesis is narrow on purpose: AI should help operators reason from evidence, preserve uncertainty, and keep consequential change under accountable human control.
               </p>
             </div>
             <div className="mt-5 hidden gap-2 lg:grid lg:grid-cols-3">

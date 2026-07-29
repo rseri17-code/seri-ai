@@ -21,16 +21,16 @@ const edges = [
 
 const caseTelemetry = [
   ["Case", "OI-ROOM-001"],
-  ["Artifact", "Public-safe replay"],
-  ["Status", "Review packet"],
-  ["Boundary", "Human approval"]
+  ["Question", "What changed?"],
+  ["Output", "Decision packet"],
+  ["Boundary", "Owner approval"]
 ];
 
 const packetRows = [
-  ["Observation", "Transaction degradation accepted as evidence", "mint"],
-  ["Inference", "Recent change remains the leading hypothesis", "signal"],
-  ["Contradiction", "Capacity headroom weakens saturation branch", "amber"],
-  ["Unknown", "Owner approval still required before action", "amber"]
+  ["Observation", "Transaction degradation is accepted as evidence", "mint"],
+  ["Inference", "Recent change is the leading hypothesis", "signal"],
+  ["Contradiction", "Capacity headroom weakens saturation", "amber"],
+  ["Unknown", "Owner approval is still missing", "amber"]
 ] as const;
 
 const contextLedger = [
@@ -58,11 +58,11 @@ export function HeroIntelligenceMap() {
       <div className="relative z-10 border-b border-white/10 bg-black/20 p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold uppercase text-slate-400">Operations Room artifact</p>
-            <p className="mt-1 text-lg font-semibold text-white">A reviewable investigation, not an incident summary</p>
+            <p className="text-xs font-semibold uppercase text-slate-400">Operational Intelligence under test</p>
+            <p className="mt-1 text-lg font-semibold text-white">A decision is not trusted until its evidence can be replayed.</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            {["Replay active", "Evidence typed", "Approval pending"].map((item, index) => (
+            {["Replayable", "Evidence typed", "Action gated"].map((item, index) => (
               <span
                 key={item}
                 className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold ${
@@ -179,7 +179,7 @@ export function HeroIntelligenceMap() {
           <div className="rounded-lg border border-amber/25 bg-amber/[0.06] p-3">
             <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
                 <FileCheck2 size={16} className="text-amber" />
-                Decision packet
+                Decision packet contract
             </div>
             <div className="grid gap-2 sm:grid-cols-2">
               {packetRows.map(([label, value, tone]) => (

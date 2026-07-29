@@ -30,7 +30,7 @@ const routeContracts = [
       "heroBuilderProof",
       "mobileArtifactSignals",
       "lg:hidden",
-      "Enter the Operations Room"
+      "Run OI-ROOM-001"
     ]
   },
   {
@@ -104,7 +104,7 @@ for (const contract of routeContracts) {
 
 const homePage = read("app/page.tsx");
 expect(
-  homePage.indexOf("Enter the Operations Room") < homePage.indexOf("Everything here is public-safe and inspectable"),
+  homePage.indexOf("Run OI-ROOM-001") < homePage.indexOf("The material is public-safe by design"),
   "/: homepage primary CTAs must render before the inspection/trust paragraph so mobile visitors see an action in the first viewport"
 );
 
