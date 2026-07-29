@@ -781,6 +781,39 @@
         "/background"
       ],
       "result": "Pass"
+    },
+    {
+      "prompt": "What does Ravikanth mean by Context Acquisition Tax?",
+      "expected": "Explain the public LinkedIn thesis around repeated operational context reconstruction.",
+      "requiredAnswerIncludes": [
+        "LinkedIn signal",
+        "Context Acquisition Tax",
+        "operational context",
+        "/work"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "What is the Enterprise Context Layer?",
+      "expected": "Explain the public thesis that operational context should be maintained as enterprise infrastructure.",
+      "requiredAnswerIncludes": [
+        "Enterprise Context Layer",
+        "operational context as an enterprise asset",
+        "Topology Layer",
+        "/wiki/operational-intelligence-canonical-doctrine"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Why does Ravikanth say the harness is more important than the model for SRE agents?",
+      "expected": "Explain the public Agentic SRE harness thesis with evidence, replay, outcomes, and human review.",
+      "requiredAnswerIncludes": [
+        "SRE-agent harness",
+        "durable product",
+        "Evaluation Layer",
+        "/patterns/agentic-incident-investigation"
+      ],
+      "result": "Pass"
     }
   ],
   "knownLimits": [
@@ -790,6 +823,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-07-25T00:00:00.000Z",
-  "fixtureCount": 71,
-  "passingFixtures": 71
+  "fixtureCount": 74,
+  "passingFixtures": 74
 }

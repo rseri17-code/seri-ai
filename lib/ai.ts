@@ -16,16 +16,16 @@ type GenerateArgs = {
 export function inferFrameworkLayers(question: string) {
   const lower = question.toLowerCase();
   const layers: string[] = [];
-  if (/observability|signal|telemetry|metric|log|trace|alert|dashboard/.test(lower)) layers.push("Signal Layer");
-  if (/transaction|journey|customer|workflow|latency/.test(lower)) layers.push("Transaction Layer");
-  if (/topology|dependency|service|blast|owner/.test(lower)) layers.push("Topology Layer");
-  if (/evidence|receipt|fact|source|provenance|citation/.test(lower)) layers.push("Evidence Layer");
+  if (/observability|signal|telemetry|metric|log|trace|alert|dashboard|dynamic operational view/.test(lower)) layers.push("Signal Layer");
+  if (/transaction|journey|customer|workflow|latency|context acquisition|enterprise context|operational context/.test(lower)) layers.push("Transaction Layer");
+  if (/topology|dependency|service|blast|owner|enterprise context|operational context|dynamic operational view|static graph/.test(lower)) layers.push("Topology Layer");
+  if (/evidence|receipt|fact|source|provenance|citation|context acquisition|enterprise context|harness|dynamic operational view/.test(lower)) layers.push("Evidence Layer");
   if (/hypothesis|reason|root cause|rca|causal/.test(lower)) layers.push("Reasoning Layer");
-  if (/memory|replay seed|lesson|remember/.test(lower)) layers.push("Memory Layer");
-  if (/eval|evaluation|gate|trust|benchmark|quality/.test(lower)) layers.push("Evaluation Layer");
+  if (/memory|replay seed|lesson|remember|harness|shared context|operational context/.test(lower)) layers.push("Memory Layer");
+  if (/eval|evaluation|gate|trust|benchmark|quality|harness|agentic sre/.test(lower)) layers.push("Evaluation Layer");
   if (/decision|action|recommend|risk|rollback/.test(lower)) layers.push("Decision Layer");
   if (/learn|outcome|post|future/.test(lower)) layers.push("Learning Layer");
-  if (/human|operator|approve|override|review|escalate/.test(lower)) layers.push("Operator Layer");
+  if (/human|operator|approve|override|review|escalate|shared context|agentic sre/.test(lower)) layers.push("Operator Layer");
   return [...new Set(layers)].slice(0, 4);
 }
 
@@ -87,11 +87,17 @@ export function inferRelatedArtifacts(question: string) {
   if (/work|public work|project|building|product thesis|github|open source|open-source|code|repository/.test(lower)) {
     artifacts.add("/work");
   }
+  if (/linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph/.test(lower)) {
+    artifacts.add("/work");
+    artifacts.add("/radar");
+    artifacts.add("/patterns/agentic-incident-investigation");
+    artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
+  }
   if (/resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence/.test(lower)) {
     artifacts.add("/resume");
     artifacts.add("/background");
   }
-  return [...artifacts].slice(0, 7);
+  return [...artifacts].slice(0, 9);
 }
 
 function inferReferenceAssetMatches(question: string) {
@@ -153,10 +159,14 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       ? primarySource.content.slice(0, 420)
       : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
   const ravikanthContext =
-    "Ask Ravi is an AI assistant, not Ravikanth personally. It helps visitors understand Ravikanth Seri's public work from approved public work and sources: the Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
+    "Ask Ravi is an AI assistant, not Ravikanth personally. Ask Ravikanth is a public research interface over Ravikanth Seri's public work, approved public work, and approved public sources: the Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
+  const linkedinContext =
+    /linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph/.test(lower)
+      ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, and distinguish a dynamic operational view from a static graph."
+      : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext} ${direct}` : direct}`,
+    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext} ${direct}` : `${direct}${linkedinContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",

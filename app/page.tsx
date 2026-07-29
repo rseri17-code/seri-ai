@@ -4,7 +4,7 @@ import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { homeArticles, homeBuilderDna, homeEvalReport, homeHarnessThesis, homePatterns, homeProfileLinks } from "@/content/home";
+import { homeArticles, homeBuilderDna, homeEvalReport, homeHarnessThesis, homeLinkedInSignals, homePatterns, homeProfileLinks } from "@/content/home";
 
 const proofStrip = [
   ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
@@ -68,7 +68,7 @@ const inspectionLedger = [
   ["/investigation-room", "Operations Room", "Synthetic investigation with evidence graph, replay, contradiction, missing evidence, and approval."],
   ["/evals", "Trust Evals", `${homeEvalReport.fixtures.length} deterministic fixtures covering grounding, refusal, routing, and citations.`],
   ["/library", "Publishing System", "Searchable, cited, linked assets connected to framework layers, patterns, RSS, and Ask retrieval."],
-  ["/work", "Builder Evidence", "Public-safe experience, systems judgment, resume proof, GitHub, LinkedIn, and current work."]
+  ["/work", "Public Work", "Public-safe experience, systems judgment, resume proof, GitHub, LinkedIn, and current work."]
 ] as const;
 
 const falsificationTests = [
@@ -104,10 +104,10 @@ export default function Home() {
               Ravikanth Seri on Operational Intelligence
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              A public operating manual for AI-native operations.
+              Operational context is the new control plane.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              seri.ai is where Ravikanth Seri develops Operational Intelligence: a disciplined way to turn signals into evidence, evidence into hypotheses, hypotheses into reviewable decisions, and decisions into operational memory.
+              seri.ai is a public reference for Operational Intelligence: the discipline of turning signals into evidence, evidence into hypotheses, hypotheses into reviewable decisions, and decisions into operational memory.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
@@ -146,12 +146,52 @@ export default function Home() {
               ))}
             </div>
             </div>
-            <div className="lg:self-center">
+            <div className="hidden lg:block lg:self-center">
               <HeroIntelligenceMap />
             </div>
           </div>
         </div>
       </section>
+
+      <Section eyebrow="Public thesis stream" title="The public posts converge on one problem: enterprises do not own their operational context yet.">
+        <div className="grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
+          <Card className="border-mint/25 bg-mint/[0.045]">
+            <Linkedin className="mb-5 text-mint" />
+            <h3 className="text-3xl font-semibold text-white">The context layer has to outlive the incident, the prompt, and the person holding the thread.</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-300">
+              The public writing behind this project keeps returning to the same operational gap: agents cannot become trustworthy investigators if ownership, change, dependency, transaction, confidence, and missing evidence are rediscovered from scratch every time.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <TrackedAnchor
+                href={homeProfileLinks.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                eventName="profile_link_click"
+                eventProperties={{ destination: "linkedin", placement: "homepage_public_thesis_stream" }}
+                className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint"
+              >
+                Read the public posts <Linkedin size={18} />
+              </TrackedAnchor>
+              <TrackedLink
+                href="/ask?prompt=Explain%20Ravikanth%27s%20LinkedIn%20thesis%20about%20the%20Enterprise%20Context%20Layer%20and%20Context%20Acquisition%20Tax."
+                eventName="homepage_cta_click"
+                eventProperties={{ cta: "ask_linkedin_context_thesis" }}
+                className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white"
+              >
+                Ask about the thesis <ArrowRight size={18} />
+              </TrackedLink>
+            </div>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {homeLinkedInSignals.map((signal) => (
+              <Card key={signal.name} className="p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{signal.name}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{signal.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Section>
 
       <Section eyebrow="Proof surface" title="A serious operating model should invite inspection.">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -313,7 +353,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Builder signature" title="The builder shows up through engineering taste.">
+      <Section eyebrow="Engineering signature" title="The author shows up through engineering taste, not self-promotion.">
         <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <Sparkles className="mb-5 text-mint" />
@@ -347,7 +387,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Recent signal" title="The public body of work should keep compounding.">
+      <Section eyebrow="Current work" title="The body of work compounds through field notes and reusable patterns.">
         <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
           <Card>
             <ClipboardCheck className="mb-5 text-signal" />
@@ -377,10 +417,10 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Ask Ravi" title="Ask the work, then inspect the receipts.">
+      <Section eyebrow="Ask Ravikanth" title="Ask the work, then inspect the receipts.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <h3 className="text-2xl font-semibold text-white">Ask Ravi turns the public body of work into a review surface.</h3>
+            <h3 className="text-2xl font-semibold text-white">Ask Ravikanth turns the public body of work into a review surface.</h3>
             <p className="mt-3 leading-7 text-slate-300">Use it to interrogate the doctrine, trace evidence to source pages, compare claims against artifacts, and find the right route through Ravikanth&apos;s work without guessing.</p>
           </div>
           <div className="flex flex-wrap gap-3">

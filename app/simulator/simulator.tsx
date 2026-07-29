@@ -355,12 +355,6 @@ const memorySignals = [
   ["False lead", "Which evidence looked relevant but failed the hypothesis?"],
   ["Pattern signature", "Which graph shape should be recognized next time?"]
 ];
-const workbenchProof = [
-  ["Scenario-driven", "Three public-safe cases exercise incident, answer drift, and transaction latency patterns."],
-  ["Evidence-controllable", "Operators can remove weak or noisy facts and watch confidence move."],
-  ["Branch-aware", "Best, risky, and weak actions produce different operational outcomes."],
-  ["Release-gated", "The answer is graded before the recommendation is trusted."]
-];
 const investigationLanes = ["Customer journey", "Change record", "Dependency path", "Human owner"];
 const defaultEvidenceIds = evidence.filter((item) => item.used).map((item) => item.id);
 const replayTrace = [
@@ -694,22 +688,25 @@ export function IncidentSimulator() {
                 <p className="font-mono text-xs text-signal">{currentReplayChapter.id} active</p>
               </div>
               <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} />
-            </div>
-            <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3">
-              <div className="mb-3 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
-                <div>
+              <div className="mt-3 border-t border-white/10 pt-3">
+                <div className="mb-2 flex items-center justify-between gap-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Evidence taxonomy</p>
-                  <p className="mt-1 text-sm leading-6 text-slate-300">The room is useful only if it refuses to collapse facts, interpretations, gaps, and contradictions into one fluent RCA.</p>
+                  <p className="font-mono text-xs text-slate-500">public-safe labels</p>
                 </div>
-                <p className="font-mono text-xs text-slate-500">public-safe labels</p>
-              </div>
-              <div className="grid gap-2 md:grid-cols-5">
+                <p className="sr-only">The room is useful only if it refuses to collapse facts, interpretations, gaps, and contradictions into one fluent RCA.</p>
+                <div className="flex flex-wrap gap-2">
                 {evidenceTaxonomy.map(([label, detail, tone]) => (
-                  <div key={label} className={`rounded border p-3 ${tone === "amber" ? "border-amber/25 bg-amber/[0.07]" : tone === "signal" ? "border-signal/25 bg-signal/[0.07]" : "border-mint/25 bg-mint/[0.07]"}`}>
-                    <p className={`text-xs font-semibold uppercase ${tone === "amber" ? "text-amber" : tone === "signal" ? "text-signal" : "text-mint"}`}>{label}</p>
-                    <p className="mt-2 text-xs leading-5 text-slate-300">{detail}</p>
-                  </div>
+                  <span
+                    key={label}
+                    title={detail}
+                    className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${
+                      tone === "amber" ? "border-amber/25 bg-amber/[0.07] text-amber" : tone === "signal" ? "border-signal/25 bg-signal/[0.07] text-signal" : "border-mint/25 bg-mint/[0.07] text-mint"
+                    }`}
+                  >
+                    {label}
+                  </span>
                 ))}
+                </div>
               </div>
             </div>
             <div className="ops-command-strip mt-5 grid gap-2 md:grid-cols-5">
@@ -740,14 +737,6 @@ export function IncidentSimulator() {
                   </button>
                 );
               })}
-            </div>
-            <div className="mt-4 grid gap-2 md:grid-cols-4">
-              {workbenchProof.map(([label, detail]) => (
-                <div key={label} className="ops-proof-tile rounded-lg border border-white/10 bg-black/25 p-3">
-                  <p className="text-xs font-semibold uppercase text-mint">{label}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-400">{detail}</p>
-                </div>
-              ))}
             </div>
             <div className="mt-4 flex flex-wrap gap-3">
               <button

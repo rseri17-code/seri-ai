@@ -14,6 +14,29 @@ export const homeHarnessThesis = {
   loop: ["Intake", "Evidence", "Graph", "Hypothesis", "Decision", "Replay", "Outcome", "Learning"]
 };
 
+export const homeLinkedInSignals = [
+  {
+    name: "Enterprise Context Layer",
+    description: "Operational context is an enterprise asset: ownership, change, dependency, transaction, current state, and policy must be maintained outside any single prompt."
+  },
+  {
+    name: "Context Acquisition Tax",
+    description: "Every engineer, workflow, and agent pays the tax repeatedly when the system cannot answer who owns it, what changed, what depends on it, and which transaction is affected."
+  },
+  {
+    name: "Harness over model",
+    description: "The durable product is the harness that captures evidence, replay, outcomes, approvals, and operational memory across incidents."
+  },
+  {
+    name: "Dynamic operational view",
+    description: "Static topology is not enough. Agents need a current operational view that admits uncertainty, stale knowledge, contradictions, and missing evidence."
+  },
+  {
+    name: "Shared context problem",
+    description: "AI makes private context cheap and shared context expensive; serious operations need public, inspectable reasoning artifacts teams can converge on."
+  }
+];
+
 export const homeBuilderDna = {
   title: "The operating model",
   thesis:

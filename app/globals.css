@@ -222,12 +222,6 @@ a {
   width: 0.48rem;
 }
 
-.ops-proof-tile {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
-    rgba(0, 0, 0, 0.28);
-}
-
 .sim-graph-label {
   fill: #eef4ff;
   font-size: 3px;
