@@ -46,6 +46,20 @@ const evalGates = [
   ["Action", "review"]
 ];
 
+const packetRows = [
+  ["Observation", "Transaction degradation accepted as evidence", "mint"],
+  ["Inference", "Recent change remains the leading hypothesis", "signal"],
+  ["Contradiction", "Capacity headroom weakens saturation branch", "amber"],
+  ["Unknown", "Owner approval still required before action", "amber"]
+] as const;
+
+const contextLedger = [
+  ["Owner", "Required"],
+  ["Replay", "6 receipts"],
+  ["Memory", "Pattern candidate"],
+  ["Action", "No execution"]
+] as const;
+
 function nodeColor(tone: string) {
   if (tone === "amber") return "#f3c969";
   if (tone === "signal") return "#73a7ff";
@@ -63,7 +77,7 @@ export function HeroIntelligenceMap() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-xs font-semibold uppercase text-slate-400">Operations Room artifact</p>
-            <p className="mt-1 text-lg font-semibold text-white">Evidence-to-decision review surface</p>
+            <p className="mt-1 text-lg font-semibold text-white">A reviewable investigation, not an incident summary</p>
           </div>
           <div className="flex flex-wrap gap-2">
             {["Replay active", "Evidence typed", "Approval pending"].map((item, index) => (
@@ -170,10 +184,35 @@ export function HeroIntelligenceMap() {
                 </text>
               </g>
             ))}
+            <g>
+              <rect x="64.2" y="5.8" width="29.8" height="23.8" rx="2.2" fill="rgba(0,0,0,0.44)" stroke="rgba(243,201,105,0.45)" strokeWidth="0.35" />
+              <text x="67" y="12" className="sim-graph-label" fill="#f3c969">Decision packet</text>
+              <text x="67" y="17" className="sim-graph-detail" fill="#cbd5e1">action: review only</text>
+              <text x="67" y="22" className="sim-graph-detail" fill="#cbd5e1">unknowns: visible</text>
+              <text x="67" y="27" className="sim-graph-detail" fill="#cbd5e1">owner: required</text>
+            </g>
             </svg>
           </div>
 
-          <div className="grid gap-3 lg:grid-cols-3">
+          <div className="grid gap-3 lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="rounded-lg border border-amber/25 bg-amber/[0.06] p-3">
+              <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
+                <FileCheck2 size={16} className="text-amber" />
+                Decision packet
+              </div>
+              <div className="space-y-1.5">
+                {packetRows.map(([label, value, tone]) => (
+                  <div key={label} className="rounded border border-white/10 bg-black/20 p-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">{label}</span>
+                      <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${tone === "amber" ? "bg-amber" : tone === "signal" ? "bg-signal" : "bg-mint"}`} />
+                    </div>
+                    <p className="mt-1 text-xs font-semibold leading-4 text-slate-100">{value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="grid gap-3">
             <div className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
               <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-white">
                 <Clock3 size={16} className="text-mint" />
@@ -238,6 +277,16 @@ export function HeroIntelligenceMap() {
                 <p className="mt-1 text-xs leading-4 text-slate-300">Receipts and approval boundary preserved.</p>
               </div>
             </div>
+            </div>
+          </div>
+
+          <div className="grid gap-2 rounded-lg border border-white/10 bg-white/[0.035] p-3 md:grid-cols-4">
+            {contextLedger.map(([label, value]) => (
+              <div key={label} className="rounded border border-white/10 bg-black/20 px-3 py-2">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</p>
+                <p className="mt-1 text-sm font-semibold text-slate-100">{value}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
