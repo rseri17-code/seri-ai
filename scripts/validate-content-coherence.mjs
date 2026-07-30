@@ -424,6 +424,11 @@ for (const required of [
   "Related artifacts",
   "reviewable packet with matched scope, layers, boundary, and next artifacts",
   "AI disclosure",
+  "Trust contract",
+  "Source coverage",
+  "Related route",
+  "Latency budget",
+  "Runtime budget",
   "ProfileMark size=\"sm\""
 ]) {
   expect(chatComponent.includes(required), `Chat missing prompt deep-link auto-submit contract: ${required}`);

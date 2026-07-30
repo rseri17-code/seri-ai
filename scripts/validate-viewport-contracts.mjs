@@ -42,6 +42,10 @@ const routeContracts = [
       "lg:grid-cols-[1fr_360px]",
       "Answer packet",
       "Related artifacts",
+      "Trust contract",
+      "Source coverage",
+      "Related route",
+      "Latency budget",
       "aria-label=\"Ask a question about Ravikanth Seri's public work\"",
       "aria-label=\"Send message\""
     ]

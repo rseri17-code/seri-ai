@@ -106,9 +106,11 @@ if (fs.existsSync(serverAppDir)) {
   }
 }
 
-const appPathsManifest = path.join(nextDir, "server", "app-paths-manifest.json");
-if (fs.existsSync(appPathsManifest)) {
-  const manifest = JSON.parse(fs.readFileSync(appPathsManifest, "utf8"));
+const appRoutesManifest = path.join(nextDir, "app-path-routes-manifest.json");
+const serverAppPathsManifest = path.join(nextDir, "server", "app-paths-manifest.json");
+const criticalRouteManifest = fs.existsSync(appRoutesManifest) ? appRoutesManifest : serverAppPathsManifest;
+if (fs.existsSync(criticalRouteManifest)) {
+  const manifest = JSON.parse(fs.readFileSync(criticalRouteManifest, "utf8"));
   for (const route of criticalAppPaths) {
     if (!Object.prototype.hasOwnProperty.call(manifest, route)) {
       errors.push(`Missing critical app route: ${route}`);

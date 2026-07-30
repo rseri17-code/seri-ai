@@ -20,6 +20,15 @@ type ApiResponse = {
     public_boundary?: string;
     assistant_identity?: string;
     latency_ms?: number;
+    budget?: {
+      rate_limit?: number;
+      rate_window_ms?: number;
+      embedding_timeout_ms?: number;
+      vector_timeout_ms?: number;
+      synthesis_timeout_ms?: number;
+      vector_match_count?: number;
+      returned_source_limit?: number;
+    };
   };
 };
 
@@ -135,10 +144,10 @@ export function Chat({
           "How does Ravikanth think about Operational Intelligence?"
         ]);
   const operatingReceipts: Array<[string, string]> = [
-    ["Retrieve", responseMeta?.retrieval_mode ?? (sources.length ? "sources" : "local/vector")],
-    ["Ground", sources.length ? `${sources.length} sources` : "awaiting query"],
-    ["Boundary", "public"],
-    ["Release", isLoading ? "evaluating" : responseMeta?.answer_mode ?? "ready"]
+    ["Mode", responseMeta?.retrieval_mode ?? (sources.length ? "sources" : "local")],
+    ["Sources", sources.length ? `${sources.length} cited` : "pending"],
+    ["Scope", "public"],
+    ["Status", isLoading ? "evaluating" : responseMeta?.answer_mode ?? "ready"]
   ];
   const answerPacket: Array<[string, string]> = [
     ["Category", responseMeta?.question_category ?? "awaiting question"],
@@ -146,11 +155,33 @@ export function Chat({
     ["Boundary", responseMeta?.public_boundary ?? "approved public content only"],
     ["Latency", typeof responseMeta?.latency_ms === "number" ? `${responseMeta.latency_ms} ms` : "not measured yet"]
   ];
-  const responseChecks: Array<[string, boolean]> = [
-    ["AI disclosure", true],
-    ["Approved content", sources.length > 0 || messages.length === 1],
-    ["Confidentiality gate", true],
-    ["Unknowns allowed", true]
+  const hasAskedQuestion = messages.some((message) => message.role === "user");
+  const hasSources = sources.length > 0;
+  const hasRelatedPages = Boolean(responseMeta?.related_pages?.length);
+  const isRefusal = responseMeta?.answer_mode === "public_safety_refusal" || responseMeta?.retrieval_mode === "blocked";
+  const latencyKnown = typeof responseMeta?.latency_ms === "number";
+  const runtimeBudget = responseMeta?.budget;
+  const trustContract: Array<[string, string, boolean, "mint" | "signal" | "amber"]> = [
+    ["AI disclosure", responseMeta?.assistant_identity ?? "AI assistant over approved public work", true, "mint"],
+    [
+      "Source coverage",
+      hasSources ? `${sources.length} cited sources` : isRefusal ? "blocked before retrieval" : hasAskedQuestion ? "no sources returned" : "awaiting query",
+      hasSources || isRefusal || !hasAskedQuestion,
+      hasSources ? "mint" : isRefusal ? "amber" : "signal"
+    ],
+    ["Boundary", responseMeta?.public_boundary ?? "approved public content only", true, "mint"],
+    [
+      "Related route",
+      hasRelatedPages ? `${responseMeta?.related_pages?.length} artifacts suggested` : isRefusal ? "safe redirection only" : hasAskedQuestion ? "none suggested" : "pending",
+      hasRelatedPages || isRefusal || !hasAskedQuestion,
+      hasRelatedPages ? "signal" : isRefusal ? "amber" : "signal"
+    ],
+    [
+      "Latency budget",
+      latencyKnown ? `${responseMeta?.latency_ms} ms` : hasAskedQuestion ? "not reported" : "not measured yet",
+      latencyKnown || !hasAskedQuestion,
+      latencyKnown ? "mint" : "signal"
+    ]
   ];
 
   return (
@@ -167,8 +198,8 @@ export function Chat({
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 xl:w-[34rem]">
               {operatingReceipts.map(([label, value]) => (
-                <div key={label} className="rounded border border-white/10 bg-white/[0.04] px-3 py-2">
-                  <p className="text-[0.66rem] font-semibold uppercase text-slate-500">{label}</p>
+                <div key={label} className="min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2">
+                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-slate-500">{label}</p>
                   <p className="mt-1 font-mono text-[0.72rem] leading-4 text-mint">{value}</p>
                 </div>
               ))}
@@ -180,7 +211,7 @@ export function Chat({
             <div key={`${message.role}-${index}`} className={message.role === "user" ? "flex justify-end" : "flex justify-start"}>
               <div
                 className={`max-w-[82%] rounded-lg px-4 py-3 text-sm leading-6 ${
-                  message.role === "user" ? "bg-mint text-ink" : "border border-white/10 bg-black/30 text-slate-100"
+                  message.role === "user" ? "bg-mint text-ink" : "whitespace-pre-line border border-white/10 bg-black/30 text-slate-100"
                 }`}
               >
                 {message.content}
@@ -247,18 +278,29 @@ export function Chat({
         <div className="rounded-lg border border-mint/20 bg-mint/[0.05] p-5">
           <div className="flex items-center gap-2">
             <ShieldCheck className="text-mint" size={18} />
-            <h2 className="font-semibold text-white">Answer contract</h2>
+            <h2 className="font-semibold text-white">Trust contract</h2>
           </div>
-          <div className="mt-4 grid grid-cols-2 gap-2">
-            {responseChecks.map(([label, passed]) => (
+          <div className="mt-4 grid gap-2">
+            {trustContract.map(([label, value, passed, tone]) => (
               <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className={passed ? "text-mint" : "text-amber"} size={14} />
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className={passed ? (tone === "amber" ? "mt-0.5 text-amber" : tone === "signal" ? "mt-0.5 text-signal" : "mt-0.5 text-mint") : "mt-0.5 text-amber"} size={14} />
+                  <div>
                   <span className="text-xs font-semibold text-slate-200">{label}</span>
+                    <p className="mt-1 text-[0.68rem] leading-4 text-slate-400">{value}</p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+          {runtimeBudget ? (
+            <div className="mt-4 rounded border border-white/10 bg-black/20 p-3">
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-500">Runtime budget</p>
+              <p className="mt-2 text-xs leading-5 text-slate-300">
+                {runtimeBudget.rate_limit ?? 20} questions per minute, {runtimeBudget.returned_source_limit ?? 4} returned sources, {runtimeBudget.synthesis_timeout_ms ?? 12000} ms synthesis guard.
+              </p>
+            </div>
+          ) : null}
           <p className="mt-4 text-xs leading-5 text-slate-400">
             This interface answers from Ravikanth Seri&apos;s public materials. Strong answers cite sources, name uncertainty, and stop when the evidence stops.
           </p>
