@@ -67,6 +67,39 @@ const steps = [
   }
 ];
 
+const stepContracts = [
+  {
+    question: "Which receipts are facts, and which are interpretations?",
+    output: "Typed evidence board with observation, contradiction, and missing-evidence labels.",
+    confidence: "No hypothesis confidence moves until evidence is classified.",
+    failure: "A fluent RCA appears before facts and gaps are separated."
+  },
+  {
+    question: "What changed along the transaction path, and when?",
+    output: "Replayable sequence connecting symptom, change, dependency, and impact.",
+    confidence: "Confidence can move only when timing and topology agree.",
+    failure: "Sequence is treated as causality without contradiction checks."
+  },
+  {
+    question: "Which explanation survives competing evidence?",
+    output: "Ranked hypotheses with support, contradiction, and explicit uncertainty.",
+    confidence: "Confidence must fall when active evidence weakens the branch.",
+    failure: "The loudest alert wins without preserving alternate hypotheses."
+  },
+  {
+    question: "What action is reviewable, reversible, and owner-approved?",
+    output: "Decision packet with approval class, owner, action boundary, and unknowns.",
+    confidence: "Readiness rises only when human review and reversibility are explicit.",
+    failure: "The system recommends operational change without accountable approval."
+  },
+  {
+    question: "Would this investigation behavior be safe to reuse?",
+    output: "Evaluation record for groundedness, refusal, confidentiality, and learning.",
+    confidence: "Release requires passing evidence, safety, and usefulness gates.",
+    failure: "The assistant learns from an unreviewed or non-public incident narrative."
+  }
+] as const;
+
 const scenarios = [
   {
     id: "transaction-degradation",
@@ -584,6 +617,7 @@ export function IncidentSimulator() {
     ["Human gate", selectedActionDetail?.quality === "Best"]
   ];
   const CurrentIcon = steps[active].icon;
+  const activeStepContract = stepContracts[active];
   const branchOutcome = branchOutcomeForAction(selectedActionDetail?.quality ?? "Weak");
   const evidenceReportLines = evidence.map((item) => {
     const included = activeEvidenceIds.includes(item.id);
@@ -1022,6 +1056,20 @@ export function IncidentSimulator() {
                   ))}
                 </div>
               </div>
+            </div>
+
+            <div className="mb-6 grid gap-2 rounded-lg border border-white/10 bg-black/20 p-3 md:grid-cols-4">
+              {[
+                ["Operator question", activeStepContract.question, "signal"],
+                ["Required output", activeStepContract.output, "mint"],
+                ["Confidence rule", activeStepContract.confidence, "amber"],
+                ["Failure mode", activeStepContract.failure, "amber"]
+              ].map(([label, value, tone]) => (
+                <div key={label} className="rounded border border-white/10 bg-white/[0.03] p-3">
+                  <p className={`text-[0.68rem] font-semibold uppercase tracking-[0.14em] ${tone === "mint" ? "text-mint" : tone === "signal" ? "text-signal" : "text-amber"}`}>{label}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-300">{value}</p>
+                </div>
+              ))}
             </div>
 
             <VisualReplayLayer
