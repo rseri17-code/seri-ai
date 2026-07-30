@@ -10,6 +10,7 @@ const primaryNav = [
   { href: "/work", label: "Work" },
   { href: "/wiki/operational-intelligence-canonical-doctrine", label: "Doctrine" },
   { href: "/investigation-room", label: "Room" },
+  { href: "/radar", label: "Radar" },
   { href: "/background", label: "Background" },
   { href: "/contact", label: "Contact" }
 ];

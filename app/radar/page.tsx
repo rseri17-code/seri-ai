@@ -1,5 +1,6 @@
+import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowUpRight, Radar, Route, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, FileSearch, Radar, Route, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { site, thesisRadar } from "@/content/site";
@@ -41,6 +42,22 @@ export default function RadarPage() {
       </Section>
 
       <Section eyebrow="Market signals" title="Trending concepts that ground the thesis.">
+        <Card className="mb-4 border-amber/25 bg-amber/[0.045]">
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+            <div>
+              <div className="flex items-center gap-2 text-amber">
+                <FileSearch size={18} />
+                <p className="text-sm font-semibold uppercase tracking-[0.16em]">Evidence posture</p>
+              </div>
+              <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-300">
+                These signals do not prove Operational Intelligence as a finished category. They show adjacent movement that makes the thesis worth testing: AI behavior is becoming observable, agent failures need diagnosis, operational AI work has cost and governance surfaces, and incident reasoning needs evidence beyond summaries.
+              </p>
+            </div>
+            <Link href="/wiki/operational-intelligence-evidence-pack" className="inline-flex shrink-0 items-center gap-2 rounded border border-amber/35 px-4 py-3 text-sm font-semibold text-amber">
+              Challenge the evidence <ArrowUpRight size={14} />
+            </Link>
+          </div>
+        </Card>
         <div className="space-y-4">
           {thesisRadar.trends.map((trend, index) => (
             <Card key={trend.name}>

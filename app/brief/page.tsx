@@ -22,6 +22,7 @@ const executiveProofPath = [
   ["/wiki/operational-intelligence-canonical-doctrine", "Canonical doctrine", "Definitions, boundaries, ten layers, glossary, and claim posture."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference architecture", "Implementation contracts, state machines, schemas, gates, and governance."],
   ["/investigation-room", "Operations Room", "A public-safe synthetic case that makes the thesis inspectable."],
+  ["/radar", "Thesis radar", "Current market signals around AI observability, ops for observability, AgentOps, AIOps evaluation, and operational readiness."],
   ["/wiki/operational-intelligence-evidence-pack", "Evidence pack", "Benchmarks, control comparisons, conformance, practitioner review, and falsification criteria."],
   ["/contact", "Practitioner review", "A structured path for critical feedback from operators, architects, AI engineers, and governance reviewers."]
 ] as const;

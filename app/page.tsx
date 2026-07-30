@@ -67,6 +67,7 @@ const inspectionLedger = [
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Contracts, state machines, schemas, gates, and conformance levels."],
   ["/investigation-room", "Operations Room", "Synthetic investigation with evidence graph, replay, contradiction, missing evidence, and approval."],
   ["/evals", "Trust Evals", `${homeEvalReport.fixtures.length} deterministic fixtures covering grounding, refusal, routing, and citations.`],
+  ["/radar", "Thesis Radar", "Market signals for AI observability, ops for observability, AgentOps, AIOps evaluation, and operational readiness."],
   ["/library", "Publishing System", "Searchable, cited, linked assets connected to framework layers, patterns, RSS, and Ask retrieval."],
   ["/work", "Public Work", "Public-safe experience, systems judgment, resume proof, GitHub, LinkedIn, and current work."]
 ] as const;

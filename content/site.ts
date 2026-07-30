@@ -940,7 +940,7 @@ export const askQualityRubric = askQualityRubricData;
 
 export const thesisRadar = {
   title: "Operational Intelligence Thesis Radar",
-  updatedAt: "2026-07-05",
+  updatedAt: "2026-07-30",
   thesis:
     "The market is converging on a two-way operating model: AI is changing how enterprises run operations, and operations disciplines are becoming mandatory for trustworthy AI. Operational Intelligence sits at that intersection.",
   framing: [
@@ -971,12 +971,12 @@ export const thesisRadar = {
         "AI observability should be framed as a control plane for operational trust, not a dashboard for model metrics.",
       sources: [
         {
-          label: "TechRadar: AI observability and production readiness",
-          url: "https://www.techradar.com/pro/how-ai-observability-helps-organizations-move-from-experimentation-to-production"
+          label: "OpenTelemetry: GenAI observability",
+          url: "https://opentelemetry.io/blog/2026/genai-observability/"
         },
         {
-          label: "AI Observability for LLM Systems, 2026",
-          url: "https://arxiv.org/abs/2604.26152"
+          label: "OpenTelemetry semantic conventions",
+          url: "https://opentelemetry.io/docs/specs/semconv/"
         }
       ]
     },
@@ -990,12 +990,12 @@ export const thesisRadar = {
         "This supports the bounded-agency thesis: agents should collect, compare, draft, and recommend inside explicit operating contracts.",
       sources: [
         {
-          label: "AgentOps automation pipeline, 2025",
-          url: "https://arxiv.org/abs/2507.11277"
+          label: "Microsoft Research: AgentRx failure diagnosis",
+          url: "https://www.microsoft.com/en-us/research/publication/agentrx-diagnosing-ai-agent-failures-from-execution-trajectories/"
         },
         {
-          label: "AgentSight: system-level observability for AI agents",
-          url: "https://arxiv.org/abs/2508.02736"
+          label: "MLflow: agent observability guide",
+          url: "https://mlflow.org/articles/what-is-agent-observability-a-2026-developer-guide/"
         }
       ]
     },
@@ -1009,11 +1009,11 @@ export const thesisRadar = {
         "This is the strongest research backing for the simulator: evidence, timeline, hypothesis, action, and eval should be product primitives.",
       sources: [
         {
-          label: "Multi-dataset benchmark for LLM agents in microservice failure diagnosis, 2026",
+          label: "Multi-dataset benchmark for LLM agents in microservice failure diagnosis",
           url: "https://arxiv.org/abs/2606.29193"
         },
         {
-          label: "Agentic NetOps and AIOps: architecture, evaluation, safety, 2026",
+          label: "Agentic NetOps and AIOps: architecture, evaluation, safety",
           url: "https://arxiv.org/abs/2605.12729"
         }
       ]
@@ -1030,6 +1030,10 @@ export const thesisRadar = {
         {
           label: "OpenTelemetry GenAI semantic conventions",
           url: "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+        },
+        {
+          label: "OpenTelemetry: GenAI observability",
+          url: "https://opentelemetry.io/blog/2026/genai-observability/"
         }
       ]
     },
@@ -1043,8 +1047,12 @@ export const thesisRadar = {
         "This supports the 'ops for observability' side of the thesis: observability itself needs governance, economics, quality controls, and operational maturity.",
       sources: [
         {
-          label: "TechRadar: observability built for humans vs AI agents",
-          url: "https://www.techradar.com/pro/observability-was-built-for-humans-ai-agents-need-something-different"
+          label: "Azure Monitor Observability Agent billing and cost management",
+          url: "https://learn.microsoft.com/en-us/azure/azure-monitor/aiops/observability-agent-billing"
+        },
+        {
+          label: "OpenTelemetry: GenAI telemetry privacy defaults",
+          url: "https://opentelemetry.io/blog/2026/genai-observability/"
         }
       ]
     },
@@ -1058,12 +1066,12 @@ export const thesisRadar = {
         "This is the category opening: Operational Intelligence explains what enterprises must build before autonomous operations can be trusted.",
       sources: [
         {
-          label: "TechRadar: AI race is operational",
-          url: "https://www.techradar.com/pro/ai-is-starting-to-look-a-lot-like-the-early-days-of-cloud-and-the-real-race-is-operational"
+          label: "NIST AI Risk Management Framework",
+          url: "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10"
         },
         {
-          label: "TechRadar: enterprise operations in the age of invisible AI",
-          url: "https://www.techradar.com/pro/how-to-future-proof-enterprise-operations-in-the-age-of-invisible-ai"
+          label: "Azure Monitor Observability Agent cost controls",
+          url: "https://learn.microsoft.com/en-us/azure/azure-monitor/aiops/observability-agent-billing"
         }
       ]
     },
@@ -1077,8 +1085,12 @@ export const thesisRadar = {
         "This reinforces the claim that Operational Intelligence is a reasoning architecture, not just a chat interface over telemetry.",
       sources: [
         {
-          label: "TechRadar: summarization is not reasoning in AIOps",
-          url: "https://www.techradar.com/pro/summarization-is-not-reasoning-how-hybrid-ai-fixes-failing-aiops"
+          label: "Google SRE: monitoring distributed systems",
+          url: "https://sre.google/resources/book-update/monitoring-distributed-systems/"
+        },
+        {
+          label: "Multi-dataset benchmark for LLM agents in microservice failure diagnosis",
+          url: "https://arxiv.org/abs/2606.29193"
         }
       ]
     },
@@ -1092,8 +1104,12 @@ export const thesisRadar = {
         "Human judgment before irreversible action remains the central operating principle.",
       sources: [
         {
-          label: "TechRadar: AI-led defense overseen by humans",
-          url: "https://www.techradar.com/pro/security/an-ai-led-defense-strategy-thats-overseen-by-humans-google-is-introducing-more-agents-to-its-full-ai-stack-to-allow-ai-security-at-infinite-scale"
+          label: "NIST AI RMF: govern, map, measure, manage",
+          url: "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10"
+        },
+        {
+          label: "Microsoft Research: AgentRx auditable validation logs",
+          url: "https://www.microsoft.com/en-us/research/publication/agentrx-diagnosing-ai-agent-failures-from-execution-trajectories/"
         }
       ]
     }
@@ -1819,6 +1835,27 @@ export const contentRegistry: ContentRegistryItem[] = [
     seo: {
       title: "Operational Intelligence Evidence Pack",
       description: "Benchmark rubric, review model, and falsification criteria for Operational Intelligence."
+    }
+  },
+  {
+    title: "Operational Intelligence Thesis Radar",
+    slug: "operational-intelligence-thesis-radar",
+    summary: "Market signal map connecting Ravikanth Seri's public LinkedIn thesis to AI observability, ops for observability, AgentOps, AIOps evaluation, OpenTelemetry GenAI semantics, and enterprise AI operational readiness.",
+    type: "domain",
+    route: "/radar",
+    status: "published",
+    frameworkLayers: ["Signal Layer", "Topology Layer", "Evaluation Layer", "Operator Layer"],
+    relatedPrinciples: ["Evidence before conclusions", "Evaluation is not a feature; it is the control system", "Trustworthy agents need boundaries, not just intelligence", "Operators need clarity, not more dashboards"],
+    relatedPatterns: ["/patterns/evidence-driven-rca", "/patterns/agentic-incident-investigation", "/patterns/evaluation-and-replay", "/patterns/human-in-the-loop-operational-ai"],
+    relatedArtifacts: ["/framework", "/investigation-room", "/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-evidence-pack"],
+    relatedProducts: ["/products/reasonops"],
+    relatedLibraryAssets: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/ideas/operational-intelligence-is-the-new-control-plane", "/ideas/agentic-incident-investigation"],
+    publicSafe: "public-safe",
+    createdAt: "2026-07-30",
+    updatedAt: "2026-07-30",
+    seo: {
+      title: "Operational Intelligence Thesis Radar",
+      description: "Market signals grounding Operational Intelligence across AI observability, AgentOps, AIOps evaluation, OpenTelemetry, and operational readiness."
     }
   },
   {

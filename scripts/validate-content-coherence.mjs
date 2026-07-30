@@ -159,7 +159,7 @@ for (const product of products) {
   expect(product.capabilities.length >= 3, `${owner}: needs at least three capabilities`);
 }
 
-for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack", "/work", "/framework", "/investigation-room", "/ask", "/evals"]) {
+for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack", "/work", "/framework", "/investigation-room", "/ask", "/evals", "/radar"]) {
   expect(contentRegistry.some((item) => item.route === route), `critical registry route missing: ${route}`);
 }
 
@@ -205,6 +205,7 @@ for (const required of [
   "Doctrine v1.0",
   "Reference Architecture",
   "Trust Evals",
+  "Thesis Radar",
   "Publishing System",
   "Public Work",
   "Public thesis stream",
@@ -441,9 +442,28 @@ expect(!evalRunner.includes("generatedAt: new Date().toISOString()"), "run-evals
 const headerComponent = fs.readFileSync(path.join(root, "components", "header.tsx"), "utf8");
 for (const required of [
   "Ask Ravikanth",
-  "href=\"/ask\""
+  "href=\"/ask\"",
+  "href: \"/radar\""
 ]) {
   expect(headerComponent.includes(required), `Header missing Ask Ravi companion CTA contract: ${required}`);
+}
+
+const radarPage = fs.readFileSync(path.join(root, "app", "radar", "page.tsx"), "utf8");
+const siteContent = fs.readFileSync(path.join(root, "content", "site.ts"), "utf8");
+for (const required of [
+  "Evidence posture",
+  "These signals do not prove Operational Intelligence as a finished category",
+  "Challenge the evidence",
+  "OpenTelemetry: GenAI observability",
+  "Microsoft Research: AgentRx failure diagnosis",
+  "NIST AI Risk Management Framework",
+  "Operational Intelligence Thesis Radar",
+  "ops for observability",
+  "observability for AI",
+  "type: \"domain\"",
+  "route: \"/radar\""
+]) {
+  expect(radarPage.includes(required) || siteContent.includes(required), `/radar missing thesis radar evidence contract: ${required}`);
 }
 
 const askPage = fs.readFileSync(path.join(root, "app", "ask", "page.tsx"), "utf8");
