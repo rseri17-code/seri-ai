@@ -782,6 +782,28 @@ export const articles: Article[] = [
       "Tradeoff: the model adds structure and friction. That is intentional when the alternative is fast but unsupported operational certainty.",
       "Revision date: 2026-07-16."
     ]
+  },
+  {
+    slug: "oi-room-001-control-comparison",
+    title: "OI-ROOM-001 Control Comparison",
+    dek: "A public-safe field note for testing Operational Intelligence against dashboard-only, chatbot-only, and ticket-only investigation modes.",
+    theme: "Operational Intelligence Evidence",
+    date: "2026-07-30",
+    readingTime: "6 min",
+    body: [
+      "Executive summary: OI-ROOM-001 should not be treated as proof that Operational Intelligence is better because it looks more complete. It should be treated as a repeatable comparison protocol: give multiple investigation modes the same synthetic facts, red herrings, contradictory evidence, missing evidence, transaction timing, and approval boundary, then inspect what each mode preserves or loses.",
+      "The control question is simple: what evidence would convince an experienced SRE, platform architect, or AI governance reviewer that the model improves operational judgment rather than renaming existing incident practice? The answer cannot be a better-looking interface. It has to be a more reviewable decision path.",
+      "The shared case is public-safe and synthetic. A customer-facing transaction degrades after a recent change. Signals show latency movement, a dependency path, a misleading capacity clue, one contradictory evidence item, one missing evidence condition, a rollback review option, and a human approval requirement. Every comparison mode receives the same facts.",
+      "Dashboard-only mode should be judged on signal visibility, time-to-symptom, and operator synthesis burden. It will usually expose the red metrics quickly, but it can lose the transaction journey, the hypothesis state, the contradiction, and the missing-evidence condition unless a skilled operator reconstructs them manually.",
+      "Chatbot-only mode should be judged on explanation fluency, grounding, refusal behavior, and whether it names uncertainty. It may summarize the incident quickly, but it is weak if it compresses conflicting evidence into a confident RCA, cites no sources, or recommends action without approval context.",
+      "Ticket-only mode should be judged on coordination, durable record quality, and post-incident usefulness. It may preserve comments and owner decisions, but it is weak if the hypothesis lifecycle is implicit, the transaction timing is scattered, and the final resolution cannot be replayed from evidence.",
+      "Operational Intelligence mode should be judged on whether it separates observation, inference, contradiction, missing evidence, confirmed fact, hypothesis movement, evaluation gates, and operator approval. It succeeds only if a reviewer can see how evidence changed confidence and where the system refused to overstate certainty.",
+      "The scorecard should not collapse into one aggregate number. Reviewers should inspect seven dimensions: evidence completeness, transaction reconstruction, contradiction handling, missing-evidence honesty, hypothesis quality, decision safety, and replayability. A mode can win one dimension and lose another.",
+      "The expected advantage of Operational Intelligence is not speed alone. The expected advantage is reduced reasoning loss: fewer unsupported conclusions, clearer unknowns, better handoff, safer action review, and a reusable record for evaluation and memory.",
+      "The strongest falsification test is independent implementation. If two teams use the doctrine and produce incompatible decision packets for the same OI-ROOM-001 facts, the doctrine is underspecified. If dashboard-only or ticket-only workflows preserve the same reasoning quality with less structure, the Operational Intelligence layer should be simplified.",
+      "This field note is a measurement design, not a published benchmark result. It does not claim that Operational Intelligence has already outperformed the controls in production. It defines what must be measured before that claim would be credible.",
+      "The next publication should turn this protocol into a reviewer worksheet: same facts, four modes, evidence table, scoring rubric, reviewer notes, and failure examples. The goal is to make the thesis harder to fake, not easier to market."
+    ]
   }
 ];
 

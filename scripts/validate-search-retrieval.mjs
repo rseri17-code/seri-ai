@@ -26,6 +26,14 @@ const cases = [
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },
   {
+    query: "Where is the OI-ROOM-001 control comparison against dashboard-only chatbot-only and ticket-only modes?",
+    expectedFirstUrl: "/ideas/oi-room-001-control-comparison"
+  },
+  {
+    query: "How should we benchmark Operational Intelligence against dashboard only chatbot only and ticket only investigations?",
+    expectedFirstUrl: "/ideas/oi-room-001-control-comparison"
+  },
+  {
     query: "Where is the minimum conformance checklist?",
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },

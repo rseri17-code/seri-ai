@@ -163,6 +163,19 @@ for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki
   expect(contentRegistry.some((item) => item.route === route), `critical registry route missing: ${route}`);
 }
 
+const controlComparisonArticle = articles.find((article) => article.slug === "oi-room-001-control-comparison");
+expect(Boolean(controlComparisonArticle), "Missing OI-ROOM-001 control comparison field note");
+for (const required of [
+  "dashboard-only",
+  "chatbot-only",
+  "ticket-only",
+  "measurement design, not a published benchmark result",
+  "reasoning loss",
+  "reviewable decision path"
+]) {
+  expect(controlComparisonArticle?.body.join(" ").includes(required) || controlComparisonArticle?.dek.includes(required), `OI-ROOM-001 control comparison missing proof phrase: ${required}`);
+}
+
 const homePage = fs.readFileSync(path.join(root, "app", "page.tsx"), "utf8");
 for (const required of [
   "const reviewerPaths",
@@ -243,6 +256,15 @@ for (const required of [
   "/background"
 ]) {
   expect(homePage.includes(required), `/ missing focused homepage contract: ${required}`);
+}
+
+const homeContent = fs.readFileSync(path.join(root, "content", "home.ts"), "utf8");
+for (const required of [
+  "oi-room-001-control-comparison",
+  "OI-ROOM-001 Control Comparison",
+  "dashboard-only, chatbot-only, and ticket-only"
+]) {
+  expect(homeContent.includes(required), `Home content missing latest proof note contract: ${required}`);
 }
 
 const notFoundPage = fs.readFileSync(path.join(root, "app", "not-found.tsx"), "utf8");

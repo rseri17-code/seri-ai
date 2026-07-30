@@ -14,6 +14,7 @@ const workUrl = "/work";
 const resumeUrl = "/resume";
 const backgroundUrl = "/background";
 const radarUrl = "/radar";
+const controlComparisonUrl = "/ideas/oi-room-001-control-comparison";
 const directReferenceBoosts: Array<[RegExp, string]> = [
   [/diagram|diagrams|state machine diagram|sequence diagram|evidence graph diagram|replay loop/, "/publication-pack/operational-intelligence-diagrams.md"],
   [/comparison table|adjacent discipline|claim classification|observability versus|aiops versus|agentops/, "/publication-pack/operational-intelligence-comparison-tables.md"],
@@ -193,6 +194,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         /thesis radar|market signal|why now|linkedin thesis|ops for observability|observability for ai|ai observability|agentops|agentic telemetry|aiops evaluation|opentelemetry|genai semantics|operational readiness/.test(lowerQuery)
           ? 60
           : 0;
+      const controlComparisonBoost =
+        source.url === controlComparisonUrl &&
+        /oi-room-001.*control|control comparison|benchmark.*operational intelligence|dashboard.only|chatbot.only|ticket.only|comparison.*dashboard|comparison.*chatbot|comparison.*ticket|same synthetic facts|reasoning loss|reviewable decision path/.test(lowerQuery)
+          ? 70
+          : 0;
       const askRavikanthBoost =
         source.url === workUrl &&
         /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|public work|professional achievements/.test(lowerQuery)
@@ -212,6 +218,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         downloadPackBoost +
         publicProfileBoost +
         thesisRadarBoost +
+        controlComparisonBoost +
         askRavikanthBoost +
         resumeBoost +
         backgroundBoost;

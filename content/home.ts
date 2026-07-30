@@ -63,6 +63,12 @@ export const homeBuilderDna = {
 
 export const homeArticles = [
   {
+    slug: "oi-room-001-control-comparison",
+    title: "OI-ROOM-001 Control Comparison",
+    dek: "How to test the Operations Room against dashboard-only, chatbot-only, and ticket-only investigation modes.",
+    theme: "Evidence"
+  },
+  {
     slug: "operational-intelligence-is-the-new-control-plane",
     title: "Operational Intelligence Is the New Control Plane",
     dek: "Why enterprises need systems that reason across signals, workflows, people, and outcomes.",
