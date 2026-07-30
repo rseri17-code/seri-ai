@@ -175,80 +175,96 @@ export default function Home() {
       </section>
 
       <Section eyebrow="Public thesis stream" title="The posts converge on one enterprise failure mode: operational context is recreated instead of owned.">
-        <div className="grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
-          <Card className="border-mint/25 bg-mint/[0.045]">
-            <Linkedin className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">The context layer has to outlive the incident, the prompt, and the person carrying the thread.</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
-              Ravikanth&apos;s public writing keeps returning to the same operational gap: agents cannot become trustworthy investigators if ownership, change, dependency, transaction, confidence, and missing evidence are rediscovered from scratch every time.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <TrackedAnchor
-                href={homeProfileLinks.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                eventName="profile_link_click"
-                eventProperties={{ destination: "linkedin", placement: "homepage_public_thesis_stream" }}
-                className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint"
-              >
-                Read the public posts <Linkedin size={18} />
-              </TrackedAnchor>
-              <TrackedLink
-                href="/ask?prompt=Explain%20Ravikanth%27s%20LinkedIn%20thesis%20about%20the%20Enterprise%20Context%20Layer%20and%20Context%20Acquisition%20Tax."
-                eventName="homepage_cta_click"
-                eventProperties={{ cta: "ask_linkedin_context_thesis" }}
-                className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white"
-              >
-                Ask about the thesis <ArrowRight size={18} />
-              </TrackedLink>
+        <Card className="border-mint/25 bg-mint/[0.045] p-5">
+          <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+            <div>
+              <Linkedin className="mb-5 text-mint" />
+              <h3 className="text-2xl font-semibold text-white md:text-3xl">The context layer has to outlive the incident, the prompt, and the person carrying the thread.</h3>
+              <p className="mt-4 text-base leading-7 text-slate-300">
+                Ravikanth&apos;s public writing keeps returning to the same operational gap: agents cannot become trustworthy investigators if ownership, change, dependency, transaction, confidence, and missing evidence are rediscovered from scratch every time.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <TrackedAnchor
+                  href={homeProfileLinks.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  eventName="profile_link_click"
+                  eventProperties={{ destination: "linkedin", placement: "homepage_public_thesis_stream" }}
+                  className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint"
+                >
+                  Read the public posts <Linkedin size={18} />
+                </TrackedAnchor>
+                <TrackedLink
+                  href="/ask?prompt=Explain%20Ravikanth%27s%20LinkedIn%20thesis%20about%20the%20Enterprise%20Context%20Layer%20and%20Context%20Acquisition%20Tax."
+                  eventName="homepage_cta_click"
+                  eventProperties={{ cta: "ask_linkedin_context_thesis" }}
+                  className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white"
+                >
+                  Ask about the thesis <ArrowRight size={18} />
+                </TrackedLink>
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">LinkedIn thesis ledger</p>
+              <p className="mt-2 text-sm leading-6 text-slate-400">The public posts are treated as working notes for the doctrine, not as social proof.</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+            {homeLinkedInSignals.map((signal) => (
+              <div key={signal.name} className="max-w-[17rem] rounded border border-white/10 bg-black/20 px-3 py-2">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-signal">{signal.name}</p>
+                <p className="mt-1 text-xs leading-5 text-slate-300">{signal.description}</p>
+              </div>
+            ))}
+              </div>
+            </div>
+          </div>
+        </Card>
+      </Section>
+
+      <Section eyebrow="Category boundary and falsification tests" title="Operational Intelligence begins where observation alone stops being enough.">
+        <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+          <Card className="p-0">
+            <div className="border-b border-white/10 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">What it replaces, and what it does not</p>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300">
+                The point is not to rename observability, chat, or incident tracking. The point is to make the operational decision itself inspectable.
+              </p>
+            </div>
+            <div className="divide-y divide-white/10">
+              {categoryContrast.map(([mode, promise, limitation]) => (
+                <div key={mode} className={`grid gap-3 p-4 md:grid-cols-[0.6fr_0.8fr_1.2fr] ${mode === "Operational Intelligence" ? "bg-mint/[0.045]" : ""}`}>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{mode}</p>
+                  <h2 className="text-base font-semibold text-white">{promise}</h2>
+                  <p className="text-sm leading-6 text-slate-300">{limitation}</p>
+                </div>
+              ))}
             </div>
           </Card>
-          <div className="grid gap-3 md:grid-cols-2">
-            {homeLinkedInSignals.map((signal) => (
-              <Card key={signal.name} className="p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{signal.name}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{signal.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section eyebrow="Category boundary" title="Operational Intelligence begins where observation alone stops being enough.">
-        <div className="grid gap-3 lg:grid-cols-4">
-          {categoryContrast.map(([mode, promise, limitation]) => (
-            <Card key={mode} className={`h-full p-4 ${mode === "Operational Intelligence" ? "border-mint/35 bg-mint/[0.055]" : ""}`}>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{mode}</p>
-              <h2 className="mt-3 text-xl font-semibold text-white">{promise}</h2>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{limitation}</p>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Falsification tests" title="What would make the thesis credible or wrong.">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {falsificationTests.map(([value, label]) => (
-            <Card key={value} className="h-full p-4">
-              <p className="font-semibold text-white">{value}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
-            </Card>
-          ))}
+          <Card className="border-amber/25 bg-amber/[0.045]">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">What would make the thesis credible or wrong.</p>
+            <div className="mt-5 grid gap-3">
+              {falsificationTests.map(([value, label]) => (
+                <div key={value} className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="font-semibold text-white">{value}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
         </div>
       </Section>
 
       <Section eyebrow="Reference system" title="The proof path is part of the work, not a separate credibility layer.">
         <div className="grid gap-4 lg:grid-cols-[0.86fr_1.14fr]">
-          <Card className="border-signal/25 bg-signal/[0.045]">
+          <Card className="border-signal/25 bg-signal/[0.045] p-5">
             <ShieldCheck className="mb-5 text-signal" />
-            <h3 className="text-3xl font-semibold text-white">Inspection is part of the product contract.</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
+            <h3 className="text-2xl font-semibold text-white md:text-3xl">Inspection is part of the product contract.</h3>
+            <p className="mt-4 text-base leading-7 text-slate-300">
               The thesis is exposed through definitions, contracts, synthetic evidence, evaluation gates, public work, and source-linked publishing. A visitor should be able to challenge the model without needing private systems or confidential examples.
             </p>
-            <div className="mt-6 grid gap-2 sm:grid-cols-2">
+            <div className="mt-5 grid gap-2 sm:grid-cols-2">
               {proofStrip.map(([value, label]) => (
                 <div key={value} className="rounded border border-white/10 bg-black/20 p-3">
-                  <p className="text-lg font-semibold text-white">{value}</p>
+                  <p className="text-base font-semibold text-white">{value}</p>
                   <p className="mt-2 text-xs leading-5 text-slate-400">{label}</p>
                 </div>
               ))}
@@ -279,19 +295,21 @@ export default function Home() {
               </Link>
             </div>
           </Card>
-          <div className="grid gap-3 md:grid-cols-2">
+          <Card className="p-0">
+            <div className="border-b border-white/10 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Inspection ledger</p>
+              <p className="mt-2 text-sm leading-6 text-slate-400">Each artifact has a job in the public proof path.</p>
+            </div>
+            <div className="divide-y divide-white/10">
             {inspectionLedger.map(([href, title, body]) => (
-              <Link key={href} href={href}>
-                <Card className="h-full p-4 transition hover:-translate-y-1 hover:border-mint/40">
-                  <div className="flex items-start justify-between gap-4">
-                    <h2 className="text-xl font-semibold text-white">{title}</h2>
-                    <ArrowRight size={16} className="mt-1 shrink-0 text-mint" />
-                  </div>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
-                </Card>
+              <Link key={href} href={href} className="grid gap-2 p-4 transition hover:bg-white/[0.035] md:grid-cols-[0.42fr_1fr_auto] md:items-center">
+                <h2 className="text-base font-semibold text-white">{title}</h2>
+                <p className="text-sm leading-6 text-slate-300">{body}</p>
+                <ArrowRight size={16} className="text-mint" />
               </Link>
             ))}
-          </div>
+            </div>
+          </Card>
         </div>
       </Section>
 
