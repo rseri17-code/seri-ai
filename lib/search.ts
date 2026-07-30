@@ -196,7 +196,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
           : 0;
       const controlComparisonBoost =
         source.url === controlComparisonUrl &&
-        /oi-room-001.*control|control comparison|benchmark.*operational intelligence|dashboard.only|chatbot.only|ticket.only|comparison.*dashboard|comparison.*chatbot|comparison.*ticket|same synthetic facts|reasoning loss|reviewable decision path/.test(lowerQuery)
+        /oi-room-001.*control|control comparison|benchmark.*operational intelligence|dashboard.only|chatbot.only|ticket.only|comparison.*dashboard|comparison.*chatbot|comparison.*ticket|same synthetic facts|reasoning loss|reviewable decision path|reviewer worksheet|evidence completeness|contradiction handling|missing.evidence honesty|hypothesis quality|decision safety|replayability/.test(lowerQuery)
           ? 70
           : 0;
       const askRavikanthBoost =

@@ -74,6 +74,58 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 <p id={`section-${index + 1}`} key={paragraph}>{paragraph}</p>
               ))}
             </div>
+            {article.reviewWorksheet ? (
+              <div className="mt-10 space-y-6">
+                <Card className="border-signal/25 bg-signal/[0.045] p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Reviewer worksheet</p>
+                  <h2 className="mt-3 text-2xl font-semibold text-white">{article.reviewWorksheet.title}</h2>
+                  <p className="mt-3 text-base leading-7 text-slate-300">{article.reviewWorksheet.purpose}</p>
+                  <div className="mt-6 grid gap-3 md:grid-cols-2">
+                    {article.reviewWorksheet.modes.map((mode) => (
+                      <div key={mode.mode} className="rounded border border-white/10 bg-black/20 p-4">
+                        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-mint">{mode.mode}</p>
+                        <dl className="mt-4 space-y-3 text-sm leading-6">
+                          <div>
+                            <dt className="font-semibold text-white">Preserves</dt>
+                            <dd className="mt-1 text-slate-300">{mode.preserves}</dd>
+                          </div>
+                          <div>
+                            <dt className="font-semibold text-white">Likely loss</dt>
+                            <dd className="mt-1 text-slate-300">{mode.likelyLoss}</dd>
+                          </div>
+                          <div>
+                            <dt className="font-semibold text-white">Reviewer question</dt>
+                            <dd className="mt-1 text-slate-300">{mode.reviewerQuestion}</dd>
+                          </div>
+                        </dl>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+                <Card className="p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Scoring dimensions</p>
+                  <div className="mt-4 divide-y divide-white/10">
+                    {article.reviewWorksheet.dimensions.map((dimension) => (
+                      <div key={dimension.dimension} className="grid gap-3 py-4 md:grid-cols-[0.6fr_1fr_1fr]">
+                        <h3 className="text-base font-semibold text-white">{dimension.dimension}</h3>
+                        <p className="text-sm leading-6 text-slate-300">{dimension.ask}</p>
+                        <p className="text-sm leading-6 text-amber">{dimension.failureSignal}</p>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+                <Card className="border-amber/25 bg-amber/[0.045] p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Falsification checks</p>
+                  <div className="mt-4 grid gap-3 md:grid-cols-2">
+                    {article.reviewWorksheet.falsification.map((check) => (
+                      <p key={check} className="rounded border border-white/10 bg-black/20 p-3 text-sm leading-6 text-slate-300">
+                        {check}
+                      </p>
+                    ))}
+                  </div>
+                </Card>
+              </div>
+            ) : null}
           </div>
           <aside className="space-y-4 lg:sticky lg:top-24 lg:h-fit">
             <Card className="p-4">

@@ -165,15 +165,42 @@ for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki
 
 const controlComparisonArticle = articles.find((article) => article.slug === "oi-room-001-control-comparison");
 expect(Boolean(controlComparisonArticle), "Missing OI-ROOM-001 control comparison field note");
+const controlComparisonText = [
+  controlComparisonArticle?.dek,
+  ...(controlComparisonArticle?.body ?? []),
+  controlComparisonArticle?.reviewWorksheet?.title,
+  controlComparisonArticle?.reviewWorksheet?.purpose,
+  ...(controlComparisonArticle?.reviewWorksheet?.modes ?? []).flatMap((mode) => [mode.mode, mode.preserves, mode.likelyLoss, mode.reviewerQuestion]),
+  ...(controlComparisonArticle?.reviewWorksheet?.dimensions ?? []).flatMap((dimension) => [dimension.dimension, dimension.ask, dimension.failureSignal]),
+  ...(controlComparisonArticle?.reviewWorksheet?.falsification ?? [])
+].join(" ");
 for (const required of [
   "dashboard-only",
   "chatbot-only",
   "ticket-only",
   "measurement design, not a published benchmark result",
   "reasoning loss",
-  "reviewable decision path"
+  "reviewable decision path",
+  "Reviewer worksheet",
+  "Evidence completeness",
+  "Contradiction handling",
+  "Missing-evidence honesty",
+  "Decision safety",
+  "Replayability"
 ]) {
-  expect(controlComparisonArticle?.body.join(" ").includes(required) || controlComparisonArticle?.dek.includes(required), `OI-ROOM-001 control comparison missing proof phrase: ${required}`);
+  expect(controlComparisonText.includes(required), `OI-ROOM-001 control comparison missing proof phrase: ${required}`);
+}
+
+const articlePage = fs.readFileSync(path.join(root, "app", "ideas", "[slug]", "page.tsx"), "utf8");
+for (const required of [
+  "article.reviewWorksheet",
+  "Reviewer worksheet",
+  "Scoring dimensions",
+  "Falsification checks",
+  "Likely loss",
+  "Reviewer question"
+]) {
+  expect(articlePage.includes(required), `Article page missing worksheet renderer phrase: ${required}`);
 }
 
 const homePage = fs.readFileSync(path.join(root, "app", "page.tsx"), "utf8");

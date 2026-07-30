@@ -208,6 +208,20 @@ function readingTime(body: string) {
   return `${Math.max(1, Math.ceil(words / 220))} min`;
 }
 
+function articleWorksheetContent(article: (typeof articles)[number]) {
+  if (!article.reviewWorksheet) {
+    return "";
+  }
+
+  return [
+    article.reviewWorksheet.title,
+    article.reviewWorksheet.purpose,
+    ...article.reviewWorksheet.modes.flatMap((mode) => [mode.mode, mode.preserves, mode.likelyLoss, mode.reviewerQuestion]),
+    ...article.reviewWorksheet.dimensions.flatMap((dimension) => [dimension.dimension, dimension.ask, dimension.failureSignal]),
+    ...article.reviewWorksheet.falsification
+  ].join(" ");
+}
+
 export function getAllWikiNotes(): WikiNote[] {
   if (allWikiNotesCache) {
     return allWikiNotesCache;
@@ -356,7 +370,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
     id: `article:${article.slug}`,
     title: article.title,
     description: article.dek,
-    content: `${article.title}. ${article.dek}. ${article.body.join(" ")}`,
+    content: `${article.title}. ${article.dek}. ${article.body.join(" ")} ${articleWorksheetContent(article)}`,
     url: `/ideas/${article.slug}`,
     type: "article" as const,
     category: article.theme,

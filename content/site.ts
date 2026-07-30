@@ -590,6 +590,22 @@ export type Article = {
   date: string;
   readingTime: string;
   body: string[];
+  reviewWorksheet?: {
+    title: string;
+    purpose: string;
+    modes: Array<{
+      mode: string;
+      preserves: string;
+      likelyLoss: string;
+      reviewerQuestion: string;
+    }>;
+    dimensions: Array<{
+      dimension: string;
+      ask: string;
+      failureSignal: string;
+    }>;
+    falsification: string[];
+  };
 };
 
 export const articles: Article[] = [
@@ -803,7 +819,80 @@ export const articles: Article[] = [
       "The strongest falsification test is independent implementation. If two teams use the doctrine and produce incompatible decision packets for the same OI-ROOM-001 facts, the doctrine is underspecified. If dashboard-only or ticket-only workflows preserve the same reasoning quality with less structure, the Operational Intelligence layer should be simplified.",
       "This field note is a measurement design, not a published benchmark result. It does not claim that Operational Intelligence has already outperformed the controls in production. It defines what must be measured before that claim would be credible.",
       "The next publication should turn this protocol into a reviewer worksheet: same facts, four modes, evidence table, scoring rubric, reviewer notes, and failure examples. The goal is to make the thesis harder to fake, not easier to market."
-    ]
+    ],
+    reviewWorksheet: {
+      title: "Reviewer worksheet",
+      purpose: "Use the same OI-ROOM-001 facts across four modes and record what each mode preserves, loses, or invents.",
+      modes: [
+        {
+          mode: "Dashboard-only",
+          preserves: "Signal visibility and fast symptom detection.",
+          likelyLoss: "Transaction journey, hypothesis state, contradiction, and missing evidence unless an operator reconstructs them manually.",
+          reviewerQuestion: "Can the reviewer reproduce why the leading hypothesis changed?"
+        },
+        {
+          mode: "Chatbot-only",
+          preserves: "Fast narrative synthesis and exploratory question answering.",
+          likelyLoss: "Source validity, contradiction handling, approval context, and refusal posture if the answer is not grounded.",
+          reviewerQuestion: "Does the answer cite evidence and admit missing context before recommending action?"
+        },
+        {
+          mode: "Ticket-only",
+          preserves: "Coordination record, ownership comments, resolution notes, and durable follow-up work.",
+          likelyLoss: "Live hypothesis movement, transaction timing, and a replayable evidence chain.",
+          reviewerQuestion: "Can a future team replay the decision without asking who was present?"
+        },
+        {
+          mode: "Operational Intelligence",
+          preserves: "Observation, inference, confirmed fact, contradiction, missing evidence, evidence graph, hypothesis lifecycle, eval gates, approval class, and replay seed.",
+          likelyLoss: "Adds structure and review friction; simplify the layer if it does not improve reasoning quality.",
+          reviewerQuestion: "Does structure reduce reasoning loss enough to justify the workflow?"
+        }
+      ],
+      dimensions: [
+        {
+          dimension: "Evidence completeness",
+          ask: "Are supporting, weakening, contradictory, and missing evidence visible?",
+          failureSignal: "Only red metrics or prose summary remain."
+        },
+        {
+          dimension: "Transaction reconstruction",
+          ask: "Can the reviewer follow the affected journey and timing?",
+          failureSignal: "Impact is inferred from a component alert alone."
+        },
+        {
+          dimension: "Contradiction handling",
+          ask: "Does weak evidence reduce confidence or redirect the hypothesis?",
+          failureSignal: "Contradiction is omitted from the final answer."
+        },
+        {
+          dimension: "Missing-evidence honesty",
+          ask: "Are unavailable facts preserved as unknowns?",
+          failureSignal: "Unknowns become confident narrative."
+        },
+        {
+          dimension: "Hypothesis quality",
+          ask: "Are alternatives compared with falsification criteria?",
+          failureSignal: "The first plausible explanation becomes the RCA."
+        },
+        {
+          dimension: "Decision safety",
+          ask: "Is the action reversible, owned, and approval-gated?",
+          failureSignal: "Action is recommended without owner review."
+        },
+        {
+          dimension: "Replayability",
+          ask: "Can another reviewer reproduce the reasoning path?",
+          failureSignal: "Outcome depends on a private conversation or memory."
+        }
+      ],
+      falsification: [
+        "Dashboard-only or ticket-only preserves the same reasoning quality with less structure.",
+        "Two independent teams produce incompatible decision packets from the same doctrine and facts.",
+        "The Operational Intelligence workflow hides uncertainty behind process language.",
+        "Reviewers cannot identify where confidence changed or why action was gated."
+      ]
+    }
   }
 ];
 

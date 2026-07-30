@@ -167,8 +167,22 @@ function baseVersion(date: string, note = "Initial public-safe publication.") {
   return [{ version: "v1", date, note }];
 }
 
+function articleWorksheetContent(article: Article) {
+  if (!article.reviewWorksheet) {
+    return "";
+  }
+
+  return [
+    article.reviewWorksheet.title,
+    article.reviewWorksheet.purpose,
+    ...article.reviewWorksheet.modes.flatMap((mode) => [mode.mode, mode.preserves, mode.likelyLoss, mode.reviewerQuestion]),
+    ...article.reviewWorksheet.dimensions.flatMap((dimension) => [dimension.dimension, dimension.ask, dimension.failureSignal]),
+    ...article.reviewWorksheet.falsification
+  ].join(" ");
+}
+
 function articleAsset(article: Article): PublishingAsset {
-  const content = `${article.title}. ${article.dek}. ${article.body.join(" ")}`;
+  const content = `${article.title}. ${article.dek}. ${article.body.join(" ")} ${articleWorksheetContent(article)}`;
   const frameworkLayers = inferFrameworkLayers(content, article.theme === "Operational Intelligence" ? frameworkLayerNames.slice(0, 3) : []);
   const asset: PublishingAsset = {
     id: `article:${article.slug}`,

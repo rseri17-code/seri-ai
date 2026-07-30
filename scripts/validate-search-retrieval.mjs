@@ -34,6 +34,10 @@ const cases = [
     expectedFirstUrl: "/ideas/oi-room-001-control-comparison"
   },
   {
+    query: "Where is the reviewer worksheet for evidence completeness contradiction handling and replayability?",
+    expectedFirstUrl: "/ideas/oi-room-001-control-comparison"
+  },
+  {
     query: "Where is the minimum conformance checklist?",
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },
