@@ -963,7 +963,7 @@ export function IncidentSimulator() {
         })}
       </div>
 
-      <div className="grid gap-0 lg:grid-cols-[18rem_1fr_20rem]">
+      <div className="grid gap-0 lg:grid-cols-[15rem_minmax(0,1fr)] 2xl:grid-cols-[16rem_minmax(0,1fr)_18rem]">
         <aside className="border-b border-white/10 p-5 lg:border-b-0 lg:border-r">
           <p className="text-xs font-semibold uppercase text-slate-500">Framework walkthrough</p>
           <div className="mt-4 space-y-2">
@@ -1104,7 +1104,7 @@ export function IncidentSimulator() {
           </motion.div>
         </main>
 
-        <aside className="border-t border-white/10 p-5 lg:border-l lg:border-t-0">
+        <aside className="border-t border-white/10 p-5 lg:col-span-2 2xl:col-span-1 2xl:border-l 2xl:border-t-0">
           <div className="flex items-center justify-between gap-3">
             <p className="text-xs font-semibold uppercase text-slate-500">Decision packet</p>
             <span className="rounded border border-amber/30 bg-amber/10 px-2 py-1 font-mono text-xs text-amber">No execution</span>

@@ -63,6 +63,9 @@ const routeContracts = [
       "aria-label=\"Dynamic visual graph showing evidence flowing through transaction path, hypothesis, and human review\"",
       "aria-label=\"Live visual graph preview of evidence, transaction path, RCA, and review gate\"",
       "md:grid-cols-5",
+      "lg:grid-cols-[15rem_minmax(0,1fr)]",
+      "2xl:grid-cols-[16rem_minmax(0,1fr)_18rem]",
+      "lg:col-span-2",
       "lg:grid-cols",
       "2xl:grid-cols"
     ]
