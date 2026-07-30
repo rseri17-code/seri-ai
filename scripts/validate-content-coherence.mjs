@@ -800,6 +800,10 @@ for (const required of [
   "Move from background to inspectable evidence.",
   "/resume",
   "/work",
+  "/radar",
+  "Thesis Radar",
+  "ops for observability",
+  "observability for AI",
   "/investigation-room",
   "/wiki/operational-intelligence-canonical-doctrine",
   "/evals"

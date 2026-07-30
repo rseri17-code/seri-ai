@@ -13,6 +13,7 @@ const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
 const workUrl = "/work";
 const resumeUrl = "/resume";
 const backgroundUrl = "/background";
+const radarUrl = "/radar";
 const directReferenceBoosts: Array<[RegExp, string]> = [
   [/diagram|diagrams|state machine diagram|sequence diagram|evidence graph diagram|replay loop/, "/publication-pack/operational-intelligence-diagrams.md"],
   [/comparison table|adjacent discipline|claim classification|observability versus|aiops versus|agentops/, "/publication-pack/operational-intelligence-comparison-tables.md"],
@@ -187,6 +188,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
           ? 50
           : 0;
       const publicProfileBoost = source.url === workUrl && /public code|open source|open-source|github|linkedin|public proof|engineering portfolio/.test(lowerQuery) ? 10 : 0;
+      const thesisRadarBoost =
+        source.url === radarUrl &&
+        /thesis radar|market signal|why now|linkedin thesis|ops for observability|observability for ai|ai observability|agentops|agentic telemetry|aiops evaluation|opentelemetry|genai semantics|operational readiness/.test(lowerQuery)
+          ? 60
+          : 0;
       const askRavikanthBoost =
         source.url === workUrl &&
         /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|public work|professional achievements/.test(lowerQuery)
@@ -205,6 +211,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         conformanceChecklistBoost +
         downloadPackBoost +
         publicProfileBoost +
+        thesisRadarBoost +
         askRavikanthBoost +
         resumeBoost +
         backgroundBoost;

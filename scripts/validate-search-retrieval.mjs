@@ -34,6 +34,18 @@ const cases = [
     expectedFirstUrl: "/work"
   },
   {
+    query: "Where are the market signals for ops for observability and observability for AI?",
+    expectedFirstUrl: "/radar"
+  },
+  {
+    query: "Explain the LinkedIn thesis around AgentOps, AI observability, and operational readiness.",
+    expectedFirstUrl: "/radar"
+  },
+  {
+    query: "How does OpenTelemetry GenAI semantics support Ravikanth's thesis?",
+    expectedFirstUrl: "/radar"
+  },
+  {
     query: "Where are the Operational Intelligence state machine and evidence graph diagrams?",
     expectedFirstUrl: "/publication-pack/operational-intelligence-diagrams.md"
   },

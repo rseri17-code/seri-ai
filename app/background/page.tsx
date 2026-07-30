@@ -32,7 +32,7 @@ const formationArc = [
 
 const credibilityQuestions = [
   ["What shaped the thesis?", "Operating real systems before asking AI to reason about them.", "/work"],
-  ["What is inspectable?", "Doctrine, reference architecture, Operations Room, evidence pack, evals, resume, GitHub, and LinkedIn signal.", "/wiki/operational-intelligence-evidence-pack"],
+  ["What is inspectable?", "Doctrine, reference architecture, Thesis Radar, Operations Room, evidence pack, evals, resume, GitHub, and LinkedIn signal.", "/wiki/operational-intelligence-evidence-pack"],
   ["What stays out of scope?", "Public-safe boundary: employer-specific systems, private operational artifacts, proprietary names, and confidential architecture are excluded.", "/wiki/operational-intelligence-canonical-doctrine"],
   ["What should improve next?", "More benchmark-style field notes, live reviewer-labeled Ask quality, and practitioner feedback loops.", "/evals"]
 ] as const;
@@ -40,6 +40,7 @@ const credibilityQuestions = [
 const proofLinks = [
   ["/resume", "Interactive resume", "Detailed career evidence, impact ledger, skills, education, and certifications."],
   ["/work", "Operating record", "Systems, frameworks, artifacts, writing, public code signal, and review spine."],
+  ["/radar", "Thesis Radar", "Market signals around observability for AI, ops for observability, AgentOps, AIOps evaluation, and operational readiness."],
   ["/investigation-room", "Operations Room", "Synthetic public-safe investigation showing the thesis as a working artifact."],
   ["/wiki/operational-intelligence-canonical-doctrine", "Canonical Doctrine", "Definitions, boundaries, ten layers, glossary, and OI-ROOM-001 framing."],
   ["/evals", "Ask trust report", `${evalReport.fixtures.length} deterministic fixtures for grounding, refusal, citations, routing, and public safety.`]
