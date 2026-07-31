@@ -199,6 +199,11 @@ export default function WorkPage() {
           <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
             Ravikanth&apos;s public work connects enterprise systems experience, AI-native operations, reference architecture, writing, and working artifacts into one thesis: operations need shared context, evidence-backed reasoning, eval-gated action, and compounding memory.
           </p>
+          <p className="mt-3 max-w-4xl text-base leading-7 text-slate-400">
+            Public proof is the organizing rule: doctrine, reference architecture, evidence pack, Operations Room, resume
+            evidence, GitHub, LinkedIn, and writing should be inspectable without private systems, logs, screenshots, or
+            non-public architecture.
+          </p>
         </Card>
       </Section>
 
