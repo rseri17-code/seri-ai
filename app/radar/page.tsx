@@ -20,6 +20,19 @@ export default function RadarPage() {
             <Radar className="mb-5 text-mint" />
             <p className="text-xl leading-8 text-slate-200">{thesisRadar.thesis}</p>
             <p className="mt-5 text-sm text-slate-400">Updated {thesisRadar.updatedAt}</p>
+            <div className="mt-6 rounded border border-white/10 bg-black/20 p-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Thesis spine</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {thesisRadar.proofChain.map((item) => (
+                  <span key={item.theme} className="rounded border border-mint/20 bg-mint/[0.045] px-3 py-2 text-xs font-semibold text-mint">
+                    {item.theme}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-3 text-sm leading-6 text-slate-400">
+                The page is organized around public themes, market signals, testable claims, and falsification questions.
+              </p>
+            </div>
             <a
               href={site.links.linkedin}
               target="_blank"

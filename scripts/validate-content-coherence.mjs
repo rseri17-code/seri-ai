@@ -504,6 +504,8 @@ for (const required of [
   "These signals do not prove Operational Intelligence as a finished category",
   "Challenge the evidence",
   "Public thought process",
+  "Thesis spine",
+  "The page is organized around public themes, market signals, testable claims, and falsification questions.",
   "The LinkedIn themes become useful only when they become testable claims.",
   "Market signal",
   "OI claim",
