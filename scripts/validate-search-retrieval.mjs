@@ -54,6 +54,10 @@ const cases = [
     expectedFirstUrl: "/radar"
   },
   {
+    query: "Where is the public thought process for Enterprise Context Layer Context Acquisition Tax and harness over model?",
+    expectedFirstUrl: "/radar"
+  },
+  {
     query: "How does OpenTelemetry GenAI semantics support Ravikanth's thesis?",
     expectedFirstUrl: "/radar"
   },

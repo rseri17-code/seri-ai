@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, patterns, principles, projects, resume, site } from "@/content/site";
+import { articles, contentRegistry, patterns, principles, projects, resume, site, thesisRadar } from "@/content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -441,6 +441,40 @@ export function buildPublicSourceIndex(): PublicSource[] {
       frameworkLayers: [],
       principles: [],
       patterns: [],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
+      id: "profile:operational-intelligence-thesis-radar",
+      title: thesisRadar.title,
+      description: "Public thought-process map connecting Ravikanth Seri's LinkedIn themes to market signals, Operational Intelligence claims, and falsification questions.",
+      content: [
+        thesisRadar.title,
+        thesisRadar.thesis,
+        thesisRadar.framing.flatMap((item) => [item.name, item.statement]).join(". "),
+        thesisRadar.proofChain
+          .flatMap((item) => [item.theme, item.publicThought, item.marketSignal, item.operationalClaim, item.falsificationQuestion])
+          .join(". "),
+        thesisRadar.trends
+          .flatMap((trend) => [
+            trend.name,
+            trend.signal,
+            trend.whyItMatters,
+            trend.ravikanthAngle,
+            ...trend.sources.flatMap((source) => [source.label, source.url])
+          ])
+          .join(". ")
+      ].join(". "),
+      url: "/radar",
+      type: "registry" as const,
+      category: "thesis radar",
+      tags: ["LinkedIn thesis", "Enterprise Context Layer", "Context Acquisition Tax", "AgentOps", "AI observability", "Operational Intelligence"],
+      author: "Ravikanth Seri",
+      assetType: "profile",
+      date: thesisRadar.updatedAt,
+      frameworkLayers: ["Evidence Layer", "Reasoning Layer", "Evaluation Layer", "Operator Layer"],
+      principles: ["Evidence before conclusions", "Replay before belief"],
+      patterns: ["/patterns/evidence-driven-rca", "/patterns/evaluation-and-replay"],
       products: ["/products/reasonops"],
       status: "published" as const
     }

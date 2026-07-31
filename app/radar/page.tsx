@@ -41,6 +41,38 @@ export default function RadarPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Public thought process" title="The LinkedIn themes become useful only when they become testable claims.">
+        <Card className="p-0">
+          <div className="border-b border-white/10 p-5">
+            <p className="max-w-4xl text-sm leading-6 text-slate-300">
+              This is the working map behind the Radar: public themes from Ravikanth&apos;s posts, adjacent market movement, the Operational Intelligence claim, and the question that would weaken the claim.
+            </p>
+          </div>
+          <div className="divide-y divide-white/10">
+            {thesisRadar.proofChain.map((item) => (
+              <div key={item.theme} className="grid gap-4 p-5 lg:grid-cols-[0.72fr_1fr_1fr_1fr]">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{item.theme}</p>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{item.publicThought}</p>
+                </div>
+                <div className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">Market signal</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{item.marketSignal}</p>
+                </div>
+                <div className="rounded border border-mint/20 bg-mint/[0.045] p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">OI claim</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">{item.operationalClaim}</p>
+                </div>
+                <div className="rounded border border-amber/25 bg-amber/[0.045] p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-amber">Falsification</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">{item.falsificationQuestion}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </Section>
+
       <Section eyebrow="Market signals" title="Trending concepts that ground the thesis.">
         <Card className="mb-4 border-amber/25 bg-amber/[0.045]">
           <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">

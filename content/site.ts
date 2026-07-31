@@ -1071,6 +1071,52 @@ export const thesisRadar = {
         "The durable category is not AIOps alone or AI observability alone. It is the reasoning layer that connects telemetry, transactions, topology, memory, agents, evaluation, and human decisions."
     }
   ],
+  proofChain: [
+    {
+      theme: "Enterprise Context Layer",
+      publicThought:
+        "Operational context should be owned as a durable enterprise asset: systems, owners, dependencies, transactions, policy, current state, and known failure memory.",
+      marketSignal:
+        "GenAI telemetry, agent execution traces, and AI operations tooling are making context capture part of the operational data plane.",
+      operationalClaim:
+        "The context layer should outlive any single incident, dashboard, prompt, ticket, or person carrying the thread.",
+      falsificationQuestion:
+        "If teams can preserve the same reasoning quality without a durable context layer, this claim should be narrowed."
+    },
+    {
+      theme: "Context Acquisition Tax",
+      publicThought:
+        "Every engineer and agent pays a repeated tax when ownership, change, dependency, impact, and policy must be rediscovered during each investigation.",
+      marketSignal:
+        "AI agents increase the cost of fragmented context because they can generate fluent answers faster than teams can verify the evidence.",
+      operationalClaim:
+        "Operational Intelligence should reduce repeated context reconstruction by preserving evidence, hypotheses, decisions, and replay seeds.",
+      falsificationQuestion:
+        "If faster summaries reduce investigation loss without preserving evidence, the model is adding unnecessary structure."
+    },
+    {
+      theme: "Harness over model",
+      publicThought:
+        "The important product is not a smarter standalone model. It is the harness that scopes work, gathers evidence, exposes uncertainty, gates action, and learns from outcomes.",
+      marketSignal:
+        "AgentOps, AI observability, and evaluation work increasingly focus on traces, tool calls, grounding, cost, failures, and supervised action.",
+      operationalClaim:
+        "Enterprise AI operations should be evaluated through the operating harness: retrieval, evidence graph, hypothesis lifecycle, eval gates, approval, and memory.",
+      falsificationQuestion:
+        "If model quality alone explains operational improvement, the harness thesis is overstated."
+    },
+    {
+      theme: "Shared operational reasoning",
+      publicThought:
+        "Private context is cheap; shared context is the hard enterprise problem. Teams need reasoning artifacts they can inspect together.",
+      marketSignal:
+        "Incident response, SRE, observability, and AI governance all push toward auditability, provenance, and explicit human oversight.",
+      operationalClaim:
+        "The durable output should be a reviewable decision packet, not only a chat answer or dashboard view.",
+      falsificationQuestion:
+        "If independent reviewers cannot replay the decision from the artifact, the artifact is not strong enough."
+    }
+  ],
   trends: [
     {
       name: "AI observability moves from model monitoring to full-stack operations",
@@ -2220,6 +2266,13 @@ export const approvedKnowledge = [
   thesisRadar.title,
   thesisRadar.thesis,
   ...thesisRadar.framing.flatMap((item) => [item.name, item.statement]),
+  ...thesisRadar.proofChain.flatMap((item) => [
+    item.theme,
+    item.publicThought,
+    item.marketSignal,
+    item.operationalClaim,
+    item.falsificationQuestion
+  ]),
   ...thesisRadar.trends.flatMap((trend) => [
     trend.name,
     trend.signal,

@@ -173,6 +173,10 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         source.assetType
       ].join(" ").toLowerCase();
       const baseScore = terms.reduce((sum, term) => sum + (lower.includes(term) ? 1 : 0) + (source.title.toLowerCase().includes(term) ? 2 : 0), 0);
+      const canonicalDefinitionBoost =
+        source.url === doctrineUrl && /what is operational intelligence|how should operational intelligence be defined|define operational intelligence|definition of operational intelligence|canonical definition/.test(lowerQuery)
+          ? 50
+          : 0;
       const doctrineBoost = source.url === doctrineUrl && terms.some((term) => doctrineTerms.has(term)) ? 6 : 0;
       const referenceArchitectureBoost = source.url === referenceArchitectureUrl && terms.some((term) => referenceArchitectureTerms.has(term)) ? 7 : 0;
       const evidencePackBoost = source.url === evidencePackUrl && terms.some((term) => evidencePackTerms.has(term)) ? 7 : 0;
@@ -191,7 +195,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const publicProfileBoost = source.url === workUrl && /public code|open source|open-source|github|linkedin|public proof|engineering portfolio/.test(lowerQuery) ? 10 : 0;
       const thesisRadarBoost =
         source.url === radarUrl &&
-        /thesis radar|market signal|why now|linkedin thesis|ops for observability|observability for ai|ai observability|agentops|agentic telemetry|aiops evaluation|opentelemetry|genai semantics|operational readiness/.test(lowerQuery)
+        /thesis radar|market signal|why now|linkedin thesis|ops for observability|observability for ai|ai observability|agentops|agentic telemetry|aiops evaluation|opentelemetry|genai semantics|operational readiness|enterprise context layer|context acquisition tax|harness over model|shared operational reasoning|testable claim|public thought process/.test(lowerQuery)
           ? 60
           : 0;
       const controlComparisonBoost =
@@ -207,6 +211,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const directReferenceBoost = directReferenceBoosts.some(([pattern, url]) => source.url === url && pattern.test(lowerQuery)) ? 40 : 0;
       const score =
         baseScore +
+        canonicalDefinitionBoost +
         doctrineBoost +
         referenceArchitectureBoost +
         evidencePackBoost +
