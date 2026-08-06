@@ -1,0 +1,211 @@
+{
+  "title": "Operational Intelligence Thesis Radar",
+  "updatedAt": "2026-07-30",
+  "thesis": "The market is converging on a two-way operating model: AI is changing how enterprises run operations, and operations disciplines are becoming mandatory for trustworthy AI. Operational Intelligence sits at that intersection.",
+  "framing": [
+    {
+      "name": "Ops for observability",
+      "statement": "Observability can no longer be treated as a passive dashboard layer. It needs product operations: source quality, retention strategy, cost controls, taxonomy, governance, and feedback loops."
+    },
+    {
+      "name": "Observability for AI",
+      "statement": "AI systems need their own observability surface: prompts, tools, agents, model calls, token cost, latency, grounding, drift, safety refusals, and human override paths."
+    },
+    {
+      "name": "Operational Intelligence",
+      "statement": "The durable category is not AIOps alone or AI observability alone. It is the reasoning layer that connects telemetry, transactions, topology, memory, agents, evaluation, and human decisions."
+    }
+  ],
+  "proofChain": [
+    {
+      "theme": "Enterprise Context Layer",
+      "publicThought": "Operational context should be owned as a durable enterprise asset: systems, owners, dependencies, transactions, policy, current state, and known failure memory.",
+      "marketSignal": "GenAI telemetry, agent execution traces, and AI operations tooling are making context capture part of the operational data plane.",
+      "operationalClaim": "The context layer should outlive any single incident, dashboard, prompt, ticket, or person carrying the thread.",
+      "falsificationQuestion": "If teams can preserve the same reasoning quality without a durable context layer, this claim should be narrowed."
+    },
+    {
+      "theme": "Context Acquisition Tax",
+      "publicThought": "Every engineer and agent pays a repeated tax when ownership, change, dependency, impact, and policy must be rediscovered during each investigation.",
+      "marketSignal": "AI agents increase the cost of fragmented context because they can generate fluent answers faster than teams can verify the evidence.",
+      "operationalClaim": "Operational Intelligence should reduce repeated context reconstruction by preserving evidence, hypotheses, decisions, and replay seeds.",
+      "falsificationQuestion": "If faster summaries reduce investigation loss without preserving evidence, the model is adding unnecessary structure."
+    },
+    {
+      "theme": "Harness over model",
+      "publicThought": "The important product is not a smarter standalone model. It is the harness that scopes work, gathers evidence, exposes uncertainty, gates action, and learns from outcomes.",
+      "marketSignal": "AgentOps, AI observability, and evaluation work increasingly focus on traces, tool calls, grounding, cost, failures, and supervised action.",
+      "operationalClaim": "Enterprise AI operations should be evaluated through the operating harness: retrieval, evidence graph, hypothesis lifecycle, eval gates, approval, and memory.",
+      "falsificationQuestion": "If model quality alone explains operational improvement, the harness thesis is overstated."
+    },
+    {
+      "theme": "Shared operational reasoning",
+      "publicThought": "Private context is cheap; shared context is the hard enterprise problem. Teams need reasoning artifacts they can inspect together.",
+      "marketSignal": "Incident response, SRE, observability, and AI governance all push toward auditability, provenance, and explicit human oversight.",
+      "operationalClaim": "The durable output should be a reviewable decision packet, not only a chat answer or dashboard view.",
+      "falsificationQuestion": "If independent reviewers cannot replay the decision from the artifact, the artifact is not strong enough."
+    }
+  ],
+  "trends": [
+    {
+      "name": "AI observability moves from model monitoring to full-stack operations",
+      "signal": "Production AI systems now need visibility across models, prompts, latency, infrastructure, costs, and agent interactions.",
+      "whyItMatters": "This validates the shift from AI experiments to AI operations. Enterprises need to manage reliability, cost, drift, and agent behavior as one operating surface.",
+      "ravikanthAngle": "AI observability should be framed as a control plane for operational trust, not a dashboard for model metrics.",
+      "sources": [
+        {
+          "label": "OpenTelemetry: GenAI observability",
+          "url": "https://opentelemetry.io/blog/2026/genai-observability/",
+          "evidenceType": "standard signal",
+          "supports": "Shows GenAI behavior becoming part of the observable operational surface."
+        },
+        {
+          "label": "OpenTelemetry semantic conventions",
+          "url": "https://opentelemetry.io/docs/specs/semconv/",
+          "evidenceType": "standard",
+          "supports": "Grounds the claim in a shared instrumentation vocabulary rather than vendor-specific dashboards."
+        }
+      ]
+    },
+    {
+      "name": "AgentOps becomes the operational discipline for agentic systems",
+      "signal": "Agentic systems require monitoring of behavior, memory, tool use, workflow paths, uncertainty, and runtime optimization.",
+      "whyItMatters": "Traditional software observability does not capture the probabilistic and adaptive behavior of agents. AgentOps gives enterprises a vocabulary for operating agents safely.",
+      "ravikanthAngle": "This supports the bounded-agency thesis: agents should collect, compare, draft, and recommend inside explicit operating contracts.",
+      "sources": [
+        {
+          "label": "Microsoft Research: AgentRx failure diagnosis",
+          "url": "https://www.microsoft.com/en-us/research/publication/agentrx-diagnosing-ai-agent-failures-from-execution-trajectories/",
+          "evidenceType": "research",
+          "supports": "Supports trajectory-level diagnosis for agent failures instead of final-answer inspection alone."
+        },
+        {
+          "label": "MLflow: agent observability guide",
+          "url": "https://mlflow.org/articles/what-is-agent-observability-a-2026-developer-guide/",
+          "evidenceType": "implementation signal",
+          "supports": "Shows agent observability moving into practitioner implementation guidance."
+        }
+      ]
+    },
+    {
+      "name": "AIOps is shifting from final-answer RCA to reasoning-process evaluation",
+      "signal": "New benchmarks evaluate whether agents localize faults, identify failure type, and ground reasoning in evidence instead of only grading the final answer.",
+      "whyItMatters": "Enterprise operations cannot trust black-box incident answers. The reasoning trace must be inspectable, testable, and tied to evidence.",
+      "ravikanthAngle": "This is the strongest research backing for the simulator: evidence, timeline, hypothesis, action, and eval should be product primitives.",
+      "sources": [
+        {
+          "label": "Multi-dataset benchmark for LLM agents in microservice failure diagnosis",
+          "url": "https://arxiv.org/abs/2606.29193",
+          "evidenceType": "research",
+          "supports": "Supports evaluation of diagnostic behavior across microservice failure scenarios."
+        },
+        {
+          "label": "Agentic NetOps and AIOps: architecture, evaluation, safety",
+          "url": "https://arxiv.org/abs/2605.12729",
+          "evidenceType": "research",
+          "supports": "Connects agentic operations to architecture, evaluation, and safety constraints."
+        }
+      ]
+    },
+    {
+      "name": "OpenTelemetry is expanding into GenAI and MCP semantics",
+      "signal": "OpenTelemetry semantic conventions now include Generative AI areas such as agent spans, model providers, events, metrics, spans, and Model Context Protocol.",
+      "whyItMatters": "The telemetry standard is following the market into AI-native operations. AI interactions are becoming observable operational events.",
+      "ravikanthAngle": "Observability for AI can lean on OpenTelemetry as the shared language for agent traces, tool calls, and model behavior.",
+      "sources": [
+        {
+          "label": "OpenTelemetry GenAI semantic conventions",
+          "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/",
+          "evidenceType": "standard",
+          "supports": "Grounds AI spans, events, metrics, and model interactions in an emerging telemetry standard."
+        },
+        {
+          "label": "OpenTelemetry: GenAI observability",
+          "url": "https://opentelemetry.io/blog/2026/genai-observability/",
+          "evidenceType": "standard signal",
+          "supports": "Shows why AI behavior belongs in the operational data plane."
+        }
+      ]
+    },
+    {
+      "name": "Observability infrastructure must change for machine consumers",
+      "signal": "AI agents need longer retention, less sampling, richer context, and high-concurrency query patterns that differ from human dashboard usage.",
+      "whyItMatters": "If agents become consumers of telemetry, observability economics and architecture need to adapt. Data quality becomes an AI-readiness issue.",
+      "ravikanthAngle": "This supports the 'ops for observability' side of the thesis: observability itself needs governance, economics, quality controls, and operational maturity.",
+      "sources": [
+        {
+          "label": "Azure Monitor Observability Agent billing and cost management",
+          "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/aiops/observability-agent-billing",
+          "evidenceType": "implementation signal",
+          "supports": "Shows telemetry consumed by agents creating explicit cost and governance surfaces."
+        },
+        {
+          "label": "OpenTelemetry: GenAI telemetry privacy defaults",
+          "url": "https://opentelemetry.io/blog/2026/genai-observability/",
+          "evidenceType": "standard signal",
+          "supports": "Connects AI telemetry to privacy defaults and operational data-quality choices."
+        }
+      ]
+    },
+    {
+      "name": "Enterprise AI success is becoming an operational-readiness problem",
+      "signal": "The market is moving from model selection to operational disciplines: usage attribution, controls, capacity, cost, governance, and application-layer efficiency.",
+      "whyItMatters": "The constraint is no longer access to AI. It is whether enterprise systems are instrumented, governed, and ready to absorb AI into real workflows.",
+      "ravikanthAngle": "This is the category opening: Operational Intelligence explains what enterprises must build before autonomous operations can be trusted.",
+      "sources": [
+        {
+          "label": "NIST AI Risk Management Framework",
+          "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10",
+          "evidenceType": "governance",
+          "supports": "Grounds operational readiness in AI risk management rather than model capability alone."
+        },
+        {
+          "label": "Azure Monitor Observability Agent cost controls",
+          "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/aiops/observability-agent-billing",
+          "evidenceType": "implementation signal",
+          "supports": "Shows AI operations introducing capacity, attribution, and billing controls."
+        }
+      ]
+    },
+    {
+      "name": "Hybrid AI and causality are re-entering the AIOps conversation",
+      "signal": "Market commentary increasingly distinguishes summarization from reasoning and points toward hybrid systems combining LLMs, classical ML, and causal models.",
+      "whyItMatters": "Summaries are useful but insufficient for high-stakes operations. Enterprises need causal evidence, topology, memory, and governed action loops.",
+      "ravikanthAngle": "This reinforces the claim that Operational Intelligence is a reasoning architecture, not just a chat interface over telemetry.",
+      "sources": [
+        {
+          "label": "Google SRE: monitoring distributed systems",
+          "url": "https://sre.google/resources/book-update/monitoring-distributed-systems/",
+          "evidenceType": "foundational practice",
+          "supports": "Keeps the thesis anchored in established monitoring and reliability practice."
+        },
+        {
+          "label": "Multi-dataset benchmark for LLM agents in microservice failure diagnosis",
+          "url": "https://arxiv.org/abs/2606.29193",
+          "evidenceType": "research",
+          "supports": "Shows why diagnosis quality needs benchmarkable evidence, not only narrative summaries."
+        }
+      ]
+    },
+    {
+      "name": "AI-led operations still needs human oversight",
+      "signal": "Agentic security and operations workflows are moving toward AI-led investigation under human supervision.",
+      "whyItMatters": "This validates a human-in-the-loop operating model. The enterprise pattern is not blind autonomy; it is supervised acceleration.",
+      "ravikanthAngle": "Human judgment before irreversible action remains the central operating principle.",
+      "sources": [
+        {
+          "label": "NIST AI RMF: govern, map, measure, manage",
+          "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10",
+          "evidenceType": "governance",
+          "supports": "Grounds human oversight and control in a recognized AI risk-management lifecycle."
+        },
+        {
+          "label": "Microsoft Research: AgentRx auditable validation logs",
+          "url": "https://www.microsoft.com/en-us/research/publication/agentrx-diagnosing-ai-agent-failures-from-execution-trajectories/",
+          "evidenceType": "research",
+          "supports": "Supports auditable traces and validation logs for supervised agent investigation."
+        }
+      ]
+    }
+  ]
+}

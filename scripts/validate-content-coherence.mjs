@@ -24,6 +24,7 @@ const { buildPublishingIndex } = jiti("../lib/publishing.ts");
 const { getPublishedWikiNotes } = jiti("../lib/content.ts");
 
 const errors = [];
+const thesisRadarContent = fs.readFileSync(path.join(root, "content", "thesis-radar.json"), "utf8");
 
 const allowedStatuses = new Set(["published", "planned", "draft"]);
 const allowedTypes = new Set(["framework", "pattern", "artifact", "library", "product", "principle", "background", "domain", "system"]);
@@ -537,7 +538,7 @@ for (const required of [
   "type: \"domain\"",
   "route: \"/radar\""
 ]) {
-  expect(radarPage.includes(required) || siteContent.includes(required), `/radar missing thesis radar evidence contract: ${required}`);
+  expect(radarPage.includes(required) || siteContent.includes(required) || thesisRadarContent.includes(required), `/radar missing thesis radar evidence contract: ${required}`);
 }
 
 const allowedRadarEvidenceTypes = new Set(["standard", "standard signal", "research", "implementation signal", "governance", "foundational practice"]);

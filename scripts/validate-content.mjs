@@ -9,6 +9,8 @@ const patternsPath = path.join(root, "content", "patterns.json");
 const projectsPath = path.join(root, "content", "projects.json");
 const productsPath = path.join(root, "content", "products.json");
 const architectureCardsPath = path.join(root, "content", "architecture-cards.json");
+const thesisRadarPath = path.join(root, "content", "thesis-radar.json");
+const categoryBriefPath = path.join(root, "content", "category-brief.json");
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
@@ -16,6 +18,8 @@ const requiredPatternFields = ["slug", "title", "description", "tags", "problem"
 const requiredProjectFields = ["slug", "name", "summary", "status", "capabilities", "detail"];
 const requiredProductFields = ["slug", "name", "tagline", "summary", "relationship", "whatItIs", "whyItMatters", "capabilities", "architecture", "useCases", "principles", "not", "roadmap"];
 const requiredArchitectureCardFields = ["title", "pattern", "tags"];
+const requiredRadarFields = ["title", "updatedAt", "thesis", "framing", "proofChain", "trends"];
+const requiredBriefFields = ["title", "subtitle", "audience", "thesis", "whyNow", "contrarianInsight", "wedge", "proofPoints", "whatToRemember", "nextMoves"];
 const validStatuses = new Set(["draft", "review", "approved", "published", "archived"]);
 const errors = [];
 
@@ -74,6 +78,21 @@ function validateRequiredFields(label, item, requiredFieldsForItem, options = {}
   if (options.requireSlug !== false && !/^[a-z0-9-]+$/.test(item.slug ?? "")) {
     errors.push(`${owner}: slug must be lowercase kebab-case`);
   }
+}
+
+function requireJsonObject(filePath, label) {
+  if (!fs.existsSync(filePath)) {
+    errors.push(`${label}: missing content object`);
+    return {};
+  }
+
+  const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  if (!data || typeof data !== "object" || Array.isArray(data)) {
+    errors.push(`${label}: expected object`);
+    return {};
+  }
+
+  return data;
 }
 
 const files = fs.existsSync(wikiDir) ? fs.readdirSync(wikiDir).filter((file) => file.endsWith(".mdx")) : [];
@@ -203,9 +222,67 @@ for (const card of architectureCards) {
   }
 }
 
+const thesisRadar = requireJsonObject(thesisRadarPath, "content/thesis-radar.json");
+validateRequiredFields("content/thesis-radar.json", thesisRadar, requiredRadarFields, { requireSlug: false });
+if (!/^\d{4}-\d{2}-\d{2}$/.test(thesisRadar.updatedAt ?? "")) {
+  errors.push("content/thesis-radar.json: updatedAt must be YYYY-MM-DD");
+}
+if (!Array.isArray(thesisRadar.framing) || thesisRadar.framing.length < 3) {
+  errors.push("content/thesis-radar.json: framing must include at least three thesis frames");
+}
+if (!Array.isArray(thesisRadar.proofChain) || thesisRadar.proofChain.length < 4) {
+  errors.push("content/thesis-radar.json: proofChain must include at least four claims");
+} else {
+  for (const item of thesisRadar.proofChain) {
+    const owner = `content/thesis-radar.json:${item.theme ?? "unknown"}`;
+    for (const field of ["theme", "publicThought", "marketSignal", "operationalClaim", "falsificationQuestion"]) {
+      if (!item[field]) {
+        errors.push(`${owner}: missing required field ${field}`);
+      }
+    }
+    if (!String(item.falsificationQuestion ?? "").includes("?") && !String(item.falsificationQuestion ?? "").startsWith("If ")) {
+      errors.push(`${owner}: falsificationQuestion must be testable`);
+    }
+  }
+}
+if (!Array.isArray(thesisRadar.trends) || thesisRadar.trends.length < 8) {
+  errors.push("content/thesis-radar.json: trends must include at least eight market signals");
+} else {
+  for (const trend of thesisRadar.trends) {
+    const owner = `content/thesis-radar.json:${trend.name ?? "unknown"}`;
+    for (const field of ["name", "signal", "whyItMatters", "ravikanthAngle", "sources"]) {
+      if (trend[field] == null || trend[field] === "" || (Array.isArray(trend[field]) && trend[field].length === 0)) {
+        errors.push(`${owner}: missing required field ${field}`);
+      }
+    }
+    if (!Array.isArray(trend.sources) || trend.sources.length < 2) {
+      errors.push(`${owner}: sources must include at least two references`);
+    } else {
+      for (const source of trend.sources) {
+        for (const field of ["label", "url", "evidenceType", "supports"]) {
+          if (!source[field]) {
+            errors.push(`${owner}: source missing ${field}`);
+          }
+        }
+        if (source.url && !/^https:\/\//.test(source.url)) {
+          errors.push(`${owner}: source URL must be https`);
+        }
+      }
+    }
+  }
+}
+
+const categoryBrief = requireJsonObject(categoryBriefPath, "content/category-brief.json");
+validateRequiredFields("content/category-brief.json", categoryBrief, requiredBriefFields, { requireSlug: false });
+for (const field of ["whyNow", "proofPoints", "whatToRemember", "nextMoves"]) {
+  if (!Array.isArray(categoryBrief[field]) || categoryBrief[field].length < 4) {
+    errors.push(`content/category-brief.json: ${field} must include at least four entries`);
+  }
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, principles, patterns, projects, products, and architecture cards.`);
+console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, radar, brief, principles, patterns, projects, products, and architecture cards.`);
