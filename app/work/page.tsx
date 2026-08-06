@@ -10,7 +10,14 @@ import { articles, contentRegistry, evalReport, operationalIntelligenceFramework
 export const metadata: Metadata = {
   title: "Work | Ravikanth Seri",
   description:
-    "Evidence-led proof of Ravikanth Seri's public work across Operational Intelligence, Agentic SRE, ReasonOps, reference architecture, artifacts, writing, and background."
+    "Evidence-led proof of Ravikanth Seri's public work across Operational Intelligence, Agentic SRE, ReasonOps, reference architecture, artifacts, writing, and background.",
+  alternates: { canonical: "/work" },
+  openGraph: {
+    title: "Work | Ravikanth Seri",
+    description: "Evidence-led proof of Ravikanth Seri's public Operational Intelligence work, reference assets, artifacts, writing, GitHub, and LinkedIn signal.",
+    url: "/work",
+    type: "website"
+  }
 };
 
 type WorkItem = [href: string, label: string, detail: string];

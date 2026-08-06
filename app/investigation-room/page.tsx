@@ -6,7 +6,14 @@ import { operationalIntelligenceSystem } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Operations Room | seri.ai",
-  description: "A public-safe Operational Intelligence investigation room for OI-ROOM-001: evidence graph, hypothesis lifecycle, replay, evaluation gates, and human approval."
+  description: "A public-safe Operational Intelligence investigation room for OI-ROOM-001: evidence graph, hypothesis lifecycle, replay, evaluation gates, and human approval.",
+  alternates: { canonical: "/investigation-room" },
+  openGraph: {
+    title: "Operations Room | seri.ai",
+    description: "Run the synthetic OI-ROOM-001 investigation through evidence, contradiction, missing context, evaluation gates, and accountable human approval.",
+    url: "/investigation-room",
+    type: "website"
+  }
 };
 
 const caseAskPrompt = "Explain the OI-ROOM-001 case using the Operational Intelligence layers.";

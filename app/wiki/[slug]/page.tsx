@@ -17,7 +17,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const note = getPublishedWikiNotes().find((item) => item.slug === slug);
   return {
     title: note ? `${note.title} | seri.ai Wiki` : "Wiki | seri.ai",
-    description: note?.description
+    description: note?.description,
+    alternates: note
+      ? {
+          canonical: `/wiki/${note.slug}`
+        }
+      : undefined,
+    openGraph: note
+      ? {
+          title: note.title,
+          description: note.description,
+          url: `/wiki/${note.slug}`,
+          type: "article"
+        }
+      : undefined
   };
 }
 

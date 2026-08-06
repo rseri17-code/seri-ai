@@ -9,7 +9,14 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Ask Ravikanth | Operational Intelligence Public Research Interface",
-  description: "Question Ravikanth Seri's Operational Intelligence thesis, architecture judgment, projects, background, writing, GitHub, LinkedIn signal, and AI systems through cited public evidence."
+  description: "Question Ravikanth Seri's Operational Intelligence thesis, architecture judgment, projects, background, writing, GitHub, LinkedIn signal, and AI systems through cited public evidence.",
+  alternates: { canonical: "/ask" },
+  openGraph: {
+    title: "Ask Ravikanth | Operational Intelligence Public Research Interface",
+    description: "A cited, public-safe AI research interface over Ravikanth Seri's Operational Intelligence work and approved public sources.",
+    url: "/ask",
+    type: "website"
+  }
 };
 
 const askContextCards: Array<{ label: string; value: string; Icon: LucideIcon }> = [

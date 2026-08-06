@@ -56,7 +56,39 @@ const routeMetadataContracts = [
   },
   {
     file: "app/investigation-room/page.tsx",
-    required: ["export const metadata", "Operations Room | seri.ai", "OI-ROOM-001", "human approval"]
+    required: ["export const metadata", "Operations Room | seri.ai", "OI-ROOM-001", "human approval", "canonical: \"/investigation-room\"", "url: \"/investigation-room\""]
+  },
+  {
+    file: "app/radar/page.tsx",
+    required: ["export const metadata", "Thesis Radar | Ravikanth Seri", "canonical: \"/radar\"", "url: \"/radar\"", "type: \"website\""]
+  },
+  {
+    file: "app/work/page.tsx",
+    required: ["export const metadata", "Work | Ravikanth Seri", "canonical: \"/work\"", "url: \"/work\"", "type: \"website\""]
+  },
+  {
+    file: "app/background/page.tsx",
+    required: ["export const metadata", "Background | Ravikanth Seri", "canonical: \"/background\"", "url: \"/background\"", "type: \"website\""]
+  },
+  {
+    file: "app/framework/page.tsx",
+    required: ["export const metadata", "Operational Intelligence Framework | Ravikanth Seri", "canonical: \"/framework\"", "url: \"/framework\""]
+  },
+  {
+    file: "app/evals/page.tsx",
+    required: ["export const metadata", "Evals | Public Operational Intelligence Trust Report", "canonical: \"/evals\"", "url: \"/evals\""]
+  },
+  {
+    file: "app/resume/page.tsx",
+    required: ["export const metadata", "Resume | Ravikanth Seri", "canonical: \"/resume\"", "url: \"/resume\""]
+  },
+  {
+    file: "app/contact/layout.tsx",
+    required: ["export const metadata", "Contact Ravikanth Seri | seri.ai", "canonical: \"/contact\"", "url: \"/contact\""]
+  },
+  {
+    file: "app/wiki/[slug]/page.tsx",
+    required: ["generateMetadata", "canonical: `/wiki/${note.slug}`", "url: `/wiki/${note.slug}`", "type: \"article\""]
   },
   {
     file: "app/projects/[slug]/page.tsx",

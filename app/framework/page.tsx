@@ -10,7 +10,14 @@ import { operationalIntelligenceFramework } from "@/content/site";
 export const metadata: Metadata = {
   title: "Operational Intelligence Framework | Ravikanth Seri",
   description:
-    "Ravikanth Seri's ten-layer Operational Intelligence Framework for evidence-backed Agentic SRE, replayable investigations, eval-gated agents, and human-reviewed action."
+    "Ravikanth Seri's ten-layer Operational Intelligence Framework for evidence-backed Agentic SRE, replayable investigations, eval-gated agents, and human-reviewed action.",
+  alternates: { canonical: "/framework" },
+  openGraph: {
+    title: "Operational Intelligence Framework | Ravikanth Seri",
+    description: "The ten-layer framework for turning signals, transactions, topology, evidence, memory, evaluation, and operator control into accountable action.",
+    url: "/framework",
+    type: "website"
+  }
 };
 
 export default function FrameworkPage() {

@@ -8,7 +8,14 @@ import { evalReport, resume } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Resume | Ravikanth Seri — Operational Intelligence and Enterprise AI",
-  description: "Interactive public resume for Ravikanth Seri focused on Operational Intelligence, agentic systems, observability strategy, and enterprise AI."
+  description: "Interactive public resume for Ravikanth Seri focused on Operational Intelligence, agentic systems, observability strategy, and enterprise AI.",
+  alternates: { canonical: "/resume" },
+  openGraph: {
+    title: "Resume | Ravikanth Seri — Operational Intelligence and Enterprise AI",
+    description: "Interactive public resume connecting Ravikanth Seri's enterprise systems background to Operational Intelligence, AI-native operations, and evaluation.",
+    url: "/resume",
+    type: "website"
+  }
 };
 
 const capabilityEvidence = [

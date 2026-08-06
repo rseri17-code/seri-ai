@@ -8,7 +8,14 @@ import { site, thesisRadar } from "@/content/site";
 export const metadata: Metadata = {
   title: "Thesis Radar | Ravikanth Seri — Operational Intelligence",
   description:
-    "Trending market signals around Operational Intelligence, AIOps, AI observability, AgentOps, OpenTelemetry, and observability for AI."
+    "Trending market signals around Operational Intelligence, AIOps, AI observability, AgentOps, OpenTelemetry, and observability for AI.",
+  alternates: { canonical: "/radar" },
+  openGraph: {
+    title: "Thesis Radar | Ravikanth Seri — Operational Intelligence",
+    description: "Public thesis map connecting Ravikanth Seri's LinkedIn themes to market signals, Operational Intelligence claims, and falsification questions.",
+    url: "/radar",
+    type: "website"
+  }
 };
 
 export default function RadarPage() {

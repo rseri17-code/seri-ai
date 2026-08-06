@@ -7,7 +7,14 @@ import { askQualityRubric, evalReport } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Evals | Public Operational Intelligence Trust Report",
-  description: "Public evaluation rubric for groundedness, refusal behavior, citation usefulness, and known limitations in the Operational Intelligence assistant."
+  description: "Public evaluation rubric for groundedness, refusal behavior, citation usefulness, and known limitations in the Operational Intelligence assistant.",
+  alternates: { canonical: "/evals" },
+  openGraph: {
+    title: "Evals | Public Operational Intelligence Trust Report",
+    description: "Deterministic trust fixtures and reviewer rubric for Ask Ravikanth grounding, refusal behavior, citation usefulness, and routing.",
+    url: "/evals",
+    type: "website"
+  }
 };
 
 const coverageBuckets = [

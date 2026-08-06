@@ -9,7 +9,14 @@ import { evalReport, resume } from "@/content/site";
 export const metadata: Metadata = {
   title: "Background | Ravikanth Seri",
   description:
-    "Public-safe background narrative for Ravikanth Seri, connecting enterprise systems experience, Operational Intelligence, Agentic SRE, observability, identity, Kubernetes, evaluation, and AI-native operations."
+    "Public-safe background narrative for Ravikanth Seri, connecting enterprise systems experience, Operational Intelligence, Agentic SRE, observability, identity, Kubernetes, evaluation, and AI-native operations.",
+  alternates: { canonical: "/background" },
+  openGraph: {
+    title: "Background | Ravikanth Seri",
+    description: "The operating background behind Ravikanth Seri's Operational Intelligence thesis and public AI-native operations work.",
+    url: "/background",
+    type: "website"
+  }
 };
 
 const formationArc = [
