@@ -209,6 +209,7 @@ export default function Home() {
               <h3 className="text-2xl font-semibold text-white md:text-3xl">The context layer has to outlive the incident, the prompt, and the person carrying the thread.</h3>
               <p className="mt-4 text-base leading-7 text-slate-300">
                 Ravikanth&apos;s public writing keeps returning to the same operational gap: agents cannot become trustworthy investigators if ownership, change, dependency, transaction, confidence, and missing evidence are rediscovered from scratch every time.
+                The same thread connects Ops for observability with Observability for AI: telemetry systems need operating discipline, and AI systems need evidence, traces, cost, grounding, and override paths.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <TrackedAnchor

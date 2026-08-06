@@ -32,6 +32,14 @@ export const homeLinkedInSignals = [
     description: "Static topology is not enough. Agents need a current operational view that admits uncertainty, stale knowledge, contradictions, and missing evidence."
   },
   {
+    name: "Ops for observability",
+    description: "Observability is becoming an operated product: source quality, retention, taxonomy, cost, governance, and feedback loops matter when humans and agents both consume telemetry."
+  },
+  {
+    name: "Observability for AI",
+    description: "AI systems need operational visibility into prompts, tool calls, traces, grounding, latency, cost, refusals, overrides, and drift before enterprises can trust them in real workflows."
+  },
+  {
     name: "Shared context problem",
     description: "AI makes private context cheap and shared context expensive; serious operations need public, inspectable reasoning artifacts teams can converge on."
   }

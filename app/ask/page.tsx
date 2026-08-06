@@ -23,6 +23,8 @@ const askRaviPrompts = [
   "What does Ravikanth mean by Context Acquisition Tax?",
   "What is the Enterprise Context Layer?",
   "Why is the harness more important than the model for SRE agents?",
+  "What does ops for observability mean?",
+  "How is observability for AI different from normal observability?",
   "What public evidence shows Ravikanth's architecture judgment?",
   "How does Ravikanth think about Operational Intelligence?",
   "Where can I review Ravikanth's GitHub, LinkedIn, resume, and public artifacts?"
@@ -66,6 +68,18 @@ const thesisLenses = [
     title: "Dynamic operational view",
     prompt: "Why is a dynamic operational view different from a static graph?",
     body: homeLinkedInSignals.find((signal) => signal.name === "Dynamic operational view")?.description ?? ""
+  },
+  {
+    label: "Telemetry",
+    title: "Ops for observability",
+    prompt: "What does ops for observability mean?",
+    body: homeLinkedInSignals.find((signal) => signal.name === "Ops for observability")?.description ?? ""
+  },
+  {
+    label: "AI systems",
+    title: "Observability for AI",
+    prompt: "How is observability for AI different from normal observability?",
+    body: homeLinkedInSignals.find((signal) => signal.name === "Observability for AI")?.description ?? ""
   }
 ] as const;
 
