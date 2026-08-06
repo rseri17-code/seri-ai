@@ -4,11 +4,13 @@ import { ArrowRight, BrainCircuit, CheckCircle2, Compass, FileText, Sparkles } f
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { categoryBrief } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Brief | Ravikanth Seri — Operational Intelligence",
-  description: "An executive brief on Operational Intelligence, AI-native operations, observability for AI, and ops for observability."
-};
+  description: "An executive brief on Operational Intelligence, AI-native operations, observability for AI, and ops for observability.",
+  path: "/brief"
+});
 
 const decisionBrief = [
   ["Category", "Operational Intelligence is the reasoning layer between enterprise telemetry and accountable human decision."],

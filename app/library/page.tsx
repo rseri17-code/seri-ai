@@ -5,12 +5,14 @@ import { Card } from "@/components/card";
 import { EmailCapture } from "@/components/email-capture";
 import { Section } from "@/components/section";
 import { articles, assetTypes } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 import { buildPublishingIndex } from "@/lib/publishing";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Library | seri.ai",
-  description: "Essays, memos, notes, field guides, and public assets for Operational Intelligence."
-};
+  description: "Essays, memos, notes, field guides, and public assets for Operational Intelligence.",
+  path: "/library"
+});
 
 const referenceShelf = [
   ["/wiki/operational-intelligence-canonical-doctrine", "Canonical Doctrine", "Definition, boundaries, ten-layer model, glossary, claim posture, and citations."],

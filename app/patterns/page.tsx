@@ -3,11 +3,13 @@ import Link from "next/link";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { patterns } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Architecture Patterns | Ravikanth Seri — Operational Intelligence",
-  description: "Public-safe architecture patterns for Operational Intelligence, AI incident investigation, transaction intelligence, operational memory, and evaluation."
-};
+  description: "Public-safe architecture patterns for Operational Intelligence, AI incident investigation, transaction intelligence, operational memory, and evaluation.",
+  path: "/patterns"
+});
 
 export default function PatternsPage() {
   return (

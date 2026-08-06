@@ -3,12 +3,14 @@ import Link from "next/link";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { changelog } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 import { buildPublishingIndex, getPublicationChangelog } from "@/lib/publishing";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Changelog | seri.ai",
-  description: "Product changelog for seri.ai as a living Operational Intelligence platform."
-};
+  description: "Product changelog for seri.ai as a living Operational Intelligence platform.",
+  path: "/changelog"
+});
 
 export default function ChangelogPage() {
   const publicationEntries = getPublicationChangelog();

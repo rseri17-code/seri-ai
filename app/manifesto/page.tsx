@@ -4,12 +4,14 @@ import { ArrowRight, CheckCircle2, FileText } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { canonicalDefinition, operationalLayers, sentinelContextModel } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Operational Intelligence Is the New Control Plane | seri.ai",
   description:
-    "The founding thesis for seri.ai: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision."
-};
+    "The founding thesis for seri.ai: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
+  path: "/manifesto"
+});
 
 const argumentsForCategory = [
   {

@@ -3,11 +3,13 @@ import Link from "next/link";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { articles } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Ideas | seri.ai",
-  description: "Essays, memos, and field notes by Ravikanth Seri on Operational Intelligence, Agentic SRE, Transaction Intelligence, evidence graphs, and AI evaluation."
-};
+  description: "Essays, memos, and field notes by Ravikanth Seri on Operational Intelligence, Agentic SRE, Transaction Intelligence, evidence graphs, and AI evaluation.",
+  path: "/ideas"
+});
 
 export default function IdeasPage() {
   return (

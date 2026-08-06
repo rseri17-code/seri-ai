@@ -3,11 +3,13 @@ import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { projects } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Projects | Ravikanth Seri — Operational Intelligence",
-  description: "Public-safe project patterns for Operational Intelligence, transaction graphs, AI evaluation, and enterprise AI architecture."
-};
+  description: "Public-safe project patterns for Operational Intelligence, transaction graphs, AI evaluation, and enterprise AI architecture.",
+  path: "/projects"
+});
 
 export default function ProjectsPage() {
   return (

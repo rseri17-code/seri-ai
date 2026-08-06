@@ -4,11 +4,13 @@ import { ArrowRight, ClipboardCheck, GitBranch, Network, ShieldCheck } from "luc
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { architectureCards, operationalIntelligenceFramework } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Architecture Lab | seri.ai",
-  description: "Reusable architecture cards for Operational Intelligence, Agentic SRE, evidence graphs, evaluation gates, and operator-controlled AI systems."
-};
+  description: "Reusable architecture cards for Operational Intelligence, Agentic SRE, evidence graphs, evaluation gates, and operator-controlled AI systems.",
+  path: "/architecture-lab"
+});
 
 const labContracts = [
   {

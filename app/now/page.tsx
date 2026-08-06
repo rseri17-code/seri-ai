@@ -4,11 +4,13 @@ import { ArrowRight, BrainCircuit, ClipboardCheck, Compass, Hammer, HelpCircle, 
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { nowPage } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Now | Ravikanth Seri",
-  description: "Ravikanth Seri's current public focus areas across Operational Intelligence, agentic systems, transaction intelligence, and AI evaluation."
-};
+  description: "Ravikanth Seri's current public focus areas across Operational Intelligence, agentic systems, transaction intelligence, and AI evaluation.",
+  path: "/now"
+});
 
 const builderLedger = [
   [

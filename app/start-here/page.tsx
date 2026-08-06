@@ -3,11 +3,13 @@ import Link from "next/link";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { startHerePaths } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Start Here | Ravikanth Seri — Operational Intelligence",
-  description: "Audience-specific paths through Operational Intelligence, agentic systems, enterprise AI architecture, and evaluation work."
-};
+  description: "Audience-specific paths through Operational Intelligence, agentic systems, enterprise AI architecture, and evaluation work.",
+  path: "/start-here"
+});
 
 const routeLabels: Record<string, string> = {
   "/wiki/operational-intelligence-canonical-doctrine": "Canonical Doctrine",

@@ -4,11 +4,13 @@ import { ArrowRight, Boxes, ClipboardCheck, FileText, GitBranch, Map } from "luc
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { releaseModel } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Artifacts | seri.ai",
-  description: "Public-safe artifacts for Operational Intelligence: maps, simulators, product briefs, frameworks, and evaluation rubrics."
-};
+  description: "Public-safe artifacts for Operational Intelligence: maps, simulators, product briefs, frameworks, and evaluation rubrics.",
+  path: "/artifacts"
+});
 
 const artifacts = [
   {

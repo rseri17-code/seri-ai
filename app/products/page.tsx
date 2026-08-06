@@ -4,11 +4,13 @@ import { ArrowRight, Boxes } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { products } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Products | seri.ai — ReasonOps and Operational Intelligence",
-  description: "Public product concepts under seri.ai, including ReasonOps, the operational intelligence layer for AI-native enterprises."
-};
+  description: "Public product concepts under seri.ai, including ReasonOps, the operational intelligence layer for AI-native enterprises.",
+  path: "/products"
+});
 
 export default function ProductsPage() {
   return (

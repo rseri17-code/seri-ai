@@ -3,11 +3,13 @@ import Link from "next/link";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { principles } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Operating Principles | Operational Intelligence and Enterprise AI",
-  description: "Public operating principles for Operational Intelligence, trustworthy agents, evidence-driven RCA, and enterprise AI evaluation."
-};
+  description: "Public operating principles for Operational Intelligence, trustworthy agents, evidence-driven RCA, and enterprise AI evaluation.",
+  path: "/principles"
+});
 
 export default function PrinciplesPage() {
   return (

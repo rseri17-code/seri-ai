@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { Chat } from "@/components/chat";
 import { Section } from "@/components/section";
 import Link from "next/link";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Interview Mode | seri.ai",
-  description: "Structured Ask Ravi mode for recruiters, collaborators, event hosts, and technical reviewers exploring public Operational Intelligence work."
-};
+  description: "Structured Ask Ravi mode for recruiters, collaborators, event hosts, and technical reviewers exploring public Operational Intelligence work.",
+  path: "/interview-mode"
+});
 
 export default function InterviewModePage() {
   return (

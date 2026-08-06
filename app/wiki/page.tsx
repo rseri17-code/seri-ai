@@ -5,11 +5,13 @@ import { ContentSearch } from "@/components/content-search";
 import { EmailCapture } from "@/components/email-capture";
 import { Section } from "@/components/section";
 import { buildPublicSourceIndex, getPublishedWikiNotes } from "@/lib/content";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Wiki | Ravikanth Seri — Operational Intelligence, Agentic Systems, Enterprise AI Architecture",
-  description: "Public wiki notes on Operational Intelligence, agentic systems, transaction intelligence, incident intelligence, AI evaluation, and knowledge graphs."
-};
+  description: "Public wiki notes on Operational Intelligence, agentic systems, transaction intelligence, incident intelligence, AI evaluation, and knowledge graphs.",
+  path: "/wiki"
+});
 
 export default function WikiPage() {
   const notes = getPublishedWikiNotes();

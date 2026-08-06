@@ -104,6 +104,14 @@ function read(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), "utf8");
 }
 
+function walk(dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) return walk(full);
+    return [full];
+  });
+}
+
 function expect(condition, message) {
   if (!condition) errors.push(message);
 }
@@ -133,6 +141,19 @@ expectIncludes("app/layout.tsx", layout, [
 for (const contract of routeMetadataContracts) {
   const content = read(contract.file);
   expectIncludes(contract.file, content, contract.required);
+}
+
+const metadataHelper = read("lib/metadata.ts");
+expectIncludes("lib/metadata.ts", metadataHelper, ["publicRouteMetadata", "alternates: { canonical: path }", "openGraph", "url: path"]);
+
+for (const file of walk(path.join(root, "app")).filter((item) => /(?:page|layout)\.tsx$/.test(item))) {
+  const relative = path.relative(root, file);
+  const content = fs.readFileSync(file, "utf8");
+  if (!content.includes("export const metadata") && !content.includes("generateMetadata")) continue;
+  if (content.includes("index: false")) continue;
+  const hasStaticContract = content.includes("publicRouteMetadata(") || (content.includes("alternates:") && content.includes("canonical:") && content.includes("openGraph:") && content.includes("url:"));
+  const hasDynamicContract = content.includes("generateMetadata") && content.includes("canonical: `") && content.includes("openGraph:") && content.includes("url: `");
+  expect(hasStaticContract || hasDynamicContract, `${relative}: public metadata must include route-specific canonical and Open Graph URL`);
 }
 
 const openGraphImage = read("app/opengraph-image.tsx");

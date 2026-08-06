@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/card";
 import { patterns } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 
 export function generateStaticParams() {
   return patterns.map((pattern) => ({ slug: pattern.slug }));
@@ -11,10 +12,16 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const pattern = patterns.find((item) => item.slug === slug);
-  return {
-    title: pattern ? `${pattern.title} | seri.ai Patterns` : "Patterns | seri.ai",
-    description: pattern?.description
-  };
+  return pattern
+    ? publicRouteMetadata({
+        title: `${pattern.title} | seri.ai Patterns`,
+        description: pattern.description,
+        path: `/patterns/${pattern.slug}`,
+        type: "article"
+      })
+    : {
+        title: "Patterns | seri.ai"
+      };
 }
 
 export default async function PatternPage({ params }: { params: Promise<{ slug: string }> }) {

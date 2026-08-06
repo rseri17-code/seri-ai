@@ -4,12 +4,14 @@ import { BriefcaseBusiness, Cpu, Network, Rocket, Users } from "lucide-react";
 import { Card } from "@/components/card";
 import { Chat } from "@/components/chat";
 import { Section } from "@/components/section";
+import { publicRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Interview | Ravikanth Seri — Operational Intelligence",
   description:
-    "Interview-style grounded Q&A for Principal AI Architect, Forward Deployed Engineer, Enterprise AI Solutions Architect, Product-minded Engineering Leader, and Operational Intelligence Founder conversations."
-};
+    "Interview-style grounded Q&A for Principal AI Architect, Forward Deployed Engineer, Enterprise AI Solutions Architect, Product-minded Engineering Leader, and Operational Intelligence Founder conversations.",
+  path: "/interview"
+});
 
 const modes = [
   ["Principal AI Architect", "Architecture depth, governance, evaluation, and enterprise AI operating models.", Cpu],

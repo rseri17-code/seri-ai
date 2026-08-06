@@ -5,12 +5,14 @@ import { Card } from "@/components/card";
 import { ContentSearch } from "@/components/content-search";
 import { Section } from "@/components/section";
 import { buildPublicSourceIndex } from "@/lib/content";
+import { publicRouteMetadata } from "@/lib/metadata";
 import { buildKnowledgeGraph, buildPublishingIndex } from "@/lib/publishing";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Search | seri.ai",
-  description: "Search Ravikanth Seri's public Operational Intelligence wiki, principles, patterns, projects, and essays."
-};
+  description: "Search Ravikanth Seri's public Operational Intelligence wiki, principles, patterns, projects, and essays.",
+  path: "/search"
+});
 
 const researchPrompts = [
   ["Doctrine", "What is Operational Intelligence and what is it not?", "/wiki/operational-intelligence-canonical-doctrine"],

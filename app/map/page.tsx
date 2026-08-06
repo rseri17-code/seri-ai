@@ -4,13 +4,15 @@ import { ArrowRight, BrainCircuit, GitBranch, Layers, Network, ShieldCheck } fro
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { canonicalDefinition, operationalIntelligenceFramework, operationalIntelligenceSystem, sentinelContextModel } from "@/content/site";
+import { publicRouteMetadata } from "@/lib/metadata";
 import { buildKnowledgeGraph } from "@/lib/publishing";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicRouteMetadata({
   title: "Operational Intelligence Map | seri.ai",
   description:
-    "The public knowledge map for Operational Intelligence: signal, transaction, topology, evidence, reasoning, memory, evaluation, decision, learning, and operator layers."
-};
+    "The public knowledge map for Operational Intelligence: signal, transaction, topology, evidence, reasoning, memory, evaluation, decision, learning, and operator layers.",
+  path: "/map"
+});
 
 const layerPositions = [
   [10, 28],
