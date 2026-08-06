@@ -50,6 +50,10 @@ const cases = [
     expectedFirstUrl: "/radar"
   },
   {
+    query: "Where are the market signals for ops for ob servabillity and pobservabillity for ai?",
+    expectedFirstUrl: "/radar"
+  },
+  {
     query: "Explain the LinkedIn thesis around AgentOps, AI observability, and operational readiness.",
     expectedFirstUrl: "/radar"
   },

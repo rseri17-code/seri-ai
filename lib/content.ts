@@ -468,7 +468,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
       url: "/radar",
       type: "registry" as const,
       category: "thesis radar",
-      tags: ["LinkedIn thesis", "Enterprise Context Layer", "Context Acquisition Tax", "AgentOps", "AI observability", "Operational Intelligence"],
+      tags: ["LinkedIn thesis", "Enterprise Context Layer", "Context Acquisition Tax", "Ops for observability", "Observability for AI", "AgentOps", "AI observability", "Operational Intelligence"],
       author: "Ravikanth Seri",
       assetType: "profile",
       date: thesisRadar.updatedAt,

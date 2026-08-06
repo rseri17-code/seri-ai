@@ -13,8 +13,18 @@ type GenerateArgs = {
   history?: ChatMessage[];
 };
 
+function normalizeQuestionIntent(question: string) {
+  return question
+    .toLowerCase()
+    .replace(/\bob\s+servab(?:i|il)l?ity\b/g, "observability")
+    .replace(/\bob\s+servability\b/g, "observability")
+    .replace(/\bobservab(?:i|il)l?ity\b/g, "observability")
+    .replace(/\bpobservab(?:i|il)l?ity\b/g, "observability")
+    .replace(/\bpobservability\b/g, "observability");
+}
+
 export function inferFrameworkLayers(question: string) {
-  const lower = question.toLowerCase();
+  const lower = normalizeQuestionIntent(question);
   const layers: string[] = [];
   if (/observability|ops for observability|observability for ai|signal|telemetry|metric|log|trace|alert|dashboard|dynamic operational view/.test(lower)) layers.push("Signal Layer");
   if (/transaction|journey|customer|workflow|latency|context acquisition|enterprise context|operational context/.test(lower)) layers.push("Transaction Layer");
@@ -30,7 +40,7 @@ export function inferFrameworkLayers(question: string) {
 }
 
 export function inferRelatedArtifacts(question: string) {
-  const lower = question.toLowerCase();
+  const lower = normalizeQuestionIntent(question);
   const artifacts = new Set<string>(["/framework"]);
   if (/doctrine|definition|define|canonical|boundary|boundaries|glossary|what is operational intelligence/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
@@ -101,7 +111,7 @@ export function inferRelatedArtifacts(question: string) {
 }
 
 function inferReferenceAssetMatches(question: string) {
-  const lower = question.toLowerCase();
+  const lower = normalizeQuestionIntent(question);
   const matches: string[] = [];
   if (/diagram|state machine|sequence diagram|evidence graph diagram|replay loop/.test(lower)) {
     matches.push("Diagram Pack: /publication-pack/operational-intelligence-diagrams.md");
@@ -134,7 +144,7 @@ function inferReferenceAssetMatches(question: string) {
 }
 
 export function classifyAskQuestion(question: string) {
-  const lower = question.toLowerCase();
+  const lower = normalizeQuestionIntent(question);
   if (/confidential|internal|private|proprietary|dashboard|logs?|screenshots?|system prompt|developer message|jailbreak/.test(lower)) return "public_safety_boundary";
   if (/ravikanth|resume|background|experience|career|certification|linkedin|github|recruiter|founder|who is|architecture judgment/.test(lower)) return "builder_evidence";
   if (/oi-room-001|operations room|investigation|incident|rca|hypothesis|root cause/.test(lower)) return "operations_room";
@@ -147,7 +157,7 @@ export function classifyAskQuestion(question: string) {
 }
 
 function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
-  const lower = question.toLowerCase();
+  const lower = normalizeQuestionIntent(question);
   const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background/.test(lower);
   const layers = inferFrameworkLayers(question);
   const relatedArtifacts = inferRelatedArtifacts(question);

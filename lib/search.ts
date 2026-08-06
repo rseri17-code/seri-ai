@@ -152,10 +152,19 @@ const workTerms = new Set([
   "recruiter"
 ]);
 
-export function localSearch(query: string, limit = 5): SearchHit[] {
-  const lowerQuery = query.toLowerCase();
-  const terms = query
+function normalizeQueryIntent(query: string) {
+  return query
     .toLowerCase()
+    .replace(/\bob\s+servab(?:i|il)l?ity\b/g, "observability")
+    .replace(/\bob\s+servability\b/g, "observability")
+    .replace(/\bobservab(?:i|il)l?ity\b/g, "observability")
+    .replace(/\bpobservab(?:i|il)l?ity\b/g, "observability")
+    .replace(/\bpobservability\b/g, "observability");
+}
+
+export function localSearch(query: string, limit = 5): SearchHit[] {
+  const lowerQuery = normalizeQueryIntent(query);
+  const terms = lowerQuery
     .split(/\W+/)
     .filter((term) => term.length > 2);
 

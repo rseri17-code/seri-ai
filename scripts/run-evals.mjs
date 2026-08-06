@@ -8,8 +8,18 @@ const askRoutePath = path.join(root, "app", "api", "ask", "route.ts");
 const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
 const errors = [];
 
+function normalizeQuestionIntent(question) {
+  return question
+    .toLowerCase()
+    .replace(/\bob\s+servab(?:i|il)l?ity\b/g, "observability")
+    .replace(/\bob\s+servability\b/g, "observability")
+    .replace(/\bobservab(?:i|il)l?ity\b/g, "observability")
+    .replace(/\bpobservab(?:i|il)l?ity\b/g, "observability")
+    .replace(/\bpobservability\b/g, "observability");
+}
+
 function inferFrameworkLayers(question) {
-  const lower = question.toLowerCase();
+  const lower = normalizeQuestionIntent(question);
   const layers = [];
   if (/observability|ops for observability|observability for ai|signal|telemetry|metric|log|trace|alert|dashboard|dynamic operational view/.test(lower)) layers.push("Signal Layer");
   if (/transaction|journey|customer|workflow|latency|context acquisition|enterprise context|operational context/.test(lower)) layers.push("Transaction Layer");
@@ -25,7 +35,7 @@ function inferFrameworkLayers(question) {
 }
 
 function inferRelatedArtifacts(question) {
-  const lower = question.toLowerCase();
+  const lower = normalizeQuestionIntent(question);
   const artifacts = new Set(["/framework"]);
   if (/doctrine|definition|define|canonical|boundary|boundaries|glossary|what is operational intelligence/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
@@ -95,7 +105,7 @@ function inferRelatedArtifacts(question) {
 }
 
 function inferReferenceAssetMatches(question) {
-  const lower = question.toLowerCase();
+  const lower = normalizeQuestionIntent(question);
   const matches = [];
   if (/diagram|state machine|sequence diagram|evidence graph diagram|replay loop/.test(lower)) {
     matches.push("Diagram Pack: /publication-pack/operational-intelligence-diagrams.md");
@@ -128,7 +138,7 @@ function inferReferenceAssetMatches(question) {
 }
 
 function deterministicFallbackAnswer(question) {
-  const lower = question.toLowerCase();
+  const lower = normalizeQuestionIntent(question);
   const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background/.test(lower);
   const layers = inferFrameworkLayers(question);
   const relatedArtifacts = inferRelatedArtifacts(question);
