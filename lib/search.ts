@@ -1,4 +1,4 @@
-import { buildPublicSourceIndex, type PublicSource } from "@/lib/content";
+import { buildPublicSourceIndex, type PublicSource } from "./content";
 
 export type SearchHit = {
   source: PublicSource;

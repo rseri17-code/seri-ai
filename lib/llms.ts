@@ -1,5 +1,5 @@
-import { evalReport, site } from "@/content/site";
-import { buildPublishingIndex } from "@/lib/publishing";
+import { evalReport, site } from "../content/site";
+import { buildPublishingIndex } from "./publishing";
 
 const canonicalReferenceRoutes = [
   "/wiki/operational-intelligence-canonical-doctrine",

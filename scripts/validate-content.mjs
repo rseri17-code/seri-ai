@@ -3,6 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const wikiDir = path.join(root, "content", "wiki");
+const sitePath = path.join(root, "content", "site-config.json");
 const articlesPath = path.join(root, "content", "articles.json");
 const principlesPath = path.join(root, "content", "principles.json");
 const patternsPath = path.join(root, "content", "patterns.json");
@@ -25,6 +26,7 @@ const operationalIntelligenceFrameworkPath = path.join(root, "content", "operati
 const operationalIntelligenceSystemPath = path.join(root, "content", "operational-intelligence-system.json");
 const assetTypesPath = path.join(root, "content", "asset-types.json");
 const releaseModelPath = path.join(root, "content", "release-model.json");
+const requiredSiteFields = ["name", "owner", "tagline", "positioning", "description", "authorLine", "nowSignal", "brandBelief", "productPromise", "operatingSystem", "compliance", "links", "nav"];
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
@@ -178,6 +180,51 @@ for (const file of files) {
 
 if (publishedCount === 0) {
   errors.push("No published wiki notes found");
+}
+
+const site = requireJsonObject(sitePath, "content/site.json");
+validateRequiredFields("content/site-config.json", site, requiredSiteFields, { requireSlug: false });
+if (site.name !== "seri.ai") {
+  errors.push("content/site-config.json: name must remain seri.ai");
+}
+if (site.owner !== "Ravikanth Seri") {
+  errors.push("content/site-config.json: owner must remain Ravikanth Seri");
+}
+for (const field of ["tagline", "positioning", "description", "authorLine", "nowSignal", "brandBelief", "productPromise"]) {
+  if (!/Operational Intelligence|Agentic SRE|evidence|replay|evaluation|operator|operations/i.test(site[field] ?? "")) {
+    errors.push(`content/site-config.json: ${field} must preserve the Operational Intelligence thesis`);
+  }
+}
+if (!/public-safe/i.test(site.compliance ?? "") || !/confidential|internal/i.test(site.compliance ?? "")) {
+  errors.push("content/site-config.json: compliance must preserve public-safe confidential/internal boundary language");
+}
+if (!Array.isArray(site.operatingSystem) || site.operatingSystem.length < 5) {
+  errors.push("content/site-config.json: operatingSystem must include at least five principles");
+}
+if (!/^https:\/\/www\.linkedin\.com\/in\/ravikanthseri\/?$/.test(site.links?.linkedin ?? "")) {
+  errors.push("content/site-config.json: links.linkedin must point to Ravikanth Seri's public LinkedIn profile");
+}
+if (!/^https:\/\/github\.com\/rseri17-code\/?$/.test(site.links?.github ?? "")) {
+  errors.push("content/site-config.json: links.github must point to the public rseri17-code GitHub profile");
+}
+if (!Array.isArray(site.nav) || site.nav.length < 10) {
+  errors.push("content/site-config.json: nav must include the main public routes");
+} else {
+  const navRoutes = new Set(site.nav.map((item) => item.href));
+  for (const route of ["/", "/work", "/framework", "/map", "/library", "/patterns", "/investigation-room", "/ask", "/background", "/contact"]) {
+    if (!navRoutes.has(route)) {
+      errors.push(`content/site-config.json: nav missing ${route}`);
+    }
+  }
+  for (const item of site.nav) {
+    const owner = `content/site-config.json:nav:${item.href ?? "unknown"}`;
+    if (!item.href || !String(item.href).startsWith("/")) {
+      errors.push(`${owner}: href must be an internal route`);
+    }
+    if (!item.label || String(item.label).length < 3) {
+      errors.push(`${owner}: label is required`);
+    }
+  }
 }
 
 const articles = requireJsonArray(articlesPath, "content/articles.json", 10);

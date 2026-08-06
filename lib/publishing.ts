@@ -11,8 +11,8 @@ import {
   type Pattern,
   type Principle,
   type Project
-} from "@/content/site";
-import { getPublishedWikiNotes, type WikiNote } from "@/lib/content";
+} from "../content/site";
+import { getPublishedWikiNotes, type WikiNote } from "./content";
 
 export type PublishingStatus = "draft" | "review" | "approved" | "published" | "archived" | "planned";
 

@@ -1,0 +1,77 @@
+{
+  "name": "seri.ai",
+  "owner": "Ravikanth Seri",
+  "tagline": "Operational Intelligence for AI-native operations.",
+  "positioning": "Evidence graphs, replayable investigations, eval-gated agents, and human-reviewed action.",
+  "description": "seri.ai is the reasoning layer between observability data, AI agents, and human operational decisions. It turns signals, transactions, topology, memory, and policy into inspectable evidence and accountable action.",
+  "authorLine": "Built by Ravikanth Seri as the public home for his work on Operational Intelligence, Agentic SRE, transaction intelligence, observability, AI-native incident investigation, knowledge graphs, and AI evaluation.",
+  "nowSignal": "Right now Ravikanth is building public-safe Agentic SRE patterns: evidence graphs, hypothesis lifecycles, replay seeds, outcome memory, eval gates, and operator control planes for AI-native incident investigation.",
+  "brandBelief": "The next enterprise advantage is not a smarter model in isolation. It is the harness around the model: evidence, policy, replay, memory, evaluation, and human review working as one operating system.",
+  "productPromise": "The operating principle is simple: deterministic where possible, bounded where autonomous, replayable where trusted, and accountable where action matters.",
+  "operatingSystem": [
+    "Evidence before conclusions",
+    "Transactions before isolated signals",
+    "Receipts before trust",
+    "Replay before belief",
+    "Human judgment before irreversible action"
+  ],
+  "compliance": "Public-safe content only. No internal employer product names, proprietary projects, confidential platform names, screenshots, logs, dashboards, or architecture.",
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/ravikanthseri/",
+    "github": "https://github.com/rseri17-code"
+  },
+  "nav": [
+    {
+      "href": "/",
+      "label": "Home"
+    },
+    {
+      "href": "/work",
+      "label": "Work"
+    },
+    {
+      "href": "/framework",
+      "label": "Framework"
+    },
+    {
+      "href": "/start-here",
+      "label": "Start Here"
+    },
+    {
+      "href": "/map",
+      "label": "Map"
+    },
+    {
+      "href": "/library",
+      "label": "Library"
+    },
+    {
+      "href": "/patterns",
+      "label": "Patterns"
+    },
+    {
+      "href": "/products/reasonops",
+      "label": "ReasonOps"
+    },
+    {
+      "href": "/investigation-room",
+      "label": "Operations Room"
+    },
+    {
+      "href": "/radar",
+      "label": "Radar"
+    },
+    {
+      "href": "/ask",
+      "label": "Ask Ravi"
+    },
+    {
+      "href": "/background",
+      "label": "Background"
+    },
+    {
+      "href": "/contact",
+      "label": "Contact"
+    }
+  ]
+}

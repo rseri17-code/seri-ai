@@ -4,6 +4,8 @@
 
 The primary content sources are `content/*.json` and `content/wiki/*.mdx`. `content/site.ts` is the typed export and compatibility layer that re-exports those assets to existing routes, retrieval, publishing, and validation code.
 
+The global site identity, public positioning, compliance boundary, social links, and primary navigation live in `content/site-config.json`.
+
 The foundational thesis models live in:
 
 - `content/canonical-definition.json`

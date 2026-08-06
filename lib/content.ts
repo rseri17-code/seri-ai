@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, patterns, principles, projects, resume, site, thesisRadar } from "@/content/site";
+import { articles, contentRegistry, patterns, principles, projects, resume, site, thesisRadar } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
