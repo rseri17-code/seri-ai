@@ -124,6 +124,20 @@ export default function Home() {
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
               seri.ai is Ravikanth Seri&apos;s public workbench for Operational Intelligence: the discipline of turning telemetry, topology, transactions, change, memory, and evaluation into evidence-backed operational judgment.
             </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+                Run OI-ROOM-001 <ArrowRight size={18} />
+              </TrackedLink>
+              <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+                Read the doctrine
+              </TrackedLink>
+              <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "review_work" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
+                Review the work
+              </TrackedLink>
+            </div>
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
+              The material is public-safe by design: synthetic cases, cited sources, explicit uncertainty, and no private operational details.
+            </p>
             <div className="mt-5 rounded-lg border border-white/10 bg-black/25 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                 <ProfileMark />
@@ -143,20 +157,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Run OI-ROOM-001 <ArrowRight size={18} />
-              </TrackedLink>
-              <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
-                Read the doctrine
-              </TrackedLink>
-              <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "review_work" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Review the work
-              </TrackedLink>
-            </div>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-              The material is public-safe by design: synthetic cases, cited sources, explicit uncertainty, and no private operational details.
-            </p>
             <div className="mt-5 grid gap-2 rounded-lg border border-white/10 bg-black/20 p-3 lg:hidden">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Decision packet preview</p>

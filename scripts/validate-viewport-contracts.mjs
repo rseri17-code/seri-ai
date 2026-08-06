@@ -119,6 +119,10 @@ expect(
   homePage.indexOf("Run OI-ROOM-001") < homePage.indexOf("The material is public-safe by design"),
   "/: homepage primary CTAs must render before the inspection/trust paragraph so mobile visitors see an action in the first viewport"
 );
+expect(
+  homePage.indexOf("Run OI-ROOM-001") < homePage.indexOf("Operator origin"),
+  "/: homepage primary CTAs must render before the operator-origin proof module so mobile visitors get an action before deeper explanation"
+);
 
 const simulatorPage = read("app/investigation-room/page.tsx");
 for (const required of [
