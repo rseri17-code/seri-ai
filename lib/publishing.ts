@@ -110,6 +110,13 @@ const referencePublicationAssets = [
     description: "Benchmark rubric, control comparisons, practitioner review model, conformance checklist, evidence ledger, and falsification criteria for Operational Intelligence.",
     url: "/publication-pack/operational-intelligence-evidence-pack.md",
     content: "Operational Intelligence evidence pack. Benchmark rubric, control comparisons, OI-ROOM-001 control comparison protocol, practitioner review, evidence ledger, falsification criteria, minimum conformance checklist, observable proof, failure signals, OI-ROOM-001 benchmark, dashboard-only baseline, chatbot-only baseline, ticket-only baseline, operator review."
+  },
+  {
+    slug: "operational-intelligence-conformance-profile",
+    title: "Operational Intelligence Conformance Profile",
+    description: "Implementation-neutral object profiles and pass/fail checks for Evidence Objects, Hypothesis State, Replay Seed, Evaluation Gate, and Decision Packet conformance.",
+    url: "/publication-pack/operational-intelligence-conformance-profile.md",
+    content: "Operational Intelligence conformance profile. Evidence Object, Hypothesis State, Replay Seed, Evaluation Gate, Decision Packet, minimum fields, pass fail checks, conformance levels, OI-ROOM-001 conformance example, practitioner review questions, source provenance, contradiction, missing evidence, approval class, owner, fallback, expiration."
   }
 ];
 

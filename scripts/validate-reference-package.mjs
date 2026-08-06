@@ -109,6 +109,24 @@ const markdownAssets = [
       "Falsification Criteria",
       "Structured practitioner review path: /contact"
     ]
+  },
+  {
+    file: "public/publication-pack/operational-intelligence-conformance-profile.md",
+    route: "/publication-pack/operational-intelligence-conformance-profile.md",
+    minWords: 1_000,
+    required: [
+      "Conformance Rule",
+      "Required Object Profiles",
+      "Evidence Object",
+      "Hypothesis State",
+      "Replay Seed",
+      "Evaluation Gate",
+      "Decision Packet",
+      "Minimum Conformance Levels",
+      "OI-ROOM-001 Conformance Example",
+      "Practitioner Review Questions",
+      "If any consequential action can be recommended without a decision packet, the implementation is non-conformant."
+    ]
   }
 ];
 
@@ -234,6 +252,7 @@ assertIncludes("content/wiki/operational-intelligence-reference-architecture.mdx
   "/investigation-room",
   "/publication-pack/operational-intelligence-diagrams.md",
   "/publication-pack/operational-intelligence-comparison-tables.md",
+  "/publication-pack/operational-intelligence-conformance-profile.md",
   "/publication-pack/decision-packet-example.md",
   "/publication-pack/oi-room-001-printable-walkthrough.md",
   "/downloads/oi-room-001-printable-walkthrough.pdf",
