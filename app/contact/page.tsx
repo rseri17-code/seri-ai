@@ -124,6 +124,10 @@ export default function ContactPage() {
                 success: response.ok,
                 reviewer_role: String(form.get("reviewerRole") || "unspecified"),
                 doctrine_verdict: String(form.get("doctrineVerdict") || "unspecified"),
+                review_mode: String(form.get("reviewMode") || "unspecified"),
+                review_dimension: String(form.get("reviewDimension") || "unspecified"),
+                review_verdict: String(form.get("reviewVerdict") || "unspecified"),
+                doctrine_impact: String(form.get("doctrineImpact") || "unspecified"),
                 latency_ms: Math.round(performance.now() - startedAt)
               });
               setReviewStatus(response.ok ? "sent" : "error");
@@ -135,6 +139,10 @@ export default function ContactPage() {
                 success: false,
                 reviewer_role: String(form.get("reviewerRole") || "unspecified"),
                 doctrine_verdict: String(form.get("doctrineVerdict") || "unspecified"),
+                review_mode: String(form.get("reviewMode") || "unspecified"),
+                review_dimension: String(form.get("reviewDimension") || "unspecified"),
+                review_verdict: String(form.get("reviewVerdict") || "unspecified"),
+                doctrine_impact: String(form.get("doctrineImpact") || "unspecified"),
                 latency_ms: Math.round(performance.now() - startedAt)
               });
               setReviewStatus("error");
@@ -188,6 +196,64 @@ export default function ContactPage() {
             <option>Not precise enough to implement</option>
             <option>Needs governance clarification</option>
           </select>
+          <div className="rounded border border-white/10 bg-ink/60 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-signal">Worksheet entry</p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              Use these fields after inspecting one OI-ROOM-001 mode against one review dimension.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="review-mode">Mode reviewed</label>
+              <select id="review-mode" name="reviewMode" className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white">
+                <option>Not selected</option>
+                <option>Dashboard-only</option>
+                <option>Chatbot-only</option>
+                <option>Ticket-only</option>
+                <option>Operational Intelligence workflow</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="review-dimension">Dimension reviewed</label>
+              <select id="review-dimension" name="reviewDimension" className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white">
+                <option>Not selected</option>
+                <option>Evidence completeness</option>
+                <option>Transaction reconstruction</option>
+                <option>Contradiction handling</option>
+                <option>Missing-evidence honesty</option>
+                <option>Hypothesis quality</option>
+                <option>Decision safety</option>
+                <option>Replayability</option>
+                <option>Reviewer confidence</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="review-verdict">Dimension verdict</label>
+              <select id="review-verdict" name="reviewVerdict" className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white">
+                <option>Not assessable</option>
+                <option>Strong</option>
+                <option>Mixed</option>
+                <option>Weak</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="doctrine-impact">Doctrine impact</label>
+              <select id="doctrine-impact" name="doctrineImpact" className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white">
+                <option>No change</option>
+                <option>Clarify term</option>
+                <option>Clarify layer boundary</option>
+                <option>Add fixture</option>
+                <option>Revise invariant</option>
+                <option>Remove claim</option>
+              </select>
+            </div>
+          </div>
+          <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="evidence-observed">Evidence observed</label>
+          <textarea id="evidence-observed" name="evidenceObserved" rows={3} className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="What public-safe evidence did you inspect?" />
+          <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="reasoning-loss">Reasoning loss</label>
+          <textarea id="reasoning-loss" name="reasoningLoss" rows={3} className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="What disappeared, became ambiguous, or was invented?" />
+          <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="review-limitation">Limitation</label>
+          <textarea id="review-limitation" name="reviewLimitation" rows={3} className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="What does this review not prove?" />
           <label className="sr-only" htmlFor="strongest-claim">Strongest claim</label>
           <textarea id="strongest-claim" name="strongestClaim" rows={3} className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="Which claim feels strongest, and why?" />
           <label className="sr-only" htmlFor="weakest-claim">Weakest claim</label>

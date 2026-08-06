@@ -18,6 +18,7 @@ const expectedEvents = [
   "resume_download",
   "contact_initiation",
   "beta_feedback_submit",
+  "practitioner_review_submit",
   "profile_link_click"
 ];
 
@@ -36,7 +37,13 @@ const safeMetadataHints = [
   "success",
   "topic",
   "destination",
-  "placement"
+  "placement",
+  "reviewer_role",
+  "doctrine_verdict",
+  "review_mode",
+  "review_dimension",
+  "review_verdict",
+  "doctrine_impact"
 ];
 
 const forbiddenAnalyticsFragments = [

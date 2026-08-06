@@ -111,6 +111,33 @@ try {
   expect(contactFallbackBody.ok === true, "/api/contact fallback missing ok:true");
   expect(contactFallbackBody.stored === false, "/api/contact fallback should report stored:false without Supabase");
 
+  const practitionerReviewFallback = await contactPost(
+    request("http://localhost/api/contact", {
+      kind: "practitioner-review",
+      name: "Reviewer",
+      email: "",
+      topic: "Practitioner review",
+      message: "Controlled public-safe practitioner review.",
+      reviewerRole: "SRE / reliability engineer",
+      doctrineVerdict: "Useful but needs evidence",
+      reviewMode: "Operational Intelligence workflow",
+      reviewDimension: "Contradiction handling",
+      reviewVerdict: "Mixed",
+      evidenceObserved: "Public-safe OI-ROOM-001 evidence graph.",
+      reasoningLoss: "Contradiction was visible but needs stronger reviewer notes.",
+      reviewLimitation: "Single synthetic fixture only.",
+      doctrineImpact: "Add fixture",
+      strongestClaim: "Evidence before conclusions.",
+      weakestClaim: "Needs measured control comparison.",
+      evidenceNeeded: "Independent practitioner review.",
+      implementationQuestion: "How two teams preserve compatible packet fields."
+    })
+  );
+  const practitionerReviewFallbackBody = await json(practitionerReviewFallback);
+  expect(practitionerReviewFallback.status === 200, `/api/contact practitioner review fallback returned ${practitionerReviewFallback.status}`);
+  expect(practitionerReviewFallbackBody.ok === true, "/api/contact practitioner review fallback missing ok:true");
+  expect(practitionerReviewFallbackBody.stored === false, "/api/contact practitioner review fallback should report stored:false without Supabase");
+
   const contactInvalid = await contactPost(request("http://localhost/api/contact", { kind: "contact", name: "", topic: "Contact", message: "" }));
   expect(contactInvalid.status === 400, `/api/contact invalid payload returned ${contactInvalid.status}`);
 
