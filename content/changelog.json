@@ -1,0 +1,73 @@
+[
+  {
+    "version": "v0.7",
+    "date": "2026-07-25",
+    "title": "Added publication-ready Operational Intelligence reference assets",
+    "description": "seri.ai now exposes the canonical doctrine, reference architecture, publication pack, evidence pack, printable artifacts, PDF exports, and homepage discovery path for technical review.",
+    "tags": [
+      "doctrine",
+      "reference-architecture",
+      "evidence",
+      "publication"
+    ]
+  },
+  {
+    "version": "v0.5",
+    "date": "2026-07-05",
+    "title": "Added ReasonOps product surface and expanded category architecture",
+    "description": "ReasonOps is now a first-class public product concept under seri.ai, with product pages, architecture model, principles, use cases, roadmap, and interview positioning.",
+    "tags": [
+      "reasonops",
+      "products",
+      "interview",
+      "category"
+    ]
+  },
+  {
+    "version": "v0.4",
+    "date": "2026-07-05",
+    "title": "Added public eval report and upgraded simulator decisioning",
+    "description": "seri.ai now exposes a trust report for Ask Ravi behavior and turns the incident simulator into a scored investigation workflow with choices, confidence, and exportable RCA summary.",
+    "tags": [
+      "evals",
+      "trust",
+      "simulator",
+      "decisioning"
+    ]
+  },
+  {
+    "version": "v0.3",
+    "date": "2026-07-05",
+    "title": "Added signature simulator and expanded the public body of work",
+    "description": "seri.ai now includes an AI Incident Investigation Simulator, a stronger Operational Intelligence point of view, ten serious public essays, and updated public certification evidence.",
+    "tags": [
+      "simulator",
+      "ideas",
+      "operational-intelligence",
+      "certifications"
+    ]
+  },
+  {
+    "version": "v0.2",
+    "date": "2026-07-05",
+    "title": "Added public wiki, principles, patterns, and living product layer",
+    "description": "seri.ai now supports approved public notes, operating principles, architecture pattern pages, start-here paths, current focus areas, content search, citations, and content validation.",
+    "tags": [
+      "wiki",
+      "principles",
+      "patterns",
+      "citations"
+    ]
+  },
+  {
+    "version": "v0.1",
+    "date": "2026-07-05",
+    "title": "Initial Operational Intelligence platform",
+    "description": "Launched the first version of seri.ai with a public reasoning assistant, ideas, project pages, architecture lab, resume, contact, Supabase schema, and AI provider adapters.",
+    "tags": [
+      "launch",
+      "ask-ravi",
+      "projects"
+    ]
+  }
+]

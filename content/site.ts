@@ -8,6 +8,9 @@ import productsData from "./products.json";
 import architectureCardsData from "./architecture-cards.json";
 import thesisRadarData from "./thesis-radar.json";
 import categoryBriefData from "./category-brief.json";
+import nowPageData from "./now.json";
+import startHerePathsData from "./start-here.json";
+import changelogData from "./changelog.json";
 
 export const site = {
   name: "seri.ai",
@@ -675,131 +678,11 @@ export type Pattern = {
 
 export const patterns = patternsData satisfies Pattern[];
 
-export const nowPage = {
-  currentFocus: [
-    "Operational Intelligence as the reasoning layer between observability, AI agents, and human operational decisions.",
-    "Agentic SRE systems that investigate with evidence, expose uncertainty, and keep irreversible action behind review.",
-    "Transaction Intelligence as the bridge between telemetry, customer impact, topology, ownership, and business meaning."
-  ],
-  building: [
-    "ReasonOps as a public-safe operating model for evidence-backed, self-healing enterprise operations.",
-    "An Operations Room that turns signal, change, topology, hypotheses, action gates, and eval checks into a reviewable RCA packet.",
-    "Ask Ravi retrieves approved public context, cites sources, refuses confidential questions, and names missing evidence.",
-    "A pattern library for evidence graphs, hypothesis lifecycles, decision traces, replay seeds, outcome memory, and operator control planes."
-  ],
-  studying: [
-    "Knowledge graph retrieval for enterprise topology, transaction journeys, ownership, and operational memory.",
-    "Multi-agent orchestration boundaries: tool budgets, freshness checks, approval gates, and fail-closed execution.",
-    "How teams decide whether to trust AI recommendations during high-pressure incidents.",
-    "How AI observability, evals, and replay can detect reasoning drift before operational trust is lost."
-  ],
-  writing: [
-    "Why dashboards are not intelligence.",
-    "How evidence-driven RCA should work in AI-native operations.",
-    "What transaction journeys reveal that service views miss.",
-    "Why the harness, not the model, is the durable product in Agentic SRE."
-  ],
-  avoiding: [
-    "Generic AI thought leadership.",
-    "Confidential or employer-specific implementation details.",
-    "Claims that cannot be grounded in public evidence."
-  ],
-  questions: [
-    "What should operational memory remember, forget, and refuse?",
-    "How should AI explain what it ignored?",
-    "What makes an agent trustworthy enough for enterprise operations?",
-    "What is the minimum evidence packet before an AI system recommends operational action?"
-  ]
-};
+export const nowPage = nowPageData;
 
-export const startHerePaths = [
-  {
-    audience: "Executives",
-    care: "Operational Intelligence turns AI from experimentation into a way to improve enterprise decision loops.",
-    readFirst: ["/wiki/operational-intelligence-canonical-doctrine", "/publication-pack/operational-intelligence-executive-summary.md", "/map"],
-    ask: "How should executives evaluate AI systems for operational work?",
-    matters: ["/products/reasonops", "/investigation-room", "/wiki/operational-intelligence-evidence-pack"]
-  },
-  {
-    audience: "Recruiters",
-    care: "Background is supporting evidence. The primary signal is category thinking, architecture depth, and product judgment.",
-    readFirst: ["/background", "/map", "/artifacts"],
-    ask: "What public body of work supports the Operational Intelligence thesis?",
-    matters: ["/products/reasonops", "/contact"]
-  },
-  {
-    audience: "Architects",
-    care: "The site offers public-safe patterns for agents, retrieval, topology, evaluation, and transaction-aware reasoning.",
-    readFirst: ["/wiki/operational-intelligence-reference-architecture", "/publication-pack/operational-intelligence-diagrams.md", "/patterns"],
-    ask: "How should an evidence-driven incident investigation system be designed?",
-    matters: ["/wiki/operational-intelligence-evidence-pack", "/patterns/shared-context-for-enterprise-agents", "/patterns/topology-aware-reasoning"]
-  },
-  {
-    audience: "Engineers",
-    care: "The material connects reliability work to practical AI system boundaries, evidence, and evaluation.",
-    readFirst: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/evidence-before-conclusions", "/patterns/agentic-incident-investigation"],
-    ask: "How should an engineer keep incident agents grounded?",
-    matters: ["/wiki/operational-intelligence-evidence-pack", "/wiki/shared-context-for-enterprise-agents", "/patterns/transaction-journey-reconstruction"]
-  },
-  {
-    audience: "Founders",
-    care: "Operational Intelligence is a category lens for building durable enterprise AI products.",
-    readFirst: ["/manifesto", "/products/reasonops", "/radar"],
-    ask: "What product opportunities exist around Operational Intelligence?",
-    matters: ["/radar", "/now"]
-  }
-];
+export const startHerePaths = startHerePathsData;
 
-export const changelog = [
-  {
-    version: "v0.7",
-    date: "2026-07-25",
-    title: "Added publication-ready Operational Intelligence reference assets",
-    description:
-      "seri.ai now exposes the canonical doctrine, reference architecture, publication pack, evidence pack, printable artifacts, PDF exports, and homepage discovery path for technical review.",
-    tags: ["doctrine", "reference-architecture", "evidence", "publication"]
-  },
-  {
-    version: "v0.5",
-    date: "2026-07-05",
-    title: "Added ReasonOps product surface and expanded category architecture",
-    description:
-      "ReasonOps is now a first-class public product concept under seri.ai, with product pages, architecture model, principles, use cases, roadmap, and interview positioning.",
-    tags: ["reasonops", "products", "interview", "category"]
-  },
-  {
-    version: "v0.4",
-    date: "2026-07-05",
-    title: "Added public eval report and upgraded simulator decisioning",
-    description:
-      "seri.ai now exposes a trust report for Ask Ravi behavior and turns the incident simulator into a scored investigation workflow with choices, confidence, and exportable RCA summary.",
-    tags: ["evals", "trust", "simulator", "decisioning"]
-  },
-  {
-    version: "v0.3",
-    date: "2026-07-05",
-    title: "Added signature simulator and expanded the public body of work",
-    description:
-      "seri.ai now includes an AI Incident Investigation Simulator, a stronger Operational Intelligence point of view, ten serious public essays, and updated public certification evidence.",
-    tags: ["simulator", "ideas", "operational-intelligence", "certifications"]
-  },
-  {
-    version: "v0.2",
-    date: "2026-07-05",
-    title: "Added public wiki, principles, patterns, and living product layer",
-    description:
-      "seri.ai now supports approved public notes, operating principles, architecture pattern pages, start-here paths, current focus areas, content search, citations, and content validation.",
-    tags: ["wiki", "principles", "patterns", "citations"]
-  },
-  {
-    version: "v0.1",
-    date: "2026-07-05",
-    title: "Initial Operational Intelligence platform",
-    description:
-      "Launched the first version of seri.ai with a public reasoning assistant, ideas, project pages, architecture lab, resume, contact, Supabase schema, and AI provider adapters.",
-    tags: ["launch", "ask-ravi", "projects"]
-  }
-];
+export const changelog = changelogData;
 
 export const resume = {
   headline: "Senior infrastructure architect building production AI agent systems for enterprise operations.",

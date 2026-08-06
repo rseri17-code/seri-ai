@@ -1,0 +1,75 @@
+[
+  {
+    "audience": "Executives",
+    "care": "Operational Intelligence turns AI from experimentation into a way to improve enterprise decision loops.",
+    "readFirst": [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/publication-pack/operational-intelligence-executive-summary.md",
+      "/map"
+    ],
+    "ask": "How should executives evaluate AI systems for operational work?",
+    "matters": [
+      "/products/reasonops",
+      "/investigation-room",
+      "/wiki/operational-intelligence-evidence-pack"
+    ]
+  },
+  {
+    "audience": "Recruiters",
+    "care": "Background is supporting evidence. The primary signal is category thinking, architecture depth, and product judgment.",
+    "readFirst": [
+      "/background",
+      "/map",
+      "/artifacts"
+    ],
+    "ask": "What public body of work supports the Operational Intelligence thesis?",
+    "matters": [
+      "/products/reasonops",
+      "/contact"
+    ]
+  },
+  {
+    "audience": "Architects",
+    "care": "The site offers public-safe patterns for agents, retrieval, topology, evaluation, and transaction-aware reasoning.",
+    "readFirst": [
+      "/wiki/operational-intelligence-reference-architecture",
+      "/publication-pack/operational-intelligence-diagrams.md",
+      "/patterns"
+    ],
+    "ask": "How should an evidence-driven incident investigation system be designed?",
+    "matters": [
+      "/wiki/operational-intelligence-evidence-pack",
+      "/patterns/shared-context-for-enterprise-agents",
+      "/patterns/topology-aware-reasoning"
+    ]
+  },
+  {
+    "audience": "Engineers",
+    "care": "The material connects reliability work to practical AI system boundaries, evidence, and evaluation.",
+    "readFirst": [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/wiki/evidence-before-conclusions",
+      "/patterns/agentic-incident-investigation"
+    ],
+    "ask": "How should an engineer keep incident agents grounded?",
+    "matters": [
+      "/wiki/operational-intelligence-evidence-pack",
+      "/wiki/shared-context-for-enterprise-agents",
+      "/patterns/transaction-journey-reconstruction"
+    ]
+  },
+  {
+    "audience": "Founders",
+    "care": "Operational Intelligence is a category lens for building durable enterprise AI products.",
+    "readFirst": [
+      "/manifesto",
+      "/products/reasonops",
+      "/radar"
+    ],
+    "ask": "What product opportunities exist around Operational Intelligence?",
+    "matters": [
+      "/radar",
+      "/now"
+    ]
+  }
+]

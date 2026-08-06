@@ -295,13 +295,13 @@ Each registry item should include route, status, content type, framework layers,
 
 ## How To Update `/now`
 
-Edit `nowPage` in `content/site.ts`.
+Edit `content/now.json`.
 
 Keep it current, specific, and public-safe. It should reflect what Ravikanth is actively building, studying, writing, avoiding, and exploring.
 
 ## How To Add A Principle
 
-Edit the `principles` array in `content/site.ts`.
+Edit `content/principles.json`.
 
 Each principle needs:
 
@@ -316,7 +316,7 @@ Principles should be memorable, reusable, and connected to wiki notes or pattern
 
 ## How To Add Architecture Patterns
 
-Edit the `patterns` array in `content/site.ts`.
+Edit `content/patterns.json`.
 
 Each pattern must include:
 

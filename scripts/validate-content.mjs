@@ -11,6 +11,9 @@ const productsPath = path.join(root, "content", "products.json");
 const architectureCardsPath = path.join(root, "content", "architecture-cards.json");
 const thesisRadarPath = path.join(root, "content", "thesis-radar.json");
 const categoryBriefPath = path.join(root, "content", "category-brief.json");
+const nowPath = path.join(root, "content", "now.json");
+const startHerePath = path.join(root, "content", "start-here.json");
+const changelogPath = path.join(root, "content", "changelog.json");
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
@@ -20,6 +23,9 @@ const requiredProductFields = ["slug", "name", "tagline", "summary", "relationsh
 const requiredArchitectureCardFields = ["title", "pattern", "tags"];
 const requiredRadarFields = ["title", "updatedAt", "thesis", "framing", "proofChain", "trends"];
 const requiredBriefFields = ["title", "subtitle", "audience", "thesis", "whyNow", "contrarianInsight", "wedge", "proofPoints", "whatToRemember", "nextMoves"];
+const requiredNowFields = ["currentFocus", "building", "studying", "writing", "avoiding", "questions"];
+const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matters"];
+const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
 const validStatuses = new Set(["draft", "review", "approved", "published", "archived"]);
 const errors = [];
 
@@ -280,9 +286,64 @@ for (const field of ["whyNow", "proofPoints", "whatToRemember", "nextMoves"]) {
   }
 }
 
+const nowPage = requireJsonObject(nowPath, "content/now.json");
+validateRequiredFields("content/now.json", nowPage, requiredNowFields, { requireSlug: false });
+for (const field of requiredNowFields) {
+  if (!Array.isArray(nowPage[field]) || nowPage[field].length < 3) {
+    errors.push(`content/now.json: ${field} must include at least three entries`);
+  }
+}
+
+const startHerePaths = requireJsonArray(startHerePath, "content/start-here.json", 5, { requireSlug: false });
+const startHereAudiences = startHerePaths.map((item) => item.audience);
+const duplicateAudiences = startHereAudiences.filter((audience, index) => startHereAudiences.indexOf(audience) !== index);
+if (duplicateAudiences.length > 0) {
+  errors.push(`content/start-here.json: duplicate audiences ${[...new Set(duplicateAudiences)].join(", ")}`);
+}
+for (const pathItem of startHerePaths) {
+  validateRequiredFields("content/start-here.json", pathItem, requiredStartHereFields, { requireSlug: false });
+  const owner = `content/start-here.json:${pathItem.audience ?? "unknown"}`;
+  if (!String(pathItem.ask ?? "").includes("?")) {
+    errors.push(`${owner}: ask must be a question`);
+  }
+  for (const field of ["readFirst", "matters"]) {
+    if (!Array.isArray(pathItem[field]) || pathItem[field].length < 2) {
+      errors.push(`${owner}: ${field} must include at least two routes`);
+    }
+    for (const route of pathItem[field] ?? []) {
+      if (!String(route).startsWith("/")) {
+        errors.push(`${owner}: ${field} entry must be an absolute route`);
+      }
+    }
+  }
+}
+
+const changelog = requireJsonArray(changelogPath, "content/changelog.json", 6, { requireSlug: false });
+const changelogVersions = changelog.map((entry) => entry.version);
+const duplicateVersions = changelogVersions.filter((version, index) => changelogVersions.indexOf(version) !== index);
+if (duplicateVersions.length > 0) {
+  errors.push(`content/changelog.json: duplicate versions ${[...new Set(duplicateVersions)].join(", ")}`);
+}
+for (const entry of changelog) {
+  validateRequiredFields("content/changelog.json", entry, requiredChangelogFields, { requireSlug: false });
+  const owner = `content/changelog.json:${entry.version ?? "unknown"}`;
+  if (!/^v\d+\.\d+$/.test(entry.version ?? "")) {
+    errors.push(`${owner}: version must use vX.Y format`);
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(entry.date ?? "")) {
+    errors.push(`${owner}: date must be YYYY-MM-DD`);
+  }
+  if (!Array.isArray(entry.tags) || entry.tags.length < 2) {
+    errors.push(`${owner}: tags must include at least two entries`);
+  }
+  if ((entry.description ?? "").length < 80) {
+    errors.push(`${owner}: description too short`);
+  }
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, radar, brief, principles, patterns, projects, products, and architecture cards.`);
+console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);
