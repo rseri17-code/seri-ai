@@ -1129,11 +1129,15 @@ export const thesisRadar = {
       sources: [
         {
           label: "OpenTelemetry: GenAI observability",
-          url: "https://opentelemetry.io/blog/2026/genai-observability/"
+          url: "https://opentelemetry.io/blog/2026/genai-observability/",
+          evidenceType: "standard signal",
+          supports: "Shows GenAI behavior becoming part of the observable operational surface."
         },
         {
           label: "OpenTelemetry semantic conventions",
-          url: "https://opentelemetry.io/docs/specs/semconv/"
+          url: "https://opentelemetry.io/docs/specs/semconv/",
+          evidenceType: "standard",
+          supports: "Grounds the claim in a shared instrumentation vocabulary rather than vendor-specific dashboards."
         }
       ]
     },
@@ -1148,11 +1152,15 @@ export const thesisRadar = {
       sources: [
         {
           label: "Microsoft Research: AgentRx failure diagnosis",
-          url: "https://www.microsoft.com/en-us/research/publication/agentrx-diagnosing-ai-agent-failures-from-execution-trajectories/"
+          url: "https://www.microsoft.com/en-us/research/publication/agentrx-diagnosing-ai-agent-failures-from-execution-trajectories/",
+          evidenceType: "research",
+          supports: "Supports trajectory-level diagnosis for agent failures instead of final-answer inspection alone."
         },
         {
           label: "MLflow: agent observability guide",
-          url: "https://mlflow.org/articles/what-is-agent-observability-a-2026-developer-guide/"
+          url: "https://mlflow.org/articles/what-is-agent-observability-a-2026-developer-guide/",
+          evidenceType: "implementation signal",
+          supports: "Shows agent observability moving into practitioner implementation guidance."
         }
       ]
     },
@@ -1167,11 +1175,15 @@ export const thesisRadar = {
       sources: [
         {
           label: "Multi-dataset benchmark for LLM agents in microservice failure diagnosis",
-          url: "https://arxiv.org/abs/2606.29193"
+          url: "https://arxiv.org/abs/2606.29193",
+          evidenceType: "research",
+          supports: "Supports evaluation of diagnostic behavior across microservice failure scenarios."
         },
         {
           label: "Agentic NetOps and AIOps: architecture, evaluation, safety",
-          url: "https://arxiv.org/abs/2605.12729"
+          url: "https://arxiv.org/abs/2605.12729",
+          evidenceType: "research",
+          supports: "Connects agentic operations to architecture, evaluation, and safety constraints."
         }
       ]
     },
@@ -1186,11 +1198,15 @@ export const thesisRadar = {
       sources: [
         {
           label: "OpenTelemetry GenAI semantic conventions",
-          url: "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+          url: "https://opentelemetry.io/docs/specs/semconv/gen-ai/",
+          evidenceType: "standard",
+          supports: "Grounds AI spans, events, metrics, and model interactions in an emerging telemetry standard."
         },
         {
           label: "OpenTelemetry: GenAI observability",
-          url: "https://opentelemetry.io/blog/2026/genai-observability/"
+          url: "https://opentelemetry.io/blog/2026/genai-observability/",
+          evidenceType: "standard signal",
+          supports: "Shows why AI behavior belongs in the operational data plane."
         }
       ]
     },
@@ -1205,11 +1221,15 @@ export const thesisRadar = {
       sources: [
         {
           label: "Azure Monitor Observability Agent billing and cost management",
-          url: "https://learn.microsoft.com/en-us/azure/azure-monitor/aiops/observability-agent-billing"
+          url: "https://learn.microsoft.com/en-us/azure/azure-monitor/aiops/observability-agent-billing",
+          evidenceType: "implementation signal",
+          supports: "Shows telemetry consumed by agents creating explicit cost and governance surfaces."
         },
         {
           label: "OpenTelemetry: GenAI telemetry privacy defaults",
-          url: "https://opentelemetry.io/blog/2026/genai-observability/"
+          url: "https://opentelemetry.io/blog/2026/genai-observability/",
+          evidenceType: "standard signal",
+          supports: "Connects AI telemetry to privacy defaults and operational data-quality choices."
         }
       ]
     },
@@ -1224,11 +1244,15 @@ export const thesisRadar = {
       sources: [
         {
           label: "NIST AI Risk Management Framework",
-          url: "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10"
+          url: "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10",
+          evidenceType: "governance",
+          supports: "Grounds operational readiness in AI risk management rather than model capability alone."
         },
         {
           label: "Azure Monitor Observability Agent cost controls",
-          url: "https://learn.microsoft.com/en-us/azure/azure-monitor/aiops/observability-agent-billing"
+          url: "https://learn.microsoft.com/en-us/azure/azure-monitor/aiops/observability-agent-billing",
+          evidenceType: "implementation signal",
+          supports: "Shows AI operations introducing capacity, attribution, and billing controls."
         }
       ]
     },
@@ -1243,11 +1267,15 @@ export const thesisRadar = {
       sources: [
         {
           label: "Google SRE: monitoring distributed systems",
-          url: "https://sre.google/resources/book-update/monitoring-distributed-systems/"
+          url: "https://sre.google/resources/book-update/monitoring-distributed-systems/",
+          evidenceType: "foundational practice",
+          supports: "Keeps the thesis anchored in established monitoring and reliability practice."
         },
         {
           label: "Multi-dataset benchmark for LLM agents in microservice failure diagnosis",
-          url: "https://arxiv.org/abs/2606.29193"
+          url: "https://arxiv.org/abs/2606.29193",
+          evidenceType: "research",
+          supports: "Shows why diagnosis quality needs benchmarkable evidence, not only narrative summaries."
         }
       ]
     },
@@ -1262,11 +1290,15 @@ export const thesisRadar = {
       sources: [
         {
           label: "NIST AI RMF: govern, map, measure, manage",
-          url: "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10"
+          url: "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10",
+          evidenceType: "governance",
+          supports: "Grounds human oversight and control in a recognized AI risk-management lifecycle."
         },
         {
           label: "Microsoft Research: AgentRx auditable validation logs",
-          url: "https://www.microsoft.com/en-us/research/publication/agentrx-diagnosing-ai-agent-failures-from-execution-trajectories/"
+          url: "https://www.microsoft.com/en-us/research/publication/agentrx-diagnosing-ai-agent-failures-from-execution-trajectories/",
+          evidenceType: "research",
+          supports: "Supports auditable traces and validation logs for supervised agent investigation."
         }
       ]
     }

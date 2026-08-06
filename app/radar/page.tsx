@@ -106,35 +106,35 @@ export default function RadarPage() {
         <div className="space-y-4">
           {thesisRadar.trends.map((trend, index) => (
             <Card key={trend.name}>
-              <div className="grid gap-5 lg:grid-cols-[0.7fr_1.3fr]">
+              <div className="grid gap-4 lg:grid-cols-[0.58fr_1.42fr]">
                 <div>
                   <p className="font-mono text-sm text-signal">0{index + 1}</p>
                   <h2 className="mt-3 text-2xl font-semibold text-white">{trend.name}</h2>
-                  <div className="mt-5 flex items-center gap-2 text-sm text-mint">
+                  <p className="mt-4 inline-flex items-center gap-2 text-sm text-mint">
                     <Route size={16} />
-                    <span>seri.ai read</span>
-                  </div>
+                    seri.ai read
+                  </p>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{trend.ravikanthAngle}</p>
                 </div>
-                <div className="space-y-4">
-                  <div className="rounded-lg border border-white/10 bg-ink p-4">
-                    <p className="text-sm font-semibold text-mint">Signal</p>
-                    <p className="mt-2 leading-7 text-slate-200">{trend.signal}</p>
-                  </div>
-                  <div className="rounded-lg border border-white/10 bg-ink p-4">
-                    <p className="text-sm font-semibold text-amber">Why it matters</p>
-                    <p className="mt-2 leading-7 text-slate-200">{trend.whyItMatters}</p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
+                <div>
+                  <p className="text-sm font-semibold text-mint">Signal</p>
+                  <p className="mt-2 leading-7 text-slate-200">{trend.signal}</p>
+                  <p className="mt-4 text-sm font-semibold text-amber">Why it matters</p>
+                  <p className="mt-2 leading-7 text-slate-200">{trend.whyItMatters}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
                     {trend.sources.map((source) => (
                       <a
                         key={source.url}
                         href={source.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 rounded border border-white/10 px-3 py-2 text-sm text-slate-300 hover:border-mint/40 hover:text-white"
+                        aria-label={`${source.label}: ${source.evidenceType}`}
+                        className="inline-flex max-w-full items-center gap-2 rounded border border-white/10 px-3 py-2 text-sm text-slate-300 hover:border-mint/40 hover:text-white"
                       >
-                        {source.label} <ArrowUpRight size={14} />
+                        <span className="rounded border border-signal/25 bg-signal/[0.06] px-2 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-signal">
+                          {source.evidenceType}
+                        </span>
+                        <span className="truncate font-semibold">{source.label}</span>
                       </a>
                     ))}
                   </div>

@@ -17,7 +17,8 @@ const {
   principles,
   products,
   projects,
-  site
+  site,
+  thesisRadar
 } = jiti("../content/site.ts");
 const { buildPublishingIndex } = jiti("../lib/publishing.ts");
 const { getPublishedWikiNotes } = jiti("../lib/content.ts");
@@ -531,10 +532,23 @@ for (const required of [
   "Operational Intelligence Thesis Radar",
   "ops for observability",
   "observability for AI",
+  "evidenceType",
+  "supports",
   "type: \"domain\"",
   "route: \"/radar\""
 ]) {
   expect(radarPage.includes(required) || siteContent.includes(required), `/radar missing thesis radar evidence contract: ${required}`);
+}
+
+const allowedRadarEvidenceTypes = new Set(["standard", "standard signal", "research", "implementation signal", "governance", "foundational practice"]);
+for (const trend of thesisRadar.trends) {
+  expect(trend.sources.length >= 2, `/radar trend "${trend.name}" must cite at least two public sources`);
+  for (const source of trend.sources) {
+    expect(source.evidenceType, `/radar source "${source.label}" missing evidenceType`);
+    expect(allowedRadarEvidenceTypes.has(source.evidenceType), `/radar source "${source.label}" has unsupported evidenceType "${source.evidenceType}"`);
+    expect(source.supports && source.supports.length >= 48, `/radar source "${source.label}" must explain what claim it supports`);
+    expect(!/proves?|validates?|confirms?/i.test(source.supports), `/radar source "${source.label}" overstates evidence posture`);
+  }
 }
 
 const askPage = fs.readFileSync(path.join(root, "app", "ask", "page.tsx"), "utf8");
