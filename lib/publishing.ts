@@ -107,9 +107,9 @@ const referencePublicationAssets = [
   {
     slug: "operational-intelligence-evidence-pack-markdown",
     title: "Operational Intelligence Evidence Pack Markdown",
-    description: "Benchmark rubric, control comparisons, practitioner review model, conformance checklist, evidence ledger, and falsification criteria for Operational Intelligence.",
+    description: "Benchmark rubric, control comparisons, reviewer-run worksheet, practitioner review model, conformance checklist, evidence ledger, and falsification criteria for Operational Intelligence.",
     url: "/publication-pack/operational-intelligence-evidence-pack.md",
-    content: "Operational Intelligence evidence pack. Benchmark rubric, control comparisons, OI-ROOM-001 control comparison protocol, practitioner review, evidence ledger, falsification criteria, minimum conformance checklist, observable proof, failure signals, OI-ROOM-001 benchmark, dashboard-only baseline, chatbot-only baseline, ticket-only baseline, operator review."
+    content: "Operational Intelligence evidence pack. Benchmark rubric, control comparisons, OI-ROOM-001 control comparison protocol, reviewer-run worksheet, practitioner review, evidence ledger, falsification criteria, minimum conformance checklist, observable proof, failure signals, OI-ROOM-001 benchmark, dashboard-only baseline, chatbot-only baseline, ticket-only baseline, operator review."
   },
   {
     slug: "operational-intelligence-conformance-profile",

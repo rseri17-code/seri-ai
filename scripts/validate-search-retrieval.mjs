@@ -38,6 +38,10 @@ const cases = [
     expectedFirstUrl: "/ideas/oi-room-001-control-comparison"
   },
   {
+    query: "Where is the reviewer-run worksheet for evidence ledger entries and dimension verdicts?",
+    expectedFirstUrl: "/publication-pack/operational-intelligence-evidence-pack.md"
+  },
+  {
     query: "Where is the minimum conformance checklist?",
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },

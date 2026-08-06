@@ -124,6 +124,8 @@ expectIncludes(publishingPath, publishing, [
   "/publication-pack/operational-intelligence-evidence-pack.md",
   "/downloads/operational-intelligence-publication-pack.pdf",
   "minimum conformance checklist",
+  "reviewer-run worksheet",
+  "evidence ledger",
   "observable proof",
   "failure signals"
 ]);

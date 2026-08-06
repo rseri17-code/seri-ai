@@ -818,7 +818,7 @@ export const articles: Article[] = [
       "The expected advantage of Operational Intelligence is not speed alone. The expected advantage is reduced reasoning loss: fewer unsupported conclusions, clearer unknowns, better handoff, safer action review, and a reusable record for evaluation and memory.",
       "The strongest falsification test is independent implementation. If two teams use the doctrine and produce incompatible decision packets for the same OI-ROOM-001 facts, the doctrine is underspecified. If dashboard-only or ticket-only workflows preserve the same reasoning quality with less structure, the Operational Intelligence layer should be simplified.",
       "This field note is a measurement design, not a published benchmark result. It does not claim that Operational Intelligence has already outperformed the controls in production. It defines what must be measured before that claim would be credible.",
-      "The next publication should turn this protocol into a reviewer worksheet: same facts, four modes, evidence table, scoring rubric, reviewer notes, and failure examples. The goal is to make the thesis harder to fake, not easier to market."
+      "The Evidence Pack now turns this protocol into a reviewer-run worksheet: same facts, four modes, evidence table, dimension-level verdicts, reviewer notes, and failure examples. The goal is to make the thesis harder to fake, not easier to market."
     ],
     reviewWorksheet: {
       title: "Reviewer worksheet",

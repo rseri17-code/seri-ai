@@ -24,7 +24,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/executive summary|one-page summary|one page summary/, "/publication-pack/operational-intelligence-executive-summary.md"],
   [/glossary|reference card|canonical terms|replay seed|operator control plane/, "/publication-pack/operational-intelligence-glossary-card.md"],
   [/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/, conformanceProfileUrl],
-  [/evidence pack markdown|falsification criteria/, "/publication-pack/operational-intelligence-evidence-pack.md"],
+  [/evidence pack markdown|falsification criteria|reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts/, "/publication-pack/operational-intelligence-evidence-pack.md"],
   [/publication pack pdf|download.*publication|shareable pdf.*diagram/, "/downloads/operational-intelligence-publication-pack.pdf"],
   [/evidence pack pdf|download.*evidence/, "/downloads/operational-intelligence-evidence-pack.pdf"],
   [/walkthrough pdf|download.*walkthrough|printable.*pdf/, "/downloads/oi-room-001-printable-walkthrough.pdf"]
@@ -96,6 +96,8 @@ const evidencePackTerms = new Set([
   "comparison",
   "practitioner",
   "review",
+  "reviewer",
+  "worksheet",
   "feedback",
   "ledger",
   "checklist",
@@ -196,6 +198,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const resumeBoost = source.url === resumeUrl && /resume|experience|career|capability|impact|recruiter|founder|background|certification|credential|public evidence|architecture judgment/.test(lowerQuery) ? 12 : 0;
       const backgroundBoost = source.url === backgroundUrl && /who is ravikanth|about ravikanth|background|career|experience|linkedin|certification|credential|profile/.test(lowerQuery) ? 12 : 0;
       const conformanceChecklistBoost = source.url === evidencePackUrl && /minimum conformance|conformance checklist|observable proof|failure signal/.test(lowerQuery) ? 10 : 0;
+      const evidenceMarkdownBoost =
+        source.url === "/publication-pack/operational-intelligence-evidence-pack.md" &&
+        /reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts|scoring discipline|falsification criteria/.test(lowerQuery)
+          ? 65
+          : 0;
       const conformanceProfileBoost =
         source.url === conformanceProfileUrl &&
         /conformance profile|object profile|object fields|pass fail|pass\/fail|required fields|evidence object.*hypothesis state|hypothesis state.*evidence object|replay seed.*evaluation gate|evaluation gate.*replay seed|decision packet.*fields/.test(lowerQuery)
@@ -236,6 +243,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         directReferenceBoost +
         broadPublicationPackBoost +
         conformanceChecklistBoost +
+        evidenceMarkdownBoost +
         conformanceProfileBoost +
         downloadPackBoost +
         publicProfileBoost +

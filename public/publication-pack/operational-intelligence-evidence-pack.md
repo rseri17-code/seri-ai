@@ -116,7 +116,53 @@ Reviewers should score each mode on:
 
 Report the comparison as an evidence ledger entry with limitations. A favorable result strengthens the doctrine only for the tested case. An unfavorable result should revise the doctrine if the workflow adds process weight without improving decision quality.
 
-## 8. Practitioner Review Questions
+## 8. Reviewer-Run Worksheet
+
+Use this worksheet when asking an experienced practitioner to review OI-ROOM-001. The reviewer should not be asked whether the site looks impressive. The reviewer should decide what each mode preserves, loses, invents, or leaves untestable.
+
+### Run Setup
+
+| Step | Reviewer action | Required evidence |
+| --- | --- | --- |
+| 1 | Read the same OI-ROOM-001 case facts for every mode. | Synthetic facts, red herring, contradiction, missing evidence, transaction timing, approval boundary |
+| 2 | Inspect dashboard-only output. | Notes on what the dashboard made visible and what the operator had to infer |
+| 3 | Inspect chatbot-only output. | Notes on citations, uncertainty, unsupported claims, and action language |
+| 4 | Inspect ticket-only output. | Notes on timeline quality, ownership, and replayability |
+| 5 | Inspect Operational Intelligence output. | Evidence graph, hypothesis state, evaluation gates, decision packet, approval class, replay seed |
+| 6 | Record one evidence ledger entry per dimension. | Result, limitation, failure signal, and next improvement |
+
+### Scoring Discipline
+
+Do not publish one aggregate score. Score each mode independently on the dimension it is being tested against. Use these verdicts:
+
+- Strong: the mode exposes enough evidence for another reviewer to reproduce the judgment.
+- Mixed: the mode preserves useful information but loses an important state, boundary, source, or uncertainty.
+- Weak: the mode depends on private memory, unsupported inference, hidden assumptions, or unreviewable action language.
+- Not assessable: the mode does not expose enough information to judge.
+
+### Evidence Ledger Entry
+
+| Field | Required content |
+| --- | --- |
+| Reviewer role | SRE, architect, AI engineer, governance reviewer, executive, or other |
+| Mode reviewed | Dashboard-only, chatbot-only, ticket-only, or Operational Intelligence workflow |
+| Dimension | Evidence completeness, transaction reconstruction, contradiction handling, missing-evidence honesty, hypothesis quality, decision safety, replayability, or reviewer confidence |
+| Verdict | Strong, mixed, weak, or not assessable |
+| Evidence observed | Public-safe artifact, source link, state transition, label, packet field, or missing item |
+| Reasoning loss | What disappeared, became ambiguous, or was invented |
+| Limitation | What this run does not prove |
+| Doctrine impact | No change, clarify term, clarify layer boundary, add fixture, revise invariant, or remove claim |
+
+### Failure Examples
+
+| Failure | Why it weakens the doctrine | Improvement |
+| --- | --- | --- |
+| Chatbot-only output gives a fluent RCA with no source trail. | It shows narrative synthesis can outrun evidence. | Require citation relevance and missing-evidence checks before RCA language. |
+| Dashboard-only output spots latency quickly but loses transaction path. | It shows visibility is necessary but not sufficient for decision review. | Preserve transaction timing as a first-class record. |
+| Ticket-only output preserves final resolution but not hypothesis movement. | It weakens replay and learning because future reviewers cannot see alternatives. | Record hypothesis lifecycle and rejected alternatives. |
+| Operational Intelligence output takes longer but does not improve contradiction handling. | It falsifies the claim that extra structure improves judgment for this case. | Simplify the workflow or revise the evidence-layer contract. |
+
+## 9. Practitioner Review Questions
 
 ### SRE Reviewer
 
@@ -153,7 +199,7 @@ Report the comparison as an evidence ledger entry with limitations. A favorable 
 - Does it clarify business impact?
 - Does it make accountability clearer?
 
-## 9. Evidence Ledger Template
+## 10. Evidence Ledger Template
 
 | Field | Description |
 | --- | --- |
@@ -165,7 +211,7 @@ Report the comparison as an evidence ledger entry with limitations. A favorable 
 | Limitation | What the evidence does not prove |
 | Next improvement | Concrete action to strengthen the claim |
 
-## 10. Current Evidence Ledger
+## 11. Current Evidence Ledger
 
 | Claim | Classification | Evidence source | Result | Limitation | Next improvement |
 | --- | --- | --- | --- | --- | --- |
@@ -175,7 +221,7 @@ Report the comparison as an evidence ledger entry with limitations. A favorable 
 | Replay seeds are useful for regression testing operational AI behavior. | Derived from evaluation practice | Eval report, reference architecture | Partial | Current fixtures test assistant behavior, not full workflow replay | Add replay-backed workflow fixtures |
 | Operator control should gate consequential actions. | Established governance principle applied to OI | Reference architecture, OI-ROOM-001 | Strong | Needs policy examples for different risk classes | Add approval class examples to future revisions |
 
-## 11. Falsification Criteria
+## 12. Falsification Criteria
 
 The doctrine should be revised if evidence shows that:
 
@@ -186,7 +232,7 @@ The doctrine should be revised if evidence shows that:
 - Evaluation gates fail to catch regressions that human reviewers consider obvious.
 - The workflow slows urgent response without improving learning, auditability, or decision quality.
 
-## 12. Minimum Conformance Checklist
+## 13. Minimum Conformance Checklist
 
 An implementation should not be described as Operational Intelligence unless it can show these proofs. The checklist is implementation-neutral and does not require a specific vendor, model, database, cloud, graph engine, ticketing system, or UI.
 
@@ -203,7 +249,7 @@ An implementation should not be described as Operational Intelligence unless it 
 | Replay seed | The case can be reproduced from approved public-safe context and versioned expected behavior. | The demo cannot be rerun or compared after changes. | AI engineer |
 | Learning loop | Reviewed outcomes update memory, patterns, documentation, and future fixtures. | Post-incident learning remains unstructured narrative. | Executive reviewer |
 
-## 13. Conformance Verdicts
+## 14. Conformance Verdicts
 
 - Conforms: the implementation supplies observable proof for every requirement.
 - Partially conforms: the implementation satisfies the invariant but lacks one or more measurable proofs.
@@ -212,12 +258,12 @@ An implementation should not be described as Operational Intelligence unless it 
 
 The current public Operations Room should be treated as a synthetic conformance example, not production evidence. Its job is to make the checklist inspectable.
 
-## 14. Next Evidence Priorities
+## 15. Next Evidence Priorities
 
 1. Run practitioner review with at least one SRE, one architect, one AI engineer, and one governance reviewer.
 2. Add replay-backed fixtures for OI-ROOM-001 beyond assistant-only Q&A.
 3. Create a second synthetic case with different failure characteristics.
-4. Compare OI output against dashboard-only and chatbot-only baselines.
+4. Use the reviewer-run worksheet to compare OI output against dashboard-only and chatbot-only baselines.
 5. Maintain a public limitations section that records failed assumptions.
 
 The purpose is restraint. Operational Intelligence should earn credibility by showing where it works, where it does not, and what evidence would change the model.

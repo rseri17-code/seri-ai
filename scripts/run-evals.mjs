@@ -64,6 +64,9 @@ function inferRelatedArtifacts(question) {
   if (/glossary|reference card|canonical terms/.test(lower)) {
     artifacts.add("/publication-pack/operational-intelligence-glossary-card.md");
   }
+  if (/reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts|scoring discipline/.test(lower)) {
+    artifacts.add("/publication-pack/operational-intelligence-evidence-pack.md");
+  }
   if (/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/.test(lower)) {
     artifacts.add("/publication-pack/operational-intelligence-conformance-profile.md");
   }
@@ -127,6 +130,9 @@ function inferReferenceAssetMatches(question) {
   }
   if (/glossary|reference card|canonical terms/.test(lower)) {
     matches.push("Glossary Card: /publication-pack/operational-intelligence-glossary-card.md");
+  }
+  if (/reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts|scoring discipline/.test(lower)) {
+    matches.push("Evidence Pack Markdown: /publication-pack/operational-intelligence-evidence-pack.md");
   }
   if (/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/.test(lower)) {
     matches.push("Conformance Profile: /publication-pack/operational-intelligence-conformance-profile.md");

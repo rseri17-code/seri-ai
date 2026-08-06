@@ -133,9 +133,9 @@ const referenceSources = [
   {
     id: "reference:operational-intelligence-evidence-pack-markdown",
     title: "Operational Intelligence Evidence Pack Markdown",
-    description: "Benchmark rubric, control comparisons, practitioner review model, evidence ledger, minimum conformance checklist, and falsification criteria.",
+    description: "Benchmark rubric, control comparisons, reviewer-run worksheet, practitioner review model, evidence ledger, minimum conformance checklist, and falsification criteria.",
     content:
-      "Operational Intelligence Evidence Pack Markdown. Benchmark rubric, control comparisons, OI-ROOM-001 control comparison protocol, practitioner review, evidence ledger, falsification criteria, minimum conformance checklist, observable proof, failure signals, OI-ROOM-001 benchmark, dashboard-only baseline, chatbot-only baseline.",
+      "Operational Intelligence Evidence Pack Markdown. Benchmark rubric, control comparisons, OI-ROOM-001 control comparison protocol, reviewer-run worksheet, practitioner review, evidence ledger, falsification criteria, minimum conformance checklist, observable proof, failure signals, OI-ROOM-001 benchmark, dashboard-only baseline, chatbot-only baseline.",
     url: "/publication-pack/operational-intelligence-evidence-pack.md",
     type: "registry" as const,
     category: "Reference Assets",

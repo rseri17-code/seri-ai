@@ -570,6 +570,16 @@
       "result": "Pass"
     },
     {
+      "prompt": "Where is the reviewer-run worksheet for evidence ledger entries and dimension verdicts?",
+      "expected": "Route directly to the Evidence Pack Markdown worksheet.",
+      "requiredAnswerIncludes": [
+        "Reference asset match",
+        "Evidence Pack Markdown",
+        "/publication-pack/operational-intelligence-evidence-pack.md"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Show the falsification criteria for Operational Intelligence claims.",
       "expected": "Route to Evidence Pack and require explicit uncertainty.",
       "requiredAnswerIncludes": [
@@ -855,6 +865,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-07-25T00:00:00.000Z",
-  "fixtureCount": 77,
-  "passingFixtures": 77
+  "fixtureCount": 78,
+  "passingFixtures": 78
 }

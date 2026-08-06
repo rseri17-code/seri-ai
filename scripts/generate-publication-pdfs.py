@@ -503,6 +503,30 @@ def evidence_pack():
         ),
         p("Score each mode on evidence completeness, hypothesis quality, contradiction handling, missing-evidence honesty, decision safety, replayability, and reviewer confidence. Report results as evidence ledger entries with limitations."),
         Spacer(1, 10),
+        p("Reviewer-Run Worksheet", "H1Seri"),
+        table(
+            [
+                ["Step", "Reviewer action", "Required evidence"],
+                ["1", "Use same OI-ROOM-001 facts for every mode", "Facts, red herring, contradiction, missing evidence, timing, approval boundary"],
+                ["2", "Inspect dashboard-only output", "Visible signals and operator inferences"],
+                ["3", "Inspect chatbot-only output", "Citations, uncertainty, unsupported claims, action language"],
+                ["4", "Inspect ticket-only output", "Timeline quality, ownership, replayability"],
+                ["5", "Inspect OI workflow output", "Evidence graph, hypothesis state, eval gates, decision packet, approval class"],
+                ["6", "Record evidence ledger entry per dimension", "Verdict, limitation, failure signal, next improvement"],
+            ],
+            [0.65 * inch, 2.65 * inch, 3.6 * inch],
+        ),
+        table(
+            [
+                ["Verdict", "Use when"],
+                ["Strong", "Another reviewer can reproduce the judgment from exposed evidence."],
+                ["Mixed", "Useful information remains but a key state, boundary, source, or uncertainty is lost."],
+                ["Weak", "The output relies on private memory, unsupported inference, hidden assumptions, or unreviewable action."],
+                ["Not assessable", "The mode does not expose enough information to judge."],
+            ],
+            [1.25 * inch, 5.65 * inch],
+        ),
+        Spacer(1, 10),
         p("Practitioner Review Rubric", "H1Seri"),
         table(
             [
