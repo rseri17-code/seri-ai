@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BrainCircuit, ClipboardCheck, FileText, GitBranch, Linkedin, Network, ShieldCheck, Sparkles } from "lucide-react";
 import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
+import { ProfileMark } from "@/components/profile-mark";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
 import { homeArticles, homeBuilderDna, homeEvalReport, homeHarnessThesis, homeLinkedInSignals, homePatterns, homeProfileLinks } from "@/content/home";
@@ -85,6 +86,12 @@ const heroBuilderProof = [
   ["Operational lens", "observability, transaction paths, incident reasoning, and human approval"]
 ];
 
+const operatorOriginProof = [
+  ["Operator-first", "The thesis starts from running enterprise systems, not from adding AI after the fact."],
+  ["Context loss", "The repeated failure pattern is the same: teams rediscover ownership, change, dependency, and transaction state under pressure."],
+  ["Public proof", "The site turns that judgment into doctrine, artifacts, evals, and inspectable synthetic investigations."]
+];
+
 const heroFlow = [
   "Context",
   "Evidence",
@@ -117,6 +124,25 @@ export default function Home() {
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
               seri.ai is Ravikanth Seri&apos;s public workbench for Operational Intelligence: the discipline of turning telemetry, topology, transactions, change, memory, and evaluation into evidence-backed operational judgment.
             </p>
+            <div className="mt-5 rounded-lg border border-white/10 bg-black/25 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                <ProfileMark />
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Operator origin</p>
+                  <h2 className="mt-2 text-xl font-semibold leading-7 text-white">
+                    Ravikanth&apos;s edge is not claiming AI will fix operations. It is knowing where operations actually break.
+                  </h2>
+                  <div className="mt-4 grid gap-3 md:grid-cols-3">
+                    {operatorOriginProof.map(([label, proof]) => (
+                      <div key={label} className="rounded border border-white/10 bg-white/[0.035] p-3">
+                        <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-mint">{label}</p>
+                        <p className="mt-2 text-xs leading-5 text-slate-300">{proof}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
                 Run OI-ROOM-001 <ArrowRight size={18} />

@@ -13,6 +13,8 @@ const routeContracts = [
     required: [
       "Operations should explain themselves before AI acts.",
       "Ravikanth Seri",
+      "Operator origin",
+      "where operations actually break",
       "Run OI-ROOM-001",
       "Decision packet preview",
       "The posts converge on one enterprise failure mode"
