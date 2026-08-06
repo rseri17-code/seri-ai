@@ -92,9 +92,13 @@ const routeContracts = [
     minResponsiveTokens: 10,
     required: [
       "ReadingProgress",
+      "SidebarCards",
       "Contents",
+      "Ask questions",
       "Related reading",
       "Version history",
+      "mt-8 lg:hidden",
+      "hidden space-y-4 lg:sticky",
       "md:grid-cols",
       "lg:grid-cols"
     ]

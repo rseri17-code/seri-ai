@@ -270,6 +270,41 @@ function renderMarkdownBlock(block: MarkdownBlock, index: number) {
   );
 }
 
+function SidebarCards({
+  askQuestions,
+  toc
+}: {
+  askQuestions: string[];
+  toc: Array<{ id: string; title: string }>;
+}) {
+  return (
+    <div className="space-y-4">
+      <Card className="p-4">
+        <h2 className="text-sm font-semibold uppercase text-slate-500">Contents</h2>
+        <div className="mt-3 space-y-2">
+          {toc.map((item) => (
+            <a key={item.id} href={`#${item.id}`} className="block text-sm leading-5 text-slate-300 hover:text-mint">
+              {item.title}
+            </a>
+          ))}
+        </div>
+      </Card>
+      {askQuestions.length ? (
+        <Card className="p-4">
+          <h2 className="text-sm font-semibold uppercase text-slate-500">Ask questions</h2>
+          <div className="mt-3 space-y-2">
+            {askQuestions.map((question) => (
+              <Link key={question} href={`/ask?prompt=${encodeURIComponent(question)}`} className="block text-sm leading-5 text-slate-300 hover:text-mint">
+                {question}
+              </Link>
+            ))}
+          </div>
+        </Card>
+      ) : null}
+    </div>
+  );
+}
+
 export default async function WikiNotePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const notes = getPublishedWikiNotes();
@@ -292,6 +327,7 @@ export default async function WikiNotePage({ params }: { params: Promise<{ slug:
     .map((block, index) => ({ id: `section-${index + 1}`, title: plainText(block.content).split(".")[0].slice(0, 84) }))
     .slice(0, 6);
   const toc = (headingToc.length ? headingToc : fallbackToc).slice(0, 10);
+  const askQuestions = asset?.askQuestions ?? [];
 
   return (
     <>
@@ -308,33 +344,15 @@ export default async function WikiNotePage({ params }: { params: Promise<{ slug:
             <span>{note.readingTime}</span>
             <span>{asset?.author ?? "Ravikanth Seri"}</span>
           </div>
+          <div className="mt-8 lg:hidden">
+            <SidebarCards askQuestions={askQuestions} toc={toc} />
+          </div>
           <div className="mt-10 min-w-0 space-y-6 break-words text-lg leading-8 text-slate-200">
             {blocks.map((block, index) => renderMarkdownBlock(block, index))}
           </div>
         </div>
-        <aside className="space-y-4 lg:sticky lg:top-24 lg:h-fit">
-          <Card className="p-4">
-            <h2 className="text-sm font-semibold uppercase text-slate-500">Contents</h2>
-            <div className="mt-3 space-y-2">
-              {toc.map((item) => (
-                <a key={item.id} href={`#${item.id}`} className="block text-sm leading-5 text-slate-300 hover:text-mint">
-                  {item.title}
-                </a>
-              ))}
-            </div>
-          </Card>
-          {asset ? (
-            <Card className="p-4">
-              <h2 className="text-sm font-semibold uppercase text-slate-500">Ask questions</h2>
-              <div className="mt-3 space-y-2">
-                {asset.askQuestions.map((question) => (
-                  <Link key={question} href={`/ask?prompt=${encodeURIComponent(question)}`} className="block text-sm leading-5 text-slate-300 hover:text-mint">
-                    {question}
-                  </Link>
-                ))}
-              </div>
-            </Card>
-          ) : null}
+        <aside className="hidden space-y-4 lg:sticky lg:top-24 lg:block lg:h-fit">
+          <SidebarCards askQuestions={askQuestions} toc={toc} />
         </aside>
       </div>
       {note.related.length ? (
