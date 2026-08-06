@@ -1,0 +1,102 @@
+{
+  "caseId": "OI-ROOM-001",
+  "caseTitle": "Customer transaction degradation",
+  "caseSummary": "A public-safe investigation scenario where a critical customer journey degrades after a non-secret configuration change. The system must connect signal, transaction, topology, evidence, reasoning, memory, evaluation, decision, learning, and operator context before recommending a human-reviewed action.",
+  "promise": "The same case powers the Map, Operations Room, and Ask Ravi so visitors experience Operational Intelligence as a system, not a set of pages.",
+  "loop": [
+    {
+      "name": "Map the operating model",
+      "href": "/map",
+      "description": "See how each layer contributes to a trustworthy operational decision."
+    },
+    {
+      "name": "Run the case",
+      "href": "/investigation-room",
+      "description": "Replay evidence, topology, hypotheses, action gates, and eval checks."
+    },
+    {
+      "name": "Interrogate the reasoning",
+      "href": "/ask?prompt=Explain%20the%20OI-ROOM-001%20case%20using%20the%20Operational%20Intelligence%20layers.",
+      "description": "Ask the public-grounded assistant to explain the case using the Operational Intelligence layers."
+    }
+  ],
+  "layerStates": [
+    {
+      "layer": "Signal Layer",
+      "state": "Completion rate drops and retries rise for a critical customer journey.",
+      "question": "Which signals show customer impact instead of internal noise?"
+    },
+    {
+      "layer": "Transaction Layer",
+      "state": "The affected journey is reconstructed across public-safe dependency groups.",
+      "question": "What transaction path turns alerts into business meaning?"
+    },
+    {
+      "layer": "Topology Layer",
+      "state": "The journey is mapped to dependency groups, ownership, and blast-radius boundaries.",
+      "question": "Which dependency path best explains the symptom window?"
+    },
+    {
+      "layer": "Evidence Layer",
+      "state": "Observable facts are separated from interpretation before RCA language appears.",
+      "question": "What evidence supports the leading hypothesis?"
+    },
+    {
+      "layer": "Reasoning Layer",
+      "state": "Competing explanations are ranked against timing, impact, topology, and reversibility.",
+      "question": "Why is one hypothesis stronger than the alternatives?"
+    },
+    {
+      "layer": "Memory Layer",
+      "state": "Approved lessons and prior public-safe patterns influence what the system checks next.",
+      "question": "What prior pattern should be remembered without leaking confidential detail?"
+    },
+    {
+      "layer": "Evaluation Layer",
+      "state": "Grounding, uncertainty, refusal behavior, actionability, and human review are graded.",
+      "question": "How do we know the assistant behaved safely?"
+    },
+    {
+      "layer": "Decision Layer",
+      "state": "The output is a rollback review packet, not an autonomous irreversible action.",
+      "question": "What should a human approve, reject, or escalate?"
+    },
+    {
+      "layer": "Learning Layer",
+      "state": "The validated outcome becomes a future eval fixture and approved memory candidate.",
+      "question": "What should the system learn for next time?"
+    },
+    {
+      "layer": "Operator Layer",
+      "state": "The human sees evidence paths, confidence movement, missing context, and review gates.",
+      "question": "Can the operator challenge the conclusion before action?"
+    }
+  ],
+  "askPrompts": [
+    "Explain the OI-ROOM-001 case using the Operational Intelligence layers.",
+    "Why is the harness the product in Agentic SRE?",
+    "What is an evidence-backed self-healing operations system?",
+    "How should deterministic-first incident investigation work?",
+    "Why do evidence receipts and replay matter for operational AI?",
+    "Explain the public-safe Agentic SRE harness model behind seri.ai.",
+    "What is the difference between evidence graph, hypothesis lifecycle, decision trace, and replay seed?",
+    "What makes the Operations Room different from a dashboard demo?",
+    "How should AI evaluation work for operational incident investigation?",
+    "Why does Operational Intelligence require transaction, topology, and evidence together?",
+    "What should an AI assistant refuse to answer in a public-safe Operational Intelligence site?"
+  ],
+  "decisionPacket": {
+    "hypothesis": "Configuration regression in a dependency path",
+    "action": "Recommend rollback review with owner approval",
+    "guardrail": "No internal logs, proprietary product names, screenshots, or confidential architecture.",
+    "evalStandard": "Evidence coverage, deterministic replay, budget discipline, uncertainty, confidentiality, human review, and actionability must pass before trust.",
+    "operatingControls": [
+      "20-call budget",
+      "policy gate",
+      "evidence receipts",
+      "hash-checked replay",
+      "confidence calibration",
+      "approval checkpoint"
+    ]
+  }
+}

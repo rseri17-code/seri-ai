@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "signal-layer",
+    "name": "Signal Layer",
+    "description": "Logs, metrics, traces, alerts, events, tickets, changes, deployment signals, user impact, and business signals.",
+    "href": "/library"
+  },
+  {
+    "slug": "transaction-layer",
+    "name": "Transaction Layer",
+    "description": "The journey of a request, workflow, batch, job, or customer action across systems.",
+    "href": "/patterns/transaction-journey-reconstruction"
+  },
+  {
+    "slug": "topology-layer",
+    "name": "Topology Layer",
+    "description": "Services, dependencies, ownership, infrastructure, network, runtime, and business relationships.",
+    "href": "/patterns/topology-aware-reasoning"
+  },
+  {
+    "slug": "evidence-layer",
+    "name": "Evidence Layer",
+    "description": "Grounded facts collected from public-safe systems of record and approved sources.",
+    "href": "/patterns/evidence-driven-rca"
+  },
+  {
+    "slug": "reasoning-layer",
+    "name": "Reasoning Layer",
+    "description": "Hypothesis generation, causal analysis, impact explanation, confidence scoring, and tradeoff analysis.",
+    "href": "/products/reasonops"
+  },
+  {
+    "slug": "memory-layer",
+    "name": "Memory Layer",
+    "description": "Incidents, mitigations, patterns, decisions, known failure modes, and operational lessons.",
+    "href": "/patterns/operational-memory"
+  },
+  {
+    "slug": "evaluation-layer",
+    "name": "Evaluation Layer",
+    "description": "Replay, grounding checks, evidence coverage, refusal quality, correctness, and confidence calibration.",
+    "href": "/patterns/evaluation-and-replay"
+  },
+  {
+    "slug": "decision-layer",
+    "name": "Decision Layer",
+    "description": "Human review, recommended actions, escalation, ownership, and risk boundaries.",
+    "href": "/patterns/human-in-the-loop-operational-ai"
+  },
+  {
+    "slug": "learning-layer",
+    "name": "Learning Layer",
+    "description": "What the system updates after incidents, feedback, decisions, and outcomes.",
+    "href": "/now"
+  },
+  {
+    "slug": "operator-layer",
+    "name": "Operator Layer",
+    "description": "The human-in-the-loop interface for judgment, accountability, and execution.",
+    "href": "/investigation-room"
+  }
+]

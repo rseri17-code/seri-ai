@@ -20,6 +20,11 @@ const harnessThesisPath = path.join(root, "content", "harness-thesis.json");
 const canonicalDefinitionPath = path.join(root, "content", "canonical-definition.json");
 const builderDnaPath = path.join(root, "content", "builder-dna.json");
 const sentinelContextModelPath = path.join(root, "content", "sentinel-context-model.json");
+const operationalLayersPath = path.join(root, "content", "operational-layers.json");
+const operationalIntelligenceFrameworkPath = path.join(root, "content", "operational-intelligence-framework.json");
+const operationalIntelligenceSystemPath = path.join(root, "content", "operational-intelligence-system.json");
+const assetTypesPath = path.join(root, "content", "asset-types.json");
+const releaseModelPath = path.join(root, "content", "release-model.json");
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
@@ -38,6 +43,14 @@ const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
 const requiredBuilderDnaFields = ["title", "thesis", "publicSafeSource", "principles", "productTranslation"];
 const requiredSentinelContextFields = ["title", "framing", "compliance", "primitives", "controlPlane", "publicThesis"];
+const requiredOperationalLayerFields = ["slug", "name", "description", "href"];
+const requiredFrameworkFields = ["title", "subtitle", "promise", "thesis", "operatorQuestions", "layers", "designPrinciples", "evaluationCriteria"];
+const requiredFrameworkLayerFields = ["name", "definition", "problemSolved", "input", "output", "coreResponsibility", "caseExample", "adjacentLayers", "operationsStage", "askPrompt", "failureMode", "operatorQuestion", "related", "relatedPattern", "relatedArtifact", "relatedLibraryAsset"];
+const requiredOperationalSystemFields = ["caseId", "caseTitle", "caseSummary", "promise", "loop", "layerStates", "askPrompts", "decisionPacket"];
+const requiredSystemLoopFields = ["name", "href", "description"];
+const requiredSystemLayerStateFields = ["layer", "state", "question"];
+const requiredDecisionPacketFields = ["hypothesis", "action", "guardrail", "evalStandard", "operatingControls"];
+const requiredReleaseFields = ["cadence", "assets", "currentRelease"];
 const validStatuses = new Set(["draft", "review", "approved", "published", "archived"]);
 const validRegistryStatuses = new Set(["published", "planned", "draft"]);
 const validRegistryTypes = new Set(["framework", "pattern", "artifact", "library", "product", "principle", "background", "domain", "system"]);
@@ -537,9 +550,125 @@ if (!Array.isArray(sentinelContextModel.controlPlane) || sentinelContextModel.co
   errors.push("content/sentinel-context-model.json: controlPlane must include at least six surfaces");
 }
 
+const operationalLayers = requireJsonArray(operationalLayersPath, "content/operational-layers.json", 10);
+for (const layer of operationalLayers) {
+  validateRequiredFields("content/operational-layers.json", layer, requiredOperationalLayerFields);
+  const owner = `content/operational-layers.json:${layer.slug ?? "unknown"}`;
+  if (!String(layer.name ?? "").endsWith("Layer")) {
+    errors.push(`${owner}: name must use Layer terminology`);
+  }
+  if (!String(layer.href ?? "").startsWith("/")) {
+    errors.push(`${owner}: href must be an internal route`);
+  }
+}
+
+const framework = requireJsonObject(operationalIntelligenceFrameworkPath, "content/operational-intelligence-framework.json");
+validateRequiredFields("content/operational-intelligence-framework.json", framework, requiredFrameworkFields, { requireSlug: false });
+if (!String(framework.title ?? "").includes("Operational Intelligence")) {
+  errors.push("content/operational-intelligence-framework.json: title must name Operational Intelligence");
+}
+if (!Array.isArray(framework.operatorQuestions) || framework.operatorQuestions.length < 6 || framework.operatorQuestions.some((question) => !String(question).includes("?"))) {
+  errors.push("content/operational-intelligence-framework.json: operatorQuestions must include at least six questions");
+}
+if (!Array.isArray(framework.layers) || framework.layers.length !== 10) {
+  errors.push("content/operational-intelligence-framework.json: layers must define exactly ten layers");
+} else {
+  const frameworkLayerNames = framework.layers.map((layer) => layer.name);
+  const duplicateLayerNames = frameworkLayerNames.filter((name, index) => frameworkLayerNames.indexOf(name) !== index);
+  if (duplicateLayerNames.length > 0) {
+    errors.push(`content/operational-intelligence-framework.json: duplicate layers ${[...new Set(duplicateLayerNames)].join(", ")}`);
+  }
+  for (const layer of framework.layers) {
+    validateRequiredFields("content/operational-intelligence-framework.json", layer, requiredFrameworkLayerFields, { requireSlug: false });
+    const owner = `content/operational-intelligence-framework.json:${layer.name ?? "unknown"}`;
+    if (!String(layer.name ?? "").endsWith("Layer")) {
+      errors.push(`${owner}: name must use Layer terminology`);
+    }
+    if (String(layer.askPrompt ?? "").length < 32) {
+      errors.push(`${owner}: askPrompt must be a meaningful assistant prompt`);
+    }
+    if (!String(layer.operatorQuestion ?? "").includes("?")) {
+      errors.push(`${owner}: operatorQuestion must be a question`);
+    }
+    for (const field of ["related", "relatedPattern", "relatedArtifact", "relatedLibraryAsset"]) {
+      const values = Array.isArray(layer[field]) ? layer[field] : [layer[field]];
+      for (const route of values) {
+        if (!String(route ?? "").startsWith("/")) {
+          errors.push(`${owner}: ${field} must contain internal routes`);
+        }
+      }
+    }
+  }
+  const overviewNames = new Set(operationalLayers.map((layer) => layer.name));
+  for (const name of frameworkLayerNames) {
+    if (!overviewNames.has(name)) {
+      errors.push(`content/operational-intelligence-framework.json:${name}: missing from operational layer overview`);
+    }
+  }
+}
+for (const field of ["designPrinciples", "evaluationCriteria"]) {
+  if (!Array.isArray(framework[field]) || framework[field].length < 6) {
+    errors.push(`content/operational-intelligence-framework.json: ${field} must include at least six entries`);
+  }
+}
+
+const operationalSystem = requireJsonObject(operationalIntelligenceSystemPath, "content/operational-intelligence-system.json");
+validateRequiredFields("content/operational-intelligence-system.json", operationalSystem, requiredOperationalSystemFields, { requireSlug: false });
+if (operationalSystem.caseId !== "OI-ROOM-001") {
+  errors.push("content/operational-intelligence-system.json: caseId must remain OI-ROOM-001");
+}
+if (!Array.isArray(operationalSystem.loop) || operationalSystem.loop.length < 3) {
+  errors.push("content/operational-intelligence-system.json: loop must include at least three route steps");
+} else {
+  for (const step of operationalSystem.loop) {
+    validateRequiredFields("content/operational-intelligence-system.json", step, requiredSystemLoopFields, { requireSlug: false });
+    if (!String(step.href ?? "").startsWith("/")) {
+      errors.push(`content/operational-intelligence-system.json:${step.name ?? "unknown"}: href must be an internal route`);
+    }
+  }
+}
+if (!Array.isArray(operationalSystem.layerStates) || operationalSystem.layerStates.length !== 10) {
+  errors.push("content/operational-intelligence-system.json: layerStates must define exactly ten layer states");
+} else {
+  const frameworkLayerNames = new Set(Array.isArray(framework.layers) ? framework.layers.map((layer) => layer.name) : []);
+  for (const state of operationalSystem.layerStates) {
+    validateRequiredFields("content/operational-intelligence-system.json", state, requiredSystemLayerStateFields, { requireSlug: false });
+    const owner = `content/operational-intelligence-system.json:${state.layer ?? "unknown"}`;
+    if (!frameworkLayerNames.has(state.layer)) {
+      errors.push(`${owner}: layer must match framework layer`);
+    }
+    if (!String(state.question ?? "").includes("?")) {
+      errors.push(`${owner}: question must be a question`);
+    }
+  }
+}
+if (!Array.isArray(operationalSystem.askPrompts) || operationalSystem.askPrompts.length < 10 || operationalSystem.askPrompts.some((prompt) => String(prompt).length < 32)) {
+  errors.push("content/operational-intelligence-system.json: askPrompts must include at least ten meaningful prompts");
+}
+validateRequiredFields("content/operational-intelligence-system.json", operationalSystem.decisionPacket ?? {}, requiredDecisionPacketFields, { requireSlug: false });
+if (!Array.isArray(operationalSystem.decisionPacket?.operatingControls) || operationalSystem.decisionPacket.operatingControls.length < 6) {
+  errors.push("content/operational-intelligence-system.json: decisionPacket operatingControls must include at least six controls");
+}
+if (!/confidential|internal/i.test(operationalSystem.decisionPacket?.guardrail ?? "")) {
+  errors.push("content/operational-intelligence-system.json: decisionPacket guardrail must preserve public-safe boundary language");
+}
+
+const assetTypes = requireJsonArray(assetTypesPath, "content/asset-types.json", 8, { requireSlug: false });
+for (const assetType of assetTypes) {
+  if (typeof assetType !== "string" || assetType.length < 3) {
+    errors.push("content/asset-types.json: asset types must be meaningful strings");
+  }
+}
+
+const releaseModel = requireJsonObject(releaseModelPath, "content/release-model.json");
+validateRequiredFields("content/release-model.json", releaseModel, requiredReleaseFields, { requireSlug: false });
+if (!Array.isArray(releaseModel.assets) || releaseModel.assets.length < 5) {
+  errors.push("content/release-model.json: assets must include at least five planned publication assets");
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, foundational models, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);
+console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, foundational models, Operational Intelligence model, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);

@@ -11,6 +11,14 @@ The foundational thesis models live in:
 - `content/builder-dna.json`
 - `content/sentinel-context-model.json`
 
+The Operational Intelligence operating model lives in:
+
+- `content/operational-layers.json`
+- `content/operational-intelligence-framework.json`
+- `content/operational-intelligence-system.json`
+- `content/asset-types.json`
+- `content/release-model.json`
+
 The canonical registry is `content/content-registry.json`, exported as `contentRegistry`. It maps major public surfaces to:
 
 - title
@@ -64,3 +72,5 @@ Background content should support credibility without becoming the primary exper
 ## Maintenance Rule
 
 New major public work should be added to `content/content-registry.json` first, then linked from Work, Library, Map, or Patterns as appropriate.
+
+Changes to the core Operational Intelligence model should be made in the Operational Intelligence content files, not directly in route components. `npm run validate:content` protects the ten-layer structure, OI-ROOM-001 case identity, layer-state alignment, operator questions, decision packet controls, public-safe guardrails, and release asset shape.

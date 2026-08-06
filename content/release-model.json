@@ -1,0 +1,12 @@
+{
+  "cadence": "One public asset per month and one quarterly State of Operational Intelligence memo.",
+  "assets": [
+    "Architecture pattern",
+    "Field guide",
+    "Artifact",
+    "Memo",
+    "Reference map",
+    "Evaluation rubric"
+  ],
+  "currentRelease": "v0.6 Knowledge Map, Library, Artifacts, and category vocabulary"
+}
