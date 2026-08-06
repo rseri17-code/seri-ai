@@ -1,0 +1,158 @@
+[
+  {
+    "slug": "evidence-before-conclusions",
+    "statement": "Evidence before conclusions.",
+    "explanation": "AI systems used in operations should separate observed facts from inferred explanations.",
+    "example": "An incident assistant should show the signals, timeline, and assumptions behind a proposed root cause.",
+    "whyItMatters": "Operational decisions under pressure need traceable reasoning, not confident narrative.",
+    "prevents": "Unsupported RCA, premature escalation, and AI answers that sound plausible but cannot be audited.",
+    "tags": [
+      "Operational Intelligence",
+      "AI Evaluation",
+      "Incident Intelligence"
+    ],
+    "related": [
+      "/wiki/evidence-before-conclusions",
+      "/patterns/evidence-driven-rca"
+    ]
+  },
+  {
+    "slug": "operational-memory-accumulates",
+    "statement": "Operational memory should accumulate, not disappear.",
+    "explanation": "Every investigation, decision, mitigation, and known failure mode should improve future reasoning.",
+    "example": "A repeated transaction failure should be compared against prior incidents and known dependency changes.",
+    "whyItMatters": "Enterprises lose leverage when each incident starts from zero.",
+    "prevents": "Repeated rediscovery, stale tribal knowledge, and disconnected post-incident learning.",
+    "tags": [
+      "Operational Intelligence",
+      "Knowledge Graphs"
+    ],
+    "related": [
+      "/wiki/operational-memory",
+      "/patterns/operational-memory"
+    ]
+  },
+  {
+    "slug": "deterministic-workflows",
+    "statement": "Deterministic workflows matter where reliability matters.",
+    "explanation": "Agents can reason, but critical operational work still needs repeatable steps and reviewable outputs.",
+    "example": "Evidence collection, timeline generation, and escalation checks should run as explicit workflow stages.",
+    "whyItMatters": "Production ambiguity needs bounded workflows that humans can inspect and replay.",
+    "prevents": "Tool overreach, hidden agent behavior, and inconsistent incident handling.",
+    "tags": [
+      "Agentic Systems",
+      "Enterprise AI"
+    ],
+    "related": [
+      "/patterns/agentic-incident-investigation"
+    ]
+  },
+  {
+    "slug": "shared-context",
+    "statement": "Shared context beats isolated agent context.",
+    "explanation": "Enterprise agents need a common view of topology, ownership, transactions, and approved knowledge.",
+    "example": "A handoff between agents should preserve evidence and decisions rather than restarting the conversation.",
+    "whyItMatters": "Multi-agent systems fail when each agent builds a private version of reality.",
+    "prevents": "Context drift, duplicated work, fragmented evidence, and poor handoffs.",
+    "tags": [
+      "Agentic Systems",
+      "Knowledge Graphs"
+    ],
+    "related": [
+      "/wiki/shared-context-for-enterprise-agents",
+      "/patterns/shared-context-for-enterprise-agents"
+    ]
+  },
+  {
+    "slug": "explain-used-and-ignored",
+    "statement": "AI should explain what it used, what it ignored, and why.",
+    "explanation": "Trust grows when a system exposes evidence, exclusions, and confidence instead of only an answer.",
+    "example": "An RCA summary should list cited sources and call out missing telemetry or unverified assumptions.",
+    "whyItMatters": "Operators need to understand the reasoning boundary before trusting a recommendation.",
+    "prevents": "Opaque recommendations, over-weighted noise, and hidden missing context.",
+    "tags": [
+      "AI Evaluation",
+      "Incident Intelligence"
+    ],
+    "related": [
+      "/wiki/evidence-before-conclusions"
+    ]
+  },
+  {
+    "slug": "evaluation-control-system",
+    "statement": "Evaluation is not a feature; it is the control system.",
+    "explanation": "Operational AI must be continuously tested against ambiguity, refusal behavior, and usefulness.",
+    "example": "Replay difficult incidents to test whether an assistant stays grounded and escalates appropriately.",
+    "whyItMatters": "AI behavior changes as prompts, sources, models, and workflows evolve.",
+    "prevents": "Silent regressions, benchmark theater, and untested production trust.",
+    "tags": [
+      "AI Evaluation"
+    ],
+    "related": [
+      "/wiki/evaluation-and-replay",
+      "/patterns/evaluation-and-replay"
+    ]
+  },
+  {
+    "slug": "clarity-not-dashboards",
+    "statement": "Operators need clarity, not more dashboards.",
+    "explanation": "The value is not another visual surface; it is explanation, prioritization, and decision support.",
+    "example": "A useful system explains customer impact and likely next actions instead of adding another chart.",
+    "whyItMatters": "Operational overload is often a meaning problem, not a screen-count problem.",
+    "prevents": "Dashboard sprawl, alert fatigue, and disconnected technical views.",
+    "tags": [
+      "Operational Intelligence",
+      "Enterprise AI"
+    ],
+    "related": [
+      "/ideas/operational-intelligence-is-the-new-control-plane"
+    ]
+  },
+  {
+    "slug": "transaction-journeys",
+    "statement": "Transaction journeys matter more than isolated service views.",
+    "explanation": "Transactions connect technical behavior to customer and business outcomes.",
+    "example": "A checkout failure is better understood as a journey across dependencies than as one service metric.",
+    "whyItMatters": "Business impact usually crosses service and ownership boundaries.",
+    "prevents": "Local optimization, false blast-radius claims, and technical summaries without outcome context.",
+    "tags": [
+      "Transaction Intelligence",
+      "Topology Intelligence"
+    ],
+    "related": [
+      "/wiki/transaction-journeys",
+      "/patterns/transaction-journey-reconstruction"
+    ]
+  },
+  {
+    "slug": "boundaries-not-just-intelligence",
+    "statement": "Trustworthy agents need boundaries, not just intelligence.",
+    "explanation": "Good agent systems define what can be retrieved, changed, recommended, and escalated.",
+    "example": "An investigation agent can draft actions, but production changes require human approval.",
+    "whyItMatters": "Enterprise trust depends on explicit authority, not model capability alone.",
+    "prevents": "Autonomous changes without approval, permission drift, and unclear accountability.",
+    "tags": [
+      "Agentic Systems",
+      "Enterprise AI"
+    ],
+    "related": [
+      "/patterns/agentic-incident-investigation"
+    ]
+  },
+  {
+    "slug": "human-decision-loop",
+    "statement": "The best AI systems improve the human decision loop.",
+    "explanation": "The goal is better judgment, faster alignment, and more durable learning.",
+    "example": "A post-incident review should become reusable memory that helps the next team decide faster.",
+    "whyItMatters": "The durable win is not replacing operators; it is helping them decide faster with better evidence.",
+    "prevents": "Automation theater, brittle autonomy, and systems that bypass the people accountable for outcomes.",
+    "tags": [
+      "Operational Intelligence",
+      "AI Evaluation"
+    ],
+    "related": [
+      "/wiki/operational-memory",
+      "/wiki/evaluation-and-replay"
+    ]
+  }
+]
