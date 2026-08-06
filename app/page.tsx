@@ -116,13 +116,13 @@ export default function Home() {
             <div>
             <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Ravikanth Seri&apos;s public operating model
+              Operational Intelligence reference system by Ravikanth Seri
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
               Operations should explain themselves before AI acts.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              seri.ai is Ravikanth Seri&apos;s public workbench for Operational Intelligence: the discipline of turning telemetry, topology, transactions, change, memory, and evaluation into evidence-backed operational judgment.
+              seri.ai publishes the doctrine, reference architecture, investigation artifacts, and evaluation harness for Operational Intelligence: the discipline of turning telemetry, topology, transactions, change, memory, and evaluation into evidence-backed operational judgment.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
@@ -142,9 +142,9 @@ export default function Home() {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                 <ProfileMark />
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Operator origin</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Field origin</p>
                   <h2 className="mt-2 text-xl font-semibold leading-7 text-white">
-                    Ravikanth&apos;s edge is not claiming AI will fix operations. It is knowing where operations actually break.
+                    The thesis is grounded in a practical failure pattern: teams lose shared context at the exact moment operational judgment matters most.
                   </h2>
                   <div className="mt-4 grid gap-3 md:grid-cols-3">
                     {operatorOriginProof.map(([label, proof]) => (

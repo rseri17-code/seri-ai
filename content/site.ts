@@ -1813,10 +1813,11 @@ export const resume = {
   ],
   architectureHighlights: [
     "Architected production LLM-driven agent platforms using deterministic orchestration, bounded execution controls, replayability safeguards, and human review gates.",
+    "Designed governed reasoning-service patterns where deterministic decision layers own routing, evidence gates, call budgets, audit trails, and escalation before any model-produced judgment.",
     "Designed governed tool-calling ecosystems that connect observability, IT service workflows, telemetry systems, and enterprise APIs through schema-bound interfaces.",
     "Built end-to-end agent observability patterns using OpenTelemetry-style instrumentation, evaluator scoring, orchestration introspection, telemetry receipts, and drift analysis.",
     "Implemented runtime governance models including fail-closed execution, freshness validation, tool budget enforcement, policy-aware safeguards, and approval checkpoints.",
-    "Designed telemetry and workload coordination architectures across Kubernetes, cloud platforms, and hybrid enterprise infrastructure."
+    "Designed telemetry and workload coordination architectures across Kubernetes, cloud platforms, identity platforms, integration gateways, and hybrid enterprise infrastructure."
   ],
   publicProof: [
     {
@@ -1847,6 +1848,7 @@ export const resume = {
         "Leads architecture for production AI-assisted operational workflows that support observability, incident response, retrieval, evaluation, and governed tool use.",
       bullets: [
         "Architected LLM-driven agent platforms for enterprise operations using deterministic orchestration, bounded execution, replayability, and human-in-the-loop governance.",
+        "Separated deterministic routing, evidence collection, gate evaluation, and model reasoning so operational conclusions remain replayable, auditable, and bounded.",
         "Designed governed enterprise tool ecosystems spanning observability, IT service workflows, telemetry, and enterprise APIs through schema-bound dispatch and policy-aware execution.",
         "Built agent observability pipelines for prompt execution, tool invocation behavior, orchestration paths, evaluator scoring, runtime telemetry, and behavioral drift analysis.",
         "Designed evaluation workflows for root-cause analysis quality, workload reliability scoring, operational usefulness, and regression testing before production trust.",
@@ -1875,7 +1877,10 @@ export const resume = {
       impact:
         "Built a foundation across middleware, infrastructure operations, identity systems, distributed platforms, automation, and reliability engineering.",
       bullets: [
-        "Operated and modernized enterprise middleware, identity, and infrastructure platforms in high-availability environments.",
+        "Operated and modernized enterprise middleware, API gateway, B2B integration, identity, and infrastructure platforms in high-availability environments.",
+        "Supported service-oriented and API integration patterns across XML, JSON, SOAP, REST, mutual authentication, access policies, and enterprise gateway controls.",
+        "Built observability and data-quality practices around logs, dashboards, alerting, telemetry onboarding, latency analysis, capacity signals, and operational support workflows.",
+        "Worked on cloud migration, containerization, deployment automation, and configuration-management workflows across Linux, application servers, and integration platforms.",
         "Partnered with engineering, security, and operations teams to improve reliability, access patterns, integration quality, and operational support models.",
         "Developed durable expertise in Linux, distributed systems, enterprise integration, cloud migration, automation, and production support."
       ]
@@ -1884,7 +1889,7 @@ export const resume = {
   skills: [
     {
       group: "AI Infrastructure and Runtime Operations",
-      items: ["LLM agent platforms", "deterministic orchestration", "governed tool use", "retrieval routing", "runtime governance"]
+      items: ["LLM agent platforms", "deterministic orchestration", "governed tool use", "retrieval routing", "runtime governance", "tool budget controls"]
     },
     {
       group: "Agent Observability and Evaluation",
@@ -1900,7 +1905,7 @@ export const resume = {
     },
     {
       group: "Python and Integration Engineering",
-      items: ["Python APIs", "SDK integrations", "workflow orchestration", "infrastructure automation", "enterprise API integration"]
+      items: ["Python APIs", "SDK integrations", "workflow orchestration", "infrastructure automation", "enterprise API integration", "API gateways", "service-oriented architecture"]
     }
   ],
   education: ["MS, Industrial Engineering, University of New Haven"],
