@@ -4,6 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const wikiDir = path.join(root, "content", "wiki");
 const sitePath = path.join(root, "content", "site-config.json");
+const homePath = path.join(root, "content", "home.json");
 const articlesPath = path.join(root, "content", "articles.json");
 const principlesPath = path.join(root, "content", "principles.json");
 const patternsPath = path.join(root, "content", "patterns.json");
@@ -27,6 +28,10 @@ const operationalIntelligenceSystemPath = path.join(root, "content", "operationa
 const assetTypesPath = path.join(root, "content", "asset-types.json");
 const releaseModelPath = path.join(root, "content", "release-model.json");
 const requiredSiteFields = ["name", "owner", "tagline", "positioning", "description", "authorLine", "nowSignal", "brandBelief", "productPromise", "operatingSystem", "compliance", "links", "nav"];
+const requiredHomeFields = ["profileLinks", "harnessThesis", "linkedInSignals", "builderDna", "articles", "patterns"];
+const requiredHomeSignalFields = ["name", "description"];
+const requiredHomeArticleFields = ["slug", "title", "dek", "theme"];
+const requiredHomePatternFields = ["slug", "title", "description"];
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
@@ -224,6 +229,60 @@ if (!Array.isArray(site.nav) || site.nav.length < 10) {
     if (!item.label || String(item.label).length < 3) {
       errors.push(`${owner}: label is required`);
     }
+  }
+}
+
+const home = requireJsonObject(homePath, "content/home.json");
+validateRequiredFields("content/home.json", home, requiredHomeFields, { requireSlug: false });
+if (!/^https:\/\/www\.linkedin\.com\/in\/ravikanthseri\/?$/.test(home.profileLinks?.linkedin ?? "")) {
+  errors.push("content/home.json: profileLinks.linkedin must point to Ravikanth Seri's public LinkedIn profile");
+}
+if (!/^https:\/\/github\.com\/rseri17-code\/?$/.test(home.profileLinks?.github ?? "")) {
+  errors.push("content/home.json: profileLinks.github must point to the public rseri17-code GitHub profile");
+}
+if (!home.harnessThesis?.headline || !/harness/i.test(home.harnessThesis.headline)) {
+  errors.push("content/home.json: harnessThesis headline must preserve the harness thesis");
+}
+if (!/evidence|policy|reasoning|humans/i.test(home.harnessThesis?.statement ?? "")) {
+  errors.push("content/home.json: harnessThesis statement must preserve evidence, policy, reasoning, and human-review language");
+}
+if (!Array.isArray(home.harnessThesis?.loop) || home.harnessThesis.loop.length < 6) {
+  errors.push("content/home.json: harnessThesis loop must include at least six stages");
+}
+if (!Array.isArray(home.linkedInSignals) || home.linkedInSignals.length < 6) {
+  errors.push("content/home.json: linkedInSignals must include at least six public thesis signals");
+} else {
+  const signalNames = new Set(home.linkedInSignals.map((signal) => signal.name));
+  for (const required of ["Enterprise Context Layer", "Context Acquisition Tax", "Ops for observability", "Observability for AI"]) {
+    if (!signalNames.has(required)) {
+      errors.push(`content/home.json: linkedInSignals missing ${required}`);
+    }
+  }
+  for (const signal of home.linkedInSignals) {
+    validateRequiredFields("content/home.json", signal, requiredHomeSignalFields, { requireSlug: false });
+    if ((signal.description ?? "").length < 80) {
+      errors.push(`content/home.json:${signal.name ?? "unknown"}: description too short for thesis context`);
+    }
+  }
+}
+if (!home.builderDna?.title || !home.builderDna?.thesis || !Array.isArray(home.builderDna?.principles) || home.builderDna.principles.length < 4) {
+  errors.push("content/home.json: builderDna must define title, thesis, and at least four principles");
+}
+if (!Array.isArray(home.articles) || home.articles.length < 4) {
+  errors.push("content/home.json: articles must include at least four featured articles");
+} else {
+  for (const article of home.articles) {
+    validateRequiredFields("content/home.json", article, requiredHomeArticleFields);
+    if ((article.dek ?? "").length < 70) {
+      errors.push(`content/home.json:${article.slug ?? "unknown"}: dek too short`);
+    }
+  }
+}
+if (!Array.isArray(home.patterns) || home.patterns.length < 3) {
+  errors.push("content/home.json: patterns must include at least three featured patterns");
+} else {
+  for (const pattern of home.patterns) {
+    validateRequiredFields("content/home.json", pattern, requiredHomePatternFields);
   }
 }
 
@@ -718,4 +777,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, foundational models, Operational Intelligence model, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);
+console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, site and homepage content, foundational models, Operational Intelligence model, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);

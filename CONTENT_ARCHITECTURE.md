@@ -6,6 +6,8 @@ The primary content sources are `content/*.json` and `content/wiki/*.mdx`. `cont
 
 The global site identity, public positioning, compliance boundary, social links, and primary navigation live in `content/site-config.json`.
 
+Homepage-specific thesis proof, public profile links, LinkedIn-derived thesis signals, featured articles, and featured patterns live in `content/home.json`.
+
 The foundational thesis models live in:
 
 - `content/canonical-definition.json`

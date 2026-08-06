@@ -26,6 +26,7 @@ const { getPublishedWikiNotes } = jiti("../lib/content.ts");
 const errors = [];
 const thesisRadarContent = fs.readFileSync(path.join(root, "content", "thesis-radar.json"), "utf8");
 const resumeContent = fs.readFileSync(path.join(root, "content", "resume.json"), "utf8");
+const homeContent = fs.readFileSync(path.join(root, "content", "home.json"), "utf8");
 const contentRegistryContent = fs.readFileSync(path.join(root, "content", "content-registry.json"), "utf8");
 const normalizedContentRegistryContent = contentRegistryContent.replace(/"([^"]+)":/g, "$1:");
 
@@ -298,7 +299,6 @@ for (const required of [
   expect(homePage.includes(required), `/ missing focused homepage contract: ${required}`);
 }
 
-const homeContent = fs.readFileSync(path.join(root, "content", "home.ts"), "utf8");
 for (const required of [
   "oi-room-001-control-comparison",
   "OI-ROOM-001 Control Comparison",
