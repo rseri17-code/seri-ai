@@ -299,6 +299,12 @@ Edit `content/now.json`.
 
 Keep it current, specific, and public-safe. It should reflect what Ravikanth is actively building, studying, writing, avoiding, and exploring.
 
+## How To Update Resume Evidence
+
+Edit `content/resume.json`.
+
+Keep the resume model synthesized, public-safe, and evidence-oriented. It should preserve source provenance, public proof links, experience evidence, skill groups, education, and certifications without adding employer-specific product names, proprietary projects, internal screenshots, private logs, private dashboards, confidential architecture, or unsupported metrics.
+
 ## How To Add A Principle
 
 Edit `content/principles.json`.

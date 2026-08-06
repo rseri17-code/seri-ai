@@ -14,6 +14,7 @@ const categoryBriefPath = path.join(root, "content", "category-brief.json");
 const nowPath = path.join(root, "content", "now.json");
 const startHerePath = path.join(root, "content", "start-here.json");
 const changelogPath = path.join(root, "content", "changelog.json");
+const resumePath = path.join(root, "content", "resume.json");
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
@@ -26,6 +27,7 @@ const requiredBriefFields = ["title", "subtitle", "audience", "thesis", "whyNow"
 const requiredNowFields = ["currentFocus", "building", "studying", "writing", "avoiding", "questions"];
 const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matters"];
 const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
+const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
 const validStatuses = new Set(["draft", "review", "approved", "published", "archived"]);
 const errors = [];
 
@@ -341,9 +343,81 @@ for (const entry of changelog) {
   }
 }
 
+const resume = requireJsonObject(resumePath, "content/resume.json");
+validateRequiredFields("content/resume.json", resume, requiredResumeFields, { requireSlug: false });
+if ((resume.summary ?? "").length < 180) {
+  errors.push("content/resume.json: summary must provide substantial public-safe career framing");
+}
+for (const field of ["contact", "strengths", "architectureHighlights", "education", "certifications"]) {
+  if (!Array.isArray(resume[field]) || resume[field].length === 0) {
+    errors.push(`content/resume.json: ${field} must be a non-empty array`);
+  }
+}
+if (!Array.isArray(resume.strengths) || resume.strengths.length < 6) {
+  errors.push("content/resume.json: strengths must include at least six public capabilities");
+}
+if (!Array.isArray(resume.architectureHighlights) || resume.architectureHighlights.length < 5) {
+  errors.push("content/resume.json: architectureHighlights must include at least five evidence-backed highlights");
+}
+if (!Array.isArray(resume.publicProof) || resume.publicProof.length < 3) {
+  errors.push("content/resume.json: publicProof must include at least three public proof links");
+} else {
+  for (const proof of resume.publicProof) {
+    const owner = `content/resume.json:publicProof:${proof.label ?? "unknown"}`;
+    for (const field of ["label", "value", "href", "description"]) {
+      if (!proof[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (proof.href && !String(proof.href).startsWith("/") && !/^https:\/\//.test(proof.href)) {
+      errors.push(`${owner}: href must be an internal route or https URL`);
+    }
+  }
+}
+if (!Array.isArray(resume.sourceProvenance) || resume.sourceProvenance.length < 3) {
+  errors.push("content/resume.json: sourceProvenance must include at least three source classes");
+} else {
+  for (const source of resume.sourceProvenance) {
+    const owner = `content/resume.json:sourceProvenance:${source.sourceClass ?? "unknown"}`;
+    for (const field of ["sourceClass", "supports", "publicUse"]) {
+      if (!source[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+  }
+}
+if (!Array.isArray(resume.experience) || resume.experience.length < 3) {
+  errors.push("content/resume.json: experience must include at least three synthesized experience blocks");
+} else {
+  for (const item of resume.experience) {
+    const owner = `content/resume.json:experience:${item.role ?? "unknown"}`;
+    for (const field of ["role", "organization", "period", "impact", "bullets"]) {
+      if (item[field] == null || item[field] === "" || (Array.isArray(item[field]) && item[field].length === 0)) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (!Array.isArray(item.bullets) || item.bullets.length < 5) {
+      errors.push(`${owner}: bullets must include at least five evidence statements`);
+    }
+    if (/(internal|private|confidential|proprietary)\s+(product|project|platform|screenshot|architecture|dashboard|dashboards|log|logs)|screenshot/i.test([item.organization, item.impact, ...(item.bullets ?? [])].join(" "))) {
+      errors.push(`${owner}: public resume text must avoid internal/confidential implementation language`);
+    }
+  }
+}
+if (!Array.isArray(resume.skills) || resume.skills.length < 5) {
+  errors.push("content/resume.json: skills must include at least five groups");
+} else {
+  for (const skill of resume.skills) {
+    const owner = `content/resume.json:skills:${skill.group ?? "unknown"}`;
+    if (!skill.group || !Array.isArray(skill.items) || skill.items.length < 4) {
+      errors.push(`${owner}: skill group must include at least four items`);
+    }
+  }
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);
+console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);

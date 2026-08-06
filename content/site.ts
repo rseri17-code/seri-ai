@@ -11,6 +11,7 @@ import categoryBriefData from "./category-brief.json";
 import nowPageData from "./now.json";
 import startHerePathsData from "./start-here.json";
 import changelogData from "./changelog.json";
+import resumeData from "./resume.json";
 
 export const site = {
   name: "seri.ai",
@@ -684,145 +685,7 @@ export const startHerePaths = startHerePathsData;
 
 export const changelog = changelogData;
 
-export const resume = {
-  headline: "Senior infrastructure architect building production AI agent systems for enterprise operations.",
-  location: "Charlotte, NC",
-  contact: ["rseri17@gmail.com", "github.com/rseri17-code", "linkedin.com/in/ravikanthseri"],
-  summary:
-    "Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial-services environments. Ravikanth's work sits at the intersection of AI-native operations, observability, identity modernization, Kubernetes platforms, runtime governance, and incident investigation. He builds practical systems that turn telemetry, transactions, topology, and operational memory into evidence-backed decisions.",
-  strengths: [
-    "Production AI agent systems for enterprise operations",
-    "Operational Intelligence, AIOps, and AI-native incident investigation",
-    "Agent observability, evaluation, replayability, and behavioral drift analysis",
-    "Runtime governance, bounded execution, tool controls, and human-in-the-loop review",
-    "Kubernetes, hybrid cloud infrastructure, identity platforms, and distributed systems",
-    "OpenTelemetry, distributed tracing, telemetry correlation, and performance diagnostics",
-    "Python automation, enterprise API integration, and workflow orchestration",
-    "Architecture enablement for executives, platform teams, and operations stakeholders"
-  ],
-  architectureHighlights: [
-    "Architected production LLM-driven agent platforms using deterministic orchestration, bounded execution controls, replayability safeguards, and human review gates.",
-    "Designed governed reasoning-service patterns where deterministic decision layers own routing, evidence gates, call budgets, audit trails, and escalation before any model-produced judgment.",
-    "Designed governed tool-calling ecosystems that connect observability, IT service workflows, telemetry systems, and enterprise APIs through schema-bound interfaces.",
-    "Built end-to-end agent observability patterns using OpenTelemetry-style instrumentation, evaluator scoring, orchestration introspection, telemetry receipts, and drift analysis.",
-    "Implemented runtime governance models including fail-closed execution, freshness validation, tool budget enforcement, policy-aware safeguards, and approval checkpoints.",
-    "Designed telemetry and workload coordination architectures across Kubernetes, cloud platforms, identity platforms, integration gateways, and hybrid enterprise infrastructure."
-  ],
-  publicProof: [
-    {
-      label: "GitHub",
-      value: "github.com/rseri17-code",
-      href: "https://github.com/rseri17-code",
-      description: "Public code and open-source work connected to Operational Intelligence, AI systems, and engineering artifacts."
-    },
-    {
-      label: "LinkedIn",
-      value: "linkedin.com/in/ravikanthseri",
-      href: "https://www.linkedin.com/in/ravikanthseri/",
-      description: "Ongoing public signal for posts, architecture thinking, certifications, and what Ravikanth is building."
-    },
-    {
-      label: "Reference assets",
-      value: "Doctrine, architecture, evidence, and publication packs",
-      href: "/wiki/operational-intelligence-publication-pack",
-      description: "Shareable public artifacts that make the Operational Intelligence thesis reviewable and portable."
-    }
-  ],
-  sourceProvenance: [
-    {
-      sourceClass: "Resume and CV",
-      supports: "Career chronology, platform domains, impact ledger, education, certifications, and progression from integration infrastructure into AI-native operations.",
-      publicUse: "Synthesized into role summaries, capability evidence, and career throughline instead of copied verbatim."
-    },
-    {
-      sourceClass: "Architecture notes",
-      supports: "Deterministic orchestration, decision-layer routing, evidence gates, bounded worker calls, replayable ledgers, model isolation, and human approval patterns.",
-      publicUse: "Converted into generic, public-safe architecture patterns without internal system names, diagrams, logs, endpoints, schemas, or confidential implementation details."
-    },
-    {
-      sourceClass: "Public profiles and publishing",
-      supports: "LinkedIn thesis threads, public GitHub signal, published Operational Intelligence assets, reference architecture, Operations Room, and Ask Ravi evaluation surface.",
-      publicUse: "Connected into the public knowledge graph so visitors can inspect ideas through doctrine, patterns, artifacts, and cited source links."
-    }
-  ],
-  experience: [
-    {
-      role: "AIOps Lead Architect",
-      organization: "Major regulated financial-services enterprise",
-      period: "2025 - Present",
-      impact:
-        "Leads architecture for production AI-assisted operational workflows that support observability, incident response, retrieval, evaluation, and governed tool use.",
-      bullets: [
-        "Architected LLM-driven agent platforms for enterprise operations using deterministic orchestration, bounded execution, replayability, and human-in-the-loop governance.",
-        "Separated deterministic routing, evidence collection, gate evaluation, and model reasoning so operational conclusions remain replayable, auditable, and bounded.",
-        "Designed governed enterprise tool ecosystems spanning observability, IT service workflows, telemetry, and enterprise APIs through schema-bound dispatch and policy-aware execution.",
-        "Built agent observability pipelines for prompt execution, tool invocation behavior, orchestration paths, evaluator scoring, runtime telemetry, and behavioral drift analysis.",
-        "Designed evaluation workflows for root-cause analysis quality, workload reliability scoring, operational usefulness, and regression testing before production trust.",
-        "Profiled model-selection tradeoffs across latency, cost, retrieval depth, token throughput, and reliability for production AI workload constraints.",
-        "Authored executive technical memos and delivered architecture enablement sessions for operations, platform engineering, and leadership stakeholders."
-      ]
-    },
-    {
-      role: "Infrastructure Technical Lead - Identity and Observability",
-      organization: "Major regulated financial-services enterprise",
-      period: "2022 - 2025",
-      impact:
-        "Led identity modernization, cloud-native platform reliability, observability integration, and automation initiatives across enterprise application environments.",
-      bullets: [
-        "Led containerization and modernization of enterprise identity workloads on Kubernetes, improving scalability, deployment consistency, isolation, and reliability.",
-        "Orchestrated zero-downtime OpenID Connect migration across 120+ enterprise applications while preserving legacy application contracts and reducing migration friction.",
-        "Integrated OpenTelemetry-style pipelines across identity services and Kubernetes environments to improve tracing, telemetry correlation, diagnostics, and anomaly detection.",
-        "Designed observability integration patterns across distributed tracing, runtime telemetry, and monitoring platforms for hybrid enterprise infrastructure.",
-        "Automated OAuth onboarding and enterprise API workflows with Python, reducing identity support tickets by 80% and recovering about 200 engineering hours per quarter."
-      ]
-    },
-    {
-      role: "Enterprise Infrastructure and Middleware Engineer",
-      organization: "Financial services, retail, insurance, and enterprise technology environments",
-      period: "2008 - 2022",
-      impact:
-        "Built a foundation across middleware, infrastructure operations, identity systems, distributed platforms, automation, and reliability engineering.",
-      bullets: [
-        "Operated and modernized enterprise middleware, API gateway, B2B integration, identity, and infrastructure platforms in high-availability environments.",
-        "Supported service-oriented and API integration patterns across XML, JSON, SOAP, REST, mutual authentication, access policies, and enterprise gateway controls.",
-        "Built observability and data-quality practices around logs, dashboards, alerting, telemetry onboarding, latency analysis, capacity signals, and operational support workflows.",
-        "Worked on cloud migration, containerization, deployment automation, and configuration-management workflows across Linux, application servers, and integration platforms.",
-        "Partnered with engineering, security, and operations teams to improve reliability, access patterns, integration quality, and operational support models.",
-        "Developed durable expertise in Linux, distributed systems, enterprise integration, cloud migration, automation, and production support."
-      ]
-    }
-  ],
-  skills: [
-    {
-      group: "AI Infrastructure and Runtime Operations",
-      items: ["LLM agent platforms", "deterministic orchestration", "governed tool use", "retrieval routing", "runtime governance", "tool budget controls"]
-    },
-    {
-      group: "Agent Observability and Evaluation",
-      items: ["OpenTelemetry-style instrumentation", "evaluator scoring", "replayability", "drift analysis", "telemetry receipts"]
-    },
-    {
-      group: "Cloud-Native and Hybrid Infrastructure",
-      items: ["Kubernetes", "Helm", "Terraform", "Docker", "AWS", "Linux", "hybrid cloud architecture"]
-    },
-    {
-      group: "Observability and Performance Engineering",
-      items: ["distributed tracing", "telemetry correlation", "performance diagnostics", "incident analysis", "AIOps workflows"]
-    },
-    {
-      group: "Python and Integration Engineering",
-      items: ["Python APIs", "SDK integrations", "workflow orchestration", "infrastructure automation", "enterprise API integration", "API gateways", "service-oriented architecture"]
-    }
-  ],
-  education: ["MS, Industrial Engineering, University of New Haven"],
-  certifications: [
-    "Artificial Intelligence Associate, North Carolina State University, issued Dec 2025",
-    "Certified Data Scientist, North Carolina State University, issued Jun 2025",
-    "AWS Solutions Architect Associate, Amazon Web Services, issued Mar 2020 and expired Mar 2023",
-    "Certified Kubernetes Administrator",
-    "IBM Certified DataPower Administrator"
-  ]
-};
+export const resume = resumeData;
 
 export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
 export type ContentStatus = "published" | "planned" | "draft";

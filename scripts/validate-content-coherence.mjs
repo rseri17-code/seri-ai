@@ -25,6 +25,7 @@ const { getPublishedWikiNotes } = jiti("../lib/content.ts");
 
 const errors = [];
 const thesisRadarContent = fs.readFileSync(path.join(root, "content", "thesis-radar.json"), "utf8");
+const resumeContent = fs.readFileSync(path.join(root, "content", "resume.json"), "utf8");
 
 const allowedStatuses = new Set(["published", "planned", "draft"]);
 const allowedTypes = new Set(["framework", "pattern", "artifact", "library", "product", "principle", "background", "domain", "system"]);
@@ -883,7 +884,7 @@ for (const required of [
   "Converted into generic, public-safe architecture patterns",
   "Connected into the public knowledge graph"
 ]) {
-  expect(siteContent.includes(required), `resume content model missing source provenance contract: ${required}`);
+  expect(siteContent.includes(required) || resumeContent.includes(required), `resume content model missing source provenance contract: ${required}`);
 }
 
 const backgroundPage = fs.readFileSync(path.join(root, "app", "background", "page.tsx"), "utf8");
