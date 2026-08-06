@@ -1,0 +1,40 @@
+{
+  "title": "The operating model",
+  "thesis": "This is not a chatbot layer for operations. It is a harness model for systems that investigate, prove, remember, replay, self-correct, and improve.",
+  "publicSafeSource": "This language is distilled from public-safe product work around AI-native incident investigation and operational control planes. It avoids internal employer systems, proprietary names, screenshots, logs, and confidential architecture.",
+  "principles": [
+    {
+      "name": "Deterministic first",
+      "description": "Known operational paths should be reproducible before an LLM is allowed to add judgment."
+    },
+    {
+      "name": "Proof-driven",
+      "description": "Every conclusion needs evidence references, missing-context statements, and confidence movement."
+    },
+    {
+      "name": "Bounded autonomy",
+      "description": "Tool use, time, scope, and irreversible actions need explicit budgets and policy gates."
+    },
+    {
+      "name": "Receipts everywhere",
+      "description": "Each tool call, observation, hypothesis, and decision should leave an auditable trail."
+    },
+    {
+      "name": "Replay as trust",
+      "description": "The best investigation systems can replay the same evidence path without re-running the world."
+    },
+    {
+      "name": "Operator control plane",
+      "description": "The UI should expose evidence, risk, confidence, memory, and approval gates in one place."
+    }
+  ],
+  "productTranslation": [
+    "Incident command center",
+    "Execution graph",
+    "Evidence drawer",
+    "Memory trace",
+    "Replay mode",
+    "Risk and confidence layer",
+    "Human approval controls"
+  ]
+}

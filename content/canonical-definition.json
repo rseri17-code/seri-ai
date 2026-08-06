@@ -1,0 +1,12 @@
+{
+  "short": "Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
+  "support": "It connects signals, transactions, topology, operational memory, evaluations, and human review so teams can understand what changed, why it matters, what evidence supports it, and what should happen next.",
+  "questions": [
+    "What changed?",
+    "Why does it matter?",
+    "What evidence supports it?",
+    "What is affected?",
+    "What should a human review next?",
+    "What should the system learn for next time?"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "title": "The public-safe model behind the Agentic SRE harness",
+  "framing": "Operational AI should behave like evidence infrastructure. It should not just summarize incidents. It should collect typed evidence, build hypotheses, show decision provenance, preserve replay seeds, learn from outcomes, self-correct inside a bounded harness, and expose the whole process to an operator.",
+  "compliance": "This model is intentionally generic. It avoids private system names, vendor-specific implementation details, credentials, logs, screenshots, dashboards, and confidential architecture.",
+  "primitives": [
+    {
+      "name": "Evidence Graph",
+      "description": "Represent logs, metrics, traces, changes, topology, tickets, and outcomes as typed evidence nodes with relationships."
+    },
+    {
+      "name": "Hypothesis Lifecycle",
+      "description": "Track what was proposed, supported, refuted, ruled out, confirmed, and how confidence moved over time."
+    },
+    {
+      "name": "Decision Trace",
+      "description": "Record why a recommendation was made, which evidence supported it, which alternatives lost, and what a human reviewed."
+    },
+    {
+      "name": "Replay Seed",
+      "description": "Preserve enough structured context to replay an investigation without re-running production systems."
+    },
+    {
+      "name": "Outcome Memory",
+      "description": "Link recommendations to what actually happened so future investigations can use proven patterns instead of folklore."
+    },
+    {
+      "name": "Learning Loop",
+      "description": "Turn replay, benchmark, operator feedback, false leads, and resolution outcomes into deterministic improvement signals."
+    }
+  ],
+  "controlPlane": [
+    "Incident command center",
+    "Execution graph",
+    "Evidence drawer",
+    "Hypothesis ledger",
+    "Risk and confidence strip",
+    "Memory trace",
+    "Replay controls",
+    "Approval gate"
+  ],
+  "publicThesis": "The category is not AIOps plus a chatbot. The category is operational reasoning with evidence, provenance, replay, learning, and accountable control."
+}

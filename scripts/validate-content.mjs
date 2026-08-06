@@ -16,6 +16,10 @@ const startHerePath = path.join(root, "content", "start-here.json");
 const changelogPath = path.join(root, "content", "changelog.json");
 const resumePath = path.join(root, "content", "resume.json");
 const contentRegistryPath = path.join(root, "content", "content-registry.json");
+const harnessThesisPath = path.join(root, "content", "harness-thesis.json");
+const canonicalDefinitionPath = path.join(root, "content", "canonical-definition.json");
+const builderDnaPath = path.join(root, "content", "builder-dna.json");
+const sentinelContextModelPath = path.join(root, "content", "sentinel-context-model.json");
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
@@ -30,6 +34,10 @@ const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matter
 const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
+const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
+const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
+const requiredBuilderDnaFields = ["title", "thesis", "publicSafeSource", "principles", "productTranslation"];
+const requiredSentinelContextFields = ["title", "framing", "compliance", "primitives", "controlPlane", "publicThesis"];
 const validStatuses = new Set(["draft", "review", "approved", "published", "archived"]);
 const validRegistryStatuses = new Set(["published", "planned", "draft"]);
 const validRegistryTypes = new Set(["framework", "pattern", "artifact", "library", "product", "principle", "background", "domain", "system"]);
@@ -463,9 +471,75 @@ for (const route of ["/framework", "/investigation-room", "/ask", "/evals", "/wo
   }
 }
 
+const harnessThesis = requireJsonObject(harnessThesisPath, "content/harness-thesis.json");
+validateRequiredFields("content/harness-thesis.json", harnessThesis, requiredHarnessFields, { requireSlug: false });
+if (!Array.isArray(harnessThesis.beliefs) || harnessThesis.beliefs.length < 4) {
+  errors.push("content/harness-thesis.json: beliefs must include at least four beliefs");
+} else {
+  for (const belief of harnessThesis.beliefs) {
+    const owner = `content/harness-thesis.json:${belief.title ?? "unknown"}`;
+    if (!belief.title || !belief.body) {
+      errors.push(`${owner}: belief title and body are required`);
+    }
+  }
+}
+if (!Array.isArray(harnessThesis.loop) || harnessThesis.loop.length < 6) {
+  errors.push("content/harness-thesis.json: loop must include at least six stages");
+}
+if (!Array.isArray(harnessThesis.proofObjects) || harnessThesis.proofObjects.length < 5) {
+  errors.push("content/harness-thesis.json: proofObjects must include at least five objects");
+}
+
+const canonicalDefinition = requireJsonObject(canonicalDefinitionPath, "content/canonical-definition.json");
+validateRequiredFields("content/canonical-definition.json", canonicalDefinition, requiredCanonicalDefinitionFields, { requireSlug: false });
+if (!String(canonicalDefinition.short ?? "").includes("Operational Intelligence")) {
+  errors.push("content/canonical-definition.json: short definition must name Operational Intelligence");
+}
+if (!Array.isArray(canonicalDefinition.questions) || canonicalDefinition.questions.length < 6 || canonicalDefinition.questions.some((question) => !String(question).includes("?"))) {
+  errors.push("content/canonical-definition.json: questions must include at least six questions");
+}
+
+const builderDna = requireJsonObject(builderDnaPath, "content/builder-dna.json");
+validateRequiredFields("content/builder-dna.json", builderDna, requiredBuilderDnaFields, { requireSlug: false });
+if (!/public-safe/i.test(builderDna.publicSafeSource ?? "")) {
+  errors.push("content/builder-dna.json: publicSafeSource must state the public-safe boundary");
+}
+if (!Array.isArray(builderDna.principles) || builderDna.principles.length < 6) {
+  errors.push("content/builder-dna.json: principles must include at least six operating principles");
+} else {
+  for (const principle of builderDna.principles) {
+    const owner = `content/builder-dna.json:${principle.name ?? "unknown"}`;
+    if (!principle.name || !principle.description) {
+      errors.push(`${owner}: principle name and description are required`);
+    }
+  }
+}
+if (!Array.isArray(builderDna.productTranslation) || builderDna.productTranslation.length < 6) {
+  errors.push("content/builder-dna.json: productTranslation must include at least six product surfaces");
+}
+
+const sentinelContextModel = requireJsonObject(sentinelContextModelPath, "content/sentinel-context-model.json");
+validateRequiredFields("content/sentinel-context-model.json", sentinelContextModel, requiredSentinelContextFields, { requireSlug: false });
+if (!/generic/i.test(sentinelContextModel.compliance ?? "") || !/confidential/i.test(sentinelContextModel.compliance ?? "")) {
+  errors.push("content/sentinel-context-model.json: compliance must preserve generic public-safe boundary language");
+}
+if (!Array.isArray(sentinelContextModel.primitives) || sentinelContextModel.primitives.length < 6) {
+  errors.push("content/sentinel-context-model.json: primitives must include at least six primitives");
+} else {
+  for (const primitive of sentinelContextModel.primitives) {
+    const owner = `content/sentinel-context-model.json:${primitive.name ?? "unknown"}`;
+    if (!primitive.name || !primitive.description) {
+      errors.push(`${owner}: primitive name and description are required`);
+    }
+  }
+}
+if (!Array.isArray(sentinelContextModel.controlPlane) || sentinelContextModel.controlPlane.length < 6) {
+  errors.push("content/sentinel-context-model.json: controlPlane must include at least six surfaces");
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);
+console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, foundational models, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);

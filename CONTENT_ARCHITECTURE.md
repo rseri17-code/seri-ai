@@ -2,7 +2,14 @@
 
 ## Source Of Truth
 
-The primary content source is `content/site.ts`.
+The primary content sources are `content/*.json` and `content/wiki/*.mdx`. `content/site.ts` is the typed export and compatibility layer that re-exports those assets to existing routes, retrieval, publishing, and validation code.
+
+The foundational thesis models live in:
+
+- `content/canonical-definition.json`
+- `content/harness-thesis.json`
+- `content/builder-dna.json`
+- `content/sentinel-context-model.json`
 
 The canonical registry is `content/content-registry.json`, exported as `contentRegistry`. It maps major public surfaces to:
 

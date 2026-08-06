@@ -1,0 +1,41 @@
+{
+  "headline": "The harness is the product.",
+  "statement": "The real differentiator in Agentic SRE is not the model. It is the operating harness that lets a model investigate with evidence, stay inside policy, expose its reasoning, learn from outcomes, and hand control back to humans before high-risk action.",
+  "category": "ReasonOps is the product expression of that belief: a public-safe operating model for evidence-backed, self-healing operations.",
+  "beliefs": [
+    {
+      "title": "Models reason. Harnesses remember.",
+      "body": "A model can reason about one incident. A harness accumulates operational experience across incidents, outcomes, false leads, approvals, and replayed decisions."
+    },
+    {
+      "title": "Incidents are temporary. Operational knowledge should not be.",
+      "body": "Every investigation should leave reusable memory: what was proven, what was rejected, what action worked, and what should be checked first next time."
+    },
+    {
+      "title": "Evidence-backed self-healing beats autonomy theater.",
+      "body": "The goal is not an agent that acts confidently. The goal is a system that can prove why action is justified, where uncertainty remains, and which human gate must approve change."
+    },
+    {
+      "title": "Shared context is the enterprise problem.",
+      "body": "Private context is cheap. The durable advantage is shared operational context: transactions, topology, evidence, owners, risks, and decisions that teams can trust together."
+    }
+  ],
+  "loop": [
+    "Intake",
+    "Evidence",
+    "Graph",
+    "Hypothesis",
+    "Decision",
+    "Replay",
+    "Outcome",
+    "Learning"
+  ],
+  "proofObjects": [
+    "Evidence graph",
+    "Hypothesis lifecycle",
+    "Decision trace",
+    "Replay seed",
+    "Outcome memory",
+    "Evaluation harness"
+  ]
+}

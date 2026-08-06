@@ -13,6 +13,10 @@ import startHerePathsData from "./start-here.json";
 import changelogData from "./changelog.json";
 import resumeData from "./resume.json";
 import contentRegistryData from "./content-registry.json";
+import harnessThesisData from "./harness-thesis.json";
+import canonicalDefinitionData from "./canonical-definition.json";
+import builderDnaData from "./builder-dna.json";
+import sentinelContextModelData from "./sentinel-context-model.json";
 
 export const site = {
   name: "seri.ai",
@@ -59,136 +63,13 @@ export const site = {
   ]
 };
 
-export const harnessThesis = {
-  headline: "The harness is the product.",
-  statement:
-    "The real differentiator in Agentic SRE is not the model. It is the operating harness that lets a model investigate with evidence, stay inside policy, expose its reasoning, learn from outcomes, and hand control back to humans before high-risk action.",
-  category:
-    "ReasonOps is the product expression of that belief: a public-safe operating model for evidence-backed, self-healing operations.",
-  beliefs: [
-    {
-      title: "Models reason. Harnesses remember.",
-      body: "A model can reason about one incident. A harness accumulates operational experience across incidents, outcomes, false leads, approvals, and replayed decisions."
-    },
-    {
-      title: "Incidents are temporary. Operational knowledge should not be.",
-      body: "Every investigation should leave reusable memory: what was proven, what was rejected, what action worked, and what should be checked first next time."
-    },
-    {
-      title: "Evidence-backed self-healing beats autonomy theater.",
-      body: "The goal is not an agent that acts confidently. The goal is a system that can prove why action is justified, where uncertainty remains, and which human gate must approve change."
-    },
-    {
-      title: "Shared context is the enterprise problem.",
-      body: "Private context is cheap. The durable advantage is shared operational context: transactions, topology, evidence, owners, risks, and decisions that teams can trust together."
-    }
-  ],
-  loop: ["Intake", "Evidence", "Graph", "Hypothesis", "Decision", "Replay", "Outcome", "Learning"],
-  proofObjects: ["Evidence graph", "Hypothesis lifecycle", "Decision trace", "Replay seed", "Outcome memory", "Evaluation harness"]
-};
+export const harnessThesis = harnessThesisData;
 
-export const canonicalDefinition = {
-  short: "Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
-  support:
-    "It connects signals, transactions, topology, operational memory, evaluations, and human review so teams can understand what changed, why it matters, what evidence supports it, and what should happen next.",
-  questions: [
-    "What changed?",
-    "Why does it matter?",
-    "What evidence supports it?",
-    "What is affected?",
-    "What should a human review next?",
-    "What should the system learn for next time?"
-  ]
-};
+export const canonicalDefinition = canonicalDefinitionData;
 
-export const builderDna = {
-  title: "The operating model",
-  thesis:
-    "This is not a chatbot layer for operations. It is a harness model for systems that investigate, prove, remember, replay, self-correct, and improve.",
-  publicSafeSource:
-    "This language is distilled from public-safe product work around AI-native incident investigation and operational control planes. It avoids internal employer systems, proprietary names, screenshots, logs, and confidential architecture.",
-  principles: [
-    {
-      name: "Deterministic first",
-      description: "Known operational paths should be reproducible before an LLM is allowed to add judgment."
-    },
-    {
-      name: "Proof-driven",
-      description: "Every conclusion needs evidence references, missing-context statements, and confidence movement."
-    },
-    {
-      name: "Bounded autonomy",
-      description: "Tool use, time, scope, and irreversible actions need explicit budgets and policy gates."
-    },
-    {
-      name: "Receipts everywhere",
-      description: "Each tool call, observation, hypothesis, and decision should leave an auditable trail."
-    },
-    {
-      name: "Replay as trust",
-      description: "The best investigation systems can replay the same evidence path without re-running the world."
-    },
-    {
-      name: "Operator control plane",
-      description: "The UI should expose evidence, risk, confidence, memory, and approval gates in one place."
-    }
-  ],
-  productTranslation: [
-    "Incident command center",
-    "Execution graph",
-    "Evidence drawer",
-    "Memory trace",
-    "Replay mode",
-    "Risk and confidence layer",
-    "Human approval controls"
-  ]
-};
+export const builderDna = builderDnaData;
 
-export const sentinelContextModel = {
-  title: "The public-safe model behind the Agentic SRE harness",
-  framing:
-    "Operational AI should behave like evidence infrastructure. It should not just summarize incidents. It should collect typed evidence, build hypotheses, show decision provenance, preserve replay seeds, learn from outcomes, self-correct inside a bounded harness, and expose the whole process to an operator.",
-  compliance:
-    "This model is intentionally generic. It avoids private system names, vendor-specific implementation details, credentials, logs, screenshots, dashboards, and confidential architecture.",
-  primitives: [
-    {
-      name: "Evidence Graph",
-      description: "Represent logs, metrics, traces, changes, topology, tickets, and outcomes as typed evidence nodes with relationships."
-    },
-    {
-      name: "Hypothesis Lifecycle",
-      description: "Track what was proposed, supported, refuted, ruled out, confirmed, and how confidence moved over time."
-    },
-    {
-      name: "Decision Trace",
-      description: "Record why a recommendation was made, which evidence supported it, which alternatives lost, and what a human reviewed."
-    },
-    {
-      name: "Replay Seed",
-      description: "Preserve enough structured context to replay an investigation without re-running production systems."
-    },
-    {
-      name: "Outcome Memory",
-      description: "Link recommendations to what actually happened so future investigations can use proven patterns instead of folklore."
-    },
-    {
-      name: "Learning Loop",
-      description: "Turn replay, benchmark, operator feedback, false leads, and resolution outcomes into deterministic improvement signals."
-    }
-  ],
-  controlPlane: [
-    "Incident command center",
-    "Execution graph",
-    "Evidence drawer",
-    "Hypothesis ledger",
-    "Risk and confidence strip",
-    "Memory trace",
-    "Replay controls",
-    "Approval gate"
-  ],
-  publicThesis:
-    "The category is not AIOps plus a chatbot. The category is operational reasoning with evidence, provenance, replay, learning, and accountable control."
-};
+export const sentinelContextModel = sentinelContextModelData;
 
 export const operationalLayers = [
   {
