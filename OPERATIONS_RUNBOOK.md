@@ -53,6 +53,12 @@ Ask modes to monitor:
 - `answer_mode`: `ai_synthesis`, `timeout_fallback`, `public_safety_refusal`
 - `retrieval_mode`: `local`, `vector`, `vector_fallback`, `blocked`
 
+## Secret Hygiene
+
+Do not commit runtime `.env` files, provider keys, Supabase JWTs, PostHog project keys, bearer tokens, private key blocks, customer data, or production credentials. `.env.example` may contain public URLs and safe placeholders only.
+
+Run `npm run validate:security` before every release candidate. It checks that runtime `.env` files are not tracked, `.gitignore` protects local env files, `.env.example` does not contain real-looking secret values, and tracked text files do not contain common secret-shaped material.
+
 ## Alert Signals
 
 Investigate when any of these move above normal baseline:
@@ -129,6 +135,7 @@ npm run validate:contracts
 npm run validate:reference
 npm run validate:doctrine
 npm run validate:deployment
+npm run validate:security
 npm run validate:routes
 npm run validate:publishing
 npm run validate:discovery

@@ -109,6 +109,8 @@ for (const key of ["NEXT_PUBLIC_SITE_URL", "NEXT_PUBLIC_POSTHOG_KEY", "SUPABASE_
 }
 expect(readme.includes("Without model or database keys, `/ask` runs with the local approved-content fallback"), "README.md missing optional-service fallback note");
 expect(readme.includes("Static generation is tuned for content-heavy reference routes"), "README.md missing static generation reliability note");
+expect(readme.includes("npm run validate:security"), "README.md missing security hygiene validation command");
+expect(readme.includes("local secret/env hygiene checks"), "README.md missing local secret/env hygiene build-test note");
 expect(readme.includes("OPERATIONS_RUNBOOK.md"), "README.md missing operations runbook link");
 expect(readme.includes("WORLD_CLASS_SCORECARD.md"), "README.md missing world-class scorecard link");
 
@@ -116,6 +118,7 @@ const operationsRunbook = read("OPERATIONS_RUNBOOK.md");
 for (const required of [
   "Beta SLO Targets",
   "Safe Telemetry Contract",
+  "Secret Hygiene",
   "Alert Signals",
   "Incident Response",
   "Rollback",
@@ -126,6 +129,7 @@ for (const required of [
   "source_count",
   "latency_ms",
   "server_latency_ms",
+  "npm run validate:security",
   "npm run build",
   "static generation timeout",
   "npm test",

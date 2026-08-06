@@ -258,6 +258,7 @@ npm run validate:contracts
 npm run validate:reference
 npm run validate:doctrine
 npm run validate:deployment
+npm run validate:security
 npm run validate:routes
 npm run validate:viewport
 npm run validate:publishing
@@ -387,8 +388,8 @@ npm run validate:performance
 npm run build
 ```
 
-`npm run build` runs content validation, content-coherence checks, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravi trust fixtures before building. It runs the performance budget after the production build.
-`npm test` runs content validation, content-coherence checks, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravi trust fixtures, and TypeScript checks.
+`npm run build` runs content validation, content-coherence checks, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, local secret/env hygiene checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, and the Ask Ravi trust fixtures before building. It runs the performance budget after the production build.
+`npm test` runs content validation, content-coherence checks, publication contract checks, reference-package checks, doctrine-quality checks, deployment-config checks, local secret/env hygiene checks, route-integrity checks, publishing-discovery checks, SEO/AI-discovery checks, retrieval checks, privacy-safe analytics checks, API fallback checks, accessibility checks, the Ask Ravi trust fixtures, and TypeScript checks.
 
 ## Operations Runbook
 
