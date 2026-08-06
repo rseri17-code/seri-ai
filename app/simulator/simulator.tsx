@@ -458,6 +458,7 @@ const replayNodes = [
   { id: "path", label: "Dependency path", detail: "3 groups", x: 55, y: 58, evidence: "topology" },
   { id: "hypothesis", label: "RCA hypothesis", detail: "regression", x: 76, y: 30, evidence: "change" },
   { id: "review", label: "Human review", detail: "approval gate", x: 88, y: 70, evidence: "topology" },
+  { id: "contradiction", label: "Contradiction", detail: "capacity stable", x: 58, y: 84, evidence: "contradiction" },
   { id: "noise", label: "Noise", detail: "unrelated alert", x: 36, y: 78, evidence: "noise" }
 ];
 const replayEdges = [
@@ -465,6 +466,7 @@ const replayEdges = [
   ["change", "path", "change"],
   ["path", "hypothesis", "topology"],
   ["hypothesis", "review", "change"],
+  ["contradiction", "hypothesis", "contradiction"],
   ["noise", "hypothesis", "noise"]
 ];
 
@@ -1343,6 +1345,14 @@ function VisualReplayLayer({
   const primaryNow = adjustedConfidence(hypotheses[0].name, activeEvidenceIds);
   const delta = primaryNow - primaryBaseline;
   const nodeById = new Map(replayNodes.map((node) => [node.id, node]));
+  const reviewStateRows: Array<[string, string, string, "mint" | "signal" | "amber"]> = [
+    ["Observation", "Customer journey degradation", activeSet.has("signal") ? "active receipt" : "not selected", "mint"],
+    ["Inference", selectedHypothesis ?? "No hypothesis selected", `${selectedConfidence}% confidence`, "signal"],
+    ["Contradiction", "Capacity headroom remains stable", activeSet.has("contradiction") ? "challenging capacity branch" : "available but not selected", "amber"],
+    ["Missing evidence", "Owner confirmation and validation", `${missingEvidence.length} open gaps`, "amber"],
+    ["Confirmed fact", "Replay uses synthetic public-safe evidence only", "fixture boundary", "mint"],
+    ["Approval gate", selectedActionQuality, selectedActionQuality === "Best" ? "human approval required" : "not release-ready", "amber"]
+  ];
 
   return (
     <div className="mb-6 overflow-hidden rounded-lg border border-white/10 bg-black/20">
@@ -1356,6 +1366,16 @@ function VisualReplayLayer({
           <span className="rounded border border-signal/25 bg-signal/10 px-2 py-1 text-signal">{selectedConfidence}% hypothesis confidence</span>
           <span className="rounded border border-amber/25 bg-amber/10 px-2 py-1 text-amber">{selectedActionQuality} action gate</span>
         </div>
+      </div>
+
+      <div className="grid gap-2 border-b border-white/10 bg-black/10 p-3 md:grid-cols-3 2xl:grid-cols-6">
+        {reviewStateRows.map(([label, value, detail, tone]) => (
+          <div key={label} className="min-h-24 rounded border border-white/10 bg-white/[0.03] p-3">
+            <p className={`text-[0.66rem] font-semibold uppercase tracking-[0.14em] ${tone === "mint" ? "text-mint" : tone === "signal" ? "text-signal" : "text-amber"}`}>{label}</p>
+            <p className="mt-2 line-clamp-2 text-sm font-semibold leading-5 text-white">{value}</p>
+            <p className="mt-1 text-xs leading-5 text-slate-400">{detail}</p>
+          </div>
+        ))}
       </div>
 
       <div className="grid gap-4 p-4 2xl:grid-cols-[0.95fr_1.15fr_0.9fr]">
@@ -1417,7 +1437,7 @@ function VisualReplayLayer({
                 {replayEdges.map(([from, to, evidenceId], index) => {
                   const fromNode = nodeById.get(from);
                   const toNode = nodeById.get(to);
-                  const activeEdge = activeSet.has(evidenceId) && index <= replayIndex;
+                  const activeEdge = activeSet.has(evidenceId) && (index <= replayIndex || evidenceId === "contradiction");
                   if (fromNode == null || toNode == null) {
                     return null;
                   }
@@ -1428,8 +1448,8 @@ function VisualReplayLayer({
                       y1={fromNode.y}
                       x2={toNode.x}
                       y2={toNode.y}
-                      stroke={activeEdge ? "url(#replay-edge)" : "rgba(148,163,184,0.28)"}
-                      strokeDasharray={activeEdge ? "3 3" : "1 4"}
+                      stroke={activeEdge ? (evidenceId === "contradiction" ? "#f3c969" : "url(#replay-edge)") : "rgba(148,163,184,0.28)"}
+                      strokeDasharray={activeEdge ? (evidenceId === "contradiction" ? "2 2" : "3 3") : "1 4"}
                       strokeLinecap="round"
                       strokeWidth={activeEdge ? 1.15 : 0.55}
                       initial={{ pathLength: 0, opacity: 0.35 }}
@@ -1441,14 +1461,14 @@ function VisualReplayLayer({
                 {replayNodes.map((node, index) => {
                   const enabled = activeSet.has(node.evidence);
                   const focus = index <= replayIndex + 1 || node.id === "review";
-                  const replayed = visibleReplayChapters.some((chapter) => chapter.evidenceId === node.evidence);
+                  const replayed = visibleReplayChapters.some((chapter) => chapter.evidenceId === node.evidence) || node.evidence === "contradiction";
                   return (
                     <g key={node.id} className={enabled && replayed ? "sim-graph-node-active" : "sim-graph-node-muted"} filter={enabled && replayed ? "url(#node-glow)" : undefined}>
                       <motion.circle
                         cx={node.x}
                         cy={node.y}
                         r={enabled && replayed ? 4.9 : enabled ? 4.1 : 3.7}
-                        fill={enabled && replayed ? (node.id === "review" ? "#f3c969" : "#5ff2b5") : enabled ? "#73a7ff" : "#334155"}
+                        fill={enabled && replayed ? (node.id === "review" || node.id === "contradiction" ? "#f3c969" : "#5ff2b5") : enabled ? "#73a7ff" : "#334155"}
                         stroke={focus ? "#ffffff" : "rgba(255,255,255,0.35)"}
                         strokeWidth={focus ? 0.65 : 0.35}
                         animate={{ scale: enabled && replayed && focus ? [1, 1.12, 1] : 1 }}
