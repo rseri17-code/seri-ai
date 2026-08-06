@@ -111,6 +111,7 @@ expect(readme.includes("Without model or database keys, `/ask` runs with the loc
 expect(readme.includes("Static generation is tuned for content-heavy reference routes"), "README.md missing static generation reliability note");
 expect(readme.includes("npm run validate:security"), "README.md missing security hygiene validation command");
 expect(readme.includes("local secret/env hygiene checks"), "README.md missing local secret/env hygiene build-test note");
+expect(readme.includes("route-integrity and internal-link checks"), "README.md missing internal-link build-test note");
 expect(readme.includes("OPERATIONS_RUNBOOK.md"), "README.md missing operations runbook link");
 expect(readme.includes("WORLD_CLASS_SCORECARD.md"), "README.md missing world-class scorecard link");
 
