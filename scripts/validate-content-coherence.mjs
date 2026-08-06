@@ -851,6 +851,10 @@ for (const required of [
   "reviewable control system",
   "doctrine, reference architecture, simulations, eval fixtures, patterns, and portable artifacts",
   "Career throughline",
+  "Source provenance",
+  "resume.sourceProvenance.map",
+  "approved source classes",
+  "public-safe claims",
   "Capability evidence matrix",
   "AI-native operations architecture",
   "Operational Intelligence doctrine",
@@ -867,6 +871,18 @@ for (const required of [
   "/work"
 ]) {
   expect(resumePage.includes(required), `/resume missing capability evidence contract: ${required}`);
+}
+
+for (const required of [
+  "sourceProvenance",
+  "Resume and CV",
+  "Architecture notes",
+  "Public profiles and publishing",
+  "Synthesized into role summaries",
+  "Converted into generic, public-safe architecture patterns",
+  "Connected into the public knowledge graph"
+]) {
+  expect(siteContent.includes(required), `resume content model missing source provenance contract: ${required}`);
 }
 
 const backgroundPage = fs.readFileSync(path.join(root, "app", "background", "page.tsx"), "utf8");

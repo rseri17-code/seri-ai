@@ -1839,6 +1839,23 @@ export const resume = {
       description: "Shareable public artifacts that make the Operational Intelligence thesis reviewable and portable."
     }
   ],
+  sourceProvenance: [
+    {
+      sourceClass: "Resume and CV",
+      supports: "Career chronology, platform domains, impact ledger, education, certifications, and progression from integration infrastructure into AI-native operations.",
+      publicUse: "Synthesized into role summaries, capability evidence, and career throughline instead of copied verbatim."
+    },
+    {
+      sourceClass: "Architecture notes",
+      supports: "Deterministic orchestration, decision-layer routing, evidence gates, bounded worker calls, replayable ledgers, model isolation, and human approval patterns.",
+      publicUse: "Converted into generic, public-safe architecture patterns without internal system names, diagrams, logs, endpoints, schemas, or confidential implementation details."
+    },
+    {
+      sourceClass: "Public profiles and publishing",
+      supports: "LinkedIn thesis threads, public GitHub signal, published Operational Intelligence assets, reference architecture, Operations Room, and Ask Ravi evaluation surface.",
+      publicUse: "Connected into the public knowledge graph so visitors can inspect ideas through doctrine, patterns, artifacts, and cited source links."
+    }
+  ],
   experience: [
     {
       role: "AIOps Lead Architect",
@@ -2337,6 +2354,7 @@ export const approvedKnowledge = [
   ...resume.strengths,
   ...resume.architectureHighlights,
   ...resume.publicProof.flatMap((item) => [item.label, item.value, item.description]),
+  ...resume.sourceProvenance.flatMap((item) => [item.sourceClass, item.supports, item.publicUse]),
   ...resume.experience.flatMap((item) => [item.role, item.organization, item.period, item.impact, ...item.bullets]),
   ...resume.skills.flatMap((skill) => [skill.group, ...skill.items]),
   ...resume.education,

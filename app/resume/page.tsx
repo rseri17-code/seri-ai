@@ -154,9 +154,27 @@ export default function ResumePage() {
             ))}
           </div>
         </Card>
-        <Card>
-          <h2 className="text-xl font-semibold text-white">Public proof</h2>
-          <div className="mt-5 space-y-3">
+          <Card className="border-signal/25 bg-signal/[0.04]">
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="text-signal" />
+              <h2 className="text-xl font-semibold text-white">Source provenance</h2>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              Career evidence is synthesized from approved source classes, then converted into public-safe claims that can be challenged without exposing private systems.
+            </p>
+            <div className="mt-5 space-y-3">
+              {resume.sourceProvenance.map((item) => (
+                <div key={item.sourceClass} className="rounded border border-white/10 bg-ink px-4 py-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{item.sourceClass}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">{item.supports}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{item.publicUse}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
+          <Card>
+            <h2 className="text-xl font-semibold text-white">Public proof</h2>
+            <div className="mt-5 space-y-3">
             {resume.publicProof.map((item) => (
               <a
                 key={item.label}
