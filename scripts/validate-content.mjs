@@ -28,7 +28,7 @@ const operationalIntelligenceSystemPath = path.join(root, "content", "operationa
 const assetTypesPath = path.join(root, "content", "asset-types.json");
 const releaseModelPath = path.join(root, "content", "release-model.json");
 const requiredSiteFields = ["name", "owner", "tagline", "positioning", "description", "authorLine", "nowSignal", "brandBelief", "productPromise", "operatingSystem", "compliance", "links", "nav"];
-const requiredHomeFields = ["profileLinks", "harnessThesis", "linkedInSignals", "builderDna", "articles", "patterns"];
+const requiredHomeFields = ["profileLinks", "harnessThesis", "linkedInSignals", "builderDna", "articles", "patterns", "categoryContrast", "primaryPaths", "operatingRules", "reviewerPaths", "referenceAssets", "falsificationTests", "heroBuilderProof", "operatorOriginProof", "heroFlow", "mobileArtifactSignals"];
 const requiredHomeSignalFields = ["name", "description"];
 const requiredHomeArticleFields = ["slug", "title", "dek", "theme"];
 const requiredHomePatternFields = ["slug", "title", "description"];
@@ -284,6 +284,43 @@ if (!Array.isArray(home.patterns) || home.patterns.length < 3) {
   for (const pattern of home.patterns) {
     validateRequiredFields("content/home.json", pattern, requiredHomePatternFields);
   }
+}
+if (!Array.isArray(home.categoryContrast) || home.categoryContrast.length < 4 || !home.categoryContrast.some((row) => row[0] === "Operational Intelligence")) {
+  errors.push("content/home.json: categoryContrast must compare Operational Intelligence against adjacent modes");
+}
+if (!Array.isArray(home.primaryPaths) || home.primaryPaths.length < 3) {
+  errors.push("content/home.json: primaryPaths must include at least three proof paths");
+} else {
+  for (const item of home.primaryPaths) {
+    const owner = `content/home.json:primaryPaths:${item.href ?? "unknown"}`;
+    for (const field of ["href", "label", "title", "body"]) {
+      if (!item[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (!String(item.href ?? "").startsWith("/")) {
+      errors.push(`${owner}: href must be an internal route`);
+    }
+  }
+}
+for (const [field, minCount] of [
+  ["operatingRules", 3],
+  ["reviewerPaths", 5],
+  ["referenceAssets", 4],
+  ["falsificationTests", 4],
+  ["heroBuilderProof", 3],
+  ["operatorOriginProof", 3],
+  ["mobileArtifactSignals", 4]
+]) {
+  if (!Array.isArray(home[field]) || home[field].length < minCount || home[field].some((row) => !Array.isArray(row) || row.length < 2)) {
+    errors.push(`content/home.json: ${field} must include at least ${minCount} complete rows`);
+  }
+}
+if (!Array.isArray(home.heroFlow) || home.heroFlow.length < 5 || !home.heroFlow.includes("Evidence") || !home.heroFlow.includes("Decision")) {
+  errors.push("content/home.json: heroFlow must preserve the Operational Intelligence flow");
+}
+if (!JSON.stringify(home).includes("public-safe") && !JSON.stringify(home).includes("public proof")) {
+  errors.push("content/home.json: homepage content must preserve public-safe proof posture");
 }
 
 const articles = requireJsonArray(articlesPath, "content/articles.json", 10);

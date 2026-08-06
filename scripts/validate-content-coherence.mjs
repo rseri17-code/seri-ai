@@ -210,17 +210,19 @@ for (const required of [
 }
 
 const homePage = fs.readFileSync(path.join(root, "app", "page.tsx"), "utf8");
+const homeExportContent = fs.readFileSync(path.join(root, "content", "home.ts"), "utf8");
+const homepageContractSource = [homePage, homeContent, homeExportContent].join("\n");
 for (const required of [
-  "const reviewerPaths",
-  "const primaryPaths",
+  "homeReviewerPaths",
+  "homePrimaryPaths",
   "const proofStrip",
   "const inspectionLedger",
-  "const categoryContrast",
-  "const falsificationTests",
-  "const heroBuilderProof",
-  "const operatorOriginProof",
-  "const heroFlow",
-  "const mobileArtifactSignals",
+  "homeCategoryContrast",
+  "homeFalsificationTests",
+  "homeHeroBuilderProof",
+  "homeOperatorOriginProof",
+  "homeHeroFlow",
+  "homeMobileArtifactSignals",
   "Operational Intelligence reference system by Ravikanth Seri",
   "Field origin",
   "teams lose shared context at the exact moment operational judgment matters most",
@@ -296,7 +298,7 @@ for (const required of [
   "/ask",
   "/background"
 ]) {
-  expect(homePage.includes(required), `/ missing focused homepage contract: ${required}`);
+  expect(homepageContractSource.includes(required), `/ missing focused homepage contract: ${required}`);
 }
 
 for (const required of [

@@ -5,7 +5,7 @@ import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { ProfileMark } from "@/components/profile-mark";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { homeArticles, homeBuilderDna, homeEvalReport, homeHarnessThesis, homeLinkedInSignals, homePatterns, homeProfileLinks } from "@/content/home";
+import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeHeroBuilderProof, homeHeroFlow, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReferenceAssets, homeReviewerPaths } from "@/content/home";
 
 const proofStrip = [
   ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
@@ -14,54 +14,15 @@ const proofStrip = [
   [`${homeEvalReport.fixtures.length}/${homeEvalReport.fixtures.length}`, "Ask Ravi trust fixtures currently passing."]
 ];
 
-const categoryContrast = [
-  ["Dashboard", "Shows the symptom", "Useful for detection; weak at preserving reasoning, uncertainty, and action provenance."],
-  ["Chatbot", "Explains a fragment", "Useful for language; risky when retrieval, evidence, refusal, and approval boundaries are thin."],
-  ["Ticket queue", "Tracks the work", "Useful for coordination; weak at reconstructing transaction evidence and causal movement."],
-  ["Operational Intelligence", "Produces a reviewable decision", "Connects signal, transaction, topology, evidence, memory, evaluation, and human judgment."]
-];
 
-const primaryPaths = [
-  {
-    href: "/investigation-room",
-    label: "Signature artifact",
-    title: "Enter the Operations Room",
-    body: "Inspect OI-ROOM-001 as an evidence-backed investigation: transaction path, contradictory evidence, missing context, hypothesis movement, eval gates, and human approval."
-  },
-  {
-    href: "/wiki/operational-intelligence-canonical-doctrine",
-    label: "Doctrine",
-    title: "Read the canonical model",
-    body: "Start with the definition of Operational Intelligence, what it is not, the ten-layer framework, glossary, boundaries, and public-safe synthetic case."
-  },
-  {
-    href: "/work",
-    label: "Public work",
-    title: "Review the body of work",
-    body: "See the systems, papers, patterns, reference artifacts, public work, resume proof, and professional background behind the thesis."
-  }
-];
 
-const operatingRules = [
-  ["Evidence before conclusions", "The system should separate observation, inference, contradiction, missing evidence, and confirmed fact before recommending action."],
-  ["Replay before belief", "Important operational reasoning should be reproducible through approved context, replay seeds, and trust fixtures."],
-  ["Human judgment before action", "Consequential change stays behind owner review, approval class, reversibility, and escalation boundaries."]
-];
 
-const reviewerPaths = [
-  ["Executive", "/brief", "One-page brief", "Can the model improve operational judgment without autonomy theater?"],
-  ["SRE leader", "/investigation-room", "Operations Room", "Are evidence, unknowns, contradictions, and approval boundaries visible?"],
-  ["Principal architect", "/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Could two teams implement the contracts similarly?"],
-  ["AI engineer", "/evals", "Trust evals", "Do retrieval, citation, refusal, and action-safety gates hold?"],
-  ["Recruiter or founder", "/work", "Work Index", "What has Ravikanth built, written, and made inspectable?"]
-] as const;
 
-const referenceAssets = [
-  ["/wiki/operational-intelligence-canonical-doctrine", "Canonical Doctrine", "The durable definition and boundaries."],
-  ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "The implementation-neutral technical contract."],
-  ["/wiki/operational-intelligence-publication-pack", "Publication Pack", "Diagrams, tables, walkthroughs, cards, and PDFs."],
-  ["/wiki/operational-intelligence-evidence-pack", "Evidence Pack", "Benchmark rubric, control comparisons, and falsification criteria."]
-];
+
+
+
+
+
 
 const inspectionLedger = [
   ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "Definition, boundaries, ten layers, glossary, and claim posture."],
@@ -73,39 +34,15 @@ const inspectionLedger = [
   ["/work", "Public Work", "Public-safe experience, systems judgment, resume proof, GitHub, LinkedIn, and current work."]
 ] as const;
 
-const falsificationTests = [
-  ["Contradiction stays visible", "Evidence that weakens the preferred explanation remains in the packet."],
-  ["Unknowns stay named", "Missing evidence is preserved instead of converted into confident narrative."],
-  ["Reasoning can replay", "The investigation leaves enough context to reproduce how confidence moved."],
-  ["Humans keep authority", "Operational change remains behind owner review, reversibility, and approval class."]
-];
 
-const heroBuilderProof = [
-  ["Enterprise systems", "15+ years across distributed platforms, reliability, and operational workflows"],
-  ["AI systems", "agent architecture, evaluation, retrieval, and runtime governance"],
-  ["Operational lens", "observability, transaction paths, incident reasoning, and human approval"]
-];
 
-const operatorOriginProof = [
-  ["Operator-first", "The thesis starts from running enterprise systems, not from adding AI after the fact."],
-  ["Context loss", "The repeated failure pattern is the same: teams rediscover ownership, change, dependency, and transaction state under pressure."],
-  ["Public proof", "The site turns that judgment into doctrine, artifacts, evals, and inspectable synthetic investigations."]
-];
 
-const heroFlow = [
-  "Context",
-  "Evidence",
-  "Replay",
-  "Decision",
-  "Memory"
-];
 
-const mobileArtifactSignals = [
-  ["Observation", "typed"],
-  ["Contradiction", "kept"],
-  ["Unknown", "named"],
-  ["Action", "owner-gated"]
-] as const;
+
+
+
+
+
 
 export default function Home() {
   return (
@@ -147,7 +84,7 @@ export default function Home() {
                     The thesis is grounded in a practical failure pattern: teams lose shared context at the exact moment operational judgment matters most.
                   </h2>
                   <div className="mt-4 grid gap-3 md:grid-cols-3">
-                    {operatorOriginProof.map(([label, proof]) => (
+                    {homeOperatorOriginProof.map(([label, proof]) => (
                       <div key={label} className="rounded border border-white/10 bg-white/[0.035] p-3">
                         <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-mint">{label}</p>
                         <p className="mt-2 text-xs leading-5 text-slate-300">{proof}</p>
@@ -163,7 +100,7 @@ export default function Home() {
                 <p className="font-mono text-xs text-mint">OI-ROOM-001</p>
               </div>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                {mobileArtifactSignals.map(([label, value]) => (
+                {homeMobileArtifactSignals.map(([label, value]) => (
                   <div key={label} className="rounded border border-white/10 bg-white/[0.04] px-3 py-2">
                     <p className="text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-slate-500">{label}</p>
                     <p className="mt-1 text-sm font-semibold text-slate-100">{value}</p>
@@ -174,10 +111,10 @@ export default function Home() {
             <div className="mt-6 rounded-lg border border-white/10 bg-black/20 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Operational Intelligence loop</p>
               <div className="mt-3 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-200">
-                {heroFlow.map((step, index) => (
+                {homeHeroFlow.map((step, index) => (
                   <span key={step} className="inline-flex items-center gap-2">
-                    <span className={index === 0 ? "text-mint" : index === heroFlow.length - 1 ? "text-amber" : "text-white"}>{step}</span>
-                    {index < heroFlow.length - 1 ? <span className="text-slate-600">/</span> : null}
+                    <span className={index === 0 ? "text-mint" : index === homeHeroFlow.length - 1 ? "text-amber" : "text-white"}>{step}</span>
+                    {index < homeHeroFlow.length - 1 ? <span className="text-slate-600">/</span> : null}
                   </span>
                 ))}
               </div>
@@ -186,7 +123,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-5 hidden gap-2 lg:grid lg:grid-cols-3">
-              {heroBuilderProof.map(([label, proof]) => (
+              {homeHeroBuilderProof.map(([label, proof]) => (
                 <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
                   <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</p>
                   <p className="mt-2 text-xs leading-5 text-slate-300">{proof}</p>
@@ -258,7 +195,7 @@ export default function Home() {
               </p>
             </div>
             <div className="divide-y divide-white/10">
-              {categoryContrast.map(([mode, promise, limitation]) => (
+              {homeCategoryContrast.map(([mode, promise, limitation]) => (
                 <div key={mode} className={`grid gap-3 p-4 md:grid-cols-[0.6fr_0.8fr_1.2fr] ${mode === "Operational Intelligence" ? "bg-mint/[0.045]" : ""}`}>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{mode}</p>
                   <h2 className="text-base font-semibold text-white">{promise}</h2>
@@ -270,7 +207,7 @@ export default function Home() {
           <Card className="border-amber/25 bg-amber/[0.045]">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">What would make the thesis credible or wrong.</p>
             <div className="mt-5 grid gap-3">
-              {falsificationTests.map(([value, label]) => (
+              {homeFalsificationTests.map(([value, label]) => (
                 <div key={value} className="rounded border border-white/10 bg-black/20 p-3">
                   <p className="font-semibold text-white">{value}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
@@ -343,7 +280,7 @@ export default function Home() {
 
       <Section eyebrow="Start here" title="One thesis. Three ways to challenge it.">
         <div className="grid gap-4 lg:grid-cols-3">
-          {primaryPaths.map((path) => (
+          {homePrimaryPaths.map((path) => (
             <Link key={path.href} href={path.href}>
               <Card className="h-full transition hover:-translate-y-1 hover:border-mint/40">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{path.label}</p>
@@ -371,7 +308,7 @@ export default function Home() {
             </div>
           </Card>
           <div className="grid gap-3 md:grid-cols-3">
-            {operatingRules.map(([title, body]) => (
+            {homeOperatingRules.map(([title, body]) => (
               <Card key={title} className="p-5">
                 <ShieldCheck className="mb-4 text-mint" />
                 <h3 className="text-xl font-semibold text-white">{title}</h3>
@@ -400,7 +337,7 @@ export default function Home() {
             </div>
           </Card>
           <div className="grid gap-3 md:grid-cols-2">
-            {referenceAssets.map(([href, title, body]) => (
+            {homeReferenceAssets.map(([href, title, body]) => (
               <Link key={href} href={href}>
                 <Card className="h-full p-4 transition hover:-translate-y-1 hover:border-amber/40">
                   <h3 className="text-xl font-semibold text-white">{title}</h3>
@@ -414,7 +351,7 @@ export default function Home() {
 
       <Section eyebrow="Reviewer paths" title="Different serious visitors should know exactly where to start.">
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
-          {reviewerPaths.map(([role, href, artifact, question]) => (
+          {homeReviewerPaths.map(([role, href, artifact, question]) => (
             <Link key={role} href={href}>
               <Card className="h-full p-4 transition hover:border-signal/40">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{role}</p>

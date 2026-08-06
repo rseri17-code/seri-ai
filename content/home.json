@@ -111,5 +111,186 @@
       "title": "Agentic Incident Investigation",
       "description": "Bounded agents that decompose investigations into inspectable steps."
     }
+  ],
+  "categoryContrast": [
+    [
+      "Dashboard",
+      "Shows the symptom",
+      "Useful for detection; weak at preserving reasoning, uncertainty, and action provenance."
+    ],
+    [
+      "Chatbot",
+      "Explains a fragment",
+      "Useful for language; risky when retrieval, evidence, refusal, and approval boundaries are thin."
+    ],
+    [
+      "Ticket queue",
+      "Tracks the work",
+      "Useful for coordination; weak at reconstructing transaction evidence and causal movement."
+    ],
+    [
+      "Operational Intelligence",
+      "Produces a reviewable decision",
+      "Connects signal, transaction, topology, evidence, memory, evaluation, and human judgment."
+    ]
+  ],
+  "primaryPaths": [
+    {
+      "href": "/investigation-room",
+      "label": "Signature artifact",
+      "title": "Enter the Operations Room",
+      "body": "Inspect OI-ROOM-001 as an evidence-backed investigation: transaction path, contradictory evidence, missing context, hypothesis movement, eval gates, and human approval."
+    },
+    {
+      "href": "/wiki/operational-intelligence-canonical-doctrine",
+      "label": "Doctrine",
+      "title": "Read the canonical model",
+      "body": "Start with the definition of Operational Intelligence, what it is not, the ten-layer framework, glossary, boundaries, and public-safe synthetic case."
+    },
+    {
+      "href": "/work",
+      "label": "Public work",
+      "title": "Review the body of work",
+      "body": "See the systems, papers, patterns, reference artifacts, public work, resume proof, and professional background behind the thesis."
+    }
+  ],
+  "operatingRules": [
+    [
+      "Evidence before conclusions",
+      "The system should separate observation, inference, contradiction, missing evidence, and confirmed fact before recommending action."
+    ],
+    [
+      "Replay before belief",
+      "Important operational reasoning should be reproducible through approved context, replay seeds, and trust fixtures."
+    ],
+    [
+      "Human judgment before action",
+      "Consequential change stays behind owner review, approval class, reversibility, and escalation boundaries."
+    ]
+  ],
+  "reviewerPaths": [
+    [
+      "Executive",
+      "/brief",
+      "One-page brief",
+      "Can the model improve operational judgment without autonomy theater?"
+    ],
+    [
+      "SRE leader",
+      "/investigation-room",
+      "Operations Room",
+      "Are evidence, unknowns, contradictions, and approval boundaries visible?"
+    ],
+    [
+      "Principal architect",
+      "/wiki/operational-intelligence-reference-architecture",
+      "Reference Architecture",
+      "Could two teams implement the contracts similarly?"
+    ],
+    [
+      "AI engineer",
+      "/evals",
+      "Trust evals",
+      "Do retrieval, citation, refusal, and action-safety gates hold?"
+    ],
+    [
+      "Recruiter or founder",
+      "/work",
+      "Work Index",
+      "What has Ravikanth built, written, and made inspectable?"
+    ]
+  ],
+  "referenceAssets": [
+    [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "Canonical Doctrine",
+      "The durable definition and boundaries."
+    ],
+    [
+      "/wiki/operational-intelligence-reference-architecture",
+      "Reference Architecture",
+      "The implementation-neutral technical contract."
+    ],
+    [
+      "/wiki/operational-intelligence-publication-pack",
+      "Publication Pack",
+      "Diagrams, tables, walkthroughs, cards, and PDFs."
+    ],
+    [
+      "/wiki/operational-intelligence-evidence-pack",
+      "Evidence Pack",
+      "Benchmark rubric, control comparisons, and falsification criteria."
+    ]
+  ],
+  "falsificationTests": [
+    [
+      "Contradiction stays visible",
+      "Evidence that weakens the preferred explanation remains in the packet."
+    ],
+    [
+      "Unknowns stay named",
+      "Missing evidence is preserved instead of converted into confident narrative."
+    ],
+    [
+      "Reasoning can replay",
+      "The investigation leaves enough context to reproduce how confidence moved."
+    ],
+    [
+      "Humans keep authority",
+      "Operational change remains behind owner review, reversibility, and approval class."
+    ]
+  ],
+  "heroBuilderProof": [
+    [
+      "Enterprise systems",
+      "15+ years across distributed platforms, reliability, and operational workflows"
+    ],
+    [
+      "AI systems",
+      "agent architecture, evaluation, retrieval, and runtime governance"
+    ],
+    [
+      "Operational lens",
+      "observability, transaction paths, incident reasoning, and human approval"
+    ]
+  ],
+  "operatorOriginProof": [
+    [
+      "Operator-first",
+      "The thesis starts from running enterprise systems, not from adding AI after the fact."
+    ],
+    [
+      "Context loss",
+      "The repeated failure pattern is the same: teams rediscover ownership, change, dependency, and transaction state under pressure."
+    ],
+    [
+      "Public proof",
+      "The site turns that judgment into doctrine, artifacts, evals, and inspectable synthetic investigations."
+    ]
+  ],
+  "heroFlow": [
+    "Context",
+    "Evidence",
+    "Replay",
+    "Decision",
+    "Memory"
+  ],
+  "mobileArtifactSignals": [
+    [
+      "Observation",
+      "typed"
+    ],
+    [
+      "Contradiction",
+      "kept"
+    ],
+    [
+      "Unknown",
+      "named"
+    ],
+    [
+      "Action",
+      "owner-gated"
+    ]
   ]
 }

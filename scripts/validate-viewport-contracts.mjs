@@ -27,8 +27,8 @@ const routeContracts = [
       "lg:grid-cols-[1.05fr_0.95fr]",
       "lg:grid-cols",
       "HeroIntelligenceMap",
-      "heroBuilderProof",
-      "mobileArtifactSignals",
+      "homeHeroBuilderProof",
+      "homeMobileArtifactSignals",
       "lg:hidden",
       "Run OI-ROOM-001"
     ]
