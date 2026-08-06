@@ -46,6 +46,10 @@ const routeContracts = [
       "Source coverage",
       "Related route",
       "Latency budget",
+      "Good first questions",
+      "overflow-x-auto",
+      "min-w-[13rem]",
+      "lg:hidden",
       "aria-label=\"Ask a question about Ravikanth Seri's public work\"",
       "aria-label=\"Send message\""
     ]
