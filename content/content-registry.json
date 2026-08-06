@@ -1,0 +1,700 @@
+[
+  {
+    "title": "Operational Intelligence Canonical Doctrine v1.0",
+    "slug": "operational-intelligence-canonical-doctrine",
+    "summary": "The definitive public doctrine for Operational Intelligence definitions, boundaries, framework layers, OI-ROOM-001, glossary, citations, and original contribution.",
+    "type": "framework",
+    "route": "/wiki/operational-intelligence-canonical-doctrine",
+    "status": "published",
+    "frameworkLayers": [
+      "Signal Layer",
+      "Transaction Layer",
+      "Topology Layer",
+      "Evidence Layer",
+      "Reasoning Layer",
+      "Memory Layer",
+      "Evaluation Layer",
+      "Decision Layer",
+      "Learning Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions",
+      "Transaction journeys matter more than isolated service views",
+      "Evaluation is not a feature; it is the control system",
+      "Operators need clarity, not more dashboards"
+    ],
+    "relatedPatterns": [
+      "/patterns/evidence-driven-rca",
+      "/patterns/transaction-journey-reconstruction",
+      "/patterns/agentic-incident-investigation",
+      "/patterns/evaluation-and-replay",
+      "/patterns/operational-memory"
+    ],
+    "relatedArtifacts": [
+      "/framework",
+      "/map",
+      "/investigation-room",
+      "/evals",
+      "/wiki/operational-intelligence-publication-pack",
+      "/wiki/operational-intelligence-evidence-pack"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/wiki/operational-intelligence-reference-architecture",
+      "/wiki/operational-intelligence-publication-pack",
+      "/wiki/operational-intelligence-evidence-pack",
+      "/ideas/operational-intelligence-is-the-new-control-plane",
+      "/ideas/the-operational-intelligence-stack"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-17",
+    "updatedAt": "2026-07-25",
+    "seo": {
+      "title": "Operational Intelligence Canonical Doctrine v1.0",
+      "description": "The canonical public doctrine for Operational Intelligence."
+    }
+  },
+  {
+    "title": "Operational Intelligence Reference Architecture v1.0",
+    "slug": "operational-intelligence-reference-architecture",
+    "summary": "Draft technical-review specification for implementing Operational Intelligence with layer contracts, schemas, state machines, governance, evaluation, and conformance levels.",
+    "type": "framework",
+    "route": "/wiki/operational-intelligence-reference-architecture",
+    "status": "published",
+    "frameworkLayers": [
+      "Signal Layer",
+      "Transaction Layer",
+      "Topology Layer",
+      "Evidence Layer",
+      "Reasoning Layer",
+      "Memory Layer",
+      "Evaluation Layer",
+      "Decision Layer",
+      "Learning Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions",
+      "Evaluation is not a feature; it is the control system",
+      "Trustworthy agents need boundaries, not just intelligence",
+      "The best AI systems improve the human decision loop"
+    ],
+    "relatedPatterns": [
+      "/patterns/evidence-driven-rca",
+      "/patterns/transaction-journey-reconstruction",
+      "/patterns/evaluation-and-replay",
+      "/patterns/human-in-the-loop-operational-ai",
+      "/patterns/operational-memory"
+    ],
+    "relatedArtifacts": [
+      "/framework",
+      "/map",
+      "/investigation-room",
+      "/evals",
+      "/wiki/operational-intelligence-publication-pack",
+      "/wiki/operational-intelligence-evidence-pack",
+      "/operational-intelligence-reference-architecture-v1.md"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/wiki/operational-intelligence-reference-architecture",
+      "/wiki/operational-intelligence-publication-pack",
+      "/wiki/operational-intelligence-evidence-pack"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-17",
+    "updatedAt": "2026-07-25",
+    "seo": {
+      "title": "Operational Intelligence Reference Architecture v1.0",
+      "description": "Draft technical-review specification for implementing Operational Intelligence."
+    }
+  },
+  {
+    "title": "Operational Intelligence Publication Pack",
+    "slug": "operational-intelligence-publication-pack",
+    "summary": "Shareable diagrams, comparison tables, decision packet example, OI-ROOM-001 walkthrough, executive summary, glossary card, and PDF exports for the Operational Intelligence body of work.",
+    "type": "artifact",
+    "route": "/wiki/operational-intelligence-publication-pack",
+    "status": "published",
+    "frameworkLayers": [
+      "Signal Layer",
+      "Transaction Layer",
+      "Topology Layer",
+      "Evidence Layer",
+      "Reasoning Layer",
+      "Memory Layer",
+      "Evaluation Layer",
+      "Decision Layer",
+      "Learning Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions",
+      "Transaction journeys matter more than isolated service views",
+      "Evaluation is not a feature; it is the control system",
+      "Operators need clarity, not more dashboards"
+    ],
+    "relatedPatterns": [
+      "/patterns/evidence-driven-rca",
+      "/patterns/transaction-journey-reconstruction",
+      "/patterns/evaluation-and-replay",
+      "/patterns/operational-memory"
+    ],
+    "relatedArtifacts": [
+      "/framework",
+      "/map",
+      "/investigation-room",
+      "/evals",
+      "/wiki/operational-intelligence-evidence-pack",
+      "/operational-intelligence-reference-architecture-v1.md",
+      "/downloads/operational-intelligence-publication-pack.pdf"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/wiki/operational-intelligence-reference-architecture",
+      "/wiki/operational-intelligence-evidence-pack"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-25",
+    "updatedAt": "2026-07-25",
+    "seo": {
+      "title": "Operational Intelligence Publication Pack",
+      "description": "Shareable diagrams, tables, walkthroughs, cards, and PDFs for Operational Intelligence."
+    }
+  },
+  {
+    "title": "Operational Intelligence Evidence Pack",
+    "slug": "operational-intelligence-evidence-pack",
+    "summary": "Public-safe benchmark rubric, control comparisons, practitioner review model, evidence ledger, and falsification criteria for evaluating Operational Intelligence.",
+    "type": "artifact",
+    "route": "/wiki/operational-intelligence-evidence-pack",
+    "status": "published",
+    "frameworkLayers": [
+      "Signal Layer",
+      "Transaction Layer",
+      "Topology Layer",
+      "Evidence Layer",
+      "Reasoning Layer",
+      "Memory Layer",
+      "Evaluation Layer",
+      "Decision Layer",
+      "Learning Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions",
+      "Evaluation is not a feature; it is the control system",
+      "Trustworthy agents need boundaries, not just intelligence",
+      "The best AI systems improve the human decision loop"
+    ],
+    "relatedPatterns": [
+      "/patterns/evidence-driven-rca",
+      "/patterns/evaluation-and-replay",
+      "/patterns/human-in-the-loop-operational-ai",
+      "/patterns/operational-memory"
+    ],
+    "relatedArtifacts": [
+      "/framework",
+      "/map",
+      "/investigation-room",
+      "/evals",
+      "/contact",
+      "/wiki/operational-intelligence-publication-pack",
+      "/publication-pack/operational-intelligence-evidence-pack.md"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/wiki/operational-intelligence-reference-architecture",
+      "/wiki/operational-intelligence-publication-pack"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-25",
+    "updatedAt": "2026-07-25",
+    "seo": {
+      "title": "Operational Intelligence Evidence Pack",
+      "description": "Benchmark rubric, review model, and falsification criteria for Operational Intelligence."
+    }
+  },
+  {
+    "title": "Operational Intelligence Thesis Radar",
+    "slug": "operational-intelligence-thesis-radar",
+    "summary": "Market signal map connecting Ravikanth Seri's public LinkedIn thesis to AI observability, ops for observability, AgentOps, AIOps evaluation, OpenTelemetry GenAI semantics, and enterprise AI operational readiness.",
+    "type": "domain",
+    "route": "/radar",
+    "status": "published",
+    "frameworkLayers": [
+      "Signal Layer",
+      "Topology Layer",
+      "Evaluation Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions",
+      "Evaluation is not a feature; it is the control system",
+      "Trustworthy agents need boundaries, not just intelligence",
+      "Operators need clarity, not more dashboards"
+    ],
+    "relatedPatterns": [
+      "/patterns/evidence-driven-rca",
+      "/patterns/agentic-incident-investigation",
+      "/patterns/evaluation-and-replay",
+      "/patterns/human-in-the-loop-operational-ai"
+    ],
+    "relatedArtifacts": [
+      "/framework",
+      "/investigation-room",
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/wiki/operational-intelligence-evidence-pack"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/wiki/operational-intelligence-reference-architecture",
+      "/ideas/operational-intelligence-is-the-new-control-plane",
+      "/ideas/agentic-incident-investigation"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-30",
+    "updatedAt": "2026-07-30",
+    "seo": {
+      "title": "Operational Intelligence Thesis Radar",
+      "description": "Market signals grounding Operational Intelligence across AI observability, AgentOps, AIOps evaluation, OpenTelemetry, and operational readiness."
+    }
+  },
+  {
+    "title": "Operational Intelligence Framework",
+    "slug": "operational-intelligence-framework",
+    "summary": "A public-safe reference model for systems that turn signals, transactions, topology, evidence, memory, evaluation, and human review into accountable operational decisions.",
+    "type": "framework",
+    "route": "/framework",
+    "status": "published",
+    "frameworkLayers": [
+      "Signal Layer",
+      "Transaction Layer",
+      "Topology Layer",
+      "Evidence Layer",
+      "Reasoning Layer",
+      "Memory Layer",
+      "Evaluation Layer",
+      "Decision Layer",
+      "Learning Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions",
+      "Transaction journeys before isolated signals",
+      "Shared context before private agent context",
+      "Replay before trust",
+      "Evaluation before release",
+      "Human review before consequential action"
+    ],
+    "relatedPatterns": [
+      "/patterns/evidence-driven-rca",
+      "/patterns/transaction-journey-reconstruction",
+      "/patterns/agentic-incident-investigation",
+      "/patterns/operational-memory",
+      "/patterns/evaluation-and-replay",
+      "/patterns/topology-aware-reasoning"
+    ],
+    "relatedArtifacts": [
+      "/map",
+      "/investigation-room",
+      "/evals",
+      "/wiki/operational-intelligence-evidence-pack"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/wiki/operational-intelligence-reference-architecture",
+      "/wiki/operational-intelligence-publication-pack",
+      "/wiki/operational-intelligence-evidence-pack",
+      "/ideas/operational-intelligence-is-the-new-control-plane",
+      "/ideas/the-operational-intelligence-stack"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-16",
+    "updatedAt": "2026-07-16",
+    "seo": {
+      "title": "Operational Intelligence Framework",
+      "description": "The reasoning layer between enterprise telemetry and human decision."
+    }
+  },
+  {
+    "title": "ReasonOps",
+    "slug": "reasonops",
+    "summary": "ReasonOps turns observability context, agent workflows, operational memory, and policy gates into inspectable reasoning that humans can trust under pressure.",
+    "type": "product",
+    "route": "/products/reasonops",
+    "status": "published",
+    "frameworkLayers": [
+      "Reasoning Layer",
+      "Evaluation Layer",
+      "Decision Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions",
+      "Evaluation before trust",
+      "Transaction journeys over isolated service views",
+      "Human judgment remains part of the system",
+      "Shared context over isolated agents"
+    ],
+    "relatedPatterns": [
+      "/patterns/agentic-incident-investigation",
+      "/patterns/evaluation-and-replay",
+      "/patterns/human-in-the-loop-operational-ai"
+    ],
+    "relatedArtifacts": [
+      "/investigation-room",
+      "/evals"
+    ],
+    "relatedProducts": [],
+    "relatedLibraryAssets": [
+      "/manifesto",
+      "/ideas/agentic-systems-need-operating-models"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-16",
+    "updatedAt": "2026-07-16",
+    "seo": {
+      "title": "ReasonOps",
+      "description": "ReasonOps turns observability context, agent workflows, operational memory, and policy gates into inspectable reasoning that humans can trust under pressure."
+    }
+  },
+  {
+    "title": "Operations Room",
+    "slug": "operations-room",
+    "summary": "A public-safe investigation scenario where a critical customer journey degrades after a non-secret configuration change. The system must connect signal, transaction, topology, evidence, reasoning, memory, evaluation, decision, learning, and operator context before recommending a human-reviewed action.",
+    "type": "artifact",
+    "route": "/investigation-room",
+    "status": "published",
+    "frameworkLayers": [
+      "Signal Layer",
+      "Transaction Layer",
+      "Topology Layer",
+      "Evidence Layer",
+      "Reasoning Layer",
+      "Memory Layer",
+      "Evaluation Layer",
+      "Decision Layer",
+      "Learning Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions",
+      "Replay before trust",
+      "Human review before consequential action"
+    ],
+    "relatedPatterns": [
+      "/patterns/evidence-driven-rca",
+      "/patterns/agentic-incident-investigation",
+      "/patterns/evaluation-and-replay"
+    ],
+    "relatedArtifacts": [
+      "/map",
+      "/evals"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/ideas/incident-investigation-as-a-product-experience"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-16",
+    "updatedAt": "2026-07-16",
+    "seo": {
+      "title": "Operations Room",
+      "description": "A public-safe investigation scenario where a critical customer journey degrades after a non-secret configuration change. The system must connect signal, transaction, topology, evidence, reasoning, memory, evaluation, decision, learning, and operator context before recommending a human-reviewed action."
+    }
+  },
+  {
+    "title": "Ask Ravi",
+    "slug": "ask-ravikanth",
+    "summary": "A cited review interface over Ravikanth Seri's approved public work, Operational Intelligence content, projects, background, and reference artifacts.",
+    "type": "system",
+    "route": "/ask",
+    "status": "published",
+    "frameworkLayers": [
+      "Reasoning Layer",
+      "Evidence Layer",
+      "Evaluation Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions",
+      "Evaluation before trust"
+    ],
+    "relatedPatterns": [
+      "/patterns/evidence-driven-rca",
+      "/patterns/evaluation-and-replay"
+    ],
+    "relatedArtifacts": [
+      "/evals",
+      "/investigation-room"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/library"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-16",
+    "updatedAt": "2026-07-16",
+    "seo": {
+      "title": "Ask Ravi",
+      "description": "Public-safe companion for Ravikanth Seri's public work and Operational Intelligence thesis."
+    }
+  },
+  {
+    "title": "Public Evaluation Gate",
+    "slug": "public-evaluation-gate",
+    "summary": "seri.ai treats AI behavior as a product surface. The assistant is expected to stay grounded in approved public content, refuse confidential topics, cite useful sources, and name uncertainty instead of inventing authority.",
+    "type": "artifact",
+    "route": "/evals",
+    "status": "published",
+    "frameworkLayers": [
+      "Evaluation Layer",
+      "Evidence Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Evaluation before release",
+      "Replay before trust"
+    ],
+    "relatedPatterns": [
+      "/patterns/evaluation-and-replay"
+    ],
+    "relatedArtifacts": [
+      "/investigation-room"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/ideas/evaluating-ai-for-operational-work",
+      "/ideas/ai-evaluation-is-operational-risk-management"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-16",
+    "updatedAt": "2026-07-16",
+    "seo": {
+      "title": "Public Evaluation Gate",
+      "description": "Reproducible public trust fixtures and limitations for Ask Ravi."
+    }
+  },
+  {
+    "title": "Ravikanth Seri Work Index",
+    "slug": "ravikanth-seri-work-index",
+    "summary": "Canonical public index of Ravikanth Seri's Operational Intelligence systems, frameworks, architecture artifacts, public writing, open-source signal, and professional background.",
+    "type": "background",
+    "route": "/work",
+    "status": "published",
+    "frameworkLayers": [
+      "Operator Layer",
+      "Reasoning Layer",
+      "Evaluation Layer",
+      "Learning Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions",
+      "The best AI systems improve the human decision loop",
+      "Operational memory compounds"
+    ],
+    "relatedPatterns": [
+      "/patterns/evidence-driven-rca",
+      "/patterns/agentic-incident-investigation",
+      "/patterns/evaluation-and-replay"
+    ],
+    "relatedArtifacts": [
+      "/framework",
+      "/investigation-room",
+      "/evals",
+      "/resume",
+      "/background",
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/wiki/operational-intelligence-reference-architecture"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "/wiki/operational-intelligence-reference-architecture",
+      "/wiki/operational-intelligence-publication-pack",
+      "/wiki/operational-intelligence-evidence-pack"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-16",
+    "updatedAt": "2026-07-25",
+    "seo": {
+      "title": "Ravikanth Seri Work Index",
+      "description": "Public index of Ravikanth Seri's Operational Intelligence systems, reference architectures, artifacts, writing, and professional background."
+    }
+  },
+  {
+    "title": "Professional Background",
+    "slug": "professional-background",
+    "summary": "Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial-services environments. Ravikanth's work sits at the intersection of AI-native operations, observability, identity modernization, Kubernetes platforms, runtime governance, and incident investigation. He builds practical systems that turn telemetry, transactions, topology, and operational memory into evidence-backed decisions.",
+    "type": "background",
+    "route": "/background",
+    "status": "published",
+    "frameworkLayers": [
+      "Operator Layer",
+      "Evaluation Layer",
+      "Reasoning Layer"
+    ],
+    "relatedPrinciples": [
+      "Human review before consequential action"
+    ],
+    "relatedPatterns": [],
+    "relatedArtifacts": [
+      "/resume"
+    ],
+    "relatedProducts": [],
+    "relatedLibraryAssets": [],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-16",
+    "updatedAt": "2026-07-16",
+    "seo": {
+      "title": "Ravikanth Seri Background",
+      "description": "Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial-services environments. Ravikanth's work sits at the intersection of AI-native operations, observability, identity modernization, Kubernetes platforms, runtime governance, and incident investigation. He builds practical systems that turn telemetry, transactions, topology, and operational memory into evidence-backed decisions."
+    }
+  },
+  {
+    "title": "Agentic SRE Harness Model",
+    "slug": "agentic-sre-harness-model",
+    "summary": "The real differentiator in Agentic SRE is not the model. It is the operating harness that lets a model investigate with evidence, stay inside policy, expose its reasoning, learn from outcomes, and hand control back to humans before high-risk action.",
+    "type": "framework",
+    "route": "/manifesto",
+    "status": "published",
+    "frameworkLayers": [
+      "Evidence Layer",
+      "Reasoning Layer",
+      "Evaluation Layer",
+      "Decision Layer",
+      "Operator Layer"
+    ],
+    "relatedPrinciples": [
+      "Models reason. Harnesses remember.",
+      "Incidents are temporary. Operational knowledge should not be.",
+      "Evidence-backed self-healing beats autonomy theater.",
+      "Shared context is the enterprise problem."
+    ],
+    "relatedPatterns": [
+      "/patterns/agentic-incident-investigation",
+      "/patterns/human-in-the-loop-operational-ai"
+    ],
+    "relatedArtifacts": [
+      "/investigation-room"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/ideas/agentic-systems-need-operating-models"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-16",
+    "updatedAt": "2026-07-16",
+    "seo": {
+      "title": "Agentic SRE Harness Model",
+      "description": "The real differentiator in Agentic SRE is not the model. It is the operating harness that lets a model investigate with evidence, stay inside policy, expose its reasoning, learn from outcomes, and hand control back to humans before high-risk action."
+    }
+  },
+  {
+    "title": "Evidence Graph Model",
+    "slug": "evidence-graph-model",
+    "summary": "Typed evidence nodes and relationships for incident investigation and operational memory.",
+    "type": "framework",
+    "route": "/patterns/evidence-driven-rca",
+    "status": "published",
+    "frameworkLayers": [
+      "Signal Layer",
+      "Topology Layer",
+      "Evidence Layer",
+      "Reasoning Layer"
+    ],
+    "relatedPrinciples": [
+      "Evidence before conclusions"
+    ],
+    "relatedPatterns": [
+      "/patterns/evidence-driven-rca",
+      "/patterns/topology-aware-reasoning"
+    ],
+    "relatedArtifacts": [
+      "/investigation-room",
+      "/map"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/ideas/knowledge-graphs-as-operational-memory"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-16",
+    "updatedAt": "2026-07-16",
+    "seo": {
+      "title": "Evidence Graph Model",
+      "description": "A public-safe evidence graph model for incident investigation."
+    }
+  },
+  {
+    "title": "Replay Seed Model",
+    "slug": "replay-seed-model",
+    "summary": "The minimum approved context needed to replay an investigation without re-running production systems.",
+    "type": "framework",
+    "route": "/wiki/evaluation-and-replay",
+    "status": "published",
+    "frameworkLayers": [
+      "Memory Layer",
+      "Evaluation Layer",
+      "Learning Layer"
+    ],
+    "relatedPrinciples": [
+      "Replay before trust",
+      "Evaluation before release"
+    ],
+    "relatedPatterns": [
+      "/patterns/evaluation-and-replay",
+      "/patterns/operational-memory"
+    ],
+    "relatedArtifacts": [
+      "/evals",
+      "/investigation-room"
+    ],
+    "relatedProducts": [
+      "/products/reasonops"
+    ],
+    "relatedLibraryAssets": [
+      "/wiki/evaluation-and-replay",
+      "/wiki/operational-memory"
+    ],
+    "publicSafe": "public-safe",
+    "createdAt": "2026-07-16",
+    "updatedAt": "2026-07-16",
+    "seo": {
+      "title": "Replay Seed Model",
+      "description": "Replay seeds as public-safe operational memory."
+    }
+  }
+]

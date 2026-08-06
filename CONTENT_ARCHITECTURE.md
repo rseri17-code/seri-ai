@@ -4,7 +4,7 @@
 
 The primary content source is `content/site.ts`.
 
-The canonical registry is `contentRegistry`. It maps major public surfaces to:
+The canonical registry is `content/content-registry.json`, exported as `contentRegistry`. It maps major public surfaces to:
 
 - title
 - slug
@@ -56,4 +56,4 @@ Background content should support credibility without becoming the primary exper
 
 ## Maintenance Rule
 
-New major public work should be added to `contentRegistry` first, then linked from Work, Library, Map, or Patterns as appropriate.
+New major public work should be added to `content/content-registry.json` first, then linked from Work, Library, Map, or Patterns as appropriate.

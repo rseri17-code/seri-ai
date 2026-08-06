@@ -15,6 +15,7 @@ const nowPath = path.join(root, "content", "now.json");
 const startHerePath = path.join(root, "content", "start-here.json");
 const changelogPath = path.join(root, "content", "changelog.json");
 const resumePath = path.join(root, "content", "resume.json");
+const contentRegistryPath = path.join(root, "content", "content-registry.json");
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
@@ -28,7 +29,10 @@ const requiredNowFields = ["currentFocus", "building", "studying", "writing", "a
 const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matters"];
 const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
+const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const validStatuses = new Set(["draft", "review", "approved", "published", "archived"]);
+const validRegistryStatuses = new Set(["published", "planned", "draft"]);
+const validRegistryTypes = new Set(["framework", "pattern", "artifact", "library", "product", "principle", "background", "domain", "system"]);
 const errors = [];
 
 function parseFrontmatter(raw, file) {
@@ -79,7 +83,7 @@ function requireJsonArray(filePath, label, minCount, options = {}) {
 function validateRequiredFields(label, item, requiredFieldsForItem, options = {}) {
   const owner = `${label}:${item.slug ?? "unknown"}`;
   for (const field of requiredFieldsForItem) {
-    if (item[field] == null || item[field] === "" || (Array.isArray(item[field]) && item[field].length === 0)) {
+    if (item[field] == null || item[field] === "" || (!options.allowEmptyArrays && Array.isArray(item[field]) && item[field].length === 0)) {
       errors.push(`${owner}: missing required field ${field}`);
     }
   }
@@ -415,9 +419,53 @@ if (!Array.isArray(resume.skills) || resume.skills.length < 5) {
   }
 }
 
+const contentRegistry = requireJsonArray(contentRegistryPath, "content/content-registry.json", 15);
+const registryRoutes = contentRegistry.map((item) => item.route);
+const duplicateRegistryRoutes = registryRoutes.filter((route, index) => registryRoutes.indexOf(route) !== index);
+if (duplicateRegistryRoutes.length > 0) {
+  errors.push(`content/content-registry.json: duplicate routes ${[...new Set(duplicateRegistryRoutes)].join(", ")}`);
+}
+for (const item of contentRegistry) {
+  validateRequiredFields("content/content-registry.json", item, requiredRegistryFields, { allowEmptyArrays: true });
+  const owner = `content/content-registry.json:${item.slug ?? "unknown"}`;
+  if (!validRegistryTypes.has(item.type)) {
+    errors.push(`${owner}: unsupported type ${item.type}`);
+  }
+  if (!validRegistryStatuses.has(item.status)) {
+    errors.push(`${owner}: unsupported status ${item.status}`);
+  }
+  if (!String(item.route ?? "").startsWith("/")) {
+    errors.push(`${owner}: route must be absolute`);
+  }
+  if (item.publicSafe !== "public-safe") {
+    errors.push(`${owner}: publicSafe must be public-safe`);
+  }
+  for (const field of ["createdAt", "updatedAt"]) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(item[field] ?? "")) {
+      errors.push(`${owner}: ${field} must be YYYY-MM-DD`);
+    }
+  }
+  for (const field of ["frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets"]) {
+    if (!Array.isArray(item[field])) {
+      errors.push(`${owner}: ${field} must be an array`);
+    }
+  }
+  if (!item.seo?.title || !item.seo?.description) {
+    errors.push(`${owner}: seo title and description are required`);
+  }
+  if ((item.summary ?? "").length < 48) {
+    errors.push(`${owner}: summary too short for discovery`);
+  }
+}
+for (const route of ["/framework", "/investigation-room", "/ask", "/evals", "/work", "/background", "/radar", "/products/reasonops"]) {
+  if (!registryRoutes.includes(route)) {
+    errors.push(`content/content-registry.json: critical route missing ${route}`);
+  }
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);
+console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);

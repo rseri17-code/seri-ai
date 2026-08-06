@@ -280,7 +280,7 @@ git diff --check
 
 ## Canonical Content Registry
 
-Major public surfaces should be registered in `contentRegistry` inside `content/site.ts` before they are promoted through Work, Map, Ask, Library, or Patterns.
+Major public surfaces should be registered in `content/content-registry.json` before they are promoted through Work, Map, Ask, Library, or Patterns.
 
 Each registry item should include route, status, content type, framework layers, related patterns, related artifacts, related products, related library assets, public-safe classification, and SEO metadata.
 
