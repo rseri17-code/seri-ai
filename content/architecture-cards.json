@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Investigation Simulator",
+    "pattern": "Scenario -> evidence board -> timeline -> hypotheses -> RCA draft -> eval rubric",
+    "tags": [
+      "incident intelligence",
+      "evals",
+      "product artifact"
+    ]
+  },
+  {
+    "title": "Grounded Ask Layer",
+    "pattern": "Question -> retrieval -> evidence filter -> operator-grade answer -> refusal check",
+    "tags": [
+      "RAG",
+      "pgvector",
+      "guardrails"
+    ]
+  },
+  {
+    "title": "Incident Reasoning Loop",
+    "pattern": "Symptoms -> timeline -> dependency graph -> hypotheses -> evidence-ranked summary",
+    "tags": [
+      "agents",
+      "observability",
+      "investigation"
+    ]
+  },
+  {
+    "title": "Transaction Knowledge Graph",
+    "pattern": "Transactions -> services -> owners -> outcomes -> known failure modes",
+    "tags": [
+      "graphs",
+      "impact",
+      "context"
+    ]
+  },
+  {
+    "title": "AI Evaluation Spine",
+    "pattern": "Scenarios -> expected behavior -> judge rubric -> user feedback -> regression suite",
+    "tags": [
+      "evals",
+      "quality",
+      "trust"
+    ]
+  },
+  {
+    "title": "Public Trust Layer",
+    "pattern": "Approved sources -> refusal checks -> citation quality -> known limits -> changelog",
+    "tags": [
+      "trust",
+      "compliance",
+      "public-safe"
+    ]
+  }
+]

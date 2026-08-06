@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "reasonops",
+    "name": "ReasonOps",
+    "tagline": "The runtime contract for AI-native operations.",
+    "summary": "ReasonOps turns observability context, agent workflows, operational memory, and policy gates into inspectable reasoning that humans can trust under pressure.",
+    "relationship": "Operational Intelligence is the category. ReasonOps is the platform expression: observe, correlate, reason, evaluate, act, and learn with receipts.",
+    "whatItIs": [
+      "A public-safe platform surface for evidence-grounded enterprise operations.",
+      "A reasoning and evaluation layer above observability, topology, transactions, memory, and agents.",
+      "A runtime contract for AI-native incident investigation, operational memory, and governed recommendations."
+    ],
+    "whyItMatters": [
+      "Enterprises already have signals, but they often lack shared reasoning.",
+      "AI agents need operational context, boundaries, observability, and evaluation before they should recommend action.",
+      "Operators need systems that expose evidence, uncertainty, and review gates instead of adding another opaque assistant."
+    ],
+    "capabilities": [
+      "Evidence-driven RCA",
+      "Transaction journey reconstruction",
+      "Operational memory",
+      "Enterprise knowledge graph",
+      "Agentic investigation workflows",
+      "Evaluation and replay",
+      "Human-in-the-loop decision review",
+      "Public-safe knowledge grounding"
+    ],
+    "architecture": [
+      "Approved context sources feed a retrieval and graph layer.",
+      "Telemetry, transactions, topology, and memory are normalized into operational evidence.",
+      "Agentic workflows generate timelines, hypotheses, confidence, and next-action drafts.",
+      "Evaluation and replay test groundedness, refusal behavior, usefulness, and escalation judgment.",
+      "Human review gates protect irreversible or high-impact actions."
+    ],
+    "useCases": [
+      "AI-native incident investigation",
+      "Executive operational briefings",
+      "Transaction impact explanation",
+      "Post-incident learning and memory",
+      "Agent observability and runtime governance",
+      "Operational readiness for enterprise AI"
+    ],
+    "principles": [
+      "Evidence before conclusions",
+      "Evaluation before trust",
+      "Transaction journeys over isolated service views",
+      "Human judgment remains part of the system",
+      "Shared context over isolated agents"
+    ],
+    "not": [
+      "Not a private employer platform.",
+      "Not an autonomous production-change system.",
+      "Not a generic resume wrapper.",
+      "Not a dashboard replacement for every workflow.",
+      "Not a claim that AI should remove human accountability."
+    ],
+    "roadmap": [
+      "Multi-scenario incident simulator",
+      "Operational Intelligence glossary",
+      "Live eval report for Ask Ravi",
+      "Public reference architecture diagrams",
+      "Knowledge graph explorer prototype",
+      "Newsletter-driven operating notes"
+    ]
+  }
+]

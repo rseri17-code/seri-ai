@@ -3,6 +3,9 @@ import askQualityRubricData from "./ask-quality-rubric.json";
 import articlesData from "./articles.json";
 import principlesData from "./principles.json";
 import patternsData from "./patterns.json";
+import projectsData from "./projects.json";
+import productsData from "./products.json";
+import architectureCardsData from "./architecture-cards.json";
 
 export const site = {
   name: "seri.ai",
@@ -622,146 +625,11 @@ export type Project = {
   detail: string;
 };
 
-export const projects: Project[] = [
-  {
-    slug: "ai-incident-investigation-simulator",
-    name: "Operational Intelligence Operations Room",
-    status: "Production Pattern",
-    summary: "A public-safe operational workbench for evidence-backed incident reasoning, branch comparison, RCA export, and release-gate evaluation.",
-    capabilities: ["timeline reconstruction", "hypothesis ranking", "branch comparison", "exportable RCA packet"],
-    detail:
-      "A public-safe operations room where visitors run operational scenarios through signals, transaction impact, topology clues, hypotheses, confidence movement, branch comparison, eval gates, and exportable RCA packets without exposing internal logs or confidential architecture."
-  },
-  {
-    slug: "operational-intelligence-copilot",
-    name: "Operational Intelligence Copilot",
-    status: "Production Pattern",
-    summary: "A public-safe reference architecture for AI-assisted operational understanding.",
-    capabilities: ["RAG", "evidence timelines", "human review", "confidence scoring"],
-    detail:
-      "A grounded assistant pattern for operations teams that retrieves approved context, builds incident timelines, explains uncertainty, and turns findings into reviewable next actions."
-  },
-  {
-    slug: "transaction-graph-explorer",
-    name: "Transaction Graph Explorer",
-    status: "Prototype",
-    summary: "A graph-first way to reason about customer journeys, dependencies, and operational impact.",
-    capabilities: ["knowledge graphs", "transaction context", "impact mapping", "semantic search"],
-    detail:
-      "A prototype model for connecting transactions, systems, owners, outcomes, and known failure modes into a navigable operational graph."
-  },
-  {
-    slug: "ai-evaluation-workbench",
-    name: "AI Evaluation Workbench",
-    status: "Concept",
-    summary: "Evaluation harness for AI assistants used in enterprise operational workflows.",
-    capabilities: ["golden datasets", "refusal tests", "retrieval quality", "feedback loops"],
-    detail:
-      "A structured evaluation approach that tests groundedness, safety, usefulness, and escalation quality before an assistant is trusted in production workflows."
-  }
-];
+export const projects = projectsData as Project[];
 
-export const products = [
-  {
-    slug: "reasonops",
-    name: "ReasonOps",
-    tagline: "The runtime contract for AI-native operations.",
-    summary:
-      "ReasonOps turns observability context, agent workflows, operational memory, and policy gates into inspectable reasoning that humans can trust under pressure.",
-    relationship:
-      "Operational Intelligence is the category. ReasonOps is the platform expression: observe, correlate, reason, evaluate, act, and learn with receipts.",
-    whatItIs: [
-      "A public-safe platform surface for evidence-grounded enterprise operations.",
-      "A reasoning and evaluation layer above observability, topology, transactions, memory, and agents.",
-      "A runtime contract for AI-native incident investigation, operational memory, and governed recommendations."
-    ],
-    whyItMatters: [
-      "Enterprises already have signals, but they often lack shared reasoning.",
-      "AI agents need operational context, boundaries, observability, and evaluation before they should recommend action.",
-      "Operators need systems that expose evidence, uncertainty, and review gates instead of adding another opaque assistant."
-    ],
-    capabilities: [
-      "Evidence-driven RCA",
-      "Transaction journey reconstruction",
-      "Operational memory",
-      "Enterprise knowledge graph",
-      "Agentic investigation workflows",
-      "Evaluation and replay",
-      "Human-in-the-loop decision review",
-      "Public-safe knowledge grounding"
-    ],
-    architecture: [
-      "Approved context sources feed a retrieval and graph layer.",
-      "Telemetry, transactions, topology, and memory are normalized into operational evidence.",
-      "Agentic workflows generate timelines, hypotheses, confidence, and next-action drafts.",
-      "Evaluation and replay test groundedness, refusal behavior, usefulness, and escalation judgment.",
-      "Human review gates protect irreversible or high-impact actions."
-    ],
-    useCases: [
-      "AI-native incident investigation",
-      "Executive operational briefings",
-      "Transaction impact explanation",
-      "Post-incident learning and memory",
-      "Agent observability and runtime governance",
-      "Operational readiness for enterprise AI"
-    ],
-    principles: [
-      "Evidence before conclusions",
-      "Evaluation before trust",
-      "Transaction journeys over isolated service views",
-      "Human judgment remains part of the system",
-      "Shared context over isolated agents"
-    ],
-    not: [
-      "Not a private employer platform.",
-      "Not an autonomous production-change system.",
-      "Not a generic resume wrapper.",
-      "Not a dashboard replacement for every workflow.",
-      "Not a claim that AI should remove human accountability."
-    ],
-    roadmap: [
-      "Multi-scenario incident simulator",
-      "Operational Intelligence glossary",
-      "Live eval report for Ask Ravi",
-      "Public reference architecture diagrams",
-      "Knowledge graph explorer prototype",
-      "Newsletter-driven operating notes"
-    ]
-  }
-];
+export const products = productsData;
 
-export const architectureCards = [
-  {
-    title: "Investigation Simulator",
-    pattern: "Scenario -> evidence board -> timeline -> hypotheses -> RCA draft -> eval rubric",
-    tags: ["incident intelligence", "evals", "product artifact"]
-  },
-  {
-    title: "Grounded Ask Layer",
-    pattern: "Question -> retrieval -> evidence filter -> operator-grade answer -> refusal check",
-    tags: ["RAG", "pgvector", "guardrails"]
-  },
-  {
-    title: "Incident Reasoning Loop",
-    pattern: "Symptoms -> timeline -> dependency graph -> hypotheses -> evidence-ranked summary",
-    tags: ["agents", "observability", "investigation"]
-  },
-  {
-    title: "Transaction Knowledge Graph",
-    pattern: "Transactions -> services -> owners -> outcomes -> known failure modes",
-    tags: ["graphs", "impact", "context"]
-  },
-  {
-    title: "AI Evaluation Spine",
-    pattern: "Scenarios -> expected behavior -> judge rubric -> user feedback -> regression suite",
-    tags: ["evals", "quality", "trust"]
-  },
-  {
-    title: "Public Trust Layer",
-    pattern: "Approved sources -> refusal checks -> citation quality -> known limits -> changelog",
-    tags: ["trust", "compliance", "public-safe"]
-  }
-];
+export const architectureCards = architectureCardsData;
 
 export const evalReport = evalReportData;
 export const askQualityRubric = askQualityRubricData;

@@ -6,10 +6,16 @@ const wikiDir = path.join(root, "content", "wiki");
 const articlesPath = path.join(root, "content", "articles.json");
 const principlesPath = path.join(root, "content", "principles.json");
 const patternsPath = path.join(root, "content", "patterns.json");
+const projectsPath = path.join(root, "content", "projects.json");
+const productsPath = path.join(root, "content", "products.json");
+const architectureCardsPath = path.join(root, "content", "architecture-cards.json");
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
 const requiredPatternFields = ["slug", "title", "description", "tags", "problem", "context", "forces", "solution", "architecture", "architectureSketch", "failureModes", "evaluation", "whenToUse", "whenNotToUse", "relatedPrinciples", "relatedWiki", "related"];
+const requiredProjectFields = ["slug", "name", "summary", "status", "capabilities", "detail"];
+const requiredProductFields = ["slug", "name", "tagline", "summary", "relationship", "whatItIs", "whyItMatters", "capabilities", "architecture", "useCases", "principles", "not", "roadmap"];
+const requiredArchitectureCardFields = ["title", "pattern", "tags"];
 const validStatuses = new Set(["draft", "review", "approved", "published", "archived"]);
 const errors = [];
 
@@ -35,7 +41,7 @@ function parseFrontmatter(raw, file) {
   return { metadata, body: match[2].trim() };
 }
 
-function requireJsonArray(filePath, label, minCount) {
+function requireJsonArray(filePath, label, minCount, options = {}) {
   if (!fs.existsSync(filePath)) {
     errors.push(`${label}: missing corpus`);
     return [];
@@ -47,23 +53,25 @@ function requireJsonArray(filePath, label, minCount) {
     return [];
   }
 
-  const itemSlugs = data.map((item) => item.slug);
-  const duplicateSlugs = itemSlugs.filter((slug, index) => itemSlugs.indexOf(slug) !== index);
-  if (duplicateSlugs.length > 0) {
-    errors.push(`${label}: duplicate slugs ${[...new Set(duplicateSlugs)].join(", ")}`);
+  if (options.requireSlug !== false) {
+    const itemSlugs = data.map((item) => item.slug);
+    const duplicateSlugs = itemSlugs.filter((slug, index) => itemSlugs.indexOf(slug) !== index);
+    if (duplicateSlugs.length > 0) {
+      errors.push(`${label}: duplicate slugs ${[...new Set(duplicateSlugs)].join(", ")}`);
+    }
   }
 
   return data;
 }
 
-function validateRequiredFields(label, item, requiredFieldsForItem) {
+function validateRequiredFields(label, item, requiredFieldsForItem, options = {}) {
   const owner = `${label}:${item.slug ?? "unknown"}`;
   for (const field of requiredFieldsForItem) {
     if (item[field] == null || item[field] === "" || (Array.isArray(item[field]) && item[field].length === 0)) {
       errors.push(`${owner}: missing required field ${field}`);
     }
   }
-  if (!/^[a-z0-9-]+$/.test(item.slug ?? "")) {
+  if (options.requireSlug !== false && !/^[a-z0-9-]+$/.test(item.slug ?? "")) {
     errors.push(`${owner}: slug must be lowercase kebab-case`);
   }
 }
@@ -167,9 +175,37 @@ for (const pattern of patterns) {
   }
 }
 
+const projects = requireJsonArray(projectsPath, "content/projects.json", 4);
+for (const project of projects) {
+  validateRequiredFields("content/projects.json", project, requiredProjectFields);
+  if (!["Concept", "Prototype", "Production Pattern"].includes(project.status)) {
+    errors.push(`content/projects.json:${project.slug ?? "unknown"}: unsupported status`);
+  }
+}
+
+const products = requireJsonArray(productsPath, "content/products.json", 1);
+for (const product of products) {
+  validateRequiredFields("content/products.json", product, requiredProductFields);
+  const owner = `content/products.json:${product.slug ?? "unknown"}`;
+  for (const field of ["whatItIs", "whyItMatters", "capabilities", "architecture", "useCases", "principles", "not", "roadmap"]) {
+    if (!Array.isArray(product[field]) || product[field].length < 3) {
+      errors.push(`${owner}: ${field} must include at least three entries`);
+    }
+  }
+}
+
+const architectureCards = requireJsonArray(architectureCardsPath, "content/architecture-cards.json", 6, { requireSlug: false });
+for (const card of architectureCards) {
+  validateRequiredFields("content/architecture-cards.json", card, requiredArchitectureCardFields, { requireSlug: false });
+  const owner = `content/architecture-cards.json:${card.title ?? "unknown"}`;
+  if (!Array.isArray(card.tags) || card.tags.length < 2) {
+    errors.push(`${owner}: tags must include at least two entries`);
+  }
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log(`Validated ${files.length} wiki notes (${publishedCount} published), article corpus, principles, and patterns.`);
+console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, principles, patterns, projects, products, and architecture cards.`);
