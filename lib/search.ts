@@ -10,6 +10,7 @@ const doctrineUrl = "/wiki/operational-intelligence-canonical-doctrine";
 const referenceArchitectureUrl = "/wiki/operational-intelligence-reference-architecture";
 const evidencePackUrl = "/wiki/operational-intelligence-evidence-pack";
 const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
+const conformanceProfileUrl = "/publication-pack/operational-intelligence-conformance-profile.md";
 const workUrl = "/work";
 const resumeUrl = "/resume";
 const backgroundUrl = "/background";
@@ -22,6 +23,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/printable walkthrough|oi-room-001 walkthrough|walkthrough pdf|transaction timing/, "/publication-pack/oi-room-001-printable-walkthrough.md"],
   [/executive summary|one-page summary|one page summary/, "/publication-pack/operational-intelligence-executive-summary.md"],
   [/glossary|reference card|canonical terms|replay seed|operator control plane/, "/publication-pack/operational-intelligence-glossary-card.md"],
+  [/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/, conformanceProfileUrl],
   [/evidence pack markdown|falsification criteria/, "/publication-pack/operational-intelligence-evidence-pack.md"],
   [/publication pack pdf|download.*publication|shareable pdf.*diagram/, "/downloads/operational-intelligence-publication-pack.pdf"],
   [/evidence pack pdf|download.*evidence/, "/downloads/operational-intelligence-evidence-pack.pdf"],
@@ -194,6 +196,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const resumeBoost = source.url === resumeUrl && /resume|experience|career|capability|impact|recruiter|founder|background|certification|credential|public evidence|architecture judgment/.test(lowerQuery) ? 12 : 0;
       const backgroundBoost = source.url === backgroundUrl && /who is ravikanth|about ravikanth|background|career|experience|linkedin|certification|credential|profile/.test(lowerQuery) ? 12 : 0;
       const conformanceChecklistBoost = source.url === evidencePackUrl && /minimum conformance|conformance checklist|observable proof|failure signal/.test(lowerQuery) ? 10 : 0;
+      const conformanceProfileBoost =
+        source.url === conformanceProfileUrl &&
+        /conformance profile|object profile|object fields|pass fail|pass\/fail|required fields|evidence object.*hypothesis state|hypothesis state.*evidence object|replay seed.*evaluation gate|evaluation gate.*replay seed|decision packet.*fields/.test(lowerQuery)
+          ? 60
+          : 0;
       const downloadPackBoost = source.url === publicationPackUrl && /download|diagram|pdf|printable|executive summary|comparison table|decision packet|glossary card|walkthrough/.test(lowerQuery) ? 8 : 0;
       const broadPublicationPackBoost =
         source.url === publicationPackUrl &&
@@ -229,6 +236,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         directReferenceBoost +
         broadPublicationPackBoost +
         conformanceChecklistBoost +
+        conformanceProfileBoost +
         downloadPackBoost +
         publicProfileBoost +
         thesisRadarBoost +

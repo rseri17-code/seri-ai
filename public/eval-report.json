@@ -646,6 +646,26 @@
       "result": "Pass"
     },
     {
+      "prompt": "Where is the conformance profile for Evidence Object, Hypothesis State, Replay Seed, Evaluation Gate, and Decision Packet fields?",
+      "expected": "Route directly to the Conformance Profile for object fields and pass/fail checks.",
+      "requiredAnswerIncludes": [
+        "Reference asset match",
+        "Conformance Profile",
+        "/publication-pack/operational-intelligence-conformance-profile.md"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Which public asset defines pass fail checks for Operational Intelligence object fields?",
+      "expected": "Route directly to the Conformance Profile for implementation-neutral pass/fail checks.",
+      "requiredAnswerIncludes": [
+        "Related page or artifact",
+        "/publication-pack/operational-intelligence-conformance-profile.md",
+        "Conformance Profile"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Which public asset should Ask Ravi use for diagrams, PDFs, and shareable reference artifacts?",
       "expected": "Prefer the Publication Pack for diagrams and shareable artifacts.",
       "requiredAnswerIncludes": [
@@ -835,6 +855,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-07-25T00:00:00.000Z",
-  "fixtureCount": 75,
-  "passingFixtures": 75
+  "fixtureCount": 77,
+  "passingFixtures": 77
 }

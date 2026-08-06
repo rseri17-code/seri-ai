@@ -42,6 +42,14 @@ const cases = [
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },
   {
+    query: "Where is the conformance profile for Evidence Object Hypothesis State Replay Seed Evaluation Gate and Decision Packet fields?",
+    expectedFirstUrl: "/publication-pack/operational-intelligence-conformance-profile.md"
+  },
+  {
+    query: "Which public asset defines object fields and pass fail checks for Operational Intelligence implementations?",
+    expectedFirstUrl: "/publication-pack/operational-intelligence-conformance-profile.md"
+  },
+  {
     query: "Where can I see Ravikanth public code and open-source signal?",
     expectedFirstUrl: "/work"
   },

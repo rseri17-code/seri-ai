@@ -143,6 +143,18 @@ const referenceSources = [
     assetType: "artifact"
   },
   {
+    id: "reference:operational-intelligence-conformance-profile",
+    title: "Operational Intelligence Conformance Profile",
+    description: "Implementation-neutral object profiles and pass/fail checks for Evidence Object, Hypothesis State, Replay Seed, Evaluation Gate, and Decision Packet conformance.",
+    content:
+      "Operational Intelligence Conformance Profile. Required fields and pass/fail checks for Evidence Object, Hypothesis State, Replay Seed, Evaluation Gate, and Decision Packet. Minimum conformance levels, OI-ROOM-001 conformance example, source provenance, contradiction, missing evidence, approval class, owner, fallback, expiration, practitioner review questions.",
+    url: "/publication-pack/operational-intelligence-conformance-profile.md",
+    type: "registry" as const,
+    category: "Reference Assets",
+    tags: ["Operational Intelligence", "conformance profile", "Evidence Object", "Hypothesis State", "Replay Seed", "Evaluation Gate", "Decision Packet"],
+    assetType: "artifact"
+  },
+  {
     id: "download:operational-intelligence-publication-pack",
     title: "Operational Intelligence Publication Pack PDF",
     description: "Shareable PDF export containing the Operational Intelligence diagrams, comparison tables, decision packet, walkthrough, executive summary, and glossary.",
