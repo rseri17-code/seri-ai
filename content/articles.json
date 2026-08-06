@@ -1,0 +1,287 @@
+[
+  {
+    "slug": "operational-intelligence-is-the-new-control-plane",
+    "title": "Operational Intelligence Is the New Control Plane",
+    "dek": "Why enterprises need systems that reason across signals, workflows, people, and outcomes.",
+    "theme": "Operational Intelligence",
+    "date": "2026-07-05",
+    "readingTime": "4 min",
+    "body": [
+      "Most enterprises already collect enough telemetry to know what happened. The harder question is what it means, who should care, and what action is justified. Operational Intelligence starts where dashboards stop.",
+      "The next control plane is not another charting layer. It is a reasoning layer that connects events, business transactions, dependencies, historical decisions, and current goals. It treats operations as a living system instead of a pile of tools.",
+      "The useful AI system is grounded, bounded, and explainable. It retrieves approved context, names uncertainty, proposes actions with rationale, and leaves an audit trail that humans can challenge.",
+      "The category shift is from monitoring to sensemaking. Monitoring tells a team that something crossed a threshold. Sensemaking explains the affected transaction, the likely dependency path, the relevant change history, and the decision that should be reviewed.",
+      "A practical Operational Intelligence system needs four layers: signal collection, shared context, reasoning workflow, and evaluation. If any layer is missing, the system either becomes another dashboard or an untrusted chatbot.",
+      "The strongest version is not autonomous heroics. It is a better human decision loop: faster alignment, clearer evidence, fewer repeated investigations, and operational memory that compounds over time.",
+      "Executive summary: Operational Intelligence exists because telemetry, dashboards, and chat transcripts do not by themselves create shared operational judgment. The missing layer is a reasoning system that connects what changed, what journey is affected, what evidence supports the explanation, what should be reviewed, and what should be learned.",
+      "Core thesis: the category is not a replacement for observability. Observability makes systems visible; Operational Intelligence makes operational meaning inspectable. The difference matters when a team must decide under uncertainty rather than merely observe a threshold breach.",
+      "Current industry limitation: many AI-for-operations experiences summarize alerts or generate incident prose before they can prove evidence, topology fit, transaction impact, contradiction handling, or human review boundaries.",
+      "Proposed model: signals become transaction context, topology narrows blast radius, evidence separates facts from claims, reasoning compares hypotheses, memory preserves replay seeds, evaluation gates trust, decisions remain reviewable, learning updates future behavior, and operators retain control.",
+      "Architecture implication: an enterprise system needs typed evidence, provenance, relationship context, replay records, evaluation fixtures, and explicit approval boundaries before AI recommendations can be trusted in operational workflows.",
+      "What this does not claim: Operational Intelligence does not eliminate dashboards, replace SRE judgment, or prove causality from sequence alone. It makes the decision path more inspectable and harder to fake."
+    ]
+  },
+  {
+    "slug": "agentic-incident-investigation",
+    "title": "Agentic Incident Investigation Without Losing Control",
+    "dek": "How AI agents can accelerate enterprise investigations while keeping evidence, provenance, and accountability intact.",
+    "theme": "Agentic Systems",
+    "date": "2026-07-05",
+    "readingTime": "4 min",
+    "body": [
+      "Incident investigation is a coordination problem disguised as a search problem. Teams need evidence, hypotheses, timelines, service context, ownership, impact, and next actions.",
+      "Agents are useful when they can decompose the investigation into explicit steps: collect signals, correlate symptoms, build a timeline, compare recent changes, and produce a confidence-scored explanation.",
+      "The non-negotiables are grounding, permission boundaries, repeatability, and human review. An agent that cannot show its work should not be trusted with operational decisions.",
+      "The agent should behave more like a disciplined investigator than a confident narrator. It should ask what changed, what is affected, what evidence is missing, and what would falsify the current hypothesis.",
+      "The architecture should make every step inspectable. Retrieval, tool use, hypothesis generation, and recommendation should be separated so a human can see where the conclusion came from.",
+      "The goal is not to remove operators from incidents. The goal is to remove avoidable confusion from the first thirty minutes.",
+      "Executive summary: the Agentic SRE harness model treats the agent as one part of a larger operating system. The harness owns scope, tools, evidence receipts, replay, evaluation, policy, and human review.",
+      "Core thesis: useful Agentic SRE is not measured by how autonomous the agent appears. It is measured by whether the system can prove what it used, what it ignored, what it inferred, what remains unknown, and what a human must approve.",
+      "Problem statement: incident work combines search, coordination, judgment, and accountability. A model can accelerate parts of that loop, but without the harness it can also compress uncertainty into confident prose.",
+      "Architecture implications: separate retrieval, tool execution, evidence capture, hypothesis state, confidence movement, action drafting, and approval. Each step should be inspectable and replayable.",
+      "Failure modes: over-broad tool access, hidden context, action without review, stale topology, private memory leakage, and evaluations that test happy paths instead of operational ambiguity.",
+      "Public-safe example: in OI-ROOM-001, the assistant can recommend a rollback review packet, but it cannot execute the change; the operator must inspect evidence, risk, reversibility, and ownership first.",
+      "What the model does not claim: it does not claim agents should replace incident commanders or that every incident can be automated. It claims the decision loop can be made more evidence-driven and repeatable."
+    ]
+  },
+  {
+    "slug": "transaction-intelligence-for-complex-enterprises",
+    "title": "Transaction Intelligence for Complex Enterprises",
+    "dek": "Moving from isolated telemetry to transaction-aware explanations of customer and business impact.",
+    "theme": "Transaction Intelligence",
+    "date": "2026-07-05",
+    "readingTime": "4 min",
+    "body": [
+      "A transaction is often the closest bridge between technical behavior and business meaning. When systems understand transaction paths, they can explain impact in the language of customers, operations, and revenue.",
+      "Transaction Intelligence combines traces, events, metadata, topology, and domain context. It gives AI systems a stronger unit of reasoning than individual logs or metrics.",
+      "The goal is not just faster troubleshooting. The goal is a shared operational memory that helps teams improve reliability, customer experience, and process quality.",
+      "Most enterprise systems are owned by technical boundaries, but customers experience journeys. Transaction Intelligence restores the journey as the unit of analysis.",
+      "A transaction-aware system can separate local noise from business impact. A service warning matters more when it sits on a critical path, repeats across journeys, or aligns with a recent change.",
+      "This is where knowledge graphs become practical. They connect transactions, dependencies, owners, known failure modes, and decisions into a form that AI can retrieve and reason over.",
+      "Executive summary: Transaction Intelligence is the missing layer because customers experience journeys, while teams often debug service boundaries. The transaction path is where technical evidence starts to carry business meaning.",
+      "Core thesis: a transaction-aware system can distinguish a local warning from journey degradation by asking whether the signal sits on a critical path, aligns with a symptom window, affects completion, or changes customer state.",
+      "Current limitation: telemetry is often indexed by component, not by the work the customer or business process is trying to complete. That makes AI retrieval noisy and RCA narratives brittle.",
+      "Proposed model: reconstruct hops, timestamps, identifier changes, state transitions, latency, failure points, missing evidence, and ownership across the journey before ranking hypotheses.",
+      "Operating implication: operators should review the journey before the RCA. A sequence alone is not causality, but it tells the system what evidence must be explained.",
+      "Failure modes: treating traces as complete truth, ignoring asynchronous work, losing identity across systems, and inferring business impact without transaction context.",
+      "Related framework layers: Signal, Transaction, Topology, Evidence, and Reasoning layers work together to convert observable symptoms into a reviewable explanation."
+    ]
+  },
+  {
+    "slug": "evaluating-ai-for-operational-work",
+    "title": "Evaluating AI for Operational Work",
+    "dek": "A practical evaluation model for enterprise AI assistants that must be useful under uncertainty.",
+    "theme": "AI Evaluation",
+    "date": "2026-07-05",
+    "readingTime": "4 min",
+    "body": [
+      "Operational AI should be evaluated against real work: investigation quality, evidence handling, refusal behavior, escalation judgment, latency, cost, and user trust.",
+      "A good evaluation set contains normal questions, ambiguous questions, confidential questions, missing-context questions, and adversarial prompts. The assistant must answer usefully without inventing authority.",
+      "The strongest systems pair offline evals with production feedback loops. They capture whether recommendations were used, corrected, ignored, or escalated, then improve the retrieval and reasoning system from that signal.",
+      "Operational evals should include failure cases, not only success cases. The assistant must be tested on vague prompts, missing data, stale context, sensitive requests, and pressure to guess.",
+      "The best metric is not whether the model sounds smart. It is whether the system improves a decision without hiding uncertainty.",
+      "A trustworthy assistant earns scope gradually. It starts by summarizing and retrieving. It earns the right to recommend only after evidence handling, refusal behavior, and escalation judgment are proven.",
+      "Executive summary: evaluation for AI-native operations is a control system, not a scorecard. It decides whether an answer, recommendation, or action path is grounded enough to move forward.",
+      "Core thesis: evals should test operational behavior: canonical definition accuracy, layer routing, citation presence, source validity, refusal quality, unknown handling, contradiction handling, and related-page navigation.",
+      "Current limitation: generic model benchmarks do not tell a platform team whether an incident assistant can handle missing context, confidential prompts, red herrings, or pressure to invent certainty.",
+      "Proposed model: pair deterministic fixtures with replay seeds. Each fixture defines expected behavior, evidence requirements, limitations, and the refusal boundary. Model-based grading can be added later, but the deterministic contract should be visible first.",
+      "Architecture implications: the eval harness needs access to approved public sources, retrieval output, expected answer shape, confidential-term checks, unsupported-claim checks, and regression history.",
+      "Failure modes: opaque aggregate scores, fixtures that only test easy success cases, evals disconnected from real product journeys, and metrics that imply trust without proving behavior.",
+      "What this does not claim: an eval gate cannot prove universal correctness. It narrows release risk by making expected behavior explicit and repeatable."
+    ]
+  },
+  {
+    "slug": "the-operational-intelligence-stack",
+    "title": "The Operational Intelligence Stack",
+    "dek": "A reference model for moving from telemetry collection to enterprise explanation and improvement.",
+    "theme": "Operational Intelligence",
+    "date": "2026-07-05",
+    "readingTime": "4 min",
+    "body": [
+      "Operational Intelligence is a stack, not a feature. At the bottom are signals: metrics, logs, traces, events, changes, tickets, documents, and business process data. Above that is context: ownership, topology, transactions, risk, policy, and historical decisions.",
+      "The reasoning layer turns context into hypotheses, impact statements, and recommended actions. The control layer decides what can be automated, what needs review, what should be refused, and what must be escalated.",
+      "The highest-value layer is learning. Every investigation should improve the next one by adding approved memory, sharpening evaluation scenarios, and clarifying which recommendations actually helped.",
+      "The stack should be designed around provenance. Every answer should be able to point back to the approved source, signal, rule, or decision record that shaped it.",
+      "It should also be designed around boundaries. Some information can be summarized publicly, some can be retrieved only by specific roles, and some should never enter an assistant context.",
+      "When the stack is healthy, operations stops being a series of disconnected escalations and becomes a system that learns how the enterprise behaves."
+    ]
+  },
+  {
+    "slug": "why-dashboards-are-not-intelligence",
+    "title": "Why Dashboards Are Not Intelligence",
+    "dek": "Dashboards expose signals. Intelligence explains meaning, impact, confidence, and next action.",
+    "theme": "Enterprise Observability",
+    "date": "2026-07-05",
+    "readingTime": "3 min",
+    "body": [
+      "Dashboards are useful when the human already knows what to look for. They are weaker when the work is ambiguous, cross-system, time-sensitive, or politically complex. Most enterprise incidents fall into that second category.",
+      "Operational Intelligence does not replace observability. It makes observability more useful by connecting symptoms to transactions, topology, ownership, history, and business impact.",
+      "The question should move from 'which chart is red?' to 'what changed, what is affected, what evidence supports the hypothesis, and what should a responsible human do next?'",
+      "Dashboards are still necessary. They are just not sufficient. The next interface should preserve the raw signal while adding narrative discipline and decision context.",
+      "This is why observability and AI should be designed together. The AI layer cannot reason well if the telemetry layer lacks correlation, ownership, topology, and historical memory."
+    ]
+  },
+  {
+    "slug": "incident-investigation-as-a-product-experience",
+    "title": "Incident Investigation as a Product Experience",
+    "dek": "What changes when incident investigation is designed as a guided product, not a frantic search session.",
+    "theme": "AI-native Incident Investigation",
+    "date": "2026-07-05",
+    "readingTime": "4 min",
+    "body": [
+      "Most incident workflows are stitched together during the incident. People jump between tools, chats, dashboards, tickets, and memory. That makes the investigation dependent on who happens to be present.",
+      "A product-quality investigation experience should guide the team through evidence collection, timeline construction, hypothesis ranking, confidence calibration, mitigation review, and post-incident learning.",
+      "AI is valuable when it reduces coordination cost while preserving judgment. The interface should make evidence visible, uncertainty explicit, and decisions reusable.",
+      "The product experience should feel like a guided investigation room. Evidence, timeline, hypotheses, impact, and recommended actions should be visible at the same time.",
+      "A good incident product avoids premature certainty. It lets the team compare explanations, mark what is unproven, and see which decision would be safest to review.",
+      "The final output should not be just an RCA paragraph. It should be a reusable record that improves future retrieval, future evals, and future team alignment."
+    ]
+  },
+  {
+    "slug": "knowledge-graphs-as-operational-memory",
+    "title": "Knowledge Graphs as Operational Memory",
+    "dek": "Why enterprise AI needs relationships, not just documents, to reason about operations.",
+    "theme": "Knowledge Graphs",
+    "date": "2026-07-05",
+    "readingTime": "3 min",
+    "body": [
+      "Retrieval over documents can answer many questions, but operational work depends on relationships. Services depend on other services, transactions cross boundaries, owners change, and incidents repeat through similar dependency paths.",
+      "A knowledge graph gives operational AI a structure for blast radius, ownership, transaction journeys, known failure modes, and decision history. It helps the system reason about why a signal matters.",
+      "The graph should stay public-safe or permission-aware. It should preserve provenance, avoid unapproved secrets, and make relationship freshness visible.",
+      "The practical test of a graph is whether it improves a decision. If it cannot explain impact, ownership, dependency risk, or known patterns, it is structure without operational value.",
+      "The best operational memory combines documents and relationships. Documents explain meaning. Graphs explain how things are connected."
+    ]
+  },
+  {
+    "slug": "ai-evaluation-is-operational-risk-management",
+    "title": "AI Evaluation Is Operational Risk Management",
+    "dek": "For enterprise operations, evals are not a lab exercise; they are how risk is controlled.",
+    "theme": "AI Evaluation",
+    "date": "2026-07-05",
+    "readingTime": "3 min",
+    "body": [
+      "A generic model score does not tell an enterprise whether an assistant can handle a noisy incident, a confidential prompt, missing context, or pressure to overstate certainty.",
+      "Operational evals should include realistic scenarios, expected evidence behavior, refusal tests, escalation rules, retrieval checks, and human usefulness ratings. They should test how the system behaves when the right answer is 'I do not know.'",
+      "The best evaluation system becomes a feedback loop. Production corrections, ignored recommendations, accepted mitigations, and post-incident reviews all become signals for improving the assistant.",
+      "Risk management also means knowing what the assistant should refuse. A system that answers everything is not enterprise-ready; it is uncontrolled.",
+      "The eval suite should become a release gate. If groundedness, refusal, citation quality, or escalation judgment regresses, the assistant should not ship."
+    ]
+  },
+  {
+    "slug": "agentic-systems-need-operating-models",
+    "title": "Agentic Systems Need Operating Models",
+    "dek": "The hard part of enterprise agents is not autonomy; it is boundaries, ownership, and review.",
+    "theme": "Agentic Systems",
+    "date": "2026-07-05",
+    "readingTime": "3 min",
+    "body": [
+      "An enterprise agent without an operating model becomes a clever interface to unclear authority. Before automation, teams need to define task scope, tool permissions, data boundaries, evidence requirements, and human approval points.",
+      "The useful pattern is bounded agency. Agents collect, correlate, summarize, compare, and draft. Humans approve actions that change systems, affect customers, or carry compliance risk.",
+      "The operating model should be inspectable. Every agent handoff should preserve task state, evidence, assumptions, and decisions so the next person or agent does not restart from zero.",
+      "Autonomy should be introduced by task class. Summarization, retrieval, and comparison are lower risk. System-changing actions require stronger controls, approvals, and rollback plans.",
+      "The lesson is simple: agentic systems need an operating model before they need more tools.",
+      "Executive summary: the Operational Intelligence Framework is that operating model. It turns enterprise AI from an answer generator into a controlled reasoning system with evidence, memory, evaluation, decision boundaries, and human accountability.",
+      "Core thesis: the ten layers are not decorative taxonomy. They are the minimum sequence needed to move from telemetry to a decision a human can inspect and challenge.",
+      "Problem statement: without a shared operating model, teams debate outputs instead of evidence. The system needs to show where a conclusion came from, which alternatives lost, and what remains unresolved.",
+      "Proposed model: Signal, Transaction, Topology, Evidence, Reasoning, Memory, Evaluation, Decision, Learning, and Operator layers form one loop. Each layer exists because a specific operational failure happens when it is skipped.",
+      "Public-safe example: OI-ROOM-001 begins as transaction degradation, becomes an evidence graph, moves hypotheses through confidence changes, creates a replay seed, passes evaluation gates, and ends at an operator approval boundary.",
+      "Tradeoff: the model adds structure and friction. That is intentional when the alternative is fast but unsupported operational certainty.",
+      "Revision date: 2026-07-16."
+    ]
+  },
+  {
+    "slug": "oi-room-001-control-comparison",
+    "title": "OI-ROOM-001 Control Comparison",
+    "dek": "A public-safe field note for testing Operational Intelligence against dashboard-only, chatbot-only, and ticket-only investigation modes.",
+    "theme": "Operational Intelligence Evidence",
+    "date": "2026-07-30",
+    "readingTime": "6 min",
+    "body": [
+      "Executive summary: OI-ROOM-001 should not be treated as proof that Operational Intelligence is better because it looks more complete. It should be treated as a repeatable comparison protocol: give multiple investigation modes the same synthetic facts, red herrings, contradictory evidence, missing evidence, transaction timing, and approval boundary, then inspect what each mode preserves or loses.",
+      "The control question is simple: what evidence would convince an experienced SRE, platform architect, or AI governance reviewer that the model improves operational judgment rather than renaming existing incident practice? The answer cannot be a better-looking interface. It has to be a more reviewable decision path.",
+      "The shared case is public-safe and synthetic. A customer-facing transaction degrades after a recent change. Signals show latency movement, a dependency path, a misleading capacity clue, one contradictory evidence item, one missing evidence condition, a rollback review option, and a human approval requirement. Every comparison mode receives the same facts.",
+      "Dashboard-only mode should be judged on signal visibility, time-to-symptom, and operator synthesis burden. It will usually expose the red metrics quickly, but it can lose the transaction journey, the hypothesis state, the contradiction, and the missing-evidence condition unless a skilled operator reconstructs them manually.",
+      "Chatbot-only mode should be judged on explanation fluency, grounding, refusal behavior, and whether it names uncertainty. It may summarize the incident quickly, but it is weak if it compresses conflicting evidence into a confident RCA, cites no sources, or recommends action without approval context.",
+      "Ticket-only mode should be judged on coordination, durable record quality, and post-incident usefulness. It may preserve comments and owner decisions, but it is weak if the hypothesis lifecycle is implicit, the transaction timing is scattered, and the final resolution cannot be replayed from evidence.",
+      "Operational Intelligence mode should be judged on whether it separates observation, inference, contradiction, missing evidence, confirmed fact, hypothesis movement, evaluation gates, and operator approval. It succeeds only if a reviewer can see how evidence changed confidence and where the system refused to overstate certainty.",
+      "The scorecard should not collapse into one aggregate number. Reviewers should inspect seven dimensions: evidence completeness, transaction reconstruction, contradiction handling, missing-evidence honesty, hypothesis quality, decision safety, and replayability. A mode can win one dimension and lose another.",
+      "The expected advantage of Operational Intelligence is not speed alone. The expected advantage is reduced reasoning loss: fewer unsupported conclusions, clearer unknowns, better handoff, safer action review, and a reusable record for evaluation and memory.",
+      "The strongest falsification test is independent implementation. If two teams use the doctrine and produce incompatible decision packets for the same OI-ROOM-001 facts, the doctrine is underspecified. If dashboard-only or ticket-only workflows preserve the same reasoning quality with less structure, the Operational Intelligence layer should be simplified.",
+      "This field note is a measurement design, not a published benchmark result. It does not claim that Operational Intelligence has already outperformed the controls in production. It defines what must be measured before that claim would be credible.",
+      "The Evidence Pack now turns this protocol into a reviewer-run worksheet: same facts, four modes, evidence table, dimension-level verdicts, reviewer notes, and failure examples. The goal is to make the thesis harder to fake, not easier to market."
+    ],
+    "reviewWorksheet": {
+      "title": "Reviewer worksheet",
+      "purpose": "Use the same OI-ROOM-001 facts across four modes and record what each mode preserves, loses, or invents.",
+      "modes": [
+        {
+          "mode": "Dashboard-only",
+          "preserves": "Signal visibility and fast symptom detection.",
+          "likelyLoss": "Transaction journey, hypothesis state, contradiction, and missing evidence unless an operator reconstructs them manually.",
+          "reviewerQuestion": "Can the reviewer reproduce why the leading hypothesis changed?"
+        },
+        {
+          "mode": "Chatbot-only",
+          "preserves": "Fast narrative synthesis and exploratory question answering.",
+          "likelyLoss": "Source validity, contradiction handling, approval context, and refusal posture if the answer is not grounded.",
+          "reviewerQuestion": "Does the answer cite evidence and admit missing context before recommending action?"
+        },
+        {
+          "mode": "Ticket-only",
+          "preserves": "Coordination record, ownership comments, resolution notes, and durable follow-up work.",
+          "likelyLoss": "Live hypothesis movement, transaction timing, and a replayable evidence chain.",
+          "reviewerQuestion": "Can a future team replay the decision without asking who was present?"
+        },
+        {
+          "mode": "Operational Intelligence",
+          "preserves": "Observation, inference, confirmed fact, contradiction, missing evidence, evidence graph, hypothesis lifecycle, eval gates, approval class, and replay seed.",
+          "likelyLoss": "Adds structure and review friction; simplify the layer if it does not improve reasoning quality.",
+          "reviewerQuestion": "Does structure reduce reasoning loss enough to justify the workflow?"
+        }
+      ],
+      "dimensions": [
+        {
+          "dimension": "Evidence completeness",
+          "ask": "Are supporting, weakening, contradictory, and missing evidence visible?",
+          "failureSignal": "Only red metrics or prose summary remain."
+        },
+        {
+          "dimension": "Transaction reconstruction",
+          "ask": "Can the reviewer follow the affected journey and timing?",
+          "failureSignal": "Impact is inferred from a component alert alone."
+        },
+        {
+          "dimension": "Contradiction handling",
+          "ask": "Does weak evidence reduce confidence or redirect the hypothesis?",
+          "failureSignal": "Contradiction is omitted from the final answer."
+        },
+        {
+          "dimension": "Missing-evidence honesty",
+          "ask": "Are unavailable facts preserved as unknowns?",
+          "failureSignal": "Unknowns become confident narrative."
+        },
+        {
+          "dimension": "Hypothesis quality",
+          "ask": "Are alternatives compared with falsification criteria?",
+          "failureSignal": "The first plausible explanation becomes the RCA."
+        },
+        {
+          "dimension": "Decision safety",
+          "ask": "Is the action reversible, owned, and approval-gated?",
+          "failureSignal": "Action is recommended without owner review."
+        },
+        {
+          "dimension": "Replayability",
+          "ask": "Can another reviewer reproduce the reasoning path?",
+          "failureSignal": "Outcome depends on a private conversation or memory."
+        }
+      ],
+      "falsification": [
+        "Dashboard-only or ticket-only preserves the same reasoning quality with less structure.",
+        "Two independent teams produce incompatible decision packets from the same doctrine and facts.",
+        "The Operational Intelligence workflow hides uncertainty behind process language.",
+        "Reviewers cannot identify where confidence changed or why action was gated."
+      ]
+    }
+  }
+]
