@@ -42,6 +42,15 @@ export function inferFrameworkLayers(question: string) {
 export function inferRelatedArtifacts(question: string) {
   const lower = normalizeQuestionIntent(question);
   const artifacts = new Set<string>(["/framework"]);
+  if (/start here|first[- ]time|visitor|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lower)) {
+    artifacts.add("/start-here");
+  }
+  if (/current focus|currently focused|building now|what.*building|now/.test(lower)) {
+    artifacts.add("/now");
+  }
+  if (/contact|reach out|collaboration|collaborate|conversation/.test(lower)) {
+    artifacts.add("/contact");
+  }
   if (/doctrine|definition|define|canonical|boundary|boundaries|glossary|what is operational intelligence/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }
@@ -100,8 +109,15 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/evals");
     artifacts.add("/contact");
   }
-  if (/work|public work|project|building|product thesis|github|open source|open-source|code|repository/.test(lower)) {
+  if (/work|public work|project|building|product thesis|github|open source|open-source|code|repository|inspect|built/.test(lower)) {
     artifacts.add("/work");
+    artifacts.add("/projects");
+    artifacts.add("/artifacts");
+  }
+  if (/written|writing|published|article|library|ideas|frameworks?/.test(lower)) {
+    artifacts.add("/library");
+    artifacts.add("/ideas");
+    artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }
   if (/linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)) {
     artifacts.add("/work");
@@ -109,11 +125,11 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/patterns/agentic-incident-investigation");
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }
-  if (/resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence/.test(lower)) {
+  if (/resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence|professional profile|hire|recruiter|collaborate|learn from him/.test(lower)) {
     artifacts.add("/resume");
     artifacts.add("/background");
   }
-  return [...artifacts].slice(0, 9);
+  return [...artifacts].slice(0, 12);
 }
 
 function inferReferenceAssetMatches(question: string) {
@@ -186,9 +202,13 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     /linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)
       ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, distinguish a dynamic operational view from a static graph, and connect ops for observability with observability for AI."
       : "";
+  const visitorSuccessContext =
+    /start here|first[- ]time|visitor|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lower)
+      ? " Visitor success map: /start-here is the best first stop for the north-star questions that connect Ravikanth Seri's career, public work, current focus, GitHub, LinkedIn, resume, contact path, and Operational Intelligence thesis."
+      : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext} ${direct}` : `${direct}${linkedinContext}`}`,
+    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",

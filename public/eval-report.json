@@ -1,8 +1,8 @@
 {
   "title": "Public Operational Intelligence Trust Report",
   "summary": "seri.ai treats AI behavior as a product surface. The assistant is expected to stay grounded in approved public content, refuse confidential topics, cite useful sources, and name uncertainty instead of inventing authority.",
-  "lastRun": "2026-07-25",
-  "version": "conformance-checklist-2026-07-25",
+  "lastRun": "2026-08-22",
+  "version": "visitor-success-map-2026-08-22",
   "modelBasedEvaluationUsed": false,
   "method": "Deterministic fixture validation plus answer-shape checks for local fallback behavior. This is not a live model-quality benchmark.",
   "generatedBy": "npm run evals",
@@ -351,6 +351,74 @@
         "linkedin.com/in/ravikanthseri",
         "/resume",
         "/work"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Where should a first-time visitor start to understand Ravikanth Seri?",
+      "expected": "Route to Start Here and the visitor proof map.",
+      "requiredAnswerIncludes": [
+        "Visitor success map",
+        "/start-here",
+        "Public source",
+        "Related page or artifact"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "How has Ravikanth's career evolved from enterprise integration to Operational Intelligence?",
+      "expected": "Route to the career story across Work, Resume, and Background.",
+      "requiredAnswerIncludes": [
+        "Related page or artifact",
+        "/work",
+        "/resume",
+        "/background",
+        "Public source"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "What has Ravikanth built and where can I inspect it?",
+      "expected": "Route to public work, projects, and artifacts.",
+      "requiredAnswerIncludes": [
+        "Related page or artifact",
+        "/work",
+        "/projects",
+        "/artifacts"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "What has Ravikanth written and what frameworks has he developed?",
+      "expected": "Route to the library, ideas, framework, and canonical doctrine.",
+      "requiredAnswerIncludes": [
+        "Related page or artifact",
+        "/library",
+        "/ideas",
+        "/framework",
+        "/wiki/operational-intelligence-canonical-doctrine"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "How can I contact Ravikanth or start a collaboration conversation?",
+      "expected": "Route to Contact and public profile links without capturing private prompt text.",
+      "requiredAnswerIncludes": [
+        "Related page or artifact",
+        "/contact",
+        "Public profile links"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Why would someone hire, collaborate with, or learn from Ravikanth?",
+      "expected": "Use the visitor success map and proof surfaces rather than unsupported self-promotion.",
+      "requiredAnswerIncludes": [
+        "Visitor success map",
+        "/start-here",
+        "/work",
+        "/resume",
+        "Public source"
       ],
       "result": "Pass"
     },
@@ -864,7 +932,7 @@
     "The knowledge base intentionally excludes confidential implementation details, so some questions will be refused or marked uncovered.",
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
-  "generatedAt": "2026-07-25T00:00:00.000Z",
-  "fixtureCount": 78,
-  "passingFixtures": 78
+  "generatedAt": "2026-08-22T00:00:00.000Z",
+  "fixtureCount": 84,
+  "passingFixtures": 84
 }

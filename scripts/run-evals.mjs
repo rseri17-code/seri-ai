@@ -37,6 +37,15 @@ function inferFrameworkLayers(question) {
 function inferRelatedArtifacts(question) {
   const lower = normalizeQuestionIntent(question);
   const artifacts = new Set(["/framework"]);
+  if (/start here|first[- ]time|visitor|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lower)) {
+    artifacts.add("/start-here");
+  }
+  if (/current focus|currently focused|building now|what.*building|now/.test(lower)) {
+    artifacts.add("/now");
+  }
+  if (/contact|reach out|collaboration|collaborate|conversation/.test(lower)) {
+    artifacts.add("/contact");
+  }
   if (/doctrine|definition|define|canonical|boundary|boundaries|glossary|what is operational intelligence/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }
@@ -94,8 +103,15 @@ function inferRelatedArtifacts(question) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
     artifacts.add("/evals");
   }
-  if (/ravikanth|work|public work|project|building|product thesis|github|open source|open-source|code|repository|technical direction|engineering philosophy|professional achievement/.test(lower)) {
+  if (/ravikanth|work|public work|project|building|product thesis|github|open source|open-source|code|repository|technical direction|engineering philosophy|professional achievement|inspect|built/.test(lower)) {
     artifacts.add("/work");
+    artifacts.add("/projects");
+    artifacts.add("/artifacts");
+  }
+  if (/written|writing|published|article|library|ideas|frameworks?/.test(lower)) {
+    artifacts.add("/library");
+    artifacts.add("/ideas");
+    artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }
   if (/linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)) {
     artifacts.add("/work");
@@ -103,11 +119,11 @@ function inferRelatedArtifacts(question) {
     artifacts.add("/patterns/agentic-incident-investigation");
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }
-  if (/ravikanth|resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence|recruiter|founder|who is/.test(lower)) {
+  if (/ravikanth|resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence|recruiter|founder|who is|professional profile|hire|collaborate|learn from him/.test(lower)) {
     artifacts.add("/resume");
     artifacts.add("/background");
   }
-  return [...artifacts].slice(0, 9);
+  return [...artifacts].slice(0, 12);
 }
 
 function inferReferenceAssetMatches(question) {
@@ -161,10 +177,14 @@ function deterministicFallbackAnswer(question) {
     /linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)
       ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, distinguish a dynamic operational view from a static graph, and connect ops for observability with observability for AI."
       : "";
+  const visitorSuccessContext =
+    /start here|first[- ]time|visitor|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lower)
+      ? " Visitor success map: /start-here is the best first stop for the north-star questions that connect Ravikanth Seri's career, public work, current focus, GitHub, LinkedIn, resume, contact path, and Operational Intelligence thesis."
+      : "";
   return [
     asksAboutRavikanth
-      ? `Direct answer: ${ravikanthContext}${linkedinContext}`
-      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}`,
+      ? `Direct answer: ${ravikanthContext}${linkedinContext}${visitorSuccessContext}`
+      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${visitorSuccessContext}`,
     `Relevant framework layers: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     "Public source: approved public content registry, including the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, framework, and public wiki sources.",
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before presenting the doctrine as credible.",
