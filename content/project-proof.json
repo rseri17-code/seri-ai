@@ -1,0 +1,91 @@
+{
+  "title": "Public Project Proof Ledger",
+  "updatedAt": "2026-08-22",
+  "principle": "Every project claim should state what can be inspected, what it proves, what it does not prove, and what evidence would strengthen it.",
+  "items": [
+    {
+      "slug": "ai-incident-investigation-simulator",
+      "claim": "The Operations Room demonstrates a public-safe Operational Intelligence investigation path from signals to transaction timing, evidence graph, hypotheses, evaluation gates, decision packet, and operator approval.",
+      "visibleArtifact": "/investigation-room",
+      "inspectionPath": [
+        "/investigation-room",
+        "/publication-pack/oi-room-001-printable-walkthrough.md",
+        "/publication-pack/decision-packet-example.md",
+        "/wiki/operational-intelligence-evidence-pack"
+      ],
+      "evidence": "Visitors can inspect the synthetic OI-ROOM-001 flow, contradiction and missing-evidence states, per-hop transaction timing, review-state ledger, decision packet, and downloadable walkthrough using only approved public-safe material.",
+      "limitation": "This proves public artifact discipline and investigation-model clarity; it does not prove production incident outcomes, customer impact reduction, or private deployment performance.",
+      "nextProof": "Run an external reviewer walkthrough against the Evidence Pack worksheet and record observed reasoning losses, missing evidence, and decision-quality feedback.",
+      "reviewQuestion": "Can an experienced SRE follow the case and explain what is observation, inference, contradiction, missing evidence, confirmed fact, and approved action?",
+      "related": [
+        "/framework",
+        "/patterns/evidence-driven-rca",
+        "/patterns/evaluation-and-replay",
+        "/wiki/operational-intelligence-reference-architecture"
+      ]
+    },
+    {
+      "slug": "operational-intelligence-copilot",
+      "claim": "Ask Ravikanth demonstrates a bounded public AI interface over approved professional and Operational Intelligence content rather than a generic chatbot wrapper.",
+      "visibleArtifact": "/ask",
+      "inspectionPath": [
+        "/ask",
+        "/evals",
+        "/wiki/operational-intelligence-evidence-pack",
+        "/work"
+      ],
+      "evidence": "The assistant has deterministic fallback behavior, public-safety refusal, related-route recommendations, citation expectations, prompt-injection coverage, answer metadata, and 93 passing trust fixtures.",
+      "limitation": "This proves local trust-contract coverage and public-safe answer discipline; it does not prove live model synthesis quality, vector retrieval quality, or reviewer-labeled helpfulness in production.",
+      "nextProof": "Compare fallback, vector retrieval, and model synthesis across the live answer rubric using safe metadata and reviewer labels.",
+      "reviewQuestion": "Does the assistant cite public sources, expose uncertainty, refuse confidential prompts, and route the visitor to the right proof surface?",
+      "related": [
+        "/patterns/agentic-incident-investigation",
+        "/patterns/human-in-the-loop-operational-ai",
+        "/wiki/operational-intelligence-canonical-doctrine",
+        "/resume"
+      ]
+    },
+    {
+      "slug": "transaction-graph-explorer",
+      "claim": "The Transaction Graph Explorer expresses the thesis that operational reasoning should follow customer or workflow journeys, not isolated service dashboards.",
+      "visibleArtifact": "/map",
+      "inspectionPath": [
+        "/map",
+        "/patterns/transaction-journey-reconstruction",
+        "/wiki/transaction-journeys",
+        "/ideas/transaction-intelligence-for-complex-enterprises"
+      ],
+      "evidence": "The public map, transaction-journey pattern, doctrine layers, and related writing connect transactions, topology, ownership, evidence, operational memory, and impact reasoning.",
+      "limitation": "This proves conceptual and information-architecture clarity; it does not yet provide a runnable public graph dataset, benchmarked journey reconstruction, or independent implementation evidence.",
+      "nextProof": "Add a public-safe sample graph fixture or reviewer walkthrough only if it tests a distinct failure mode such as stale ownership, broken correlation, or misleading local service health.",
+      "reviewQuestion": "Can a reviewer see why transaction context changes the investigation decision compared with a service-only view?",
+      "related": [
+        "/framework",
+        "/patterns/topology-aware-reasoning",
+        "/wiki/operational-intelligence-reference-architecture",
+        "/now"
+      ]
+    },
+    {
+      "slug": "ai-evaluation-workbench",
+      "claim": "The AI Evaluation Workbench turns trust into release-gated behavior checks for operational AI: grounding, refusal, routing, replay, and regression.",
+      "visibleArtifact": "/evals",
+      "inspectionPath": [
+        "/evals",
+        "/patterns/evaluation-and-replay",
+        "/wiki/evaluation-and-replay",
+        "/wiki/operational-intelligence-evidence-pack"
+      ],
+      "evidence": "The public eval report, retrieval checks, Ask fixtures, live answer rubric, evidence pack, and build gates test deterministic behavior without publishing confidential prompt text.",
+      "limitation": "This proves deterministic coverage and release discipline; it does not yet prove live model quality, production drift detection, or multi-reviewer agreement.",
+      "nextProof": "Add reviewer-labeled answer sessions and model-comparison results without publishing raw prompts or unsupported aggregate quality scores.",
+      "reviewQuestion": "Would a principal engineer trust the release gate to catch unsafe, uncited, misrouted, or overconfident answer regressions?",
+      "related": [
+        "/ask",
+        "/publication-pack/operational-intelligence-evidence-pack.md",
+        "/patterns/human-in-the-loop-operational-ai",
+        "/wiki/operational-intelligence-reference-architecture"
+      ]
+    }
+  ]
+}

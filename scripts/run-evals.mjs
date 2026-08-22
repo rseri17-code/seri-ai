@@ -120,7 +120,7 @@ function inferRelatedArtifacts(question) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
     artifacts.add("/evals");
   }
-  if (/ravikanth|work|public work|project|building|product thesis|github|open source|open-source|code|repository|technical direction|engineering philosophy|professional achievement|inspect|built/.test(lower)) {
+  if (/ravikanth|project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|work|public work|project|building|product thesis|github|open source|open-source|code|repository|technical direction|engineering philosophy|professional achievement|inspect|built/.test(lower)) {
     artifacts.add("/work");
     artifacts.add("/projects");
     artifacts.add("/artifacts");
@@ -220,6 +220,10 @@ function deterministicFallbackAnswer(question) {
     /github|open source|open-source|public code|repository|repositories|sentinalai/.test(lower)
       ? " Public code inspection path: use GitHub profile github.com/rseri17-code, the user-authorized Sentinalai repository reference, and the seri.ai public artifacts as inspectable public signal. Do not infer repository metrics, production adoption, private deployments, internal integrations, or confidential behavior from public code alone."
       : "";
+  const projectProofContext =
+    /project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|stronger public project proof/.test(lower)
+      ? " Project proof ledger: the Work and Projects surfaces state what each public project proves, what can be inspected, what it does not prove, the next proof needed, and the reviewer question. Use it to inspect Operations Room, Ask Ravikanth, Transaction Graph Explorer, and AI Evaluation Workbench without inferring private production outcomes."
+      : "";
   const publicationSpineContext =
     /publication spine|reading order|what should i read first|body of work|which publications|published assets|field notes.*patterns|doctrine.*field notes.*patterns|each asset prove|written|writing|published|article|library/.test(lower)
       ? " Publication spine: the Library organizes the body of work as Define, Specify, Demonstrate, Challenge, and Connect. It points readers from the Canonical Doctrine to the Reference Architecture, Operations Room, Evidence Pack, and Ravikanth's public work so each asset has a clear proof job."
@@ -234,12 +238,12 @@ function deterministicFallbackAnswer(question) {
       : "";
   const qualityScorecardContext =
     /quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lower)
-      ? " Quality scorecard: seri.ai tracks 24 evidence-based dimensions with non-inflated scores. The weakest current proof areas are Evidence Quality, Work / Project Proof, Visual Design, Mobile, and Overall Memorability because they still need external review, live beta evidence, screenshot-grade QA, and stronger public project proof."
+      ? " Quality scorecard: seri.ai tracks 24 evidence-based dimensions with non-inflated scores. The weakest current proof areas are Visual Design, Mobile, Evidence Quality, Overall Memorability, UX, Reliability, Ask Ravi, and AI Systems Credibility because they still need screenshot-grade QA, external review, live beta evidence, reviewer labels, and production retrieval evidence."
       : "";
   return [
     asksAboutRavikanth
-      ? `Direct answer: ${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}`
-      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}`,
+      ? `Direct answer: ${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}`
+      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}`,
     `Relevant framework layers: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     "Public source: approved public content registry, including the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, framework, and public wiki sources.",
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before presenting the doctrine as credible.",

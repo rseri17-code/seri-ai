@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ClipboardCheck, GitBranch, Route, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
-import { operationalIntelligenceFramework, projects } from "@/content/site";
+import { operationalIntelligenceFramework, projectProof, projects } from "@/content/site";
 import { buildPublishingIndex } from "@/lib/publishing";
 
 export function generateStaticParams() {
@@ -91,6 +91,24 @@ const projectContracts = {
   }
 } as const;
 
+const inspectionLabels: Record<string, string> = {
+  "/investigation-room": "Operations Room",
+  "/publication-pack/oi-room-001-printable-walkthrough.md": "Printable walkthrough",
+  "/publication-pack/decision-packet-example.md": "Decision packet",
+  "/wiki/operational-intelligence-evidence-pack": "Evidence pack",
+  "/ask": "Ask Ravikanth",
+  "/evals": "Public evals",
+  "/work": "Work index",
+  "/map": "Operational map",
+  "/patterns/transaction-journey-reconstruction": "Transaction journey pattern",
+  "/wiki/transaction-journeys": "Transaction journeys note",
+  "/ideas/transaction-intelligence-for-complex-enterprises": "Transaction Intelligence article",
+  "/patterns/evaluation-and-replay": "Evaluation pattern",
+  "/wiki/evaluation-and-replay": "Evaluation note"
+};
+
+const inspectionLink = (href: string): [string, string] => [href, inspectionLabels[href] ?? href.replace(/^\//, "").replace(/[-/]/g, " ")];
+
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = projects.find((item) => item.slug === slug);
@@ -99,6 +117,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     notFound();
   }
   const contract = projectContracts[project.slug as keyof typeof projectContracts];
+  const proof = projectProof.items.find((item) => item.slug === project.slug);
   const relatedLayers = contract.layerIndexes.map((index) => operationalIntelligenceFramework.layers[index]);
   const asset = buildPublishingIndex().find((item) => item.url === `/projects/${project.slug}`);
 
@@ -113,6 +132,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <ShieldCheck className="mb-5 text-mint" />
           <h2 className="text-2xl font-semibold text-white">Operating contract</h2>
           <p className="mt-4 text-lg leading-8 text-slate-200">{project.detail}</p>
+          {proof ? (
+            <div className="mt-5 rounded border border-white/10 bg-black/20 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Public proof claim</p>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{proof.claim}</p>
+            </div>
+          ) : null}
           <div className="mt-6 flex flex-wrap gap-2">
             {project.capabilities.map((capability) => (
               <span key={capability} className="rounded bg-white/10 px-3 py-2 text-sm text-slate-200">
@@ -163,11 +188,31 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </Card>
       </div>
 
-      <div className="mt-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="mt-5 grid gap-4 xl:grid-cols-[1.05fr_0.95fr_0.9fr]">
+        {proof ? (
+          <Card className="border-mint/25 bg-mint/[0.045]">
+            <ClipboardCheck className="mb-5 text-mint" />
+            <h2 className="text-2xl font-semibold text-white">Project proof ledger</h2>
+            <div className="mt-5 grid gap-3">
+              {[
+                ["Inspectable evidence", proof.evidence],
+                ["Boundary", proof.limitation],
+                ["Next proof", proof.nextProof],
+                ["Reviewer question", proof.reviewQuestion]
+              ].map(([label, body]) => (
+                <div key={label} className="rounded border border-white/10 bg-black/20 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{label}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">{body}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
+        ) : null}
+
         <Card>
           <h2 className="text-2xl font-semibold text-white">Review this project through the reference system</h2>
           <div className="mt-5 grid gap-3 md:grid-cols-3 lg:grid-cols-1">
-            {contract.references.map(([href, label]) => (
+            {(proof ? proof.inspectionPath.map(inspectionLink) : contract.references).map(([href, label]) => (
               <Link key={href} href={href} className="rounded border border-white/10 bg-ink p-4 transition hover:border-signal/40">
                 <span className="font-semibold text-white">{label}</span>
                 <span className="mt-3 flex items-center gap-2 text-sm font-semibold text-mint">

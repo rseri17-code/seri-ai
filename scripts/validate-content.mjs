@@ -20,6 +20,7 @@ const changelogPath = path.join(root, "content", "changelog.json");
 const resumePath = path.join(root, "content", "resume.json");
 const professionalGraphPath = path.join(root, "content", "professional-graph.json");
 const publicCodePath = path.join(root, "content", "public-code.json");
+const projectProofPath = path.join(root, "content", "project-proof.json");
 const publicationSpinePath = path.join(root, "content", "publication-spine.json");
 const proofBacklogPath = path.join(root, "content", "proof-backlog.json");
 const qualityScorecardPath = path.join(root, "content", "quality-scorecard.json");
@@ -57,6 +58,8 @@ const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerS
 const requiredProductionDeliveryFields = ["stage", "responsibility", "publicEvidence", "reviewQuestion", "href"];
 const requiredPublicCodeFields = ["title", "summary", "entries"];
 const requiredPublicCodeEntryFields = ["label", "href", "status", "whatToInspect", "publicSafeUse", "proofBoundary", "related"];
+const requiredProjectProofFields = ["title", "updatedAt", "principle", "items"];
+const requiredProjectProofItemFields = ["slug", "claim", "visibleArtifact", "inspectionPath", "evidence", "limitation", "nextProof", "reviewQuestion", "related"];
 const requiredPublicationSpineFields = ["title", "summary", "updatedAt", "principle", "audienceQuestion", "stages"];
 const requiredPublicationSpineStageFields = ["name", "purpose", "primaryAsset", "supportingAssets", "readerQuestion", "proofStandard"];
 const requiredProofBacklogFields = ["title", "summary", "updatedAt", "principle", "items"];
@@ -460,6 +463,55 @@ for (const project of projects) {
   validateRequiredFields("content/projects.json", project, requiredProjectFields);
   if (!["Concept", "Prototype", "Production Pattern"].includes(project.status)) {
     errors.push(`content/projects.json:${project.slug ?? "unknown"}: unsupported status`);
+  }
+}
+
+const projectProof = requireJsonObject(projectProofPath, "content/project-proof.json");
+validateRequiredFields("content/project-proof.json", projectProof, requiredProjectProofFields, { requireSlug: false });
+if (!/^\d{4}-\d{2}-\d{2}$/.test(projectProof.updatedAt ?? "")) {
+  errors.push("content/project-proof.json: updatedAt must be YYYY-MM-DD");
+}
+if (!String(projectProof.principle ?? "").includes("what it does not prove")) {
+  errors.push("content/project-proof.json: principle must preserve proof-boundary language");
+}
+if (!Array.isArray(projectProof.items) || projectProof.items.length !== projects.length) {
+  errors.push("content/project-proof.json: items must match the project corpus one-to-one");
+} else {
+  const projectSlugs = new Set(projects.map((project) => project.slug));
+  const proofSlugs = new Set(projectProof.items.map((item) => item.slug));
+  for (const slug of projectSlugs) {
+    if (!proofSlugs.has(slug)) {
+      errors.push(`content/project-proof.json: missing proof ledger entry for ${slug}`);
+    }
+  }
+  for (const item of projectProof.items) {
+    validateRequiredFields("content/project-proof.json", item, requiredProjectProofItemFields);
+    const owner = `content/project-proof.json:${item.slug ?? "unknown"}`;
+    if (!projectSlugs.has(item.slug)) {
+      errors.push(`${owner}: slug must match content/projects.json`);
+    }
+    for (const field of ["claim", "evidence", "limitation", "nextProof", "reviewQuestion"]) {
+      if (String(item[field] ?? "").length < 90) {
+        errors.push(`${owner}: ${field} must contain substantial proof-led project language`);
+      }
+    }
+    if (!String(item.limitation ?? "").toLowerCase().includes("does not")) {
+      errors.push(`${owner}: limitation must explicitly state what the project does not prove`);
+    }
+    if (!String(item.visibleArtifact ?? "").startsWith("/")) {
+      errors.push(`${owner}: visibleArtifact must be an internal route`);
+    }
+    for (const route of [...(item.inspectionPath ?? []), ...(item.related ?? [])]) {
+      if (!String(route).startsWith("/")) {
+        errors.push(`${owner}: inspection and related routes must be internal public routes`);
+      }
+    }
+    if (!Array.isArray(item.inspectionPath) || item.inspectionPath.length < 3) {
+      errors.push(`${owner}: inspectionPath must include at least three review surfaces`);
+    }
+    if (!Array.isArray(item.related) || item.related.length < 3) {
+      errors.push(`${owner}: related must include at least three graph connections`);
+    }
   }
 }
 

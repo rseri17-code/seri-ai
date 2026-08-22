@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar } from "../content/site";
+import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -541,6 +541,41 @@ export function buildPublicSourceIndex(): PublicSource[] {
       frameworkLayers: ["Evidence Layer", "Evaluation Layer"],
       principles: ["Evidence before conclusions"],
       patterns: ["evaluation-and-replay"],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
+      id: "profile:ravikanth-seri-project-proof",
+      title: projectProof.title,
+      description: "Public-safe project proof ledger showing what each seri.ai project proves, what it does not prove, how to inspect it, and what evidence would strengthen it.",
+      content: [
+        projectProof.title,
+        projectProof.principle,
+        "project proof ledger. work project proof. public project evidence. inspectable artifacts. public-safe limitations. review questions. next proof.",
+        projectProof.items
+          .flatMap((item) => [
+            item.slug,
+            item.claim,
+            item.visibleArtifact,
+            ...item.inspectionPath,
+            item.evidence,
+            item.limitation,
+            item.nextProof,
+            item.reviewQuestion,
+            ...item.related
+          ])
+          .join(". ")
+      ].join(". "),
+      url: "/work",
+      type: "registry" as const,
+      category: "background",
+      tags: ["project proof", "public work", "evidence ledger", "public-safe limitations", "review questions"],
+      author: "Ravikanth Seri",
+      assetType: "profile",
+      date: projectProof.updatedAt,
+      frameworkLayers: ["Evidence Layer", "Evaluation Layer", "Decision Layer", "Operator Layer"],
+      principles: ["Evidence before conclusions"],
+      patterns: ["/patterns/evidence-driven-rca", "/patterns/evaluation-and-replay", "/patterns/transaction-journey-reconstruction"],
       products: ["/products/reasonops"],
       status: "published" as const
     },

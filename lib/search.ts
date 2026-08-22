@@ -29,6 +29,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/, conformanceProfileUrl],
   [/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset/, evidencePackUrl],
   [/quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target/, evidencePackUrl],
+  [/project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|stronger public project proof/, workUrl],
   [/evidence pack markdown|falsification criteria|reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts/, "/publication-pack/operational-intelligence-evidence-pack.md"],
   [/publication pack pdf|download.*publication|shareable pdf.*diagram/, "/downloads/operational-intelligence-publication-pack.pdf"],
   [/evidence pack pdf|download.*evidence/, "/downloads/operational-intelligence-evidence-pack.pdf"],
@@ -268,6 +269,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         /quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lowerQuery)
           ? 85
           : 0;
+      const projectProofBoost =
+        source.url === workUrl &&
+        /project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|stronger public project proof/.test(lowerQuery)
+          ? 85
+          : 0;
       const conformanceChecklistBoost = source.url === evidencePackUrl && /minimum conformance|conformance checklist|observable proof|failure signal/.test(lowerQuery) ? 10 : 0;
       const evidenceMarkdownBoost =
         source.url === "/publication-pack/operational-intelligence-evidence-pack.md" &&
@@ -329,7 +335,8 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         backgroundBoost +
         productionDeliveryBoost +
         proofBacklogBoost +
-        qualityScorecardBoost;
+        qualityScorecardBoost +
+        projectProofBoost;
       return { source, content: source.content, score };
     })
     .filter((hit) => hit.score > 0)

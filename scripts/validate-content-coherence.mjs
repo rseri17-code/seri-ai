@@ -857,7 +857,15 @@ for (const required of [
 
 const projectPage = fs.readFileSync(path.join(root, "app", "projects", "[slug]", "page.tsx"), "utf8");
 for (const required of [
+  "projectProof",
   "const projectContracts",
+  "Project proof ledger",
+  "Public proof claim",
+  "Inspectable evidence",
+  "Boundary",
+  "Next proof",
+  "Reviewer question",
+  "proof.inspectionPath.map",
   "Operating contract",
   "Evidence path",
   "Framework handoff",
@@ -879,6 +887,18 @@ for (const required of [
   "/wiki/evaluation-and-replay"
 ]) {
   expect(projectPage.includes(required), `/projects/[slug] missing project proof contract: ${required}`);
+}
+
+const projectProofWorkPage = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
+for (const required of [
+  "Project proof",
+  "Each project states what can be inspected and what should not be inferred.",
+  "projects.map",
+  "Boundary",
+  "do not infer private outcomes or unsupported adoption",
+  "Review project proof"
+]) {
+  expect(projectProofWorkPage.includes(required), `/work missing project proof ledger surface: ${required}`);
 }
 
 const productPage = fs.readFileSync(path.join(root, "app", "products", "[slug]", "page.tsx"), "utf8");

@@ -5,7 +5,7 @@ import { ArrowRight, Boxes, BrainCircuit, ClipboardCheck, FileText, GitBranch, L
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";
-import { articles, contentRegistry, evalReport, operationalIntelligenceFramework, patterns, professionalGraph, projects, publicCode, resume } from "@/content/site";
+import { articles, contentRegistry, evalReport, operationalIntelligenceFramework, professionalGraph, projects, publicCode, resume } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Work | Ravikanth Seri",
@@ -205,6 +205,31 @@ export default function WorkPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Project proof" title="Each project states what can be inspected and what should not be inferred.">
+        <Card className="border-signal/25 bg-signal/[0.045]">
+          <p className="max-w-4xl text-sm leading-6 text-slate-300">
+            The full project proof ledger lives on each project detail page: claim, evidence, boundary, next proof, and reviewer question.
+            The Work page keeps the index compact so it remains fast and scannable.
+          </p>
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
+            {projects.map((project) => (
+              <Link key={project.slug} href={`/projects/${project.slug}`}>
+                <div className="h-full rounded border border-white/10 bg-black/20 p-4 transition hover:border-signal/40">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{project.status}</p>
+                  <h2 className="mt-2 text-lg font-semibold text-white">{project.name}</h2>
+                  <p className="mt-3 text-xs leading-5 text-slate-400">
+                    Boundary: inspect public artifacts and review questions; do not infer private outcomes or unsupported adoption.
+                  </p>
+                  <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-signal">
+                    Review project proof <ArrowRight size={15} />
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </Card>
+      </Section>
+
       <Section eyebrow="Architecture judgment" title="The operating taste is visible in the constraints he chooses to preserve.">
         <div className="grid gap-4 lg:grid-cols-2">
           {professionalGraph.architectureJudgment.map((item) => (
@@ -265,12 +290,11 @@ export default function WorkPage() {
                 <h2 className="text-2xl font-semibold text-white">{title}</h2>
               </div>
               <div className="mt-5 grid gap-3">
-                {items.map(([href, label, detail]) => (
+                {items.map(([href, label]) => (
                   <Link key={href} href={href} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-mint/40">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <h3 className="font-semibold text-white">{label}</h3>
-                        <p className="mt-2 text-sm leading-6 text-slate-300">{detail}</p>
                       </div>
                       <ArrowRight className="mt-1 shrink-0 text-slate-500" size={16} />
                     </div>
@@ -282,19 +306,6 @@ export default function WorkPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Patterns" title="Architecture patterns connected to the framework.">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {patterns.slice(0, 6).map((pattern) => (
-            <Link key={pattern.slug} href={`/patterns/${pattern.slug}`}>
-              <Card className="h-full transition hover:border-signal/40">
-                <p className="text-xs font-semibold uppercase text-signal">{pattern.tags[0]}</p>
-                <h2 className="mt-3 text-xl font-semibold text-white">{pattern.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{pattern.description}</p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
     </>
   );
 }

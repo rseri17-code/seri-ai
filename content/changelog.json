@@ -2,8 +2,8 @@
   {
     "version": "v0.8",
     "date": "2026-08-22",
-    "title": "Added governed quality scorecard and graph health gate",
-    "description": "seri.ai now tracks the 24-dimension 10/10 target with non-inflated evidence-based scores and validates knowledge-graph health as a release gate across assets, relationships, layers, registry links, patterns, principles, and professional evidence connectivity.",
+    "title": "Added governed quality scorecard, graph health gate, and project proof ledger",
+    "description": "seri.ai now tracks the 24-dimension 10/10 target with non-inflated evidence-based scores, validates knowledge-graph health as a release gate, and exposes a public project proof ledger that states what each project proves, what can be inspected, what it does not prove, and what evidence would strengthen it.",
     "tags": [
       "quality-scorecard",
       "knowledge-graph",

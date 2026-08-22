@@ -15,6 +15,7 @@ import changelogData from "./changelog.json";
 import resumeData from "./resume.json";
 import professionalGraphData from "./professional-graph.json";
 import publicCodeData from "./public-code.json";
+import projectProofData from "./project-proof.json";
 import publicationSpineData from "./publication-spine.json";
 import proofBacklogData from "./proof-backlog.json";
 import qualityScorecardData from "./quality-scorecard.json";
@@ -168,6 +169,27 @@ export const professionalGraph = professionalGraphData;
 
 export const publicCode = publicCodeData;
 
+export type ProjectProofItem = {
+  slug: string;
+  claim: string;
+  visibleArtifact: string;
+  inspectionPath: string[];
+  evidence: string;
+  limitation: string;
+  nextProof: string;
+  reviewQuestion: string;
+  related: string[];
+};
+
+export type ProjectProof = {
+  title: string;
+  updatedAt: string;
+  principle: string;
+  items: ProjectProofItem[];
+};
+
+export const projectProof = projectProofData satisfies ProjectProof;
+
 export type PublicationSpineStage = {
   name: string;
   purpose: string;
@@ -309,6 +331,19 @@ export const approvedKnowledge = [
     dimension.evidence,
     dimension.gap,
     dimension.nextProof
+  ]),
+  projectProof.title,
+  projectProof.principle,
+  ...projectProof.items.flatMap((item) => [
+    item.slug,
+    item.claim,
+    item.visibleArtifact,
+    ...item.inspectionPath,
+    item.evidence,
+    item.limitation,
+    item.nextProof,
+    item.reviewQuestion,
+    ...item.related
   ]),
   ...products.flatMap((product) => [
     product.name,

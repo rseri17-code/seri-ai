@@ -1030,6 +1030,22 @@
       "result": "Pass"
     },
     {
+      "prompt": "Where can I review project proof and what each public project does not prove?",
+      "expected": "Route to Work and explain the project proof ledger without inferring private production outcomes.",
+      "requiredAnswerIncludes": [
+        "Project proof ledger",
+        "what each public project proves",
+        "what it does not prove",
+        "Operations Room",
+        "Ask Ravikanth",
+        "Transaction Graph Explorer",
+        "AI Evaluation Workbench",
+        "without inferring private production outcomes",
+        "/work"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Where can I inspect Sentinalai and Ravikanth's public GitHub work without overclaiming?",
       "expected": "Route to Work, public profile links, and public-code boundaries without inventing metrics.",
       "requiredAnswerIncludes": [
@@ -1049,6 +1065,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 93,
-  "passingFixtures": 93
+  "fixtureCount": 94,
+  "passingFixtures": 94
 }

@@ -142,6 +142,14 @@ const cases = [
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },
   {
+    query: "Where can I review project proof and what each public project does not prove?",
+    expectedFirstUrl: "/work"
+  },
+  {
+    query: "Show the inspectable project evidence ledger for Operations Room Ask Ravikanth Transaction Graph Explorer and AI Evaluation Workbench.",
+    expectedFirstUrl: "/work"
+  },
+  {
     query: "Where are the market signals for ops for observability and observability for AI?",
     expectedFirstUrl: "/radar"
   },

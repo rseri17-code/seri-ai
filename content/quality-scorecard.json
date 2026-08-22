@@ -69,10 +69,10 @@
     },
     {
       "name": "Work / Project Proof",
-      "score": 7.9,
-      "evidence": "Work, Projects, Artifacts, GitHub references, Sentinalai context, and Operations Room provide inspectable public proof surfaces.",
-      "gap": "Public repository and project evidence still need deeper runnable examples, walkthroughs, or independent review.",
-      "nextProof": "Improve the most representative public repository README and connect it to the relevant doctrine and patterns."
+      "score": 8.2,
+      "evidence": "Work, Projects, Artifacts, GitHub references, Sentinalai context, Operations Room, and the Public Project Proof Ledger now state what each project proves, what can be inspected, what it does not prove, and the next proof needed.",
+      "gap": "Project claims now have public-safe proof boundaries, but the public repositories still need deeper runnable examples, reviewer walkthroughs, or independent implementation feedback.",
+      "nextProof": "Improve the most representative public repository README and run the project proof review questions against external reviewers without inventing private metrics."
     },
     {
       "name": "Knowledge-Graph Health",
@@ -84,14 +84,14 @@
     {
       "name": "Ask Ravi",
       "score": 8.1,
-      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, and 93 passing fixtures.",
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, and 94 passing fixtures.",
       "gap": "No live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
       "nextProof": "Run the live answer rubric and publish qualitative labels without raw prompts or aggregate model-quality scores."
     },
     {
       "name": "Search / Discoverability",
       "score": 8.5,
-      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, proof backlog, and 48 canonical retrieval checks.",
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, and 50 canonical retrieval checks.",
       "gap": "Live search-console evidence and real query behavior are not yet available.",
       "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
     },
