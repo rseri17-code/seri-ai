@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, patterns, principles, projects, resume, site, thesisRadar } from "../content/site";
+import { articles, contentRegistry, patterns, principles, professionalGraph, projects, resume, site, thesisRadar } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -441,7 +441,14 @@ export function buildPublicSourceIndex(): PublicSource[] {
         resume.summary,
         resume.publicProof.flatMap((item) => [item.label, item.value, item.description]).join(". "),
         resume.strengths.join(". "),
-        resume.architectureHighlights.join(". ")
+        resume.architectureHighlights.join(". "),
+        professionalGraph.identity.throughline,
+        professionalGraph.identity.currentFocus,
+        professionalGraph.identity.publicBoundary,
+        professionalGraph.careerEvolution.flatMap((stage) => [stage.period, stage.stage, stage.summary, stage.explains]).join(". "),
+        professionalGraph.capabilityEvidence.flatMap((item) => [item.capability, item.proof, item.href]).join(". "),
+        professionalGraph.architectThesis.join(". "),
+        professionalGraph.relationships.flatMap((item) => [item.from, item.relation, item.to]).join(". ")
       ].join(". "),
       url: "/work",
       type: "registry" as const,

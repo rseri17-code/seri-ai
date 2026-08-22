@@ -58,6 +58,10 @@ const cases = [
     expectedFirstUrl: "/work"
   },
   {
+    query: "How did Ravikanth's career evolve from enterprise infrastructure to production AI systems and Operational Intelligence?",
+    expectedFirstUrl: "/work"
+  },
+  {
     query: "Where are the market signals for ops for observability and observability for AI?",
     expectedFirstUrl: "/radar"
   },
