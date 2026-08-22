@@ -23,6 +23,7 @@ import qualityScorecardData from "./quality-scorecard.json";
 import visitorReviewKitData from "./visitor-review-kit.json";
 import practitionerReviewPacketData from "./practitioner-review-packet.json";
 import identityAssetData from "./identity-asset.json";
+import portraitIntakeData from "./portrait-intake.json";
 import mobileTouchWalkthroughsData from "./mobile-touch-walkthroughs.json";
 import contentRegistryData from "./content-registry.json";
 import harnessThesisData from "./harness-thesis.json";
@@ -293,6 +294,7 @@ export type IdentityAsset = {
 };
 
 export const identityAsset = identityAssetData satisfies IdentityAsset;
+export const portraitIntake = portraitIntakeData;
 
 export type MobileTouchWalkthroughRoute = {
   route: string;
@@ -523,6 +525,17 @@ export const approvedKnowledge = [
   identityAsset.purpose,
   ...identityAsset.usage,
   ...identityAsset.limitations,
+  portraitIntake.title,
+  portraitIntake.status,
+  portraitIntake.evidenceLevel,
+  portraitIntake.purpose,
+  portraitIntake.publicationRule,
+  portraitIntake.targetAsset.preferredPath,
+  portraitIntake.targetAsset.fallbackPath,
+  portraitIntake.targetAsset.displayAlt,
+  ...portraitIntake.acceptanceCriteria,
+  ...portraitIntake.doNotUse,
+  ...portraitIntake.validationPlan,
   mobileTouchWalkthroughs.title,
   mobileTouchWalkthroughs.viewport,
   mobileTouchWalkthroughs.evidenceLevel,

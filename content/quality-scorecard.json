@@ -7,9 +7,9 @@
     {
       "name": "Professional Representation",
       "score": 8.8,
-      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, contact paths, the First-Time Visitor Review Kit, Practitioner Review Packet, durable first-viewport screenshots, and a durable non-photographic public identity mark make Ravikanth Seri visible as the author and engineer behind the work.",
+      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, contact paths, the First-Time Visitor Review Kit, Practitioner Review Packet, portrait intake contract, durable first-viewport screenshots, and a durable non-photographic public identity mark make Ravikanth Seri visible as the author and engineer behind the work.",
       "gap": "An approved portrait photo and completed external first-impression review are still missing, so the person-work-evidence path is not yet independently validated.",
-      "nextProof": "Add the approved portrait photo when available, then run the Practitioner Review Packet with external reviewers at mobile, tablet, and desktop widths."
+      "nextProof": "Add the approved portrait photo through /identity/portrait-intake.md when available, then run the Practitioner Review Packet with external reviewers at mobile, tablet, and desktop widths."
     },
     {
       "name": "Career Clarity",
@@ -84,14 +84,14 @@
     {
       "name": "Ask Ravi",
       "score": 8.3,
-      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, visitor-review routing, practitioner-review routing, visual-QA routing, identity-asset routing, mobile-touch evidence routing, Ask live review packet routing, and 102 passing fixtures.",
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, visitor-review routing, practitioner-review routing, visual-QA routing, identity-asset and portrait-intake routing, mobile-touch evidence routing, Ask live review packet routing, and 103 passing fixtures.",
       "gap": "A controlled Ask live review packet exists, but no live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
       "nextProof": "Run the Ask live review packet and publish qualitative labels without raw prompts or aggregate model-quality scores."
     },
     {
       "name": "Search / Discoverability",
       "score": 8.5,
-      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, visitor review, practitioner review, visual QA, identity asset, mobile touch walkthroughs, Ask live review packet, and 62 canonical retrieval checks.",
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, visitor review, practitioner review, visual QA, identity asset, portrait intake, mobile touch walkthroughs, Ask live review packet, and 63 canonical retrieval checks.",
       "gap": "Live search-console evidence and real query behavior are not yet available.",
       "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
     },

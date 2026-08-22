@@ -1,0 +1,40 @@
+{
+  "title": "Ravikanth Seri Approved Portrait Intake",
+  "updatedAt": "2026-08-22",
+  "status": "waiting_for_approved_source_image",
+  "evidenceLevel": "Intake contract exists; no approved durable portrait file is currently present in the repository.",
+  "purpose": "Define the public-safe requirements for adding a real portrait of Ravikanth Seri without weakening provenance, accessibility, performance, or professional tone.",
+  "targetAsset": {
+    "preferredPath": "/identity/ravikanth-seri-portrait.webp",
+    "fallbackPath": "/identity/ravikanth-seri-portrait.jpg",
+    "minimumSourceSize": "800x800",
+    "displayAlt": "Portrait of Ravikanth Seri",
+    "usage": "Use as a supportive identity signal on professional-orientation surfaces only; do not let the portrait replace evidence, work, or technical artifacts."
+  },
+  "acceptanceCriteria": [
+    "Source image is explicitly approved by Ravikanth Seri for public use on seri.ai.",
+    "Source image is durable, not a disappearing temporary upload path.",
+    "Image does not include employer logos, badges, confidential screens, internal offices, customer material, or proprietary context.",
+    "Crop keeps the face clear, professional, and not overly stylized.",
+    "Optimized output is under 250 KB unless a future visual QA pass justifies a larger asset.",
+    "Alt text names Ravikanth Seri plainly without promotional language.",
+    "The existing non-photographic identity mark remains available as fallback when the portrait is missing."
+  ],
+  "doNotUse": [
+    "unapproved LinkedIn scrape",
+    "temporary clipboard path",
+    "image containing employer branding",
+    "image containing internal screens",
+    "AI-generated replacement portrait",
+    "overly stylized glamour crop",
+    "asset with unclear public-use permission"
+  ],
+  "publicationRule": "Do not publish a portrait file until the source image is durable and explicitly approved. Until then, keep the public identity mark as the canonical visual anchor and keep the missing portrait gap visible.",
+  "validationPlan": [
+    "Verify the portrait file exists at the approved public path.",
+    "Verify dimensions, file size, alt text, and public-safe source note.",
+    "Run visual QA at mobile, tablet, and desktop widths.",
+    "Run public-safety scan and rendered-route validation.",
+    "Update the scorecard only after the portrait renders in the professional identity surfaces."
+  ]
+}

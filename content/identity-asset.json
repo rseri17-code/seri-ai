@@ -11,7 +11,7 @@
   ],
   "limitations": [
     "This is not a portrait photo.",
-    "A real approved portrait can still improve first-impression trust when a durable source image is available.",
+    "A real approved portrait can still improve first-impression trust when a durable source image is available; use /identity/portrait-intake.md as the intake and validation contract.",
     "The mark should support the person-work-evidence path and does not replace career evidence or public proof."
   ]
 }

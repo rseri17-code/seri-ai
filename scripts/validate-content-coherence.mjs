@@ -761,9 +761,11 @@ for (const required of [
   "touch-notes-captured",
   "source-validated mobile touch walkthrough",
   "physical-device checks",
-  "identity-mark-present",
-  "durable non-photographic public identity mark now exists",
-  "approved portrait photo when available",
+  "portrait-intake-ready",
+  "durable non-photographic public identity mark",
+  "approved portrait intake contract",
+  "/identity/portrait-intake.md",
+  "approved portrait photo through /identity/portrait-intake.md",
   "/publication-pack/ravikanth-seri-practitioner-review-packet.md",
   "/ideas/oi-room-001-control-comparison",
   "/publication-pack/ask-ravi-live-review-packet.md",
@@ -784,6 +786,7 @@ for (const required of [
   "not a portrait photo",
   "does not imply employer affiliation",
   "does not replace career evidence",
+  "/identity/portrait-intake.md",
   "data-identity-asset"
 ]) {
   expect(identityAssetContractSource.includes(required), `Identity asset missing contract: ${required}`);
@@ -826,6 +829,8 @@ for (const required of [
   "Practitioner Review Packet",
   "Physical-device touch comfort",
   "durable non-photographic public identity mark",
+  "portrait intake contract",
+  "/identity/portrait-intake.md",
   "approved portrait photo",
   "Execute the proof backlog"
 ]) {

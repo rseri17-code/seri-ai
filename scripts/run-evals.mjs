@@ -95,9 +95,16 @@ function inferRelatedArtifacts(question) {
   }
   if (/public identity mark|profile mark|identity mark|durable identity|portrait photo|portrait asset/.test(lower)) {
     artifacts.add("/identity/ravikanth-seri-identity-mark.svg");
+    artifacts.add("/identity/portrait-intake.md");
     artifacts.add("/start-here");
     artifacts.add("/work");
     artifacts.add("/resume");
+  }
+  if (/approved portrait|portrait intake|portrait validation|portrait photo.*available|real portrait|source image|public-use permission/.test(lower)) {
+    artifacts.add("/identity/portrait-intake.md");
+    artifacts.add("/identity/ravikanth-seri-identity-mark.svg");
+    artifacts.add("/background");
+    artifacts.add("/start-here");
   }
   if (/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
@@ -282,7 +289,11 @@ function deterministicFallbackAnswer(question) {
       : "";
   const identityAssetContext =
     /public identity mark|profile mark|identity mark|durable identity|portrait photo|portrait asset/.test(lower)
-      ? " Identity asset: Ravikanth Seri Public Identity Mark is available at /identity/ravikanth-seri-identity-mark.svg. It is a durable public-safe non-photographic identity mark, not a portrait photo, and it supports the person-work-evidence path without replacing career evidence, public proof, or an approved portrait when one is available."
+      ? " Identity asset: Ravikanth Seri Public Identity Mark is available at /identity/ravikanth-seri-identity-mark.svg. It is a durable public-safe non-photographic identity mark, not a portrait photo, and it supports the person-work-evidence path without replacing career evidence, public proof, or an approved portrait when one is available. Portrait intake is defined at /identity/portrait-intake.md."
+      : "";
+  const portraitIntakeContext =
+    /approved portrait|portrait intake|portrait validation|portrait photo.*available|real portrait|source image|public-use permission/.test(lower)
+      ? " Portrait status: /identity/portrait-intake.md defines the approved portrait intake contract. No approved durable portrait file is currently present in the repository. A portrait should not be published until Ravikanth explicitly approves a durable source image, the image avoids employer branding or internal screens, and visual QA verifies the rendered asset."
       : "";
   const qualityScorecardContext =
     /quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lower)
@@ -298,8 +309,8 @@ function deterministicFallbackAnswer(question) {
       : "";
   return [
     asksAboutRavikanth
-      ? `Direct answer: ${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`
-      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`,
+      ? `Direct answer: ${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`
+      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`,
     `Relevant framework layers: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     "Public source: approved public content registry, including the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, framework, and public wiki sources.",
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before presenting the doctrine as credible.",

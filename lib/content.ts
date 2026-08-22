@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, askLiveReviewPacket, contentRegistry, identityAsset, mobileTouchWalkthroughs, nowPage, patterns, practitionerReviewPacket, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
+import { articles, askLiveReviewPacket, contentRegistry, identityAsset, mobileTouchWalkthroughs, nowPage, patterns, portraitIntake, practitionerReviewPacket, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -46,6 +46,18 @@ let publishedWikiNotesCache: WikiNote[] | null = null;
 let publicSourceIndexCache: PublicSource[] | null = null;
 
 const referenceSources = [
+  {
+    id: "reference:ravikanth-seri-portrait-intake",
+    title: "Ravikanth Seri Approved Portrait Intake",
+    description: "Public-safe intake contract for adding an approved portrait without weakening provenance, accessibility, performance, or professional tone.",
+    content:
+      `${portraitIntake.title}. ${portraitIntake.evidenceLevel} Status: ${portraitIntake.status}. Purpose: ${portraitIntake.purpose} Preferred path: ${portraitIntake.targetAsset.preferredPath}. Fallback path: ${portraitIntake.targetAsset.fallbackPath}. Alt text: ${portraitIntake.targetAsset.displayAlt}. Acceptance criteria: ${portraitIntake.acceptanceCriteria.join(". ")}. Do not use: ${portraitIntake.doNotUse.join(", ")}. Publication rule: ${portraitIntake.publicationRule}. Validation plan: ${portraitIntake.validationPlan.join(". ")}.`,
+    url: "/identity/portrait-intake.md",
+    type: "registry" as const,
+    category: "Quality Evidence",
+    tags: ["portrait", "identity", "Ravikanth Seri", "public-safe", "provenance", "accessibility"],
+    assetType: "artifact"
+  },
   {
     id: "reference:ravikanth-seri-practitioner-review-packet",
     title: "Ravikanth Seri Practitioner Review Packet",

@@ -255,7 +255,11 @@ const cases = [
   },
   {
     query: "Is there an approved portrait photo for Ravikanth on seri.ai?",
-    expectedFirstUrl: "/identity/ravikanth-seri-identity-mark.svg"
+    expectedFirstUrl: "/identity/portrait-intake.md"
+  },
+  {
+    query: "Where is the portrait intake and validation contract for Ravikanth's approved source image?",
+    expectedFirstUrl: "/identity/portrait-intake.md"
   }
 ];
 

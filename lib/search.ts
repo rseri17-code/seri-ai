@@ -14,6 +14,7 @@ const touchWalkthroughUrl = "/visual-qa/2026-08-22/mobile-touch-walkthroughs.md"
 const askLiveReviewUrl = "/publication-pack/ask-ravi-live-review-packet.md";
 const practitionerReviewUrl = "/publication-pack/ravikanth-seri-practitioner-review-packet.md";
 const identityAssetUrl = "/identity/ravikanth-seri-identity-mark.svg";
+const portraitIntakeUrl = "/identity/portrait-intake.md";
 const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
 const conformanceProfileUrl = "/publication-pack/operational-intelligence-conformance-profile.md";
 const workUrl = "/work";
@@ -34,6 +35,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/, conformanceProfileUrl],
   [/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset/, evidencePackUrl],
   [/public identity mark|profile mark|ravikanth.*identity mark|where.*identity mark|durable public identity mark|portrait photo|portrait asset/, identityAssetUrl],
+  [/approved portrait|portrait intake|portrait validation|portrait photo.*available|real portrait|source image|public-use permission/, portraitIntakeUrl],
   [/quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target/, evidencePackUrl],
   [/touch walkthrough|mobile touch|tap target|dense interactive route|physical-device|physical device|source-validated mobile/, touchWalkthroughUrl],
   [/ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/, askLiveReviewUrl],
@@ -285,6 +287,8 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         /public identity mark|profile mark|ravikanth.*identity mark|where.*identity mark|durable public identity mark|portrait photo|portrait asset/.test(lowerQuery)
           ? 130
           : 0;
+      const portraitIntakeBoost =
+        source.url === portraitIntakeUrl && /approved portrait|portrait intake|portrait validation|portrait photo.*available|real portrait|source image|public-use permission/.test(lowerQuery) ? 140 : 0;
       const visualQaBoost =
         source.url === visualQaUrl &&
         /(visual qa|mobile qa).*(screenshot|viewport|evidence)|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/.test(lowerQuery)
@@ -375,6 +379,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         productionDeliveryBoost +
         proofBacklogBoost +
         identityAssetBoost +
+        portraitIntakeBoost +
         visualQaBoost +
         touchWalkthroughBoost +
         askLiveReviewBoost +

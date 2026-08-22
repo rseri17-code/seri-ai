@@ -1146,7 +1146,20 @@
         "/identity/ravikanth-seri-identity-mark.svg",
         "not a portrait photo",
         "public-safe",
-        "without replacing career evidence"
+        "without replacing career evidence",
+        "/identity/portrait-intake.md"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Is there an approved portrait photo for Ravikanth on seri.ai?",
+      "expected": "Route to portrait intake and state that no durable approved portrait file is present yet.",
+      "requiredAnswerIncludes": [
+        "Portrait status",
+        "/identity/portrait-intake.md",
+        "No approved durable portrait file is currently present",
+        "explicitly approves a durable source image",
+        "visual QA"
       ],
       "result": "Pass"
     },
@@ -1183,6 +1196,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 102,
-  "passingFixtures": 102
+  "fixtureCount": 103,
+  "passingFixtures": 103
 }
