@@ -8,8 +8,8 @@
       "slug": "practitioner-review",
       "claim": "Experienced operators and architects can understand where Operational Intelligence begins, where it ends, and how to challenge it.",
       "evidenceNeeded": "Structured reviews from SRE, architecture, AI engineering, governance, executive, and product reviewers using the practitioner review form.",
-      "currentEvidence": "The Evidence Pack defines reviewer roles, dimension verdicts, evidence ledger fields, and doctrine impact categories.",
-      "nextProof": "Collect at least five public-safe practitioner reviews that identify strongest claim, weakest claim, evidence needed, and implementation questions.",
+      "currentEvidence": "The Evidence Pack defines reviewer roles, dimension verdicts, evidence ledger fields, and doctrine impact categories, and the First-Time Visitor Review Kit now gives reviewers an explicit path from Start Here to Contact.",
+      "nextProof": "Collect at least five public-safe practitioner or first-time visitor reviews that identify what was clear, what was confusing, strongest claim, weakest claim, evidence needed, and implementation questions.",
       "wouldChange": "If reviewers cannot distinguish the model from observability, AIOps, ITIL, incident command, or chatbot-only assistance, revise the doctrine boundaries.",
       "status": "awaiting-external-evidence",
       "href": "/wiki/operational-intelligence-evidence-pack"
@@ -48,8 +48,8 @@
       "slug": "visual-mobile-qa",
       "claim": "The site feels publication-grade on mobile, tablet, and desktop for first-time executives, engineers, recruiters, and founders.",
       "evidenceNeeded": "Durable screenshots and keyboard walkthrough notes for the homepage, Ask Ravikanth, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack at mobile, tablet, and desktop widths.",
-      "currentEvidence": "Source-level viewport contracts, accessibility validation, rendered-route checks, and performance budgets pass, but fresh screenshot-grade inspection is still incomplete.",
-      "nextProof": "Capture browser screenshots from a reachable local or preview environment, inspect hierarchy and density, and convert any concrete failures into regression checks.",
+      "currentEvidence": "Source-level viewport contracts, accessibility validation, rendered-route checks, performance budgets, and browser-controlled mobile/tablet/desktop route checks pass; durable screenshot artifacts and touch walkthrough notes are still incomplete.",
+      "nextProof": "Preserve browser screenshots from preview or production, inspect hierarchy and density with external reviewers, and convert any concrete failures into regression checks.",
       "wouldChange": "If the Operations Room or homepage still feels like a demo at realistic viewports, reduce visual noise and sharpen first-task clarity without changing the architecture.",
       "status": "needs-browser-evidence",
       "href": "/investigation-room"

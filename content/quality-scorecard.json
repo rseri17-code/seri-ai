@@ -7,16 +7,16 @@
     {
       "name": "Professional Representation",
       "score": 8.6,
-      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, and contact paths make Ravikanth Seri visible as the author and engineer behind the work.",
+      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, contact paths, and the First-Time Visitor Review Kit make Ravikanth Seri visible as the author and engineer behind the work.",
       "gap": "The approved portrait or identity asset is still missing, and fresh first-viewport screenshot evidence is incomplete.",
       "nextProof": "Add an approved durable identity asset and verify the person-work-evidence path at mobile, tablet, and desktop widths."
     },
     {
       "name": "Career Clarity",
-      "score": 8.8,
-      "evidence": "The professional graph and Background route show the arc from enterprise integration through cloud, observability, production AI systems, and Operational Intelligence.",
-      "gap": "The career story is strong in structured content but still needs fresh reviewer feedback from people who know nothing about Ravikanth.",
-      "nextProof": "Run the 17-question visitor success test with external reviewers and record where they become uncertain."
+      "score": 8.9,
+      "evidence": "The professional graph, Background route, Start Here path, and First-Time Visitor Review Kit show the arc from enterprise integration through cloud, observability, production AI systems, and Operational Intelligence.",
+      "gap": "The career story is strong in structured content but still needs completed reviewer feedback from people who know nothing about Ravikanth.",
+      "nextProof": "Run the first-time visitor review kit with external reviewers and record where they become uncertain."
     },
     {
       "name": "Technical Authority",
@@ -62,10 +62,10 @@
     },
     {
       "name": "Evidence Quality",
-      "score": 7.8,
-      "evidence": "Resume provenance, public-code boundaries, doctrine citations, eval fixtures, proof backlog, and evidence-led pages reduce unsupported claims.",
-      "gap": "The strongest remaining evidence is external: practitioner review, benchmark results, live telemetry, and visual QA.",
-      "nextProof": "Execute the proof backlog and update claims only when new evidence supports them."
+      "score": 7.9,
+      "evidence": "Resume provenance, public-code boundaries, doctrine citations, eval fixtures, proof backlog, First-Time Visitor Review Kit, and evidence-led pages reduce unsupported claims.",
+      "gap": "The strongest remaining evidence is external: completed practitioner review, benchmark results, live telemetry, and visual QA artifacts.",
+      "nextProof": "Execute the proof backlog and review kit, then update claims only when new evidence supports them."
     },
     {
       "name": "Work / Project Proof",
@@ -83,15 +83,15 @@
     },
     {
       "name": "Ask Ravi",
-      "score": 8.1,
-      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, and 94 passing fixtures.",
+      "score": 8.2,
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, visitor-review routing, and 95 passing fixtures.",
       "gap": "No live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
       "nextProof": "Run the live answer rubric and publish qualitative labels without raw prompts or aggregate model-quality scores."
     },
     {
       "name": "Search / Discoverability",
       "score": 8.5,
-      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, and 50 canonical retrieval checks.",
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, visitor review, and 52 canonical retrieval checks.",
       "gap": "Live search-console evidence and real query behavior are not yet available.",
       "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
     },
@@ -104,8 +104,8 @@
     },
     {
       "name": "UX",
-      "score": 8.0,
-      "evidence": "Start Here, primary CTAs, proof paths, Ask prompts, related reading, and reference assets provide guided navigation.",
+      "score": 8.1,
+      "evidence": "Start Here, primary CTAs, proof paths, Ask prompts, related reading, reference assets, and the First-Time Visitor Review Kit provide guided navigation.",
       "gap": "The Operations Room and long reference pages still need more observed user-review evidence.",
       "nextProof": "Run a 10-20 minute first-time visitor walkthrough and record where users hesitate."
     },

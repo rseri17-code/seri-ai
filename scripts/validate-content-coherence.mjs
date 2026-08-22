@@ -32,6 +32,7 @@ const professionalGraphContent = fs.readFileSync(path.join(root, "content", "pro
 const nowContent = fs.readFileSync(path.join(root, "content", "now.json"), "utf8");
 const proofBacklogContent = fs.readFileSync(path.join(root, "content", "proof-backlog.json"), "utf8");
 const qualityScorecardContent = fs.readFileSync(path.join(root, "content", "quality-scorecard.json"), "utf8");
+const visitorReviewKitContent = fs.readFileSync(path.join(root, "content", "visitor-review-kit.json"), "utf8");
 const publicCodeContent = fs.readFileSync(path.join(root, "content", "public-code.json"), "utf8");
 const contentRegistryContent = fs.readFileSync(path.join(root, "content", "content-registry.json"), "utf8");
 const normalizedContentRegistryContent = contentRegistryContent.replace(/"([^"]+)":/g, "$1:");
@@ -419,6 +420,12 @@ for (const required of [
   "First read in order",
   "This sequence gives a new visitor the shortest path from person to evidence to doctrine to interactive system.",
   "Serious technical review path",
+  "First-time visitor review kit",
+  "visitorReviewKit.title",
+  "visitorReviewKit.purpose",
+  "visitorReviewKit.principle",
+  "visitorReviewKit.reviewPath.map",
+  "Submit public-safe review",
   "Canonical Doctrine",
   "Reference Architecture",
   "Evidence Pack",
@@ -667,8 +674,12 @@ for (const required of [
 }
 
 const contactPage = fs.readFileSync(path.join(root, "app", "contact", "page.tsx"), "utf8");
+const contactContractSource = [contactPage, visitorReviewKitContent].join("\n");
 for (const required of [
-  "const publicChannels",
+  "visitorReviewKit",
+  "visitorReviewKit.publicChannels",
+  "visitorReviewKit.reviewAssets",
+  "visitorReviewKit.publicSafetyBoundary",
   "https://www.linkedin.com/in/ravikanthseri/",
   "https://github.com/rseri17-code",
   "/work",
@@ -685,7 +696,7 @@ for (const required of [
   "disabled={isSubmittingReview}",
   "Sending review..."
 ]) {
-  expect(contactPage.includes(required), `/contact missing resilient submit contract: ${required}`);
+  expect(contactContractSource.includes(required), `/contact missing resilient submit contract: ${required}`);
 }
 
 const betaFeedback = fs.readFileSync(path.join(root, "components", "beta-feedback.tsx"), "utf8");

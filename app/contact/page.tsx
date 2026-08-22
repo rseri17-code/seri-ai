@@ -3,23 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Section } from "@/components/section";
+import { visitorReviewKit } from "@/content/visitor-review-kit";
 import { captureSafeEvent } from "@/lib/analytics-events";
-
-const reviewKit = [
-  ["/wiki/operational-intelligence-canonical-doctrine", "Canonical Doctrine", "Definitions, boundaries, ten layers, glossary, and claims."],
-  ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Implementation contracts, state machines, data objects, gates, and governance."],
-  ["/wiki/operational-intelligence-publication-pack", "Publication Pack", "Diagrams, comparison tables, decision packet, walkthrough, and shareable PDFs."],
-  ["/wiki/operational-intelligence-evidence-pack", "Evidence Pack", "Benchmarks, control comparisons, falsification criteria, and conformance checklist."],
-  ["/investigation-room", "Operations Room", "Interactive synthetic OI-ROOM-001 walkthrough."],
-  ["/downloads/operational-intelligence-evidence-pack.pdf", "Evidence Pack PDF", "Printable review packet for skeptical evaluation."]
-] as const;
-
-const publicChannels = [
-  ["https://www.linkedin.com/in/ravikanthseri/", "LinkedIn", "Public posts, certifications, and current building signal."],
-  ["https://github.com/rseri17-code", "GitHub", "Public code, experiments, and engineering artifacts."],
-  ["/work", "Work Index", "Systems, frameworks, artifacts, writing, and background in one review path."],
-  ["/wiki/operational-intelligence-evidence-pack", "Evidence Pack", "Benchmarks, review criteria, falsification, and conformance checks."]
-] as const;
 
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
@@ -30,7 +15,7 @@ export default function ContactPage() {
   return (
     <Section eyebrow="Contact" title="Collaborate on Operational Intelligence, AI agents, and enterprise AI systems." level="h1">
       <div className="mx-auto mb-6 grid max-w-6xl gap-3 md:grid-cols-4">
-        {publicChannels.map(([href, label, description]) => (
+        {visitorReviewKit.publicChannels.map(({ href, label, description }) => (
           <Link
             key={href}
             href={href}
@@ -160,7 +145,7 @@ export default function ContactPage() {
           <div className="rounded border border-white/10 bg-ink/70 p-4">
             <h3 className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Review kit</h3>
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              {reviewKit.map(([href, label, description]) => (
+              {visitorReviewKit.reviewAssets.map(({ href, label, description }) => (
                 <Link
                   key={href}
                   href={href}
@@ -172,7 +157,7 @@ export default function ContactPage() {
               ))}
             </div>
             <p className="mt-3 text-xs leading-5 text-slate-400">
-              Ground feedback in evidence. Do not include confidential logs, internal screenshots, proprietary names, private architecture, employer data, or customer data.
+              Ground feedback in evidence. {visitorReviewKit.publicSafetyBoundary}
             </p>
           </div>
           <label className="sr-only" htmlFor="review-name">Name</label>

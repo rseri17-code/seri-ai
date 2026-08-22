@@ -45,6 +45,12 @@ export function inferRelatedArtifacts(question: string) {
   if (/start here|first[- ]time|visitor|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lower)) {
     artifacts.add("/start-here");
   }
+  if (/visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/.test(lower)) {
+    artifacts.add("/start-here");
+    artifacts.add("/contact");
+    artifacts.add("/wiki/operational-intelligence-evidence-pack");
+    artifacts.add("/investigation-room");
+  }
   if (/current focus|currently focused|building now|what.*building|now/.test(lower)) {
     artifacts.add("/now");
   }
@@ -237,6 +243,10 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     /start here|first[- ]time|visitor|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lower)
       ? " Visitor success map: /start-here is the best first stop for the north-star questions that connect Ravikanth Seri's career, public work, current focus, GitHub, LinkedIn, resume, contact path, and Operational Intelligence thesis."
       : "";
+  const visitorReviewContext =
+    /visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/.test(lower)
+      ? " First-Time Visitor Review Kit: /start-here now gives reviewers a path to orient, inspect the person-work link, inspect proof, challenge the thesis, run the Operations Room, and submit public-safe feedback through /contact. Useful feedback should name what was clear, what was confusing, the most memorable idea, strongest and weakest claims, evidence needed, and implementation questions without confidential material."
+      : "";
   const architectureJudgmentContext =
     /architecture judgment|constraints? .*preserve|governed ai action|governed execution|replay evaluation|transaction journeys?|just skills/.test(lower)
       ? " Architecture judgment ledger: the public evidence emphasizes preserving operational evidence before model reasoning, governed execution before AI action, replay and evaluation before trust, transaction journeys before isolated alerts, and public-safe architecture instead of private anecdotes."
@@ -267,7 +277,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}`}`,
+    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",

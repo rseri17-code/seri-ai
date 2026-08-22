@@ -102,6 +102,14 @@ const cases = [
     expectedFirstUrl: "/start-here"
   },
   {
+    query: "Where is the first-time visitor review kit for evaluating whether seri.ai clearly represents Ravikanth?",
+    expectedFirstUrl: "/start-here"
+  },
+  {
+    query: "How can I submit public-safe feedback about what was clear confusing memorable strongest weakest and what evidence would change my mind?",
+    expectedFirstUrl: "/start-here"
+  },
+  {
     query: "Where can I inspect Ravikanth's architecture judgment and the constraints he preserves?",
     expectedFirstUrl: "/work"
   },

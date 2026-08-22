@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
-import { professionalGraph, startHerePaths } from "@/content/site";
+import { professionalGraph, startHerePaths, visitorReviewKit } from "@/content/site";
 import { publicRouteMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = publicRouteMetadata({
@@ -132,6 +132,27 @@ export default function StartHerePage() {
               {label}
             </Link>
           ))}
+        </div>
+      </Card>
+      <Card className="mb-6 border-amber/25 bg-amber/[0.04]">
+        <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber">First-time visitor review kit</p>
+            <h2 className="mt-3 text-2xl font-semibold text-white">{visitorReviewKit.title}</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">{visitorReviewKit.purpose}</p>
+            <p className="mt-4 border-l border-amber/40 pl-4 text-sm leading-6 text-slate-300">{visitorReviewKit.principle}</p>
+            <Link href="/contact" className="mt-5 inline-flex rounded border border-amber/35 px-4 py-3 text-sm font-semibold text-amber hover:border-amber/60">
+              Submit public-safe review
+            </Link>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {visitorReviewKit.reviewPath.map((item) => (
+              <Link key={item.step} href={item.href} className="rounded border border-white/10 bg-black/20 p-3 hover:border-amber/45">
+                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-amber">{item.step}</span>
+                <span className="mt-2 block text-sm leading-6 text-slate-200">{item.question}</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </Card>
       <Card className="mb-6 border-signal/25 bg-signal/[0.04]">

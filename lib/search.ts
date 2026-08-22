@@ -29,6 +29,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/, conformanceProfileUrl],
   [/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset/, evidencePackUrl],
   [/quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target/, evidencePackUrl],
+  [/visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/, startHereUrl],
   [/project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|stronger public project proof/, workUrl],
   [/evidence pack markdown|falsification criteria|reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts/, "/publication-pack/operational-intelligence-evidence-pack.md"],
   [/publication pack pdf|download.*publication|shareable pdf.*diagram/, "/downloads/operational-intelligence-publication-pack.pdf"],
@@ -240,6 +241,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         /start here|visitor|first destination|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lowerQuery)
           ? 85
           : 0;
+      const visitorReviewBoost =
+        source.url === startHereUrl &&
+        /visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/.test(lowerQuery)
+          ? 95
+          : 0;
       const nowBoost =
         source.url === nowUrl &&
         /right now|current focus|currently focused|what.*learning|what.*researching|what.*advancing|research ledger|proof loop|what would change|next proof|trying to prove|trying to gather|current research|what.*building now/.test(lowerQuery) &&
@@ -319,6 +325,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         publicationSpineBoost +
         workBoost +
         startHereBoost +
+        visitorReviewBoost +
         nowBoost +
         directReferenceBoost +
         broadPublicationPackBoost +

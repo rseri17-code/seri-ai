@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar } from "../content/site";
+import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -429,6 +429,34 @@ export function buildPublicSourceIndex(): PublicSource[] {
     }));
 
   const profileSources = [
+    {
+      id: "profile:first-time-visitor-review-kit",
+      title: visitorReviewKit.title,
+      description: "Public-safe first-time visitor and practitioner review protocol for evaluating whether seri.ai clearly represents Ravikanth Seri, the work, and the Operational Intelligence thesis.",
+      content: [
+        visitorReviewKit.title,
+        visitorReviewKit.purpose,
+        visitorReviewKit.principle,
+        visitorReviewKit.publicSafetyBoundary,
+        "first-time visitor review kit. visitor feedback. practitioner review. what was clear. what was confusing. most memorable idea. strongest claim. weakest claim. evidence needed. implementation question. submit public-safe review.",
+        visitorReviewKit.reviewPath.flatMap((item) => [item.step, item.href, item.question]).join(". "),
+        visitorReviewKit.reviewQuestions.join(". "),
+        visitorReviewKit.reviewAssets.flatMap((item) => [item.href, item.label, item.description]).join(". "),
+        visitorReviewKit.publicChannels.flatMap((item) => [item.href, item.label, item.description]).join(". ")
+      ].join(". "),
+      url: "/start-here",
+      type: "registry" as const,
+      category: "evidence",
+      tags: ["visitor review", "first-time visitor", "practitioner review", "feedback", "public-safe", "proof loop"],
+      author: "Ravikanth Seri",
+      assetType: "evidence",
+      date: visitorReviewKit.updatedAt,
+      frameworkLayers: ["Evidence Layer", "Evaluation Layer", "Learning Layer", "Operator Layer"],
+      principles: ["Evidence before conclusions"],
+      patterns: ["/patterns/evaluation-and-replay", "/patterns/evidence-driven-rca", "/patterns/human-in-the-loop-operational-ai"],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
     {
       id: "profile:operational-intelligence-publication-spine",
       title: publicationSpine.title,

@@ -24,6 +24,7 @@ const projectProofPath = path.join(root, "content", "project-proof.json");
 const publicationSpinePath = path.join(root, "content", "publication-spine.json");
 const proofBacklogPath = path.join(root, "content", "proof-backlog.json");
 const qualityScorecardPath = path.join(root, "content", "quality-scorecard.json");
+const visitorReviewKitPath = path.join(root, "content", "visitor-review-kit.json");
 const contentRegistryPath = path.join(root, "content", "content-registry.json");
 const harnessThesisPath = path.join(root, "content", "harness-thesis.json");
 const canonicalDefinitionPath = path.join(root, "content", "canonical-definition.json");
@@ -66,6 +67,9 @@ const requiredProofBacklogFields = ["title", "summary", "updatedAt", "principle"
 const requiredProofBacklogItemFields = ["slug", "claim", "evidenceNeeded", "currentEvidence", "nextProof", "wouldChange", "status", "href"];
 const requiredQualityScorecardFields = ["title", "updatedAt", "scale", "rule", "dimensions"];
 const requiredQualityScorecardDimensionFields = ["name", "score", "evidence", "gap", "nextProof"];
+const requiredVisitorReviewKitFields = ["title", "updatedAt", "purpose", "principle", "reviewPath", "reviewQuestions", "reviewAssets", "publicChannels", "publicSafetyBoundary"];
+const requiredVisitorReviewPathFields = ["step", "href", "question"];
+const requiredVisitorReviewAssetFields = ["href", "label", "description"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
@@ -641,6 +645,55 @@ for (const pathItem of startHerePaths) {
       if (!String(route).startsWith("/")) {
         errors.push(`${owner}: ${field} entry must be an absolute route`);
       }
+    }
+  }
+}
+
+const visitorReviewKit = requireJsonObject(visitorReviewKitPath, "content/visitor-review-kit.json");
+validateRequiredFields("content/visitor-review-kit.json", visitorReviewKit, requiredVisitorReviewKitFields, { requireSlug: false });
+if (!/^\d{4}-\d{2}-\d{2}$/.test(visitorReviewKit.updatedAt ?? "")) {
+  errors.push("content/visitor-review-kit.json: updatedAt must be YYYY-MM-DD");
+}
+if (!/clear|confusing|evidence|strongest|change/i.test(`${visitorReviewKit.purpose ?? ""} ${visitorReviewKit.principle ?? ""}`)) {
+  errors.push("content/visitor-review-kit.json: purpose and principle must preserve evidence-oriented first-time review language");
+}
+if (!/confidential|logs|screenshots|proprietary|customer data|private architecture/i.test(visitorReviewKit.publicSafetyBoundary ?? "")) {
+  errors.push("content/visitor-review-kit.json: publicSafetyBoundary must block confidential review submissions");
+}
+if (!Array.isArray(visitorReviewKit.reviewPath) || visitorReviewKit.reviewPath.length < 6) {
+  errors.push("content/visitor-review-kit.json: reviewPath must include at least six review steps");
+} else {
+  for (const item of visitorReviewKit.reviewPath) {
+    validateRequiredFields("content/visitor-review-kit.json", item, requiredVisitorReviewPathFields, { requireSlug: false });
+    const owner = `content/visitor-review-kit.json:reviewPath:${item.step ?? "unknown"}`;
+    if (!String(item.href ?? "").startsWith("/")) {
+      errors.push(`${owner}: href must be an internal review route`);
+    }
+    if (!String(item.question ?? "").includes("?") || String(item.question ?? "").length < 80) {
+      errors.push(`${owner}: question must be a substantial reviewer question`);
+    }
+  }
+}
+if (!Array.isArray(visitorReviewKit.reviewQuestions) || visitorReviewKit.reviewQuestions.length < 10) {
+  errors.push("content/visitor-review-kit.json: reviewQuestions must include at least ten first-time visitor questions");
+}
+if (!Array.isArray(visitorReviewKit.reviewAssets) || visitorReviewKit.reviewAssets.length < 6) {
+  errors.push("content/visitor-review-kit.json: reviewAssets must include at least six review assets");
+} else {
+  for (const item of visitorReviewKit.reviewAssets) {
+    validateRequiredFields("content/visitor-review-kit.json", item, requiredVisitorReviewAssetFields, { requireSlug: false });
+    if (!String(item.href ?? "").startsWith("/")) {
+      errors.push(`content/visitor-review-kit.json:reviewAssets:${item.label ?? "unknown"} href must be internal`);
+    }
+  }
+}
+if (!Array.isArray(visitorReviewKit.publicChannels) || visitorReviewKit.publicChannels.length < 4) {
+  errors.push("content/visitor-review-kit.json: publicChannels must include at least four public channels");
+} else {
+  for (const item of visitorReviewKit.publicChannels) {
+    validateRequiredFields("content/visitor-review-kit.json", item, requiredVisitorReviewAssetFields, { requireSlug: false });
+    if (!String(item.href ?? "").startsWith("/") && !String(item.href ?? "").startsWith("https://")) {
+      errors.push(`content/visitor-review-kit.json:publicChannels:${item.label ?? "unknown"} href must be internal or https`);
     }
   }
 }

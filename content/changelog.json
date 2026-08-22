@@ -2,11 +2,12 @@
   {
     "version": "v0.8",
     "date": "2026-08-22",
-    "title": "Added governed quality scorecard, graph health gate, project proof ledger, and viewport QA",
-    "description": "seri.ai now tracks the 24-dimension 10/10 target with non-inflated evidence-based scores, validates knowledge-graph health as a release gate, exposes a public project proof ledger, and records browser-controlled viewport QA that tightened mobile rhythm, Radar typography, and Ask prompt containment.",
+    "title": "Added governed scorecard, graph health, proof ledgers, review kit, and viewport QA",
+    "description": "seri.ai now tracks the 24-dimension 10/10 target with non-inflated evidence-based scores, validates knowledge-graph health as a release gate, exposes public project proof and first-time visitor review ledgers, and records browser-controlled viewport QA that tightened mobile rhythm, Radar typography, and Ask prompt containment.",
     "tags": [
       "quality-scorecard",
       "knowledge-graph",
+      "visitor-review",
       "governance",
       "validation"
     ]

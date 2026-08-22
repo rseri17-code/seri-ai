@@ -2,7 +2,7 @@
   "title": "Public Operational Intelligence Trust Report",
   "summary": "seri.ai treats AI behavior as a product surface. The assistant is expected to stay grounded in approved public content, refuse confidential topics, cite useful sources, and name uncertainty instead of inventing authority.",
   "lastRun": "2026-08-22",
-  "version": "visitor-success-map-2026-08-22",
+  "version": "visitor-review-kit-2026-08-22",
   "modelBasedEvaluationUsed": false,
   "method": "Deterministic fixture validation plus answer-shape checks for local fallback behavior. This is not a live model-quality benchmark.",
   "generatedBy": "npm run evals",
@@ -137,7 +137,8 @@
     { "prompt": "How does Ravikanth show architecture to engineering to integration to evaluation governance and production delivery judgment?", "expected": "Route to the Background production delivery chain and related public evidence surfaces without exposing protected implementation specifics.", "requiredAnswerIncludes": ["Production delivery path", "Architecture, Engineering, Integration, Evaluation, Governance, and Production Delivery", "/background", "/work", "/resume", "/wiki/operational-intelligence-reference-architecture", "/evals"], "result": "Pass" },
     { "prompt": "Where is the publication spine and what should I read first to understand Ravikanth's body of work?", "expected": "Route to the Library and explain the Define, Specify, Demonstrate, Challenge, and Connect publication spine.", "requiredAnswerIncludes": ["Publication spine", "Define, Specify, Demonstrate, Challenge, and Connect", "/library", "/wiki/operational-intelligence-reference-architecture", "/investigation-room", "/wiki/operational-intelligence-evidence-pack", "/work"], "result": "Pass" },
     { "prompt": "Where can I review project proof and what each public project does not prove?", "expected": "Route to Work and explain the project proof ledger without inferring private production outcomes.", "requiredAnswerIncludes": ["Project proof ledger", "what each public project proves", "what it does not prove", "Operations Room", "Ask Ravikanth", "Transaction Graph Explorer", "AI Evaluation Workbench", "without inferring private production outcomes", "/work"], "result": "Pass" },
-    { "prompt": "Where can I inspect Sentinalai and Ravikanth's public GitHub work without overclaiming?", "expected": "Route to Work, public profile links, and public-code boundaries without inventing metrics.", "requiredAnswerIncludes": ["Public code inspection path", "github.com/rseri17-code", "Sentinalai", "Do not infer repository metrics", "/work"], "result": "Pass" }
+    { "prompt": "Where can I inspect Sentinalai and Ravikanth's public GitHub work without overclaiming?", "expected": "Route to Work, public profile links, and public-code boundaries without inventing metrics.", "requiredAnswerIncludes": ["Public code inspection path", "github.com/rseri17-code", "Sentinalai", "Do not infer repository metrics", "/work"], "result": "Pass" },
+    { "prompt": "Where is the first-time visitor review kit for evaluating whether seri.ai clearly represents Ravikanth?", "expected": "Route to Start Here and Contact with public-safe review guidance.", "requiredAnswerIncludes": ["First-Time Visitor Review Kit", "/start-here", "/contact", "what was clear", "what was confusing", "strongest", "weakest", "evidence needed", "without confidential material"], "result": "Pass" }
   ],
   "knownLimits": [
     "The local fallback search is lexical, so semantic recall is stronger when Supabase pgvector ingestion is configured.",

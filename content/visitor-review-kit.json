@@ -1,0 +1,105 @@
+{
+  "title": "First-Time Visitor Review Kit",
+  "updatedAt": "2026-08-22",
+  "purpose": "Convert subjective first impressions into public-safe evidence about whether seri.ai clearly represents Ravikanth Seri, his work, and the Operational Intelligence thesis.",
+  "principle": "A serious review should identify what became clear, what stayed confusing, what evidence was inspected, what claim felt strongest, and what evidence would change the reviewer's mind.",
+  "reviewPath": [
+    {
+      "step": "Orient",
+      "href": "/start-here",
+      "question": "Can a first-time visitor explain who Ravikanth Seri is and why this site exists within three minutes?"
+    },
+    {
+      "step": "Inspect the person-work link",
+      "href": "/background",
+      "question": "Can the visitor connect Ravikanth's enterprise systems background to the current Operational Intelligence work without relying on self-promotion?"
+    },
+    {
+      "step": "Inspect proof",
+      "href": "/work",
+      "question": "Can the visitor identify what has been built, what is public-safe to inspect, and what should not be inferred?"
+    },
+    {
+      "step": "Challenge the thesis",
+      "href": "/wiki/operational-intelligence-evidence-pack",
+      "question": "Can the visitor name the evidence that would strengthen or weaken the Operational Intelligence model?"
+    },
+    {
+      "step": "Run the artifact",
+      "href": "/investigation-room",
+      "question": "Does OI-ROOM-001 make evidence, contradiction, missing context, hypothesis movement, and human approval clearer than a generic demo?"
+    },
+    {
+      "step": "Submit public-safe feedback",
+      "href": "/contact",
+      "question": "Can the reviewer submit useful feedback with public-safe boundaries and without exposing protected operational material?"
+    }
+  ],
+  "reviewQuestions": [
+    "What was clear after the first three minutes?",
+    "What was still confusing after the first three minutes?",
+    "Which idea was most memorable?",
+    "Which public artifact did you inspect before forming an opinion?",
+    "Which claim felt strongest, and why?",
+    "Which claim would you challenge first?",
+    "What evidence would change your mind?",
+    "What would block a real implementation?",
+    "Would you describe the site as Ravikanth Seri's public professional operating system, an Operational Intelligence reference, or something else?",
+    "Did any page feel like a demo rather than a durable technical reference?"
+  ],
+  "reviewAssets": [
+    {
+      "href": "/wiki/operational-intelligence-canonical-doctrine",
+      "label": "Canonical Doctrine",
+      "description": "Definitions, boundaries, ten layers, glossary, and claims."
+    },
+    {
+      "href": "/wiki/operational-intelligence-reference-architecture",
+      "label": "Reference Architecture",
+      "description": "Implementation contracts, state machines, data objects, gates, and governance."
+    },
+    {
+      "href": "/wiki/operational-intelligence-publication-pack",
+      "label": "Publication Pack",
+      "description": "Diagrams, comparison tables, decision packet, walkthrough, and shareable PDFs."
+    },
+    {
+      "href": "/wiki/operational-intelligence-evidence-pack",
+      "label": "Evidence Pack",
+      "description": "Benchmarks, control comparisons, falsification criteria, and conformance checklist."
+    },
+    {
+      "href": "/investigation-room",
+      "label": "Operations Room",
+      "description": "Interactive synthetic OI-ROOM-001 walkthrough."
+    },
+    {
+      "href": "/downloads/operational-intelligence-evidence-pack.pdf",
+      "label": "Evidence Pack PDF",
+      "description": "Printable review packet for skeptical evaluation."
+    }
+  ],
+  "publicChannels": [
+    {
+      "href": "https://www.linkedin.com/in/ravikanthseri/",
+      "label": "LinkedIn",
+      "description": "Public posts, certifications, and current building signal."
+    },
+    {
+      "href": "https://github.com/rseri17-code",
+      "label": "GitHub",
+      "description": "Public code, experiments, and engineering artifacts."
+    },
+    {
+      "href": "/work",
+      "label": "Work Index",
+      "description": "Systems, frameworks, artifacts, writing, and background in one review path."
+    },
+    {
+      "href": "/wiki/operational-intelligence-evidence-pack",
+      "label": "Evidence Pack",
+      "description": "Benchmarks, review criteria, falsification, and conformance checks."
+    }
+  ],
+  "publicSafetyBoundary": "Do not include confidential logs, internal screenshots, proprietary names, private architecture, employer data, customer data, credentials, or unpublished operational metrics."
+}

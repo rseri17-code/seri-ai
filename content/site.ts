@@ -19,6 +19,7 @@ import projectProofData from "./project-proof.json";
 import publicationSpineData from "./publication-spine.json";
 import proofBacklogData from "./proof-backlog.json";
 import qualityScorecardData from "./quality-scorecard.json";
+import visitorReviewKitData from "./visitor-review-kit.json";
 import contentRegistryData from "./content-registry.json";
 import harnessThesisData from "./harness-thesis.json";
 import canonicalDefinitionData from "./canonical-definition.json";
@@ -249,6 +250,32 @@ export type QualityScorecard = {
 
 export const qualityScorecard = qualityScorecardData satisfies QualityScorecard;
 
+export type VisitorReviewKit = {
+  title: string;
+  updatedAt: string;
+  purpose: string;
+  principle: string;
+  reviewPath: Array<{
+    step: string;
+    href: string;
+    question: string;
+  }>;
+  reviewQuestions: string[];
+  reviewAssets: Array<{
+    href: string;
+    label: string;
+    description: string;
+  }>;
+  publicChannels: Array<{
+    href: string;
+    label: string;
+    description: string;
+  }>;
+  publicSafetyBoundary: string;
+};
+
+export const visitorReviewKit = visitorReviewKitData satisfies VisitorReviewKit;
+
 export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
 export type ContentStatus = "published" | "planned" | "draft";
 
@@ -332,6 +359,14 @@ export const approvedKnowledge = [
     dimension.gap,
     dimension.nextProof
   ]),
+  visitorReviewKit.title,
+  visitorReviewKit.purpose,
+  visitorReviewKit.principle,
+  visitorReviewKit.publicSafetyBoundary,
+  ...visitorReviewKit.reviewPath.flatMap((item) => [item.step, item.href, item.question]),
+  ...visitorReviewKit.reviewQuestions,
+  ...visitorReviewKit.reviewAssets.flatMap((item) => [item.href, item.label, item.description]),
+  ...visitorReviewKit.publicChannels.flatMap((item) => [item.href, item.label, item.description]),
   projectProof.title,
   projectProof.principle,
   ...projectProof.items.flatMap((item) => [

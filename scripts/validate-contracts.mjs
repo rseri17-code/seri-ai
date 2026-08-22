@@ -29,6 +29,7 @@ function expectFile(relativePath) {
 
 const contactRoutePath = "app/api/contact/route.ts";
 const contactPagePath = "app/contact/page.tsx";
+const visitorReviewKitPath = "content/visitor-review-kit.json";
 const evidenceWikiPath = "content/wiki/operational-intelligence-evidence-pack.mdx";
 const evidenceArtifactPath = "public/publication-pack/operational-intelligence-evidence-pack.md";
 const pdfScriptPath = "scripts/generate-publication-pdfs.py";
@@ -46,6 +47,7 @@ const aiPath = "lib/ai.ts";
 
 const contactRoute = read(contactRoutePath);
 const contactPage = read(contactPagePath);
+const visitorReviewKit = read(visitorReviewKitPath);
 const evidenceWiki = read(evidenceWikiPath);
 const evidenceArtifact = read(evidenceArtifactPath);
 const pdfScript = read(pdfScriptPath);
@@ -79,7 +81,7 @@ expectIncludes(contactRoutePath, contactRoute, [
   "Practitioner review"
 ]);
 
-expectIncludes(contactPagePath, contactPage, [
+expectIncludes(contactPagePath, [contactPage, visitorReviewKit].join("\n"), [
   "Practitioner review",
   "Review kit",
   "practitioner-review",
