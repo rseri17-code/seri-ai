@@ -1,5 +1,17 @@
 [
   {
+    "version": "v0.8",
+    "date": "2026-08-22",
+    "title": "Added governed quality scorecard and graph health gate",
+    "description": "seri.ai now tracks the 24-dimension 10/10 target with non-inflated evidence-based scores and validates knowledge-graph health as a release gate across assets, relationships, layers, registry links, patterns, principles, and professional evidence connectivity.",
+    "tags": [
+      "quality-scorecard",
+      "knowledge-graph",
+      "governance",
+      "validation"
+    ]
+  },
+  {
     "version": "v0.7",
     "date": "2026-07-25",
     "title": "Added publication-ready Operational Intelligence reference assets",

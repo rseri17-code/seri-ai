@@ -567,7 +567,9 @@
     ],
     "relatedPatterns": [],
     "relatedArtifacts": [
-      "/resume"
+      "/resume",
+      "/work",
+      "/start-here"
     ],
     "relatedProducts": [],
     "relatedLibraryAssets": [],

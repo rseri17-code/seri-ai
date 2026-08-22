@@ -76,10 +76,10 @@
     },
     {
       "name": "Knowledge-Graph Health",
-      "score": 8.3,
-      "evidence": "Content registry, professional graph, publishing index, related assets, search, and validators enforce many relationships.",
-      "gap": "The graph still lacks a recurring formal redundancy, orphan, and stale-fact health report.",
-      "nextProof": "Add a repeatable knowledge-graph health validator that checks orphaned assets, duplicate concepts, and missing evidence links."
+      "score": 8.6,
+      "evidence": "Content registry, professional graph, publishing index, related assets, search, and a repeatable knowledge-graph health validator now check 63 assets, 8038 relationships, 10 layers, 15 registry items, 10 patterns, and 10 principles.",
+      "gap": "The graph health gate now has automated orphan, relationship, duplicate-concept, and layer-coverage checks, but still needs periodic editorial review as the corpus grows and new external evidence arrives.",
+      "nextProof": "Run the knowledge-graph health validator after every publishing change and add reviewer-driven stale-fact or redundancy findings when real content growth exposes them."
     },
     {
       "name": "Ask Ravi",
