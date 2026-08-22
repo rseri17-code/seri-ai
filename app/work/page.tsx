@@ -205,6 +205,37 @@ export default function WorkPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Public code inspection" title="GitHub is useful only when the inspection rules are explicit.">
+        <div className="grid gap-4 lg:grid-cols-[0.88fr_1.12fr]">
+          <Card className="border-mint/25 bg-mint/[0.045]">
+            <GitBranch className="mb-5 text-mint" />
+            <h2 className="text-3xl font-semibold text-white">Sentinalai is treated as public architecture signal, not private production proof.</h2>
+            <p className="mt-4 text-base leading-7 text-slate-300">
+              The authorized public repository reference gives reviewers concrete public structure to inspect: agent roles,
+              investigation skills, playbooks, eval scenarios, receipt-shaped artifacts, memory, and architecture notes.
+            </p>
+            <div className="mt-5 grid gap-3">
+              {publicCode.observedPublicStructure.map((item) => (
+                <p key={item} className="rounded border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-slate-200">
+                  {item}
+                </p>
+              ))}
+            </div>
+          </Card>
+          <div className="grid gap-3 md:grid-cols-2">
+            {publicCode.reviewRubric.slice(0, 3).map((item) => (
+              <Card key={item.question} className="p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Review question</p>
+                <h3 className="mt-3 font-semibold leading-6 text-white">{item.question}</h3>
+                <p className="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-mint">Look for</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{item.lookFor}</p>
+                <p className="mt-3 text-xs leading-5 text-amber">{item.doNotInfer}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       <Section eyebrow="Project proof" title="Each project states what can be inspected and what should not be inferred.">
         <Card className="border-signal/25 bg-signal/[0.045]">
           <p className="max-w-4xl text-sm leading-6 text-slate-300">

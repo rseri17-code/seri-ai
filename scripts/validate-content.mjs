@@ -58,7 +58,7 @@ const requiredChangelogFields = ["version", "date", "title", "description", "tag
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
 const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "architectureJudgment", "productionDelivery", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "visitorSuccessQuestions", "relationships"];
 const requiredProductionDeliveryFields = ["stage", "responsibility", "publicEvidence", "reviewQuestion", "href"];
-const requiredPublicCodeFields = ["title", "summary", "entries"];
+const requiredPublicCodeFields = ["title", "summary", "reviewRubric", "observedPublicStructure", "entries"];
 const requiredPublicCodeEntryFields = ["label", "href", "status", "whatToInspect", "publicSafeUse", "proofBoundary", "related"];
 const requiredProjectProofFields = ["title", "updatedAt", "principle", "items"];
 const requiredProjectProofItemFields = ["slug", "claim", "visibleArtifact", "inspectionPath", "evidence", "limitation", "nextProof", "reviewQuestion", "related"];
@@ -1180,6 +1180,26 @@ if (!JSON.stringify(professionalGraph).includes("Ask Ravikanth") || !JSON.string
 
 const publicCode = requireJsonObject(publicCodePath, "content/public-code.json");
 validateRequiredFields("content/public-code.json", publicCode, requiredPublicCodeFields, { requireSlug: false });
+if (!Array.isArray(publicCode.reviewRubric) || publicCode.reviewRubric.length < 4) {
+  errors.push("content/public-code.json: reviewRubric must include at least four public-code review questions");
+} else {
+  for (const item of publicCode.reviewRubric) {
+    const owner = `content/public-code.json:reviewRubric:${item.question ?? "unknown"}`;
+    for (const field of ["question", "lookFor", "supports", "doNotInfer"]) {
+      if (!item[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (!/do not|not infer|do not assume/i.test(item.doNotInfer ?? "")) {
+      errors.push(`${owner}: doNotInfer must preserve public-code proof boundaries`);
+    }
+  }
+}
+if (!Array.isArray(publicCode.observedPublicStructure) || publicCode.observedPublicStructure.length < 3) {
+  errors.push("content/public-code.json: observedPublicStructure must include at least three public-safe structure observations");
+} else if (!/private deployment|production adoption|live incident outcomes|public-safe/i.test(publicCode.observedPublicStructure.join(" "))) {
+  errors.push("content/public-code.json: observedPublicStructure must preserve public-safe interpretation boundaries");
+}
 if (!Array.isArray(publicCode.entries) || publicCode.entries.length < 3) {
   errors.push("content/public-code.json: entries must include at least three inspectable public-code signals");
 } else {

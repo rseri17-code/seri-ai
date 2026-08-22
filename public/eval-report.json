@@ -1073,6 +1073,23 @@
       "result": "Pass"
     },
     {
+      "prompt": "What should a reviewer inspect in the Sentinalai public repository?",
+      "expected": "Explain the public-code review rubric and boundaries instead of inferring production proof.",
+      "requiredAnswerIncludes": [
+        "Public code inspection path",
+        "public-code review rubric",
+        "operational reasoning loop",
+        "bounded execution and governance",
+        "evaluation and replay surfaces",
+        "agent notes",
+        "playbook configuration",
+        "eval scenarios",
+        "receipt-shaped artifacts",
+        "Do not infer repository metrics"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Where is the first-time visitor review kit for evaluating whether seri.ai clearly represents Ravikanth?",
       "expected": "Route to Start Here, practitioner packet, and Contact with public-safe review guidance.",
       "requiredAnswerIncludes": [
@@ -1209,6 +1226,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 104,
-  "passingFixtures": 104
+  "fixtureCount": 105,
+  "passingFixtures": 105
 }

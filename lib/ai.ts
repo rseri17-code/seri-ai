@@ -298,7 +298,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "";
   const publicCodeContext =
     /github|open source|open-source|public code|repository|repositories|sentinalai/.test(lower)
-      ? " Public code inspection path: use GitHub profile github.com/rseri17-code, the user-authorized Sentinalai repository reference, and the seri.ai public artifacts as inspectable public signal. Do not infer repository metrics, production adoption, private deployments, internal integrations, or confidential behavior from public code alone."
+      ? " Public code inspection path: use GitHub profile github.com/rseri17-code, the user-authorized Sentinalai repository reference, and the seri.ai public artifacts as inspectable public signal. /work now defines a public-code review rubric for inspecting whether Sentinalai shows an operational reasoning loop, bounded execution and governance, evaluation and replay surfaces, and connection to Ravikanth's career arc. The authorized public checkout exposes agent notes, investigation skill files, playbook configuration, eval scenarios, receipt-shaped artifacts, memory/wiki structure, and public-safe architecture notes. Do not infer repository metrics, production adoption, private deployments, internal integrations, live incident outcomes, or confidential behavior from public code alone."
       : "";
   const projectProofContext =
     /project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|stronger public project proof/.test(lower)

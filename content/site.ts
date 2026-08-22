@@ -556,6 +556,8 @@ export const approvedKnowledge = [
   ]),
   publicCode.title,
   publicCode.summary,
+  ...publicCode.reviewRubric.flatMap((item) => [item.question, item.lookFor, item.supports, item.doNotInfer]),
+  ...publicCode.observedPublicStructure,
   ...publicCode.entries.flatMap((item) => [item.label, item.href, item.status, item.whatToInspect, item.publicSafeUse, item.proofBoundary, ...item.related]),
   ...contentRegistry.flatMap((item) => [
     item.title,

@@ -1,6 +1,37 @@
 {
   "title": "Public Code and Inspectable Engineering Signal",
   "summary": "Public-safe index of code and repository surfaces a visitor can inspect without relying on private systems, internal project names, confidential metrics, screenshots, logs, or employer architecture.",
+  "reviewRubric": [
+    {
+      "question": "Does the public repository show an operational reasoning loop rather than a generic chatbot wrapper?",
+      "lookFor": "README/spec language around fetch, classify, playbook, evidence gathering, deterministic scoring, RCA output, and replayable receipts.",
+      "supports": "Connects the public-code signal to Operational Intelligence, Agentic SRE, evidence-driven investigation, and evaluation gates.",
+      "doNotInfer": "Do not infer production adoption, customer use, private deployment topology, incident volume, or employer implementation."
+    },
+    {
+      "question": "Does the repository expose bounded execution and governance concerns?",
+      "lookFor": "Policy gate, execution budgets, circuit breakers, fixed playbooks, fallback behavior, optional model use, and scope limits.",
+      "supports": "Shows the same operating taste emphasized on seri.ai: deterministic first, bounded, auditable, and public-safe.",
+      "doNotInfer": "Do not assume the public implementation is the same as any private or employer system."
+    },
+    {
+      "question": "Does the repository include evaluation and replay surfaces that another engineer can inspect?",
+      "lookFor": "Eval scenarios, answer fixtures, investigation skills, playbooks, memory folders, receipt-shaped artifacts, and failure-mode docs.",
+      "supports": "Makes public code part of the evidence graph rather than a decorative GitHub link.",
+      "doNotInfer": "Do not treat file counts, repository presence, or fixtures as proof of live model quality or production reliability."
+    },
+    {
+      "question": "Can the public work be connected back to Ravikanth's career arc?",
+      "lookFor": "Links between incident investigation, observability, topology, operational memory, tool governance, AI evaluation, and reliability.",
+      "supports": "Connects enterprise infrastructure background to current AI-native operations work without exposing protected details.",
+      "doNotInfer": "Do not use public code to claim private metrics, confidential integrations, unpublished architecture, or customer outcomes."
+    }
+  ],
+  "observedPublicStructure": [
+    "Public README and agent specification describe an incident investigation pipeline, deterministic playbooks, policy gates, memory, receipts, observability, and optional model-assisted refinement.",
+    "Local public checkout exposes five agent notes, ten investigation skills, ten playbook configs, five eval scenario folders, and receipt/wiki-style artifacts.",
+    "Public-safe interpretation: architectural signal about operational agents, not proof of private deployment, production adoption, or live incident outcomes."
+  ],
   "entries": [
     {
       "label": "GitHub profile",
@@ -15,8 +46,8 @@
       "label": "Sentinalai",
       "href": "https://github.com/rseri17-code/Sentinalai.git",
       "status": "User-authorized public repository reference",
-      "whatToInspect": "Public README, code structure, stated goals, commits, and any public-safe architecture or implementation notes available in the repository.",
-      "publicSafeUse": "Treat as inspectable public evidence for the Sentinel AI workstream and its relationship to AI-native operations, governed agents, and Operational Intelligence themes.",
+      "whatToInspect": "Public README, agent notes, investigation skills, playbook configuration, eval scenarios, receipt-shaped artifacts, memory/wiki structure, and public-safe architecture notes.",
+      "publicSafeUse": "Treat as inspectable public evidence for the SentinalAI workstream and its relationship to AI-native operations, governed agents, deterministic investigation, operational memory, and Operational Intelligence themes.",
       "proofBoundary": "Do not claim production adoption, private deployment details, internal integrations, repository metrics, or code behavior that is not visible in public source.",
       "related": ["/work", "/now", "/projects/operational-intelligence-copilot", "/wiki/operational-intelligence-reference-architecture"]
     },

@@ -66,6 +66,10 @@ const cases = [
     expectedFirstUrl: "/work"
   },
   {
+    query: "Where is the public code review rubric for inspecting Sentinalai without overclaiming production proof?",
+    expectedFirstUrl: "/work"
+  },
+  {
     query: "Where is the publication spine and reading order for Ravikanth's body of work?",
     expectedFirstUrl: "/library"
   },
