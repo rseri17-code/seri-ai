@@ -92,6 +92,7 @@ export function inferRelatedArtifacts(question: string) {
   }
   if (/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
+    artifacts.add("/visual-qa/2026-08-22/report.md");
     artifacts.add("/contact");
     artifacts.add("/evals");
     artifacts.add("/investigation-room");
@@ -99,10 +100,17 @@ export function inferRelatedArtifacts(question: string) {
   }
   if (/quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
+    artifacts.add("/visual-qa/2026-08-22/report.md");
     artifacts.add("/start-here");
     artifacts.add("/work");
     artifacts.add("/evals");
     artifacts.add("/investigation-room");
+  }
+  if (/visual qa|mobile qa|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/.test(lower)) {
+    artifacts.add("/visual-qa/2026-08-22/report.md");
+    artifacts.add("/visual-qa/2026-08-22/viewport-results.json");
+    artifacts.add("/investigation-room");
+    artifacts.add("/wiki/operational-intelligence-evidence-pack");
   }
   if (/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/.test(lower)) {
     artifacts.add("/publication-pack/operational-intelligence-conformance-profile.md");
@@ -269,15 +277,19 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "";
   const proofBacklogContext =
     /proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lower)
-      ? " Proof backlog: the Evidence Pack names the remaining proof work as practitioner review, control-comparison results, reviewer-labeled Ask quality, live beta reliability evidence, browser-based visual and mobile QA, and an approved identity asset. These gaps should be treated as evidence to collect, not as claims already proven."
+      ? " Proof backlog: the Evidence Pack names the remaining proof work as practitioner review, control-comparison results, reviewer-labeled Ask quality, live beta reliability evidence, touch walkthroughs and external visual review, and an approved identity asset. Durable first-viewport screenshot artifacts are now captured for nine critical routes, so remaining visual proof should focus on touch use, hierarchy, density, and reviewer findings."
       : "";
   const qualityScorecardContext =
     /quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lower)
-      ? " Quality scorecard: seri.ai tracks 24 evidence-based dimensions with non-inflated scores. The weakest current proof areas are Visual Design, Mobile, Evidence Quality, Overall Memorability, UX, Reliability, Ask Ravi, and AI Systems Credibility because they still need screenshot-grade QA, external review, live beta evidence, reviewer labels, and production retrieval evidence."
+      ? " Quality scorecard: seri.ai tracks 24 evidence-based dimensions with non-inflated scores. The Visual Design and Mobile scores now include 27 durable first-viewport screenshots across nine critical routes, while weaker proof areas still include Evidence Quality, Overall Memorability, UX, Reliability, Ask Ravi, and AI Systems Credibility because they need external review, touch walkthroughs, live beta evidence, reviewer labels, and production retrieval evidence."
+      : "";
+  const visualQaContext =
+    /visual qa|mobile qa|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/.test(lower)
+      ? " Visual QA evidence: /visual-qa/2026-08-22/report.md records 27 first-viewport screenshots across Home, Start Here, Ask, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack at 390x844, 768x1024, and 1440x1000. The manifest records zero horizontal-overflow findings, zero console-error pages, and visible H1/main content for every captured route. Limitation: touch walkthroughs and external reviewer feedback are still missing."
       : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}`}`,
+    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}${visualQaContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}${visualQaContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",

@@ -47,6 +47,18 @@ let publicSourceIndexCache: PublicSource[] | null = null;
 
 const referenceSources = [
   {
+    id: "reference:visual-qa-2026-08-22",
+    title: "seri.ai Visual QA Evidence",
+    description: "First-viewport browser evidence for nine critical routes across mobile, tablet, and desktop widths.",
+    content:
+      "seri.ai Visual QA Evidence. 2026-08-22 first-viewport browser captures. 27 screenshots across Home, Start Here, Ask Ravikanth, Operations Room, Work, Background, Canonical Doctrine, Radar, and Evidence Pack. Mobile 390x844, tablet 768x1024, desktop 1440x1000. Zero horizontal overflow findings, zero console-error pages, visible H1 and main content for every captured route. Limitations: first-viewport evidence only, not external reviewer feedback, not full touch walkthrough, approved portrait still missing.",
+    url: "/visual-qa/2026-08-22/report.md",
+    type: "registry" as const,
+    category: "Quality Evidence",
+    tags: ["visual QA", "mobile QA", "screenshots", "viewport", "evidence"],
+    assetType: "artifact"
+  },
+  {
     id: "reference:operational-intelligence-reference-architecture-v1",
     title: "Operational Intelligence Reference Architecture v1.0 Markdown",
     description: "Versioned Markdown specification for Operational Intelligence contracts, schemas, state machines, governance, evaluation, and conformance.",

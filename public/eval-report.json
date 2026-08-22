@@ -2,7 +2,7 @@
   "title": "Public Operational Intelligence Trust Report",
   "summary": "seri.ai treats AI behavior as a product surface. The assistant is expected to stay grounded in approved public content, refuse confidential topics, cite useful sources, and name uncertainty instead of inventing authority.",
   "lastRun": "2026-08-22",
-  "version": "visitor-review-kit-2026-08-22",
+  "version": "visual-qa-evidence-2026-08-22",
   "modelBasedEvaluationUsed": false,
   "method": "Deterministic fixture validation plus answer-shape checks for local fallback behavior. This is not a live model-quality benchmark.",
   "generatedBy": "npm run evals",
@@ -980,7 +980,8 @@
         "control-comparison results",
         "reviewer-labeled Ask quality",
         "live beta reliability evidence",
-        "browser-based visual and mobile QA",
+        "touch walkthroughs",
+        "external visual review",
         "approved identity asset",
         "/wiki/operational-intelligence-evidence-pack"
       ],
@@ -1072,6 +1073,22 @@
         "without confidential material"
       ],
       "result": "Pass"
+    },
+    {
+      "prompt": "Where are the durable visual QA screenshots and viewport evidence?",
+      "expected": "Route to the Visual QA report and name remaining limitations.",
+      "requiredAnswerIncludes": [
+        "Visual QA evidence",
+        "/visual-qa/2026-08-22/report.md",
+        "27 first-viewport screenshots",
+        "390x844",
+        "768x1024",
+        "1440x1000",
+        "zero horizontal-overflow findings",
+        "touch walkthroughs",
+        "external reviewer feedback"
+      ],
+      "result": "Pass"
     }
   ],
   "knownLimits": [
@@ -1081,6 +1098,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 95,
-  "passingFixtures": 95
+  "fixtureCount": 96,
+  "passingFixtures": 96
 }

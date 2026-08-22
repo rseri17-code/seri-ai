@@ -84,23 +84,23 @@
     {
       "name": "Ask Ravi",
       "score": 8.2,
-      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, visitor-review routing, and 95 passing fixtures.",
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, visitor-review routing, visual-QA routing, and 96 passing fixtures.",
       "gap": "No live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
       "nextProof": "Run the live answer rubric and publish qualitative labels without raw prompts or aggregate model-quality scores."
     },
     {
       "name": "Search / Discoverability",
       "score": 8.5,
-      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, visitor review, and 52 canonical retrieval checks.",
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, visitor review, visual QA, and 54 canonical retrieval checks.",
       "gap": "Live search-console evidence and real query behavior are not yet available.",
       "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
     },
     {
       "name": "Visual Design",
-      "score": 7.8,
-      "evidence": "The site has a restrained dark visual system, proof-led cards, diagram surfaces, performance-guarded rendered routes, and a browser viewport audit across Home, Start Here, Ask, Operations Room, Work, Background, Doctrine, and Radar at mobile, tablet, and desktop widths.",
-      "gap": "The latest browser pass found no page-level horizontal overflow, but dense technical surfaces still need external reviewer feedback and durable screenshot artifacts.",
-      "nextProof": "Preserve screenshot artifacts from preview or production, then fix any hierarchy, density, or graph-framing issues found by external reviewers."
+      "score": 8.0,
+      "evidence": "The site has a restrained dark visual system, proof-led cards, diagram surfaces, performance-guarded rendered routes, and 27 durable first-viewport screenshots across Home, Start Here, Ask, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack at mobile, tablet, and desktop widths.",
+      "gap": "The latest browser pass found no page-level horizontal overflow, but dense technical surfaces still need external hierarchy and density review.",
+      "nextProof": "Run external visual review and fix any hierarchy, density, or graph-framing issues found by reviewers."
     },
     {
       "name": "UX",
@@ -111,10 +111,10 @@
     },
     {
       "name": "Mobile",
-      "score": 7.9,
-      "evidence": "Viewport contracts, mobile quick prompts, responsive tables, mobile-friendly wiki contents, browser-controlled 390px/tablet checks, responsive section rhythm, responsive card density, and a contained Ask prompt grid are validated.",
-      "gap": "Touch walkthroughs and durable screenshot artifacts are still missing for dense interactive routes.",
-      "nextProof": "Save reviewed screenshots from preview or production and run touch walkthroughs for Ask, Operations Room, Doctrine, Radar, and Work."
+      "score": 8.1,
+      "evidence": "Viewport contracts, mobile quick prompts, responsive tables, mobile-friendly wiki contents, browser-controlled 390px/tablet checks, responsive section rhythm, responsive card density, contained Ask prompt grid, and 390px screenshot artifacts for nine critical routes are validated.",
+      "gap": "Touch walkthroughs are still missing for dense interactive routes, so the screenshot proof does not yet prove tap-target comfort, scroll ergonomics, or live graph interaction quality.",
+      "nextProof": "Run touch walkthroughs for Ask, Operations Room, Doctrine, Radar, and Work."
     },
     {
       "name": "Accessibility",

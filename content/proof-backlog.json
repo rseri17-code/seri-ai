@@ -48,10 +48,10 @@
       "slug": "visual-mobile-qa",
       "claim": "The site feels publication-grade on mobile, tablet, and desktop for first-time executives, engineers, recruiters, and founders.",
       "evidenceNeeded": "Durable screenshots and keyboard walkthrough notes for the homepage, Ask Ravikanth, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack at mobile, tablet, and desktop widths.",
-      "currentEvidence": "Source-level viewport contracts, accessibility validation, rendered-route checks, performance budgets, and browser-controlled mobile/tablet/desktop route checks pass; durable screenshot artifacts and touch walkthrough notes are still incomplete.",
-      "nextProof": "Preserve browser screenshots from preview or production, inspect hierarchy and density with external reviewers, and convert any concrete failures into regression checks.",
+      "currentEvidence": "Source-level viewport contracts, accessibility validation, rendered-route checks, performance budgets, browser-controlled mobile/tablet/desktop route checks, and 27 durable first-viewport screenshots now pass across nine critical routes.",
+      "nextProof": "Run touch walkthrough notes and external hierarchy/density review, then convert any concrete failures into regression checks.",
       "wouldChange": "If the Operations Room or homepage still feels like a demo at realistic viewports, reduce visual noise and sharpen first-task clarity without changing the architecture.",
-      "status": "needs-browser-evidence",
+      "status": "screenshots-captured",
       "href": "/investigation-room"
     },
     {

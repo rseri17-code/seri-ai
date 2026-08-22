@@ -142,6 +142,14 @@ const cases = [
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },
   {
+    query: "Where are the durable visual QA screenshots and viewport evidence?",
+    expectedFirstUrl: "/visual-qa/2026-08-22/report.md"
+  },
+  {
+    query: "Where can I inspect mobile QA screenshot artifacts and horizontal overflow evidence?",
+    expectedFirstUrl: "/visual-qa/2026-08-22/report.md"
+  },
+  {
     query: "How would you rate seri.ai across the 24 dimensions right now?",
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },

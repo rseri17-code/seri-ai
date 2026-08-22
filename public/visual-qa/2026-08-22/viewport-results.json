@@ -1,0 +1,571 @@
+{
+  "capturedAt": "2026-08-22",
+  "baseUrl": "http://127.0.0.1:3017",
+  "viewports": {
+    "mobile-390": {
+      "width": 390,
+      "height": 844
+    },
+    "tablet-768": {
+      "width": 768,
+      "height": 1024
+    },
+    "desktop-1440": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "routes": {
+    "home": "/",
+    "start-here": "/start-here",
+    "ask": "/ask",
+    "investigation-room": "/investigation-room",
+    "work": "/work",
+    "background": "/background",
+    "doctrine": "/wiki/operational-intelligence-canonical-doctrine",
+    "radar": "/radar",
+    "evidence-pack": "/wiki/operational-intelligence-evidence-pack"
+  },
+  "results": [
+    {
+      "viewport": "mobile-390",
+      "route": "/",
+      "file": "/visual-qa/2026-08-22/mobile-390-home.png",
+      "metrics": {
+        "bodyTextLength": 12186,
+        "clientWidth": 390,
+        "h1": "Operations should explain themselves before AI acts.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 844,
+        "innerWidth": 390,
+        "mainVisible": true,
+        "scrollWidth": 390,
+        "title": "seri.ai | Operational Intelligence for AI-native Operations",
+        "url": "/"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "mobile-390",
+      "route": "/start-here",
+      "file": "/visual-qa/2026-08-22/mobile-390-start-here.png",
+      "metrics": {
+        "bodyTextLength": 9731,
+        "clientWidth": 390,
+        "h1": "Choose the path that matches why you came.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 844,
+        "innerWidth": 390,
+        "mainVisible": true,
+        "scrollWidth": 390,
+        "title": "Start Here | Ravikanth Seri — Operational Intelligence",
+        "url": "/start-here"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "mobile-390",
+      "route": "/ask",
+      "file": "/visual-qa/2026-08-22/mobile-390-ask.png",
+      "metrics": {
+        "bodyTextLength": 6122,
+        "clientWidth": 390,
+        "h1": "Ask the public record to defend the thesis.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 844,
+        "innerWidth": 390,
+        "mainVisible": true,
+        "scrollWidth": 390,
+        "title": "Ask Ravikanth | Operational Intelligence Public Research Interface",
+        "url": "/ask"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "mobile-390",
+      "route": "/investigation-room",
+      "file": "/visual-qa/2026-08-22/mobile-390-investigation-room.png",
+      "metrics": {
+        "bodyTextLength": 11508,
+        "clientWidth": 390,
+        "h1": "Operations Room for evidence-backed decisions",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 844,
+        "innerWidth": 390,
+        "mainVisible": true,
+        "scrollWidth": 390,
+        "title": "Operations Room | seri.ai",
+        "url": "/investigation-room"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "mobile-390",
+      "route": "/work",
+      "file": "/visual-qa/2026-08-22/mobile-390-work.png",
+      "metrics": {
+        "bodyTextLength": 11608,
+        "clientWidth": 390,
+        "h1": "The operating record behind Operational Intelligence.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 844,
+        "innerWidth": 390,
+        "mainVisible": true,
+        "scrollWidth": 390,
+        "title": "Work | Ravikanth Seri",
+        "url": "/work"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "mobile-390",
+      "route": "/background",
+      "file": "/visual-qa/2026-08-22/mobile-390-background.png",
+      "metrics": {
+        "bodyTextLength": 12519,
+        "clientWidth": 390,
+        "h1": "The operating background behind the Operational Intelligence thesis.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 844,
+        "innerWidth": 390,
+        "mainVisible": true,
+        "scrollWidth": 390,
+        "title": "Background | Ravikanth Seri",
+        "url": "/background"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "mobile-390",
+      "route": "/wiki/operational-intelligence-canonical-doctrine",
+      "file": "/visual-qa/2026-08-22/mobile-390-doctrine.png",
+      "metrics": {
+        "bodyTextLength": 17890,
+        "clientWidth": 390,
+        "h1": "Operational Intelligence Canonical Doctrine v1.0",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 844,
+        "innerWidth": 390,
+        "mainVisible": true,
+        "scrollWidth": 390,
+        "title": "Operational Intelligence Canonical Doctrine v1.0 | seri.ai Wiki",
+        "url": "/wiki/operational-intelligence-canonical-doctrine"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "mobile-390",
+      "route": "/radar",
+      "file": "/visual-qa/2026-08-22/mobile-390-radar.png",
+      "metrics": {
+        "bodyTextLength": 9793,
+        "clientWidth": 390,
+        "h1": "Operational Intelligence Thesis Radar",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 844,
+        "innerWidth": 390,
+        "mainVisible": true,
+        "scrollWidth": 390,
+        "title": "Thesis Radar | Ravikanth Seri — Operational Intelligence",
+        "url": "/radar"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "mobile-390",
+      "route": "/wiki/operational-intelligence-evidence-pack",
+      "file": "/visual-qa/2026-08-22/mobile-390-evidence-pack.png",
+      "metrics": {
+        "bodyTextLength": 19294,
+        "clientWidth": 390,
+        "h1": "Operational Intelligence Evidence Pack",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 844,
+        "innerWidth": 390,
+        "mainVisible": true,
+        "scrollWidth": 390,
+        "title": "Operational Intelligence Evidence Pack | seri.ai Wiki",
+        "url": "/wiki/operational-intelligence-evidence-pack"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "tablet-768",
+      "route": "/",
+      "file": "/visual-qa/2026-08-22/tablet-768-home.png",
+      "metrics": {
+        "bodyTextLength": 12186,
+        "clientWidth": 768,
+        "h1": "Operations should explain themselves before AI acts.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1024,
+        "innerWidth": 768,
+        "mainVisible": true,
+        "scrollWidth": 768,
+        "title": "seri.ai | Operational Intelligence for AI-native Operations",
+        "url": "/"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "tablet-768",
+      "route": "/start-here",
+      "file": "/visual-qa/2026-08-22/tablet-768-start-here.png",
+      "metrics": {
+        "bodyTextLength": 9731,
+        "clientWidth": 768,
+        "h1": "Choose the path that matches why you came.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1024,
+        "innerWidth": 768,
+        "mainVisible": true,
+        "scrollWidth": 768,
+        "title": "Start Here | Ravikanth Seri — Operational Intelligence",
+        "url": "/start-here"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "tablet-768",
+      "route": "/ask",
+      "file": "/visual-qa/2026-08-22/tablet-768-ask.png",
+      "metrics": {
+        "bodyTextLength": 6122,
+        "clientWidth": 768,
+        "h1": "Ask the public record to defend the thesis.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1024,
+        "innerWidth": 768,
+        "mainVisible": true,
+        "scrollWidth": 768,
+        "title": "Ask Ravikanth | Operational Intelligence Public Research Interface",
+        "url": "/ask"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "tablet-768",
+      "route": "/investigation-room",
+      "file": "/visual-qa/2026-08-22/tablet-768-investigation-room.png",
+      "metrics": {
+        "bodyTextLength": 12245,
+        "clientWidth": 768,
+        "h1": "Operations Room for evidence-backed decisions",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1024,
+        "innerWidth": 768,
+        "mainVisible": true,
+        "scrollWidth": 768,
+        "title": "Operations Room | seri.ai",
+        "url": "/investigation-room"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "tablet-768",
+      "route": "/work",
+      "file": "/visual-qa/2026-08-22/tablet-768-work.png",
+      "metrics": {
+        "bodyTextLength": 11608,
+        "clientWidth": 768,
+        "h1": "The operating record behind Operational Intelligence.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1024,
+        "innerWidth": 768,
+        "mainVisible": true,
+        "scrollWidth": 768,
+        "title": "Work | Ravikanth Seri",
+        "url": "/work"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "tablet-768",
+      "route": "/background",
+      "file": "/visual-qa/2026-08-22/tablet-768-background.png",
+      "metrics": {
+        "bodyTextLength": 12519,
+        "clientWidth": 768,
+        "h1": "The operating background behind the Operational Intelligence thesis.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1024,
+        "innerWidth": 768,
+        "mainVisible": true,
+        "scrollWidth": 768,
+        "title": "Background | Ravikanth Seri",
+        "url": "/background"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "tablet-768",
+      "route": "/wiki/operational-intelligence-canonical-doctrine",
+      "file": "/visual-qa/2026-08-22/tablet-768-doctrine.png",
+      "metrics": {
+        "bodyTextLength": 17309,
+        "clientWidth": 768,
+        "h1": "Operational Intelligence Canonical Doctrine v1.0",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1024,
+        "innerWidth": 768,
+        "mainVisible": true,
+        "scrollWidth": 768,
+        "title": "Operational Intelligence Canonical Doctrine v1.0 | seri.ai Wiki",
+        "url": "/wiki/operational-intelligence-canonical-doctrine"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "tablet-768",
+      "route": "/radar",
+      "file": "/visual-qa/2026-08-22/tablet-768-radar.png",
+      "metrics": {
+        "bodyTextLength": 9793,
+        "clientWidth": 768,
+        "h1": "Operational Intelligence Thesis Radar",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1024,
+        "innerWidth": 768,
+        "mainVisible": true,
+        "scrollWidth": 768,
+        "title": "Thesis Radar | Ravikanth Seri — Operational Intelligence",
+        "url": "/radar"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "tablet-768",
+      "route": "/wiki/operational-intelligence-evidence-pack",
+      "file": "/visual-qa/2026-08-22/tablet-768-evidence-pack.png",
+      "metrics": {
+        "bodyTextLength": 17435,
+        "clientWidth": 768,
+        "h1": "Operational Intelligence Evidence Pack",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1024,
+        "innerWidth": 768,
+        "mainVisible": true,
+        "scrollWidth": 768,
+        "title": "Operational Intelligence Evidence Pack | seri.ai Wiki",
+        "url": "/wiki/operational-intelligence-evidence-pack"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "desktop-1440",
+      "route": "/",
+      "file": "/visual-qa/2026-08-22/desktop-1440-home.png",
+      "metrics": {
+        "bodyTextLength": 13229,
+        "clientWidth": 1440,
+        "h1": "Operations should explain themselves before AI acts.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1000,
+        "innerWidth": 1440,
+        "mainVisible": true,
+        "scrollWidth": 1440,
+        "title": "seri.ai | Operational Intelligence for AI-native Operations",
+        "url": "/"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "desktop-1440",
+      "route": "/start-here",
+      "file": "/visual-qa/2026-08-22/desktop-1440-start-here.png",
+      "metrics": {
+        "bodyTextLength": 9775,
+        "clientWidth": 1440,
+        "h1": "Choose the path that matches why you came.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1000,
+        "innerWidth": 1440,
+        "mainVisible": true,
+        "scrollWidth": 1440,
+        "title": "Start Here | Ravikanth Seri — Operational Intelligence",
+        "url": "/start-here"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "desktop-1440",
+      "route": "/ask",
+      "file": "/visual-qa/2026-08-22/desktop-1440-ask.png",
+      "metrics": {
+        "bodyTextLength": 5946,
+        "clientWidth": 1440,
+        "h1": "Ask the public record to defend the thesis.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1000,
+        "innerWidth": 1440,
+        "mainVisible": true,
+        "scrollWidth": 1440,
+        "title": "Ask Ravikanth | Operational Intelligence Public Research Interface",
+        "url": "/ask"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "desktop-1440",
+      "route": "/investigation-room",
+      "file": "/visual-qa/2026-08-22/desktop-1440-investigation-room.png",
+      "metrics": {
+        "bodyTextLength": 11771,
+        "clientWidth": 1440,
+        "h1": "Operations Room for evidence-backed decisions",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1000,
+        "innerWidth": 1440,
+        "mainVisible": true,
+        "scrollWidth": 1440,
+        "title": "Operations Room | seri.ai",
+        "url": "/investigation-room"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "desktop-1440",
+      "route": "/work",
+      "file": "/visual-qa/2026-08-22/desktop-1440-work.png",
+      "metrics": {
+        "bodyTextLength": 11652,
+        "clientWidth": 1440,
+        "h1": "The operating record behind Operational Intelligence.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1000,
+        "innerWidth": 1440,
+        "mainVisible": true,
+        "scrollWidth": 1440,
+        "title": "Work | Ravikanth Seri",
+        "url": "/work"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "desktop-1440",
+      "route": "/background",
+      "file": "/visual-qa/2026-08-22/desktop-1440-background.png",
+      "metrics": {
+        "bodyTextLength": 12563,
+        "clientWidth": 1440,
+        "h1": "The operating background behind the Operational Intelligence thesis.",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1000,
+        "innerWidth": 1440,
+        "mainVisible": true,
+        "scrollWidth": 1440,
+        "title": "Background | Ravikanth Seri",
+        "url": "/background"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "desktop-1440",
+      "route": "/wiki/operational-intelligence-canonical-doctrine",
+      "file": "/visual-qa/2026-08-22/desktop-1440-doctrine.png",
+      "metrics": {
+        "bodyTextLength": 17353,
+        "clientWidth": 1440,
+        "h1": "Operational Intelligence Canonical Doctrine v1.0",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1000,
+        "innerWidth": 1440,
+        "mainVisible": true,
+        "scrollWidth": 1440,
+        "title": "Operational Intelligence Canonical Doctrine v1.0 | seri.ai Wiki",
+        "url": "/wiki/operational-intelligence-canonical-doctrine"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "desktop-1440",
+      "route": "/radar",
+      "file": "/visual-qa/2026-08-22/desktop-1440-radar.png",
+      "metrics": {
+        "bodyTextLength": 9837,
+        "clientWidth": 1440,
+        "h1": "Operational Intelligence Thesis Radar",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1000,
+        "innerWidth": 1440,
+        "mainVisible": true,
+        "scrollWidth": 1440,
+        "title": "Thesis Radar | Ravikanth Seri — Operational Intelligence",
+        "url": "/radar"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    },
+    {
+      "viewport": "desktop-1440",
+      "route": "/wiki/operational-intelligence-evidence-pack",
+      "file": "/visual-qa/2026-08-22/desktop-1440-evidence-pack.png",
+      "metrics": {
+        "bodyTextLength": 17479,
+        "clientWidth": 1440,
+        "h1": "Operational Intelligence Evidence Pack",
+        "h1Visible": true,
+        "hasHorizontalOverflow": false,
+        "innerHeight": 1000,
+        "innerWidth": 1440,
+        "mainVisible": true,
+        "scrollWidth": 1440,
+        "title": "Operational Intelligence Evidence Pack | seri.ai Wiki",
+        "url": "/wiki/operational-intelligence-evidence-pack"
+      },
+      "consoleErrors": [],
+      "captureError": null
+    }
+  ]
+}

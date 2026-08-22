@@ -204,7 +204,7 @@ const scorecard = read("WORLD_CLASS_SCORECARD.md");
 for (const required of [
   "Mobile manual audit",
   "Operations Room visual QA",
-  "Capture screenshots",
+  "Run touch walkthroughs",
   "real viewport evidence"
 ]) {
   expect(scorecard.includes(required), `WORLD_CLASS_SCORECARD.md missing viewport backlog contract "${required}"`);
