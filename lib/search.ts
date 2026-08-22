@@ -12,6 +12,7 @@ const evidencePackUrl = "/wiki/operational-intelligence-evidence-pack";
 const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
 const conformanceProfileUrl = "/publication-pack/operational-intelligence-conformance-profile.md";
 const workUrl = "/work";
+const startHereUrl = "/start-here";
 const resumeUrl = "/resume";
 const backgroundUrl = "/background";
 const radarUrl = "/radar";
@@ -195,6 +196,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const evidencePackBoost = source.url === evidencePackUrl && terms.some((term) => evidencePackTerms.has(term)) ? 7 : 0;
       const publicationPackBoost = source.url === publicationPackUrl && terms.some((term) => publicationPackTerms.has(term)) ? 9 : 0;
       const workBoost = source.url === workUrl && terms.some((term) => workTerms.has(term)) ? 10 : 0;
+      const startHereBoost =
+        source.url === startHereUrl &&
+        /start here|visitor|first destination|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lowerQuery)
+          ? 85
+          : 0;
       const resumeBoost = source.url === resumeUrl && /resume|experience|career|capability|impact|recruiter|founder|background|certification|credential|public evidence|architecture judgment/.test(lowerQuery) ? 12 : 0;
       const backgroundBoost = source.url === backgroundUrl && /who is ravikanth|about ravikanth|background|career|experience|linkedin|certification|credential|profile/.test(lowerQuery) ? 12 : 0;
       const conformanceChecklistBoost = source.url === evidencePackUrl && /minimum conformance|conformance checklist|observable proof|failure signal/.test(lowerQuery) ? 10 : 0;
@@ -240,6 +246,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         evidencePackBoost +
         publicationPackBoost +
         workBoost +
+        startHereBoost +
         directReferenceBoost +
         broadPublicationPackBoost +
         conformanceChecklistBoost +

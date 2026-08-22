@@ -241,6 +241,127 @@
       "detailTemplate": "{fixtureCount} deterministic fixtures for grounding, refusal, citations, routing, and public safety."
     }
   ],
+  "visitorSuccessQuestions": [
+    {
+      "question": "Who is Ravikanth Seri?",
+      "answerLens": "Senior infrastructure architect building production AI-assisted operations systems and publishing the Operational Intelligence body of work.",
+      "primaryHref": "/background",
+      "evidenceHref": "/resume",
+      "askPrompt": "Who is Ravikanth Seri based only on public evidence?"
+    },
+    {
+      "question": "What has he done professionally?",
+      "answerLens": "He has worked across enterprise integration, middleware, identity, Kubernetes, observability, AIOps, and production AI operations architecture.",
+      "primaryHref": "/resume",
+      "evidenceHref": "/background",
+      "askPrompt": "What has Ravikanth done professionally?"
+    },
+    {
+      "question": "How has his career evolved?",
+      "answerLens": "The public arc moves from enterprise integration and platform engineering into observability, production AI systems, agentic operations, and Operational Intelligence.",
+      "primaryHref": "/background",
+      "evidenceHref": "/resume",
+      "askPrompt": "How has Ravikanth's career evolved into Operational Intelligence?"
+    },
+    {
+      "question": "What is his current technical focus?",
+      "answerLens": "Production AI-assisted operations, Agentic SRE, evaluation, replay, runtime governance, agent observability, and evidence-driven investigation.",
+      "primaryHref": "/now",
+      "evidenceHref": "/work",
+      "askPrompt": "What is Ravikanth currently focused on?"
+    },
+    {
+      "question": "What has he built?",
+      "answerLens": "The public proof set includes Operations Room, Ask Ravikanth, Operational Intelligence reference assets, ReasonOps, projects, and architecture patterns.",
+      "primaryHref": "/work",
+      "evidenceHref": "/projects",
+      "askPrompt": "What has Ravikanth built that I can inspect publicly?"
+    },
+    {
+      "question": "What production engineering problems has he solved?",
+      "answerLens": "The public-safe evidence emphasizes identity modernization, telemetry correlation, automation, migration discipline, runtime governance, and AI-agent reliability concerns.",
+      "primaryHref": "/resume",
+      "evidenceHref": "/patterns",
+      "askPrompt": "What production engineering problems support Ravikanth's current work?"
+    },
+    {
+      "question": "What is he building now?",
+      "answerLens": "A public professional operating system around Operational Intelligence, with ReasonOps, Operations Room, Ask Ravikanth, reference architecture, and publishing workflows.",
+      "primaryHref": "/now",
+      "evidenceHref": "/work",
+      "askPrompt": "What is Ravikanth building now?"
+    },
+    {
+      "question": "What are his strongest technical capabilities?",
+      "answerLens": "AI-native operations architecture, enterprise platform modernization, agent observability, evaluation, runtime governance, distributed systems, identity, APIs, and automation.",
+      "primaryHref": "/resume",
+      "evidenceHref": "/work",
+      "askPrompt": "What are Ravikanth's strongest technical capabilities?"
+    },
+    {
+      "question": "How does he think?",
+      "answerLens": "He tends to separate observations from inferences, demand evidence before conclusions, preserve replay, expose tradeoffs, and keep consequential action under human control.",
+      "primaryHref": "/manifesto",
+      "evidenceHref": "/principles",
+      "askPrompt": "How does Ravikanth think about architecture and engineering?"
+    },
+    {
+      "question": "What has he written?",
+      "answerLens": "The library includes articles, doctrine, field notes, patterns, evidence packs, diagrams, comparison tables, and reference architecture material.",
+      "primaryHref": "/library",
+      "evidenceHref": "/ideas",
+      "askPrompt": "What has Ravikanth written about Operational Intelligence and AI operations?"
+    },
+    {
+      "question": "What original frameworks or synthesis has he produced?",
+      "answerLens": "Operational Intelligence, the ten-layer framework, Evidence Graph, Hypothesis Lifecycle, Replay Seed, Evaluation Gate, Operator Control Plane, and related patterns.",
+      "primaryHref": "/framework",
+      "evidenceHref": "/wiki/operational-intelligence-canonical-doctrine",
+      "askPrompt": "What original frameworks or synthesis has Ravikanth produced?"
+    },
+    {
+      "question": "Where can I inspect his technical work?",
+      "answerLens": "Use Work, GitHub, Operations Room, Reference Architecture, Artifacts, Patterns, and the publication pack to inspect public-safe technical evidence.",
+      "primaryHref": "/work",
+      "evidenceHref": "/artifacts",
+      "askPrompt": "Where can I inspect Ravikanth's technical work?"
+    },
+    {
+      "question": "What does his GitHub show?",
+      "answerLens": "GitHub is treated as public code and engineering-artifact signal connected to the broader Operational Intelligence body of work.",
+      "primaryHref": "https://github.com/rseri17-code",
+      "evidenceHref": "/work",
+      "askPrompt": "What does Ravikanth's GitHub show?"
+    },
+    {
+      "question": "What does his resume show?",
+      "answerLens": "The resume shows the professional evidence behind the thesis: experience, architecture highlights, impact ledger, skills, education, certifications, and source provenance.",
+      "primaryHref": "/resume",
+      "evidenceHref": "/background",
+      "askPrompt": "What does Ravikanth's resume show?"
+    },
+    {
+      "question": "What evidence supports his achievements?",
+      "answerLens": "Evidence is routed through resume provenance, public proof links, reference assets, projects, patterns, LinkedIn signal, GitHub, and deterministic Ask trust fixtures.",
+      "primaryHref": "/work",
+      "evidenceHref": "/evals",
+      "askPrompt": "What evidence supports Ravikanth's achievements?"
+    },
+    {
+      "question": "How can I contact him?",
+      "answerLens": "Use the contact page for collaboration, practitioner review, architecture discussion, and public-safe follow-up.",
+      "primaryHref": "/contact",
+      "evidenceHref": "/background",
+      "askPrompt": "How can I contact Ravikanth Seri?"
+    },
+    {
+      "question": "Why would I want to hire, collaborate with, or learn from him?",
+      "answerLens": "The case should emerge from evidence: production systems background, AI operations architecture, public writing, reference artifacts, eval discipline, and inspectable work.",
+      "primaryHref": "/work",
+      "evidenceHref": "/resume",
+      "askPrompt": "Why would someone want to hire, collaborate with, or learn from Ravikanth based on public evidence?"
+    }
+  ],
   "relationships": [
     {
       "from": "Ravikanth Seri",

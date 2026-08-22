@@ -259,6 +259,7 @@ export const approvedKnowledge = [
   ...professionalGraph.operatingStandards.flatMap((item) => [item.title, item.body, item.icon]),
   ...professionalGraph.credibilityQuestions.flatMap((item) => [item.question, item.answer, item.href]),
   ...professionalGraph.proofLinks.flatMap((item) => [item.href, item.label, item.detail ?? item.detailTemplate ?? ""]),
+  ...professionalGraph.visitorSuccessQuestions.flatMap((item) => [item.question, item.answerLens, item.primaryHref, item.evidenceHref, item.askPrompt]),
   ...professionalGraph.relationships.flatMap((item) => [item.from, item.relation, item.to]),
   ...contentRegistry.flatMap((item) => [
     item.title,

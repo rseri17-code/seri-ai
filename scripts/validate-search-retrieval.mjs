@@ -66,6 +66,14 @@ const cases = [
     expectedFirstUrl: "/work"
   },
   {
+    query: "Where should a first-time visitor start to understand Ravikanth Seri, his work, evidence, GitHub, resume, and contact path?",
+    expectedFirstUrl: "/start-here"
+  },
+  {
+    query: "What core questions should I answer before hiring collaborating with or learning from Ravikanth?",
+    expectedFirstUrl: "/start-here"
+  },
+  {
     query: "Where are the market signals for ops for observability and observability for AI?",
     expectedFirstUrl: "/radar"
   },

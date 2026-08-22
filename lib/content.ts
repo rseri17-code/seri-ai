@@ -465,6 +465,24 @@ export function buildPublicSourceIndex(): PublicSource[] {
       status: "published" as const
     },
     {
+      id: "profile:visitor-success-map",
+      title: "Ravikanth Seri Visitor Success Map",
+      description: "Start-here orientation for Ravikanth Seri's career, work, evidence, GitHub, resume, contact path, and current focus.",
+      content: "Visitor success map for hiring, collaboration, learning, profile, proof, and contact.",
+      url: "/start-here",
+      type: "registry" as const,
+      category: "background",
+      tags: ["start here", "visitor success", "professional profile", "career", "GitHub", "resume", "contact"],
+      author: "Ravikanth Seri",
+      assetType: "profile",
+      date: "2026-08-22",
+      frameworkLayers: [],
+      principles: ["Evidence before conclusions"],
+      patterns: [],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
       id: "profile:operational-intelligence-thesis-radar",
       title: thesisRadar.title,
       description: "Public thought-process map connecting Ravikanth Seri's LinkedIn themes to market signals, Operational Intelligence claims, and falsification questions.",

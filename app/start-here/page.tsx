@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
-import { startHerePaths } from "@/content/site";
+import { professionalGraph, startHerePaths } from "@/content/site";
 import { publicRouteMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = publicRouteMetadata({
@@ -31,7 +31,8 @@ const routeLabels: Record<string, string> = {
   "/evals": "Trust Evals",
   "/radar": "Radar",
   "/now": "Now",
-  "/contact": "Contact"
+  "/contact": "Contact",
+  "https://github.com/rseri17-code": "GitHub"
 };
 
 const reviewSpine = [
@@ -60,6 +61,31 @@ export default function StartHerePage() {
             <Link key={href} href={href} className="rounded border border-mint/30 bg-mint/10 px-3 py-2 text-sm font-semibold text-mint hover:border-mint/60">
               {label}
             </Link>
+          ))}
+        </div>
+      </Card>
+      <Card className="mb-6 border-signal/25 bg-signal/[0.04]">
+        <h2 className="text-2xl font-semibold text-white">Visitor proof map</h2>
+        <p className="mt-3 max-w-4xl leading-7 text-slate-300">
+          If you only have a few minutes, these are the questions the site should answer through evidence rather than self-description.
+        </p>
+        <div className="mt-5 grid gap-3 md:grid-cols-2">
+          {professionalGraph.visitorSuccessQuestions.map((item) => (
+            <div key={item.question} className="rounded border border-white/10 bg-black/20 p-4">
+              <h3 className="font-semibold text-white">{item.question}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{item.answerLens}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Link href={item.primaryHref} className="rounded border border-signal/35 px-3 py-2 text-xs font-semibold text-signal hover:border-signal/60">
+                  {labelFor(item.primaryHref)}
+                </Link>
+                <Link href={item.evidenceHref} className="rounded border border-mint/30 px-3 py-2 text-xs font-semibold text-mint hover:border-mint/60">
+                  Evidence: {labelFor(item.evidenceHref)}
+                </Link>
+                <Link href={`/ask?prompt=${encodeURIComponent(item.askPrompt)}`} className="rounded border border-white/10 px-3 py-2 text-xs font-semibold text-slate-300 hover:border-white/30">
+                  Ask
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
       </Card>

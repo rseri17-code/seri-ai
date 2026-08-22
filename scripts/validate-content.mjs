@@ -48,7 +48,7 @@ const requiredNowFields = ["currentFocus", "building", "studying", "writing", "a
 const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matters"];
 const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
-const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "relationships"];
+const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "visitorSuccessQuestions", "relationships"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
@@ -757,6 +757,54 @@ if (!Array.isArray(professionalGraph.proofLedger) || professionalGraph.proofLedg
 for (const [field, minCount] of [["reviewSpine", 5], ["operatingStandards", 3], ["credibilityQuestions", 4], ["proofLinks", 6], ["relationships", 6]]) {
   if (!Array.isArray(professionalGraph[field]) || professionalGraph[field].length < minCount) {
     errors.push(`content/professional-graph.json: ${field} must include at least ${minCount} entries`);
+  }
+}
+const requiredVisitorQuestions = [
+  "Who is Ravikanth Seri?",
+  "What has he done professionally?",
+  "How has his career evolved?",
+  "What is his current technical focus?",
+  "What has he built?",
+  "What production engineering problems has he solved?",
+  "What is he building now?",
+  "What are his strongest technical capabilities?",
+  "How does he think?",
+  "What has he written?",
+  "What original frameworks or synthesis has he produced?",
+  "Where can I inspect his technical work?",
+  "What does his GitHub show?",
+  "What does his resume show?",
+  "What evidence supports his achievements?",
+  "How can I contact him?",
+  "Why would I want to hire, collaborate with, or learn from him?"
+];
+if (!Array.isArray(professionalGraph.visitorSuccessQuestions) || professionalGraph.visitorSuccessQuestions.length !== requiredVisitorQuestions.length) {
+  errors.push(`content/professional-graph.json: visitorSuccessQuestions must include exactly ${requiredVisitorQuestions.length} north-star questions`);
+} else {
+  for (const requiredQuestion of requiredVisitorQuestions) {
+    if (!professionalGraph.visitorSuccessQuestions.some((item) => item.question === requiredQuestion)) {
+      errors.push(`content/professional-graph.json: visitorSuccessQuestions missing "${requiredQuestion}"`);
+    }
+  }
+  for (const item of professionalGraph.visitorSuccessQuestions) {
+    const owner = `content/professional-graph.json:visitorSuccessQuestions:${item.question ?? "unknown"}`;
+    for (const field of ["question", "answerLens", "primaryHref", "evidenceHref", "askPrompt"]) {
+      if (!item[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (String(item.answerLens ?? "").length < 70) {
+      errors.push(`${owner}: answerLens must be substantial enough to guide a visitor`);
+    }
+    if (!String(item.askPrompt ?? "").includes("?")) {
+      errors.push(`${owner}: askPrompt must be a question`);
+    }
+    for (const field of ["primaryHref", "evidenceHref"]) {
+      const href = String(item[field] ?? "");
+      if (!href.startsWith("/") && !/^https:\/\/github\.com\/rseri17-code/.test(href)) {
+        errors.push(`${owner}: ${field} must be an internal route or approved GitHub profile`);
+      }
+    }
   }
 }
 for (const item of professionalGraph.reviewSpine ?? []) {

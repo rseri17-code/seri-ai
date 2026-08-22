@@ -390,12 +390,26 @@ for (const required of [
   "Evidence Pack",
   "Publication Pack",
   "Operations Room",
+  "Visitor proof map",
+  "these are the questions the site should answer through evidence rather than self-description",
+  "professionalGraph.visitorSuccessQuestions",
+  "Who is Ravikanth Seri?",
+  "How has his career evolved?",
+  "What has he built?",
+  "What is he building now?",
+  "What original frameworks or synthesis has he produced?",
+  "Where can I inspect his technical work?",
+  "What does his GitHub show?",
+  "How can I contact him?",
+  "Why would I want to hire, collaborate with, or learn from him?",
+  "Evidence: {labelFor(item.evidenceHref)}",
   "{labelFor(href)}",
   "/ask?prompt=",
+  "encodeURIComponent(item.askPrompt)",
   "encodeURIComponent(path.ask)",
   "{path.ask}"
 ]) {
-  expect(startHerePage.includes(required), `/start-here missing audience onboarding contract: ${required}`);
+  expect([startHerePage, professionalGraphContent].join("\n").includes(required), `/start-here missing audience onboarding contract: ${required}`);
 }
 
 const searchPage = fs.readFileSync(path.join(root, "app", "search", "page.tsx"), "utf8");
