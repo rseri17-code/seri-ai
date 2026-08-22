@@ -14,6 +14,7 @@ import startHerePathsData from "./start-here.json";
 import changelogData from "./changelog.json";
 import resumeData from "./resume.json";
 import professionalGraphData from "./professional-graph.json";
+import publicCodeData from "./public-code.json";
 import contentRegistryData from "./content-registry.json";
 import harnessThesisData from "./harness-thesis.json";
 import canonicalDefinitionData from "./canonical-definition.json";
@@ -162,6 +163,8 @@ export const resume = resumeData;
 
 export const professionalGraph = professionalGraphData;
 
+export const publicCode = publicCodeData;
+
 export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
 export type ContentStatus = "published" | "planned" | "draft";
 
@@ -291,6 +294,9 @@ export const approvedKnowledge = [
   ...professionalGraph.proofLinks.flatMap((item) => [item.href, item.label, item.detail ?? item.detailTemplate ?? ""]),
   ...professionalGraph.visitorSuccessQuestions.flatMap((item) => [item.question, item.answerLens, item.primaryHref, item.evidenceHref, item.askPrompt]),
   ...professionalGraph.relationships.flatMap((item) => [item.from, item.relation, item.to]),
+  publicCode.title,
+  publicCode.summary,
+  ...publicCode.entries.flatMap((item) => [item.label, item.href, item.status, item.whatToInspect, item.publicSafeUse, item.proofBoundary, ...item.related]),
   ...contentRegistry.flatMap((item) => [
     item.title,
     item.summary,

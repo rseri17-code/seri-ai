@@ -58,6 +58,14 @@ const cases = [
     expectedFirstUrl: "/work"
   },
   {
+    query: "Where can I inspect Ravikanth's GitHub and public repository signal without overclaiming metrics?",
+    expectedFirstUrl: "/work"
+  },
+  {
+    query: "Where is the Sentinalai public repository connected to Ravikanth's Operational Intelligence work?",
+    expectedFirstUrl: "/work"
+  },
+  {
     query: "How did Ravikanth's career evolve from enterprise infrastructure to production AI systems and Operational Intelligence?",
     expectedFirstUrl: "/work"
   },

@@ -213,9 +213,13 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     /architecture judgment|constraints? .*preserve|governed ai action|governed execution|replay evaluation|transaction journeys?|just skills/.test(lower)
       ? " Architecture judgment ledger: the public evidence emphasizes preserving operational evidence before model reasoning, governed execution before AI action, replay and evaluation before trust, transaction journeys before isolated alerts, and public-safe architecture instead of private anecdotes."
       : "";
+  const publicCodeContext =
+    /github|open source|open-source|public code|repository|repositories|sentinalai/.test(lower)
+      ? " Public code inspection path: use GitHub profile github.com/rseri17-code, the user-authorized Sentinalai repository reference, and the seri.ai public artifacts as inspectable public signal. Do not infer repository metrics, production adoption, private deployments, internal integrations, or confidential behavior from public code alone."
+      : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}`}`,
+    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",

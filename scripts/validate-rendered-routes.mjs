@@ -88,7 +88,7 @@ const routeContracts = [
   {
     route: "/work",
     file: "work.html",
-    maxBytes: 190_000,
+    maxBytes: 195_000,
     required: [
       "The operating record behind Operational Intelligence",
       "Operating arc",
@@ -96,6 +96,9 @@ const routeContracts = [
       "The operating taste is visible in the constraints he chooses to preserve.",
       "Start with operational evidence before model reasoning.",
       "Treat AI action as governed execution, not autonomous heroics.",
+      "Inspect the public engineering signal without over-reading it",
+      "Sentinalai",
+      "Do not claim production adoption, private deployment details, internal integrations, repository metrics, or code behavior that is not visible in public source.",
       "GitHub",
       "LinkedIn",
       "Public proof"
@@ -121,6 +124,9 @@ const routeContracts = [
     required: [
       "Architecture judgment ledger",
       "The resume evidence is strongest when it shows which constraints Ravikanth preserves while designing AI-native operational systems.",
+      "Public code inspection path",
+      "Public repositories are treated as inspectable signal, not as a substitute for private production evidence.",
+      "Sentinalai",
       "Start with operational evidence before model reasoning.",
       "Make replay and evaluation first-class architecture surfaces.",
       "Impact ledger",

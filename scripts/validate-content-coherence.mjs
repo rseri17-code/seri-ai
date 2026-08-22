@@ -30,6 +30,7 @@ const homeContent = fs.readFileSync(path.join(root, "content", "home.json"), "ut
 const askContent = fs.readFileSync(path.join(root, "content", "ask.json"), "utf8");
 const professionalGraphContent = fs.readFileSync(path.join(root, "content", "professional-graph.json"), "utf8");
 const nowContent = fs.readFileSync(path.join(root, "content", "now.json"), "utf8");
+const publicCodeContent = fs.readFileSync(path.join(root, "content", "public-code.json"), "utf8");
 const contentRegistryContent = fs.readFileSync(path.join(root, "content", "content-registry.json"), "utf8");
 const normalizedContentRegistryContent = contentRegistryContent.replace(/"([^"]+)":/g, "$1:");
 
@@ -338,7 +339,7 @@ for (const required of [
 }
 
 const workPage = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
-const workContractSource = [workPage, professionalGraphContent].join("\n");
+const workContractSource = [workPage, professionalGraphContent, publicCodeContent].join("\n");
 for (const required of [
   "professionalGraph.reviewSpine",
   "professionalGraph.proofLedger",
@@ -378,6 +379,12 @@ for (const required of [
   "Action discipline",
   "Learning discipline",
   "Review spine",
+  "Public code",
+  "Inspect the public engineering signal without over-reading it",
+  "publicCode.entries[0].href",
+  "publicCode.entries[1].href",
+  "Sentinalai",
+  "Do not claim production adoption, private deployment details, internal integrations, repository metrics, or code behavior that is not visible in public source.",
   "/wiki/operational-intelligence-canonical-doctrine",
   "/wiki/operational-intelligence-reference-architecture",
   "/wiki/operational-intelligence-evidence-pack",
@@ -892,7 +899,7 @@ for (const required of [
 }
 
 const resumePage = fs.readFileSync(path.join(root, "app", "resume", "page.tsx"), "utf8");
-const resumeContractSource = [resumePage, professionalGraphContent].join("\n");
+const resumeContractSource = [resumePage, professionalGraphContent, publicCodeContent].join("\n");
 for (const required of [
   "professionalGraph.capabilityEvidence",
   "professionalGraph.careerEvolution",
@@ -909,6 +916,10 @@ for (const required of [
   "Public-safe proof points",
   "Architect thesis",
   "Architecture judgment ledger",
+  "Public code inspection path",
+  "Public repositories are treated as inspectable signal, not as a substitute for private production evidence.",
+  "publicCode.entries.slice(0, 2)",
+  "Inspect public source",
   "The resume evidence is strongest when it shows which constraints Ravikanth preserves while designing AI-native operational systems.",
   "professionalGraph.architectureJudgment.slice(0, 3)",
   "operating complex systems first",

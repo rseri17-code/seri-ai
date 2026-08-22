@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { TrackedAnchor } from "@/components/tracked-link";
-import { evalReport, professionalGraph, resume } from "@/content/site";
+import { evalReport, professionalGraph, publicCode, resume } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Resume | Ravikanth Seri — Operational Intelligence and Enterprise AI",
@@ -174,6 +174,27 @@ export default function ResumePage() {
                 </span>
                 <span className="mt-2 block text-sm text-mint">{item.value}</span>
                 <span className="mt-2 block text-sm leading-6 text-slate-300">{item.description}</span>
+              </a>
+            ))}
+          </div>
+        </Card>
+        <Card className="border-mint/25 bg-mint/[0.04]">
+          <h2 className="text-xl font-semibold text-white">Public code inspection path</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            Public repositories are treated as inspectable signal, not as a substitute for private production evidence.
+          </p>
+          <div className="mt-5 space-y-3">
+            {publicCode.entries.slice(0, 2).map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="block rounded border border-white/10 bg-black/20 px-4 py-3 transition hover:border-mint/45"
+              >
+                <span className="block font-semibold text-white">{item.label}</span>
+                <span className="mt-2 block text-sm leading-6 text-slate-300">{item.whatToInspect}</span>
+                <span className="mt-3 block text-xs font-semibold uppercase tracking-[0.14em] text-mint">Inspect public source</span>
               </a>
             ))}
           </div>

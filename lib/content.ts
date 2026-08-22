@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projects, resume, site, thesisRadar } from "../content/site";
+import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projects, publicCode, resume, site, thesisRadar } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -483,6 +483,29 @@ export function buildPublicSourceIndex(): PublicSource[] {
       frameworkLayers: ["Evidence Layer", "Reasoning Layer", "Evaluation Layer", "Operator Layer"],
       principles: ["Evidence before conclusions"],
       patterns: ["human-in-the-loop-operational-ai", "evaluation-and-replay", "transaction-journey-reconstruction"],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
+      id: "profile:ravikanth-seri-public-code",
+      title: publicCode.title,
+      description: publicCode.summary,
+      content: [
+        publicCode.title,
+        publicCode.summary,
+        "GitHub. public code. open-source signal. Sentinalai. public repositories. inspectable engineering signal.",
+        publicCode.entries.flatMap((item) => [item.label, item.href, item.status, item.whatToInspect, item.publicSafeUse, item.proofBoundary, ...item.related]).join(". ")
+      ].join(". "),
+      url: "/work",
+      type: "registry" as const,
+      category: "background",
+      tags: ["GitHub", "public code", "open-source", "repository", "Sentinalai", "inspection"],
+      author: "Ravikanth Seri",
+      assetType: "profile",
+      date: "2026-08-22",
+      frameworkLayers: ["Evidence Layer", "Evaluation Layer"],
+      principles: ["Evidence before conclusions"],
+      patterns: ["evaluation-and-replay"],
       products: ["/products/reasonops"],
       status: "published" as const
     },

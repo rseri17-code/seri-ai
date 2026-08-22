@@ -19,6 +19,7 @@ const startHerePath = path.join(root, "content", "start-here.json");
 const changelogPath = path.join(root, "content", "changelog.json");
 const resumePath = path.join(root, "content", "resume.json");
 const professionalGraphPath = path.join(root, "content", "professional-graph.json");
+const publicCodePath = path.join(root, "content", "public-code.json");
 const contentRegistryPath = path.join(root, "content", "content-registry.json");
 const harnessThesisPath = path.join(root, "content", "harness-thesis.json");
 const canonicalDefinitionPath = path.join(root, "content", "canonical-definition.json");
@@ -50,6 +51,8 @@ const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matter
 const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
 const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "architectureJudgment", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "visitorSuccessQuestions", "relationships"];
+const requiredPublicCodeFields = ["title", "summary", "entries"];
+const requiredPublicCodeEntryFields = ["label", "href", "status", "whatToInspect", "publicSafeUse", "proofBoundary", "related"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
@@ -861,6 +864,33 @@ for (const item of professionalGraph.relationships ?? []) {
 }
 if (!JSON.stringify(professionalGraph).includes("Ask Ravikanth") || !JSON.stringify(professionalGraph).includes("LinkedIn") || !JSON.stringify(professionalGraph).includes("GitHub")) {
   errors.push("content/professional-graph.json: graph must connect Ask Ravikanth, LinkedIn, and GitHub public evidence");
+}
+
+const publicCode = requireJsonObject(publicCodePath, "content/public-code.json");
+validateRequiredFields("content/public-code.json", publicCode, requiredPublicCodeFields, { requireSlug: false });
+if (!Array.isArray(publicCode.entries) || publicCode.entries.length < 3) {
+  errors.push("content/public-code.json: entries must include at least three inspectable public-code signals");
+} else {
+  for (const entry of publicCode.entries) {
+    const owner = `content/public-code.json:${entry.label ?? "unknown"}`;
+    for (const field of requiredPublicCodeEntryFields) {
+      if (!entry[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (!String(entry.href ?? "").startsWith("/") && !/^https:\/\/github\.com\/rseri17-code/.test(entry.href ?? "")) {
+      errors.push(`${owner}: href must be an internal route or approved rseri17-code GitHub URL`);
+    }
+    if (String(entry.whatToInspect ?? "").length < 70) {
+      errors.push(`${owner}: whatToInspect must give concrete public inspection guidance`);
+    }
+    if (String(entry.proofBoundary ?? "").length < 90) {
+      errors.push(`${owner}: proofBoundary must prevent overclaiming from public code`);
+    }
+    if (!Array.isArray(entry.related) || entry.related.length < 2 || entry.related.some((route) => !String(route).startsWith("/"))) {
+      errors.push(`${owner}: related must include at least two internal routes`);
+    }
+  }
 }
 
 const contentRegistry = requireJsonArray(contentRegistryPath, "content/content-registry.json", 15);

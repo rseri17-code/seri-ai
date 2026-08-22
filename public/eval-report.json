@@ -970,6 +970,18 @@
         "Explicit unknowns"
       ],
       "result": "Pass"
+    },
+    {
+      "prompt": "Where can I inspect Sentinalai and Ravikanth's public GitHub work without overclaiming?",
+      "expected": "Route to Work, public profile links, and public-code boundaries without inventing metrics.",
+      "requiredAnswerIncludes": [
+        "Public code inspection path",
+        "github.com/rseri17-code",
+        "Sentinalai",
+        "Do not infer repository metrics",
+        "/work"
+      ],
+      "result": "Pass"
     }
   ],
   "knownLimits": [
@@ -979,6 +991,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 88,
-  "passingFixtures": 88
+  "fixtureCount": 89,
+  "passingFixtures": 89
 }

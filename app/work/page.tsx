@@ -5,7 +5,7 @@ import { ArrowRight, Boxes, BrainCircuit, ClipboardCheck, FileText, GitBranch, L
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";
-import { articles, contentRegistry, evalReport, operationalIntelligenceFramework, patterns, professionalGraph, projects, resume } from "@/content/site";
+import { articles, contentRegistry, evalReport, operationalIntelligenceFramework, patterns, professionalGraph, projects, publicCode, resume } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Work | Ravikanth Seri",
@@ -118,6 +118,17 @@ export default function WorkPage() {
             Public proof is the organizing rule: doctrine, reference architecture, evidence pack, Operations Room, resume
             evidence, GitHub, LinkedIn, and writing should be inspectable without private systems, logs, screenshots, or
             non-public architecture.
+          </p>
+          <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-300">
+            Public code: Inspect the public engineering signal without over-reading it through{" "}
+            <a href={publicCode.entries[0].href} target="_blank" rel="noreferrer" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
+              GitHub
+            </a>{" "}
+            and{" "}
+            <a href={publicCode.entries[1].href} target="_blank" rel="noreferrer" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
+              Sentinalai
+            </a>
+            . Do not claim production adoption, private deployment details, internal integrations, repository metrics, or code behavior that is not visible in public source.
           </p>
         </Card>
       </Section>
