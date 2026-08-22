@@ -7,7 +7,7 @@ export function ProfileMark({ size = "md" }: { size?: "sm" | "md" }) {
   const iconSize = size === "sm" ? 12 : 15;
 
   return (
-    <div className={`relative ${outerSize} shrink-0`} role="img" aria-label="Ravikanth Seri identity mark">
+    <div className={`relative ${outerSize} shrink-0`} role="img" aria-label="Ravikanth Seri identity mark" data-identity-asset="/identity/ravikanth-seri-identity-mark.svg">
       <div className={`grid h-full w-full place-items-center rounded-full border border-mint/35 bg-mint/10 font-semibold ${textSize} text-mint shadow-[0_0_28px_rgba(95,242,181,0.18)]`}>
         RS
       </div>

@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
+import { articles, contentRegistry, identityAsset, nowPage, patterns, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -51,7 +51,7 @@ const referenceSources = [
     title: "seri.ai Visual QA Evidence",
     description: "First-viewport browser evidence for nine critical routes across mobile, tablet, and desktop widths.",
     content:
-      "seri.ai Visual QA Evidence. 2026-08-22 first-viewport browser captures. 27 screenshots across Home, Start Here, Ask Ravikanth, Operations Room, Work, Background, Canonical Doctrine, Radar, and Evidence Pack. Mobile 390x844, tablet 768x1024, desktop 1440x1000. Zero horizontal overflow findings, zero console-error pages, visible H1 and main content for every captured route. Limitations: first-viewport evidence only, not external reviewer feedback, not full touch walkthrough, approved portrait still missing.",
+      "seri.ai Visual QA Evidence. 2026-08-22 first-viewport browser captures. 27 screenshots across Home, Start Here, Ask Ravikanth, Operations Room, Work, Background, Canonical Doctrine, Radar, and Evidence Pack. Mobile 390x844, tablet 768x1024, desktop 1440x1000. Zero horizontal overflow findings, zero console-error pages, visible H1 and main content for every captured route. Limitations: first-viewport evidence only, not external reviewer feedback, not full touch walkthrough. A durable non-photographic identity mark exists, while an approved portrait photo remains missing.",
     url: "/visual-qa/2026-08-22/report.md",
     type: "registry" as const,
     category: "Quality Evidence",
@@ -659,6 +659,32 @@ export function buildPublicSourceIndex(): PublicSource[] {
       principles: ["Evidence before conclusions"],
       patterns: ["evaluation-and-replay", "transaction-journey-reconstruction", "human-in-the-loop-operational-ai"],
       products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
+      id: "profile:ravikanth-seri-identity-asset",
+      title: identityAsset.title,
+      description: "Durable public-safe non-photographic identity mark for Ravikanth Seri and the seri.ai person-work-evidence path.",
+      content: [
+        identityAsset.title,
+        identityAsset.href,
+        identityAsset.type,
+        identityAsset.purpose,
+        identityAsset.usage.join(". "),
+        identityAsset.limitations.join(". "),
+        "identity mark. profile mark. public identity. durable identity asset. not a portrait photo. public-safe visual anchor. person work evidence path. does not replace career evidence or public proof."
+      ].join(". "),
+      url: identityAsset.href,
+      type: "registry" as const,
+      category: "profile",
+      tags: ["identity mark", "profile", "Ravikanth Seri", "public-safe", "person-work-evidence"],
+      author: "Ravikanth Seri",
+      assetType: "profile",
+      date: identityAsset.updatedAt,
+      frameworkLayers: ["Evidence Layer"],
+      principles: ["Evidence before conclusions"],
+      patterns: ["evidence-driven-rca"],
+      products: [],
       status: "published" as const
     },
     {

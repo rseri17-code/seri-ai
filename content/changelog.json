@@ -2,12 +2,13 @@
   {
     "version": "v0.8",
     "date": "2026-08-22",
-    "title": "Added governed scorecard, graph health, proof ledgers, review kit, and visual QA evidence",
-    "description": "seri.ai now tracks the 24-dimension 10/10 target with non-inflated evidence-based scores, validates knowledge-graph health as a release gate, exposes public project proof and first-time visitor review ledgers, and preserves 27 visual QA screenshots across nine critical routes and three viewports.",
+    "title": "Added governed scorecard, graph health, proof ledgers, review kit, visual QA evidence, and identity mark",
+    "description": "seri.ai now tracks the 24-dimension 10/10 target with non-inflated evidence-based scores, validates knowledge-graph health as a release gate, exposes public project proof and first-time visitor review ledgers, preserves 27 visual QA screenshots across nine critical routes and three viewports, and adds a durable public-safe identity mark while keeping the approved portrait gap visible.",
     "tags": [
       "quality-scorecard",
       "knowledge-graph",
       "visitor-review",
+      "identity",
       "governance",
       "validation"
     ]

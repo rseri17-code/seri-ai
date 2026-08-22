@@ -224,6 +224,14 @@ const cases = [
   {
     query: "Download the walkthrough PDF.",
     expectedFirstUrl: "/downloads/oi-room-001-printable-walkthrough.pdf"
+  },
+  {
+    query: "Where is Ravikanth's durable public identity mark?",
+    expectedFirstUrl: "/identity/ravikanth-seri-identity-mark.svg"
+  },
+  {
+    query: "Is there an approved portrait photo for Ravikanth on seri.ai?",
+    expectedFirstUrl: "/identity/ravikanth-seri-identity-mark.svg"
   }
 ];
 

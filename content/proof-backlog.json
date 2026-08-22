@@ -58,10 +58,10 @@
       "slug": "identity-asset",
       "claim": "Ravikanth Seri remains unmistakably the author, engineer, and professional identity behind the Operational Intelligence body of work.",
       "evidenceNeeded": "Approved portrait or identity asset, verified profile links, resume provenance, public-code links, LinkedIn signal, and a first-viewport path from person to work to evidence.",
-      "currentEvidence": "The homepage, Start Here, Work, Resume, Background, GitHub link, LinkedIn link, and production-delivery chain connect the person to the public body of work.",
-      "nextProof": "Add an approved portrait or durable identity asset when available, then verify first-viewport rendering and public-safe attribution.",
+      "currentEvidence": "The homepage, Start Here, Work, Resume, Background, GitHub link, LinkedIn link, production-delivery chain, and durable non-photographic public identity mark connect the person to the public body of work.",
+      "nextProof": "Add an approved portrait photo when a durable authorized source is available, then run external first-impression review to verify that the person-work-evidence path feels clear rather than anonymous.",
       "wouldChange": "If visitors still experience the site as an anonymous product, rebalance homepage and navigation copy toward Ravikanth as author without turning it into self-promotion.",
-      "status": "awaiting-approved-asset",
+      "status": "identity-mark-present",
       "href": "/background"
     }
   ]

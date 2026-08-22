@@ -41,7 +41,7 @@ if (fs.existsSync(reportPath)) {
     "0 recorded console-error pages",
     "Mobile Operations Room shows the live investigation graph",
     "does not replace external reviewer feedback",
-    "approved portrait or identity asset remains missing"
+    "durable non-photographic identity mark now exists"
   ]) {
     expect(report.includes(required), `visual QA report missing "${required}"`);
   }

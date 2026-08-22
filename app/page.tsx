@@ -26,7 +26,7 @@ const proofStrip = [
 
 
 const inspectionLedger = [
-  ["/start-here", "Visitor Proof Map", "The fastest public-safe path through Ravikanth Seri's career, work, current focus, writing, GitHub, resume, contact path, and Operational Intelligence thesis."],
+  ["/start-here", "Visitor Proof Map", "The fastest public-safe path through Ravikanth Seri's work, GitHub, resume, and Operational Intelligence thesis."],
   ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "Definition, boundaries, ten layers, glossary, and claim posture."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Contracts, state machines, schemas, gates, and conformance levels."],
   ["/investigation-room", "Operations Room", "Synthetic investigation with evidence graph, replay, contradiction, missing evidence, and approval."],

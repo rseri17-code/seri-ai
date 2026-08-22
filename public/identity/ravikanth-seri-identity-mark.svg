@@ -1,0 +1,15 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ravikanth Seri Identity Mark</title>
+  <desc id="desc">A public-safe RS identity mark with an operational intelligence node motif.</desc>
+  <rect width="512" height="512" rx="112" fill="#071312"/>
+  <circle cx="256" cy="256" r="178" fill="#5FF2B5" fill-opacity="0.08" stroke="#5FF2B5" stroke-opacity="0.36" stroke-width="6"/>
+  <path d="M128 316V178H190C221 178 242 196 242 224C242 243 233 258 217 267L250 316H212L183 273H164V316H128ZM164 242H187C198 242 205 236 205 226C205 216 198 210 187 210H164V242Z" fill="#EAFBF5"/>
+  <path d="M270 277C279 286 294 293 310 293C323 293 330 289 330 281C330 273 321 270 304 266C278 260 257 251 257 222C257 194 279 176 313 176C335 176 354 182 369 194L349 222C338 214 325 209 311 209C300 209 294 213 294 220C294 228 303 231 320 235C349 242 367 252 367 280C367 310 344 318 310 318C286 318 262 310 247 295L270 277Z" fill="#EAFBF5"/>
+  <circle cx="388" cy="369" r="54" fill="#5FF2B5"/>
+  <path d="M363 369H413" stroke="#071312" stroke-width="10" stroke-linecap="round"/>
+  <path d="M388 344V394" stroke="#071312" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="388" cy="344" r="7" fill="#071312"/>
+  <circle cx="363" cy="369" r="7" fill="#071312"/>
+  <circle cx="413" cy="369" r="7" fill="#071312"/>
+  <circle cx="388" cy="394" r="7" fill="#071312"/>
+</svg>

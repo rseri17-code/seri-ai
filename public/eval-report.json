@@ -982,7 +982,8 @@
         "live beta reliability evidence",
         "touch walkthroughs",
         "external visual review",
-        "approved identity asset",
+        "stronger identity validation",
+        "approved portrait photo",
         "/wiki/operational-intelligence-evidence-pack"
       ],
       "result": "Pass"
@@ -1089,6 +1090,18 @@
         "external reviewer feedback"
       ],
       "result": "Pass"
+    },
+    {
+      "prompt": "Where is Ravikanth's durable public identity mark, and is it a portrait photo?",
+      "expected": "Route to the durable identity mark while stating that it is not a portrait photo and does not replace public proof.",
+      "requiredAnswerIncludes": [
+        "Ravikanth Seri Public Identity Mark",
+        "/identity/ravikanth-seri-identity-mark.svg",
+        "not a portrait photo",
+        "public-safe",
+        "without replacing career evidence"
+      ],
+      "result": "Pass"
     }
   ],
   "knownLimits": [
@@ -1098,6 +1111,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 96,
-  "passingFixtures": 96
+  "fixtureCount": 97,
+  "passingFixtures": 97
 }

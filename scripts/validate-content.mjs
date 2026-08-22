@@ -25,6 +25,7 @@ const publicationSpinePath = path.join(root, "content", "publication-spine.json"
 const proofBacklogPath = path.join(root, "content", "proof-backlog.json");
 const qualityScorecardPath = path.join(root, "content", "quality-scorecard.json");
 const visitorReviewKitPath = path.join(root, "content", "visitor-review-kit.json");
+const identityAssetPath = path.join(root, "content", "identity-asset.json");
 const contentRegistryPath = path.join(root, "content", "content-registry.json");
 const harnessThesisPath = path.join(root, "content", "harness-thesis.json");
 const canonicalDefinitionPath = path.join(root, "content", "canonical-definition.json");
@@ -70,6 +71,7 @@ const requiredQualityScorecardDimensionFields = ["name", "score", "evidence", "g
 const requiredVisitorReviewKitFields = ["title", "updatedAt", "purpose", "principle", "reviewPath", "reviewQuestions", "reviewAssets", "publicChannels", "publicSafetyBoundary"];
 const requiredVisitorReviewPathFields = ["step", "href", "question"];
 const requiredVisitorReviewAssetFields = ["href", "label", "description"];
+const requiredIdentityAssetFields = ["title", "updatedAt", "href", "type", "purpose", "usage", "limitations"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
@@ -696,6 +698,36 @@ if (!Array.isArray(visitorReviewKit.publicChannels) || visitorReviewKit.publicCh
       errors.push(`content/visitor-review-kit.json:publicChannels:${item.label ?? "unknown"} href must be internal or https`);
     }
   }
+}
+
+const identityAsset = requireJsonObject(identityAssetPath, "content/identity-asset.json");
+validateRequiredFields("content/identity-asset.json", identityAsset, requiredIdentityAssetFields, { requireSlug: false });
+if (!/^\d{4}-\d{2}-\d{2}$/.test(identityAsset.updatedAt ?? "")) {
+  errors.push("content/identity-asset.json: updatedAt must be YYYY-MM-DD");
+}
+if (!String(identityAsset.title ?? "").includes("Ravikanth Seri")) {
+  errors.push("content/identity-asset.json: title must name Ravikanth Seri");
+}
+if (identityAsset.href !== "/identity/ravikanth-seri-identity-mark.svg") {
+  errors.push("content/identity-asset.json: href must point to the canonical identity mark asset");
+}
+if (!/public-safe|identity|Operational Intelligence/i.test(`${identityAsset.type ?? ""} ${identityAsset.purpose ?? ""}`)) {
+  errors.push("content/identity-asset.json: type and purpose must preserve public-safe identity intent");
+}
+if (!Array.isArray(identityAsset.usage) || identityAsset.usage.length < 3) {
+  errors.push("content/identity-asset.json: usage must include at least three usage statements");
+}
+if (!Array.isArray(identityAsset.limitations) || identityAsset.limitations.length < 3) {
+  errors.push("content/identity-asset.json: limitations must include at least three limitation statements");
+}
+const identityAssetText = JSON.stringify(identityAsset);
+for (const required of ["not a portrait photo", "public-safe", "does not imply employer affiliation", "does not replace"]) {
+  if (!identityAssetText.toLowerCase().includes(required.toLowerCase())) {
+    errors.push(`content/identity-asset.json: missing identity boundary ${required}`);
+  }
+}
+if (/endorsement|production adoption|internal screenshot|confidential platform/i.test(identityAssetText) && !/does not imply/i.test(identityAssetText)) {
+  errors.push("content/identity-asset.json: identity asset boundaries must not imply endorsement, adoption, or private systems");
 }
 
 const changelog = requireJsonArray(changelogPath, "content/changelog.json", 6, { requireSlug: false });

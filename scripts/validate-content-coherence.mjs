@@ -33,6 +33,7 @@ const nowContent = fs.readFileSync(path.join(root, "content", "now.json"), "utf8
 const proofBacklogContent = fs.readFileSync(path.join(root, "content", "proof-backlog.json"), "utf8");
 const qualityScorecardContent = fs.readFileSync(path.join(root, "content", "quality-scorecard.json"), "utf8");
 const visitorReviewKitContent = fs.readFileSync(path.join(root, "content", "visitor-review-kit.json"), "utf8");
+const identityAssetContent = fs.readFileSync(path.join(root, "content", "identity-asset.json"), "utf8");
 const publicCodeContent = fs.readFileSync(path.join(root, "content", "public-code.json"), "utf8");
 const contentRegistryContent = fs.readFileSync(path.join(root, "content", "content-registry.json"), "utf8");
 const normalizedContentRegistryContent = contentRegistryContent.replace(/"([^"]+)":/g, "$1:");
@@ -759,7 +760,9 @@ for (const required of [
   "deterministic-fixtures-pass",
   "awaiting-live-beta-telemetry",
   "screenshots-captured",
-  "awaiting-approved-asset",
+  "identity-mark-present",
+  "durable non-photographic public identity mark now exists",
+  "approved portrait photo when available",
   "/wiki/operational-intelligence-evidence-pack",
   "/ideas/oi-room-001-control-comparison",
   "/evals",
@@ -768,6 +771,21 @@ for (const required of [
   "/background"
 ]) {
   expect(proofBacklogContractSource.includes(required), `Evidence Pack missing proof-backlog contract: ${required}`);
+}
+
+const profileMarkComponent = fs.readFileSync(path.join(root, "components", "profile-mark.tsx"), "utf8");
+const identityAssetContractSource = [identityAssetContent, siteContent, profileMarkComponent].join("\n");
+for (const required of [
+  "Ravikanth Seri Public Identity Mark",
+  "/identity/ravikanth-seri-identity-mark.svg",
+  "durable identity asset",
+  "public-safe visual identity anchor",
+  "not a portrait photo",
+  "does not imply employer affiliation",
+  "does not replace career evidence",
+  "data-identity-asset"
+]) {
+  expect(identityAssetContractSource.includes(required), `Identity asset missing contract: ${required}`);
 }
 
 const scorecard = fs.readFileSync(path.join(root, "WORLD_CLASS_SCORECARD.md"), "utf8");
@@ -804,6 +822,8 @@ for (const required of [
   "No live reviewer-labeled quality baseline exists.",
   "browser viewport audit across Home, Start Here, Ask, Operations Room, Work, Background, Doctrine, and Radar",
   "Touch walkthroughs are still missing",
+  "durable non-photographic public identity mark",
+  "approved portrait photo",
   "Execute the proof backlog"
 ]) {
   expect(qualityScorecardContractSource.includes(required), `Quality scorecard missing contract: ${required}`);

@@ -10,6 +10,7 @@ const doctrineUrl = "/wiki/operational-intelligence-canonical-doctrine";
 const referenceArchitectureUrl = "/wiki/operational-intelligence-reference-architecture";
 const evidencePackUrl = "/wiki/operational-intelligence-evidence-pack";
 const visualQaUrl = "/visual-qa/2026-08-22/report.md";
+const identityAssetUrl = "/identity/ravikanth-seri-identity-mark.svg";
 const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
 const conformanceProfileUrl = "/publication-pack/operational-intelligence-conformance-profile.md";
 const workUrl = "/work";
@@ -29,6 +30,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/glossary|reference card|canonical terms|replay seed|operator control plane/, "/publication-pack/operational-intelligence-glossary-card.md"],
   [/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/, conformanceProfileUrl],
   [/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset/, evidencePackUrl],
+  [/public identity mark|profile mark|ravikanth.*identity mark|where.*identity mark|durable public identity mark|portrait photo|portrait asset/, identityAssetUrl],
   [/quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target/, evidencePackUrl],
   [/(visual qa|mobile qa).*(screenshot|viewport|evidence)|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/, visualQaUrl],
   [/visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/, startHereUrl],
@@ -272,6 +274,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         /proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lowerQuery)
           ? 85
           : 0;
+      const identityAssetBoost =
+        source.url === identityAssetUrl &&
+        /public identity mark|profile mark|ravikanth.*identity mark|where.*identity mark|durable public identity mark|portrait photo|portrait asset/.test(lowerQuery)
+          ? 130
+          : 0;
       const visualQaBoost =
         source.url === visualQaUrl &&
         /(visual qa|mobile qa).*(screenshot|viewport|evidence)|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/.test(lowerQuery)
@@ -349,6 +356,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         backgroundBoost +
         productionDeliveryBoost +
         proofBacklogBoost +
+        identityAssetBoost +
         visualQaBoost +
         qualityScorecardBoost +
         projectProofBoost;

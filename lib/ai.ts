@@ -90,9 +90,16 @@ export function inferRelatedArtifacts(question: string) {
   if (/reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts|scoring discipline/.test(lower)) {
     artifacts.add("/publication-pack/operational-intelligence-evidence-pack.md");
   }
+  if (/public identity mark|profile mark|identity mark|durable identity|portrait photo|portrait asset/.test(lower)) {
+    artifacts.add("/identity/ravikanth-seri-identity-mark.svg");
+    artifacts.add("/start-here");
+    artifacts.add("/work");
+    artifacts.add("/resume");
+  }
   if (/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
     artifacts.add("/visual-qa/2026-08-22/report.md");
+    artifacts.add("/identity/ravikanth-seri-identity-mark.svg");
     artifacts.add("/contact");
     artifacts.add("/evals");
     artifacts.add("/investigation-room");
@@ -277,7 +284,11 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "";
   const proofBacklogContext =
     /proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lower)
-      ? " Proof backlog: the Evidence Pack names the remaining proof work as practitioner review, control-comparison results, reviewer-labeled Ask quality, live beta reliability evidence, touch walkthroughs and external visual review, and an approved identity asset. Durable first-viewport screenshot artifacts are now captured for nine critical routes, so remaining visual proof should focus on touch use, hierarchy, density, and reviewer findings."
+      ? " Proof backlog: the Evidence Pack names the remaining proof work as practitioner review, control-comparison results, reviewer-labeled Ask quality, live beta reliability evidence, touch walkthroughs and external visual review, and stronger identity validation. A durable non-photographic identity mark now exists, but an approved portrait photo and external first-impression review remain open. Durable first-viewport screenshot artifacts are now captured for nine critical routes, so remaining visual proof should focus on touch use, hierarchy, density, and reviewer findings."
+      : "";
+  const identityAssetContext =
+    /public identity mark|profile mark|identity mark|durable identity|portrait photo|portrait asset/.test(lower)
+      ? " Identity asset: Ravikanth Seri Public Identity Mark is available at /identity/ravikanth-seri-identity-mark.svg. It is a durable public-safe non-photographic identity mark, not a portrait photo, and it supports the person-work-evidence path without replacing career evidence, public proof, or an approved portrait when one is available."
       : "";
   const qualityScorecardContext =
     /quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lower)
@@ -289,7 +300,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}${visualQaContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}${visualQaContext}`}`,
+    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",

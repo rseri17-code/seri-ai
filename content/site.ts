@@ -20,6 +20,7 @@ import publicationSpineData from "./publication-spine.json";
 import proofBacklogData from "./proof-backlog.json";
 import qualityScorecardData from "./quality-scorecard.json";
 import visitorReviewKitData from "./visitor-review-kit.json";
+import identityAssetData from "./identity-asset.json";
 import contentRegistryData from "./content-registry.json";
 import harnessThesisData from "./harness-thesis.json";
 import canonicalDefinitionData from "./canonical-definition.json";
@@ -276,6 +277,18 @@ export type VisitorReviewKit = {
 
 export const visitorReviewKit = visitorReviewKitData satisfies VisitorReviewKit;
 
+export type IdentityAsset = {
+  title: string;
+  updatedAt: string;
+  href: string;
+  type: string;
+  purpose: string;
+  usage: string[];
+  limitations: string[];
+};
+
+export const identityAsset = identityAssetData satisfies IdentityAsset;
+
 export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
 export type ContentStatus = "published" | "planned" | "draft";
 
@@ -462,6 +475,12 @@ export const approvedKnowledge = [
   ...professionalGraph.proofLinks.flatMap((item) => [item.href, item.label, item.detail ?? item.detailTemplate ?? ""]),
   ...professionalGraph.visitorSuccessQuestions.flatMap((item) => [item.question, item.answerLens, item.primaryHref, item.evidenceHref, item.askPrompt]),
   ...professionalGraph.relationships.flatMap((item) => [item.from, item.relation, item.to]),
+  identityAsset.title,
+  identityAsset.href,
+  identityAsset.type,
+  identityAsset.purpose,
+  ...identityAsset.usage,
+  ...identityAsset.limitations,
   publicCode.title,
   publicCode.summary,
   ...publicCode.entries.flatMap((item) => [item.label, item.href, item.status, item.whatToInspect, item.publicSafeUse, item.proofBoundary, ...item.related]),

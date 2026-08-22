@@ -37,4 +37,4 @@ Limitations:
 
 - This is first-viewport evidence, not a complete manual scroll-through of every section.
 - It does not replace external reviewer feedback.
-- The approved portrait or identity asset remains missing because no durable source image is present in the repo.
+- A durable non-photographic identity mark now exists in the repo; the approved portrait photo remains missing because no durable source image is present.
