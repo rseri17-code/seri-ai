@@ -30,6 +30,7 @@ const homeContent = fs.readFileSync(path.join(root, "content", "home.json"), "ut
 const askContent = fs.readFileSync(path.join(root, "content", "ask.json"), "utf8");
 const professionalGraphContent = fs.readFileSync(path.join(root, "content", "professional-graph.json"), "utf8");
 const nowContent = fs.readFileSync(path.join(root, "content", "now.json"), "utf8");
+const proofBacklogContent = fs.readFileSync(path.join(root, "content", "proof-backlog.json"), "utf8");
 const publicCodeContent = fs.readFileSync(path.join(root, "content", "public-code.json"), "utf8");
 const contentRegistryContent = fs.readFileSync(path.join(root, "content", "content-registry.json"), "utf8");
 const normalizedContentRegistryContent = contentRegistryContent.replace(/"([^"]+)":/g, "$1:");
@@ -726,6 +727,35 @@ for (const required of [
   "practitioner review"
 ]) {
   expect(evalsPage.includes(required), `/evals missing coverage matrix contract: ${required}`);
+}
+
+const evidencePackWiki = fs.readFileSync(path.join(root, "content", "wiki", "operational-intelligence-evidence-pack.mdx"), "utf8");
+const evidencePackMarkdown = fs.readFileSync(path.join(root, "public", "publication-pack", "operational-intelligence-evidence-pack.md"), "utf8");
+const proofBacklogContractSource = [proofBacklogContent, evidencePackWiki, evidencePackMarkdown, siteContent].join("\n");
+for (const required of [
+  "Operational Intelligence Proof Backlog",
+  "Current Proof Backlog",
+  "The current backlog names the evidence still required before stronger public claims should be made.",
+  "Practitioner review",
+  "Control comparison",
+  "Ask quality",
+  "Production reliability",
+  "Visual and mobile QA",
+  "Identity asset",
+  "awaiting-external-evidence",
+  "protocol-defined",
+  "deterministic-fixtures-pass",
+  "awaiting-live-beta-telemetry",
+  "needs-browser-evidence",
+  "awaiting-approved-asset",
+  "/wiki/operational-intelligence-evidence-pack",
+  "/ideas/oi-room-001-control-comparison",
+  "/evals",
+  "/changelog",
+  "/investigation-room",
+  "/background"
+]) {
+  expect(proofBacklogContractSource.includes(required), `Evidence Pack missing proof-backlog contract: ${required}`);
 }
 
 const architectureLabPage = fs.readFileSync(path.join(root, "app", "architecture-lab", "page.tsx"), "utf8");

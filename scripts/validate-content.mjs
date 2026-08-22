@@ -21,6 +21,7 @@ const resumePath = path.join(root, "content", "resume.json");
 const professionalGraphPath = path.join(root, "content", "professional-graph.json");
 const publicCodePath = path.join(root, "content", "public-code.json");
 const publicationSpinePath = path.join(root, "content", "publication-spine.json");
+const proofBacklogPath = path.join(root, "content", "proof-backlog.json");
 const contentRegistryPath = path.join(root, "content", "content-registry.json");
 const harnessThesisPath = path.join(root, "content", "harness-thesis.json");
 const canonicalDefinitionPath = path.join(root, "content", "canonical-definition.json");
@@ -57,6 +58,8 @@ const requiredPublicCodeFields = ["title", "summary", "entries"];
 const requiredPublicCodeEntryFields = ["label", "href", "status", "whatToInspect", "publicSafeUse", "proofBoundary", "related"];
 const requiredPublicationSpineFields = ["title", "summary", "updatedAt", "principle", "audienceQuestion", "stages"];
 const requiredPublicationSpineStageFields = ["name", "purpose", "primaryAsset", "supportingAssets", "readerQuestion", "proofStandard"];
+const requiredProofBacklogFields = ["title", "summary", "updatedAt", "principle", "items"];
+const requiredProofBacklogItemFields = ["slug", "claim", "evidenceNeeded", "currentEvidence", "nextProof", "wouldChange", "status", "href"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
@@ -607,6 +610,47 @@ for (const entry of changelog) {
   }
   if ((entry.description ?? "").length < 80) {
     errors.push(`${owner}: description too short`);
+  }
+}
+
+const proofBacklog = requireJsonObject(proofBacklogPath, "content/proof-backlog.json");
+validateRequiredFields("content/proof-backlog.json", proofBacklog, requiredProofBacklogFields, { requireSlug: false });
+if (!/^\d{4}-\d{2}-\d{2}$/.test(proofBacklog.updatedAt ?? "")) {
+  errors.push("content/proof-backlog.json: updatedAt must be YYYY-MM-DD");
+}
+if (!/evidence|proof|claim/i.test(proofBacklog.principle ?? "")) {
+  errors.push("content/proof-backlog.json: principle must preserve evidence-backed claim discipline");
+}
+const requiredProofSlugs = ["practitioner-review", "control-comparison", "ask-quality", "production-reliability", "visual-mobile-qa", "identity-asset"];
+if (!Array.isArray(proofBacklog.items) || proofBacklog.items.length !== requiredProofSlugs.length) {
+  errors.push(`content/proof-backlog.json: items must include exactly ${requiredProofSlugs.length} current proof gaps`);
+} else {
+  const proofSlugs = new Set(proofBacklog.items.map((item) => item.slug));
+  for (const slug of requiredProofSlugs) {
+    if (!proofSlugs.has(slug)) {
+      errors.push(`content/proof-backlog.json: items missing ${slug}`);
+    }
+  }
+  for (const item of proofBacklog.items) {
+    validateRequiredFields("content/proof-backlog.json", item, requiredProofBacklogItemFields);
+    const owner = `content/proof-backlog.json:${item.slug ?? "unknown"}`;
+    for (const field of ["claim", "evidenceNeeded", "currentEvidence", "nextProof", "wouldChange"]) {
+      if (String(item[field] ?? "").length < 90) {
+        errors.push(`${owner}: ${field} must contain substantial reviewable evidence language`);
+      }
+    }
+    if (!String(item.href ?? "").startsWith("/")) {
+      errors.push(`${owner}: href must route to an internal proof surface`);
+    }
+    if (/complete|proven|world-class|10\/10/i.test(item.status ?? "")) {
+      errors.push(`${owner}: status must not overclaim completion`);
+    }
+  }
+  const backlogText = JSON.stringify(proofBacklog);
+  for (const required of ["practitioner", "control", "Ask", "reliability", "visual", "identity", "evidence"]) {
+    if (!backlogText.toLowerCase().includes(required.toLowerCase())) {
+      errors.push(`content/proof-backlog.json: missing proof backlog theme ${required}`);
+    }
   }
 }
 

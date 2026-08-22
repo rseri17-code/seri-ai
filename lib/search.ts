@@ -27,6 +27,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/executive summary|one-page summary|one page summary/, "/publication-pack/operational-intelligence-executive-summary.md"],
   [/glossary|reference card|canonical terms|replay seed|operator control plane/, "/publication-pack/operational-intelligence-glossary-card.md"],
   [/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/, conformanceProfileUrl],
+  [/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset/, evidencePackUrl],
   [/evidence pack markdown|falsification criteria|reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts/, "/publication-pack/operational-intelligence-evidence-pack.md"],
   [/publication pack pdf|download.*publication|shareable pdf.*diagram/, "/downloads/operational-intelligence-publication-pack.pdf"],
   [/evidence pack pdf|download.*evidence/, "/downloads/operational-intelligence-evidence-pack.pdf"],
@@ -256,6 +257,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         /architecture.*engineering.*integration|architecture to production|production delivery|delivery chain|governance.*production|evaluation.*governance|operating loop|production experience|production judgment/.test(lowerQuery)
           ? 75
           : 0;
+      const proofBacklogBoost =
+        source.url === evidencePackUrl &&
+        /proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lowerQuery)
+          ? 85
+          : 0;
       const conformanceChecklistBoost = source.url === evidencePackUrl && /minimum conformance|conformance checklist|observable proof|failure signal/.test(lowerQuery) ? 10 : 0;
       const evidenceMarkdownBoost =
         source.url === "/publication-pack/operational-intelligence-evidence-pack.md" &&
@@ -315,7 +321,8 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         resumeBoost +
         resumeSpecificBoost +
         backgroundBoost +
-        productionDeliveryBoost;
+        productionDeliveryBoost +
+        proofBacklogBoost;
       return { source, content: source.content, score };
     })
     .filter((hit) => hit.score > 0)

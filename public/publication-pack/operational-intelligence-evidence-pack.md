@@ -232,7 +232,20 @@ The doctrine should be revised if evidence shows that:
 - Evaluation gates fail to catch regressions that human reviewers consider obvious.
 - The workflow slows urgent response without improving learning, auditability, or decision quality.
 
-## 13. Minimum Conformance Checklist
+## 13. Current Proof Backlog
+
+The current backlog names the evidence still required before stronger public claims should be made. These are not launch blockers for reading the doctrine; they are the review work that would make the doctrine more credible over time.
+
+| Proof area | Evidence needed | Current evidence | Next proof | Would change the model if |
+| --- | --- | --- | --- | --- |
+| Practitioner review | Structured SRE, architect, AI, governance, executive, and product review. | Review roles and ledger fields are defined. | Collect five public-safe reviews. | Reviewers cannot distinguish OI from adjacent practice. |
+| Control comparison | Same-facts OI-ROOM-001 runs across dashboard, chatbot, ticket, and OI modes. | Modes and worksheet dimensions exist. | Publish dimension-level results. | Structure does not improve judgment. |
+| Ask quality | Reviewer-labeled Ask sessions across profile, doctrine, routing, unknowns, and boundaries. | Deterministic fixtures and refusal behavior pass. | Compare fallback, vector retrieval, and model synthesis. | Ask cannot cite sources or separate fact from inference. |
+| Production reliability | Live route, Ask latency, fallback, contact, and safe analytics evidence. | Local deployment, API, rendering, and budget gates pass. | Review beta telemetry. | Errors or latency make review unreliable. |
+| Visual and mobile QA | Screenshots and keyboard notes for core routes at mobile, tablet, and desktop widths. | Viewport, a11y, rendered, and performance checks pass. | Capture browser evidence. | The site still feels like a demo. |
+| Identity asset | Approved portrait or identity asset connected to the person-work-evidence path. | Public routes link Ravikanth to the work. | Add an approved durable asset. | The site feels anonymous. |
+
+## 14. Minimum Conformance Checklist
 
 An implementation should not be described as Operational Intelligence unless it can show these proofs. The checklist is implementation-neutral and does not require a specific vendor, model, database, cloud, graph engine, ticketing system, or UI.
 
@@ -249,7 +262,7 @@ An implementation should not be described as Operational Intelligence unless it 
 | Replay seed | The case can be reproduced from approved public-safe context and versioned expected behavior. | The demo cannot be rerun or compared after changes. | AI engineer |
 | Learning loop | Reviewed outcomes update memory, patterns, documentation, and future fixtures. | Post-incident learning remains unstructured narrative. | Executive reviewer |
 
-## 14. Conformance Verdicts
+## 15. Conformance Verdicts
 
 - Conforms: the implementation supplies observable proof for every requirement.
 - Partially conforms: the implementation satisfies the invariant but lacks one or more measurable proofs.

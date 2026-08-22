@@ -16,6 +16,7 @@ import resumeData from "./resume.json";
 import professionalGraphData from "./professional-graph.json";
 import publicCodeData from "./public-code.json";
 import publicationSpineData from "./publication-spine.json";
+import proofBacklogData from "./proof-backlog.json";
 import contentRegistryData from "./content-registry.json";
 import harnessThesisData from "./harness-thesis.json";
 import canonicalDefinitionData from "./canonical-definition.json";
@@ -186,6 +187,27 @@ export type PublicationSpine = {
 
 export const publicationSpine = publicationSpineData satisfies PublicationSpine;
 
+export type ProofBacklogItem = {
+  slug: string;
+  claim: string;
+  evidenceNeeded: string;
+  currentEvidence: string;
+  nextProof: string;
+  wouldChange: string;
+  status: string;
+  href: string;
+};
+
+export type ProofBacklog = {
+  title: string;
+  summary: string;
+  updatedAt: string;
+  principle: string;
+  items: ProofBacklogItem[];
+};
+
+export const proofBacklog = proofBacklogData satisfies ProofBacklog;
+
 export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
 export type ContentStatus = "published" | "planned" | "draft";
 
@@ -245,6 +267,19 @@ export const approvedKnowledge = [
     ...stage.supportingAssets,
     stage.readerQuestion,
     stage.proofStandard
+  ]),
+  proofBacklog.title,
+  proofBacklog.summary,
+  proofBacklog.principle,
+  ...proofBacklog.items.flatMap((item) => [
+    item.slug,
+    item.claim,
+    item.evidenceNeeded,
+    item.currentEvidence,
+    item.nextProof,
+    item.wouldChange,
+    item.status,
+    item.href
   ]),
   ...products.flatMap((product) => [
     product.name,

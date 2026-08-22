@@ -126,6 +126,14 @@ const cases = [
     expectedFirstUrl: "/now"
   },
   {
+    query: "What is still missing before seri.ai can honestly claim 10/10 evidence quality?",
+    expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
+  },
+  {
+    query: "Where is the proof backlog for practitioner review control comparison live beta telemetry visual QA and identity asset?",
+    expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
+  },
+  {
     query: "Where are the market signals for ops for observability and observability for AI?",
     expectedFirstUrl: "/radar"
   },

@@ -84,6 +84,13 @@ export function inferRelatedArtifacts(question: string) {
   if (/reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts|scoring discipline/.test(lower)) {
     artifacts.add("/publication-pack/operational-intelligence-evidence-pack.md");
   }
+  if (/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lower)) {
+    artifacts.add("/wiki/operational-intelligence-evidence-pack");
+    artifacts.add("/contact");
+    artifacts.add("/evals");
+    artifacts.add("/investigation-room");
+    artifacts.add("/background");
+  }
   if (/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/.test(lower)) {
     artifacts.add("/publication-pack/operational-intelligence-conformance-profile.md");
   }
@@ -239,9 +246,13 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     /architecture.*engineering.*integration|architecture to production|production delivery|delivery chain|governance.*production|evaluation.*governance|operating loop|production experience|production judgment/.test(lower)
       ? " Production delivery path: the public-safe background represents delivery as Architecture, Engineering, Integration, Evaluation, Governance, and Production Delivery. It should be inspected through constraints, gates, handoffs, fallback behavior, and public evidence rather than protected implementation specifics."
       : "";
+  const proofBacklogContext =
+    /proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lower)
+      ? " Proof backlog: the Evidence Pack names the remaining proof work as practitioner review, control-comparison results, reviewer-labeled Ask quality, live beta reliability evidence, browser-based visual and mobile QA, and an approved identity asset. These gaps should be treated as evidence to collect, not as claims already proven."
+      : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}${productionDeliveryContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}${productionDeliveryContext}`}`,
+    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",

@@ -1,0 +1,68 @@
+{
+  "title": "Operational Intelligence Proof Backlog",
+  "summary": "Current public-safe evidence still needed to strengthen the Operational Intelligence doctrine, Ravikanth Seri's professional representation, and the seri.ai product proof loop.",
+  "updatedAt": "2026-08-22",
+  "principle": "The site should publish claims only as far as the evidence supports them, and unresolved proof gaps should be visible to serious reviewers.",
+  "items": [
+    {
+      "slug": "practitioner-review",
+      "claim": "Experienced operators and architects can understand where Operational Intelligence begins, where it ends, and how to challenge it.",
+      "evidenceNeeded": "Structured reviews from SRE, architecture, AI engineering, governance, executive, and product reviewers using the practitioner review form.",
+      "currentEvidence": "The Evidence Pack defines reviewer roles, dimension verdicts, evidence ledger fields, and doctrine impact categories.",
+      "nextProof": "Collect at least five public-safe practitioner reviews that identify strongest claim, weakest claim, evidence needed, and implementation questions.",
+      "wouldChange": "If reviewers cannot distinguish the model from observability, AIOps, ITIL, incident command, or chatbot-only assistance, revise the doctrine boundaries.",
+      "status": "awaiting-external-evidence",
+      "href": "/wiki/operational-intelligence-evidence-pack"
+    },
+    {
+      "slug": "control-comparison",
+      "claim": "The Operational Intelligence workflow improves reviewability compared with dashboard-only, chatbot-only, and ticket-only investigation modes.",
+      "evidenceNeeded": "Same-facts OI-ROOM-001 comparison runs scored on evidence completeness, contradiction handling, missing-evidence honesty, hypothesis quality, decision safety, replayability, and reviewer confidence.",
+      "currentEvidence": "The OI-ROOM-001 control comparison article and Evidence Pack define modes, allowed inputs, primary risks, and worksheet dimensions.",
+      "nextProof": "Run the control comparison with independent reviewers and publish dimension-level results with limitations instead of an aggregate quality score.",
+      "wouldChange": "If the workflow adds structure without improving judgment, simplify the model or narrow claims to the cases where structure helps.",
+      "status": "protocol-defined",
+      "href": "/ideas/oi-room-001-control-comparison"
+    },
+    {
+      "slug": "ask-quality",
+      "claim": "Ask Ravikanth is a useful interface to Ravikanth Seri's verified public professional graph rather than a generic chatbot wrapper.",
+      "evidenceNeeded": "Reviewer-labeled Ask sessions across professional profile, doctrine, architecture, evidence, routing, unknown questions, and public-safety boundaries.",
+      "currentEvidence": "Deterministic Ask fixtures, rubric dimensions, citation expectations, refusal behavior, and local fallback behavior are validated in the build.",
+      "nextProof": "Compare local fallback, vector retrieval, and model synthesis on the same safe prompt set using only category, latency, success, failure, and reviewer verdict metadata.",
+      "wouldChange": "If Ask cannot cite relevant public sources or separate fact from inference under realistic questions, reduce answer scope and improve retrieval before expanding claims.",
+      "status": "deterministic-fixtures-pass",
+      "href": "/evals"
+    },
+    {
+      "slug": "production-reliability",
+      "claim": "seri.ai can operate as a stable public beta with useful fallbacks when optional AI or database services are unavailable.",
+      "evidenceNeeded": "Deployment observations for uptime, build health, route availability, Ask latency, fallback rate, contact failure rate, and privacy-safe analytics events.",
+      "currentEvidence": "Deployment validators, API timeout handling, local fallbacks, rate limiting, analytics contracts, rendered-route validation, and performance budgets are enforced locally.",
+      "nextProof": "After Vercel beta deployment, review production logs and analytics using only privacy-safe metadata and publish limitations in the release report or scorecard.",
+      "wouldChange": "If fallback rate, route errors, or latency make review unreliable, prioritize reliability fixes before deeper publication work.",
+      "status": "awaiting-live-beta-telemetry",
+      "href": "/changelog"
+    },
+    {
+      "slug": "visual-mobile-qa",
+      "claim": "The site feels publication-grade on mobile, tablet, and desktop for first-time executives, engineers, recruiters, and founders.",
+      "evidenceNeeded": "Durable screenshots and keyboard walkthrough notes for the homepage, Ask Ravikanth, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack at mobile, tablet, and desktop widths.",
+      "currentEvidence": "Source-level viewport contracts, accessibility validation, rendered-route checks, and performance budgets pass, but fresh screenshot-grade inspection is still incomplete.",
+      "nextProof": "Capture browser screenshots from a reachable local or preview environment, inspect hierarchy and density, and convert any concrete failures into regression checks.",
+      "wouldChange": "If the Operations Room or homepage still feels like a demo at realistic viewports, reduce visual noise and sharpen first-task clarity without changing the architecture.",
+      "status": "needs-browser-evidence",
+      "href": "/investigation-room"
+    },
+    {
+      "slug": "identity-asset",
+      "claim": "Ravikanth Seri remains unmistakably the author, engineer, and professional identity behind the Operational Intelligence body of work.",
+      "evidenceNeeded": "Approved portrait or identity asset, verified profile links, resume provenance, public-code links, LinkedIn signal, and a first-viewport path from person to work to evidence.",
+      "currentEvidence": "The homepage, Start Here, Work, Resume, Background, GitHub link, LinkedIn link, and production-delivery chain connect the person to the public body of work.",
+      "nextProof": "Add an approved portrait or durable identity asset when available, then verify first-viewport rendering and public-safe attribution.",
+      "wouldChange": "If visitors still experience the site as an anonymous product, rebalance homepage and navigation copy toward Ravikanth as author without turning it into self-promotion.",
+      "status": "awaiting-approved-asset",
+      "href": "/background"
+    }
+  ]
+}

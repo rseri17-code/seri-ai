@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projects, publicCode, publicationSpine, resume, site, thesisRadar } from "../content/site";
+import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projects, proofBacklog, publicCode, publicationSpine, resume, site, thesisRadar } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -583,6 +583,32 @@ export function buildPublicSourceIndex(): PublicSource[] {
       frameworkLayers: ["Evidence Layer", "Transaction Layer", "Evaluation Layer", "Operator Layer", "Learning Layer"],
       principles: ["Evidence before conclusions"],
       patterns: ["evaluation-and-replay", "transaction-journey-reconstruction", "human-in-the-loop-operational-ai"],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
+      id: "profile:operational-intelligence-proof-backlog",
+      title: proofBacklog.title,
+      description: proofBacklog.summary,
+      content: [
+        proofBacklog.title,
+        proofBacklog.summary,
+        proofBacklog.principle,
+        "proof backlog. evidence gaps. proof gaps. external proof. practitioner review. control comparison. live telemetry. browser visual QA. Ask quality. identity asset.",
+        proofBacklog.items
+          .flatMap((item) => [item.slug, item.claim, item.evidenceNeeded, item.currentEvidence, item.nextProof, item.wouldChange, item.status, item.href])
+          .join(". ")
+      ].join(". "),
+      url: "/wiki/operational-intelligence-evidence-pack",
+      type: "registry" as const,
+      category: "evidence",
+      tags: ["proof backlog", "evidence gaps", "practitioner review", "control comparison", "Ask quality", "visual QA", "production reliability"],
+      author: "Ravikanth Seri",
+      assetType: "evidence",
+      date: proofBacklog.updatedAt,
+      frameworkLayers: ["Evidence Layer", "Evaluation Layer", "Operator Layer", "Learning Layer"],
+      principles: ["Evidence before conclusions", "Replay before belief"],
+      patterns: ["/patterns/evaluation-and-replay", "/patterns/evidence-driven-rca", "/patterns/human-in-the-loop-operational-ai"],
       products: ["/products/reasonops"],
       status: "published" as const
     },
