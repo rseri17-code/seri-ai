@@ -164,13 +164,57 @@
     }
   ],
   "education": [
-    "MS, Industrial Engineering, University of New Haven"
+    {
+      "credential": "MS, Industrial Engineering",
+      "issuer": "University of New Haven",
+      "status": "completed",
+      "sourceClass": "Resume and LinkedIn public profile",
+      "supports": "Systems thinking, process improvement, optimization, and operations-oriented engineering judgment."
+    }
   ],
   "certifications": [
-    "Artificial Intelligence Associate, North Carolina State University, issued Dec 2025",
-    "Certified Data Scientist, North Carolina State University, issued Jun 2025",
-    "AWS Solutions Architect Associate, Amazon Web Services, issued Mar 2020 and expired Mar 2023",
-    "Certified Kubernetes Administrator",
-    "IBM Certified DataPower Administrator"
+    {
+      "credential": "Artificial Intelligence Associate",
+      "issuer": "North Carolina State University",
+      "issued": "Dec 2025",
+      "status": "earned",
+      "sourceClass": "Resume and LinkedIn public profile",
+      "supports": "Current AI systems learning signal connected to production AI operations, evaluation, and governed agentic workflows.",
+      "doesNotProve": "Does not by itself prove production deployment quality or model research authority."
+    },
+    {
+      "credential": "Certified Data Scientist",
+      "issuer": "North Carolina State University",
+      "issued": "Jun 2025",
+      "status": "earned",
+      "sourceClass": "Resume and LinkedIn public profile",
+      "supports": "Applied data, evaluation, and analysis foundation for AI evaluation and operational decision quality.",
+      "doesNotProve": "Does not replace inspectable evidence from projects, evals, replay, or public artifacts."
+    },
+    {
+      "credential": "AWS Solutions Architect Associate",
+      "issuer": "Amazon Web Services",
+      "issued": "Mar 2020",
+      "status": "expired Mar 2023",
+      "sourceClass": "Resume and LinkedIn public profile",
+      "supports": "Cloud architecture foundation for hybrid infrastructure, production reliability, and enterprise platform modernization.",
+      "doesNotProve": "Expired credential should be treated as historical signal, not current certification status."
+    },
+    {
+      "credential": "Certified Kubernetes Administrator",
+      "issuer": "Cloud Native Computing Foundation / Linux Foundation",
+      "status": "earned",
+      "sourceClass": "Resume and LinkedIn public profile",
+      "supports": "Kubernetes operating foundation behind platform modernization, reliability, deployment discipline, and cloud-native operations.",
+      "doesNotProve": "Does not expose private cluster architecture, employer implementation details, or production metrics."
+    },
+    {
+      "credential": "IBM Certified DataPower Administrator",
+      "issuer": "IBM",
+      "status": "earned",
+      "sourceClass": "Resume and LinkedIn public profile",
+      "supports": "Enterprise integration and gateway foundation behind API architecture, identity, middleware, and operational support.",
+      "doesNotProve": "Does not imply current vendor affiliation or disclose private gateway environments."
+    }
   ]
 }

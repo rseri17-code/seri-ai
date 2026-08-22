@@ -262,16 +262,32 @@ export default function ResumePage() {
               <Award className="text-amber" />
               <h2 className="text-xl font-semibold text-white">Education and certifications</h2>
             </div>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              Credentials are treated as supporting evidence. They help explain the career arc, but they do not replace projects,
+              architecture artifacts, evaluation fixtures, or public work.
+            </p>
+            <div className="mt-5 grid gap-3">
               {resume.education.map((item) => (
-                <span key={item} className="rounded border border-mint/20 bg-mint/10 px-3 py-2 text-sm text-slate-100">
-                  {item}
-                </span>
+                <div key={`${item.credential}-${item.issuer}`} className="rounded border border-mint/20 bg-mint/10 px-4 py-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Education · {item.status}</p>
+                  <h3 className="mt-2 font-semibold text-white">{item.credential}</h3>
+                  <p className="mt-1 text-sm text-slate-300">{item.issuer}</p>
+                  <p className="mt-3 text-sm leading-6 text-slate-200">{item.supports}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">Source: {item.sourceClass}</p>
+                </div>
               ))}
               {resume.certifications.map((certification) => (
-                <span key={certification} className="rounded border border-white/10 px-3 py-2 text-sm text-slate-200">
-                  {certification}
-                </span>
+                <div key={`${certification.credential}-${certification.issuer}`} className="rounded border border-white/10 bg-ink px-4 py-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Certification · {certification.status}</p>
+                    {certification.issued ? <p className="font-mono text-xs text-slate-500">Issued {certification.issued}</p> : null}
+                  </div>
+                  <h3 className="mt-2 font-semibold text-white">{certification.credential}</h3>
+                  <p className="mt-1 text-sm text-slate-300">{certification.issuer}</p>
+                  <p className="mt-3 text-sm leading-6 text-slate-200">{certification.supports}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{certification.doesNotProve}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-500">Source: {certification.sourceClass}</p>
+                </div>
               ))}
             </div>
           </Card>

@@ -893,6 +893,19 @@
       "result": "Pass"
     },
     {
+      "prompt": "What credentials and education support Ravikanth's AI operations and infrastructure background?",
+      "expected": "Use structured credential evidence, route to Resume, and avoid treating credentials as proof by themselves.",
+      "requiredAnswerIncludes": [
+        "Credential evidence",
+        "/resume",
+        "North Carolina State University",
+        "AWS Solutions Architect Associate",
+        "expired Mar 2023",
+        "Credentials support the career arc but do not replace inspectable project"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "What does Ravikanth mean by Context Acquisition Tax?",
       "expected": "Explain the public LinkedIn thesis around repeated operational context reconstruction.",
       "requiredAnswerIncludes": [
@@ -1196,6 +1209,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 103,
-  "passingFixtures": 103
+  "fixtureCount": 104,
+  "passingFixtures": 104
 }

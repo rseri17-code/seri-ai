@@ -241,7 +241,7 @@ function inferReferenceAssetMatches(question) {
 
 function deterministicFallbackAnswer(question) {
   const lower = normalizeQuestionIntent(question);
-  const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background/.test(lower);
+  const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education/.test(lower);
   const layers = inferFrameworkLayers(question);
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
@@ -250,6 +250,10 @@ function deterministicFallbackAnswer(question) {
   const linkedinContext =
     /linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)
       ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, distinguish a dynamic operational view from a static graph, and connect ops for observability with observability for AI."
+      : "";
+  const credentialContext =
+    /certification|credential|education|degree|aws solutions architect|kubernetes administrator|data scientist|artificial intelligence associate|datapower|university of new haven|north carolina state/.test(lower)
+      ? " Credential evidence: /resume lists education and certifications as supporting evidence with issuer, status, source class, and explicit limits. Current public evidence includes MS Industrial Engineering from University of New Haven, Artificial Intelligence Associate and Certified Data Scientist from North Carolina State University, historical AWS Solutions Architect Associate status expired Mar 2023, Certified Kubernetes Administrator, and IBM Certified DataPower Administrator. Credentials support the career arc but do not replace inspectable project, architecture, evaluation, or public-work evidence."
       : "";
   const visitorSuccessContext =
     /start here|first[- ]time|visitor|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lower)
@@ -309,8 +313,8 @@ function deterministicFallbackAnswer(question) {
       : "";
   return [
     asksAboutRavikanth
-      ? `Direct answer: ${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`
-      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`,
+      ? `Direct answer: ${ravikanthContext}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`
+      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`,
     `Relevant framework layers: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     "Public source: approved public content registry, including the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, framework, and public wiki sources.",
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before presenting the doctrine as credible.",

@@ -42,6 +42,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/practitioner review packet|external practitioner review|review ravikanth.*evidence|professional representation review|career clarity review|first impression review|does.*represent ravikanth|evaluate.*professional operating system/, practitionerReviewUrl],
   [/(visual qa|mobile qa).*(screenshot|viewport|evidence)|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/, visualQaUrl],
   [/visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/, startHereUrl],
+  [/certification|credential|education|degree|aws solutions architect|kubernetes administrator|data scientist|artificial intelligence associate|datapower|university of new haven|north carolina state/, resumeUrl],
   [/project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|stronger public project proof/, workUrl],
   [/evidence pack markdown|falsification criteria|reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts/, "/publication-pack/operational-intelligence-evidence-pack.md"],
   [/publication pack pdf|download.*publication|shareable pdf.*diagram/, "/downloads/operational-intelligence-publication-pack.pdf"],
@@ -264,11 +265,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         !/learn from him|learning from ravikanth/.test(lowerQuery)
           ? 90
           : 0;
-      const resumeBoost = source.url === resumeUrl && /resume|experience|career|capability|impact|recruiter|founder|background|certification|credential|public evidence|architecture judgment/.test(lowerQuery) ? 12 : 0;
+      const resumeBoost = source.url === resumeUrl && /resume|experience|career|capability|impact|recruiter|founder|background|certification|credential|education|degree|public evidence|architecture judgment/.test(lowerQuery) ? 12 : 0;
       const resumeSpecificBoost =
         source.url === resumeUrl &&
-        /resume/.test(lowerQuery) &&
-        /show|shows|where|inspect|evidence|architecture judgment|skills|impact|certification|credential/.test(lowerQuery)
+        (/resume/.test(lowerQuery) || /certification|credential|education|degree|aws solutions architect|kubernetes administrator|data scientist|artificial intelligence associate|datapower|university of new haven|north carolina state/.test(lowerQuery)) &&
+        /show|shows|where|inspect|evidence|architecture judgment|skills|impact|certification|credential|education|degree|support/.test(lowerQuery)
           ? 35
           : 0;
       const backgroundBoost = source.url === backgroundUrl && /who is ravikanth|about ravikanth|background|career|experience|linkedin|certification|credential|profile/.test(lowerQuery) ? 12 : 0;

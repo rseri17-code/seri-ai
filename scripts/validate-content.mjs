@@ -864,6 +864,35 @@ for (const field of ["contact", "strengths", "architectureHighlights", "educatio
     errors.push(`content/resume.json: ${field} must be a non-empty array`);
   }
 }
+if (Array.isArray(resume.education)) {
+  for (const item of resume.education) {
+    const owner = `content/resume.json:education:${item.credential ?? "unknown"}`;
+    for (const field of ["credential", "issuer", "status", "sourceClass", "supports"]) {
+      if (!item[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (!/Resume|LinkedIn|public profile/i.test(item.sourceClass ?? "")) {
+      errors.push(`${owner}: sourceClass must name the approved public or resume source class`);
+    }
+  }
+}
+if (Array.isArray(resume.certifications)) {
+  for (const item of resume.certifications) {
+    const owner = `content/resume.json:certifications:${item.credential ?? "unknown"}`;
+    for (const field of ["credential", "issuer", "status", "sourceClass", "supports", "doesNotProve"]) {
+      if (!item[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (!/Resume|LinkedIn|public profile/i.test(item.sourceClass ?? "")) {
+      errors.push(`${owner}: sourceClass must name the approved public or resume source class`);
+    }
+    if (!/does not|not by itself|historical|private|metrics|replace/i.test(item.doesNotProve ?? "")) {
+      errors.push(`${owner}: doesNotProve must preserve credential-boundary language`);
+    }
+  }
+}
 if (!Array.isArray(resume.strengths) || resume.strengths.length < 6) {
   errors.push("content/resume.json: strengths must include at least six public capabilities");
 }

@@ -130,6 +130,10 @@ const cases = [
     expectedFirstUrl: "/resume"
   },
   {
+    query: "What credentials and education support Ravikanth's AI operations infrastructure and Kubernetes background?",
+    expectedFirstUrl: "/resume"
+  },
+  {
     query: "What is Ravikanth learning researching and advancing right now?",
     expectedFirstUrl: "/now"
   },

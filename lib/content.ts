@@ -588,6 +588,8 @@ export function buildPublicSourceIndex(): PublicSource[] {
       content: [
         "Resume evidence. Architecture judgment ledger. Architecture judgment rather than just skills.",
         "Impact ledger. Capability evidence matrix. Source provenance. Education. Certifications.",
+        resume.education.flatMap((item) => [item.credential, item.issuer, item.status, item.supports, item.sourceClass]).join(". "),
+        resume.certifications.flatMap((item) => [item.credential, item.issuer, item.issued ?? "", item.status, item.supports, item.doesNotProve, item.sourceClass]).join(". "),
         "Preserved constraints: operational evidence, governed execution, replay evaluation, transaction journeys, public-safe architecture."
       ].join(". "),
       url: "/resume",
