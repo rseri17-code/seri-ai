@@ -33,6 +33,7 @@
     "validate:performance": "node scripts/validate-performance.mjs",
     "validate:links": "node scripts/validate-links.mjs",
     "scan:public-safety": "node scripts/scan-public-safety.mjs",
+    "audit:security": "npm audit --audit-level=high",
     "evals": "node scripts/run-evals.mjs"
   },
   "dependencies": {

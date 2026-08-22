@@ -84,9 +84,31 @@ export type Project = {
 
 export const projects = projectsData as Project[];
 
-export const products = productsData;
+export type Product = {
+  slug: string;
+  name: string;
+  tagline: string;
+  summary: string;
+  relationship: string;
+  whatItIs: string[];
+  whyItMatters: string[];
+  capabilities: string[];
+  architecture: string[];
+  useCases: string[];
+  principles: string[];
+  not: string[];
+  roadmap: string[];
+};
 
-export const architectureCards = architectureCardsData;
+export const products = productsData satisfies Product[];
+
+export type ArchitectureCard = {
+  title: string;
+  pattern: string;
+  tags: string[];
+};
+
+export const architectureCards = architectureCardsData satisfies ArchitectureCard[];
 
 export const evalReport = evalReportData;
 export const askQualityRubric = askQualityRubricData;

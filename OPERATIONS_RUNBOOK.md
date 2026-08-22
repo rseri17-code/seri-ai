@@ -59,7 +59,7 @@ Do not commit runtime `.env` files, provider keys, Supabase JWTs, PostHog projec
 
 Run `npm run validate:security` before every release candidate. It checks that runtime `.env` files are not tracked, `.gitignore` protects local env files, `.env.example` does not contain real-looking secret values, and tracked text files do not contain common secret-shaped material.
 
-Run `npm audit --audit-level=high` before beta deployment or dependency changes. The current dependency policy pins Next.js to the patched release line and uses npm overrides only for narrowly scoped transitive advisories that can be remediated without a framework-major upgrade.
+Run `npm run audit:security` before beta deployment or dependency changes. The current dependency policy pins Next.js to the patched release line and uses npm overrides only for narrowly scoped transitive advisories that can be remediated without a framework-major upgrade.
 
 ## Alert Signals
 
