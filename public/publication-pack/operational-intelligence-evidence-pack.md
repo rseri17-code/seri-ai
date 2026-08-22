@@ -238,7 +238,7 @@ The current backlog names the evidence still required before stronger public cla
 
 | Proof area | Evidence needed | Current evidence | Next proof | Would change the model if |
 | --- | --- | --- | --- | --- |
-| Practitioner review | Structured SRE, architect, AI, governance, executive, and product review. | Review roles and ledger fields are defined. | Collect five public-safe reviews. | Reviewers cannot distinguish OI from adjacent practice. |
+| Practitioner review | Structured SRE, architect, AI, governance, executive, and product review. | Review roles, ledger fields, and `/publication-pack/ravikanth-seri-practitioner-review-packet.md` are defined. | Run the Practitioner Review Packet with five public-safe external reviewers. | Reviewers cannot distinguish OI from adjacent practice or cannot tell how the site represents Ravikanth Seri. |
 | Control comparison | Same-facts OI-ROOM-001 runs across dashboard, chatbot, ticket, and OI modes. | Modes and worksheet dimensions exist. | Publish dimension-level results. | Structure does not improve judgment. |
 | Ask quality | Reviewer-labeled Ask sessions across profile, doctrine, routing, unknowns, and boundaries. | Deterministic fixtures, refusal behavior, and the Ask live review packet pass validation. | Run `/publication-pack/ask-ravi-live-review-packet.md` to compare local fallback, vector retrieval, and model synthesis using safe metadata only. | Ask cannot cite sources or separate fact from inference. |
 | Production reliability | Live route, Ask latency, fallback, contact, and safe analytics evidence. | Local deployment, API, rendering, and budget gates pass. | Review beta telemetry. | Errors or latency make review unreliable. |

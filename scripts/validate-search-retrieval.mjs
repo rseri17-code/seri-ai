@@ -106,6 +106,14 @@ const cases = [
     expectedFirstUrl: "/start-here"
   },
   {
+    query: "Where is the practitioner review packet for evaluating Ravikanth's professional representation and evidence?",
+    expectedFirstUrl: "/publication-pack/ravikanth-seri-practitioner-review-packet.md"
+  },
+  {
+    query: "How should an external practitioner review whether seri.ai represents Ravikanth without generic self-promotion?",
+    expectedFirstUrl: "/publication-pack/ravikanth-seri-practitioner-review-packet.md"
+  },
+  {
     query: "How can I submit public-safe feedback about what was clear confusing memorable strongest weakest and what evidence would change my mind?",
     expectedFirstUrl: "/start-here"
   },

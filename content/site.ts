@@ -21,6 +21,7 @@ import publicationSpineData from "./publication-spine.json";
 import proofBacklogData from "./proof-backlog.json";
 import qualityScorecardData from "./quality-scorecard.json";
 import visitorReviewKitData from "./visitor-review-kit.json";
+import practitionerReviewPacketData from "./practitioner-review-packet.json";
 import identityAssetData from "./identity-asset.json";
 import mobileTouchWalkthroughsData from "./mobile-touch-walkthroughs.json";
 import contentRegistryData from "./content-registry.json";
@@ -279,6 +280,7 @@ export type VisitorReviewKit = {
 };
 
 export const visitorReviewKit = visitorReviewKitData satisfies VisitorReviewKit;
+export const practitionerReviewPacket = practitionerReviewPacketData;
 
 export type IdentityAsset = {
   title: string;
@@ -409,6 +411,17 @@ export const approvedKnowledge = [
   ...visitorReviewKit.reviewQuestions,
   ...visitorReviewKit.reviewAssets.flatMap((item) => [item.href, item.label, item.description]),
   ...visitorReviewKit.publicChannels.flatMap((item) => [item.href, item.label, item.description]),
+  practitionerReviewPacket.title,
+  practitionerReviewPacket.purpose,
+  practitionerReviewPacket.reviewPrinciple,
+  practitionerReviewPacket.evidenceLevel,
+  practitionerReviewPacket.publicationRule,
+  ...practitionerReviewPacket.reviewerRoles,
+  ...practitionerReviewPacket.reviewSequence.flatMap((item) => [item.step, item.route, item.question, item.failureSignal]),
+  ...practitionerReviewPacket.reviewDimensions.flatMap((item) => [item.name, item.question, ...item.evidenceToInspect]),
+  ...practitionerReviewPacket.safeMetadataOnly,
+  ...practitionerReviewPacket.doNotCapture,
+  ...practitionerReviewPacket.verdicts,
   projectProof.title,
   projectProof.principle,
   ...projectProof.items.flatMap((item) => [

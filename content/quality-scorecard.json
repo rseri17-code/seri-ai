@@ -6,17 +6,17 @@
   "dimensions": [
     {
       "name": "Professional Representation",
-      "score": 8.7,
-      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, contact paths, the First-Time Visitor Review Kit, durable first-viewport screenshots, and a durable non-photographic public identity mark make Ravikanth Seri visible as the author and engineer behind the work.",
-      "gap": "An approved portrait photo and external first-impression review are still missing, so the person-work-evidence path is not yet independently validated.",
-      "nextProof": "Add the approved portrait photo when available, then verify the person-work-evidence path with external reviewers at mobile, tablet, and desktop widths."
+      "score": 8.8,
+      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, contact paths, the First-Time Visitor Review Kit, Practitioner Review Packet, durable first-viewport screenshots, and a durable non-photographic public identity mark make Ravikanth Seri visible as the author and engineer behind the work.",
+      "gap": "An approved portrait photo and completed external first-impression review are still missing, so the person-work-evidence path is not yet independently validated.",
+      "nextProof": "Add the approved portrait photo when available, then run the Practitioner Review Packet with external reviewers at mobile, tablet, and desktop widths."
     },
     {
       "name": "Career Clarity",
-      "score": 8.9,
-      "evidence": "The professional graph, Background route, Start Here path, and First-Time Visitor Review Kit show the arc from enterprise integration through cloud, observability, production AI systems, and Operational Intelligence.",
+      "score": 9,
+      "evidence": "The professional graph, Background route, Start Here path, First-Time Visitor Review Kit, and Practitioner Review Packet show the arc from enterprise integration through cloud, observability, production AI systems, and Operational Intelligence.",
       "gap": "The career story is strong in structured content but still needs completed reviewer feedback from people who know nothing about Ravikanth.",
-      "nextProof": "Run the first-time visitor review kit with external reviewers and record where they become uncertain."
+      "nextProof": "Run the Practitioner Review Packet with external reviewers and record where they become uncertain."
     },
     {
       "name": "Technical Authority",
@@ -63,7 +63,7 @@
     {
       "name": "Evidence Quality",
       "score": 7.9,
-      "evidence": "Resume provenance, public-code boundaries, doctrine citations, eval fixtures, proof backlog, First-Time Visitor Review Kit, and evidence-led pages reduce unsupported claims.",
+      "evidence": "Resume provenance, public-code boundaries, doctrine citations, eval fixtures, proof backlog, First-Time Visitor Review Kit, Practitioner Review Packet, and evidence-led pages reduce unsupported claims.",
       "gap": "The strongest remaining evidence is external: completed practitioner review, benchmark results, live telemetry, and visual QA artifacts.",
       "nextProof": "Execute the proof backlog and review kit, then update claims only when new evidence supports them."
     },
@@ -84,14 +84,14 @@
     {
       "name": "Ask Ravi",
       "score": 8.3,
-      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, visitor-review routing, visual-QA routing, identity-asset routing, mobile-touch evidence routing, Ask live review packet routing, and 100 passing fixtures.",
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, visitor-review routing, practitioner-review routing, visual-QA routing, identity-asset routing, mobile-touch evidence routing, Ask live review packet routing, and 102 passing fixtures.",
       "gap": "A controlled Ask live review packet exists, but no live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
       "nextProof": "Run the Ask live review packet and publish qualitative labels without raw prompts or aggregate model-quality scores."
     },
     {
       "name": "Search / Discoverability",
       "score": 8.5,
-      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, visitor review, visual QA, identity asset, mobile touch walkthroughs, Ask live review packet, and 60 canonical retrieval checks.",
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, visitor review, practitioner review, visual QA, identity asset, mobile touch walkthroughs, Ask live review packet, and 62 canonical retrieval checks.",
       "gap": "Live search-console evidence and real query behavior are not yet available.",
       "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
     },
@@ -105,7 +105,7 @@
     {
       "name": "UX",
       "score": 8.1,
-      "evidence": "Start Here, primary CTAs, proof paths, Ask prompts, related reading, reference assets, and the First-Time Visitor Review Kit provide guided navigation.",
+      "evidence": "Start Here, primary CTAs, proof paths, Ask prompts, related reading, reference assets, the First-Time Visitor Review Kit, and the Practitioner Review Packet provide guided navigation.",
       "gap": "The Operations Room and long reference pages still need more observed user-review evidence.",
       "nextProof": "Run a 10-20 minute first-time visitor walkthrough and record where users hesitate."
     },

@@ -1061,10 +1061,11 @@
     },
     {
       "prompt": "Where is the first-time visitor review kit for evaluating whether seri.ai clearly represents Ravikanth?",
-      "expected": "Route to Start Here and Contact with public-safe review guidance.",
+      "expected": "Route to Start Here, practitioner packet, and Contact with public-safe review guidance.",
       "requiredAnswerIncludes": [
         "First-Time Visitor Review Kit",
         "/start-here",
+        "/publication-pack/ravikanth-seri-practitioner-review-packet.md",
         "/contact",
         "what was clear",
         "what was confusing",
@@ -1072,6 +1073,35 @@
         "weakest",
         "evidence needed",
         "without confidential material"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Where is the practitioner review packet for evaluating Ravikanth's professional representation and evidence?",
+      "expected": "Route to the practitioner review packet and state that no external practitioner verdicts exist yet.",
+      "requiredAnswerIncludes": [
+        "Practitioner review packet",
+        "/publication-pack/ravikanth-seri-practitioner-review-packet.md",
+        "Ravikanth Seri",
+        "career arc",
+        "public work",
+        "safe metadata only",
+        "does not claim external practitioner verdicts yet"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "How should an external practitioner review whether seri.ai represents Ravikanth without generic self-promotion?",
+      "expected": "Use the practitioner packet to review professional representation, career clarity, evidence quality, Operations Room, Ask, and memorability.",
+      "requiredAnswerIncludes": [
+        "Practitioner review packet",
+        "professional representation",
+        "career arc",
+        "evidence quality",
+        "Operations Room",
+        "Ask usefulness",
+        "memorability",
+        "/publication-pack/ravikanth-seri-practitioner-review-packet.md"
       ],
       "result": "Pass"
     },
@@ -1153,6 +1183,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 100,
-  "passingFixtures": 100
+  "fixtureCount": 102,
+  "passingFixtures": 102
 }

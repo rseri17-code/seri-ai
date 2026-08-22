@@ -1,0 +1,137 @@
+{
+  "title": "Ravikanth Seri Practitioner Review Packet",
+  "version": "practitioner-review-packet-2026-08-22",
+  "updatedAt": "2026-08-22",
+  "status": "ready_for_external_review",
+  "evidenceLevel": "Review protocol exists; no external practitioner verdicts have been published yet.",
+  "purpose": "Give experienced reviewers a structured, public-safe way to evaluate whether seri.ai clearly represents Ravikanth Seri, his career arc, his inspectable work, and the Operational Intelligence body of work.",
+  "reviewPrinciple": "The reviewer should decide what the site proves, what remains unsupported, what feels generic, what is memorable, and what evidence would change the assessment.",
+  "reviewerRoles": [
+    "SRE / reliability engineer",
+    "Principal architect",
+    "AI systems engineer",
+    "AI governance reviewer",
+    "Technical founder",
+    "Executive recruiter",
+    "Engineering executive"
+  ],
+  "reviewSequence": [
+    {
+      "step": "Orient",
+      "route": "/start-here",
+      "question": "Can the reviewer explain who Ravikanth Seri is, what he works on, and why the site exists within three minutes?",
+      "failureSignal": "The site reads as an anonymous product, a generic resume, or a disconnected content archive."
+    },
+    {
+      "step": "Inspect career evidence",
+      "route": "/background",
+      "question": "Can the reviewer connect enterprise integration, APIs, identity, cloud, Kubernetes, observability, and production AI systems into one engineering arc?",
+      "failureSignal": "The career story feels like a flat timeline or hides the systems foundation behind current AI language."
+    },
+    {
+      "step": "Inspect public work",
+      "route": "/work",
+      "question": "Can the reviewer identify what has been built, what can be inspected publicly, and what should not be inferred?",
+      "failureSignal": "Projects sound impressive but do not expose proof boundaries, code paths, artifacts, or limitations."
+    },
+    {
+      "step": "Challenge the doctrine",
+      "route": "/wiki/operational-intelligence-evidence-pack",
+      "question": "Can the reviewer name what would strengthen, weaken, or falsify the Operational Intelligence thesis?",
+      "failureSignal": "The doctrine reads as branding rather than a testable operating model."
+    },
+    {
+      "step": "Run the artifact",
+      "route": "/investigation-room",
+      "question": "Does OI-ROOM-001 make evidence, contradiction, missing context, hypothesis movement, replay, evaluation, and human approval easier to inspect?",
+      "failureSignal": "The Operations Room feels like a demo instead of a reviewable decision path."
+    },
+    {
+      "step": "Test Ask Ravikanth",
+      "route": "/ask",
+      "question": "Does Ask Ravikanth answer from approved public evidence, cite useful sources, refuse confidential prompts, and route to relevant artifacts?",
+      "failureSignal": "Ask behaves like a generic chatbot or overclaims unsupported facts."
+    },
+    {
+      "step": "Submit public-safe feedback",
+      "route": "/contact",
+      "question": "Can the reviewer submit useful feedback without exposing protected operational material?",
+      "failureSignal": "The feedback path encourages raw logs, employer-specific details, private screenshots, or unsupported metrics."
+    }
+  ],
+  "reviewDimensions": [
+    {
+      "name": "Professional representation",
+      "question": "Does the site make Ravikanth Seri unmistakably visible as the author, engineer, and professional identity behind the work?",
+      "evidenceToInspect": ["/start-here", "/background", "/work", "/resume"]
+    },
+    {
+      "name": "Career clarity",
+      "question": "Can the reviewer reconstruct the engineering evolution from infrastructure and integration into production AI operations?",
+      "evidenceToInspect": ["/background", "/resume", "/work"]
+    },
+    {
+      "name": "Technical authority",
+      "question": "Does the body of work demonstrate architecture judgment through reusable models, boundaries, and tradeoffs?",
+      "evidenceToInspect": ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/patterns"]
+    },
+    {
+      "name": "Evidence quality",
+      "question": "Are claims backed by inspectable public artifacts, explicit limitations, and falsification paths?",
+      "evidenceToInspect": ["/wiki/operational-intelligence-evidence-pack", "/work", "/evals"]
+    },
+    {
+      "name": "Originality with restraint",
+      "question": "Does the site distinguish established practice, derived practice, original synthesis, speculative guidance, and unsupported claims?",
+      "evidenceToInspect": ["/wiki/operational-intelligence-canonical-doctrine", "/publication-pack/operational-intelligence-comparison-tables.md"]
+    },
+    {
+      "name": "Interactive artifact usefulness",
+      "question": "Does the Operations Room help the reviewer reason better than a static description would?",
+      "evidenceToInspect": ["/investigation-room", "/publication-pack/oi-room-001-printable-walkthrough.md"]
+    },
+    {
+      "name": "Ask usefulness and safety",
+      "question": "Does Ask Ravikanth retrieve, cite, refuse, and route correctly under realistic questions?",
+      "evidenceToInspect": ["/ask", "/evals", "/publication-pack/ask-ravi-live-review-packet.md"]
+    },
+    {
+      "name": "Memorability",
+      "question": "Would the reviewer remember one specific idea, artifact, or engineering model after leaving the site?",
+      "evidenceToInspect": ["/", "/start-here", "/investigation-room", "/wiki/operational-intelligence-canonical-doctrine"]
+    }
+  ],
+  "safeMetadataOnly": [
+    "review_date",
+    "reviewer_role",
+    "route",
+    "review_dimension",
+    "verdict",
+    "evidence_inspected",
+    "strongest_claim",
+    "weakest_claim",
+    "confusing_point",
+    "evidence_needed",
+    "implementation_question",
+    "notes_without_private_material"
+  ],
+  "doNotCapture": [
+    "confidential employer product names",
+    "internal systems",
+    "non-public architecture",
+    "internal screenshots",
+    "internal logs",
+    "customer information",
+    "production credentials",
+    "unpublished metrics",
+    "non-public repository details"
+  ],
+  "verdicts": [
+    "Strong",
+    "Useful but needs evidence",
+    "Confusing",
+    "Unsupported",
+    "Not assessable"
+  ],
+  "publicationRule": "Publish reviewer themes, dimension-level findings, checked artifacts, and limitations only after external reviewers submit public-safe feedback. Do not publish raw confidential material or aggregate reputation claims."
+}

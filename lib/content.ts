@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, askLiveReviewPacket, contentRegistry, identityAsset, mobileTouchWalkthroughs, nowPage, patterns, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
+import { articles, askLiveReviewPacket, contentRegistry, identityAsset, mobileTouchWalkthroughs, nowPage, patterns, practitionerReviewPacket, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -46,6 +46,22 @@ let publishedWikiNotesCache: WikiNote[] | null = null;
 let publicSourceIndexCache: PublicSource[] | null = null;
 
 const referenceSources = [
+  {
+    id: "reference:ravikanth-seri-practitioner-review-packet",
+    title: "Ravikanth Seri Practitioner Review Packet",
+    description: "Public-safe external review protocol for evaluating Ravikanth Seri's professional representation, career arc, inspectable work, and Operational Intelligence body of work.",
+    content:
+      `${practitionerReviewPacket.title}. ${practitionerReviewPacket.evidenceLevel} Purpose: ${practitionerReviewPacket.purpose} Review principle: ${practitionerReviewPacket.reviewPrinciple} Reviewer roles: ${practitionerReviewPacket.reviewerRoles.join(", ")}. Review sequence: ${practitionerReviewPacket.reviewSequence
+        .flatMap((step) => [step.step, step.route, step.question, step.failureSignal])
+        .join(". ")}. Review dimensions: ${practitionerReviewPacket.reviewDimensions
+        .flatMap((dimension) => [dimension.name, dimension.question, dimension.evidenceToInspect.join(", ")])
+        .join(". ")}. Safe metadata only: ${practitionerReviewPacket.safeMetadataOnly.join(", ")}. Do not capture: ${practitionerReviewPacket.doNotCapture.join(", ")}. Verdicts: ${practitionerReviewPacket.verdicts.join(", ")}. No external practitioner verdicts have been published yet.`,
+    url: "/publication-pack/ravikanth-seri-practitioner-review-packet.md",
+    type: "registry" as const,
+    category: "Quality Evidence",
+    tags: ["practitioner review", "first-time visitor", "professional representation", "career clarity", "evidence quality", "public-safe"],
+    assetType: "artifact"
+  },
   {
     id: "reference:ask-ravi-live-review-packet",
     title: "Ask Ravi Live Review Packet",

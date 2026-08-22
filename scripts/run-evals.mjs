@@ -42,9 +42,17 @@ function inferRelatedArtifacts(question) {
   }
   if (/visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/.test(lower)) {
     artifacts.add("/start-here");
+    artifacts.add("/publication-pack/ravikanth-seri-practitioner-review-packet.md");
     artifacts.add("/contact");
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
     artifacts.add("/investigation-room");
+  }
+  if (/practitioner review packet|external practitioner review|review ravikanth.*evidence|professional representation review|career clarity review|first impression review|does.*represent ravikanth|evaluate.*professional operating system/.test(lower)) {
+    artifacts.add("/publication-pack/ravikanth-seri-practitioner-review-packet.md");
+    artifacts.add("/start-here");
+    artifacts.add("/background");
+    artifacts.add("/work");
+    artifacts.add("/contact");
   }
   if (/current focus|currently focused|building now|what.*building|now/.test(lower)) {
     artifacts.add("/now");
@@ -242,7 +250,11 @@ function deterministicFallbackAnswer(question) {
       : "";
   const visitorReviewContext =
     /visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/.test(lower)
-      ? " First-Time Visitor Review Kit: /start-here now gives reviewers a path to orient, inspect the person-work link, inspect proof, challenge the thesis, run the Operations Room, and submit public-safe feedback through /contact. Useful feedback should name what was clear, what was confusing, the most memorable idea, strongest and weakest claims, evidence needed, and implementation questions without confidential material."
+      ? " First-Time Visitor Review Kit: /start-here now gives reviewers a path to orient, inspect the person-work link, inspect proof, challenge the thesis, run the Operations Room, and submit public-safe feedback through /contact. The Practitioner Review Packet at /publication-pack/ravikanth-seri-practitioner-review-packet.md defines reviewer roles, review sequence, review dimensions, safe metadata, verdicts, and do-not-capture rules. Useful feedback should name what was clear, what was confusing, the most memorable idea, strongest and weakest claims, evidence needed, and implementation questions without confidential material. No external practitioner verdicts have been published yet."
+      : "";
+  const practitionerReviewContext =
+    /practitioner review packet|external practitioner review|review ravikanth.*evidence|professional representation review|career clarity review|first impression review|does.*represent ravikanth|evaluate.*professional operating system/.test(lower)
+      ? " Practitioner review packet: /publication-pack/ravikanth-seri-practitioner-review-packet.md is the structured external-review protocol for evaluating professional representation: whether seri.ai represents Ravikanth Seri, his career arc, public work, technical authority, evidence quality, Operations Room usefulness, Ask usefulness, and memorability. It captures safe metadata only and does not claim external practitioner verdicts yet."
       : "";
   const architectureJudgmentContext =
     /architecture judgment|constraints? .*preserve|governed ai action|governed execution|replay evaluation|transaction journeys?|just skills/.test(lower)
@@ -286,8 +298,8 @@ function deterministicFallbackAnswer(question) {
       : "";
   return [
     asksAboutRavikanth
-      ? `Direct answer: ${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`
-      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`,
+      ? `Direct answer: ${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`
+      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`,
     `Relevant framework layers: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     "Public source: approved public content registry, including the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, framework, and public wiki sources.",
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before presenting the doctrine as credible.",

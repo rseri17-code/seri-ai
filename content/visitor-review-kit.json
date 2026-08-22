@@ -69,6 +69,11 @@
       "description": "Benchmarks, control comparisons, falsification criteria, and conformance checklist."
     },
     {
+      "href": "/publication-pack/ravikanth-seri-practitioner-review-packet.md",
+      "label": "Practitioner Review Packet",
+      "description": "External-review sequence, dimensions, verdicts, safe metadata, and do-not-capture rules."
+    },
+    {
       "href": "/investigation-room",
       "label": "Operations Room",
       "description": "Interactive synthetic OI-ROOM-001 walkthrough."

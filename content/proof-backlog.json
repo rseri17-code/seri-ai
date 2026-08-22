@@ -8,11 +8,11 @@
       "slug": "practitioner-review",
       "claim": "Experienced operators and architects can understand where Operational Intelligence begins, where it ends, and how to challenge it.",
       "evidenceNeeded": "Structured reviews from SRE, architecture, AI engineering, governance, executive, and product reviewers using the practitioner review form.",
-      "currentEvidence": "The Evidence Pack defines reviewer roles, dimension verdicts, evidence ledger fields, and doctrine impact categories, and the First-Time Visitor Review Kit now gives reviewers an explicit path from Start Here to Contact.",
-      "nextProof": "Collect at least five public-safe practitioner or first-time visitor reviews that identify what was clear, what was confusing, strongest claim, weakest claim, evidence needed, and implementation questions.",
+      "currentEvidence": "The Evidence Pack defines reviewer roles, dimension verdicts, evidence ledger fields, and doctrine impact categories, and the First-Time Visitor Review Kit plus the Practitioner Review Packet now give reviewers an explicit path from Start Here to Contact.",
+      "nextProof": "Run the Practitioner Review Packet with at least five public-safe practitioner or first-time visitor reviews that identify what was clear, what was confusing, strongest claim, weakest claim, evidence needed, implementation questions, and whether the site represents Ravikanth without generic self-promotion.",
       "wouldChange": "If reviewers cannot distinguish the model from observability, AIOps, ITIL, incident command, or chatbot-only assistance, revise the doctrine boundaries.",
-      "status": "awaiting-external-evidence",
-      "href": "/wiki/operational-intelligence-evidence-pack"
+      "status": "review-packet-ready",
+      "href": "/publication-pack/ravikanth-seri-practitioner-review-packet.md"
     },
     {
       "slug": "control-comparison",

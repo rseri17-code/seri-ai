@@ -12,6 +12,7 @@ const evidencePackUrl = "/wiki/operational-intelligence-evidence-pack";
 const visualQaUrl = "/visual-qa/2026-08-22/report.md";
 const touchWalkthroughUrl = "/visual-qa/2026-08-22/mobile-touch-walkthroughs.md";
 const askLiveReviewUrl = "/publication-pack/ask-ravi-live-review-packet.md";
+const practitionerReviewUrl = "/publication-pack/ravikanth-seri-practitioner-review-packet.md";
 const identityAssetUrl = "/identity/ravikanth-seri-identity-mark.svg";
 const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
 const conformanceProfileUrl = "/publication-pack/operational-intelligence-conformance-profile.md";
@@ -36,6 +37,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target/, evidencePackUrl],
   [/touch walkthrough|mobile touch|tap target|dense interactive route|physical-device|physical device|source-validated mobile/, touchWalkthroughUrl],
   [/ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/, askLiveReviewUrl],
+  [/practitioner review packet|external practitioner review|review ravikanth.*evidence|professional representation review|career clarity review|first impression review|does.*represent ravikanth|evaluate.*professional operating system/, practitionerReviewUrl],
   [/(visual qa|mobile qa).*(screenshot|viewport|evidence)|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/, visualQaUrl],
   [/visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/, startHereUrl],
   [/project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|stronger public project proof/, workUrl],
@@ -295,6 +297,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         /ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/.test(lowerQuery)
           ? 130
           : 0;
+      const practitionerReviewBoost =
+        source.url === practitionerReviewUrl &&
+        /practitioner review packet|external practitioner review|review ravikanth.*evidence|professional representation review|career clarity review|first impression review|does.*represent ravikanth|evaluate.*professional operating system/.test(lowerQuery)
+          ? 130
+          : 0;
       const qualityScorecardBoost =
         source.url === evidencePackUrl &&
         /quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lowerQuery)
@@ -371,6 +378,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         visualQaBoost +
         touchWalkthroughBoost +
         askLiveReviewBoost +
+        practitionerReviewBoost +
         qualityScorecardBoost +
         projectProofBoost;
       return { source, content: source.content, score };
