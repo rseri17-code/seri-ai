@@ -30,6 +30,7 @@ const routeContracts = [
       "homeHeroBuilderProof",
       "homeMobileArtifactSignals",
       "lg:hidden",
+      "Start here",
       "Run OI-ROOM-001"
     ]
   },
@@ -130,6 +131,18 @@ for (const contract of routeContracts) {
 }
 
 const homePage = read("app/page.tsx");
+expect(
+  homePage.indexOf("Start here") < homePage.indexOf("Run OI-ROOM-001"),
+  "/: homepage should present Start Here before deeper technical paths for first-time visitors"
+);
+expect(
+  homePage.indexOf("Start here") < homePage.indexOf("The material is public-safe by design"),
+  "/: homepage primary Start Here CTA must render before the inspection/trust paragraph"
+);
+expect(
+  homePage.indexOf("Start here") < homePage.indexOf("Field origin"),
+  "/: homepage primary Start Here CTA must render before the field-origin proof module"
+);
 expect(
   homePage.indexOf("Run OI-ROOM-001") < homePage.indexOf("The material is public-safe by design"),
   "/: homepage primary CTAs must render before the inspection/trust paragraph so mobile visitors see an action in the first viewport"

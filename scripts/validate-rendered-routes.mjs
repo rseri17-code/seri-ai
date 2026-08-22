@@ -17,11 +17,17 @@ const routeContracts = [
       "Operational Intelligence reference system",
       "Field origin",
       "teams lose shared context",
+      "Start here",
       "Run OI-ROOM-001",
+      "Visitor Proof Map",
       "Decision packet preview",
       "The posts converge on one enterprise failure mode"
     ],
-    before: [["Run OI-ROOM-001", "The material is public-safe by design"]]
+    before: [
+      ["Start here", "Run OI-ROOM-001"],
+      ["Start here", "The material is public-safe by design"],
+      ["Run OI-ROOM-001", "The material is public-safe by design"]
+    ]
   },
   {
     route: "/radar",

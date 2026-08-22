@@ -25,6 +25,7 @@ const proofStrip = [
 
 
 const inspectionLedger = [
+  ["/start-here", "Visitor Proof Map", "The fastest public-safe path through Ravikanth Seri's career, work, current focus, writing, GitHub, resume, contact path, and Operational Intelligence thesis."],
   ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "Definition, boundaries, ten layers, glossary, and claim posture."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Contracts, state machines, schemas, gates, and conformance levels."],
   ["/investigation-room", "Operations Room", "Synthetic investigation with evidence graph, replay, contradiction, missing evidence, and approval."],
@@ -62,14 +63,14 @@ export default function Home() {
               seri.ai publishes the doctrine, reference architecture, investigation artifacts, and evaluation harness for Operational Intelligence: the discipline of turning telemetry, topology, transactions, change, memory, and evaluation into evidence-backed operational judgment.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Run OI-ROOM-001 <ArrowRight size={18} />
+              <TrackedLink href="/start-here" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+                Start here <ArrowRight size={18} />
               </TrackedLink>
-              <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+              <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+                Run OI-ROOM-001
+              </TrackedLink>
+              <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
                 Read the doctrine
-              </TrackedLink>
-              <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "review_work" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Review the work
               </TrackedLink>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
