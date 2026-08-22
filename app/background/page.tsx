@@ -4,7 +4,7 @@ import { ArrowRight, BrainCircuit, GitBranch, Linkedin, ShieldCheck, Workflow } 
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";
-import { evalReport, resume } from "@/content/site";
+import { evalReport, professionalGraph, resume } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Background | Ravikanth Seri",
@@ -19,39 +19,7 @@ export const metadata: Metadata = {
   }
 };
 
-const formationArc = [
-  {
-    period: "Operating base",
-    title: "Distributed systems before doctrine",
-    body: "15+ years across infrastructure, middleware, Linux, identity, automation, production support, and regulated enterprise environments created the systems judgment behind the work."
-  },
-  {
-    period: "Modernization lens",
-    title: "Reliability, identity, Kubernetes, and observability",
-    body: "The background connects migrations, ownership boundaries, telemetry, platform change, and operational support into a practical view of how enterprises actually run."
-  },
-  {
-    period: "Current focus",
-    title: "AI-native operational reasoning",
-    body: "The work now centers on bounded agents, evidence graphs, replay, evaluation gates, operational memory, and human approval for incident investigation."
-  }
-] as const;
-
-const credibilityQuestions = [
-  ["What shaped the thesis?", "Operating real systems before asking AI to reason about them.", "/work"],
-  ["What is inspectable?", "Doctrine, reference architecture, Thesis Radar, Operations Room, evidence pack, evals, resume, GitHub, and LinkedIn signal.", "/wiki/operational-intelligence-evidence-pack"],
-  ["What stays out of scope?", "Public-safe boundary: employer-specific systems, private operational artifacts, proprietary names, and confidential architecture are excluded.", "/wiki/operational-intelligence-canonical-doctrine"],
-  ["What should improve next?", "More benchmark-style field notes, live reviewer-labeled Ask quality, and practitioner feedback loops.", "/evals"]
-] as const;
-
-const proofLinks = [
-  ["/resume", "Interactive resume", "Detailed career evidence, impact ledger, skills, education, and certifications."],
-  ["/work", "Operating record", "Systems, frameworks, artifacts, writing, public code signal, and review spine."],
-  ["/radar", "Thesis Radar", "Market signals around observability for AI, ops for observability, AgentOps, AIOps evaluation, and operational readiness."],
-  ["/investigation-room", "Operations Room", "Synthetic public-safe investigation showing the thesis as a working artifact."],
-  ["/wiki/operational-intelligence-canonical-doctrine", "Canonical Doctrine", "Definitions, boundaries, ten layers, glossary, and OI-ROOM-001 framing."],
-  ["/evals", "Ask trust report", `${evalReport.fixtures.length} deterministic fixtures for grounding, refusal, citations, routing, and public safety.`]
-] as const;
+const formatFixtureText = (text: string) => text.replace("{fixtureCount}", String(evalReport.fixtures.length));
 
 export default function BackgroundPage() {
   return (
@@ -79,11 +47,12 @@ export default function BackgroundPage() {
             </div>
           </Card>
           <div className="grid gap-3">
-            {formationArc.map((item) => (
+            {professionalGraph.careerEvolution.slice(0, 3).map((item) => (
               <Card key={item.period} className="p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{item.period}</p>
-                <h2 className="mt-3 text-xl font-semibold text-white">{item.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
+                <h2 className="mt-3 text-xl font-semibold text-white">{item.stage}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{item.summary}</p>
+                <p className="mt-3 text-xs leading-5 text-slate-500">{item.explains}</p>
               </Card>
             ))}
           </div>
@@ -112,7 +81,7 @@ export default function BackgroundPage() {
 
       <Section eyebrow="Review questions" title="A serious background page should make claims easy to challenge.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {credibilityQuestions.map(([question, answer, href]) => (
+          {professionalGraph.credibilityQuestions.map(({ question, answer, href }) => (
             <Link key={question} href={href}>
               <Card className="h-full p-4 transition hover:-translate-y-1 hover:border-signal/40">
                 <ShieldCheck className="mb-4 text-signal" />
@@ -129,12 +98,12 @@ export default function BackgroundPage() {
 
       <Section eyebrow="Proof path" title="Move from background to inspectable evidence.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-          {proofLinks.map(([href, label, detail]) => (
+          {professionalGraph.proofLinks.map(({ href, label, detail, detailTemplate }) => (
             <Link key={href} href={href}>
               <Card className="h-full p-4 transition hover:border-mint/40">
                 <GitBranch className="mb-4 text-mint" />
                 <h2 className="text-xl font-semibold text-white">{label}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{detail}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{formatFixtureText(detail ?? detailTemplate ?? "")}</p>
               </Card>
             </Link>
           ))}

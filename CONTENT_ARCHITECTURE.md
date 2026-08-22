@@ -10,6 +10,8 @@ Homepage-specific thesis proof, public profile links, LinkedIn-derived thesis si
 
 Ask Ravikanth prompt rails, thesis lenses, guide paths, and public-interface context cards live in `content/ask.json`.
 
+The professional graph that connects Ravikanth Seri's identity, career evolution, capability evidence, proof ledger, review spine, and public-safe relationships lives in `content/professional-graph.json`.
+
 The foundational thesis models live in:
 
 - `content/canonical-definition.json`

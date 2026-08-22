@@ -1,0 +1,232 @@
+{
+  "identity": {
+    "person": "Ravikanth Seri",
+    "siteRole": "public professional operating system",
+    "throughline": "Ravikanth Seri -> Career -> Work -> Ideas -> Evidence -> Reusable Engineering Knowledge",
+    "currentFocus": "Production AI-assisted operations, Agentic SRE, Operational Intelligence, evidence-driven incident investigation, agent observability, evaluation, replay, and human-controlled operational action.",
+    "publicBoundary": "Use public-safe architecture principles, reusable patterns, synthetic examples, and approved professional evidence. Do not publish private systems, internal product names, proprietary architecture, logs, screenshots, customer information, unpublished metrics, or confidential implementation details."
+  },
+  "careerEvolution": [
+    {
+      "period": "2008-2022",
+      "stage": "Enterprise integration and infrastructure foundation",
+      "summary": "Built the operating base across middleware, APIs, identity, Linux, distributed systems, automation, production support, and reliability practices.",
+      "explains": "Why the current AI work starts from operational reality rather than model novelty."
+    },
+    {
+      "period": "2022-2025",
+      "stage": "Platform modernization, identity, Kubernetes, and observability",
+      "summary": "Connected modernization, zero-downtime migration, telemetry correlation, Kubernetes reliability, identity architecture, and enterprise automation.",
+      "explains": "Why ownership, topology, transaction context, migration risk, and telemetry quality are central to the public thesis."
+    },
+    {
+      "period": "2025-now",
+      "stage": "Production AI systems and agentic operations",
+      "summary": "Applies enterprise operating experience to bounded AI agents, deterministic orchestration, tool governance, evaluation, replay, agent observability, and human approval.",
+      "explains": "Why Operational Intelligence is framed as a reasoning layer between telemetry and accountable human decision."
+    },
+    {
+      "period": "Public body of work",
+      "stage": "Operational Intelligence as inspectable public knowledge",
+      "summary": "Publishes doctrine, reference architecture, patterns, Operations Room, evidence pack, trust evals, and Ask Ravikanth as reviewable artifacts.",
+      "explains": "How private professional lessons become public-safe reusable engineering knowledge."
+    }
+  ],
+  "capabilityEvidence": [
+    {
+      "capability": "AI-native operations architecture",
+      "proof": "Production agent systems, deterministic orchestration, tool boundaries, replay, and human review.",
+      "href": "/projects/operational-intelligence-copilot"
+    },
+    {
+      "capability": "Operational Intelligence doctrine",
+      "proof": "A public category model connecting telemetry, transactions, topology, evidence, memory, evals, and operator judgment.",
+      "href": "/wiki/operational-intelligence-canonical-doctrine"
+    },
+    {
+      "capability": "Evidence-driven incident systems",
+      "proof": "Operations Room, decision packets, evidence graphs, hypothesis lifecycles, and eval-gated recommendations.",
+      "href": "/investigation-room"
+    },
+    {
+      "capability": "Enterprise platform modernization",
+      "proof": "Kubernetes, identity modernization, observability integration, distributed systems, and regulated operational environments.",
+      "href": "/patterns/topology-aware-reasoning"
+    },
+    {
+      "capability": "Evaluation and runtime governance",
+      "proof": "Behavior fixtures, refusal tests, citation checks, release gates, tool controls, and approval boundaries.",
+      "href": "/evals"
+    },
+    {
+      "capability": "Public technical leadership",
+      "proof": "Writing, architecture notes, public artifacts, LinkedIn signal, and reviewable reference packs.",
+      "href": "/work"
+    }
+  ],
+  "architectThesis": [
+    "Ravikanth's point of view comes from operating complex systems first, then applying AI to the parts of operations where evidence, timing, ownership, and decision quality matter.",
+    "Operational Intelligence is the synthesis: not a chatbot resume, not a dashboard layer, and not autonomy theater, but a reviewable control system for enterprise operational reasoning.",
+    "The public work on seri.ai is designed to prove that thesis through doctrine, reference architecture, simulations, eval fixtures, patterns, and portable artifacts."
+  ],
+  "proofLedger": [
+    {
+      "claim": "Operational Intelligence is a reference model, not a profile wrapper.",
+      "evidence": "Doctrine, Reference Architecture, Evidence Pack, Publication Pack",
+      "inspect": "Read the definition, boundaries, ten layers, claim posture, glossary, and reference architecture handoff.",
+      "weakens": "If the doctrine cannot distinguish itself from observability, AIOps, SRE, ITIL, incident command, knowledge graphs, and AI evaluation.",
+      "href": "/wiki/operational-intelligence-canonical-doctrine"
+    },
+    {
+      "claim": "The thesis is inspectable through a working public-safe artifact.",
+      "evidence": "Operations Room and OI-ROOM-001 walkthrough",
+      "inspect": "Run the synthetic investigation and check whether evidence, contradiction, missing context, hypotheses, eval gates, and approval stay visible.",
+      "weakens": "If the room behaves like a scripted dashboard instead of an evidence-to-decision workflow.",
+      "href": "/investigation-room"
+    },
+    {
+      "claim": "The AI surface is bounded by citations, refusals, and deterministic trust fixtures.",
+      "evidenceTemplate": "Ask Ravi and {fixtureCount} passing public trust evals",
+      "inspect": "Review citation, refusal, routing, unknown-question, confidential-boundary, and prompt-injection fixtures.",
+      "weakens": "If Ask Ravi answers unsupported questions confidently or stores private prompt text in analytics.",
+      "href": "/evals"
+    },
+    {
+      "claim": "The body of work connects engineering taste to professional proof.",
+      "evidence": "Projects, patterns, resume, public profiles, and background",
+      "inspect": "Trace capabilities from the resume into public artifacts, patterns, reference assets, GitHub, LinkedIn, and the Operations Room.",
+      "weakens": "If the portfolio becomes disconnected project inventory instead of a coherent operating philosophy.",
+      "href": "/background"
+    }
+  ],
+  "reviewSpine": [
+    {
+      "href": "/wiki/operational-intelligence-canonical-doctrine",
+      "label": "Canonical Doctrine",
+      "detail": "The definition, boundaries, ten-layer model, glossary, claim posture, and public-safe OI-ROOM-001 case."
+    },
+    {
+      "href": "/wiki/operational-intelligence-reference-architecture",
+      "label": "Reference Architecture",
+      "detail": "Implementation-neutral contracts, schemas, state machines, governance controls, evaluation gates, and conformance levels."
+    },
+    {
+      "href": "/wiki/operational-intelligence-evidence-pack",
+      "label": "Evidence Pack",
+      "detail": "Benchmark rubric, control comparisons, minimum conformance checklist, practitioner review, and falsification criteria."
+    },
+    {
+      "href": "/wiki/operational-intelligence-publication-pack",
+      "label": "Publication Pack",
+      "detail": "Diagrams, comparison tables, decision packet example, printable walkthrough, executive summary, glossary card, and PDFs."
+    },
+    {
+      "href": "/investigation-room",
+      "label": "Operations Room",
+      "detail": "The synthetic public-safe artifact where the framework becomes an inspectable investigation workflow."
+    }
+  ],
+  "operatingStandards": [
+    {
+      "title": "Definition discipline",
+      "body": "Terms, boundaries, and claims are versioned instead of implied.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Action discipline",
+      "body": "Recommendations preserve evidence, missing context, reversibility, and owner approval.",
+      "icon": "ClipboardCheck"
+    },
+    {
+      "title": "Learning discipline",
+      "body": "Reviewed outcomes become replay seeds, eval fixtures, memory, and stronger retrieval.",
+      "icon": "GitBranch"
+    }
+  ],
+  "credibilityQuestions": [
+    {
+      "question": "What shaped the thesis?",
+      "answer": "Operating real systems before asking AI to reason about them.",
+      "href": "/work"
+    },
+    {
+      "question": "What is inspectable?",
+      "answer": "Doctrine, reference architecture, Thesis Radar, Operations Room, evidence pack, evals, resume, GitHub, and LinkedIn signal.",
+      "href": "/wiki/operational-intelligence-evidence-pack"
+    },
+    {
+      "question": "What stays out of scope?",
+      "answer": "Public-safe boundary: employer-specific systems, private operational artifacts, proprietary names, and confidential architecture are excluded.",
+      "href": "/wiki/operational-intelligence-canonical-doctrine"
+    },
+    {
+      "question": "What should improve next?",
+      "answer": "More benchmark-style field notes, live reviewer-labeled Ask quality, and practitioner feedback loops.",
+      "href": "/evals"
+    }
+  ],
+  "proofLinks": [
+    {
+      "href": "/resume",
+      "label": "Interactive resume",
+      "detail": "Detailed career evidence, impact ledger, skills, education, and certifications."
+    },
+    {
+      "href": "/work",
+      "label": "Operating record",
+      "detail": "Systems, frameworks, artifacts, writing, public code signal, and review spine."
+    },
+    {
+      "href": "/radar",
+      "label": "Thesis Radar",
+      "detail": "Market signals around observability for AI, ops for observability, AgentOps, AIOps evaluation, and operational readiness."
+    },
+    {
+      "href": "/investigation-room",
+      "label": "Operations Room",
+      "detail": "Synthetic public-safe investigation showing the thesis as a working artifact."
+    },
+    {
+      "href": "/wiki/operational-intelligence-canonical-doctrine",
+      "label": "Canonical Doctrine",
+      "detail": "Definitions, boundaries, ten layers, glossary, and OI-ROOM-001 framing."
+    },
+    {
+      "href": "/evals",
+      "label": "Ask trust report",
+      "detailTemplate": "{fixtureCount} deterministic fixtures for grounding, refusal, citations, routing, and public safety."
+    }
+  ],
+  "relationships": [
+    {
+      "from": "Ravikanth Seri",
+      "relation": "developed public thesis",
+      "to": "Operational Intelligence"
+    },
+    {
+      "from": "Enterprise infrastructure background",
+      "relation": "grounds",
+      "to": "Agentic SRE and production AI operations"
+    },
+    {
+      "from": "LinkedIn thesis signals",
+      "relation": "evolve into",
+      "to": "Doctrine, patterns, radar, and Ask Ravikanth prompts"
+    },
+    {
+      "from": "Operations Room",
+      "relation": "demonstrates",
+      "to": "Evidence Graph, Hypothesis Lifecycle, Replay Seed, Evaluation Gate, and Operator Control Plane"
+    },
+    {
+      "from": "Resume evidence",
+      "relation": "supports",
+      "to": "career progression, capability evidence, and public-safe professional background"
+    },
+    {
+      "from": "Ask Ravikanth",
+      "relation": "interfaces with",
+      "to": "approved public knowledge, citations, route recommendations, and refusal boundaries"
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { TrackedAnchor } from "@/components/tracked-link";
-import { evalReport, resume } from "@/content/site";
+import { evalReport, professionalGraph, resume } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Resume | Ravikanth Seri — Operational Intelligence and Enterprise AI",
@@ -17,51 +17,6 @@ export const metadata: Metadata = {
     type: "website"
   }
 };
-
-const capabilityEvidence = [
-  [
-    "AI-native operations architecture",
-    "Production agent systems, deterministic orchestration, tool boundaries, replay, and human review.",
-    "/projects/operational-intelligence-copilot"
-  ],
-  [
-    "Operational Intelligence doctrine",
-    "A public category model connecting telemetry, transactions, topology, evidence, memory, evals, and operator judgment.",
-    "/wiki/operational-intelligence-canonical-doctrine"
-  ],
-  [
-    "Evidence-driven incident systems",
-    "Operations Room, decision packets, evidence graphs, hypothesis lifecycles, and eval-gated recommendations.",
-    "/investigation-room"
-  ],
-  [
-    "Enterprise platform modernization",
-    "Kubernetes, identity modernization, observability integration, distributed systems, and regulated operational environments.",
-    "/patterns/topology-aware-reasoning"
-  ],
-  [
-    "Evaluation and runtime governance",
-    "Behavior fixtures, refusal tests, citation checks, release gates, tool controls, and approval boundaries.",
-    "/evals"
-  ],
-  [
-    "Public technical leadership",
-    "Writing, architecture notes, public artifacts, LinkedIn signal, and reviewable reference packs.",
-    "/work"
-  ]
-] as const;
-
-const careerThroughline = [
-  ["2008-2022", "Built the operating foundation across middleware, infrastructure, identity, Linux, distributed systems, automation, and production support."],
-  ["2022-2025", "Led modernization patterns across Kubernetes, identity, observability, OpenTelemetry-style tracing, and enterprise integration."],
-  ["2025-now", "Applies that operating background to production AI agent systems, AIOps, evaluation, replay, runtime governance, and Operational Intelligence."]
-] as const;
-
-const architectThesis = [
-  "Ravikanth's point of view comes from operating complex systems first, then applying AI to the parts of operations where evidence, timing, ownership, and decision quality matter.",
-  "Operational Intelligence is the synthesis: not a chatbot resume, not a dashboard layer, and not autonomy theater, but a reviewable control system for enterprise operational reasoning.",
-  "The public work on seri.ai is designed to prove that thesis through doctrine, reference architecture, simulations, eval fixtures, patterns, and portable artifacts."
-] as const;
 
 const impactLedger = [
   ["15+ years", "Distributed enterprise systems, infrastructure, middleware, identity, reliability, and modernization."],
@@ -123,7 +78,7 @@ export default function ResumePage() {
             <h2 className="text-xl font-semibold text-white">Architect thesis</h2>
           </div>
           <div className="mt-5 space-y-3">
-            {architectThesis.map((statement) => (
+            {professionalGraph.architectThesis.map((statement) => (
               <p key={statement} className="rounded border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-slate-200">
                 {statement}
               </p>
@@ -146,10 +101,10 @@ export default function ResumePage() {
             <h2 className="text-xl font-semibold text-white">Career throughline</h2>
           </div>
           <div className="mt-5 space-y-3">
-            {careerThroughline.map(([period, statement]) => (
-              <div key={period} className="rounded border border-white/10 bg-ink px-4 py-3">
-                <p className="font-mono text-xs text-signal">{period}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{statement}</p>
+            {professionalGraph.careerEvolution.slice(0, 3).map((item) => (
+              <div key={item.period} className="rounded border border-white/10 bg-ink px-4 py-3">
+                <p className="font-mono text-xs text-signal">{item.period}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{item.summary}</p>
               </div>
             ))}
           </div>
@@ -201,7 +156,7 @@ export default function ResumePage() {
               <h2 className="text-xl font-semibold text-white">Capability evidence matrix</h2>
             </div>
             <div className="mt-5 grid gap-3 md:grid-cols-2">
-              {capabilityEvidence.map(([capability, proof, href]) => (
+              {professionalGraph.capabilityEvidence.map(({ capability, proof, href }) => (
                 <Link key={capability} href={href} className="rounded border border-white/10 bg-ink p-4 transition hover:border-mint/40">
                   <h3 className="font-semibold text-white">{capability}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{proof}</p>

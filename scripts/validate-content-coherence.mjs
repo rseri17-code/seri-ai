@@ -28,6 +28,7 @@ const thesisRadarContent = fs.readFileSync(path.join(root, "content", "thesis-ra
 const resumeContent = fs.readFileSync(path.join(root, "content", "resume.json"), "utf8");
 const homeContent = fs.readFileSync(path.join(root, "content", "home.json"), "utf8");
 const askContent = fs.readFileSync(path.join(root, "content", "ask.json"), "utf8");
+const professionalGraphContent = fs.readFileSync(path.join(root, "content", "professional-graph.json"), "utf8");
 const contentRegistryContent = fs.readFileSync(path.join(root, "content", "content-registry.json"), "utf8");
 const normalizedContentRegistryContent = contentRegistryContent.replace(/"([^"]+)":/g, "$1:");
 
@@ -335,18 +336,19 @@ for (const required of [
 }
 
 const workPage = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
+const workContractSource = [workPage, professionalGraphContent].join("\n");
 for (const required of [
-  "const reviewSpine",
-  "const proofLedger",
-  "const operatingArc",
+  "professionalGraph.reviewSpine",
+  "professionalGraph.proofLedger",
+  "professionalGraph.careerEvolution",
   "homeLinkedInSignals",
   "The operating record behind Operational Intelligence.",
   "Experience, public writing, artifacts, and systems work converge on one operating thesis.",
   "Operating arc",
   "The thesis comes from operating systems before asking AI to reason about them.",
-  "Turned operational experience into governed AI systems",
-  "Published the operating model as inspectable artifacts",
-  "without confidential systems, logs, screenshots, or architecture",
+  "Production AI systems and agentic operations",
+  "Operational Intelligence as inspectable public knowledge",
+  "private systems, internal product names, proprietary architecture",
   "Public thesis threads",
   "The current writing signal behind the work.",
   "The public posts are not side commentary. They are the working notes for the doctrine.",
@@ -374,7 +376,7 @@ for (const required of [
   "/evals",
   "/background"
 ]) {
-  expect(workPage.includes(required), `/work missing reviewer proof spine contract: ${required}`);
+  expect(workContractSource.includes(required), `/work missing reviewer proof spine contract: ${required}`);
 }
 
 const startHerePage = fs.readFileSync(path.join(root, "app", "start-here", "page.tsx"), "utf8");
@@ -843,10 +845,11 @@ for (const required of [
 }
 
 const resumePage = fs.readFileSync(path.join(root, "app", "resume", "page.tsx"), "utf8");
+const resumeContractSource = [resumePage, professionalGraphContent].join("\n");
 for (const required of [
-  "const capabilityEvidence",
-  "const careerThroughline",
-  "const architectThesis",
+  "professionalGraph.capabilityEvidence",
+  "professionalGraph.careerEvolution",
+  "professionalGraph.architectThesis",
   "const impactLedger",
   "Impact ledger",
   "15+ years",
@@ -881,7 +884,7 @@ for (const required of [
   "/evals",
   "/work"
 ]) {
-  expect(resumePage.includes(required), `/resume missing capability evidence contract: ${required}`);
+  expect(resumeContractSource.includes(required), `/resume missing capability evidence contract: ${required}`);
 }
 
 for (const required of [
@@ -897,16 +900,17 @@ for (const required of [
 }
 
 const backgroundPage = fs.readFileSync(path.join(root, "app", "background", "page.tsx"), "utf8");
+const backgroundContractSource = [backgroundPage, professionalGraphContent].join("\n");
 for (const required of [
-  "const formationArc",
-  "const credibilityQuestions",
-  "const proofLinks",
+  "professionalGraph.careerEvolution",
+  "professionalGraph.credibilityQuestions",
+  "professionalGraph.proofLinks",
   "homeLinkedInSignals",
   "The operating background behind the Operational Intelligence thesis.",
   "Ravikanth Seri builds from the operator side of enterprise AI.",
-  "Operating base",
-  "Modernization lens",
-  "Current focus",
+  "Enterprise integration and infrastructure foundation",
+  "Platform modernization, identity, Kubernetes, and observability",
+  "Production AI systems and agentic operations",
   "The throughline is context, evidence, and accountable action.",
   "The LinkedIn signal and the reference architecture are telling the same story.",
   "enterprise AI will fail operationally when context is reconstructed privately, repeatedly, and late",
@@ -924,7 +928,7 @@ for (const required of [
   "/wiki/operational-intelligence-canonical-doctrine",
   "/evals"
 ]) {
-  expect(backgroundPage.includes(required), `/background missing operating-background contract: ${required}`);
+  expect(backgroundContractSource.includes(required), `/background missing operating-background contract: ${required}`);
 }
 
 if (errors.length) {

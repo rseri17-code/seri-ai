@@ -13,6 +13,7 @@ import nowPageData from "./now.json";
 import startHerePathsData from "./start-here.json";
 import changelogData from "./changelog.json";
 import resumeData from "./resume.json";
+import professionalGraphData from "./professional-graph.json";
 import contentRegistryData from "./content-registry.json";
 import harnessThesisData from "./harness-thesis.json";
 import canonicalDefinitionData from "./canonical-definition.json";
@@ -137,6 +138,8 @@ export const changelog = changelogData;
 
 export const resume = resumeData;
 
+export const professionalGraph = professionalGraphData;
+
 export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
 export type ContentStatus = "published" | "planned" | "draft";
 
@@ -242,6 +245,20 @@ export const approvedKnowledge = [
   ...resume.skills.flatMap((skill) => [skill.group, ...skill.items]),
   ...resume.education,
   ...resume.certifications,
+  professionalGraph.identity.person,
+  professionalGraph.identity.siteRole,
+  professionalGraph.identity.throughline,
+  professionalGraph.identity.currentFocus,
+  professionalGraph.identity.publicBoundary,
+  ...professionalGraph.careerEvolution.flatMap((stage) => [stage.period, stage.stage, stage.summary, stage.explains]),
+  ...professionalGraph.capabilityEvidence.flatMap((item) => [item.capability, item.proof, item.href]),
+  ...professionalGraph.architectThesis,
+  ...professionalGraph.proofLedger.flatMap((item) => [item.claim, item.evidence ?? item.evidenceTemplate ?? "", item.inspect, item.weakens, item.href]),
+  ...professionalGraph.reviewSpine.flatMap((item) => [item.href, item.label, item.detail]),
+  ...professionalGraph.operatingStandards.flatMap((item) => [item.title, item.body, item.icon]),
+  ...professionalGraph.credibilityQuestions.flatMap((item) => [item.question, item.answer, item.href]),
+  ...professionalGraph.proofLinks.flatMap((item) => [item.href, item.label, item.detail ?? item.detailTemplate ?? ""]),
+  ...professionalGraph.relationships.flatMap((item) => [item.from, item.relation, item.to]),
   ...contentRegistry.flatMap((item) => [
     item.title,
     item.summary,

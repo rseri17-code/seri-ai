@@ -18,6 +18,7 @@ const nowPath = path.join(root, "content", "now.json");
 const startHerePath = path.join(root, "content", "start-here.json");
 const changelogPath = path.join(root, "content", "changelog.json");
 const resumePath = path.join(root, "content", "resume.json");
+const professionalGraphPath = path.join(root, "content", "professional-graph.json");
 const contentRegistryPath = path.join(root, "content", "content-registry.json");
 const harnessThesisPath = path.join(root, "content", "harness-thesis.json");
 const canonicalDefinitionPath = path.join(root, "content", "canonical-definition.json");
@@ -47,6 +48,7 @@ const requiredNowFields = ["currentFocus", "building", "studying", "writing", "a
 const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matters"];
 const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
+const requiredProfessionalGraphFields = ["identity", "careerEvolution", "capabilityEvidence", "architectThesis", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "relationships"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
@@ -652,6 +654,94 @@ if (!Array.isArray(resume.skills) || resume.skills.length < 5) {
   }
 }
 
+const professionalGraph = requireJsonObject(professionalGraphPath, "content/professional-graph.json");
+validateRequiredFields("content/professional-graph.json", professionalGraph, requiredProfessionalGraphFields, { requireSlug: false });
+for (const field of ["person", "siteRole", "throughline", "currentFocus", "publicBoundary"]) {
+  if (!professionalGraph.identity?.[field]) {
+    errors.push(`content/professional-graph.json:identity missing ${field}`);
+  }
+}
+if (!String(professionalGraph.identity?.person ?? "").includes("Ravikanth Seri")) {
+  errors.push("content/professional-graph.json: identity must name Ravikanth Seri");
+}
+if (!String(professionalGraph.identity?.throughline ?? "").includes("Ravikanth Seri") || !String(professionalGraph.identity?.throughline ?? "").includes("Evidence")) {
+  errors.push("content/professional-graph.json: throughline must connect Ravikanth to evidence");
+}
+if (!/confidential|private systems|internal product names|proprietary architecture/i.test(professionalGraph.identity?.publicBoundary ?? "")) {
+  errors.push("content/professional-graph.json: publicBoundary must preserve public-safety exclusions");
+}
+if (!Array.isArray(professionalGraph.careerEvolution) || professionalGraph.careerEvolution.length < 4) {
+  errors.push("content/professional-graph.json: careerEvolution must include foundation, modernization, current work, and public body of work");
+} else {
+  for (const stage of professionalGraph.careerEvolution) {
+    const owner = `content/professional-graph.json:careerEvolution:${stage.period ?? "unknown"}`;
+    for (const field of ["period", "stage", "summary", "explains"]) {
+      if (!stage[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+  }
+  for (const required of ["2008-2022", "2022-2025", "2025-now", "Public body of work"]) {
+    if (!professionalGraph.careerEvolution.some((stage) => stage.period === required)) {
+      errors.push(`content/professional-graph.json: careerEvolution missing ${required}`);
+    }
+  }
+}
+if (!Array.isArray(professionalGraph.capabilityEvidence) || professionalGraph.capabilityEvidence.length < 6) {
+  errors.push("content/professional-graph.json: capabilityEvidence must include at least six inspectable capabilities");
+} else {
+  for (const item of professionalGraph.capabilityEvidence) {
+    const owner = `content/professional-graph.json:capabilityEvidence:${item.capability ?? "unknown"}`;
+    for (const field of ["capability", "proof", "href"]) {
+      if (!item[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (!String(item.href ?? "").startsWith("/")) {
+      errors.push(`${owner}: href must route to an internal proof asset`);
+    }
+  }
+}
+if (!Array.isArray(professionalGraph.architectThesis) || professionalGraph.architectThesis.length < 3) {
+  errors.push("content/professional-graph.json: architectThesis must include at least three public-safe thesis statements");
+}
+if (!Array.isArray(professionalGraph.proofLedger) || professionalGraph.proofLedger.length < 4) {
+  errors.push("content/professional-graph.json: proofLedger must include at least four challengeable claims");
+} else {
+  for (const item of professionalGraph.proofLedger) {
+    const owner = `content/professional-graph.json:proofLedger:${item.claim ?? "unknown"}`;
+    for (const field of ["claim", "inspect", "weakens", "href"]) {
+      if (!item[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (!item.evidence && !item.evidenceTemplate) {
+      errors.push(`${owner}: missing evidence or evidenceTemplate`);
+    }
+    if (!String(item.href ?? "").startsWith("/")) {
+      errors.push(`${owner}: href must be an internal route`);
+    }
+  }
+}
+for (const [field, minCount] of [["reviewSpine", 5], ["operatingStandards", 3], ["credibilityQuestions", 4], ["proofLinks", 6], ["relationships", 6]]) {
+  if (!Array.isArray(professionalGraph[field]) || professionalGraph[field].length < minCount) {
+    errors.push(`content/professional-graph.json: ${field} must include at least ${minCount} entries`);
+  }
+}
+for (const item of professionalGraph.reviewSpine ?? []) {
+  if (!item.href || !item.label || !item.detail || !String(item.href).startsWith("/")) {
+    errors.push("content/professional-graph.json: reviewSpine entries require internal href, label, and detail");
+  }
+}
+for (const item of professionalGraph.relationships ?? []) {
+  if (!item.from || !item.relation || !item.to) {
+    errors.push("content/professional-graph.json: relationships entries require from, relation, and to");
+  }
+}
+if (!JSON.stringify(professionalGraph).includes("Ask Ravikanth") || !JSON.stringify(professionalGraph).includes("LinkedIn") || !JSON.stringify(professionalGraph).includes("GitHub")) {
+  errors.push("content/professional-graph.json: graph must connect Ask Ravikanth, LinkedIn, and GitHub public evidence");
+}
+
 const contentRegistry = requireJsonArray(contentRegistryPath, "content/content-registry.json", 15);
 const registryRoutes = contentRegistry.map((item) => item.route);
 const duplicateRegistryRoutes = registryRoutes.filter((route, index) => registryRoutes.indexOf(route) !== index);
@@ -883,4 +973,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, site, homepage, and Ask content, foundational models, Operational Intelligence model, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);
+console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, site, homepage, Ask content, professional graph, foundational models, Operational Intelligence model, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);

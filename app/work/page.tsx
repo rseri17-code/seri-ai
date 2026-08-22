@@ -5,7 +5,7 @@ import { ArrowRight, Boxes, BrainCircuit, ClipboardCheck, FileText, GitBranch, L
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";
-import { articles, contentRegistry, evalReport, operationalIntelligenceFramework, patterns, projects, resume } from "@/content/site";
+import { articles, contentRegistry, evalReport, operationalIntelligenceFramework, patterns, professionalGraph, projects, resume } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Work | Ravikanth Seri",
@@ -36,105 +36,13 @@ const registryWorkItem = (slug: string): WorkItem => {
   return [item.route, `${item.title}${suffix}`, item.summary];
 };
 
-const reviewSpine: WorkItem[] = [
-  [
-    "/wiki/operational-intelligence-canonical-doctrine",
-    "Canonical Doctrine",
-    "The definition, boundaries, ten-layer model, glossary, claim posture, and public-safe OI-ROOM-001 case."
-  ],
-  [
-    "/wiki/operational-intelligence-reference-architecture",
-    "Reference Architecture",
-    "Implementation-neutral contracts, schemas, state machines, governance controls, evaluation gates, and conformance levels."
-  ],
-  [
-    "/wiki/operational-intelligence-evidence-pack",
-    "Evidence Pack",
-    "Benchmark rubric, control comparisons, minimum conformance checklist, practitioner review, and falsification criteria."
-  ],
-  [
-    "/wiki/operational-intelligence-publication-pack",
-    "Publication Pack",
-    "Diagrams, comparison tables, decision packet example, printable walkthrough, executive summary, glossary card, and PDFs."
-  ],
-  [
-    "/investigation-room",
-    "Operations Room",
-    "The synthetic public-safe artifact where the framework becomes an inspectable investigation workflow."
-  ]
-];
+const standardIcons: Record<string, LucideIcon> = {
+  ClipboardCheck,
+  GitBranch,
+  ShieldCheck
+};
 
-const proofLedger = [
-  {
-    claim: "Operational Intelligence is a reference model, not a profile wrapper.",
-    evidence: "Doctrine, Reference Architecture, Evidence Pack, Publication Pack",
-    inspect: "Read the definition, boundaries, ten layers, claim posture, glossary, and reference architecture handoff.",
-    weakens: "If the doctrine cannot distinguish itself from observability, AIOps, SRE, ITIL, incident command, knowledge graphs, and AI evaluation.",
-    href: "/wiki/operational-intelligence-canonical-doctrine"
-  },
-  {
-    claim: "The thesis is inspectable through a working public-safe artifact.",
-    evidence: "Operations Room and OI-ROOM-001 walkthrough",
-    inspect: "Run the synthetic investigation and check whether evidence, contradiction, missing context, hypotheses, eval gates, and approval stay visible.",
-    weakens: "If the room behaves like a scripted dashboard instead of an evidence-to-decision workflow.",
-    href: "/investigation-room"
-  },
-  {
-    claim: "The AI surface is bounded by citations, refusals, and deterministic trust fixtures.",
-    evidence: `Ask Ravi and ${evalReport.fixtures.length} passing public trust evals`,
-    inspect: "Review citation, refusal, routing, unknown-question, confidential-boundary, and prompt-injection fixtures.",
-    weakens: "If Ask Ravi answers unsupported questions confidently or stores private prompt text in analytics.",
-    href: "/evals"
-  },
-  {
-    claim: "The body of work connects engineering taste to professional proof.",
-    evidence: "Projects, patterns, resume, public profiles, and background",
-    inspect: "Trace capabilities from the resume into public artifacts, patterns, reference assets, GitHub, LinkedIn, and the Operations Room.",
-    weakens: "If the portfolio becomes disconnected project inventory instead of a coherent operating philosophy.",
-    href: "/background"
-  }
-];
-
-const operatingStandards: Array<{ title: string; body: string; Icon: LucideIcon }> = [
-  {
-    title: "Definition discipline",
-    body: "Terms, boundaries, and claims are versioned instead of implied.",
-    Icon: ShieldCheck
-  },
-  {
-    title: "Action discipline",
-    body: "Recommendations preserve evidence, missing context, reversibility, and owner approval.",
-    Icon: ClipboardCheck
-  },
-  {
-    title: "Learning discipline",
-    body: "Reviewed outcomes become replay seeds, eval fixtures, memory, and stronger retrieval.",
-    Icon: GitBranch
-  }
-];
-
-const operatingArc = [
-  {
-    period: "2008-2022",
-    title: "Operated and modernized enterprise platforms",
-    body: "Middleware, identity, infrastructure, distributed systems, automation, and production support formed the operational base."
-  },
-  {
-    period: "2022-2025",
-    title: "Connected reliability, identity, Kubernetes, and observability",
-    body: "Modernization work connected platform reliability, telemetry correlation, migration discipline, and automation at enterprise scale."
-  },
-  {
-    period: "2025-now",
-    title: "Turned operational experience into governed AI systems",
-    body: "The current focus is production AI-assisted operations: bounded agents, evaluation, replay, observability, retrieval, and human review."
-  },
-  {
-    period: "public work",
-    title: "Published the operating model as inspectable artifacts",
-    body: "Doctrine, reference architecture, Operations Room, evals, evidence pack, and Ask Ravi make the thesis reviewable without confidential systems, logs, screenshots, or architecture."
-  }
-];
+const formatFixtureText = (text: string) => text.replace("{fixtureCount}", String(evalReport.fixtures.length));
 
 const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }> = [
   {
@@ -216,11 +124,12 @@ export default function WorkPage() {
 
       <Section eyebrow="Operating arc" title="The thesis comes from operating systems before asking AI to reason about them.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {operatingArc.map((item) => (
+          {professionalGraph.careerEvolution.map((item) => (
             <Card key={item.period} className="h-full p-5">
               <p className="font-mono text-sm text-mint">{item.period}</p>
-              <h2 className="mt-4 text-xl font-semibold leading-7 text-white">{item.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
+              <h2 className="mt-4 text-xl font-semibold leading-7 text-white">{item.stage}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{item.summary}</p>
+              <p className="mt-3 text-xs leading-5 text-slate-500">{item.explains}</p>
             </Card>
           ))}
         </div>
@@ -256,7 +165,7 @@ export default function WorkPage() {
 
       <Section eyebrow="Proof ledger" title="The serious question is not what exists. It is what each artifact proves.">
         <div className="grid gap-4 md:grid-cols-2">
-          {proofLedger.map((item, index) => (
+          {professionalGraph.proofLedger.map((item, index) => (
             <Link key={item.claim} href={item.href}>
               <Card className="h-full border-white/10 bg-white/[0.035] transition hover:-translate-y-1 hover:border-mint/40">
                 <div className="flex items-start gap-4">
@@ -266,7 +175,7 @@ export default function WorkPage() {
                   <div>
                     <h2 className="text-xl font-semibold text-white">{item.claim}</h2>
                     <p className="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-signal">Evidence</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">{item.evidence}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-300">{formatFixtureText(item.evidence ?? item.evidenceTemplate ?? "")}</p>
                     <div className="mt-4 grid gap-3">
                       <div className="rounded border border-mint/20 bg-mint/[0.045] p-3">
                         <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-mint">What to inspect</p>
@@ -287,7 +196,7 @@ export default function WorkPage() {
 
       <Section eyebrow="Review spine" title="Start here if you are evaluating the work seriously.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-          {reviewSpine.map(([href, label, detail], index) => (
+          {professionalGraph.reviewSpine.map(({ href, label, detail }, index) => (
             <Link key={href} href={href}>
               <Card className="h-full transition hover:border-mint/40">
                 <p className="font-mono text-sm text-mint">{String(index + 1).padStart(2, "0")}</p>
@@ -301,13 +210,16 @@ export default function WorkPage() {
 
       <Section eyebrow="Operating standard" title="What strong reviewers should expect to see.">
         <div className="grid gap-4 md:grid-cols-3">
-          {operatingStandards.map(({ title, body, Icon }) => (
-            <Card key={title} className="h-full p-5">
-              <Icon className="mb-4 text-mint" />
-              <h2 className="text-xl font-semibold text-white">{title}</h2>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
-            </Card>
-          ))}
+          {professionalGraph.operatingStandards.map(({ title, body, icon }) => {
+            const Icon = standardIcons[icon] ?? ShieldCheck;
+            return (
+              <Card key={title} className="h-full p-5">
+                <Icon className="mb-4 text-mint" />
+                <h2 className="text-xl font-semibold text-white">{title}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
+              </Card>
+            );
+          })}
         </div>
       </Section>
 
