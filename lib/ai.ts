@@ -91,6 +91,13 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/investigation-room");
     artifacts.add("/background");
   }
+  if (/quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lower)) {
+    artifacts.add("/wiki/operational-intelligence-evidence-pack");
+    artifacts.add("/start-here");
+    artifacts.add("/work");
+    artifacts.add("/evals");
+    artifacts.add("/investigation-room");
+  }
   if (/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/.test(lower)) {
     artifacts.add("/publication-pack/operational-intelligence-conformance-profile.md");
   }
@@ -250,9 +257,13 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     /proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lower)
       ? " Proof backlog: the Evidence Pack names the remaining proof work as practitioner review, control-comparison results, reviewer-labeled Ask quality, live beta reliability evidence, browser-based visual and mobile QA, and an approved identity asset. These gaps should be treated as evidence to collect, not as claims already proven."
       : "";
+  const qualityScorecardContext =
+    /quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lower)
+      ? " Quality scorecard: seri.ai tracks 24 evidence-based dimensions with non-inflated scores. The weakest current proof areas are Evidence Quality, Work / Project Proof, Visual Design, Mobile, and Overall Memorability because they still need external review, live beta evidence, screenshot-grade QA, and stronger public project proof."
+      : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}`}`,
+    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${qualityScorecardContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",

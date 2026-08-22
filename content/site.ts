@@ -17,6 +17,7 @@ import professionalGraphData from "./professional-graph.json";
 import publicCodeData from "./public-code.json";
 import publicationSpineData from "./publication-spine.json";
 import proofBacklogData from "./proof-backlog.json";
+import qualityScorecardData from "./quality-scorecard.json";
 import contentRegistryData from "./content-registry.json";
 import harnessThesisData from "./harness-thesis.json";
 import canonicalDefinitionData from "./canonical-definition.json";
@@ -208,6 +209,24 @@ export type ProofBacklog = {
 
 export const proofBacklog = proofBacklogData satisfies ProofBacklog;
 
+export type QualityScorecardDimension = {
+  name: string;
+  score: number;
+  evidence: string;
+  gap: string;
+  nextProof: string;
+};
+
+export type QualityScorecard = {
+  title: string;
+  updatedAt: string;
+  scale: string;
+  rule: string;
+  dimensions: QualityScorecardDimension[];
+};
+
+export const qualityScorecard = qualityScorecardData satisfies QualityScorecard;
+
 export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
 export type ContentStatus = "published" | "planned" | "draft";
 
@@ -280,6 +299,16 @@ export const approvedKnowledge = [
     item.wouldChange,
     item.status,
     item.href
+  ]),
+  qualityScorecard.title,
+  qualityScorecard.scale,
+  qualityScorecard.rule,
+  ...qualityScorecard.dimensions.flatMap((dimension) => [
+    dimension.name,
+    String(dimension.score),
+    dimension.evidence,
+    dimension.gap,
+    dimension.nextProof
   ]),
   ...products.flatMap((product) => [
     product.name,

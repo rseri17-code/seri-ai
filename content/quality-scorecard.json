@@ -1,0 +1,176 @@
+{
+  "title": "seri.ai 24-Dimension Quality Scorecard",
+  "updatedAt": "2026-08-22",
+  "scale": "0 to 10, evidence-based, non-inflated",
+  "rule": "A score reaches 10 only when current evidence shows no material gap against the intended world-class technical publication and professional representation bar.",
+  "dimensions": [
+    {
+      "name": "Professional Representation",
+      "score": 8.6,
+      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, and contact paths make Ravikanth Seri visible as the author and engineer behind the work.",
+      "gap": "The approved portrait or identity asset is still missing, and fresh first-viewport screenshot evidence is incomplete.",
+      "nextProof": "Add an approved durable identity asset and verify the person-work-evidence path at mobile, tablet, and desktop widths."
+    },
+    {
+      "name": "Career Clarity",
+      "score": 8.8,
+      "evidence": "The professional graph and Background route show the arc from enterprise integration through cloud, observability, production AI systems, and Operational Intelligence.",
+      "gap": "The career story is strong in structured content but still needs fresh reviewer feedback from people who know nothing about Ravikanth.",
+      "nextProof": "Run the 17-question visitor success test with external reviewers and record where they become uncertain."
+    },
+    {
+      "name": "Technical Authority",
+      "score": 8.4,
+      "evidence": "Doctrine, Reference Architecture, Publication Pack, Evidence Pack, patterns, and Operations Room create a serious technical body of work.",
+      "gap": "Independent practitioner review and measured control-comparison results are still missing.",
+      "nextProof": "Collect practitioner reviews and publish dimension-level findings with limitations."
+    },
+    {
+      "name": "Engineering Depth",
+      "score": 8.7,
+      "evidence": "The site exposes layer contracts, state machines, evidence objects, hypothesis lifecycle, replay seeds, evaluation gates, and decision packets.",
+      "gap": "Most deep examples still orbit OI-ROOM-001; more distinct public-safe scenarios are needed.",
+      "nextProof": "Add only scenario fixtures that test new failure modes, not decorative examples."
+    },
+    {
+      "name": "AI Systems Credibility",
+      "score": 8.1,
+      "evidence": "Ask Ravikanth, deterministic trust fixtures, eval gates, local fallback behavior, and AI-governance language are present.",
+      "gap": "Live model synthesis quality, vector retrieval quality, and reviewer-labeled sessions are not yet proven.",
+      "nextProof": "Compare fallback, vector retrieval, and model synthesis on the same safe prompt set using reviewer labels."
+    },
+    {
+      "name": "Architecture Quality",
+      "score": 8.8,
+      "evidence": "The Reference Architecture defines implementation-neutral contracts, state behavior, governance controls, and conformance profiles.",
+      "gap": "No independent team has implemented the doctrine from the specification yet.",
+      "nextProof": "Use a second public-safe implementation or external architecture review to test whether the contracts are precise."
+    },
+    {
+      "name": "Publications",
+      "score": 8.3,
+      "evidence": "The Library, wiki, articles, publication spine, RSS, changelog, and reference exports make the body of work navigable.",
+      "gap": "The platform needs more high-rigor field notes grounded in evidence, review, and counterexamples.",
+      "nextProof": "Strengthen existing canonical assets before adding new articles, and publish only when a note improves the doctrine."
+    },
+    {
+      "name": "Originality",
+      "score": 8.4,
+      "evidence": "Operational Intelligence is framed as original synthesis built on observability, SRE, incident response, knowledge graphs, and AI evaluation.",
+      "gap": "The distinction remains partly conceptual until practitioner review and control comparisons test it.",
+      "nextProof": "Use the Evidence Pack to show where the model adds value over adjacent modes and where it does not."
+    },
+    {
+      "name": "Evidence Quality",
+      "score": 7.8,
+      "evidence": "Resume provenance, public-code boundaries, doctrine citations, eval fixtures, proof backlog, and evidence-led pages reduce unsupported claims.",
+      "gap": "The strongest remaining evidence is external: practitioner review, benchmark results, live telemetry, and visual QA.",
+      "nextProof": "Execute the proof backlog and update claims only when new evidence supports them."
+    },
+    {
+      "name": "Work / Project Proof",
+      "score": 7.9,
+      "evidence": "Work, Projects, Artifacts, GitHub references, Sentinalai context, and Operations Room provide inspectable public proof surfaces.",
+      "gap": "Public repository and project evidence still need deeper runnable examples, walkthroughs, or independent review.",
+      "nextProof": "Improve the most representative public repository README and connect it to the relevant doctrine and patterns."
+    },
+    {
+      "name": "Knowledge-Graph Health",
+      "score": 8.3,
+      "evidence": "Content registry, professional graph, publishing index, related assets, search, and validators enforce many relationships.",
+      "gap": "The graph still lacks a recurring formal redundancy, orphan, and stale-fact health report.",
+      "nextProof": "Add a repeatable knowledge-graph health validator that checks orphaned assets, duplicate concepts, and missing evidence links."
+    },
+    {
+      "name": "Ask Ravi",
+      "score": 8.1,
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, and 93 passing fixtures.",
+      "gap": "No live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
+      "nextProof": "Run the live answer rubric and publish qualitative labels without raw prompts or aggregate model-quality scores."
+    },
+    {
+      "name": "Search / Discoverability",
+      "score": 8.5,
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, proof backlog, and 48 canonical retrieval checks.",
+      "gap": "Live search-console evidence and real query behavior are not yet available.",
+      "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
+    },
+    {
+      "name": "Visual Design",
+      "score": 7.6,
+      "evidence": "The site has a restrained dark visual system, proof-led cards, diagram surfaces, and performance-guarded rendered routes.",
+      "gap": "Fresh screenshot-grade review is incomplete, and some dense technical surfaces may still feel demo-like.",
+      "nextProof": "Capture browser screenshots for the core routes and fix hierarchy, density, and graph framing findings."
+    },
+    {
+      "name": "UX",
+      "score": 8.0,
+      "evidence": "Start Here, primary CTAs, proof paths, Ask prompts, related reading, and reference assets provide guided navigation.",
+      "gap": "The Operations Room and long reference pages still need more observed user-review evidence.",
+      "nextProof": "Run a 10-20 minute first-time visitor walkthrough and record where users hesitate."
+    },
+    {
+      "name": "Mobile",
+      "score": 7.6,
+      "evidence": "Viewport contracts, mobile quick prompts, responsive tables, and mobile-friendly wiki contents are validated.",
+      "gap": "Real mobile screenshots and touch walkthroughs are still missing for dense interactive routes.",
+      "nextProof": "Capture and review 390px and tablet screenshots for Home, Ask, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack."
+    },
+    {
+      "name": "Accessibility",
+      "score": 8.4,
+      "evidence": "Automated accessibility validation covers semantic headings, labels, focus styling, reduced motion, navigation, and graph fallbacks.",
+      "gap": "Manual keyboard and screen-reader spot checks are still needed for Ask and Operations Room.",
+      "nextProof": "Run manual a11y walkthroughs and encode any repeatable failures into validators."
+    },
+    {
+      "name": "SEO",
+      "score": 8.3,
+      "evidence": "Sitemap, robots, RSS, llms.txt, Open Graph images, canonical metadata, JSON-LD, and rendered metadata checks are present.",
+      "gap": "There is no live indexing, social-preview, search-console, or crawler feedback proving that external discovery works after deployment.",
+      "nextProof": "Inspect public deployment indexing and social previews after beta traffic begins."
+    },
+    {
+      "name": "Performance",
+      "score": 8.7,
+      "evidence": "Production build, static generation, rendered-route validation, and performance budgets pass.",
+      "gap": "Operations Room remains the heaviest route and needs measured interaction latency on real devices.",
+      "nextProof": "Measure route and interaction latency on preview or production devices after beta deployment."
+    },
+    {
+      "name": "Reliability",
+      "score": 8.0,
+      "evidence": "API timeouts, rate limiting, fallbacks, local build gates, route validation, and runbook guidance exist.",
+      "gap": "Live uptime, Ask latency, fallback rate, and contact persistence evidence are not yet available.",
+      "nextProof": "Review Vercel logs and privacy-safe analytics after real beta traffic, then publish latency, fallback, and error limitations."
+    },
+    {
+      "name": "Security & Privacy",
+      "score": 8.6,
+      "evidence": "Public-safety scanner, env hygiene, prompt-injection fixtures, no raw prompt analytics, and dependency audit command are present.",
+      "gap": "Production secret scoping, environment isolation, and rotation evidence still need verification in the deployed beta environment.",
+      "nextProof": "Verify Vercel environment scopes and document secret-rotation evidence for beta."
+    },
+    {
+      "name": "Maintainability",
+      "score": 8.7,
+      "evidence": "Most durable content lives in structured files with TypeScript exports and validators across content, routes, links, publishing, and Ask.",
+      "gap": "Some UI-local support arrays remain where they are not yet worth extracting.",
+      "nextProof": "Move only the arrays that improve publishing governance, retrieval quality, or review speed."
+    },
+    {
+      "name": "Publication Quality",
+      "score": 8.5,
+      "evidence": "Canonical doctrine, reference architecture, publication pack, evidence pack, glossary, diagrams, PDFs, RSS, and changelog exist.",
+      "gap": "The publication body needs more field-tested examples and reviewer-driven revisions.",
+      "nextProof": "Version doctrine and reference changes only when evidence or practitioner review justifies them."
+    },
+    {
+      "name": "Overall Memorability",
+      "score": 7.9,
+      "evidence": "The Operational Intelligence thesis, Operations Room, Ask Ravikanth, and proof-led professional graph are differentiated.",
+      "gap": "The signature artifact and first impression need more external validation and visual polish before they reliably feel unforgettable.",
+      "nextProof": "Use browser QA and practitioner review to sharpen the first 10 minutes around one memorable evidence-to-decision experience."
+    }
+  ]
+}

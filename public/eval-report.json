@@ -987,6 +987,21 @@
       "result": "Pass"
     },
     {
+      "prompt": "How would you rate seri.ai across the 24 dimensions right now?",
+      "expected": "Use the quality scorecard without inflating scores or claiming completion.",
+      "requiredAnswerIncludes": [
+        "Quality scorecard",
+        "24 evidence-based dimensions",
+        "non-inflated scores",
+        "Evidence Quality",
+        "Visual Design",
+        "Mobile",
+        "Overall Memorability",
+        "/wiki/operational-intelligence-evidence-pack"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "How does Ravikanth show architecture to engineering to integration to evaluation governance and production delivery judgment?",
       "expected": "Route to the Background production delivery chain and related public evidence surfaces without exposing protected implementation specifics.",
       "requiredAnswerIncludes": [
@@ -1034,6 +1049,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 92,
-  "passingFixtures": 92
+  "fixtureCount": 93,
+  "passingFixtures": 93
 }

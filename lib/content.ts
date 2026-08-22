@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projects, proofBacklog, publicCode, publicationSpine, resume, site, thesisRadar } from "../content/site";
+import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -609,6 +609,30 @@ export function buildPublicSourceIndex(): PublicSource[] {
       frameworkLayers: ["Evidence Layer", "Evaluation Layer", "Operator Layer", "Learning Layer"],
       principles: ["Evidence before conclusions", "Replay before belief"],
       patterns: ["/patterns/evaluation-and-replay", "/patterns/evidence-driven-rca", "/patterns/human-in-the-loop-operational-ai"],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
+      id: "profile:seri-ai-quality-scorecard",
+      title: qualityScorecard.title,
+      description: "Evidence-based, non-inflated 24-dimension quality assessment for seri.ai and Ravikanth Seri's public professional operating system.",
+      content: [
+        qualityScorecard.title,
+        qualityScorecard.scale,
+        qualityScorecard.rule,
+        "quality scorecard. 10/10 target. rating. current score. honest score. not complete. professional representation. visual design. mobile. memorability. evidence quality.",
+        qualityScorecard.dimensions.flatMap((dimension) => [dimension.name, String(dimension.score), dimension.evidence, dimension.gap, dimension.nextProof]).join(". ")
+      ].join(". "),
+      url: "/wiki/operational-intelligence-evidence-pack",
+      type: "registry" as const,
+      category: "evidence",
+      tags: ["quality scorecard", "10/10 target", "evidence quality", "visual design", "Ask Ravi", "professional representation"],
+      author: "Ravikanth Seri",
+      assetType: "evidence",
+      date: qualityScorecard.updatedAt,
+      frameworkLayers: ["Evidence Layer", "Evaluation Layer", "Learning Layer"],
+      principles: ["Evidence before conclusions"],
+      patterns: ["/patterns/evaluation-and-replay", "/patterns/evidence-driven-rca"],
       products: ["/products/reasonops"],
       status: "published" as const
     },

@@ -31,6 +31,7 @@ const askContent = fs.readFileSync(path.join(root, "content", "ask.json"), "utf8
 const professionalGraphContent = fs.readFileSync(path.join(root, "content", "professional-graph.json"), "utf8");
 const nowContent = fs.readFileSync(path.join(root, "content", "now.json"), "utf8");
 const proofBacklogContent = fs.readFileSync(path.join(root, "content", "proof-backlog.json"), "utf8");
+const qualityScorecardContent = fs.readFileSync(path.join(root, "content", "quality-scorecard.json"), "utf8");
 const publicCodeContent = fs.readFileSync(path.join(root, "content", "public-code.json"), "utf8");
 const contentRegistryContent = fs.readFileSync(path.join(root, "content", "content-registry.json"), "utf8");
 const normalizedContentRegistryContent = contentRegistryContent.replace(/"([^"]+)":/g, "$1:");
@@ -756,6 +757,44 @@ for (const required of [
   "/background"
 ]) {
   expect(proofBacklogContractSource.includes(required), `Evidence Pack missing proof-backlog contract: ${required}`);
+}
+
+const scorecard = fs.readFileSync(path.join(root, "WORLD_CLASS_SCORECARD.md"), "utf8");
+const qualityScorecardContractSource = [qualityScorecardContent, scorecard, siteContent].join("\n");
+for (const required of [
+  "seri.ai 24-Dimension Quality Scorecard",
+  "24-Dimension Scores",
+  "0 to 10, evidence-based, non-inflated",
+  "Professional Representation",
+  "Career Clarity",
+  "Technical Authority",
+  "Engineering Depth",
+  "AI Systems Credibility",
+  "Architecture Quality",
+  "Publications",
+  "Originality",
+  "Evidence Quality",
+  "Work / Project Proof",
+  "Knowledge-Graph Health",
+  "Ask Ravi",
+  "Search / Discoverability",
+  "Visual Design",
+  "UX",
+  "Mobile",
+  "Accessibility",
+  "SEO",
+  "Performance",
+  "Reliability",
+  "Security & Privacy",
+  "Maintainability",
+  "Publication Quality",
+  "Overall Memorability",
+  "A `10` means current evidence shows no material gap",
+  "No live reviewer-labeled quality baseline exists.",
+  "Fresh screenshot-grade review is incomplete",
+  "Execute the proof backlog"
+]) {
+  expect(qualityScorecardContractSource.includes(required), `Quality scorecard missing contract: ${required}`);
 }
 
 const architectureLabPage = fs.readFileSync(path.join(root, "app", "architecture-lab", "page.tsx"), "utf8");

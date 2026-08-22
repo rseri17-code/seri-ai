@@ -134,6 +134,14 @@ const cases = [
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },
   {
+    query: "How would you rate seri.ai across the 24 dimensions right now?",
+    expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
+  },
+  {
+    query: "Where is the quality scorecard for the 10/10 target and current evidence-based scores?",
+    expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
+  },
+  {
     query: "Where are the market signals for ops for observability and observability for AI?",
     expectedFirstUrl: "/radar"
   },

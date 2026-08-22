@@ -22,6 +22,7 @@ const professionalGraphPath = path.join(root, "content", "professional-graph.jso
 const publicCodePath = path.join(root, "content", "public-code.json");
 const publicationSpinePath = path.join(root, "content", "publication-spine.json");
 const proofBacklogPath = path.join(root, "content", "proof-backlog.json");
+const qualityScorecardPath = path.join(root, "content", "quality-scorecard.json");
 const contentRegistryPath = path.join(root, "content", "content-registry.json");
 const harnessThesisPath = path.join(root, "content", "harness-thesis.json");
 const canonicalDefinitionPath = path.join(root, "content", "canonical-definition.json");
@@ -60,6 +61,8 @@ const requiredPublicationSpineFields = ["title", "summary", "updatedAt", "princi
 const requiredPublicationSpineStageFields = ["name", "purpose", "primaryAsset", "supportingAssets", "readerQuestion", "proofStandard"];
 const requiredProofBacklogFields = ["title", "summary", "updatedAt", "principle", "items"];
 const requiredProofBacklogItemFields = ["slug", "claim", "evidenceNeeded", "currentEvidence", "nextProof", "wouldChange", "status", "href"];
+const requiredQualityScorecardFields = ["title", "updatedAt", "scale", "rule", "dimensions"];
+const requiredQualityScorecardDimensionFields = ["name", "score", "evidence", "gap", "nextProof"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
@@ -650,6 +653,66 @@ if (!Array.isArray(proofBacklog.items) || proofBacklog.items.length !== required
   for (const required of ["practitioner", "control", "Ask", "reliability", "visual", "identity", "evidence"]) {
     if (!backlogText.toLowerCase().includes(required.toLowerCase())) {
       errors.push(`content/proof-backlog.json: missing proof backlog theme ${required}`);
+    }
+  }
+}
+
+const qualityScorecard = requireJsonObject(qualityScorecardPath, "content/quality-scorecard.json");
+validateRequiredFields("content/quality-scorecard.json", qualityScorecard, requiredQualityScorecardFields, { requireSlug: false });
+if (!/^\d{4}-\d{2}-\d{2}$/.test(qualityScorecard.updatedAt ?? "")) {
+  errors.push("content/quality-scorecard.json: updatedAt must be YYYY-MM-DD");
+}
+if (!/evidence-based|non-inflated/i.test(`${qualityScorecard.scale ?? ""} ${qualityScorecard.rule ?? ""}`)) {
+  errors.push("content/quality-scorecard.json: scale and rule must preserve evidence-based non-inflated scoring");
+}
+const requiredQualityDimensions = [
+  "Professional Representation",
+  "Career Clarity",
+  "Technical Authority",
+  "Engineering Depth",
+  "AI Systems Credibility",
+  "Architecture Quality",
+  "Publications",
+  "Originality",
+  "Evidence Quality",
+  "Work / Project Proof",
+  "Knowledge-Graph Health",
+  "Ask Ravi",
+  "Search / Discoverability",
+  "Visual Design",
+  "UX",
+  "Mobile",
+  "Accessibility",
+  "SEO",
+  "Performance",
+  "Reliability",
+  "Security & Privacy",
+  "Maintainability",
+  "Publication Quality",
+  "Overall Memorability"
+];
+if (!Array.isArray(qualityScorecard.dimensions) || qualityScorecard.dimensions.length !== requiredQualityDimensions.length) {
+  errors.push(`content/quality-scorecard.json: dimensions must include exactly ${requiredQualityDimensions.length} entries`);
+} else {
+  const dimensionNames = new Set(qualityScorecard.dimensions.map((dimension) => dimension.name));
+  for (const required of requiredQualityDimensions) {
+    if (!dimensionNames.has(required)) {
+      errors.push(`content/quality-scorecard.json: dimensions missing ${required}`);
+    }
+  }
+  for (const dimension of qualityScorecard.dimensions) {
+    validateRequiredFields("content/quality-scorecard.json", dimension, requiredQualityScorecardDimensionFields, { requireSlug: false });
+    const owner = `content/quality-scorecard.json:${dimension.name ?? "unknown"}`;
+    if (typeof dimension.score !== "number" || dimension.score < 0 || dimension.score > 10) {
+      errors.push(`${owner}: score must be a number from 0 to 10`);
+    }
+    if (dimension.score >= 10) {
+      errors.push(`${owner}: score must not claim 10/10 while active proof gaps remain`);
+    }
+    for (const field of ["evidence", "gap", "nextProof"]) {
+      if (String(dimension[field] ?? "").length < 75) {
+        errors.push(`${owner}: ${field} must contain substantial evidence-based scoring language`);
+      }
     }
   }
 }
