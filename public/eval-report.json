@@ -948,6 +948,28 @@
         "Related page or artifact"
       ],
       "result": "Pass"
+    },
+    {
+      "prompt": "What is Ravikanth learning, researching, and advancing right now?",
+      "expected": "Route to Now and current research ledger without implying finished proof.",
+      "requiredAnswerIncludes": [
+        "/now",
+        "Related page or artifact",
+        "Evidence Layer",
+        "Evaluation Layer"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "What proof is Ravikanth trying to gather next?",
+      "expected": "Route to Now and Evidence Pack while naming limitations and next proof.",
+      "requiredAnswerIncludes": [
+        "/now",
+        "/wiki/operational-intelligence-evidence-pack",
+        "Tradeoff or limitation",
+        "Explicit unknowns"
+      ],
+      "result": "Pass"
     }
   ],
   "knownLimits": [
@@ -957,6 +979,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 86,
-  "passingFixtures": 86
+  "fixtureCount": 88,
+  "passingFixtures": 88
 }

@@ -13,6 +13,7 @@ const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
 const conformanceProfileUrl = "/publication-pack/operational-intelligence-conformance-profile.md";
 const workUrl = "/work";
 const startHereUrl = "/start-here";
+const nowUrl = "/now";
 const resumeUrl = "/resume";
 const backgroundUrl = "/background";
 const radarUrl = "/radar";
@@ -201,6 +202,12 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         /start here|visitor|first destination|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lowerQuery)
           ? 85
           : 0;
+      const nowBoost =
+        source.url === nowUrl &&
+        /right now|current focus|currently focused|what.*learning|what.*researching|what.*advancing|research ledger|proof loop|what would change|next proof|trying to prove|trying to gather|current research|what.*building now/.test(lowerQuery) &&
+        !/learn from him|learning from ravikanth/.test(lowerQuery)
+          ? 90
+          : 0;
       const resumeBoost = source.url === resumeUrl && /resume|experience|career|capability|impact|recruiter|founder|background|certification|credential|public evidence|architecture judgment/.test(lowerQuery) ? 12 : 0;
       const resumeSpecificBoost =
         source.url === resumeUrl &&
@@ -253,6 +260,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         publicationPackBoost +
         workBoost +
         startHereBoost +
+        nowBoost +
         directReferenceBoost +
         broadPublicationPackBoost +
         conformanceChecklistBoost +

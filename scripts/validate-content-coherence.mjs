@@ -29,6 +29,7 @@ const resumeContent = fs.readFileSync(path.join(root, "content", "resume.json"),
 const homeContent = fs.readFileSync(path.join(root, "content", "home.json"), "utf8");
 const askContent = fs.readFileSync(path.join(root, "content", "ask.json"), "utf8");
 const professionalGraphContent = fs.readFileSync(path.join(root, "content", "professional-graph.json"), "utf8");
+const nowContent = fs.readFileSync(path.join(root, "content", "now.json"), "utf8");
 const contentRegistryContent = fs.readFileSync(path.join(root, "content", "content-registry.json"), "utf8");
 const normalizedContentRegistryContent = contentRegistryContent.replace(/"([^"]+)":/g, "$1:");
 
@@ -737,9 +738,22 @@ for (const required of [
 }
 
 const nowPage = fs.readFileSync(path.join(root, "app", "now", "page.tsx"), "utf8");
+const nowContractSource = [nowPage, nowContent].join("\n");
 for (const required of [
   "const builderLedger",
   "const proofCheckpoints",
+  "Research ledger",
+  "What Ravikanth is trying to prove next.",
+  "nowPage.researchLedger.map",
+  "Research question",
+  "Why it matters",
+  "Current evidence",
+  "Next proof",
+  "Would change the model",
+  "Can operational agents preserve evidence quality under incident pressure?",
+  "What is the minimum replay record required before an AI recommendation is trusted?",
+  "Can transaction journeys become the shared unit of AI-native operations?",
+  "Where should human approval sit in governed operational AI?",
   "Builder ledger",
   "Proof loop",
   "Doctrine frozen at v1.0",
@@ -757,7 +771,7 @@ for (const required of [
   "/evals",
   "/contact"
 ]) {
-  expect(nowPage.includes(required), `/now missing living builder ledger contract: ${required}`);
+  expect(nowContractSource.includes(required), `/now missing living builder ledger contract: ${required}`);
 }
 
 const projectPage = fs.readFileSync(path.join(root, "app", "projects", "[slug]", "page.tsx"), "utf8");

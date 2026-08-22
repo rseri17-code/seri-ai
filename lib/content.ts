@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, patterns, principles, professionalGraph, projects, resume, site, thesisRadar } from "../content/site";
+import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projects, resume, site, thesisRadar } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -501,6 +501,30 @@ export function buildPublicSourceIndex(): PublicSource[] {
       frameworkLayers: [],
       principles: ["Evidence before conclusions"],
       patterns: [],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
+      id: "profile:ravikanth-seri-current-research",
+      title: "Ravikanth Seri Current Research Ledger",
+      description: "Current public research questions, proof loops, evidence gaps, and model-changing conditions behind Ravikanth Seri's Operational Intelligence work.",
+      content: [
+        "Now page. Current research ledger. What Ravikanth is learning, researching, and advancing.",
+        nowPage.currentFocus.join(". "),
+        nowPage.studying.join(". "),
+        nowPage.questions.join(". "),
+        nowPage.researchLedger.flatMap((item) => [item.question, item.whyItMatters, item.currentEvidence, item.nextProof, item.wouldChangeMind, item.href]).join(". ")
+      ].join(". "),
+      url: "/now",
+      type: "registry" as const,
+      category: "background",
+      tags: ["now", "research ledger", "current focus", "proof loop", "learning", "research"],
+      author: "Ravikanth Seri",
+      assetType: "profile",
+      date: "2026-08-22",
+      frameworkLayers: ["Evidence Layer", "Transaction Layer", "Evaluation Layer", "Operator Layer", "Learning Layer"],
+      principles: ["Evidence before conclusions"],
+      patterns: ["evaluation-and-replay", "transaction-journey-reconstruction", "human-in-the-loop-operational-ai"],
       products: ["/products/reasonops"],
       status: "published" as const
     },

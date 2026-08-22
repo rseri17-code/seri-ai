@@ -44,7 +44,8 @@ const requiredProductFields = ["slug", "name", "tagline", "summary", "relationsh
 const requiredArchitectureCardFields = ["title", "pattern", "tags"];
 const requiredRadarFields = ["title", "updatedAt", "thesis", "framing", "proofChain", "trends"];
 const requiredBriefFields = ["title", "subtitle", "audience", "thesis", "whyNow", "contrarianInsight", "wedge", "proofPoints", "whatToRemember", "nextMoves"];
-const requiredNowFields = ["currentFocus", "building", "studying", "writing", "avoiding", "questions"];
+const requiredNowFields = ["currentFocus", "building", "studying", "writing", "avoiding", "questions", "researchLedger"];
+const requiredNowResearchFields = ["question", "whyItMatters", "currentEvidence", "nextProof", "wouldChangeMind", "href"];
 const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matters"];
 const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
@@ -532,6 +533,26 @@ validateRequiredFields("content/now.json", nowPage, requiredNowFields, { require
 for (const field of requiredNowFields) {
   if (!Array.isArray(nowPage[field]) || nowPage[field].length < 3) {
     errors.push(`content/now.json: ${field} must include at least three entries`);
+  }
+}
+for (const item of nowPage.researchLedger ?? []) {
+  const owner = `content/now.json:researchLedger:${item.question ?? "unknown"}`;
+  for (const field of requiredNowResearchFields) {
+    if (!item[field]) {
+      errors.push(`${owner}: missing ${field}`);
+    }
+  }
+  if (String(item.whyItMatters ?? "").length < 100) {
+    errors.push(`${owner}: whyItMatters must explain the research significance`);
+  }
+  if (String(item.currentEvidence ?? "").length < 80) {
+    errors.push(`${owner}: currentEvidence must name inspectable public evidence`);
+  }
+  if (String(item.nextProof ?? "").length < 80) {
+    errors.push(`${owner}: nextProof must describe the next evidence to gather`);
+  }
+  if (!String(item.href ?? "").startsWith("/")) {
+    errors.push(`${owner}: href must route to an internal proof asset`);
   }
 }
 

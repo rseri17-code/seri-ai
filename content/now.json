@@ -32,5 +32,39 @@
     "How should AI explain what it ignored?",
     "What makes an agent trustworthy enough for enterprise operations?",
     "What is the minimum evidence packet before an AI system recommends operational action?"
+  ],
+  "researchLedger": [
+    {
+      "question": "Can operational agents preserve evidence quality under incident pressure?",
+      "whyItMatters": "Enterprise teams do not need faster unsupported guesses; they need AI systems that keep observations, inferences, contradictions, missing evidence, and confirmed facts separate while pressure rises.",
+      "currentEvidence": "Operations Room, Evidence Graph, OI-ROOM-001 walkthrough, and Ask trust fixtures already enforce evidence classes and public-safe refusals.",
+      "nextProof": "Run practitioner reviews that compare Operational Intelligence against dashboard-only, chatbot-only, and ticket-only investigation modes.",
+      "wouldChangeMind": "If reviewers cannot tell whether evidence quality improved, the model needs a narrower evidence contract.",
+      "href": "/wiki/operational-intelligence-evidence-pack"
+    },
+    {
+      "question": "What is the minimum replay record required before an AI recommendation is trusted?",
+      "whyItMatters": "A production AI operations system must survive model, prompt, retrieval, and tool changes without losing the ability to replay why a recommendation was made.",
+      "currentEvidence": "Replay Seed, Evaluation Gate, conformance profile, decision packet example, and deterministic Ask fixtures define repeatable behavior checks.",
+      "nextProof": "Add more public-safe replay cases only when they test distinct failure modes such as stale context, contradictory evidence, missing ownership, or unsafe action.",
+      "wouldChangeMind": "If replay records become too expensive or too noisy for operators to use, the architecture must simplify the replay contract.",
+      "href": "/publication-pack/operational-intelligence-conformance-profile.md"
+    },
+    {
+      "question": "Can transaction journeys become the shared unit of AI-native operations?",
+      "whyItMatters": "Service dashboards show components, but operators often reason through affected customers, workflows, dependencies, and business impact.",
+      "currentEvidence": "Transaction Intelligence, transaction journey reconstruction, topology-aware reasoning, and per-hop timing in OI-ROOM-001 make the journey visible.",
+      "nextProof": "Create public-safe walkthroughs that compare component-first investigation against transaction-first investigation without inventing private metrics.",
+      "wouldChangeMind": "If transaction views do not reduce ambiguity for reviewers, the pattern should remain a supporting view rather than the primary operating unit.",
+      "href": "/patterns/transaction-journey-reconstruction"
+    },
+    {
+      "question": "Where should human approval sit in governed operational AI?",
+      "whyItMatters": "AI-assisted operations can suggest action, but enterprises still need explicit accountability, reversibility, and owner control before consequential change.",
+      "currentEvidence": "Operator Control Plane, human-in-the-loop operational AI pattern, decision packet, approval class, and public-safety refusal behavior keep accountability visible.",
+      "nextProof": "Test which decision packet fields actually help reviewers approve, reject, or request more evidence during synthetic investigations.",
+      "wouldChangeMind": "If approval gates become ceremonial rather than decision-improving, the control plane needs stronger operator questions and clearer escalation rules.",
+      "href": "/patterns/human-in-the-loop-operational-ai"
+    }
   ]
 }

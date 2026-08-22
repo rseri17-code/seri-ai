@@ -129,6 +129,27 @@ const routeContracts = [
     before: [["Architecture judgment ledger", "Strengths"]]
   },
   {
+    route: "/now",
+    file: "now.html",
+    maxBytes: 175_000,
+    required: [
+      "What Ravikanth is actively building and thinking through.",
+      "Research ledger",
+      "What Ravikanth is trying to prove next.",
+      "Can operational agents preserve evidence quality under incident pressure?",
+      "What is the minimum replay record required before an AI recommendation is trusted?",
+      "Can transaction journeys become the shared unit of AI-native operations?",
+      "Where should human approval sit in governed operational AI?",
+      "Would change the model",
+      "Builder ledger",
+      "Proof loop"
+    ],
+    before: [
+      ["Research ledger", "Builder ledger"],
+      ["Builder ledger", "Proof loop"]
+    ]
+  },
+  {
     route: "/wiki/operational-intelligence-canonical-doctrine",
     file: "wiki/operational-intelligence-canonical-doctrine.html",
     maxBytes: 260_000,

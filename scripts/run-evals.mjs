@@ -24,10 +24,10 @@ function inferFrameworkLayers(question) {
   if (/observability|ops for observability|observability for ai|signal|telemetry|metric|log|trace|alert|dashboard|dynamic operational view/.test(lower)) layers.push("Signal Layer");
   if (/transaction|journey|customer|workflow|latency|context acquisition|enterprise context|operational context/.test(lower)) layers.push("Transaction Layer");
   if (/topology|dependency|service|blast|owner|enterprise context|operational context|dynamic operational view|static graph/.test(lower)) layers.push("Topology Layer");
-  if (/evidence|receipt|fact|source|provenance|citation|context acquisition|enterprise context|harness|dynamic operational view|observability for ai|ai observability/.test(lower)) layers.push("Evidence Layer");
+  if (/evidence|receipt|fact|source|provenance|citation|context acquisition|enterprise context|harness|dynamic operational view|observability for ai|ai observability|learning|researching|advancing|research ledger|next proof|trying to prove|trying to gather/.test(lower)) layers.push("Evidence Layer");
   if (/hypothesis|reason|root cause|rca|causal/.test(lower)) layers.push("Reasoning Layer");
   if (/memory|replay seed|lesson|remember|harness|shared context|operational context/.test(lower)) layers.push("Memory Layer");
-  if (/eval|evaluation|gate|trust|benchmark|quality|harness|agentic sre|observability for ai|ai observability/.test(lower)) layers.push("Evaluation Layer");
+  if (/eval|evaluation|gate|trust|benchmark|quality|harness|agentic sre|observability for ai|ai observability|researching|advancing|research ledger|next proof|trying to prove|trying to gather/.test(lower)) layers.push("Evaluation Layer");
   if (/decision|action|recommend|risk|rollback/.test(lower)) layers.push("Decision Layer");
   if (/learn|outcome|post|future/.test(lower)) layers.push("Learning Layer");
   if (/human|operator|approve|override|review|escalate|shared context|agentic sre/.test(lower)) layers.push("Operator Layer");
@@ -41,6 +41,9 @@ function inferRelatedArtifacts(question) {
     artifacts.add("/start-here");
   }
   if (/current focus|currently focused|building now|what.*building|now/.test(lower)) {
+    artifacts.add("/now");
+  }
+  if (/learning|researching|advancing|research ledger|proof loop|what would change|next proof|trying to prove|trying to gather|current research/.test(lower)) {
     artifacts.add("/now");
   }
   if (/contact|reach out|collaboration|collaborate|conversation/.test(lower)) {
@@ -88,7 +91,7 @@ function inferRelatedArtifacts(question) {
   if (/walkthrough pdf|download.*walkthrough|printable.*pdf/.test(lower)) {
     artifacts.add("/downloads/oi-room-001-printable-walkthrough.pdf");
   }
-  if (/evidence pack|benchmark|rubric|control case|baseline|practitioner|review|conformance checklist|minimum conformance|observable proof|failure signal|falsifiable|falsification|evidence ledger|claim ledger|claim classification|established|derived|original|speculative|unsupported|prove|credible|skeptical|convince|useful/.test(lower)) {
+  if (/evidence pack|benchmark|rubric|control case|baseline|practitioner|review|conformance checklist|minimum conformance|observable proof|failure signal|falsifiable|falsification|evidence ledger|claim ledger|claim classification|established|derived|original|speculative|unsupported|prove|proof|credible|skeptical|convince|useful|trying to gather/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
   }
   if (/oi-room-001|operations room|investigation|incident|simulator|transaction timing/.test(lower)) {

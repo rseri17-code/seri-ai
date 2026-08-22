@@ -101,6 +101,35 @@ export default function NowPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Research ledger" title="What Ravikanth is trying to prove next.">
+        <div className="grid gap-4 lg:grid-cols-2">
+          {nowPage.researchLedger.map((item) => (
+            <Link key={item.question} href={item.href}>
+              <Card className="h-full border-white/10 bg-white/[0.035] transition hover:border-signal/40">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Research question</p>
+                <h2 className="mt-3 text-xl font-semibold text-white">{item.question}</h2>
+                <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-mint">Why it matters</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{item.whyItMatters}</p>
+                <div className="mt-4 grid gap-3">
+                  <div className="rounded border border-mint/20 bg-mint/[0.045] p-3">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-mint">Current evidence</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-200">{item.currentEvidence}</p>
+                  </div>
+                  <div className="rounded border border-signal/20 bg-signal/[0.045] p-3">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-signal">Next proof</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-200">{item.nextProof}</p>
+                  </div>
+                  <div className="rounded border border-amber/20 bg-amber/[0.045] p-3">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-amber">Would change the model</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-200">{item.wouldChangeMind}</p>
+                  </div>
+                </div>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
       <Section eyebrow="Builder ledger" title="Current public assets that make the work inspectable.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {builderLedger.map(([href, title, description], index) => (

@@ -86,6 +86,18 @@ const cases = [
     expectedFirstUrl: "/resume"
   },
   {
+    query: "What is Ravikanth learning researching and advancing right now?",
+    expectedFirstUrl: "/now"
+  },
+  {
+    query: "Where is the research ledger for current proof loops and what would change the model?",
+    expectedFirstUrl: "/now"
+  },
+  {
+    query: "What proof is Ravikanth trying to gather next for operational agents replay transaction journeys and human approval?",
+    expectedFirstUrl: "/now"
+  },
+  {
     query: "Where are the market signals for ops for observability and observability for AI?",
     expectedFirstUrl: "/radar"
   },
