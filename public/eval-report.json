@@ -972,6 +972,20 @@
       "result": "Pass"
     },
     {
+      "prompt": "How does Ravikanth show architecture to engineering to integration to evaluation governance and production delivery judgment?",
+      "expected": "Route to the Background production delivery chain and related public evidence surfaces without exposing protected implementation specifics.",
+      "requiredAnswerIncludes": [
+        "Production delivery path",
+        "Architecture, Engineering, Integration, Evaluation, Governance, and Production Delivery",
+        "/background",
+        "/work",
+        "/resume",
+        "/wiki/operational-intelligence-reference-architecture",
+        "/evals"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Where is the publication spine and what should I read first to understand Ravikanth's body of work?",
       "expected": "Route to the Library and explain the Define, Specify, Demonstrate, Challenge, and Connect publication spine.",
       "requiredAnswerIncludes": [
@@ -1005,6 +1019,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 90,
-  "passingFixtures": 90
+  "fixtureCount": 91,
+  "passingFixtures": 91
 }

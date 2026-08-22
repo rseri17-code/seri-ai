@@ -82,6 +82,14 @@ const cases = [
     expectedFirstUrl: "/work"
   },
   {
+    query: "Where can I inspect Ravikanth's architecture to engineering to integration to evaluation governance and production delivery chain?",
+    expectedFirstUrl: "/background"
+  },
+  {
+    query: "How does Ravikanth show production delivery judgment without private implementation details?",
+    expectedFirstUrl: "/background"
+  },
+  {
     query: "Show Ravikanth's path from enterprise integration middleware API identity Kubernetes observability AIOps production AI agentic operations to Operational Intelligence.",
     expectedFirstUrl: "/work"
   },

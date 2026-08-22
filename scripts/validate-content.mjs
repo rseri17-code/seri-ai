@@ -51,7 +51,8 @@ const requiredNowResearchFields = ["question", "whyItMatters", "currentEvidence"
 const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matters"];
 const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
-const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "architectureJudgment", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "visitorSuccessQuestions", "relationships"];
+const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "architectureJudgment", "productionDelivery", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "visitorSuccessQuestions", "relationships"];
+const requiredProductionDeliveryFields = ["stage", "responsibility", "publicEvidence", "reviewQuestion", "href"];
 const requiredPublicCodeFields = ["title", "summary", "entries"];
 const requiredPublicCodeEntryFields = ["label", "href", "status", "whatToInspect", "publicSafeUse", "proofBoundary", "related"];
 const requiredPublicationSpineFields = ["title", "summary", "updatedAt", "principle", "audienceQuestion", "stages"];
@@ -781,6 +782,41 @@ if (!Array.isArray(professionalGraph.architectureJudgment) || professionalGraph.
     }
     if (!String(item.inspectHref ?? "").startsWith("/")) {
       errors.push(`${owner}: inspectHref must route to an internal proof asset`);
+    }
+  }
+}
+const requiredDeliveryStages = ["Architecture", "Engineering", "Integration", "Evaluation", "Governance", "Production Delivery"];
+if (!Array.isArray(professionalGraph.productionDelivery) || professionalGraph.productionDelivery.length !== requiredDeliveryStages.length) {
+  errors.push(`content/professional-graph.json: productionDelivery must include exactly ${requiredDeliveryStages.length} delivery stages`);
+} else {
+  for (const [index, requiredStage] of requiredDeliveryStages.entries()) {
+    const item = professionalGraph.productionDelivery[index];
+    const owner = `content/professional-graph.json:productionDelivery:${item?.stage ?? "unknown"}`;
+    if (item?.stage !== requiredStage) {
+      errors.push(`${owner}: expected ordered stage ${requiredStage}`);
+    }
+    for (const field of requiredProductionDeliveryFields) {
+      if (!item?.[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (String(item?.responsibility ?? "").length < 95) {
+      errors.push(`${owner}: responsibility must explain the production-delivery work, not just name a phase`);
+    }
+    if (String(item?.publicEvidence ?? "").length < 70) {
+      errors.push(`${owner}: publicEvidence must name public-safe evidence surfaces`);
+    }
+    if (!String(item?.reviewQuestion ?? "").includes("?") || String(item?.reviewQuestion ?? "").length < 70) {
+      errors.push(`${owner}: reviewQuestion must be a substantial reviewer question`);
+    }
+    if (!String(item?.href ?? "").startsWith("/")) {
+      errors.push(`${owner}: href must route to an internal public proof asset`);
+    }
+  }
+  const deliveryText = JSON.stringify(professionalGraph.productionDelivery);
+  for (const required of ["architecture", "engineering", "integration", "evaluation", "governance", "production", "public-safe"]) {
+    if (!deliveryText.toLowerCase().includes(required)) {
+      errors.push(`content/professional-graph.json: productionDelivery missing ${required}`);
     }
   }
 }

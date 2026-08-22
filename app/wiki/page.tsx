@@ -16,6 +16,10 @@ export const metadata: Metadata = publicRouteMetadata({
 export default function WikiPage() {
   const notes = getPublishedWikiNotes();
   const sources = buildPublicSourceIndex();
+  const clientSources = sources.map((source) => ({
+    ...source,
+    content: source.content.length > 420 ? `${source.content.slice(0, 420)}...` : source.content
+  }));
   const referenceSpine = [
     "operational-intelligence-canonical-doctrine",
     "operational-intelligence-reference-architecture",
@@ -60,7 +64,7 @@ export default function WikiPage() {
           </Link>
         ))}
       </div>
-      <ContentSearch sources={sources} />
+      <ContentSearch sources={clientSources} />
     </Section>
   );
 }

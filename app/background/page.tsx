@@ -80,6 +80,40 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Production delivery" title="The public-safe delivery chain from architecture to operating loop.">
+        <div className="grid gap-4 lg:grid-cols-[0.7fr_1.3fr]">
+          <Card className="h-fit border-amber/25 bg-amber/[0.04]">
+            <ShieldCheck className="mb-5 text-amber" />
+            <h2 className="text-3xl font-semibold text-white">Production experience should show up as constraints, gates, and reviewable handoffs.</h2>
+            <p className="mt-4 leading-7 text-slate-300">
+              The site publishes approved public evidence. It translates delivery lessons into public surfaces a reviewer can inspect:
+              architecture contracts, bounded engineering records, integration context, evaluation gates, governance controls, and production-safe fallback behavior.
+            </p>
+          </Card>
+          <div className="grid gap-3">
+            {professionalGraph.productionDelivery.map((item, index) => (
+              <Link key={item.stage} href={item.href}>
+                <Card className="p-4 transition hover:border-amber/40">
+                  <div className="grid gap-4 md:grid-cols-[0.24fr_0.76fr]">
+                    <div>
+                      <p className="font-mono text-sm text-amber">{String(index + 1).padStart(2, "0")}</p>
+                      <h2 className="mt-3 text-xl font-semibold text-white">{item.stage}</h2>
+                    </div>
+                    <div>
+                      <p className="text-sm leading-6 text-slate-300">{item.responsibility}</p>
+                      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-mint">Public evidence</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-400">{item.publicEvidence}</p>
+                      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-signal">Reviewer question</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-300">{item.reviewQuestion}</p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       <Section eyebrow="Point of view" title="The throughline is context, evidence, and accountable action.">
         <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr]">
           <Card className="border-signal/25 bg-signal/[0.045]">

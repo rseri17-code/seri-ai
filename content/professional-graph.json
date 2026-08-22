@@ -145,6 +145,50 @@
       "inspectHref": "/work"
     }
   ],
+  "productionDelivery": [
+    {
+      "stage": "Architecture",
+      "responsibility": "Define operating boundaries, system responsibilities, control points, and a public-safe decision model before implementation details dominate.",
+      "publicEvidence": "Canonical Doctrine, Reference Architecture, architecture judgment ledger, and layer contracts.",
+      "reviewQuestion": "Is the problem decomposed into evidence, reasoning, evaluation, decision, and operator-control surfaces before model reasoning?",
+      "href": "/wiki/operational-intelligence-reference-architecture"
+    },
+    {
+      "stage": "Engineering",
+      "responsibility": "Translate the architecture into bounded workflows, deterministic orchestration, typed evidence records, replayable state, and failure behavior.",
+      "publicEvidence": "Operations Room, Conformance Profile, Evidence Object, Hypothesis State, Replay Seed, Evaluation Gate, and Decision Packet examples.",
+      "reviewQuestion": "Can the implementation show what it observed, inferred, missed, contradicted, replayed, and refused without narrative confidence?",
+      "href": "/publication-pack/operational-intelligence-conformance-profile.md"
+    },
+    {
+      "stage": "Integration",
+      "responsibility": "Connect telemetry, transactions, topology, ownership, workflow, and API context through governed interfaces instead of one-off context gathering.",
+      "publicEvidence": "Transaction journey reconstruction, topology-aware reasoning, public code ledger, and Work index.",
+      "reviewQuestion": "Does the system preserve source, ownership, freshness, and transaction context instead of flattening evidence into a chat summary?",
+      "href": "/patterns/transaction-journey-reconstruction"
+    },
+    {
+      "stage": "Evaluation",
+      "responsibility": "Gate trust through deterministic fixtures, replay seeds, citation checks, refusal behavior, contradiction handling, and visible limitations.",
+      "publicEvidence": "Ask trust report, Evidence Pack, reviewer-run worksheet, and public-safety fixtures.",
+      "reviewQuestion": "Can the same case be replayed and regression-tested after prompt, model, data, or tool changes?",
+      "href": "/evals"
+    },
+    {
+      "stage": "Governance",
+      "responsibility": "Keep consequential action behind owner review, approval class, reversibility, escalation, audit, and public-safe data boundaries.",
+      "publicEvidence": "Operator Control Plane, Decision Packet example, refusal contract, practitioner-review path, and governance notes.",
+      "reviewQuestion": "Where does human authority sit, what action is blocked, and what evidence must be present before approval?",
+      "href": "/patterns/human-in-the-loop-operational-ai"
+    },
+    {
+      "stage": "Production Delivery",
+      "responsibility": "Treat the final system as an operating loop: observe, investigate, recommend, review, learn, measure, and improve under reliability constraints.",
+      "publicEvidence": "Now research ledger, Operations Room, Work index, production-safe fallbacks, release gates, and deployment validators.",
+      "reviewQuestion": "Does the system remain useful when optional AI or database services are unavailable, and does it leave evidence to improve?",
+      "href": "/now"
+    }
+  ],
   "proofLedger": [
     {
       "claim": "Operational Intelligence is a reference model, not a profile wrapper.",
