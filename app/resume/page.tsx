@@ -85,6 +85,21 @@ export default function ResumePage() {
             ))}
           </div>
         </Card>
+        <Card className="border-amber/25 bg-amber/[0.04]">
+          <h2 className="text-xl font-semibold text-white">Architecture judgment ledger</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            The resume evidence is strongest when it shows which constraints Ravikanth preserves while designing AI-native operational systems.
+          </p>
+          <div className="mt-5 space-y-3">
+            {professionalGraph.architectureJudgment.slice(0, 3).map((item) => (
+              <Link key={item.decision} href={item.inspectHref} className="block rounded border border-white/10 bg-black/20 px-4 py-3 transition hover:border-amber/45">
+                <span className="block font-semibold text-white">{item.decision}</span>
+                <span className="mt-2 block text-sm leading-6 text-slate-300">{item.constraint}</span>
+                <span className="mt-3 block text-xs font-semibold uppercase tracking-[0.14em] text-amber">Inspect evidence</span>
+              </Link>
+            ))}
+          </div>
+        </Card>
         <Card>
           <h2 className="text-xl font-semibold text-white">Strengths</h2>
           <div className="mt-5 space-y-3">

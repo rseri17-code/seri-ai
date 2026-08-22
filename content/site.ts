@@ -276,6 +276,7 @@ export const approvedKnowledge = [
   ...professionalGraph.careerStory.flatMap((stage) => [stage.stage, stage.summary, stage.evidence, stage.connectsTo]),
   ...professionalGraph.capabilityEvidence.flatMap((item) => [item.capability, item.proof, item.href]),
   ...professionalGraph.architectThesis,
+  ...professionalGraph.architectureJudgment.flatMap((item) => [item.decision, item.constraint, item.publicEvidence, item.inspectHref]),
   ...professionalGraph.proofLedger.flatMap((item) => [item.claim, item.evidence ?? item.evidenceTemplate ?? "", item.inspect, item.weakens, item.href]),
   ...professionalGraph.reviewSpine.flatMap((item) => [item.href, item.label, item.detail]),
   ...professionalGraph.operatingStandards.flatMap((item) => [item.title, item.body, item.icon]),

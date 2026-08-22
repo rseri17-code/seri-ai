@@ -48,7 +48,7 @@ const requiredNowFields = ["currentFocus", "building", "studying", "writing", "a
 const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matters"];
 const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
-const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "visitorSuccessQuestions", "relationships"];
+const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "architectureJudgment", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "visitorSuccessQuestions", "relationships"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
@@ -735,6 +735,27 @@ if (!Array.isArray(professionalGraph.capabilityEvidence) || professionalGraph.ca
 }
 if (!Array.isArray(professionalGraph.architectThesis) || professionalGraph.architectThesis.length < 3) {
   errors.push("content/professional-graph.json: architectThesis must include at least three public-safe thesis statements");
+}
+if (!Array.isArray(professionalGraph.architectureJudgment) || professionalGraph.architectureJudgment.length < 5) {
+  errors.push("content/professional-graph.json: architectureJudgment must include at least five public-safe decision records");
+} else {
+  for (const item of professionalGraph.architectureJudgment) {
+    const owner = `content/professional-graph.json:architectureJudgment:${item.decision ?? "unknown"}`;
+    for (const field of ["decision", "constraint", "publicEvidence", "inspectHref"]) {
+      if (!item[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (String(item.constraint ?? "").length < 100) {
+      errors.push(`${owner}: constraint must explain the production tradeoff being preserved`);
+    }
+    if (String(item.publicEvidence ?? "").length < 80) {
+      errors.push(`${owner}: publicEvidence must name inspectable public-safe artifacts`);
+    }
+    if (!String(item.inspectHref ?? "").startsWith("/")) {
+      errors.push(`${owner}: inspectHref must route to an internal proof asset`);
+    }
+  }
 }
 if (!Array.isArray(professionalGraph.proofLedger) || professionalGraph.proofLedger.length < 4) {
   errors.push("content/professional-graph.json: proofLedger must include at least four challengeable claims");

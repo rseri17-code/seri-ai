@@ -194,6 +194,26 @@ export default function WorkPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Architecture judgment" title="The operating taste is visible in the constraints he chooses to preserve.">
+        <div className="grid gap-4 lg:grid-cols-2">
+          {professionalGraph.architectureJudgment.map((item) => (
+            <Link key={item.decision} href={item.inspectHref}>
+              <Card className="h-full border-white/10 bg-white/[0.035] transition hover:border-signal/40">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Decision</p>
+                <h2 className="mt-3 text-xl font-semibold text-white">{item.decision}</h2>
+                <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-amber">Constraint preserved</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{item.constraint}</p>
+                <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-mint">Public evidence</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{item.publicEvidence}</p>
+                <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-signal">
+                  Inspect the artifact <ArrowRight size={15} />
+                </p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
       <Section eyebrow="Review spine" title="Start here if you are evaluating the work seriously.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
           {professionalGraph.reviewSpine.map(({ href, label, detail }, index) => (

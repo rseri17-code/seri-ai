@@ -88,10 +88,14 @@ const routeContracts = [
   {
     route: "/work",
     file: "work.html",
-    maxBytes: 180_000,
+    maxBytes: 190_000,
     required: [
       "The operating record behind Operational Intelligence",
       "Operating arc",
+      "Architecture judgment",
+      "The operating taste is visible in the constraints he chooses to preserve.",
+      "Start with operational evidence before model reasoning.",
+      "Treat AI action as governed execution, not autonomous heroics.",
       "GitHub",
       "LinkedIn",
       "Public proof"
@@ -100,13 +104,29 @@ const routeContracts = [
   {
     route: "/background",
     file: "background.html",
-    maxBytes: 140_000,
+    maxBytes: 150_000,
     required: [
       "The operating background behind the Operational Intelligence thesis",
+      "What the career arc trained him to protect.",
+      "Preserved constraint",
       "Ravikanth Seri",
       "Operational Intelligence",
       "public-safe"
     ]
+  },
+  {
+    route: "/resume",
+    file: "resume.html",
+    maxBytes: 180_000,
+    required: [
+      "Architecture judgment ledger",
+      "The resume evidence is strongest when it shows which constraints Ravikanth preserves while designing AI-native operational systems.",
+      "Start with operational evidence before model reasoning.",
+      "Make replay and evaluation first-class architecture surfaces.",
+      "Impact ledger",
+      "Capability evidence matrix"
+    ],
+    before: [["Architecture judgment ledger", "Strengths"]]
   },
   {
     route: "/wiki/operational-intelligence-canonical-doctrine",

@@ -924,6 +924,30 @@
         "/patterns/agentic-incident-investigation"
       ],
       "result": "Pass"
+    },
+    {
+      "prompt": "Where can I inspect the architecture judgment ledger and the constraints Ravikanth preserves?",
+      "expected": "Route to Work, Resume, and Background while naming preserved constraints instead of unsupported self-promotion.",
+      "requiredAnswerIncludes": [
+        "Architecture judgment ledger",
+        "operational evidence before model reasoning",
+        "governed execution before AI action",
+        "/work",
+        "/resume",
+        "/background"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Where does Ravikanth's resume show architecture judgment rather than just skills?",
+      "expected": "Route to the resume and explain judgment through constraints, public evidence, and proof links.",
+      "requiredAnswerIncludes": [
+        "Architecture judgment ledger",
+        "public-safe architecture",
+        "/resume",
+        "Related page or artifact"
+      ],
+      "result": "Pass"
     }
   ],
   "knownLimits": [
@@ -933,6 +957,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 84,
-  "passingFixtures": 84
+  "fixtureCount": 86,
+  "passingFixtures": 86
 }

@@ -100,6 +100,20 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Architecture judgment" title="What the career arc trained him to protect.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {professionalGraph.architectureJudgment.map((item) => (
+            <Link key={item.decision} href={item.inspectHref}>
+              <Card className="h-full p-4 transition hover:border-amber/40">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Preserved constraint</p>
+                <h2 className="mt-3 text-lg font-semibold leading-7 text-white">{item.decision}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{item.publicEvidence}</p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
       <Section eyebrow="Review questions" title="A serious background page should make claims easy to challenge.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {professionalGraph.credibilityQuestions.map(({ question, answer, href }) => (

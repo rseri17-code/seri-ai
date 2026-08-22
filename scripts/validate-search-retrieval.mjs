@@ -74,6 +74,18 @@ const cases = [
     expectedFirstUrl: "/start-here"
   },
   {
+    query: "Where can I inspect Ravikanth's architecture judgment and the constraints he preserves?",
+    expectedFirstUrl: "/work"
+  },
+  {
+    query: "How does Ravikanth think about governed AI action replay evaluation and transaction journeys?",
+    expectedFirstUrl: "/work"
+  },
+  {
+    query: "Where does Ravikanth's resume show architecture judgment rather than just skills?",
+    expectedFirstUrl: "/resume"
+  },
+  {
     query: "Where are the market signals for ops for observability and observability for AI?",
     expectedFirstUrl: "/radar"
   },

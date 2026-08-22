@@ -113,6 +113,38 @@
     "Operational Intelligence is the synthesis: not a chatbot resume, not a dashboard layer, and not autonomy theater, but a reviewable control system for enterprise operational reasoning.",
     "The public work on seri.ai is designed to prove that thesis through doctrine, reference architecture, simulations, eval fixtures, patterns, and portable artifacts."
   ],
+  "architectureJudgment": [
+    {
+      "decision": "Start with operational evidence before model reasoning.",
+      "constraint": "Enterprise incidents fail across telemetry gaps, ownership boundaries, stale topology, transaction context, and change history; a model-only interface cannot reconstruct that context reliably after the fact.",
+      "publicEvidence": "Operations Room, Evidence Graph model, OI-ROOM-001 walkthrough, and trust fixtures separate observation, inference, contradiction, missing evidence, and confirmed fact.",
+      "inspectHref": "/investigation-room"
+    },
+    {
+      "decision": "Treat AI action as governed execution, not autonomous heroics.",
+      "constraint": "Operational recommendations can affect customers, compliance, availability, and incident accountability, so consequential action must preserve approval, rollback, owner context, and auditability.",
+      "publicEvidence": "Operator Control Plane, Evaluation Gate, public-safe refusal fixtures, and decision packet controls keep human approval visible before action.",
+      "inspectHref": "/patterns/human-in-the-loop-operational-ai"
+    },
+    {
+      "decision": "Make replay and evaluation first-class architecture surfaces.",
+      "constraint": "AI-assisted operations cannot be trusted if the same case cannot be replayed, compared, challenged, and regression-tested after model, prompt, data, or tool changes.",
+      "publicEvidence": "Replay Seed, Ask trust fixtures, conformance profile, and reviewer-run worksheet define repeatable checks instead of one-off demo answers.",
+      "inspectHref": "/evals"
+    },
+    {
+      "decision": "Model transactions as journeys, not isolated alerts.",
+      "constraint": "Enterprise failures often appear as fragmented symptoms across services, queues, gateways, identity, data stores, and support workflows; the useful unit is the affected journey.",
+      "publicEvidence": "Transaction Intelligence, transaction journey reconstruction pattern, topology-aware reasoning, and Operations Room per-hop timing expose how evidence moves through a system.",
+      "inspectHref": "/patterns/transaction-journey-reconstruction"
+    },
+    {
+      "decision": "Convert career evidence into reusable public architecture, not private anecdotes.",
+      "constraint": "The site must represent production experience without exposing internal systems, proprietary names, confidential metrics, logs, screenshots, or customer-specific architecture.",
+      "publicEvidence": "Background, interactive resume, Work index, doctrine boundaries, source provenance, and public-safe proof links show the professional arc through inspectable artifacts.",
+      "inspectHref": "/work"
+    }
+  ],
   "proofLedger": [
     {
       "claim": "Operational Intelligence is a reference model, not a profile wrapper.",

@@ -25,6 +25,10 @@ const researchPrompts = [
 
 export default function SearchPage() {
   const sources = buildPublicSourceIndex();
+  const clientSources = sources.map((source) => ({
+    ...source,
+    content: source.content.length > 420 ? `${source.content.slice(0, 420)}...` : source.content
+  }));
   const publishingAssets = buildPublishingIndex();
   const graph = buildKnowledgeGraph();
   const stats = [
@@ -78,7 +82,7 @@ export default function SearchPage() {
           </Card>
         </div>
         <div className="mt-6">
-          <ContentSearch sources={sources} />
+          <ContentSearch sources={clientSources} />
         </div>
       </Section>
     </>

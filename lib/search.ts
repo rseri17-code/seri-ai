@@ -202,6 +202,12 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
           ? 85
           : 0;
       const resumeBoost = source.url === resumeUrl && /resume|experience|career|capability|impact|recruiter|founder|background|certification|credential|public evidence|architecture judgment/.test(lowerQuery) ? 12 : 0;
+      const resumeSpecificBoost =
+        source.url === resumeUrl &&
+        /resume/.test(lowerQuery) &&
+        /show|shows|where|inspect|evidence|architecture judgment|skills|impact|certification|credential/.test(lowerQuery)
+          ? 35
+          : 0;
       const backgroundBoost = source.url === backgroundUrl && /who is ravikanth|about ravikanth|background|career|experience|linkedin|certification|credential|profile/.test(lowerQuery) ? 12 : 0;
       const conformanceChecklistBoost = source.url === evidencePackUrl && /minimum conformance|conformance checklist|observable proof|failure signal/.test(lowerQuery) ? 10 : 0;
       const evidenceMarkdownBoost =
@@ -258,6 +264,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         controlComparisonBoost +
         askRavikanthBoost +
         resumeBoost +
+        resumeSpecificBoost +
         backgroundBoost;
       return { source, content: source.content, score };
     })
