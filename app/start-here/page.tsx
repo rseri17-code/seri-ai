@@ -43,6 +43,39 @@ const reviewSpine = [
   ["/investigation-room", "Operations Room"]
 ] as const;
 
+const orientationPath = [
+  {
+    href: "/background",
+    label: "1. Person",
+    title: "Who is Ravikanth Seri?",
+    detail: "Start with the professional arc: enterprise integration, platform engineering, observability, production AI systems, and agentic operations."
+  },
+  {
+    href: "/work",
+    label: "2. Proof",
+    title: "What has the work produced?",
+    detail: "Inspect the operating record: projects, artifacts, public writing, architecture material, GitHub signal, and review spine."
+  },
+  {
+    href: "/now",
+    label: "3. Current focus",
+    title: "What is he building now?",
+    detail: "See the current thesis around Operational Intelligence, AI-assisted operations, evaluation, replay, and governed agentic systems."
+  },
+  {
+    href: "/wiki/operational-intelligence-canonical-doctrine",
+    label: "4. Doctrine",
+    title: "How does he think?",
+    detail: "Read the canonical model that separates observability, AIOps, incident practice, knowledge graphs, and AI evaluation."
+  },
+  {
+    href: "/ask",
+    label: "5. Ask",
+    title: "Can the body of work answer back?",
+    detail: "Ask questions against approved public content, with citations, refusal boundaries, and deterministic trust fixtures."
+  }
+] as const;
+
 function labelFor(href: string) {
   return routeLabels[href] ?? href.replace(/^\//, "").replace(/-/g, " ");
 }
@@ -50,6 +83,43 @@ function labelFor(href: string) {
 export default function StartHerePage() {
   return (
     <Section eyebrow="Start here" title="Choose the path that matches why you came." level="h1">
+      <div className="mb-6 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+        <Card className="border-white/15 bg-white/[0.05]">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-mint">3-minute orientation</p>
+          <h2 className="mt-3 text-3xl font-semibold text-white">Ravikanth Seri, explained through the work.</h2>
+          <p className="mt-4 leading-7 text-slate-300">{professionalGraph.identity.currentFocus}</p>
+          <p className="mt-4 border-l border-mint/40 pl-4 text-sm leading-6 text-slate-300">
+            {professionalGraph.identity.throughline}
+          </p>
+        </Card>
+        <Card className="border-amber/25 bg-amber/[0.04]">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber">Public-safe boundary</p>
+          <p className="mt-3 leading-7 text-slate-300">{professionalGraph.identity.publicBoundary}</p>
+          <div className="mt-5 grid gap-2 sm:grid-cols-2">
+            {professionalGraph.proofLinks.slice(0, 4).map((item) => (
+              <Link key={item.href} href={item.href} className="rounded border border-white/10 bg-black/20 px-3 py-3 text-sm text-slate-200 hover:border-amber/50">
+                <span className="block font-semibold text-white">{item.label}</span>
+                <span className="mt-1 block leading-5 text-slate-400">{item.detail ?? item.detailTemplate}</span>
+              </Link>
+            ))}
+          </div>
+        </Card>
+      </div>
+      <Card className="mb-6 border-signal/25 bg-signal/[0.04]">
+        <h2 className="text-2xl font-semibold text-white">First read in order</h2>
+        <p className="mt-3 max-w-4xl leading-7 text-slate-300">
+          This sequence gives a new visitor the shortest path from person to evidence to doctrine to interactive system.
+        </p>
+        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+          {orientationPath.map((step) => (
+            <Link key={step.href} href={step.href} className="rounded border border-white/10 bg-black/20 p-4 hover:border-signal/45">
+              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">{step.label}</span>
+              <span className="mt-3 block font-semibold text-white">{step.title}</span>
+              <span className="mt-2 block text-sm leading-6 text-slate-300">{step.detail}</span>
+            </Link>
+          ))}
+        </div>
+      </Card>
       <Card className="mb-6 border-mint/25 bg-mint/[0.04]">
         <h2 className="text-2xl font-semibold text-white">Serious technical review path</h2>
         <p className="mt-3 max-w-4xl leading-7 text-slate-300">

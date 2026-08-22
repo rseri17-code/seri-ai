@@ -30,6 +30,29 @@ const routeContracts = [
     ]
   },
   {
+    route: "/start-here",
+    file: "start-here.html",
+    maxBytes: 190_000,
+    required: [
+      "Choose the path that matches why you came.",
+      "3-minute orientation",
+      "Ravikanth Seri, explained through the work.",
+      "Public-safe boundary",
+      "First read in order",
+      "Who is Ravikanth Seri?",
+      "What has he built?",
+      "What is he building now?",
+      "How has his career evolved?",
+      "Visitor proof map",
+      "Serious technical review path"
+    ],
+    before: [
+      ["3-minute orientation", "First read in order"],
+      ["First read in order", "Serious technical review path"],
+      ["Serious technical review path", "Visitor proof map"]
+    ]
+  },
+  {
     route: "/radar",
     file: "radar.html",
     maxBytes: 130_000,
