@@ -27,6 +27,7 @@ const errors = [];
 const thesisRadarContent = fs.readFileSync(path.join(root, "content", "thesis-radar.json"), "utf8");
 const resumeContent = fs.readFileSync(path.join(root, "content", "resume.json"), "utf8");
 const homeContent = fs.readFileSync(path.join(root, "content", "home.json"), "utf8");
+const askContent = fs.readFileSync(path.join(root, "content", "ask.json"), "utf8");
 const contentRegistryContent = fs.readFileSync(path.join(root, "content", "content-registry.json"), "utf8");
 const normalizedContentRegistryContent = contentRegistryContent.replace(/"([^"]+)":/g, "$1:");
 
@@ -561,11 +562,12 @@ for (const trend of thesisRadar.trends) {
 }
 
 const askPage = fs.readFileSync(path.join(root, "app", "ask", "page.tsx"), "utf8");
+const askContractSource = [askPage, askContent].join("\n");
 for (const required of [
 	  "Ask Ravikanth | Operational Intelligence Public Research Interface",
-	  "const askRaviPrompts",
-	  "const thesisLenses",
-	  "homeLinkedInSignals",
+	  "askRaviPrompts",
+	  "askThesisLenses",
+	  "signalName",
 	  "Ask the public record to defend the thesis.",
 	  "A serious idea should answer questions with receipts.",
 	  "public evidence only; uncertainty stays visible",
@@ -592,7 +594,7 @@ for (const required of [
   "doctrine, architecture, projects, resume, GitHub, LinkedIn",
   "ProfileMark"
 ]) {
-  expect(askPage.includes(required), `/ask missing Ask Ravi public companion contract: ${required}`);
+  expect(askContractSource.includes(required), `/ask missing Ask Ravi public companion contract: ${required}`);
 }
 
 for (const relativePath of sourceFilesUnder("app").concat(sourceFilesUnder("components"), sourceFilesUnder("content"), sourceFilesUnder("lib"))) {

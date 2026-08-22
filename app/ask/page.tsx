@@ -2,7 +2,7 @@ import { Chat } from "@/components/chat";
 import { Card } from "@/components/card";
 import { ProfileMark } from "@/components/profile-mark";
 import { Section } from "@/components/section";
-import { homeLinkedInSignals } from "@/content/home";
+import { askContextCards, askGuidePaths, askRaviPrompts, askThesisLenses } from "@/content/ask";
 import Link from "next/link";
 import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, Network, ShieldCheck, type LucideIcon } from "lucide-react";
 import type { Metadata } from "next";
@@ -19,76 +19,14 @@ export const metadata: Metadata = {
   }
 };
 
-const askContextCards: Array<{ label: string; value: string; Icon: LucideIcon }> = [
-  { label: "Sources", value: "doctrine, architecture, projects, resume, GitHub, LinkedIn", Icon: GitBranch },
-  { label: "Discipline", value: "cite evidence, separate inference, route to artifacts", Icon: ClipboardCheck },
-  { label: "Boundary", value: "public evidence only; uncertainty stays visible", Icon: ShieldCheck }
-];
+const askContextIcons: Record<string, LucideIcon> = {
+  Boundary: ShieldCheck,
+  Discipline: ClipboardCheck,
+  Sources: GitBranch
+};
 
-const askRaviPrompts = [
-  "What is Ravikanth building with seri.ai?",
-  "What does Ravikanth mean by Context Acquisition Tax?",
-  "What is the Enterprise Context Layer?",
-  "Why is the harness more important than the model for SRE agents?",
-  "What does ops for observability mean?",
-  "How is observability for AI different from normal observability?",
-  "What public evidence shows Ravikanth's architecture judgment?",
-  "How does Ravikanth think about Operational Intelligence?",
-  "Where can I review Ravikanth's GitHub, LinkedIn, resume, and public artifacts?"
-];
 
-const guidePaths = [
-  ["/wiki/operational-intelligence-canonical-doctrine", "Review doctrine", "Start with the canonical definition, boundaries, ten layers, glossary, and OI-ROOM-001 framing.", "Where should a technical reviewer start if they want the canonical doctrine?"],
-  ["/wiki/operational-intelligence-reference-architecture", "Check architecture", "Inspect implementation contracts, state machines, schemas, governance controls, and conformance.", "Which asset defines implementation contracts, schemas, state machines, and conformance?"],
-  ["/wiki/operational-intelligence-evidence-pack", "Inspect evidence", "Challenge the thesis through benchmarks, control cases, practitioner review, and falsification criteria.", "What evidence would convince a skeptical engineer that this model is useful?"],
-  ["/wiki/operational-intelligence-publication-pack", "Download references", "Use diagrams, comparison tables, a decision packet, printable walkthroughs, and PDFs.", "Where can I download diagrams, comparison tables, a decision packet, and printable walkthroughs?"],
-  ["/framework", "Learn the framework", "Walk through the ten layers with OI-ROOM-001.", "Walk me through the ten-layer framework."],
-  ["/investigation-room", "Run the case", "Interact with evidence, hypotheses, replay, gates, and operator controls.", "Show how the shared case moves through the framework."],
-  ["/work", "Understand the work", "See systems, frameworks, artifacts, writing, and background together.", "What is Ravikanth building and what public work supports it?"],
-  ["/patterns", "Apply patterns", "Use reusable architecture solutions behind the operating model.", "Which patterns support evidence-driven investigation?"],
-  ["/library", "Read deeper", "Open authored explanations and field notes.", "Which library asset explains why dashboards are not intelligence?"],
-  ["/evals", "Inspect trust", "Review deterministic fixtures and known limitations.", "How does the evaluation gate work?"],
-  ["/background", "Check credibility", "Review career evidence without making the site a resume.", "What public background supports this work?"]
-];
 
-const thesisLenses = [
-  {
-    label: "Context",
-    title: "Enterprise Context Layer",
-    prompt: "What is the Enterprise Context Layer and why does it matter for operational AI?",
-    body: homeLinkedInSignals.find((signal) => signal.name === "Enterprise Context Layer")?.description ?? ""
-  },
-  {
-    label: "Cost",
-    title: "Context Acquisition Tax",
-    prompt: "What does Ravikanth mean by Context Acquisition Tax?",
-    body: homeLinkedInSignals.find((signal) => signal.name === "Context Acquisition Tax")?.description ?? ""
-  },
-  {
-    label: "Systems",
-    title: "Harness over model",
-    prompt: "Why is the harness more important than the model for SRE agents?",
-    body: homeLinkedInSignals.find((signal) => signal.name === "Harness over model")?.description ?? ""
-  },
-  {
-    label: "Operations",
-    title: "Dynamic operational view",
-    prompt: "Why is a dynamic operational view different from a static graph?",
-    body: homeLinkedInSignals.find((signal) => signal.name === "Dynamic operational view")?.description ?? ""
-  },
-  {
-    label: "Telemetry",
-    title: "Ops for observability",
-    prompt: "What does ops for observability mean?",
-    body: homeLinkedInSignals.find((signal) => signal.name === "Ops for observability")?.description ?? ""
-  },
-  {
-    label: "AI systems",
-    title: "Observability for AI",
-    prompt: "How is observability for AI different from normal observability?",
-    body: homeLinkedInSignals.find((signal) => signal.name === "Observability for AI")?.description ?? ""
-  }
-] as const;
 
 export default async function AskPage({
   searchParams
@@ -124,22 +62,25 @@ export default async function AskPage({
             </div>
           </Card>
           <div className="grid gap-3 md:grid-cols-3">
-            {askContextCards.map(({ label, value, Icon }) => (
-              <Card key={label} className="flex items-start gap-3 p-4">
-                <Icon className="mt-1 shrink-0 text-signal" size={19} />
-                <div>
-                  <p className="text-xs font-semibold uppercase text-slate-500">{label}</p>
-                  <p className="mt-1 text-sm font-semibold leading-6 text-white">{value}</p>
-                </div>
-              </Card>
-            ))}
+            {askContextCards.map(({ label, value }) => {
+              const Icon = askContextIcons[label] ?? ShieldCheck;
+              return (
+                <Card key={label} className="flex items-start gap-3 p-4">
+                  <Icon className="mt-1 shrink-0 text-signal" size={19} />
+                  <div>
+                    <p className="text-xs font-semibold uppercase text-slate-500">{label}</p>
+                    <p className="mt-1 text-sm font-semibold leading-6 text-white">{value}</p>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </Section>
 
       <Section eyebrow="Thesis lenses" title="Start with the questions Ravikanth keeps returning to.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {thesisLenses.map((lens) => (
+          {askThesisLenses.map((lens) => (
             <Card key={lens.title} className="h-full p-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="grid h-10 w-10 place-items-center rounded-lg border border-mint/30 bg-mint/10 text-mint">
@@ -162,7 +103,7 @@ export default async function AskPage({
 
       <Section eyebrow="Guide paths" title="Use Ask Ravi as the navigation layer for the whole system.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {guidePaths.map(([href, title, detail, prompt]) => (
+          {askGuidePaths.map(([href, title, detail, prompt]) => (
             <Card key={href} className="h-full p-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="grid h-10 w-10 place-items-center rounded-lg border border-signal/30 bg-signal/10 text-signal">

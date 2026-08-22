@@ -1,0 +1,142 @@
+{
+  "askRaviPrompts": [
+    "What is Ravikanth building with seri.ai?",
+    "What does Ravikanth mean by Context Acquisition Tax?",
+    "What is the Enterprise Context Layer?",
+    "Why is the harness more important than the model for SRE agents?",
+    "What does ops for observability mean?",
+    "How is observability for AI different from normal observability?",
+    "What public evidence shows Ravikanth's architecture judgment?",
+    "How does Ravikanth think about Operational Intelligence?",
+    "Where can I review Ravikanth's GitHub, LinkedIn, resume, and public artifacts?"
+  ],
+  "guidePaths": [
+    [
+      "/wiki/operational-intelligence-canonical-doctrine",
+      "Review doctrine",
+      "Start with the canonical definition, boundaries, ten layers, glossary, and OI-ROOM-001 framing.",
+      "Where should a technical reviewer start if they want the canonical doctrine?"
+    ],
+    [
+      "/wiki/operational-intelligence-reference-architecture",
+      "Check architecture",
+      "Inspect implementation contracts, state machines, schemas, governance controls, and conformance.",
+      "Which asset defines implementation contracts, schemas, state machines, and conformance?"
+    ],
+    [
+      "/wiki/operational-intelligence-evidence-pack",
+      "Inspect evidence",
+      "Challenge the thesis through benchmarks, control cases, practitioner review, and falsification criteria.",
+      "What evidence would convince a skeptical engineer that this model is useful?"
+    ],
+    [
+      "/wiki/operational-intelligence-publication-pack",
+      "Download references",
+      "Use diagrams, comparison tables, a decision packet, printable walkthroughs, and PDFs.",
+      "Where can I download diagrams, comparison tables, a decision packet, and printable walkthroughs?"
+    ],
+    [
+      "/framework",
+      "Learn the framework",
+      "Walk through the ten layers with OI-ROOM-001.",
+      "Walk me through the ten-layer framework."
+    ],
+    [
+      "/investigation-room",
+      "Run the case",
+      "Interact with evidence, hypotheses, replay, gates, and operator controls.",
+      "Show how the shared case moves through the framework."
+    ],
+    [
+      "/work",
+      "Understand the work",
+      "See systems, frameworks, artifacts, writing, and background together.",
+      "What is Ravikanth building and what public work supports it?"
+    ],
+    [
+      "/patterns",
+      "Apply patterns",
+      "Use reusable architecture solutions behind the operating model.",
+      "Which patterns support evidence-driven investigation?"
+    ],
+    [
+      "/library",
+      "Read deeper",
+      "Open authored explanations and field notes.",
+      "Which library asset explains why dashboards are not intelligence?"
+    ],
+    [
+      "/evals",
+      "Inspect trust",
+      "Review deterministic fixtures and known limitations.",
+      "How does the evaluation gate work?"
+    ],
+    [
+      "/background",
+      "Check credibility",
+      "Review career evidence without making the site a resume.",
+      "What public background supports this work?"
+    ]
+  ],
+  "askContextCards": [
+    {
+      "label": "Sources",
+      "value": "doctrine, architecture, projects, resume, GitHub, LinkedIn",
+      "icon": "GitBranch"
+    },
+    {
+      "label": "Discipline",
+      "value": "cite evidence, separate inference, route to artifacts",
+      "icon": "ClipboardCheck"
+    },
+    {
+      "label": "Boundary",
+      "value": "public evidence only; uncertainty stays visible",
+      "icon": "ShieldCheck"
+    }
+  ],
+  "thesisLenses": [
+    {
+      "label": "Context",
+      "title": "Enterprise Context Layer",
+      "prompt": "What is the Enterprise Context Layer and why does it matter for operational AI?",
+      "signalName": "Enterprise Context Layer",
+      "body": "Operational context is an enterprise asset: ownership, change, dependency, transaction, current state, and policy must be maintained outside any single prompt."
+    },
+    {
+      "label": "Cost",
+      "title": "Context Acquisition Tax",
+      "prompt": "What does Ravikanth mean by Context Acquisition Tax?",
+      "signalName": "Context Acquisition Tax",
+      "body": "Every engineer, workflow, and agent pays the tax repeatedly when the system cannot answer who owns it, what changed, what depends on it, and which transaction is affected."
+    },
+    {
+      "label": "Systems",
+      "title": "Harness over model",
+      "prompt": "Why is the harness more important than the model for SRE agents?",
+      "signalName": "Harness over model",
+      "body": "The durable product is the harness that captures evidence, replay, outcomes, approvals, and operational memory across incidents."
+    },
+    {
+      "label": "Operations",
+      "title": "Dynamic operational view",
+      "prompt": "Why is a dynamic operational view different from a static graph?",
+      "signalName": "Dynamic operational view",
+      "body": "Static topology is not enough. Agents need a current operational view that admits uncertainty, stale knowledge, contradictions, and missing evidence."
+    },
+    {
+      "label": "Telemetry",
+      "title": "Ops for observability",
+      "prompt": "What does ops for observability mean?",
+      "signalName": "Ops for observability",
+      "body": "Observability is becoming an operated product: source quality, retention, taxonomy, cost, governance, and feedback loops matter when humans and agents both consume telemetry."
+    },
+    {
+      "label": "AI systems",
+      "title": "Observability for AI",
+      "prompt": "How is observability for AI different from normal observability?",
+      "signalName": "Observability for AI",
+      "body": "AI systems need operational visibility into prompts, tool calls, traces, grounding, latency, cost, refusals, overrides, and drift before enterprises can trust them in real workflows."
+    }
+  ]
+}

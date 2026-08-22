@@ -8,6 +8,8 @@ The global site identity, public positioning, compliance boundary, social links,
 
 Homepage-specific thesis proof, public profile links, LinkedIn-derived thesis signals, featured articles, and featured patterns live in `content/home.json`.
 
+Ask Ravikanth prompt rails, thesis lenses, guide paths, and public-interface context cards live in `content/ask.json`.
+
 The foundational thesis models live in:
 
 - `content/canonical-definition.json`

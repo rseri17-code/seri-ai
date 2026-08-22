@@ -5,6 +5,7 @@ const root = process.cwd();
 const wikiDir = path.join(root, "content", "wiki");
 const sitePath = path.join(root, "content", "site-config.json");
 const homePath = path.join(root, "content", "home.json");
+const askPath = path.join(root, "content", "ask.json");
 const articlesPath = path.join(root, "content", "articles.json");
 const principlesPath = path.join(root, "content", "principles.json");
 const patternsPath = path.join(root, "content", "patterns.json");
@@ -32,6 +33,7 @@ const requiredHomeFields = ["profileLinks", "harnessThesis", "linkedInSignals", 
 const requiredHomeSignalFields = ["name", "description"];
 const requiredHomeArticleFields = ["slug", "title", "dek", "theme"];
 const requiredHomePatternFields = ["slug", "title", "description"];
+const requiredAskFields = ["askRaviPrompts", "guidePaths", "askContextCards", "thesisLenses"];
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
@@ -321,6 +323,73 @@ if (!Array.isArray(home.heroFlow) || home.heroFlow.length < 5 || !home.heroFlow.
 }
 if (!JSON.stringify(home).includes("public-safe") && !JSON.stringify(home).includes("public proof")) {
   errors.push("content/home.json: homepage content must preserve public-safe proof posture");
+}
+
+const ask = requireJsonObject(askPath, "content/ask.json");
+validateRequiredFields("content/ask.json", ask, requiredAskFields, { requireSlug: false });
+if (!Array.isArray(ask.askRaviPrompts) || ask.askRaviPrompts.length < 9 || ask.askRaviPrompts.some((prompt) => !String(prompt).includes("?"))) {
+  errors.push("content/ask.json: askRaviPrompts must include at least nine questions");
+}
+for (const required of ["Context Acquisition Tax", "Enterprise Context Layer", "ops for observability", "observability for AI", "GitHub", "LinkedIn"]) {
+  if (!JSON.stringify(ask.askRaviPrompts).toLowerCase().includes(required.toLowerCase())) {
+    errors.push(`content/ask.json: askRaviPrompts missing ${required}`);
+  }
+}
+if (!Array.isArray(ask.guidePaths) || ask.guidePaths.length < 10) {
+  errors.push("content/ask.json: guidePaths must include at least ten navigation prompts");
+} else {
+  for (const row of ask.guidePaths) {
+    if (!Array.isArray(row) || row.length !== 4) {
+      errors.push("content/ask.json: each guidePaths row must include href, title, detail, and prompt");
+      continue;
+    }
+    const [href, title, detail, prompt] = row;
+    if (!String(href).startsWith("/")) {
+      errors.push(`content/ask.json:${title}: href must be an internal route`);
+    }
+    if (String(detail).length < 40) {
+      errors.push(`content/ask.json:${title}: detail too short`);
+    }
+    if (String(prompt).length < 24) {
+      errors.push(`content/ask.json:${title}: prompt must be meaningful`);
+    }
+  }
+}
+if (!Array.isArray(ask.askContextCards) || ask.askContextCards.length < 3) {
+  errors.push("content/ask.json: askContextCards must include sources, discipline, and boundary cards");
+} else {
+  const contextLabels = new Set(ask.askContextCards.map((card) => card.label));
+  for (const required of ["Sources", "Discipline", "Boundary"]) {
+    if (!contextLabels.has(required)) {
+      errors.push(`content/ask.json: askContextCards missing ${required}`);
+    }
+  }
+  for (const card of ask.askContextCards) {
+    if (!card.label || !card.value || !card.icon) {
+      errors.push("content/ask.json: askContextCards entry missing label, value, or icon");
+    }
+  }
+}
+if (!Array.isArray(ask.thesisLenses) || ask.thesisLenses.length < 6) {
+  errors.push("content/ask.json: thesisLenses must include at least six lenses");
+} else {
+  const signalNames = new Set(home.linkedInSignals.map((signal) => signal.name));
+  for (const lens of ask.thesisLenses) {
+    for (const field of ["label", "title", "prompt", "signalName", "body"]) {
+      if (!lens[field]) {
+        errors.push(`content/ask.json:${lens.title ?? "unknown"}: missing ${field}`);
+      }
+    }
+    if (!String(lens.prompt ?? "").includes("?")) {
+      errors.push(`content/ask.json:${lens.title ?? "unknown"}: prompt must be a question`);
+    }
+    if (!signalNames.has(lens.signalName)) {
+      errors.push(`content/ask.json:${lens.title ?? "unknown"}: signalName must match a home linkedInSignals entry`);
+    }
+    if (String(lens.body ?? "").length < 80) {
+      errors.push(`content/ask.json:${lens.title ?? "unknown"}: body must be meaningful`);
+    }
+  }
 }
 
 const articles = requireJsonArray(articlesPath, "content/articles.json", 10);
@@ -814,4 +883,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, site and homepage content, foundational models, Operational Intelligence model, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);
+console.log(`Validated ${files.length} wiki notes (${publishedCount} published), publishing corpora, site, homepage, and Ask content, foundational models, Operational Intelligence model, registry, resume, navigation, changelog, radar, brief, principles, patterns, projects, products, and architecture cards.`);
