@@ -20,6 +20,7 @@ const changelogPath = path.join(root, "content", "changelog.json");
 const resumePath = path.join(root, "content", "resume.json");
 const professionalGraphPath = path.join(root, "content", "professional-graph.json");
 const publicCodePath = path.join(root, "content", "public-code.json");
+const publicationSpinePath = path.join(root, "content", "publication-spine.json");
 const contentRegistryPath = path.join(root, "content", "content-registry.json");
 const harnessThesisPath = path.join(root, "content", "harness-thesis.json");
 const canonicalDefinitionPath = path.join(root, "content", "canonical-definition.json");
@@ -53,6 +54,8 @@ const requiredResumeFields = ["headline", "location", "contact", "summary", "str
 const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "architectureJudgment", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "visitorSuccessQuestions", "relationships"];
 const requiredPublicCodeFields = ["title", "summary", "entries"];
 const requiredPublicCodeEntryFields = ["label", "href", "status", "whatToInspect", "publicSafeUse", "proofBoundary", "related"];
+const requiredPublicationSpineFields = ["title", "summary", "updatedAt", "principle", "audienceQuestion", "stages"];
+const requiredPublicationSpineStageFields = ["name", "purpose", "primaryAsset", "supportingAssets", "readerQuestion", "proofStandard"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
@@ -889,6 +892,53 @@ if (!Array.isArray(publicCode.entries) || publicCode.entries.length < 3) {
     }
     if (!Array.isArray(entry.related) || entry.related.length < 2 || entry.related.some((route) => !String(route).startsWith("/"))) {
       errors.push(`${owner}: related must include at least two internal routes`);
+    }
+  }
+}
+
+const publicationSpine = requireJsonObject(publicationSpinePath, "content/publication-spine.json");
+validateRequiredFields("content/publication-spine.json", publicationSpine, requiredPublicationSpineFields, { requireSlug: false });
+if (!Array.isArray(publicationSpine.stages) || publicationSpine.stages.length !== 5) {
+  errors.push("content/publication-spine.json: stages must define exactly five editorial stages");
+} else {
+  const requiredStageNames = ["Define", "Specify", "Demonstrate", "Challenge", "Connect"];
+  for (const requiredStageName of requiredStageNames) {
+    if (!publicationSpine.stages.some((stage) => stage.name === requiredStageName)) {
+      errors.push(`content/publication-spine.json: missing publication stage ${requiredStageName}`);
+    }
+  }
+  for (const stage of publicationSpine.stages) {
+    const owner = `content/publication-spine.json:${stage.name ?? "unknown"}`;
+    for (const field of requiredPublicationSpineStageFields) {
+      if (!stage[field] || (Array.isArray(stage[field]) && stage[field].length === 0)) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (!String(stage.primaryAsset ?? "").startsWith("/")) {
+      errors.push(`${owner}: primaryAsset must be an internal public route`);
+    }
+    if (!Array.isArray(stage.supportingAssets) || stage.supportingAssets.some((route) => !String(route).startsWith("/"))) {
+      errors.push(`${owner}: supportingAssets must be internal public routes`);
+    }
+    if (String(stage.readerQuestion ?? "").length < 40 || !String(stage.readerQuestion ?? "").includes("?")) {
+      errors.push(`${owner}: readerQuestion must be a substantial question`);
+    }
+    if (String(stage.proofStandard ?? "").length < 90) {
+      errors.push(`${owner}: proofStandard must define a concrete review standard`);
+    }
+  }
+  const publicationSpineText = JSON.stringify(publicationSpine);
+  for (const required of [
+    "/wiki/operational-intelligence-canonical-doctrine",
+    "/wiki/operational-intelligence-reference-architecture",
+    "/investigation-room",
+    "/wiki/operational-intelligence-evidence-pack",
+    "/work",
+    "What should I read first",
+    "what does each public asset"
+  ]) {
+    if (!publicationSpineText.includes(required)) {
+      errors.push(`content/publication-spine.json: missing publication-spine contract phrase ${required}`);
     }
   }
 }

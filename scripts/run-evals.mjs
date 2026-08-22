@@ -116,6 +116,13 @@ function inferRelatedArtifacts(question) {
     artifacts.add("/ideas");
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }
+  if (/publication spine|reading order|what should i read first|body of work|which publications|published assets|field notes.*patterns|doctrine.*field notes.*patterns|each asset prove/.test(lower)) {
+    artifacts.add("/library");
+    artifacts.add("/wiki/operational-intelligence-reference-architecture");
+    artifacts.add("/investigation-room");
+    artifacts.add("/wiki/operational-intelligence-evidence-pack");
+    artifacts.add("/work");
+  }
   if (/linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)) {
     artifacts.add("/work");
     artifacts.add("/radar");
@@ -192,10 +199,14 @@ function deterministicFallbackAnswer(question) {
     /github|open source|open-source|public code|repository|repositories|sentinalai/.test(lower)
       ? " Public code inspection path: use GitHub profile github.com/rseri17-code, the user-authorized Sentinalai repository reference, and the seri.ai public artifacts as inspectable public signal. Do not infer repository metrics, production adoption, private deployments, internal integrations, or confidential behavior from public code alone."
       : "";
+  const publicationSpineContext =
+    /publication spine|reading order|what should i read first|body of work|which publications|published assets|field notes.*patterns|doctrine.*field notes.*patterns|each asset prove|written|writing|published|article|library/.test(lower)
+      ? " Publication spine: the Library organizes the body of work as Define, Specify, Demonstrate, Challenge, and Connect. It points readers from the Canonical Doctrine to the Reference Architecture, Operations Room, Evidence Pack, and Ravikanth's public work so each asset has a clear proof job."
+      : "";
   return [
     asksAboutRavikanth
-      ? `Direct answer: ${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}`
-      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}`,
+      ? `Direct answer: ${ravikanthContext}${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}`
+      : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${visitorSuccessContext}${architectureJudgmentContext}${publicCodeContext}${publicationSpineContext}`,
     `Relevant framework layers: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     "Public source: approved public content registry, including the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, framework, and public wiki sources.",
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before presenting the doctrine as credible.",

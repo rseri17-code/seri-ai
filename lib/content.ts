@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projects, publicCode, resume, site, thesisRadar } from "../content/site";
+import { articles, contentRegistry, nowPage, patterns, principles, professionalGraph, projects, publicCode, publicationSpine, resume, site, thesisRadar } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -429,6 +429,40 @@ export function buildPublicSourceIndex(): PublicSource[] {
     }));
 
   const profileSources = [
+    {
+      id: "profile:operational-intelligence-publication-spine",
+      title: publicationSpine.title,
+      description: publicationSpine.summary,
+      content: [
+        publicationSpine.title,
+        publicationSpine.summary,
+        publicationSpine.principle,
+        publicationSpine.audienceQuestion,
+        "publication spine. reading order. editorial map. define specify demonstrate challenge connect. what has Ravikanth published. what should I read first. what each asset proves.",
+        publicationSpine.stages
+          .flatMap((stage) => [
+            stage.name,
+            stage.purpose,
+            stage.primaryAsset,
+            ...stage.supportingAssets,
+            stage.readerQuestion,
+            stage.proofStandard
+          ])
+          .join(". ")
+      ].join(". "),
+      url: "/library",
+      type: "registry" as const,
+      category: "library",
+      tags: ["publication spine", "reading order", "library", "body of work", "Operational Intelligence", "published work"],
+      author: "Ravikanth Seri",
+      assetType: "profile",
+      date: publicationSpine.updatedAt,
+      frameworkLayers: ["Evidence Layer", "Reasoning Layer", "Evaluation Layer", "Operator Layer"],
+      principles: ["Evidence before conclusions"],
+      patterns: ["/patterns/evidence-driven-rca", "/patterns/evaluation-and-replay"],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
     {
       id: "profile:ravikanth-seri-public-work",
       title: "Ravikanth Seri Public Work and Proof",

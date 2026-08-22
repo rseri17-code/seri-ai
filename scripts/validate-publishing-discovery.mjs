@@ -99,7 +99,8 @@ const publishingSearchCases = [
   ["canonical doctrine", "/wiki/operational-intelligence-canonical-doctrine"],
   ["reference architecture conformance", "/wiki/operational-intelligence-reference-architecture"],
   ["publication pack diagrams pdf", "/wiki/operational-intelligence-publication-pack"],
-  ["evidence pack falsification criteria", "/wiki/operational-intelligence-evidence-pack"]
+  ["evidence pack falsification criteria", "/wiki/operational-intelligence-evidence-pack"],
+  ["publication spine reading order", "/library"]
 ];
 
 for (const [query, expectedUrl] of publishingSearchCases) {
@@ -111,6 +112,14 @@ const libraryPage = fs.readFileSync(path.join(root, "app", "library", "page.tsx"
 for (const required of [
   "const referenceShelf",
   "const canonicalReadingPath",
+  "publicationSpine",
+  "Publication spine",
+  "How the body of work is meant to be inspected.",
+  "Editorial contract",
+  "Publishing rule",
+  "Reviewer question",
+  "Proof standard",
+  "publicationSpine.stages.map",
   "const corpusStats",
   "Canonical reading path",
   "Read the work in the order a serious reviewer should inspect it.",

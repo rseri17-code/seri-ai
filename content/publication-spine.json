@@ -1,0 +1,71 @@
+{
+  "title": "Operational Intelligence Publication Spine",
+  "summary": "A public-safe editorial map that explains how Ravikanth Seri's doctrine, reference architecture, field notes, patterns, artifacts, and proof objects should be read as one body of work.",
+  "updatedAt": "2026-08-22",
+  "principle": "Every asset should either define the model, make it testable, show it working, connect it to Ravikanth's public evidence, or sharpen the reader's ability to challenge it.",
+  "audienceQuestion": "What should I read first, and what does each public asset prove?",
+  "stages": [
+    {
+      "name": "Define",
+      "purpose": "Establish the canonical vocabulary, boundaries, and claims before a reader sees implementation detail.",
+      "primaryAsset": "/wiki/operational-intelligence-canonical-doctrine",
+      "supportingAssets": [
+        "/framework",
+        "/publication-pack/operational-intelligence-glossary-card.md",
+        "/ideas/operational-intelligence-is-the-new-control-plane"
+      ],
+      "readerQuestion": "Can I explain what Operational Intelligence is and what it is not?",
+      "proofStandard": "Definitions are precise enough to separate observability, AIOps, incident management, knowledge graphs, AI evaluation, and Ravikanth's original synthesis."
+    },
+    {
+      "name": "Specify",
+      "purpose": "Turn the doctrine into implementation-neutral contracts that two teams could compare.",
+      "primaryAsset": "/wiki/operational-intelligence-reference-architecture",
+      "supportingAssets": [
+        "/publication-pack/operational-intelligence-conformance-profile.md",
+        "/publication-pack/operational-intelligence-diagrams.md",
+        "/patterns"
+      ],
+      "readerQuestion": "Could another team build the minimum objects, state transitions, and approval gates without private context?",
+      "proofStandard": "Evidence Objects, Hypothesis State, Replay Seed, Evaluation Gate, Decision Packet, and Operator Control Plane have reviewable fields and failure signals."
+    },
+    {
+      "name": "Demonstrate",
+      "purpose": "Show the operating model behaving through a synthetic, public-safe investigation.",
+      "primaryAsset": "/investigation-room",
+      "supportingAssets": [
+        "/publication-pack/oi-room-001-printable-walkthrough.md",
+        "/publication-pack/decision-packet-example.md",
+        "/ideas/incident-investigation-as-a-product-experience"
+      ],
+      "readerQuestion": "Can I see observations, inferences, contradictions, missing evidence, confirmed facts, and human approval in one flow?",
+      "proofStandard": "OI-ROOM-001 preserves transaction timing, hypothesis movement, contradictory evidence, missing evidence, and explicit human approval."
+    },
+    {
+      "name": "Challenge",
+      "purpose": "Make the thesis falsifiable instead of impressive by presentation alone.",
+      "primaryAsset": "/wiki/operational-intelligence-evidence-pack",
+      "supportingAssets": [
+        "/publication-pack/operational-intelligence-evidence-pack.md",
+        "/ideas/oi-room-001-control-comparison",
+        "/evals"
+      ],
+      "readerQuestion": "What evidence would convince or weaken the claim that this model improves operational judgment?",
+      "proofStandard": "The work names control modes, reviewer questions, evidence dimensions, limitations, unsupported claims, and measurable failure signals."
+    },
+    {
+      "name": "Connect",
+      "purpose": "Tie the public doctrine back to Ravikanth Seri's career evidence, public code, LinkedIn thesis stream, and current research.",
+      "primaryAsset": "/work",
+      "supportingAssets": [
+        "/start-here",
+        "/resume",
+        "/background",
+        "/now",
+        "/radar"
+      ],
+      "readerQuestion": "Why is Ravikanth the person making this argument, and where can I inspect the public evidence?",
+      "proofStandard": "The site shows career evolution, architecture judgment, public code boundaries, current research, and public thesis signals without claiming private employer details."
+    }
+  ]
+}

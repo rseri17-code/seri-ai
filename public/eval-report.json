@@ -972,6 +972,20 @@
       "result": "Pass"
     },
     {
+      "prompt": "Where is the publication spine and what should I read first to understand Ravikanth's body of work?",
+      "expected": "Route to the Library and explain the Define, Specify, Demonstrate, Challenge, and Connect publication spine.",
+      "requiredAnswerIncludes": [
+        "Publication spine",
+        "Define, Specify, Demonstrate, Challenge, and Connect",
+        "/library",
+        "/wiki/operational-intelligence-reference-architecture",
+        "/investigation-room",
+        "/wiki/operational-intelligence-evidence-pack",
+        "/work"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Where can I inspect Sentinalai and Ravikanth's public GitHub work without overclaiming?",
       "expected": "Route to Work, public profile links, and public-code boundaries without inventing metrics.",
       "requiredAnswerIncludes": [
@@ -991,6 +1005,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 89,
-  "passingFixtures": 89
+  "fixtureCount": 90,
+  "passingFixtures": 90
 }

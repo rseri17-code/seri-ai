@@ -66,6 +66,18 @@ const cases = [
     expectedFirstUrl: "/work"
   },
   {
+    query: "Where is the publication spine and reading order for Ravikanth's body of work?",
+    expectedFirstUrl: "/library"
+  },
+  {
+    query: "What should I read first across doctrine field notes patterns artifacts and proof objects?",
+    expectedFirstUrl: "/library"
+  },
+  {
+    query: "Which publications explain what each asset proves in Operational Intelligence?",
+    expectedFirstUrl: "/library"
+  },
+  {
     query: "How did Ravikanth's career evolve from enterprise infrastructure to production AI systems and Operational Intelligence?",
     expectedFirstUrl: "/work"
   },

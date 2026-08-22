@@ -15,6 +15,7 @@ import changelogData from "./changelog.json";
 import resumeData from "./resume.json";
 import professionalGraphData from "./professional-graph.json";
 import publicCodeData from "./public-code.json";
+import publicationSpineData from "./publication-spine.json";
 import contentRegistryData from "./content-registry.json";
 import harnessThesisData from "./harness-thesis.json";
 import canonicalDefinitionData from "./canonical-definition.json";
@@ -165,6 +166,26 @@ export const professionalGraph = professionalGraphData;
 
 export const publicCode = publicCodeData;
 
+export type PublicationSpineStage = {
+  name: string;
+  purpose: string;
+  primaryAsset: string;
+  supportingAssets: string[];
+  readerQuestion: string;
+  proofStandard: string;
+};
+
+export type PublicationSpine = {
+  title: string;
+  summary: string;
+  updatedAt: string;
+  principle: string;
+  audienceQuestion: string;
+  stages: PublicationSpineStage[];
+};
+
+export const publicationSpine = publicationSpineData satisfies PublicationSpine;
+
 export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
 export type ContentStatus = "published" | "planned" | "draft";
 
@@ -213,6 +234,18 @@ export const approvedKnowledge = [
   ...sentinelContextModel.primitives.flatMap((primitive) => [primitive.name, primitive.description]),
   ...sentinelContextModel.controlPlane,
   ...articles.flatMap((article) => [article.title, article.dek, ...article.body]),
+  publicationSpine.title,
+  publicationSpine.summary,
+  publicationSpine.principle,
+  publicationSpine.audienceQuestion,
+  ...publicationSpine.stages.flatMap((stage) => [
+    stage.name,
+    stage.purpose,
+    stage.primaryAsset,
+    ...stage.supportingAssets,
+    stage.readerQuestion,
+    stage.proofStandard
+  ]),
   ...products.flatMap((product) => [
     product.name,
     product.tagline,

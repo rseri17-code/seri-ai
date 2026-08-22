@@ -12,6 +12,7 @@ const evidencePackUrl = "/wiki/operational-intelligence-evidence-pack";
 const publicationPackUrl = "/wiki/operational-intelligence-publication-pack";
 const conformanceProfileUrl = "/publication-pack/operational-intelligence-conformance-profile.md";
 const workUrl = "/work";
+const libraryUrl = "/library";
 const startHereUrl = "/start-here";
 const nowUrl = "/now";
 const resumeUrl = "/resume";
@@ -130,6 +131,30 @@ const publicationPackTerms = new Set([
   "card",
   "walkthrough"
 ]);
+const publicationSpineTerms = new Set([
+  "published",
+  "publication",
+  "publications",
+  "writing",
+  "written",
+  "articles",
+  "library",
+  "read",
+  "reading",
+  "order",
+  "spine",
+  "body",
+  "work",
+  "asset",
+  "assets",
+  "prove",
+  "proof",
+  "doctrine",
+  "field",
+  "notes",
+  "patterns",
+  "artifacts"
+]);
 const workTerms = new Set([
   "ravikanth",
   "work",
@@ -196,6 +221,12 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const referenceArchitectureBoost = source.url === referenceArchitectureUrl && terms.some((term) => referenceArchitectureTerms.has(term)) ? 7 : 0;
       const evidencePackBoost = source.url === evidencePackUrl && terms.some((term) => evidencePackTerms.has(term)) ? 7 : 0;
       const publicationPackBoost = source.url === publicationPackUrl && terms.some((term) => publicationPackTerms.has(term)) ? 9 : 0;
+      const publicationSpineBoost =
+        source.url === libraryUrl &&
+        (/what has ravikanth (written|published)|publication spine|reading order|what should i read first|body of work|which publications|published assets|field notes.*patterns|doctrine.*field notes.*patterns|each asset prove/.test(lowerQuery) ||
+          terms.filter((term) => publicationSpineTerms.has(term)).length >= 4)
+          ? 80
+          : 0;
       const workBoost = source.url === workUrl && terms.some((term) => workTerms.has(term)) ? 10 : 0;
       const startHereBoost =
         source.url === startHereUrl &&
@@ -258,6 +289,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         referenceArchitectureBoost +
         evidencePackBoost +
         publicationPackBoost +
+        publicationSpineBoost +
         workBoost +
         startHereBoost +
         nowBoost +

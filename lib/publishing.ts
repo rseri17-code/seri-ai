@@ -4,6 +4,7 @@ import {
   operationalIntelligenceFramework,
   patterns,
   principles,
+  publicationSpine,
   products,
   projects,
   type Article,
@@ -441,6 +442,50 @@ function referencePublicationAsset(item: (typeof referencePublicationAssets)[num
   return { ...asset, askQuestions: inferAskQuestions(asset) };
 }
 
+function publicationSpineAsset(): PublishingAsset {
+  const content = [
+    publicationSpine.title,
+    publicationSpine.summary,
+    publicationSpine.principle,
+    publicationSpine.audienceQuestion,
+    publicationSpine.stages
+      .flatMap((stage) => [
+        stage.name,
+        stage.purpose,
+        stage.primaryAsset,
+        ...stage.supportingAssets,
+        stage.readerQuestion,
+        stage.proofStandard
+      ])
+      .join(". ")
+  ].join(". ");
+  const frameworkLayers = inferFrameworkLayers(content, ["Evidence Layer", "Reasoning Layer", "Evaluation Layer", "Operator Layer"]);
+  const asset: PublishingAsset = {
+    id: "profile:operational-intelligence-publication-spine",
+    slug: "operational-intelligence-publication-spine",
+    title: publicationSpine.title,
+    description: publicationSpine.summary,
+    url: "/library",
+    assetType: "system",
+    status: "published",
+    author,
+    date: publicationSpine.updatedAt,
+    updatedAt: publicationSpine.updatedAt,
+    readingTime: readingTime(content),
+    topic: "Library",
+    tags: unique(["publication spine", "reading order", "body of work", "published work", ...frameworkLayers]),
+    frameworkLayers,
+    principles: ["Evidence before conclusions"],
+    patterns: ["/patterns/evidence-driven-rca", "/patterns/evaluation-and-replay"],
+    artifacts: ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/investigation-room", "/wiki/operational-intelligence-evidence-pack", "/work"],
+    products: ["/products/reasonops"],
+    askQuestions: [],
+    content,
+    versionHistory: baseVersion(publicationSpine.updatedAt, "Publication spine entered the public Library as the editorial inspection path.")
+  };
+  return { ...asset, askQuestions: inferAskQuestions(asset) };
+}
+
 function contentMatches(content: string, terms: string[]) {
   const lower = content.toLowerCase();
   return terms.some((term) => lower.includes(term.toLowerCase()));
@@ -452,6 +497,7 @@ export function buildPublishingIndex() {
   }
 
   const assets = [
+    publicationSpineAsset(),
     ...contentRegistry.map(registryAsset),
     ...referencePublicationAssets.map(referencePublicationAsset),
     ...articles.map(articleAsset),

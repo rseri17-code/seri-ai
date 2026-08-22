@@ -4,7 +4,7 @@ import { BookOpen, Filter } from "lucide-react";
 import { Card } from "@/components/card";
 import { EmailCapture } from "@/components/email-capture";
 import { Section } from "@/components/section";
-import { articles, assetTypes } from "@/content/site";
+import { articles, assetTypes, publicationSpine } from "@/content/site";
 import { publicRouteMetadata } from "@/lib/metadata";
 import { buildPublishingIndex } from "@/lib/publishing";
 
@@ -78,6 +78,58 @@ export default function LibraryPage() {
                   <p className="mt-3 leading-7 text-slate-300">{article.dek}</p>
                 </Card>
               </Link>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section eyebrow="Publication spine" title="How the body of work is meant to be inspected.">
+        <div className="grid gap-4 lg:grid-cols-[0.7fr_1.3fr]">
+          <Card className="h-fit">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Editorial contract</p>
+            <h2 className="mt-3 text-2xl font-semibold text-white">{publicationSpine.title}</h2>
+            <p className="mt-4 leading-7 text-slate-300">{publicationSpine.summary}</p>
+            <div className="mt-5 rounded border border-white/10 bg-black/20 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Publishing rule</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{publicationSpine.principle}</p>
+            </div>
+            <p className="mt-5 text-sm leading-6 text-slate-400">{publicationSpine.audienceQuestion}</p>
+          </Card>
+          <div className="grid gap-3">
+            {publicationSpine.stages.map((stage, index) => (
+              <Card key={stage.name} className="p-4">
+                <div className="flex flex-col gap-4 md:flex-row md:items-start">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded border border-mint/30 bg-mint/10 font-mono text-sm text-mint">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                      <h2 className="text-xl font-semibold text-white">{stage.name}</h2>
+                      <Link href={stage.primaryAsset} className="text-sm font-semibold text-signal hover:text-amber">
+                        Primary asset
+                      </Link>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-slate-300">{stage.purpose}</p>
+                    <div className="mt-4 grid gap-3 md:grid-cols-2">
+                      <div className="rounded border border-white/10 bg-white/[0.03] p-3">
+                        <p className="text-xs font-semibold uppercase text-slate-500">Reviewer question</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">{stage.readerQuestion}</p>
+                      </div>
+                      <div className="rounded border border-white/10 bg-white/[0.03] p-3">
+                        <p className="text-xs font-semibold uppercase text-slate-500">Proof standard</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">{stage.proofStandard}</p>
+                      </div>
+                    </div>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {stage.supportingAssets.map((asset) => (
+                        <Link key={asset} href={asset} className="rounded border border-white/10 px-3 py-2 text-xs text-slate-300 transition hover:border-mint/40 hover:text-white">
+                          {asset}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Card>
             ))}
           </div>
         </div>
