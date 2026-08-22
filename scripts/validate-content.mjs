@@ -48,7 +48,7 @@ const requiredNowFields = ["currentFocus", "building", "studying", "writing", "a
 const requiredStartHereFields = ["audience", "care", "readFirst", "ask", "matters"];
 const requiredChangelogFields = ["version", "date", "title", "description", "tags"];
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
-const requiredProfessionalGraphFields = ["identity", "careerEvolution", "capabilityEvidence", "architectThesis", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "relationships"];
+const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "relationships"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
 const requiredCanonicalDefinitionFields = ["short", "support", "questions"];
@@ -684,6 +684,37 @@ if (!Array.isArray(professionalGraph.careerEvolution) || professionalGraph.caree
   for (const required of ["2008-2022", "2022-2025", "2025-now", "Public body of work"]) {
     if (!professionalGraph.careerEvolution.some((stage) => stage.period === required)) {
       errors.push(`content/professional-graph.json: careerEvolution missing ${required}`);
+    }
+  }
+}
+const requiredCareerStoryStages = [
+  "Enterprise Integration",
+  "Middleware & API Architecture",
+  "Identity & Platform Engineering",
+  "Cloud & Kubernetes",
+  "Observability & AIOps",
+  "Production AI Systems",
+  "Agentic Operations & Operational Intelligence"
+];
+if (!Array.isArray(professionalGraph.careerStory) || professionalGraph.careerStory.length !== requiredCareerStoryStages.length) {
+  errors.push(`content/professional-graph.json: careerStory must include exactly ${requiredCareerStoryStages.length} ordered stages`);
+} else {
+  for (const [index, requiredStage] of requiredCareerStoryStages.entries()) {
+    const stage = professionalGraph.careerStory[index];
+    const owner = `content/professional-graph.json:careerStory:${stage?.stage ?? "unknown"}`;
+    if (stage?.stage !== requiredStage) {
+      errors.push(`${owner}: expected ordered stage ${requiredStage}`);
+    }
+    for (const field of ["stage", "summary", "evidence", "connectsTo"]) {
+      if (!stage?.[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (String(stage?.summary ?? "").length < 110) {
+      errors.push(`${owner}: summary must explain the professional evolution, not just name a domain`);
+    }
+    if (String(stage?.evidence ?? "").length < 70) {
+      errors.push(`${owner}: evidence must name inspectable public-safe capability signals`);
     }
   }
 }

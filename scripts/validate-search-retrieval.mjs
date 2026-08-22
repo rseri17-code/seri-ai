@@ -62,6 +62,10 @@ const cases = [
     expectedFirstUrl: "/work"
   },
   {
+    query: "Show Ravikanth's path from enterprise integration middleware API identity Kubernetes observability AIOps production AI agentic operations to Operational Intelligence.",
+    expectedFirstUrl: "/work"
+  },
+  {
     query: "Where are the market signals for ops for observability and observability for AI?",
     expectedFirstUrl: "/radar"
   },

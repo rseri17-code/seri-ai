@@ -446,6 +446,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
         professionalGraph.identity.currentFocus,
         professionalGraph.identity.publicBoundary,
         professionalGraph.careerEvolution.flatMap((stage) => [stage.period, stage.stage, stage.summary, stage.explains]).join(". "),
+        professionalGraph.careerStory.flatMap((stage) => [stage.stage, stage.summary, stage.evidence, stage.connectsTo]).join(". "),
         professionalGraph.capabilityEvidence.flatMap((item) => [item.capability, item.proof, item.href]).join(". "),
         professionalGraph.architectThesis.join(". "),
         professionalGraph.relationships.flatMap((item) => [item.from, item.relation, item.to]).join(". ")

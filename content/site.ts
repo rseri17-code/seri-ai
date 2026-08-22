@@ -251,6 +251,7 @@ export const approvedKnowledge = [
   professionalGraph.identity.currentFocus,
   professionalGraph.identity.publicBoundary,
   ...professionalGraph.careerEvolution.flatMap((stage) => [stage.period, stage.stage, stage.summary, stage.explains]),
+  ...professionalGraph.careerStory.flatMap((stage) => [stage.stage, stage.summary, stage.evidence, stage.connectsTo]),
   ...professionalGraph.capabilityEvidence.flatMap((item) => [item.capability, item.proof, item.href]),
   ...professionalGraph.architectThesis,
   ...professionalGraph.proofLedger.flatMap((item) => [item.claim, item.evidence ?? item.evidenceTemplate ?? "", item.inspect, item.weakens, item.href]),

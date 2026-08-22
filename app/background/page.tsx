@@ -59,6 +59,27 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Career story" title="The full arc is infrastructure judgment becoming AI operations judgment.">
+        <div className="grid gap-3">
+          {professionalGraph.careerStory.map((stage, index) => (
+            <Card key={stage.stage} className="p-4">
+              <div className="grid gap-4 md:grid-cols-[0.24fr_0.76fr]">
+                <div>
+                  <p className="font-mono text-sm text-mint">{String(index + 1).padStart(2, "0")}</p>
+                  <h2 className="mt-3 text-xl font-semibold text-white">{stage.stage}</h2>
+                </div>
+                <div>
+                  <p className="text-sm leading-6 text-slate-300">{stage.summary}</p>
+                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-signal">Evidence</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">{stage.evidence}</p>
+                  <p className="mt-3 text-xs leading-5 text-mint">Connects to: {stage.connectsTo}</p>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
       <Section eyebrow="Point of view" title="The throughline is context, evidence, and accountable action.">
         <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr]">
           <Card className="border-signal/25 bg-signal/[0.045]">

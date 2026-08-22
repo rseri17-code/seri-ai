@@ -32,6 +32,50 @@
       "explains": "How private professional lessons become public-safe reusable engineering knowledge."
     }
   ],
+  "careerStory": [
+    {
+      "stage": "Enterprise Integration",
+      "summary": "Built the base in integration-heavy environments where systems rarely fail in isolation and operational context is distributed across teams, services, protocols, and ownership boundaries.",
+      "evidence": "Middleware, B2B integration, API gateway, service-oriented architecture, XML, JSON, SOAP, REST, mutual authentication, access policies, and enterprise gateway controls.",
+      "connectsTo": "Transaction Intelligence and topology-aware reasoning"
+    },
+    {
+      "stage": "Middleware & API Architecture",
+      "summary": "Learned to reason across contracts, protocols, gateways, upstream/downstream dependencies, and change coordination before incident evidence becomes obvious.",
+      "evidence": "Enterprise middleware, API integration, gateway controls, Python APIs, SDK integrations, workflow orchestration, and enterprise API automation.",
+      "connectsTo": "Evidence Graphs and decision packets"
+    },
+    {
+      "stage": "Identity & Platform Engineering",
+      "summary": "Worked on authentication, authorization, migration discipline, access boundaries, and platform reliability where mistakes affect many applications at once.",
+      "evidence": "Identity modernization, OpenID Connect migration, OAuth onboarding, access-pattern improvement, and enterprise application contract preservation.",
+      "connectsTo": "Operator Control Plane and runtime governance"
+    },
+    {
+      "stage": "Cloud & Kubernetes",
+      "summary": "Extended the operating model into cloud-native and hybrid infrastructure, where deployment state, ownership, capacity, and runtime behavior must be understood together.",
+      "evidence": "Kubernetes, Helm, Terraform, Docker, AWS, Linux, hybrid cloud architecture, containerization, deployment automation, and configuration management.",
+      "connectsTo": "Operational Memory and replayable change context"
+    },
+    {
+      "stage": "Observability & AIOps",
+      "summary": "Moved from dashboards and alerts toward telemetry correlation, tracing, anomaly context, and operational workflows that explain why a signal matters.",
+      "evidence": "OpenTelemetry-style pipelines, distributed tracing, telemetry correlation, monitoring integration, diagnostics, anomaly detection, data-quality practice, and incident analysis.",
+      "connectsTo": "Ops for observability and observability for AI"
+    },
+    {
+      "stage": "Production AI Systems",
+      "summary": "Applied production systems discipline to LLM and agent workflows: deterministic orchestration, retrieval boundaries, evaluation, latency, cost, grounding, and governed tool use.",
+      "evidence": "LLM agent platforms, deterministic orchestration, bounded execution, replayability safeguards, model-selection tradeoffs, evaluator scoring, and production reliability constraints.",
+      "connectsTo": "Evaluation Gates, Replay Seeds, and agent observability"
+    },
+    {
+      "stage": "Agentic Operations & Operational Intelligence",
+      "summary": "Synthesizes the career arc into a public operating model for evidence-backed operational reasoning between enterprise telemetry and accountable human decision.",
+      "evidence": "Operational Intelligence doctrine, ten-layer framework, reference architecture, Operations Room, Evidence Pack, Publication Pack, Ask Ravikanth, and ReasonOps.",
+      "connectsTo": "The complete public knowledge platform"
+    }
+  ],
   "capabilityEvidence": [
     {
       "capability": "AI-native operations architecture",

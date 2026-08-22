@@ -109,6 +109,21 @@ export default function ResumePage() {
             ))}
           </div>
         </Card>
+        <Card>
+          <h2 className="text-xl font-semibold text-white">Career story map</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            The public resume is organized as accumulated systems context, not a flat title history.
+          </p>
+          <div className="mt-5 grid gap-2">
+            {professionalGraph.careerStory.map((stage, index) => (
+              <div key={stage.stage} className="rounded border border-white/10 bg-ink px-4 py-3">
+                <p className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</p>
+                <h3 className="mt-2 font-semibold text-white">{stage.stage}</h3>
+                <p className="mt-2 text-xs leading-5 text-slate-400">{stage.connectsTo}</p>
+              </div>
+            ))}
+          </div>
+        </Card>
           <Card className="border-signal/25 bg-signal/[0.04]">
             <div className="flex items-center gap-3">
               <ShieldCheck className="text-signal" />
