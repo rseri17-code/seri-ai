@@ -6,6 +6,7 @@ import { ProfileMark } from "@/components/profile-mark";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
 import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeHeroBuilderProof, homeHeroFlow, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReferenceAssets, homeReviewerPaths } from "@/content/home";
+import { professionalGraph } from "@/content/site";
 
 const proofStrip = [
   ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
@@ -80,6 +81,31 @@ export default function Home() {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                 <ProfileMark />
                 <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Ravikanth Seri</p>
+                  <h2 className="mt-2 text-2xl font-semibold leading-7 text-white">
+                    Enterprise infrastructure to AI-native operations, expressed as reusable public architecture.
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
+                    {professionalGraph.identity.currentFocus}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {professionalGraph.proofLinks.slice(0, 3).map((item) => (
+                      <Link key={item.href} href={item.href} className="rounded border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-mint/40 hover:text-mint">
+                        {item.label}
+                      </Link>
+                    ))}
+                    <TrackedAnchor
+                      href={homeProfileLinks.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      eventName="profile_link_click"
+                      eventProperties={{ destination: "linkedin", placement: "homepage_hero_identity" }}
+                      className="rounded border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-signal/40 hover:text-signal"
+                    >
+                      LinkedIn
+                    </TrackedAnchor>
+                  </div>
+                  <div className="mt-5 border-t border-white/10 pt-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Field origin</p>
                   <h2 className="mt-2 text-xl font-semibold leading-7 text-white">
                     The thesis is grounded in a practical failure pattern: teams lose shared context at the exact moment operational judgment matters most.
@@ -91,6 +117,7 @@ export default function Home() {
                         <p className="mt-2 text-xs leading-5 text-slate-300">{proof}</p>
                       </div>
                     ))}
+                  </div>
                   </div>
                 </div>
               </div>
