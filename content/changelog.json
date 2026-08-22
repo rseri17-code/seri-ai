@@ -2,12 +2,13 @@
   {
     "version": "v0.8",
     "date": "2026-08-22",
-    "title": "Added governed scorecard, graph health, proof ledgers, review kit, visual QA evidence, identity mark, and touch notes",
-    "description": "seri.ai now tracks the 24-dimension 10/10 target with non-inflated evidence-based scores, validates knowledge-graph health as a release gate, exposes public project proof and first-time visitor review ledgers, preserves 27 visual QA screenshots across nine critical routes and three viewports, adds source-validated mobile touch walkthrough notes for five dense routes, and adds a durable public-safe identity mark while keeping the approved portrait gap visible.",
+    "title": "Added governed scorecard, graph health, proof ledgers, review kits, visual QA evidence, identity mark, and touch notes",
+    "description": "seri.ai now tracks the 24-dimension 10/10 target with non-inflated evidence-based scores, validates knowledge-graph health as a release gate, exposes public project proof, first-time visitor review, and Ask live review ledgers, preserves 27 visual QA screenshots across nine critical routes and three viewports, adds source-validated mobile touch walkthrough notes for five dense routes, and adds a durable public-safe identity mark while keeping the approved portrait and reviewer-labeled Ask gaps visible.",
     "tags": [
       "quality-scorecard",
       "knowledge-graph",
       "visitor-review",
+      "ask-live-review",
       "mobile-touch",
       "identity",
       "governance",

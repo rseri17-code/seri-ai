@@ -28,11 +28,11 @@
       "slug": "ask-quality",
       "claim": "Ask Ravikanth is a useful interface to Ravikanth Seri's verified public professional graph rather than a generic chatbot wrapper.",
       "evidenceNeeded": "Reviewer-labeled Ask sessions across professional profile, doctrine, architecture, evidence, routing, unknown questions, and public-safety boundaries.",
-      "currentEvidence": "Deterministic Ask fixtures, rubric dimensions, citation expectations, refusal behavior, and local fallback behavior are validated in the build.",
-      "nextProof": "Compare local fallback, vector retrieval, and model synthesis on the same safe prompt set using only category, latency, success, failure, and reviewer verdict metadata.",
+      "currentEvidence": "Deterministic Ask fixtures, rubric dimensions, citation expectations, refusal behavior, local fallback behavior, and the Ask live review packet are validated in the build.",
+      "nextProof": "Run the Ask live review packet with external reviewers to compare local fallback, vector retrieval, and model synthesis on the same safe prompt set using only category, latency, success, failure, source count, checked artifacts, and reviewer verdict metadata.",
       "wouldChange": "If Ask cannot cite relevant public sources or separate fact from inference under realistic questions, reduce answer scope and improve retrieval before expanding claims.",
-      "status": "deterministic-fixtures-pass",
-      "href": "/evals"
+      "status": "review-packet-ready",
+      "href": "/publication-pack/ask-ravi-live-review-packet.md"
     },
     {
       "slug": "production-reliability",

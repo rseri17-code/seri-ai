@@ -1119,6 +1119,31 @@
         "without replacing career evidence"
       ],
       "result": "Pass"
+    },
+    {
+      "prompt": "Where is the Ask live review packet for reviewer-labeled answer quality?",
+      "expected": "Route to the Ask Ravi live review packet without claiming reviewer-labeled sessions or aggregate model-quality scores exist.",
+      "requiredAnswerIncludes": [
+        "Ask live review packet",
+        "/publication-pack/ask-ravi-live-review-packet.md",
+        "reviewer-labeled",
+        "No reviewer-labeled live Ask sessions have been published yet",
+        "no aggregate quality score"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "How should we compare local fallback vector retrieval and model synthesis for Ask Ravi?",
+      "expected": "Name the three review modes and the safe-metadata/no-raw-prompt rule.",
+      "requiredAnswerIncludes": [
+        "local_fallback",
+        "vector_retrieval",
+        "model_synthesis",
+        "safe metadata only",
+        "avoid raw confidential prompts",
+        "/publication-pack/ask-ravi-live-review-packet.md"
+      ],
+      "result": "Pass"
     }
   ],
   "knownLimits": [
@@ -1128,6 +1153,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 98,
-  "passingFixtures": 98
+  "fixtureCount": 100,
+  "passingFixtures": 100
 }

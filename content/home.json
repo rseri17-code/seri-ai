@@ -5,7 +5,7 @@
   },
   "harnessThesis": {
     "headline": "The harness is the product.",
-    "statement": "The real differentiator in Agentic SRE is not the model. It is the operating harness that lets a model investigate with evidence, stay inside policy, expose its reasoning, learn from outcomes, and hand control back to humans before high-risk action.",
+    "statement": "The differentiator in Agentic SRE is the operating harness: evidence, policy bounds, visible reasoning, outcome learning, and human control before high-risk action.",
     "loop": [
       "Intake",
       "Evidence",
@@ -40,7 +40,7 @@
     },
     {
       "name": "Observability for AI",
-      "description": "AI systems need operational visibility into prompts, tool calls, traces, grounding, latency, cost, refusals, overrides, and drift before enterprises can trust them in real workflows."
+      "description": "AI systems need visibility into prompts, tool calls, traces, grounding, latency, cost, refusals, overrides, and drift before enterprises can trust them."
     },
     {
       "name": "Shared context problem",

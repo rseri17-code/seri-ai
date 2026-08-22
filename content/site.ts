@@ -1,6 +1,7 @@
 import siteData from "./site-config.json";
 import evalReportData from "./eval-report.json";
 import askQualityRubricData from "./ask-quality-rubric.json";
+import askLiveReviewPacketData from "./ask-live-review-packet.json";
 import articlesData from "./articles.json";
 import principlesData from "./principles.json";
 import patternsData from "./patterns.json";
@@ -120,6 +121,7 @@ export const architectureCards = architectureCardsData satisfies ArchitectureCar
 
 export const evalReport = evalReportData;
 export const askQualityRubric = askQualityRubricData;
+export const askLiveReviewPacket = askLiveReviewPacketData;
 
 export const thesisRadar = thesisRadarData;
 

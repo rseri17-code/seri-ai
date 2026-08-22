@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, identityAsset, mobileTouchWalkthroughs, nowPage, patterns, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
+import { articles, askLiveReviewPacket, contentRegistry, identityAsset, mobileTouchWalkthroughs, nowPage, patterns, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -46,6 +46,20 @@ let publishedWikiNotesCache: WikiNote[] | null = null;
 let publicSourceIndexCache: PublicSource[] | null = null;
 
 const referenceSources = [
+  {
+    id: "reference:ask-ravi-live-review-packet",
+    title: "Ask Ravi Live Review Packet",
+    description: "Public-safe review protocol for reviewer-labeled Ask Ravikanth sessions across local fallback, vector retrieval, and model synthesis.",
+    content:
+      `${askLiveReviewPacket.title}. ${askLiveReviewPacket.evidenceLevel} Purpose: ${askLiveReviewPacket.purpose} Review modes: ${askLiveReviewPacket.reviewModes
+        .map((mode) => mode.mode)
+        .join(", ")}. Required prompt categories: ${askLiveReviewPacket.requiredPromptCategories.join(", ")}. Safe metadata only: ${askLiveReviewPacket.safeMetadataOnly.join(", ")}. Do not capture: ${askLiveReviewPacket.doNotCapture.join(", ")}. No reviewer-labeled live Ask sessions have been published yet. No aggregate quality score is published until multiple reviewer-labeled sessions exist.`,
+    url: "/publication-pack/ask-ravi-live-review-packet.md",
+    type: "registry" as const,
+    category: "Quality Evidence",
+    tags: ["Ask Ravi", "reviewer-labeled", "answer quality", "safe metadata", "model synthesis", "vector retrieval"],
+    assetType: "artifact"
+  },
   {
     id: "reference:visual-qa-2026-08-22",
     title: "seri.ai Visual QA Evidence",

@@ -35,9 +35,9 @@
     {
       "name": "AI Systems Credibility",
       "score": 8.1,
-      "evidence": "Ask Ravikanth, deterministic trust fixtures, eval gates, local fallback behavior, and AI-governance language are present.",
+      "evidence": "Ask Ravikanth, deterministic trust fixtures, eval gates, local fallback behavior, AI-governance language, and a controlled Ask live review packet are present.",
       "gap": "Live model synthesis quality, vector retrieval quality, and reviewer-labeled sessions are not yet proven.",
-      "nextProof": "Compare fallback, vector retrieval, and model synthesis on the same safe prompt set using reviewer labels."
+      "nextProof": "Run the Ask live review packet to compare fallback, vector retrieval, and model synthesis on the same safe prompt set using reviewer labels and safe metadata only."
     },
     {
       "name": "Architecture Quality",
@@ -83,15 +83,15 @@
     },
     {
       "name": "Ask Ravi",
-      "score": 8.2,
-      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, visitor-review routing, visual-QA routing, identity-asset routing, mobile-touch evidence routing, and 98 passing fixtures.",
-      "gap": "No live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
-      "nextProof": "Run the live answer rubric and publish qualitative labels without raw prompts or aggregate model-quality scores."
+      "score": 8.3,
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, visitor-review routing, visual-QA routing, identity-asset routing, mobile-touch evidence routing, Ask live review packet routing, and 100 passing fixtures.",
+      "gap": "A controlled Ask live review packet exists, but no live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
+      "nextProof": "Run the Ask live review packet and publish qualitative labels without raw prompts or aggregate model-quality scores."
     },
     {
       "name": "Search / Discoverability",
       "score": 8.5,
-      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, visitor review, visual QA, identity asset, mobile touch walkthroughs, and 58 canonical retrieval checks.",
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, project proof, proof backlog, visitor review, visual QA, identity asset, mobile touch walkthroughs, Ask live review packet, and 60 canonical retrieval checks.",
       "gap": "Live search-console evidence and real query behavior are not yet available.",
       "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
     },

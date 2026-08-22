@@ -158,6 +158,14 @@ const cases = [
     expectedFirstUrl: "/visual-qa/2026-08-22/mobile-touch-walkthroughs.md"
   },
   {
+    query: "Where is the Ask live review packet for reviewer-labeled answer quality?",
+    expectedFirstUrl: "/publication-pack/ask-ravi-live-review-packet.md"
+  },
+  {
+    query: "How do we compare local fallback vector retrieval and model synthesis without capturing raw prompts?",
+    expectedFirstUrl: "/publication-pack/ask-ravi-live-review-packet.md"
+  },
+  {
     query: "How would you rate seri.ai across the 24 dimensions right now?",
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },

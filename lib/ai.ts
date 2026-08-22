@@ -120,6 +120,12 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/investigation-room");
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
   }
+  if (/ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/.test(lower)) {
+    artifacts.add("/publication-pack/ask-ravi-live-review-packet.md");
+    artifacts.add("/evals");
+    artifacts.add("/wiki/operational-intelligence-evidence-pack");
+    artifacts.add("/contact");
+  }
   if (/conformance profile|object profile|object fields|pass fail|pass\/fail|evidence object|hypothesis state|required fields|replay seed.*evaluation gate|decision packet.*fields/.test(lower)) {
     artifacts.add("/publication-pack/operational-intelligence-conformance-profile.md");
   }
@@ -299,9 +305,13 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     /visual qa|mobile qa|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/.test(lower)
       ? " Visual QA evidence: /visual-qa/2026-08-22/report.md records 27 first-viewport screenshots across Home, Start Here, Ask, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack at 390x844, 768x1024, and 1440x1000. /visual-qa/2026-08-22/mobile-touch-walkthroughs.md adds source-validated mobile walkthrough notes for Ask, Operations Room, Doctrine, Radar, and Work. The manifest records zero horizontal-overflow findings, zero console-error pages, and visible H1/main content for every captured route. Limitation: external reviewer feedback and physical-device lab evidence are still missing."
       : "";
+  const askLiveReviewContext =
+    /ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/.test(lower)
+      ? " Ask live review packet: /publication-pack/ask-ravi-live-review-packet.md defines the controlled review protocol for Ask Ravikanth across local_fallback, vector_retrieval, and model_synthesis. Reviewers should use safe metadata only, open cited public sources, and avoid raw confidential prompts. No reviewer-labeled live Ask sessions have been published yet, and no aggregate quality score is published until multiple reviewer-labeled sessions exist."
+      : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext}`}`,
+    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext} ${direct}` : `${direct}${linkedinContext}${visitorSuccessContext}${visitorReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${qualityScorecardContext}${visualQaContext}${askLiveReviewContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",
