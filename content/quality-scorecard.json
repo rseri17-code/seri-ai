@@ -97,10 +97,10 @@
     },
     {
       "name": "Visual Design",
-      "score": 7.6,
-      "evidence": "The site has a restrained dark visual system, proof-led cards, diagram surfaces, and performance-guarded rendered routes.",
-      "gap": "Fresh screenshot-grade review is incomplete, and some dense technical surfaces may still feel demo-like.",
-      "nextProof": "Capture browser screenshots for the core routes and fix hierarchy, density, and graph framing findings."
+      "score": 7.8,
+      "evidence": "The site has a restrained dark visual system, proof-led cards, diagram surfaces, performance-guarded rendered routes, and a browser viewport audit across Home, Start Here, Ask, Operations Room, Work, Background, Doctrine, and Radar at mobile, tablet, and desktop widths.",
+      "gap": "The latest browser pass found no page-level horizontal overflow, but dense technical surfaces still need external reviewer feedback and durable screenshot artifacts.",
+      "nextProof": "Preserve screenshot artifacts from preview or production, then fix any hierarchy, density, or graph-framing issues found by external reviewers."
     },
     {
       "name": "UX",
@@ -111,10 +111,10 @@
     },
     {
       "name": "Mobile",
-      "score": 7.6,
-      "evidence": "Viewport contracts, mobile quick prompts, responsive tables, and mobile-friendly wiki contents are validated.",
-      "gap": "Real mobile screenshots and touch walkthroughs are still missing for dense interactive routes.",
-      "nextProof": "Capture and review 390px and tablet screenshots for Home, Ask, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack."
+      "score": 7.9,
+      "evidence": "Viewport contracts, mobile quick prompts, responsive tables, mobile-friendly wiki contents, browser-controlled 390px/tablet checks, responsive section rhythm, responsive card density, and a contained Ask prompt grid are validated.",
+      "gap": "Touch walkthroughs and durable screenshot artifacts are still missing for dense interactive routes.",
+      "nextProof": "Save reviewed screenshots from preview or production and run touch walkthroughs for Ask, Operations Room, Doctrine, Radar, and Work."
     },
     {
       "name": "Accessibility",

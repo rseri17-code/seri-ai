@@ -248,11 +248,11 @@ export function Chat({
         </form>
         <div className="border-t border-white/10 bg-black/15 p-3 lg:hidden">
           <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-500">Good first questions</p>
-          <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
+          <div className="mt-2 grid gap-2 sm:grid-cols-2">
             {prompts.slice(0, 4).map((prompt) => (
               <button
                 key={prompt}
-                className="min-w-[13rem] rounded border border-white/10 bg-white/[0.04] px-3 py-2 text-left text-xs font-semibold leading-5 text-slate-200 hover:border-mint/40"
+                className="min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2 text-left text-xs font-semibold leading-5 text-slate-200 hover:border-mint/40"
                 onClick={() => void sendMessage(prompt)}
               >
                 {prompt}

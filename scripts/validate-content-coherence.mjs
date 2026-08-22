@@ -791,7 +791,8 @@ for (const required of [
   "Overall Memorability",
   "A `10` means current evidence shows no material gap",
   "No live reviewer-labeled quality baseline exists.",
-  "Fresh screenshot-grade review is incomplete",
+  "browser viewport audit across Home, Start Here, Ask, Operations Room, Work, Background, Doctrine, and Radar",
+  "Touch walkthroughs and durable screenshot artifacts are still missing",
   "Execute the proof backlog"
 ]) {
   expect(qualityScorecardContractSource.includes(required), `Quality scorecard missing contract: ${required}`);

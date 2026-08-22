@@ -48,8 +48,8 @@ const routeContracts = [
       "Related route",
       "Latency budget",
       "Good first questions",
-      "overflow-x-auto",
-      "min-w-[13rem]",
+      "mt-2 grid gap-2 sm:grid-cols-2",
+      "min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2",
       "lg:hidden",
       "aria-label=\"Ask a question about Ravikanth Seri's public work\"",
       "aria-label=\"Send message\""
@@ -96,6 +96,19 @@ const routeContracts = [
       "xl:grid-cols-4",
       "xl:grid-cols-5",
       "lg:grid-cols-2"
+    ]
+  },
+  {
+    route: "/radar",
+    file: "app/radar/page.tsx",
+    minResponsiveTokens: 8,
+    required: [
+      "grid min-w-0 gap-4",
+      "className=\"min-w-0\"",
+      "text-base leading-7 text-slate-200 md:text-xl md:leading-8",
+      "text-xl font-semibold leading-7 text-white md:text-2xl md:leading-8",
+      "Thesis spine",
+      "Evidence posture"
     ]
   },
   {
@@ -175,6 +188,16 @@ for (const required of [
   ":focus-visible"
 ]) {
   expect(globalCss.includes(required), `app/globals.css missing visual accessibility contract "${required}"`);
+}
+
+const cardComponent = read("components/card.tsx");
+for (const required of ["p-5", "sm:p-6"]) {
+  expect(cardComponent.includes(required), `components/card.tsx missing responsive card density contract "${required}"`);
+}
+
+const sectionComponent = read("components/section.tsx");
+for (const required of ["py-14", "lg:py-20", "leading-tight"]) {
+  expect(sectionComponent.includes(required), `components/section.tsx missing responsive section rhythm contract "${required}"`);
 }
 
 const scorecard = read("WORLD_CLASS_SCORECARD.md");

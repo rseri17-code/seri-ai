@@ -25,7 +25,7 @@ export default function RadarPage() {
         <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
           <Card>
             <Radar className="mb-5 text-mint" />
-            <p className="text-xl leading-8 text-slate-200">{thesisRadar.thesis}</p>
+            <p className="text-base leading-7 text-slate-200 md:text-xl md:leading-8">{thesisRadar.thesis}</p>
             <p className="mt-5 text-sm text-slate-400">Updated {thesisRadar.updatedAt}</p>
             <div className="mt-6 rounded border border-white/10 bg-black/20 p-3">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Thesis spine</p>
@@ -70,20 +70,20 @@ export default function RadarPage() {
           </div>
           <div className="divide-y divide-white/10">
             {thesisRadar.proofChain.map((item) => (
-              <div key={item.theme} className="grid gap-4 p-5 lg:grid-cols-[0.72fr_1fr_1fr_1fr]">
-                <div>
+              <div key={item.theme} className="grid min-w-0 gap-4 p-5 lg:grid-cols-[0.72fr_1fr_1fr_1fr]">
+                <div className="min-w-0">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{item.theme}</p>
                   <p className="mt-3 text-sm leading-6 text-slate-300">{item.publicThought}</p>
                 </div>
-                <div className="rounded border border-white/10 bg-black/20 p-3">
+                <div className="min-w-0 rounded border border-white/10 bg-black/20 p-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">Market signal</p>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{item.marketSignal}</p>
                 </div>
-                <div className="rounded border border-mint/20 bg-mint/[0.045] p-3">
+                <div className="min-w-0 rounded border border-mint/20 bg-mint/[0.045] p-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">OI claim</p>
                   <p className="mt-2 text-sm leading-6 text-slate-200">{item.operationalClaim}</p>
                 </div>
-                <div className="rounded border border-amber/25 bg-amber/[0.045] p-3">
+                <div className="min-w-0 rounded border border-amber/25 bg-amber/[0.045] p-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-amber">Falsification</p>
                   <p className="mt-2 text-sm leading-6 text-slate-200">{item.falsificationQuestion}</p>
                 </div>
@@ -113,17 +113,17 @@ export default function RadarPage() {
         <div className="space-y-4">
           {thesisRadar.trends.map((trend, index) => (
             <Card key={trend.name}>
-              <div className="grid gap-4 lg:grid-cols-[0.58fr_1.42fr]">
-                <div>
+              <div className="grid min-w-0 gap-4 lg:grid-cols-[0.58fr_1.42fr]">
+                <div className="min-w-0">
                   <p className="font-mono text-sm text-signal">0{index + 1}</p>
-                  <h2 className="mt-3 text-2xl font-semibold text-white">{trend.name}</h2>
+                  <h2 className="mt-3 text-xl font-semibold leading-7 text-white md:text-2xl md:leading-8">{trend.name}</h2>
                   <p className="mt-4 inline-flex items-center gap-2 text-sm text-mint">
                     <Route size={16} />
                     seri.ai read
                   </p>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{trend.ravikanthAngle}</p>
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm font-semibold text-mint">Signal</p>
                   <p className="mt-2 leading-7 text-slate-200">{trend.signal}</p>
                   <p className="mt-4 text-sm font-semibold text-amber">Why it matters</p>
