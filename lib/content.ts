@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, contentRegistry, identityAsset, nowPage, patterns, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
+import { articles, contentRegistry, identityAsset, mobileTouchWalkthroughs, nowPage, patterns, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -658,6 +658,46 @@ export function buildPublicSourceIndex(): PublicSource[] {
       frameworkLayers: ["Evidence Layer", "Transaction Layer", "Evaluation Layer", "Operator Layer", "Learning Layer"],
       principles: ["Evidence before conclusions"],
       patterns: ["evaluation-and-replay", "transaction-journey-reconstruction", "human-in-the-loop-operational-ai"],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
+      id: "reference:mobile-touch-walkthroughs-2026-08-22",
+      title: mobileTouchWalkthroughs.title,
+      description: "Source-validated mobile touch walkthrough notes for Ask, Operations Room, Doctrine, Radar, and Work.",
+      content: [
+        mobileTouchWalkthroughs.title,
+        mobileTouchWalkthroughs.viewport,
+        mobileTouchWalkthroughs.evidenceLevel,
+        mobileTouchWalkthroughs.summary,
+        mobileTouchWalkthroughs.principle,
+        mobileTouchWalkthroughs.limitations.join(". "),
+        mobileTouchWalkthroughs.routes
+          .flatMap((item) => [
+            item.route,
+            item.surface,
+            item.visitorTask,
+            item.startingSignal,
+            item.touchTargets.join(". "),
+            item.walkthroughSteps.join(". "),
+            item.sourceEvidence.join(". "),
+            item.observedPasses.join(". "),
+            item.remainingRisks.join(". "),
+            item.status
+          ])
+          .join(". "),
+        "mobile touch walkthrough. touch walkthrough notes. dense interactive routes. source-validated mobile QA. Ask. Operations Room. Doctrine. Radar. Work."
+      ].join(". "),
+      url: "/visual-qa/2026-08-22/mobile-touch-walkthroughs.md",
+      type: "registry" as const,
+      category: "Quality Evidence",
+      tags: ["mobile touch", "touch walkthrough", "mobile QA", "Ask", "Operations Room", "Doctrine", "Radar", "Work"],
+      author: "Ravikanth Seri",
+      assetType: "evidence",
+      date: mobileTouchWalkthroughs.updatedAt,
+      frameworkLayers: ["Evidence Layer", "Evaluation Layer", "Operator Layer"],
+      principles: ["Evidence before conclusions"],
+      patterns: ["evaluation-and-replay", "human-in-the-loop-operational-ai"],
       products: ["/products/reasonops"],
       status: "published" as const
     },

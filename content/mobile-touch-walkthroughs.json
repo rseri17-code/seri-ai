@@ -1,0 +1,194 @@
+{
+  "title": "seri.ai Mobile Touch Walkthrough Evidence",
+  "updatedAt": "2026-08-22",
+  "viewport": "390x844",
+  "evidenceLevel": "source-validated walkthrough notes",
+  "summary": "Mobile walkthrough notes for dense review surfaces where first-time visitors need to tap, scan, scroll, and recover context without treating seri.ai as a static screenshot.",
+  "principle": "Mobile quality is not proven by a responsive screenshot alone; the route must preserve task intent, reachable controls, labelled actions, and context recovery while keeping unsupported claims visible.",
+  "limitations": [
+    "This is source-validated walkthrough evidence, not external reviewer feedback.",
+    "This is not a physical-device lab run.",
+    "A future real-device pass should verify touch comfort, scroll fatigue, graph readability, and hesitation points with first-time reviewers."
+  ],
+  "routes": [
+    {
+      "route": "/ask",
+      "surface": "Ask Ravikanth",
+      "visitorTask": "Ask a public-safe question, submit it, inspect the answer packet, follow a related source, and recover the public-safe boundary.",
+      "startingSignal": "The route opens with Ask Ravikanth as a public research interface rather than a generic chatbot.",
+      "touchTargets": [
+        "Ask input labelled Ask a question about Ravikanth Seri's public work",
+        "Send message button labelled Send message",
+        "Suggested prompt buttons",
+        "Related artifact links",
+        "Source links"
+      ],
+      "walkthroughSteps": [
+        "Tap the input and enter a safe question about Operational Intelligence or Ravikanth's public evidence.",
+        "Tap Send message and confirm the assistant returns a reviewable answer packet.",
+        "Scan source coverage, boundary, related routes, latency, and AI-disclosure state.",
+        "Tap a related route or source link and confirm the path remains public-safe.",
+        "Return to Ask and confirm the question context remains understandable."
+      ],
+      "sourceEvidence": [
+        "components/chat.tsx exposes labelled input and send controls.",
+        "Ask response metadata displays source coverage, boundary, related route, latency, and AI disclosure.",
+        "Ask fixtures validate refusal, routing, citations, and identity-mark behavior."
+      ],
+      "observedPasses": [
+        "Primary input and send action have accessible labels.",
+        "Mobile prompt grid is responsive and validated by viewport contracts.",
+        "Fallback behavior avoids inventing answers when the API fails."
+      ],
+      "remainingRisks": [
+        "No reviewer-labeled live answer quality baseline exists.",
+        "Long answers may still create scroll fatigue on small devices."
+      ],
+      "status": "source-validated"
+    },
+    {
+      "route": "/investigation-room",
+      "surface": "Operations Room",
+      "visitorTask": "Start with the live investigation graph, step through evidence/replay/hypotheses/action gate/release gate, toggle evidence, and inspect the decision packet.",
+      "startingSignal": "The route opens with the signature artifact and prioritizes the graph over long explanatory copy on mobile.",
+      "touchTargets": [
+        "Ask Ravikanth case link",
+        "Guided mode button",
+        "Manual mode button",
+        "Evidence replay step buttons",
+        "Framework layer buttons",
+        "Evidence board toggle buttons",
+        "Hypothesis selection buttons",
+        "Decision action buttons",
+        "Export investigation packet button"
+      ],
+      "walkthroughSteps": [
+        "Open the route at mobile width and confirm the live investigation graph is visible before deep explanatory content.",
+        "Tap each step in the five-part investigation sequence and confirm the active state changes.",
+        "Toggle at least one evidence item and confirm the graph and confidence context preserve contradiction and missing evidence.",
+        "Select a hypothesis and inspect support, contradiction, and missing-evidence conditions.",
+        "Inspect the action gate and confirm human approval remains explicit before operational change."
+      ],
+      "sourceEvidence": [
+        "app/investigation-room/page.tsx suppresses secondary desktop links on mobile.",
+        "app/simulator/simulator.tsx contains labelled graph summaries, evidence taxonomy, missing evidence, contradiction, and human approval sections.",
+        "Viewport validation requires mobile first viewport to prioritize the live investigation graph."
+      ],
+      "observedPasses": [
+        "Mobile first viewport includes the investigation graph and H1.",
+        "Interactive controls are buttons, not inert visual decoration.",
+        "Observation, inference, contradiction, missing evidence, confirmed fact, and approval gate are represented in the workbench."
+      ],
+      "remainingRisks": [
+        "The route remains the heaviest experience and needs real-device interaction-latency evidence.",
+        "External reviewers still need to judge whether the graph feels product-grade rather than demo-like."
+      ],
+      "status": "source-validated"
+    },
+    {
+      "route": "/wiki/operational-intelligence-canonical-doctrine",
+      "surface": "Canonical Doctrine",
+      "visitorTask": "Use mobile contents, scan the doctrine, ask follow-up questions, and continue into related reading without losing orientation.",
+      "startingSignal": "The doctrine page exposes Contents and Ask questions before the long body on mobile.",
+      "touchTargets": [
+        "Contents anchor links",
+        "Ask-question links",
+        "Inline reference links",
+        "Related reading links",
+        "Version-history links"
+      ],
+      "walkthroughSteps": [
+        "Open the doctrine page and confirm the mobile contents block appears before the article body.",
+        "Tap at least one contents anchor and confirm the reader can jump into the document.",
+        "Tap an Ask-question shortcut and confirm the prompt routes into Ask.",
+        "Return to the doctrine and inspect related reading.",
+        "Confirm tables and dense sections remain horizontally contained."
+      ],
+      "sourceEvidence": [
+        "app/wiki/[slug]/page.tsx includes mobile contents, Ask questions, table fallbacks, related reading, and version history.",
+        "Accessibility validation checks wiki headings, table mobile cells, and related navigation contracts.",
+        "Visual QA captured the doctrine at mobile, tablet, and desktop widths without horizontal overflow."
+      ],
+      "observedPasses": [
+        "The page has a mobile reading scaffold instead of a raw long essay.",
+        "Ask shortcuts create a task-oriented path out of dense doctrine.",
+        "Table overflow is explicitly contained."
+      ],
+      "remainingRisks": [
+        "No external reader has confirmed whether the doctrine is still too dense on mobile.",
+        "Footnote-heavy sections may require further reading-comfort tuning."
+      ],
+      "status": "source-validated"
+    },
+    {
+      "route": "/radar",
+      "surface": "Thesis Radar",
+      "visitorTask": "Inspect the thesis spine, market signals, source evidence, and falsification posture from a mobile viewport.",
+      "startingSignal": "The route frames LinkedIn themes as testable claims instead of social proof.",
+      "touchTargets": [
+        "LinkedIn source link",
+        "Evidence Pack link",
+        "Trend source links",
+        "Ask prompt links"
+      ],
+      "walkthroughSteps": [
+        "Open Radar and confirm the thesis spine appears before market signals.",
+        "Scroll into public thought process and inspect the claim-to-evidence structure.",
+        "Tap the Evidence Pack link and confirm the proof posture is reachable.",
+        "Inspect trend source links and confirm external links are labelled.",
+        "Return to Radar and confirm no horizontal overflow from dense trend rows."
+      ],
+      "sourceEvidence": [
+        "app/radar/page.tsx uses min-w-0 layouts and labelled external source links.",
+        "Viewport contracts validate Radar responsive structure.",
+        "Search retrieval routes observability-thesis and market-signal queries to Radar."
+      ],
+      "observedPasses": [
+        "Radar presents public writing as testable thesis evidence.",
+        "Dense rows use responsive grid constraints.",
+        "External source links include evidence-type labels."
+      ],
+      "remainingRisks": [
+        "Real visitors may need clearer priority between market trend, Ravikanth angle, and falsification question.",
+        "External link behavior has not been tested with live browser history on physical mobile devices."
+      ],
+      "status": "source-validated"
+    },
+    {
+      "route": "/work",
+      "surface": "Work and Public Proof",
+      "visitorTask": "Understand Ravikanth's operating arc, inspect public code/LinkedIn links, review project proof, and find background or resume evidence.",
+      "startingSignal": "The route presents an operating record, not a generic portfolio grid.",
+      "touchTargets": [
+        "GitHub profile link",
+        "LinkedIn profile link",
+        "Operating arc cards",
+        "Project proof cards",
+        "Architecture judgment ledger cards",
+        "Review spine links"
+      ],
+      "walkthroughSteps": [
+        "Open Work and confirm the first screen states the operating record behind Operational Intelligence.",
+        "Tap GitHub and LinkedIn links only as public profile exits, not as proof of private production claims.",
+        "Scroll through operating arc and project proof cards.",
+        "Tap an architecture judgment ledger item and confirm it routes to an inspectable public surface.",
+        "Use the review spine to continue toward doctrine, reference architecture, Operations Room, or resume."
+      ],
+      "sourceEvidence": [
+        "app/work/page.tsx exposes public-code boundaries, LinkedIn/GitHub links, operating arc, project proof, and review spine.",
+        "Public Project Proof Ledger states what each project proves and does not prove.",
+        "Visual QA captured Work at mobile, tablet, and desktop widths without horizontal overflow."
+      ],
+      "observedPasses": [
+        "The page keeps Ravikanth, public work, and evidence connected.",
+        "Public links are framed with proof boundaries.",
+        "Review spine gives first-time evaluators a next path."
+      ],
+      "remainingRisks": [
+        "External reviewers still need to confirm whether the career-to-work path is immediately obvious.",
+        "Public repositories need deeper runnable examples before project proof can reach the highest bar."
+      ],
+      "status": "source-validated"
+    }
+  ]
+}

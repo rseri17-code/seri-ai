@@ -1086,8 +1086,25 @@
         "768x1024",
         "1440x1000",
         "zero horizontal-overflow findings",
-        "touch walkthroughs",
-        "external reviewer feedback"
+        "/visual-qa/2026-08-22/mobile-touch-walkthroughs.md",
+        "external reviewer feedback",
+        "physical-device lab evidence"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Where are the mobile touch walkthrough notes for dense interactive routes?",
+      "expected": "Route to the mobile touch walkthrough evidence artifact without claiming external or physical-device proof.",
+      "requiredAnswerIncludes": [
+        "Visual QA evidence",
+        "/visual-qa/2026-08-22/mobile-touch-walkthroughs.md",
+        "source-validated mobile walkthrough notes",
+        "Ask",
+        "Operations Room",
+        "Doctrine",
+        "Radar",
+        "Work",
+        "physical-device lab evidence"
       ],
       "result": "Pass"
     },
@@ -1111,6 +1128,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 97,
-  "passingFixtures": 97
+  "fixtureCount": 98,
+  "passingFixtures": 98
 }

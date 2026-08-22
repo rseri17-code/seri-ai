@@ -242,7 +242,7 @@ The current backlog names the evidence still required before stronger public cla
 | Control comparison | Same-facts OI-ROOM-001 runs across dashboard, chatbot, ticket, and OI modes. | Modes and worksheet dimensions exist. | Publish dimension-level results. | Structure does not improve judgment. |
 | Ask quality | Reviewer-labeled Ask sessions across profile, doctrine, routing, unknowns, and boundaries. | Deterministic fixtures and refusal behavior pass. | Compare fallback, vector retrieval, and model synthesis. | Ask cannot cite sources or separate fact from inference. |
 | Production reliability | Live route, Ask latency, fallback, contact, and safe analytics evidence. | Local deployment, API, rendering, and budget gates pass. | Review beta telemetry. | Errors or latency make review unreliable. |
-| Visual and mobile QA | Screenshots and keyboard notes for core routes at mobile, tablet, and desktop widths. | Viewport, a11y, rendered, and performance checks pass. | Capture browser evidence. | The site still feels like a demo. |
+| Visual and mobile QA | Screenshots, walkthrough notes, and device evidence for core routes at mobile, tablet, and desktop widths. | Viewport, a11y, rendered, performance, screenshot, and source-validated mobile touch walkthrough checks pass. | Run physical-device checks and external hierarchy/density review. | The site still feels like a demo. |
 | Identity asset | Approved portrait or identity asset connected to the person-work-evidence path. | Public routes link Ravikanth to the work, and a durable non-photographic public identity mark now exists. | Add an approved portrait photo when available and run external first-impression review. | The site feels anonymous. |
 
 ## 14. Minimum Conformance Checklist

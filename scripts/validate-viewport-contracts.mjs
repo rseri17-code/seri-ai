@@ -202,10 +202,10 @@ for (const required of ["py-14", "lg:py-20", "leading-tight"]) {
 
 const scorecard = read("WORLD_CLASS_SCORECARD.md");
 for (const required of [
-  "Mobile manual audit",
+  "Mobile physical-device audit",
   "Operations Room visual QA",
-  "Run touch walkthroughs",
-  "real viewport evidence"
+  "source-validated touch walkthrough notes",
+  "390px screenshot artifacts"
 ]) {
   expect(scorecard.includes(required), `WORLD_CLASS_SCORECARD.md missing viewport backlog contract "${required}"`);
 }

@@ -115,6 +115,7 @@ export function inferRelatedArtifacts(question: string) {
   }
   if (/visual qa|mobile qa|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/.test(lower)) {
     artifacts.add("/visual-qa/2026-08-22/report.md");
+    artifacts.add("/visual-qa/2026-08-22/mobile-touch-walkthroughs.md");
     artifacts.add("/visual-qa/2026-08-22/viewport-results.json");
     artifacts.add("/investigation-room");
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
@@ -296,7 +297,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "";
   const visualQaContext =
     /visual qa|mobile qa|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/.test(lower)
-      ? " Visual QA evidence: /visual-qa/2026-08-22/report.md records 27 first-viewport screenshots across Home, Start Here, Ask, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack at 390x844, 768x1024, and 1440x1000. The manifest records zero horizontal-overflow findings, zero console-error pages, and visible H1/main content for every captured route. Limitation: touch walkthroughs and external reviewer feedback are still missing."
+      ? " Visual QA evidence: /visual-qa/2026-08-22/report.md records 27 first-viewport screenshots across Home, Start Here, Ask, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack at 390x844, 768x1024, and 1440x1000. /visual-qa/2026-08-22/mobile-touch-walkthroughs.md adds source-validated mobile walkthrough notes for Ask, Operations Room, Doctrine, Radar, and Work. The manifest records zero horizontal-overflow findings, zero console-error pages, and visible H1/main content for every captured route. Limitation: external reviewer feedback and physical-device lab evidence are still missing."
       : "";
 
   return [

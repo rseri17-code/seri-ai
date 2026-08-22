@@ -21,6 +21,7 @@ import proofBacklogData from "./proof-backlog.json";
 import qualityScorecardData from "./quality-scorecard.json";
 import visitorReviewKitData from "./visitor-review-kit.json";
 import identityAssetData from "./identity-asset.json";
+import mobileTouchWalkthroughsData from "./mobile-touch-walkthroughs.json";
 import contentRegistryData from "./content-registry.json";
 import harnessThesisData from "./harness-thesis.json";
 import canonicalDefinitionData from "./canonical-definition.json";
@@ -289,6 +290,32 @@ export type IdentityAsset = {
 
 export const identityAsset = identityAssetData satisfies IdentityAsset;
 
+export type MobileTouchWalkthroughRoute = {
+  route: string;
+  surface: string;
+  visitorTask: string;
+  startingSignal: string;
+  touchTargets: string[];
+  walkthroughSteps: string[];
+  sourceEvidence: string[];
+  observedPasses: string[];
+  remainingRisks: string[];
+  status: string;
+};
+
+export type MobileTouchWalkthroughs = {
+  title: string;
+  updatedAt: string;
+  viewport: string;
+  evidenceLevel: string;
+  summary: string;
+  principle: string;
+  limitations: string[];
+  routes: MobileTouchWalkthroughRoute[];
+};
+
+export const mobileTouchWalkthroughs = mobileTouchWalkthroughsData satisfies MobileTouchWalkthroughs;
+
 export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
 export type ContentStatus = "published" | "planned" | "draft";
 
@@ -481,6 +508,24 @@ export const approvedKnowledge = [
   identityAsset.purpose,
   ...identityAsset.usage,
   ...identityAsset.limitations,
+  mobileTouchWalkthroughs.title,
+  mobileTouchWalkthroughs.viewport,
+  mobileTouchWalkthroughs.evidenceLevel,
+  mobileTouchWalkthroughs.summary,
+  mobileTouchWalkthroughs.principle,
+  ...mobileTouchWalkthroughs.limitations,
+  ...mobileTouchWalkthroughs.routes.flatMap((item) => [
+    item.route,
+    item.surface,
+    item.visitorTask,
+    item.startingSignal,
+    ...item.touchTargets,
+    ...item.walkthroughSteps,
+    ...item.sourceEvidence,
+    ...item.observedPasses,
+    ...item.remainingRisks,
+    item.status
+  ]),
   publicCode.title,
   publicCode.summary,
   ...publicCode.entries.flatMap((item) => [item.label, item.href, item.status, item.whatToInspect, item.publicSafeUse, item.proofBoundary, ...item.related]),

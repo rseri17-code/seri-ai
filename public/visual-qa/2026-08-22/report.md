@@ -16,7 +16,9 @@ Artifacts:
 
 - Manifest: `/visual-qa/2026-08-22/viewport-results.json`
 - Screenshots: `/visual-qa/2026-08-22/*.png`
+- Touch walkthrough notes: `/visual-qa/2026-08-22/mobile-touch-walkthroughs.md`
 - Validation gate: `npm run validate:visual-qa`
+- Touch validation gate: `npm run validate:touch`
 
 Result:
 
@@ -25,6 +27,7 @@ Result:
 - 0 recorded horizontal-overflow findings.
 - 0 recorded console-error pages.
 - H1 and main content were present for every captured route.
+- Source-validated mobile touch walkthrough notes captured for Ask, Operations Room, Doctrine, Radar, and Work.
 
 Representative observations:
 
@@ -36,5 +39,5 @@ Representative observations:
 Limitations:
 
 - This is first-viewport evidence, not a complete manual scroll-through of every section.
-- It does not replace external reviewer feedback.
+- Source-validated touch evidence does not replace external reviewer feedback; it also does not replace physical-device testing.
 - A durable non-photographic identity mark now exists in the repo; the approved portrait photo remains missing because no durable source image is present.

@@ -150,6 +150,14 @@ const cases = [
     expectedFirstUrl: "/visual-qa/2026-08-22/report.md"
   },
   {
+    query: "Where are the mobile touch walkthrough notes for Ask Operations Room Doctrine Radar and Work?",
+    expectedFirstUrl: "/visual-qa/2026-08-22/mobile-touch-walkthroughs.md"
+  },
+  {
+    query: "Show source-validated mobile touch evidence for dense interactive routes.",
+    expectedFirstUrl: "/visual-qa/2026-08-22/mobile-touch-walkthroughs.md"
+  },
+  {
     query: "How would you rate seri.ai across the 24 dimensions right now?",
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },
