@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { classifyAskQuestion, generateRaviAnswer, inferFrameworkLayers, inferRelatedArtifacts } from "@/lib/ai";
+import { classifyAskQuestion, generateRaviAnswer, inferFrameworkLayers, inferRelatedArtifacts, type AskAnswerMode } from "@/lib/ai";
 import { isPublicSafe } from "@/lib/compliance";
 import { getRuntimeEnvironment } from "@/lib/env";
 import { clientKey, rateLimit, rateLimitedResponse, withTimeout } from "@/lib/production-guards";
@@ -114,9 +114,11 @@ export async function POST(request: Request) {
   }
 
   let answer: string;
-  let answerMode: "ai_synthesis" | "timeout_fallback" = "ai_synthesis";
+  let answerMode: AskAnswerMode = "ai_synthesis";
   try {
-    answer = await withTimeout(generateRaviAnswer({ question, context, history }), ASK_SYNTHESIS_TIMEOUT_MS, "Ask Ravi");
+    const generated = await withTimeout(generateRaviAnswer({ question, context, history }), ASK_SYNTHESIS_TIMEOUT_MS, "Ask Ravi");
+    answer = generated.answer;
+    answerMode = generated.mode;
   } catch {
     answerMode = "timeout_fallback";
     answer = [

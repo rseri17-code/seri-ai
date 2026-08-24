@@ -300,8 +300,11 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     context.length > 0
       ? primarySource.content.slice(0, 420)
       : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
-  const ravikanthContext =
-    "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis. Answer posture: reflect Ravikanth's public engineering judgment through evidence, constraints, tradeoffs, and inspectable routes; do not imitate him in first person or turn the answer into generic chatbot commentary.";
+  const asksAboutAskPersona =
+    /are you ravikanth|are you him|are you the real|are you a bot|are you an ai|are you human|who are you|pretend|persona|imitat|first person|answer posture|how should ask/.test(lower);
+  const ravikanthContext = asksAboutAskPersona
+    ? "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis. Answer posture: reflect Ravikanth's public engineering judgment through evidence, constraints, tradeoffs, and inspectable routes; do not imitate him in first person or turn the answer into generic chatbot commentary."
+    : "Ravikanth Seri is a senior infrastructure architect working on AI-native enterprise operations. His career runs from enterprise integration and API architecture through identity and platform engineering, cloud and Kubernetes modernization, and observability, into production AI systems, Agentic SRE, and the Operational Intelligence thesis published here.";
   const linkedinContext =
     /linkedin|thinking lifecycle|field note|developed argument|canonical technical asset|public signal|signal source|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)
       ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, distinguish a dynamic operational view from a static graph, and connect ops for observability with observability for AI. Thinking signal lifecycle: LinkedIn signal is not proof by itself; useful signals move from LinkedIn Post to Observation / Field Note to Developed Argument to Pattern to Framework to Canonical Technical Asset to Interactive Demonstration when justified. This prevents social-media chronology from becoming site structure and routes mature claims to /radar, /library, /patterns, /framework, the Doctrine, and /investigation-room."
@@ -386,7 +389,9 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
   ].join("\n\n");
 }
 
-export async function generateRaviAnswer({ question, context, history = [] }: GenerateArgs) {
+export type AskAnswerMode = "ai_synthesis" | "local_fallback" | "timeout_fallback";
+
+export async function generateRaviAnswer({ question, context, history = [] }: GenerateArgs): Promise<{ answer: string; mode: AskAnswerMode }> {
   const provider = process.env.AI_PROVIDER ?? "openai";
   const prompt = [
     publicSafetyInstruction(),
@@ -423,7 +428,7 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
       ]
     });
 
-    return response.content.map((block) => ("text" in block ? block.text : "")).join("");
+    return { answer: response.content.map((block) => ("text" in block ? block.text : "")).join(""), mode: "ai_synthesis" };
   }
 
   if (process.env.OPENAI_API_KEY) {
@@ -438,14 +443,10 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
       ]
     });
 
-    return response.choices[0]?.message.content ?? "I do not have enough approved public context to answer that.";
+    return { answer: response.choices[0]?.message.content ?? "I do not have enough approved public context to answer that.", mode: "ai_synthesis" };
   }
 
-  if (!context.length) {
-    return localFallbackAnswer(question, context);
-  }
-
-  return localFallbackAnswer(question, context);
+  return { answer: localFallbackAnswer(question, context), mode: "local_fallback" };
 }
 
 export async function embedText(input: string) {

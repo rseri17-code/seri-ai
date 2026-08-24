@@ -312,10 +312,9 @@
       "prompt": "What is Ravikanth building with seri.ai?",
       "expected": "Explain seri.ai as Ravikanth's public work and route to Work/Operations Room without private claims.",
       "requiredAnswerIncludes": [
-        "Ask Ravi",
-        "Ravikanth Seri's public work",
-        "GitHub",
-        "LinkedIn",
+        "senior infrastructure architect",
+        "github.com/rseri17-code",
+        "linkedin.com/in/ravikanthseri",
         "/work"
       ],
       "result": "Pass"
@@ -324,8 +323,8 @@
       "prompt": "How does Ravikanth think about Operational Intelligence?",
       "expected": "Explain public thesis and route to doctrine/reference assets.",
       "requiredAnswerIncludes": [
-        "Ask Ravi",
-        "Operational Intelligence doctrine",
+        "senior infrastructure architect",
+        "Operational Intelligence",
         "Public source",
         "Related page"
       ],
@@ -335,8 +334,7 @@
       "prompt": "What should a founder or recruiter understand about Ravikanth?",
       "expected": "Use public work, resume, background, and profile links without unsupported claims.",
       "requiredAnswerIncludes": [
-        "Ask Ravi",
-        "resume evidence",
+        "senior infrastructure architect",
         "Public profile links",
         "/resume",
         "/background",
