@@ -104,6 +104,7 @@ Recent improvements:
 - The Work page now renders a compact project-code review-record checklist, and the public-code ledger defines the evidence fields reviewers should capture: repository surface inspected, visible engineering behavior, verdict, reasoning loss or ambiguity, boundary respected, and next proof. Search retrieval now covers 67 canonical queries, including public-code review-record intent routed to `/work`.
 - Proof-backlog search intent now stays anchored to the Evidence Pack even when the query mentions public-code/project proof; separate project-code inspection and review-record queries still route to `/work`.
 - The First-Time Visitor Review Kit now explicitly asks reviewers what Ravikanth's GitHub and Sentinalai public work show without inferring private production proof, and lists Work/Public Code Proof as a review asset. Validators now guard this path in both content validation and practitioner-review validation.
+- Start Here audience paths now keep executives, recruiters, architects, engineers, and founders connected to both Ravikanth's person/work evidence and technical proof assets. `validate:content` guards against audience paths that drift into an anonymous product tour.
 
 ## Current Highest-Value Gaps
 

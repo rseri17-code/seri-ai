@@ -683,6 +683,16 @@ for (const pathItem of startHerePaths) {
   if (!String(pathItem.ask ?? "").includes("?")) {
     errors.push(`${owner}: ask must be a question`);
   }
+  if (!/Ravikanth Seri|Ravikanth's/.test(String(pathItem.care ?? ""))) {
+    errors.push(`${owner}: care must keep the audience path connected to Ravikanth Seri, not only the product category`);
+  }
+  const combinedRoutes = [...(pathItem.readFirst ?? []), ...(pathItem.matters ?? [])];
+  if (!combinedRoutes.some((route) => ["/background", "/work", "/resume"].includes(route))) {
+    errors.push(`${owner}: path must include at least one person/work evidence route`);
+  }
+  if (!combinedRoutes.some((route) => /^\/(wiki|publication-pack|patterns|projects|products|investigation-room|evals|framework|map|artifacts|radar|now|manifesto)/.test(route))) {
+    errors.push(`${owner}: path must include at least one technical proof route`);
+  }
   for (const field of ["readFirst", "matters"]) {
     if (!Array.isArray(pathItem[field]) || pathItem[field].length < 2) {
       errors.push(`${owner}: ${field} must include at least two routes`);

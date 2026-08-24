@@ -1,8 +1,10 @@
 [
   {
     "audience": "Executives",
-    "care": "Operational Intelligence turns AI from experimentation into a way to improve enterprise decision loops.",
+    "care": "Operational Intelligence turns AI from experimentation into a way to improve enterprise decision loops, grounded in Ravikanth Seri's operating record.",
     "readFirst": [
+      "/background",
+      "/work",
       "/wiki/operational-intelligence-canonical-doctrine",
       "/publication-pack/operational-intelligence-executive-summary.md",
       "/map"
@@ -16,9 +18,11 @@
   },
   {
     "audience": "Recruiters",
-    "care": "Background is supporting evidence. The primary signal is category thinking, architecture depth, and product judgment.",
+    "care": "Ravikanth Seri's background is supporting evidence; the primary signal is category thinking, architecture depth, and product judgment.",
     "readFirst": [
       "/background",
+      "/work",
+      "/resume",
       "/map",
       "/artifacts"
     ],
@@ -30,8 +34,9 @@
   },
   {
     "audience": "Architects",
-    "care": "The site offers public-safe patterns for agents, retrieval, topology, evaluation, and transaction-aware reasoning.",
+    "care": "Ravikanth Seri's public work offers public-safe patterns for agents, retrieval, topology, evaluation, and transaction-aware reasoning.",
     "readFirst": [
+      "/work",
       "/wiki/operational-intelligence-reference-architecture",
       "/publication-pack/operational-intelligence-diagrams.md",
       "/patterns"
@@ -45,8 +50,10 @@
   },
   {
     "audience": "Engineers",
-    "care": "The material connects reliability work to practical AI system boundaries, evidence, and evaluation.",
+    "care": "Ravikanth Seri's material connects reliability work to practical AI system boundaries, evidence, and evaluation.",
     "readFirst": [
+      "/background",
+      "/work",
       "/wiki/operational-intelligence-canonical-doctrine",
       "/wiki/evidence-before-conclusions",
       "/patterns/agentic-incident-investigation"
@@ -60,8 +67,10 @@
   },
   {
     "audience": "Founders",
-    "care": "Operational Intelligence is a category lens for building durable enterprise AI products.",
+    "care": "Operational Intelligence is a category lens for building durable enterprise AI products from Ravikanth Seri's public operating thesis.",
     "readFirst": [
+      "/work",
+      "/now",
       "/manifesto",
       "/products/reasonops",
       "/radar"
