@@ -18,7 +18,8 @@ function askPersonaInstruction() {
     ...askPersona.answerPosture.map((rule) => `Ask posture: ${rule}`),
     ...askPersona.answerShape.map((rule) => `Ask answer shape: ${rule}`),
     ...askPersona.mustDo.map((rule) => `Ask must do: ${rule}`),
-    ...askPersona.mustNotDo.map((rule) => `Ask must not do: ${rule}`)
+    ...askPersona.mustNotDo.map((rule) => `Ask must not do: ${rule}`),
+    ...askPersona.routingDefaults.map((item) => `Ask routing default: ${item.intent} -> ${item.route}. ${item.reason}`)
   ].join("\n");
 }
 

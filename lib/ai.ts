@@ -263,12 +263,36 @@ export function classifyAskQuestion(question: string) {
   return "general";
 }
 
+function inferSuggestedNextQuestion(question: string) {
+  const lower = normalizeQuestionIntent(question);
+  if (/github|open source|open-source|public code|repository|repositories|sentinalai/.test(lower)) {
+    return "What should a reviewer inspect in Sentinalai before inferring production proof?";
+  }
+  if (/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten|quality scorecard|rate the site|current rating|current score/.test(lower)) {
+    return "What evidence would change the current scorecard or proof backlog?";
+  }
+  if (/recruiter|founder|hire|collaborate|learn from him|who is ravikanth|professional profile|resume|background|experience|career|certification|credential|education/.test(lower)) {
+    return "Which public evidence best shows Ravikanth's career arc and architecture judgment?";
+  }
+  if (/doctrine|definition|define|canonical|boundary|boundaries|glossary|what is operational intelligence|observability|aiops|agentops/.test(lower)) {
+    return "Which boundary separates Operational Intelligence from observability and AIOps?";
+  }
+  if (/oi-room-001|operations room|investigation|incident|rca|hypothesis|root cause|contradict|missing evidence/.test(lower)) {
+    return "Which evidence in OI-ROOM-001 supports, weakens, or contradicts the leading hypothesis?";
+  }
+  if (/contact|reach out|collaboration|conversation/.test(lower)) {
+    return "What should I inspect before contacting Ravikanth?";
+  }
+  return "Show how the shared case moves through the ten-layer framework.";
+}
+
 function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
   const lower = normalizeQuestionIntent(question);
   const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education/.test(lower);
   const layers = inferFrameworkLayers(question);
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
+  const suggestedNextQuestion = inferSuggestedNextQuestion(question);
   const primarySource = context[0];
   const sourceLine = primarySource ? `${primarySource.title} (${primarySource.url})` : "No matching approved public source";
   const direct =
@@ -357,7 +381,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     "Tradeoff or limitation: this local fallback is deterministic and lexical; semantic retrieval and model-generated synthesis improve when production AI and vector search keys are configured.",
     `Related page or artifact: ${relatedArtifacts.join(", ")}.`,
     "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public knowledge base and the public-safe knowledge base.",
-    "Suggested next question: Show how the shared case moves through the ten-layer framework."
+    `Suggested next question: ${suggestedNextQuestion}`
   ].join("\n\n");
 }
 

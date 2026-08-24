@@ -52,7 +52,8 @@
         "Operational Intelligence is the reasoning layer",
         "Public source",
         "/wiki/operational-intelligence-canonical-doctrine",
-        "Explicit unknowns"
+        "Explicit unknowns",
+        "Suggested next question: Which boundary separates Operational Intelligence from observability and AIOps?"
       ],
       "result": "Pass"
     },
@@ -338,7 +339,8 @@
         "resume evidence",
         "Public profile links",
         "/resume",
-        "/background"
+        "/background",
+        "Suggested next question: Which public evidence best shows Ravikanth's career arc and architecture judgment?"
       ],
       "result": "Pass"
     },
@@ -830,7 +832,8 @@
         "Public profile links",
         "github.com/rseri17-code",
         "/work",
-        "Explicit unknowns"
+        "Explicit unknowns",
+        "Suggested next question: What should a reviewer inspect in Sentinalai before inferring production proof?"
       ],
       "result": "Pass"
     },
@@ -997,7 +1000,8 @@
         "external visual review",
         "stronger identity validation",
         "approved portrait is integrated",
-        "/wiki/operational-intelligence-evidence-pack"
+        "/wiki/operational-intelligence-evidence-pack",
+        "Suggested next question: What evidence would change the current scorecard or proof backlog?"
       ],
       "result": "Pass"
     },

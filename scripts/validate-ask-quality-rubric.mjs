@@ -70,7 +70,8 @@ for (const required of [
   "Ask posture",
   "Ask answer shape",
   "Ask must do",
-  "Ask must not do"
+  "Ask must not do",
+  "Ask routing default"
 ]) {
   expect(compliance.includes(required), `lib/compliance.ts missing Ask persona wiring: ${required}`);
 }
@@ -79,7 +80,12 @@ for (const required of [
   "Answer posture",
   "public engineering judgment",
   "do not imitate him in first person",
-  "not as Ravikanth personally and not as a generic chatbot"
+  "not as Ravikanth personally and not as a generic chatbot",
+  "inferSuggestedNextQuestion",
+  "What should a reviewer inspect in Sentinalai before inferring production proof?",
+  "Which public evidence best shows Ravikanth's career arc and architecture judgment?",
+  "What evidence would change the current scorecard or proof backlog?",
+  "Which boundary separates Operational Intelligence from observability and AIOps?"
 ]) {
   expect(ai.includes(required), `lib/ai.ts missing Ask persona fallback or prompt contract: ${required}`);
 }
