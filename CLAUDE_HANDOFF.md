@@ -2,9 +2,15 @@
 
 Last updated: 2026-08-23
 
+Current sync point before this validation contract:
+
+- `487d383 Add first-visit proof route and Claude handoff`
+
+Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
+
 ## Shared Mission
 
-Build and continuously maintain seri.ai / raviseri.com as Ravikanth Seri's definitive public professional operating system: a world-class, evidence-led technical publication and interactive knowledge platform that makes Ravikanth's career, current AI-native operations work, Operational Intelligence thesis, public artifacts, resume evidence, GitHub signal, LinkedIn thinking, and engineering judgment inspectable without self-promotion or confidential detail.
+Build and continuously maintain seri.ai / raviseri.com as Ravikanth Seri's definitive public professional operating system: an evidence-led technical publication and interactive knowledge platform that makes Ravikanth's career, current AI-native operations work, Operational Intelligence thesis, public artifacts, resume evidence, GitHub signal, LinkedIn thinking, and engineering judgment inspectable within public-safe boundaries.
 
 The working relationship must preserve:
 
@@ -61,6 +67,10 @@ If both agents work concurrently:
 Latest pushed commit before this handoff was created:
 
 - `a3c9036 Reframe Ask Ravikanth as evidence console`
+
+Latest pushed commit before this handoff was validation-gated:
+
+- `487d383 Add first-visit proof route and Claude handoff`
 
 Recent improvements:
 
@@ -183,4 +193,3 @@ Every Claude-to-Codex handoff should state:
 - What evidence supports it.
 - What evidence is missing.
 - What should not be changed.
-
