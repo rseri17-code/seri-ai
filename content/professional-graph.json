@@ -317,6 +317,98 @@
       "detailTemplate": "{fixtureCount} deterministic fixtures for grounding, refusal, citations, routing, and public safety."
     }
   ],
+  "profileDiscovery": [
+    {
+      "need": "Professional summary",
+      "primaryHref": "/background",
+      "evidenceHref": "/resume",
+      "proof": "Public-safe summary of Ravikanth Seri's enterprise systems arc, current AI-native operations focus, and source-backed resume evidence."
+    },
+    {
+      "need": "Current role and focus",
+      "primaryHref": "/now",
+      "evidenceHref": "/work",
+      "proof": "Current focus on Operational Intelligence, Agentic SRE, evaluation, replay, runtime governance, agent observability, and public proof work."
+    },
+    {
+      "need": "Career progression",
+      "primaryHref": "/background",
+      "evidenceHref": "/resume",
+      "proof": "Evolution from enterprise integration through middleware, identity, Kubernetes, observability, production AI systems, and agentic operations."
+    },
+    {
+      "need": "Experience",
+      "primaryHref": "/resume",
+      "evidenceHref": "/background",
+      "proof": "Synthesized experience blocks, architecture highlights, impact ledger, and source provenance from approved public resume and profile material."
+    },
+    {
+      "need": "Selected accomplishments",
+      "primaryHref": "/resume",
+      "evidenceHref": "/work",
+      "proof": "Accomplishments are presented as public-safe capabilities, preserved constraints, impact evidence, and inspectable artifacts rather than unsupported claims."
+    },
+    {
+      "need": "Selected work",
+      "primaryHref": "/work",
+      "evidenceHref": "/projects",
+      "proof": "Work index, project proof ledger, Operations Room, Ask Ravikanth, artifacts, and public-code boundaries show what can be inspected."
+    },
+    {
+      "need": "Technical domains",
+      "primaryHref": "/resume",
+      "evidenceHref": "/patterns",
+      "proof": "AI systems, Agentic SRE, distributed systems, observability, cloud, Kubernetes, identity, APIs, integration, reliability, and automation."
+    },
+    {
+      "need": "Leadership",
+      "primaryHref": "/background",
+      "evidenceHref": "/resume",
+      "proof": "Leadership is shown through architecture enablement, operating standards, governance decisions, stakeholder-facing technical memos, and reusable public systems."
+    },
+    {
+      "need": "Publications",
+      "primaryHref": "/library",
+      "evidenceHref": "/ideas",
+      "proof": "Library, ideas, doctrine, field notes, patterns, evidence pack, reference architecture, and publication spine organize the authored body of work."
+    },
+    {
+      "need": "GitHub",
+      "primaryHref": "https://github.com/rseri17-code",
+      "evidenceHref": "/work",
+      "proof": "GitHub and the user-authorized Sentinalai reference are treated as public code signal with explicit boundaries against production or repository-metric inference."
+    },
+    {
+      "need": "Certifications",
+      "primaryHref": "/resume",
+      "evidenceHref": "/resume",
+      "proof": "Certifications are listed with issuer, status, source class, and limits so credentials support the arc without replacing inspectable work."
+    },
+    {
+      "need": "Education",
+      "primaryHref": "/resume",
+      "evidenceHref": "/resume",
+      "proof": "Education is represented as source-backed career evidence, including degree and AI/data-science credential context where supported."
+    },
+    {
+      "need": "Resume",
+      "primaryHref": "/resume",
+      "evidenceHref": "/background",
+      "proof": "Interactive resume gives the detailed career evidence, source provenance, skills, education, certifications, and downloadable resume path."
+    },
+    {
+      "need": "LinkedIn",
+      "primaryHref": "https://www.linkedin.com/in/ravikanthseri/",
+      "evidenceHref": "/radar",
+      "proof": "LinkedIn is used as public thinking signal for posts, certifications, current building themes, thesis evolution, and radar-backed claims."
+    },
+    {
+      "need": "Contact information",
+      "primaryHref": "/contact",
+      "evidenceHref": "/background",
+      "proof": "Contact page supports public-safe collaboration, practitioner review, architecture discussion, and profile follow-up."
+    }
+  ],
   "visitorSuccessQuestions": [
     {
       "question": "Who is Ravikanth Seri?",

@@ -1199,6 +1199,49 @@ for (const [field, minCount] of [["reviewSpine", 5], ["operatingStandards", 3], 
     errors.push(`content/professional-graph.json: ${field} must include at least ${minCount} entries`);
   }
 }
+const requiredProfileDiscoveryNeeds = [
+  "Professional summary",
+  "Current role and focus",
+  "Career progression",
+  "Experience",
+  "Selected accomplishments",
+  "Selected work",
+  "Technical domains",
+  "Leadership",
+  "Publications",
+  "GitHub",
+  "Certifications",
+  "Education",
+  "Resume",
+  "LinkedIn",
+  "Contact information"
+];
+if (!Array.isArray(professionalGraph.profileDiscovery) || professionalGraph.profileDiscovery.length !== requiredProfileDiscoveryNeeds.length) {
+  errors.push(`content/professional-graph.json: profileDiscovery must include exactly ${requiredProfileDiscoveryNeeds.length} professional profile needs`);
+} else {
+  for (const requiredNeed of requiredProfileDiscoveryNeeds) {
+    if (!professionalGraph.profileDiscovery.some((item) => item.need === requiredNeed)) {
+      errors.push(`content/professional-graph.json: profileDiscovery missing "${requiredNeed}"`);
+    }
+  }
+  for (const item of professionalGraph.profileDiscovery) {
+    const owner = `content/professional-graph.json:profileDiscovery:${item.need ?? "unknown"}`;
+    for (const field of ["need", "primaryHref", "evidenceHref", "proof"]) {
+      if (!item[field]) {
+        errors.push(`${owner}: missing ${field}`);
+      }
+    }
+    if (String(item.proof ?? "").length < 90) {
+      errors.push(`${owner}: proof must explain the public-safe evidence path`);
+    }
+    for (const field of ["primaryHref", "evidenceHref"]) {
+      const href = String(item[field] ?? "");
+      if (!href.startsWith("/") && !/^https:\/\/github\.com\/rseri17-code/.test(href) && !/^https:\/\/www\.linkedin\.com\/in\/ravikanthseri\/$/.test(href)) {
+        errors.push(`${owner}: ${field} must be an internal route or approved public profile URL`);
+      }
+    }
+  }
+}
 const requiredVisitorQuestions = [
   "Who is Ravikanth Seri?",
   "What has he done professionally?",

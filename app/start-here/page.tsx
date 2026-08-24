@@ -32,7 +32,8 @@ const routeLabels: Record<string, string> = {
   "/radar": "Radar",
   "/now": "Now",
   "/contact": "Contact",
-  "https://github.com/rseri17-code": "GitHub"
+  "https://github.com/rseri17-code": "GitHub",
+  "https://www.linkedin.com/in/ravikanthseri/": "LinkedIn"
 };
 
 const reviewSpine = [
@@ -190,6 +191,33 @@ export default function StartHerePage() {
             <Link key={href} href={href} className="rounded border border-mint/30 bg-mint/10 px-3 py-2 text-sm font-semibold text-mint hover:border-mint/60">
               {label}
             </Link>
+          ))}
+        </div>
+      </Card>
+      <Card className="mb-6 border-white/15 bg-white/[0.045]">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-signal">Professional profile discovery</p>
+            <h2 className="mt-3 text-2xl font-semibold text-white">Everything a profile visitor should find in one or two interactions.</h2>
+          </div>
+          <p className="max-w-2xl text-sm leading-6 text-slate-300">
+            The profile is not hidden behind the doctrine. Each item routes to a primary page and an evidence page.
+          </p>
+        </div>
+        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {professionalGraph.profileDiscovery.map((item) => (
+            <div key={item.need} className="rounded border border-white/10 bg-black/20 p-4">
+              <h3 className="font-semibold text-white">{item.need}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{item.proof}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Link href={item.primaryHref} className="rounded border border-signal/35 px-3 py-2 text-xs font-semibold text-signal hover:border-signal/60">
+                  {labelFor(item.primaryHref)}
+                </Link>
+                <Link href={item.evidenceHref} className="rounded border border-mint/30 px-3 py-2 text-xs font-semibold text-mint hover:border-mint/60">
+                  Evidence: {labelFor(item.evidenceHref)}
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
       </Card>
