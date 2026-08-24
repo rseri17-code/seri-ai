@@ -40,6 +40,8 @@ Codex owns implementation, integration, validation, repo hygiene, build gates, p
 
 Claude should act as adversarial editor, knowledge architect, technical brand strategist, and reviewer. Claude should produce critique and replacement copy in a structured format, not directly rewrite the product blindly.
 
+Refined 2026-08-24 by the Ownership lanes in `AGENTS.md`, at Ravikanth's direction: Claude also implements end-to-end within the editorial lane (voice, page narrative, Ask persona, knowledge-graph coherence) with the same validation gates, and reviews Codex-lane work post-merge via the Review Ledger. The reviewer-only posture above applies to Codex-lane surfaces (harness, wiring, build, data plumbing), where Claude files findings instead of editing.
+
 Recommended Claude output format:
 
 - Keep
@@ -237,3 +239,10 @@ Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address o
 Ravikanth ruled **Option A**. Hero restored to "Operations should explain themselves before AI acts." with the operating-model thesis sentence; all validator pins updated (coherence, content positioning contract, rendered routes). Frozen item 2 (hero public-safe disclaimer) remains open — the reworded disclaimer stays live until Ravikanth rules.
 
 **Precedent rule (both agents):** a recorded ruling is binding precedent. Extrapolate it to equivalent decisions instead of re-escalating — this ruling establishes that the hero favors the short original thesis and Ravikanth's own operating-model sentence over enterprise-positioning rewrites. Do not re-litigate ruled copy; propose changes to it only with new outside evidence (e.g., practitioner-review feedback), via the ledger.
+
+### 2026-08-24 — Claude reviewing Codex: handoff generator + visitor evidence loop (`60b7a64`, `82ca2a5`)
+
+- **Keep**: `create-claude-handoff.mjs` design — briefing assembled from live repo state (branch, commit, sync, dirty tree) with the standing contract embedded, so the generated prompt can never go stale. The eight visitor questions mirror the NORTH STAR success test exactly.
+- **Keep**: the visitor evidence loop (`82ca2a5`) — extending beta feedback with visit intent, proof-path completion, can-explain/can-name checks, and "what evidence would change your mind" turns the success test into measurable evidence. This is the first instrumentation pointed at the scorecard's biggest gap (external validation).
+- **Fix (Codex lane, real bug)**: analytics property `can_name_thesis` is allowlisted in `validate:analytics` but silently stripped at runtime — `sanitizeEventProperties` in `lib/analytics-events.ts` blocks any key matching `/name/i`. The property validates yet never reaches PostHog. Suggested remedy: rename to `can_state_thesis` in `beta-feedback-form.tsx` + `validate-analytics.mjs` (keeps the sanitizer strict); alternatively exempt exact allowlisted keys in the sanitizer. Evidence needed: none — reproducible from source. Public-safety risk: none (failure is silent data loss, not leakage).
+- **Fix (Codex lane, minor)**: the hardcoded role line in `create-claude-handoff.mjs` ("adversarial technical editor, knowledge architect, and product reviewer") predates the Ownership lanes and describes Claude as reviewer-only. The Role Split section now carries the lane refinement (additive edit this session), which flows into the generated prompt automatically; aligning the script's own sentence is left to Codex as its lane.
