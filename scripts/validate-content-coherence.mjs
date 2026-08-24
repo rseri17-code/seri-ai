@@ -428,7 +428,7 @@ for (const required of [
   "First read in order",
   "This sequence gives a new visitor the shortest path from person to evidence to doctrine to interactive system.",
   "10-minute proof route",
-  "A serious visitor should leave with a defensible read.",
+  "Person, work, thesis, artifact, evidence.",
   "operator, work, thesis, artifact, evidence",
   "Establish the operator",
   "Inspect the operating record",

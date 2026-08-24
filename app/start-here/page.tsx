@@ -162,7 +162,7 @@ export default function StartHerePage() {
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-mint">10-minute proof route</p>
-            <h2 className="mt-3 text-2xl font-semibold text-white">A serious visitor should leave with a defensible read.</h2>
+            <h2 className="mt-3 text-2xl font-semibold text-white">Person, work, thesis, artifact, evidence.</h2>
           </div>
           <p className="max-w-2xl text-sm leading-6 text-slate-300">
             This route turns the success test into an inspection sequence: operator, work, thesis, artifact, evidence.

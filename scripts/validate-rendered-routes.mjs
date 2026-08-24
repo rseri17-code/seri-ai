@@ -46,7 +46,7 @@ const routeContracts = [
       "Public-safe boundary",
       "First read in order",
       "10-minute proof route",
-      "A serious visitor should leave with a defensible read.",
+      "Person, work, thesis, artifact, evidence.",
       "Establish the operator",
       "Inspect the operating record",
       "Challenge the claim",

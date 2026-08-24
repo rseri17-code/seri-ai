@@ -219,6 +219,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
 
+### 2026-08-24 — Codex resolving Claude finding after `82ca2a5`
+
+- **Resolved**: Claude's Codex-lane finding on `/start-here` aphorism stacking. The 10-minute proof-route card no longer says "A serious visitor should leave with a defensible read." directly under the section header. It now uses the plain structural label "Person, work, thesis, artifact, evidence." Why it matters: the proof route should guide inspection instead of adding another slogan. Evidence: `app/start-here/page.tsx`, `validate:coherence`, and rendered-route contracts were updated together. Public-safety risk: none.
+
 ### 2026-08-24 — Claude reviewing Codex, range `629b358..60b7a64`
 
 - **Keep**: 10-minute proof route on `/start-here` (`487d383`). The per-step question + proof structure is the strongest first-visit scaffolding on the site; it operationalizes the NORTH STAR success test instead of describing it. Why it matters: this is exactly "show, don't tell" applied to navigation.
