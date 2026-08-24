@@ -1252,6 +1252,8 @@ if (!Array.isArray(publicCode.observedPublicStructure) || publicCode.observedPub
   errors.push("content/public-code.json: observedPublicStructure must include at least three public-safe structure observations");
 } else if (!/private deployment|production adoption|live incident outcomes|public-safe/i.test(publicCode.observedPublicStructure.join(" "))) {
   errors.push("content/public-code.json: observedPublicStructure must preserve public-safe interpretation boundaries");
+} else if (/\b(one|two|three|four|five|six|seven|eight|nine|ten|\d+)\s+(agent notes|investigation skills|playbook configs|eval scenario folders|files|folders|commits|stars|contributors)\b/i.test(publicCode.observedPublicStructure.join(" "))) {
+  errors.push("content/public-code.json: observedPublicStructure must not publish unvalidated repository inventory counts as proof");
 }
 if (!Array.isArray(publicCode.entries) || publicCode.entries.length < 3) {
   errors.push("content/public-code.json: entries must include at least three inspectable public-code signals");

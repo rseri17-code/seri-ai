@@ -29,7 +29,7 @@
   ],
   "observedPublicStructure": [
     "Public README and agent specification describe an incident investigation pipeline, deterministic playbooks, policy gates, memory, receipts, observability, and optional model-assisted refinement.",
-    "Local public checkout exposes five agent notes, ten investigation skills, ten playbook configs, five eval scenario folders, and receipt/wiki-style artifacts.",
+    "The authorized public repository reference should be inspected for agent notes, investigation skill files, playbook configuration, eval scenarios, receipt-shaped artifacts, memory/wiki structure, and public-safe architecture notes.",
     "Public-safe interpretation: architectural signal about operational agents, not proof of private deployment, production adoption, or live incident outcomes."
   ],
   "entries": [
