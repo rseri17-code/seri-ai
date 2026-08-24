@@ -18,7 +18,7 @@ const routeContracts = [
       "preserve context",
       "separate evidence from inference",
       "keep human judgment in control",
-      "The work is inspectable without private systems",
+      "Everything here is inspectable without access to private systems",
       "Field origin",
       "the team is rebuilding who owns this,",
       "Begin with the thesis",
@@ -29,8 +29,8 @@ const routeContracts = [
     ],
     before: [
       ["Begin with the thesis", "Open the Operations Room"],
-      ["Begin with the thesis", "The work is inspectable without private systems"],
-      ["Open the Operations Room", "The work is inspectable without private systems"],
+      ["Begin with the thesis", "Everything here is inspectable without access to private systems"],
+      ["Open the Operations Room", "Everything here is inspectable without access to private systems"],
       ["Begin with the thesis", "Field origin"],
       ["Open the Operations Room", "Field origin"]
     ]

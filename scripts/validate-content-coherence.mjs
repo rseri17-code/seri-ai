@@ -247,7 +247,7 @@ for (const required of [
   "Operations should explain themselves before AI acts.",
   "Ravikanth Seri is building a public operating model for AI-native operations",
   "preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control",
-  "The work is inspectable without private systems",
+  "Everything here is inspectable without access to private systems",
   "15+ years across distributed platforms, reliability, and operational workflows",
   "agent architecture, evaluation, retrieval, and runtime governance",
   "Reference system",

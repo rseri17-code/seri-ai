@@ -149,7 +149,7 @@ expect(
   "/: homepage should present the thesis before deeper technical paths for first-time visitors"
 );
 expect(
-  homePage.indexOf("Begin with the thesis") < homePage.indexOf("The work is inspectable without private systems"),
+  homePage.indexOf("Begin with the thesis") < homePage.indexOf("Everything here is inspectable without access to private systems"),
   "/: homepage primary thesis CTA must render before the inspection/trust paragraph"
 );
 expect(
@@ -157,7 +157,7 @@ expect(
   "/: homepage primary thesis CTA must render before the field-origin proof module"
 );
 expect(
-  homePage.indexOf("Open the Operations Room") < homePage.indexOf("The work is inspectable without private systems"),
+  homePage.indexOf("Open the Operations Room") < homePage.indexOf("Everything here is inspectable without access to private systems"),
   "/: homepage primary CTAs must render before the inspection/trust paragraph so mobile visitors see an action in the first viewport"
 );
 expect(

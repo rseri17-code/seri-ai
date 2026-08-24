@@ -359,7 +359,7 @@ for (const required of [
   "separate evidence from inference",
   "expose uncertainty",
   "keep human judgment in control",
-  "inspectable without private systems"
+  "inspectable without access to private systems"
 ]) {
   if (!homePageSource.includes(required)) {
     errors.push(`app/page.tsx: homepage first impression missing required positioning phrase: ${required}`);

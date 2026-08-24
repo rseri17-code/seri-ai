@@ -75,7 +75,7 @@ export default function Home() {
               </TrackedLink>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-              The work is inspectable without private systems: synthetic cases, cited sources, explicit uncertainty, and public-safe engineering artifacts.
+              Everything here is inspectable without access to private systems.
             </p>
             <div className="mt-5 rounded-lg border border-white/10 bg-black/25 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
