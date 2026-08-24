@@ -43,7 +43,7 @@ export function BetaFeedbackForm() {
         visit_intent: String(form.get("visitIntent") || "unspecified"),
         proof_path_completed: String(form.get("proofPathCompleted") || "unspecified"),
         can_explain_ravikanth: String(form.get("canExplainRavikanth") || "unspecified"),
-        can_name_thesis: String(form.get("canNameThesis") || "unspecified"),
+        can_state_thesis: String(form.get("canNameThesis") || "unspecified"),
         confidence_level: String(form.get("confidenceLevel") || "unspecified"),
         latency_ms: Math.round(performance.now() - startedAt)
       });
@@ -59,7 +59,7 @@ export function BetaFeedbackForm() {
         visit_intent: String(form.get("visitIntent") || "unspecified"),
         proof_path_completed: String(form.get("proofPathCompleted") || "unspecified"),
         can_explain_ravikanth: String(form.get("canExplainRavikanth") || "unspecified"),
-        can_name_thesis: String(form.get("canNameThesis") || "unspecified"),
+        can_state_thesis: String(form.get("canNameThesis") || "unspecified"),
         confidence_level: String(form.get("confidenceLevel") || "unspecified"),
         latency_ms: Math.round(performance.now() - startedAt)
       });
