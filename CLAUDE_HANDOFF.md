@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `285fb67 Add external review quorum protocol`
+- `fcba2bd Capture practitioner review evidence fields`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `285fb67 Add external review quorum protocol`
+- `fcba2bd Capture practitioner review evidence fields`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `285fb67 Add external review quorum protocol`
+- `fcba2bd Capture practitioner review evidence fields`
 
 Recent improvements:
 
@@ -95,6 +95,7 @@ Recent improvements:
 - Ask scorecard evidence now reflects 108 passing fixtures, the versioned persona contract, intent-aware follow-up questions, and review-quorum routing, and `validate:ask-quality` guards the fixture count against drifting from the eval report.
 - Product Excellence report current scorecard now reflects 108 Ask fixtures, persona/follow-up contracts, review-quorum routing, current accessibility coverage, latest performance numbers, and integrated portrait provenance. `validate:deployment` and `validate:handoff` now guard the report and handoff against stale evidence claims.
 - The Practitioner Review Packet now defines a minimum external evidence quorum: at least five public-safe reviews across SRE/reliability, architecture, AI/governance, executive/product, and recruiter/hiring perspectives, plus a skeptical or mixed verdict and explicit revision triggers for person-work-thesis confusion or OI/observability/AIOps boundary failure.
+- Practitioner review capture now records artifacts inspected and review disposition as first-class fields in the Contact form, contact API metadata, Supabase `practitioner_reviews` view, admin dashboard contract, public packet, README, and validators.
 
 ## Current Highest-Value Gaps
 
@@ -225,6 +226,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex strengthening practitioner review capture
+
+- **Resolved**: The external review loop can now distinguish whether a practitioner actually inspected enough public artifacts and whether the feedback is Keep, Fix, Clarify, Remove, or Needs Evidence. Added `artifactsInspected` and `reviewDisposition` to the Contact practitioner-review form, contact API schema, persisted metadata, Supabase `practitioner_reviews` view, admin operations contract, public review packet, README, and validation gates. Analytics captures only `review_disposition` as safe categorical metadata; artifact lists remain stored review content, not analytics event metadata. Evidence: `app/contact/page.tsx`, `app/api/contact/route.ts`, `supabase/schema.sql`, `content/practitioner-review-packet.json`, `public/publication-pack/ravikanth-seri-practitioner-review-packet.md`, `app/admin/page.tsx`, `README.md`, `scripts/validate-contracts.mjs`, `scripts/validate-practitioner-review-packet.mjs`, `scripts/validate-analytics.mjs`, `scripts/validate-api-contracts.mjs`, `WORLD_CLASS_SCORECARD.md`, `npm test`, `npm run build`, `npm run lint`, `npm run scan:public-safety`, `git diff --check`. Public-safety risk: controlled; the new analytics field is categorical, and free-text artifact evidence stays in the contact review record.
 
 ### 2026-08-24 — Codex adding external review quorum protocol
 
