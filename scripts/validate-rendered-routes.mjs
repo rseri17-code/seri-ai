@@ -17,7 +17,7 @@ const routeContracts = [
       "Operational Intelligence reference system",
       "public operating model for AI-native operations",
       "Field origin",
-      "teams lose shared context",
+      "the team is rebuilding who owns this,",
       "Begin with the thesis",
       "Open the Operations Room",
       "Visitor Proof Map",
@@ -26,8 +26,8 @@ const routeContracts = [
     ],
     before: [
       ["Begin with the thesis", "Open the Operations Room"],
-      ["Begin with the thesis", "The material is public-safe by design"],
-      ["Open the Operations Room", "The material is public-safe by design"]
+      ["Begin with the thesis", "Field origin"],
+      ["Open the Operations Room", "Field origin"]
     ]
   },
   {

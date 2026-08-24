@@ -12,7 +12,7 @@ const proofStrip = [
   ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
   ["Architecture", "Contracts, schemas, state machines, approval gates, and conformance levels."],
   ["Operations Room", "A public-safe investigation instrument for evidence, replay, hypotheses, and review."],
-  [`${homeEvalReport.fixtures.length}/${homeEvalReport.fixtures.length}`, "Ask Ravi trust fixtures currently passing."]
+  ["Ask Ravi", "An AI assistant over the public work; how it is tested is itself public at /evals."]
 ];
 
 
@@ -74,19 +74,20 @@ export default function Home() {
                 Read the doctrine
               </TrackedLink>
             </div>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-              The material is public-safe by design: synthetic cases, cited sources, explicit uncertainty, and no private operational details.
-            </p>
             <div className="mt-5 rounded-lg border border-white/10 bg-black/25 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                 <ProfileMark />
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Ravikanth Seri</p>
                   <h2 className="mt-2 text-2xl font-semibold leading-7 text-white">
-                    Enterprise infrastructure to AI-native operations, expressed as reusable public architecture.
+                    I build the part of operations that keeps context alive when judgment matters most.
                   </h2>
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
-                    {professionalGraph.identity.currentFocus}
+                    Fifteen-plus years running distributed systems in regulated financial services showed the same failure on repeat: at the worst moment, the team is rebuilding who owns this,
+                    what changed, and what depends on it. seri.ai is where I work out, in public, how to fix that before AI is allowed to act.
+                  </p>
+                  <p className="mt-2 max-w-2xl text-xs leading-5 text-slate-500">
+                    Current focus: {professionalGraph.identity.currentFocus}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {professionalGraph.proofLinks.slice(0, 3).map((item) => (
@@ -107,9 +108,6 @@ export default function Home() {
                   </div>
                   <div className="mt-5 border-t border-white/10 pt-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Field origin</p>
-                  <h2 className="mt-2 text-xl font-semibold leading-7 text-white">
-                    The thesis is grounded in a practical failure pattern: teams lose shared context at the exact moment operational judgment matters most.
-                  </h2>
                   <div className="mt-4 grid gap-3 md:grid-cols-3">
                     {homeOperatorOriginProof.map(([label, proof]) => (
                       <div key={label} className="rounded border border-white/10 bg-white/[0.035] p-3">
@@ -146,9 +144,6 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
-                The thesis is narrow on purpose: AI should help operators reason from evidence, preserve uncertainty, and keep consequential change under accountable human control.
-              </p>
             </div>
             <div className="mt-5 hidden gap-2 lg:grid lg:grid-cols-3">
               {homeHeroBuilderProof.map(([label, proof]) => (
