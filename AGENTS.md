@@ -19,3 +19,19 @@ Both agents serve one mission and one protocol:
 - If both agents touched the same surface, reconcile around `NORTH_STAR.md`, not around authorship. Never silently revert the other agent's deliberate change — state the reconciliation rationale in the commit message and in `CLAUDE_HANDOFF.md`.
 - Public-safety status unclear → flag for Ravikanth in `CLAUDE_HANDOFF.md`. Do not auto-publish.
 - Merging `claude/*` work into `main` is done by Ravikanth or with his explicit go-ahead.
+
+## Ownership lanes
+
+Either agent may implement end-to-end inside its own lane; the other agent reviews. Mechanical follow-ons of your own change (validator pin updates for your own copy) are in-lane wherever they live.
+
+- **Codex lane**: the validation harness and gates, build and deployment configuration, API routes and library wiring (search, retrieval, AI providers, Supabase), content-data plumbing, repo hygiene and scripts, performance budgets.
+- **Claude lane**: editorial voice and copy on public surfaces, page-level narrative and information architecture judgments, benchmark and red-team reviews, knowledge-graph editorial coherence, Ask Ravi persona and product framing.
+- **Cross-lane**: substantive changes in the other agent's lane go on a branch with a review request in the Review Ledger; the lane owner (or Ravikanth) merges.
+
+## Cross-review protocol
+
+1. At session start: `git fetch`, diff `main` since your last recorded sync point, and review the other agent's changes in that range using Keep / Fix / Replace with / Why it matters / Evidence needed / Public-safety risk. Append findings to the Review Ledger in `CLAUDE_HANDOFF.md`.
+2. Findings filed against your lane: address them, or answer why not, in your next session. No entry stays unanswered for more than one session.
+3. Post-merge async review is the default rhythm. Substantive cross-lane work is reviewed pre-merge via the ledger.
+4. **Oscillation brake**: if the same copy or decision changes direction twice, freeze it, present both versions side by side in the ledger for Ravikanth, and neither agent touches it until he rules.
+5. Reviews argue from `NORTH_STAR.md`, never from authorship.

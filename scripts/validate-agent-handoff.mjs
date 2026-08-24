@@ -18,8 +18,9 @@ const claudeHandoffScript = fs.readFileSync(claudeHandoffScriptPath, "utf8");
 for (const missionFile of ["NORTH_STAR.md", "AGENTS.md", "CLAUDE.md"]) {
   expect(fs.existsSync(path.join(root, missionFile)), `${missionFile} missing: both agents depend on it for shared mission context`);
 }
+expect(handoff.includes("## Review Ledger"), "CLAUDE_HANDOFF.md missing Review Ledger section for cross-agent reviews");
 for (const [file, references] of [
-  ["AGENTS.md", ["NORTH_STAR.md", "CLAUDE_HANDOFF.md", "npm test", "npm run build"]],
+  ["AGENTS.md", ["NORTH_STAR.md", "CLAUDE_HANDOFF.md", "npm test", "npm run build", "## Ownership lanes", "## Cross-review protocol", "Oscillation brake"]],
   ["CLAUDE.md", ["NORTH_STAR.md", "AGENTS.md", "CLAUDE_HANDOFF.md"]]
 ]) {
   const filePath = path.join(root, file);

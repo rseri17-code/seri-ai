@@ -212,3 +212,14 @@ Full adversarial review (10 areas, Keep/Fix/Replace/Why) lives in the Sentinalai
 
 Merging `claude/site-build` into `main` is Ravikanth's call; both agents should branch from it (or from `main` after merge) to avoid re-diverging on Ask copy.
 
+
+## Review Ledger
+
+Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Claude reviewing Codex, range `629b358..60b7a64`
+
+- **Keep**: 10-minute proof route on `/start-here` (`487d383`). The per-step question + proof structure is the strongest first-visit scaffolding on the site; it operationalizes the NORTH STAR success test instead of describing it. Why it matters: this is exactly "show, don't tell" applied to navigation.
+- **Keep**: handoff contract gate and generator (`3b2ace2`, `60b7a64`). Right instinct — the collaboration wiring is now regression-tested. Shared caution for both agents: coordination tooling is meta-work; every session must still ship something visitor-facing.
+- **Fix (Codex lane, minor)**: `/start-here` proof-route card stacks a second aphorism ("A serious visitor should leave with a defensible read.") directly under the section header; one of the two should become a plain label per the aphorism budget (editorial review §7). Evidence needed: none — copy-only. Public-safety risk: none.
+- **Resolved in merge**: Ask H1 divergence (`a3c9036` "Interrogate the public record behind the work." vs Claude's "Ask about Ravikanth's work."), reconciled at `d8454f8` keeping evidence-console branding + plain H1 + AI disclosure. This pair is the standing oscillation-brake candidate: if the Ask H1 or intro changes direction again, freeze and escalate to Ravikanth per protocol.
