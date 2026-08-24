@@ -250,7 +250,8 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
           terms.filter((term) => publicationSpineTerms.has(term)).length >= 4)
           ? 80
           : 0;
-      const workBoost = source.url === workUrl && terms.some((term) => workTerms.has(term)) ? 10 : 0;
+      const asksForProofBacklog = /proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven/.test(lowerQuery);
+      const workBoost = source.url === workUrl && !asksForProofBacklog && terms.some((term) => workTerms.has(term)) ? 10 : 0;
       const startHereBoost =
         source.url === startHereUrl &&
         /start here|visitor|first destination|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lowerQuery)
@@ -316,6 +317,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
           : 0;
       const projectProofBoost =
         source.url === workUrl &&
+        !asksForProofBacklog &&
         /project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|stronger public project proof/.test(lowerQuery)
           ? 85
           : 0;
@@ -337,7 +339,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         ["diagram", "comparison", "decision", "printable", "walkthrough", "glossary", "executive"].filter((term) => lowerQuery.includes(term)).length >= 3
           ? 50
           : 0;
-      const publicProfileBoost = source.url === workUrl && /public code|open source|open-source|github|linkedin|public proof|engineering portfolio/.test(lowerQuery) ? 10 : 0;
+      const publicProfileBoost = source.url === workUrl && !asksForProofBacklog && /public code|open source|open-source|github|linkedin|public proof|engineering portfolio/.test(lowerQuery) ? 10 : 0;
       const thesisRadarBoost =
         source.url === radarUrl &&
         /thesis radar|market signal|why now|linkedin thesis|ops for observability|observability for ai|ai observability|agentops|agentic telemetry|aiops evaluation|opentelemetry|genai semantics|operational readiness|enterprise context layer|context acquisition tax|harness over model|shared operational reasoning|testable claim|public thought process/.test(lowerQuery)
@@ -350,10 +352,11 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
           : 0;
       const askRavikanthBoost =
         source.url === workUrl &&
+        !asksForProofBacklog &&
         /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|public work|professional achievements/.test(lowerQuery)
           ? 16
           : 0;
-      const directReferenceBoost = directReferenceBoosts.some(([pattern, url]) => source.url === url && pattern.test(lowerQuery)) ? 40 : 0;
+      const directReferenceBoost = directReferenceBoosts.some(([pattern, url]) => source.url === url && !(asksForProofBacklog && url === workUrl) && pattern.test(lowerQuery)) ? 40 : 0;
       const score =
         baseScore +
         canonicalDefinitionBoost +

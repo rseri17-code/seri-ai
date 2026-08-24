@@ -865,6 +865,8 @@ for (const required of [
   "portrait intake contract",
   "/identity/portrait-intake.md",
   "approved portrait rendered on home, background, and resume",
+  "identity-asset proof, and public-code/project proof",
+  "public-code review record fields",
   "Execute the proof backlog"
 ]) {
   expect(qualityScorecardContractSource.includes(required), `Quality scorecard missing contract: ${required}`);

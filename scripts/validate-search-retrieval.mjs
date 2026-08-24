@@ -163,7 +163,7 @@ const cases = [
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },
   {
-    query: "Where is the proof backlog for practitioner review control comparison live beta telemetry visual QA and identity asset?",
+    query: "Where is the current proof backlog for remaining evidence gaps practitioner review control comparison live beta telemetry visual QA identity asset and public code project proof?",
     expectedFirstUrl: "/wiki/operational-intelligence-evidence-pack"
   },
   {
