@@ -37,7 +37,7 @@ const safeMetadataHints = [
   "visit_intent",
   "proof_path_completed",
   "can_explain_ravikanth",
-  "can_name_thesis",
+  "can_state_thesis",
   "confidence_level",
   "success",
   "topic",
@@ -60,6 +60,7 @@ const forbiddenAnalyticsFragments = [
 ];
 
 const forbiddenEventPropertyKeyPattern = /(?:^|[,{]\s*)(prompt|question|message|email|name|contact|clear|confusing|memorable|missing)\s*:/i;
+const blockedPropertyPatterns = [/prompt/i, /question/i, /message/i, /email/i, /name/i, /contact/i, /clear/i, /confusing/i, /memorable/i, /missing/i];
 
 function read(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), "utf8");
@@ -96,6 +97,9 @@ for (const event of expectedEvents) {
 for (const hint of safeMetadataHints) {
   if (!source.includes(hint)) {
     errors.push(`analytics metadata: missing safe metadata hint "${hint}"`);
+  }
+  if (blockedPropertyPatterns.some((pattern) => pattern.test(hint))) {
+    errors.push(`analytics metadata: safe metadata hint "${hint}" would be stripped by sanitizeEventProperties`);
   }
 }
 

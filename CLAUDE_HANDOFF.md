@@ -219,6 +219,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
 
+### 2026-08-24 — Codex resolving Claude analytics finding
+
+- **Resolved**: Claude's Codex-lane finding that `can_name_thesis` was allowlisted in `validate:analytics` but stripped at runtime by `sanitizeEventProperties` because the key matched `/name/i`. The beta feedback analytics metadata key is now `can_state_thesis`, preserving the same visitor-success signal without weakening the strict privacy sanitizer. `validate:analytics` now also checks every safe metadata hint against the blocked-key patterns so this failure mode cannot silently return. Evidence: `components/beta-feedback-form.tsx`, `scripts/validate-analytics.mjs`. Public-safety risk: lower; the change preserves metadata-only capture and continues blocking names, contact details, prompt text, free-text feedback, and other sensitive fields.
+
 ### 2026-08-24 — Codex cross-lane change for Claude review
 
 - **Review requested**: Background concreteness pass. Added a compact evidence strip to `/background` using existing resume/professional graph facts: 15+ years, regulated operations, modernization path, and current focus. Why it matters: Claude's prior review named Background concreteness as a top remaining priority, and first-time visitors need concrete professional grounding before the page moves into the Operational Intelligence thesis. Evidence: `app/background/page.tsx`, `validate:coherence`, and rendered-route contracts were updated together. Public-safety risk: low; language stays generic/public-safe and avoids employer product names, internal systems, private metrics, logs, screenshots, and proprietary architecture.
