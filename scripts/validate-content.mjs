@@ -14,6 +14,7 @@ const projectsPath = path.join(root, "content", "projects.json");
 const productsPath = path.join(root, "content", "products.json");
 const architectureCardsPath = path.join(root, "content", "architecture-cards.json");
 const thesisRadarPath = path.join(root, "content", "thesis-radar.json");
+const thesisRadarLifecyclePath = path.join(root, "content", "thesis-radar-lifecycle.json");
 const categoryBriefPath = path.join(root, "content", "category-brief.json");
 const nowPath = path.join(root, "content", "now.json");
 const startHerePath = path.join(root, "content", "start-here.json");
@@ -52,6 +53,7 @@ const requiredProjectFields = ["slug", "name", "summary", "status", "capabilitie
 const requiredProductFields = ["slug", "name", "tagline", "summary", "relationship", "whatItIs", "whyItMatters", "capabilities", "architecture", "useCases", "principles", "not", "roadmap"];
 const requiredArchitectureCardFields = ["title", "pattern", "tags"];
 const requiredRadarFields = ["title", "updatedAt", "thesis", "framing", "proofChain", "trends"];
+const requiredRadarLifecycleFields = ["stage", "role", "promotionRule", "output", "evidenceHref"];
 const requiredBriefFields = ["title", "subtitle", "audience", "thesis", "whyNow", "contrarianInsight", "wedge", "proofPoints", "whatToRemember", "nextMoves"];
 const requiredNowFields = ["currentFocus", "building", "studying", "writing", "avoiding", "questions", "researchLedger"];
 const requiredNowResearchFields = ["question", "whyItMatters", "currentEvidence", "nextProof", "wouldChangeMind", "href"];
@@ -586,6 +588,7 @@ for (const card of architectureCards) {
 }
 
 const thesisRadar = requireJsonObject(thesisRadarPath, "content/thesis-radar.json");
+const thesisRadarLifecycle = requireJsonArray(thesisRadarLifecyclePath, "content/thesis-radar-lifecycle.json", 7, { requireSlug: false });
 validateRequiredFields("content/thesis-radar.json", thesisRadar, requiredRadarFields, { requireSlug: false });
 if (!/^\d{4}-\d{2}-\d{2}$/.test(thesisRadar.updatedAt ?? "")) {
   errors.push("content/thesis-radar.json: updatedAt must be YYYY-MM-DD");
@@ -606,6 +609,47 @@ if (!Array.isArray(thesisRadar.proofChain) || thesisRadar.proofChain.length < 4)
     if (!String(item.falsificationQuestion ?? "").includes("?") && !String(item.falsificationQuestion ?? "").startsWith("If ")) {
       errors.push(`${owner}: falsificationQuestion must be testable`);
     }
+  }
+}
+const requiredRadarLifecycleStages = [
+  "LinkedIn Post",
+  "Observation / Field Note",
+  "Developed Argument",
+  "Pattern",
+  "Framework",
+  "Canonical Technical Asset",
+  "Interactive Demonstration when justified"
+];
+if (thesisRadarLifecycle.length !== requiredRadarLifecycleStages.length) {
+  errors.push(`content/thesis-radar-lifecycle.json: must include exactly ${requiredRadarLifecycleStages.length} stages`);
+} else {
+  const internalLifecycleHrefs = new Set(["/ideas", "/library", "/patterns", "/framework", "/wiki/operational-intelligence-canonical-doctrine", "/investigation-room"]);
+  thesisRadarLifecycle.forEach((item, index) => {
+    const owner = `content/thesis-radar-lifecycle.json:${item.stage ?? index}`;
+    validateRequiredFields(owner, item, requiredRadarLifecycleFields, { requireSlug: false });
+    if (item.stage !== requiredRadarLifecycleStages[index]) {
+      errors.push(`${owner}: expected stage ${requiredRadarLifecycleStages[index]}`);
+    }
+    if (String(item.role ?? "").length < 90) {
+      errors.push(`${owner}: role must be a concrete stage responsibility`);
+    }
+    if (String(item.promotionRule ?? "").length < 90) {
+      errors.push(`${owner}: promotionRule must be concrete enough to govern publishing`);
+    }
+    if (item.evidenceHref !== "https://www.linkedin.com/in/ravikanthseri/" && !internalLifecycleHrefs.has(item.evidenceHref)) {
+      errors.push(`${owner}: evidenceHref must be an approved LinkedIn or internal route`);
+    }
+    const posture = `${item.role ?? ""} ${item.promotionRule ?? ""}`;
+    if (/proves?|validates?|confirms?/i.test(posture)) {
+      errors.push(`${owner}: lifecycle text must not overstate evidence posture`);
+    }
+  });
+  const lifecycleText = thesisRadarLifecycle.map((item) => `${item.role} ${item.promotionRule}`).join(" ");
+  if (!lifecycleText.includes("not a source of proof by itself")) {
+    errors.push("content/thesis-radar-lifecycle.json: must state that LinkedIn is not proof by itself");
+  }
+  if (!lifecycleText.includes("without importing social-media chronology")) {
+    errors.push("content/thesis-radar-lifecycle.json: must prevent social-media chronology from becoming site structure");
   }
 }
 if (!Array.isArray(thesisRadar.trends) || thesisRadar.trends.length < 8) {

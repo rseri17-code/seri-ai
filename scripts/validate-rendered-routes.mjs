@@ -83,6 +83,11 @@ const routeContracts = [
       "Harness over model",
       "Shared operational reasoning",
       "Public thought process",
+      "Thinking signal lifecycle",
+      "LinkedIn Post",
+      "Observation / Field Note",
+      "Canonical Technical Asset",
+      "Interactive Demonstration when justified",
       "Evidence posture"
     ],
     before: [

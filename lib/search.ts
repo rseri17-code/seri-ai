@@ -45,6 +45,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/(visual qa|mobile qa).*(screenshot|viewport|evidence)|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/, visualQaUrl],
   [/visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/, startHereUrl],
   [/certification|credential|education|degree|aws solutions architect|kubernetes administrator|data scientist|artificial intelligence associate|datapower|university of new haven|north carolina state/, resumeUrl],
+  [/thinking lifecycle|linkedin post.*field note|field note.*pattern.*framework|canonical technical asset.*interactive demonstration/, radarUrl],
   [/project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|stronger public project proof/, workUrl],
   [/evidence pack markdown|falsification criteria|reviewer-run worksheet|reviewer run worksheet|evidence ledger entry|dimension verdicts/, "/publication-pack/operational-intelligence-evidence-pack.md"],
   [/publication pack pdf|download.*publication|shareable pdf.*diagram/, "/downloads/operational-intelligence-publication-pack.pdf"],
@@ -342,7 +343,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const publicProfileBoost = source.url === workUrl && !asksForProofBacklog && /public code|open source|open-source|github|linkedin|public proof|engineering portfolio/.test(lowerQuery) ? 10 : 0;
       const thesisRadarBoost =
         source.url === radarUrl &&
-        /thesis radar|market signal|why now|linkedin thesis|ops for observability|observability for ai|ai observability|agentops|agentic telemetry|aiops evaluation|opentelemetry|genai semantics|operational readiness|enterprise context layer|context acquisition tax|harness over model|shared operational reasoning|testable claim|public thought process/.test(lowerQuery)
+        /thesis radar|thinking lifecycle|linkedin post|field note|developed argument|canonical technical asset|signal source|market signal|why now|linkedin thesis|ops for observability|observability for ai|ai observability|agentops|agentic telemetry|aiops evaluation|opentelemetry|genai semantics|operational readiness|enterprise context layer|context acquisition tax|harness over model|shared operational reasoning|testable claim|public thought process/.test(lowerQuery)
           ? 60
           : 0;
       const controlComparisonBoost =

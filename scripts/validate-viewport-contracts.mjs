@@ -106,7 +106,7 @@ const routeContracts = [
       "grid min-w-0 gap-4",
       "className=\"min-w-0\"",
       "text-base leading-7 text-slate-200 md:text-xl md:leading-8",
-      "text-xl font-semibold leading-7 text-white md:text-2xl md:leading-8",
+      "text-xl font-semibold leading-7 text-white",
       "Thesis spine",
       "Evidence posture"
     ]

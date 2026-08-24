@@ -219,6 +219,10 @@ const cases = [
     expectedFirstUrl: "/radar"
   },
   {
+    query: "Where is the LinkedIn Post to field note to pattern to framework thinking lifecycle?",
+    expectedFirstUrl: "/radar"
+  },
+  {
     query: "Where is the public thought process for Enterprise Context Layer Context Acquisition Tax and harness over model?",
     expectedFirstUrl: "/radar"
   },

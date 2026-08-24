@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, askLiveReviewPacket, contentRegistry, identityAsset, keyboardAccessibilityWalkthroughs, mobileTouchWalkthroughs, nowPage, patterns, portraitIntake, practitionerReviewPacket, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
+import { articles, askLiveReviewPacket, contentRegistry, identityAsset, keyboardAccessibilityWalkthroughs, mobileTouchWalkthroughs, nowPage, patterns, portraitIntake, practitionerReviewPacket, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, thesisRadarLifecycle, visitorReviewKit } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -874,6 +874,9 @@ export function buildPublicSourceIndex(): PublicSource[] {
         thesisRadar.framing.flatMap((item) => [item.name, item.statement]).join(". "),
         thesisRadar.proofChain
           .flatMap((item) => [item.theme, item.publicThought, item.marketSignal, item.operationalClaim, item.falsificationQuestion])
+          .join(". "),
+        thesisRadarLifecycle
+          .flatMap((item) => [item.stage, item.role, item.promotionRule, item.output, item.evidenceHref])
           .join(". "),
         thesisRadar.trends
           .flatMap((trend) => [

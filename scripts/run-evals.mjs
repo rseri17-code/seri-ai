@@ -186,7 +186,7 @@ function inferRelatedArtifacts(question) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
     artifacts.add("/work");
   }
-  if (/linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)) {
+  if (/linkedin|thinking lifecycle|field note|developed argument|canonical technical asset|public signal|signal source|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)) {
     artifacts.add("/work");
     artifacts.add("/radar");
     artifacts.add("/patterns/agentic-incident-investigation");
@@ -278,8 +278,8 @@ function deterministicFallbackAnswer(question) {
   const ravikanthContext =
     "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis. Answer posture: reflect Ravikanth's public engineering judgment through evidence, constraints, tradeoffs, and inspectable routes; do not imitate him in first person or turn the answer into generic chatbot commentary.";
   const linkedinContext =
-    /linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)
-      ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, distinguish a dynamic operational view from a static graph, and connect ops for observability with observability for AI."
+    /linkedin|thinking lifecycle|field note|developed argument|canonical technical asset|public signal|signal source|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)
+      ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, distinguish a dynamic operational view from a static graph, and connect ops for observability with observability for AI. Thinking signal lifecycle: LinkedIn signal is not proof by itself; useful signals move from LinkedIn Post to Observation / Field Note to Developed Argument to Pattern to Framework to Canonical Technical Asset to Interactive Demonstration when justified. This prevents social-media chronology from becoming site structure and routes mature claims to /radar, /library, /patterns, /framework, the Doctrine, and /investigation-room."
       : "";
   const credentialContext =
     /certification|credential|education|degree|aws solutions architect|kubernetes administrator|data scientist|artificial intelligence associate|datapower|university of new haven|north carolina state/.test(lower)

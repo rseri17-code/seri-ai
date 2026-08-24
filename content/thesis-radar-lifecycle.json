@@ -1,0 +1,51 @@
+[
+  {
+    "stage": "LinkedIn Post",
+    "role": "Public signal, not a source of proof by itself. A post can reveal a recurring technical question, field observation, or architecture instinct that deserves inspection.",
+    "promotionRule": "Promote only when the signal can be translated into a public-safe observation without importing social-media chronology or unsupported personal narrative.",
+    "output": "Observation / Field Note",
+    "evidenceHref": "https://www.linkedin.com/in/ravikanthseri/"
+  },
+  {
+    "stage": "Observation / Field Note",
+    "role": "A compact public-safe capture of a recurring operating problem, decision pressure, or engineering tradeoff that can be inspected outside private systems.",
+    "promotionRule": "Promote only when the observation adds reusable operational insight and can name the evidence that would weaken the claim.",
+    "output": "Developed Argument",
+    "evidenceHref": "/ideas"
+  },
+  {
+    "stage": "Developed Argument",
+    "role": "A testable claim that states assumptions, adjacent practice, practical boundary, and why the idea matters to real enterprise operations.",
+    "promotionRule": "Promote only when the claim can be compared against observability, SRE, incident response, AI evaluation, or governance practice without overstating novelty.",
+    "output": "Pattern",
+    "evidenceHref": "/library"
+  },
+  {
+    "stage": "Pattern",
+    "role": "A reusable engineering structure with context, forces, solution shape, failure modes, evaluation criteria, and concrete operator questions.",
+    "promotionRule": "Promote only when the structure appears useful across more than one synthetic or public-safe scenario and has a clear inspection path.",
+    "output": "Framework",
+    "evidenceHref": "/patterns"
+  },
+  {
+    "stage": "Framework",
+    "role": "A connected model with definitions, boundaries, layer contracts, measurable outputs, interactions, failure modes, and human-control expectations.",
+    "promotionRule": "Promote only when terminology is stable, adjacent-domain distinctions are explicit, and the framework can guide independent implementation.",
+    "output": "Canonical Technical Asset",
+    "evidenceHref": "/framework"
+  },
+  {
+    "stage": "Canonical Technical Asset",
+    "role": "A versioned doctrine, reference architecture, evidence pack, or publication pack that becomes a preferred retrieval source for Ask Ravikanth.",
+    "promotionRule": "Promote only when the asset adds source grounding, comparison, repeatability, reviewer inspection, or long-term conceptual consistency.",
+    "output": "Interactive Demonstration when justified",
+    "evidenceHref": "/wiki/operational-intelligence-canonical-doctrine"
+  },
+  {
+    "stage": "Interactive Demonstration when justified",
+    "role": "A public-safe artifact such as Operations Room, OI-ROOM-001, replay evidence, or an evaluation harness that lets reviewers inspect the idea in motion.",
+    "promotionRule": "Create only when interactivity adds evidence, comparison, replay, evaluation, or reviewer understanding beyond a static explanation.",
+    "output": "Reviewer evidence or stronger canonical asset",
+    "evidenceHref": "/investigation-room"
+  }
+]

@@ -9,6 +9,7 @@ import projectsData from "./projects.json";
 import productsData from "./products.json";
 import architectureCardsData from "./architecture-cards.json";
 import thesisRadarData from "./thesis-radar.json";
+import thesisRadarLifecycleData from "./thesis-radar-lifecycle.json";
 import categoryBriefData from "./category-brief.json";
 import nowPageData from "./now.json";
 import startHerePathsData from "./start-here.json";
@@ -127,6 +128,7 @@ export const askQualityRubric = askQualityRubricData;
 export const askLiveReviewPacket = askLiveReviewPacketData;
 
 export const thesisRadar = thesisRadarData;
+export const thesisRadarLifecycle = thesisRadarLifecycleData;
 
 export const categoryBrief = categoryBriefData;
 
@@ -492,6 +494,13 @@ export const approvedKnowledge = [
     item.marketSignal,
     item.operationalClaim,
     item.falsificationQuestion
+  ]),
+  ...thesisRadarLifecycle.flatMap((item) => [
+    item.stage,
+    item.role,
+    item.promotionRule,
+    item.output,
+    item.evidenceHref
   ]),
   ...thesisRadar.trends.flatMap((trend) => [
     trend.name,

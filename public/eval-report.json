@@ -1331,6 +1331,24 @@
       "result": "Pass"
     },
     {
+      "prompt": "How does a LinkedIn post become a field note, pattern, framework, or artifact on seri.ai?",
+      "expected": "Explain the thinking signal lifecycle without treating LinkedIn as proof or site chronology.",
+      "requiredAnswerIncludes": [
+        "Thinking signal lifecycle",
+        "LinkedIn signal is not proof by itself",
+        "LinkedIn Post",
+        "Observation / Field Note",
+        "Developed Argument",
+        "Pattern",
+        "Framework",
+        "Canonical Technical Asset",
+        "Interactive Demonstration when justified",
+        "prevents social-media chronology",
+        "/radar"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "How should Ask Ravikanth answer questions about Ravikanth without pretending to be him?",
       "expected": "Explain the AI assistant identity and the evidence-interface posture for representing Ravikanth's public professional graph.",
       "requiredAnswerIncludes": [
@@ -1366,6 +1384,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 115,
-  "passingFixtures": 115
+  "fixtureCount": 116,
+  "passingFixtures": 116
 }
