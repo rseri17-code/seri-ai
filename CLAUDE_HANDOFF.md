@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `e596d1e Align portrait evidence across knowledge graph`
+- `8f744e5 Ground Ask Ravikanth persona contract`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `e596d1e Align portrait evidence across knowledge graph`
+- `8f744e5 Ground Ask Ravikanth persona contract`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `e596d1e Align portrait evidence across knowledge graph`
+- `8f744e5 Ground Ask Ravikanth persona contract`
 
 Recent improvements:
 
@@ -90,6 +90,7 @@ Recent improvements:
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.
 - Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.
+- Ask Ravikanth now has a versioned persona contract wired into the system instruction and local fallback. The contract requires an evidence-interface posture over Ravikanth's public professional graph, not first-person imitation and not generic chatbot behavior.
 
 ## Current Highest-Value Gaps
 
@@ -212,7 +213,7 @@ Branch `claude/site-build` (pushed, merged with `main` at `3b2ace2 Gate Claude h
 - Ask reframe reconciled with the evidence-console commit: kept evidence-console branding, interior copy, and title; kept the plain H1 "Ask about Ravikanth's work.", the explicit AI-assistant disclosure paragraph, and the one-sentence metadata description. Rationale in `docs/seri-ai/EDITORIAL_REVIEW_2026-08-24.md` on the Sentinalai repo branch `claude/seri-ai-platform-upgrade-opl7nk` (§2: the surface must promise exactly what it delivers; "Interrogate the public record" reads cold and evasive for the page most likely to be shared).
 - Homepage person-first pass: first-person identity paragraph grounded in resume facts; removed three duplicated thesis statements (hero public-safe disclaimer, "narrow on purpose" self-description, field-origin duplicate) to stay under the rendered budget; homepage CI-count proof item replaced with a pointer to /evals. Validator pins re-anchored.
 
-Full adversarial review (10 areas, Keep/Fix/Replace/Why) lives in the Sentinalai repo: `docs/seri-ai/SITE_BENCHMARK_REVIEW.md`, `docs/seri-ai/EDITORIAL_REVIEW_2026-08-24.md`, `docs/seri-ai/CODEX_GOAL.md`. Resolved priorities from that review include Background concreteness, aphorism budget across section titles, "public-safe" disclosed once, doctrine title softening, and portrait integration through the intake contract. Remaining highest-value Claude-lane target: Ask persona grounding and follow-up behavior, with any implementation touching `lib/ai.ts` routed back through Codex-lane validation.
+Full adversarial review (10 areas, Keep/Fix/Replace/Why) lives in the Sentinalai repo: `docs/seri-ai/SITE_BENCHMARK_REVIEW.md`, `docs/seri-ai/EDITORIAL_REVIEW_2026-08-24.md`, `docs/seri-ai/CODEX_GOAL.md`. Resolved priorities from that review include Background concreteness, aphorism budget across section titles, "public-safe" disclosed once, doctrine title softening, portrait integration through the intake contract, and Ask persona grounding. Remaining highest-value Claude-lane target: review live Ask answers and follow-up behavior against the new persona contract, then file only evidence-backed improvements.
 
 Merging `claude/site-build` into `main` is Ravikanth's call; both agents should branch from it (or from `main` after merge) to avoid re-diverging on Ask copy.
 
@@ -220,6 +221,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex implementing Ask persona contract
+
+- **Resolved**: Ask Ravikanth persona grounding is now a versioned content contract rather than loose prompt style. The runtime system instruction imports `content/ask-persona.json`; the local fallback states that Ask reflects Ravikanth's public engineering judgment through evidence, constraints, tradeoffs, and inspectable routes while avoiding first-person imitation and generic chatbot commentary. Deterministic coverage increased to 107 passing fixtures with a new persona-boundary fixture. Evidence: `content/ask-persona.json`, `lib/compliance.ts`, `lib/ai.ts`, `scripts/run-evals.mjs`, `content/eval-report.json`, `public/eval-report.json`, `scripts/validate-ask-quality-rubric.mjs`, full `npm test`, `npm run build`, `npm run lint`, `npm run scan:public-safety`, `git diff --check`. Public-safety risk: lower; the contract hardens disclosure, source grounding, refusal behavior, and anti-hype language.
 
 ### 2026-08-24 — Codex refreshing Claude handoff current state
 
