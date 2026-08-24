@@ -133,7 +133,7 @@ export default function WorkPage() {
         </Card>
       </Section>
 
-      <Section eyebrow="Operating arc" title="The thesis comes from operating systems before asking AI to reason about them.">
+      <Section eyebrow="Operating arc" title="From operating enterprise systems to reasoning about them.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {professionalGraph.careerEvolution.map((item) => (
             <Card key={item.period} className="h-full p-5">
@@ -205,7 +205,7 @@ export default function WorkPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Public code inspection" title="GitHub is useful only when the inspection rules are explicit.">
+      <Section eyebrow="Public code inspection" title="How to inspect the public code.">
         <div className="grid gap-4 lg:grid-cols-[0.88fr_1.12fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <GitBranch className="mb-5 text-mint" />
@@ -236,7 +236,7 @@ export default function WorkPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Project proof" title="Each project states what can be inspected and what should not be inferred.">
+      <Section eyebrow="Project proof" title="What each project proves, and what it does not.">
         <Card className="border-signal/25 bg-signal/[0.045]">
           <p className="max-w-4xl text-sm leading-6 text-slate-300">
             The full project proof ledger lives on each project detail page: claim, evidence, boundary, next proof, and reviewer question.
@@ -261,7 +261,7 @@ export default function WorkPage() {
         </Card>
       </Section>
 
-      <Section eyebrow="Architecture judgment" title="The operating taste is visible in the constraints he chooses to preserve.">
+      <Section eyebrow="Architecture judgment" title="Constraints the architecture preserves.">
         <div className="grid gap-4 lg:grid-cols-2">
           {professionalGraph.architectureJudgment.map((item) => (
             <Link key={item.decision} href={item.inspectHref}>

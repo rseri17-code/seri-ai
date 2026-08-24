@@ -211,7 +211,7 @@ export default function Home() {
         </Card>
       </Section>
 
-      <Section eyebrow="Category boundary and falsification tests" title="Operational Intelligence begins where observation alone stops being enough.">
+      <Section eyebrow="Category boundary and falsification tests" title="What it replaces, what it does not, and what would prove it wrong.">
         <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
           <Card className="p-0">
             <div className="border-b border-white/10 p-5">
@@ -244,7 +244,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Reference system" title="The proof path is part of the work, not a separate credibility layer.">
+      <Section eyebrow="Reference system" title="Inspect the work.">
         <div className="grid gap-4 lg:grid-cols-[0.86fr_1.14fr]">
           <Card className="border-signal/25 bg-signal/[0.045] p-5">
             <ShieldCheck className="mb-5 text-signal" />
@@ -304,7 +304,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Start here" title="One thesis. Three ways to challenge it.">
+      <Section eyebrow="Start here" title="Three ways to challenge the thesis.">
         <div className="grid gap-4 lg:grid-cols-3">
           {homePrimaryPaths.map((path) => (
             <Link key={path.href} href={path.href}>
@@ -345,7 +345,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Reference spine" title="If the idea is real, it should survive inspection.">
+      <Section eyebrow="Reference spine" title="The canonical assets, in reading order.">
         <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-amber/25 bg-amber/[0.045]">
             <FileText className="mb-5 text-amber" />
@@ -375,7 +375,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Reviewer paths" title="Different serious visitors should know exactly where to start.">
+      <Section eyebrow="Reviewer paths" title="Where to start, by role.">
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
           {homeReviewerPaths.map(([role, href, artifact, question]) => (
             <Link key={role} href={href}>
@@ -389,7 +389,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Engineering signature" title="The author shows up through engineering taste, not self-promotion.">
+      <Section eyebrow="Engineering signature" title="Principles the work is built on.">
         <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <Sparkles className="mb-5 text-mint" />
@@ -423,7 +423,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Current work" title="The body of work compounds through field notes and reusable patterns.">
+      <Section eyebrow="Current work" title="Field notes and reusable patterns.">
         <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
           <Card>
             <ClipboardCheck className="mb-5 text-signal" />
@@ -453,7 +453,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Ask Ravikanth" title="Ask the work, then inspect the receipts.">
+      <Section eyebrow="Ask Ravikanth" title="Ask about the work. Answers cite their sources.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <h3 className="text-2xl font-semibold text-white">Ask Ravikanth turns the public body of work into a review surface.</h3>

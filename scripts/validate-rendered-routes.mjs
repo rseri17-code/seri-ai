@@ -105,7 +105,7 @@ const routeContracts = [
       "The operating record behind Operational Intelligence",
       "Operating arc",
       "Architecture judgment",
-      "The operating taste is visible in the constraints he chooses to preserve.",
+      "Constraints the architecture preserves.",
       "Start with operational evidence before model reasoning.",
       "Treat AI action as governed execution, not autonomous heroics.",
       "Inspect the public engineering signal without over-reading it",

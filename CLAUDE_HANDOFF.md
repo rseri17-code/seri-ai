@@ -272,3 +272,11 @@ Ravikanth provided the portrait directly (commit `07a514f`, 800x800 JPEG, explic
 ### 2026-08-24 — Ruling implemented: hero disclaimer (frozen item 2)
 
 Ravikanth ruled **trim**. The hero boundary paragraph is now a single capability claim — "Everything here is inspectable without access to private systems." — with the boundary-term list removed; full boundary language continues to live on /ask, in the doctrine, and on artifact labels. Pins updated across coherence, content, rendered-route, and viewport validators. **Precedent:** homepage-level surfaces state the public-safe boundary at most once, as a short capability claim, never as a list of boundary terms; detailed boundary language belongs on /ask, the doctrine, and per-artifact labels. Both frozen items are now resolved; no rulings outstanding.
+
+### 2026-08-24 — Claude: aphorism-budget pass (Claude lane, per generated handoff)
+
+- **What changed**: 15 section titles across `/`, `/work`, and `/background` converted from decorative declaratives to plain informative labels, implementing editorial review §7. Each page keeps its single strongest declarative title: home keeps "The posts converge on one enterprise failure mode…", Work keeps "The serious question is not what exists. It is what each artifact proves.", Background keeps "What the career arc trained him to protect." Also removed one self-referential meta title ("A serious background page should make claims easy to challenge." → "Questions this page should answer.") per §9 — show restraint, don't describe it.
+- **Why it matters**: twelve aphorisms in a row read as a slogan generator and numb the reader before the content; plain labels restore contrast so the surviving aphorisms land.
+- **Evidence**: full `npm test` and `npm run build` green; coherence and rendered pins updated in the same pass (13 pin updates in `validate-content-coherence.mjs`, 1 in `validate-rendered-routes.mjs`).
+- **Public-safety risk**: none — titles only, no factual or boundary changes.
+- **Next in Claude lane**: doctrine title softening ("Canonical Doctrine" → "Doctrine v1.0" in display strings, route slugs untouched) — filed as the next dedicated pass since it ripples through registry, search, and retrieval pins. Then Ask persona grounding.

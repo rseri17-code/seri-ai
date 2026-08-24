@@ -78,7 +78,7 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Career story" title="The full arc is infrastructure judgment becoming AI operations judgment.">
+      <Section eyebrow="Career story" title="From enterprise infrastructure to AI operations judgment.">
         <div className="grid gap-3">
           {professionalGraph.careerStory.map((stage, index) => (
             <Card key={stage.stage} className="p-4">
@@ -133,7 +133,7 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Point of view" title="The throughline is context, evidence, and accountable action.">
+      <Section eyebrow="Point of view" title="Context, evidence, and accountable action.">
         <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr]">
           <Card className="border-signal/25 bg-signal/[0.045]">
             <Workflow className="mb-5 text-signal" />
@@ -167,7 +167,7 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Review questions" title="A serious background page should make claims easy to challenge.">
+      <Section eyebrow="Review questions" title="Questions this page should answer.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {professionalGraph.credibilityQuestions.map(({ question, answer, href }) => (
             <Link key={question} href={href}>
