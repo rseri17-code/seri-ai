@@ -49,7 +49,13 @@ const safeMetadataHints = [
   "review_dimension",
   "review_verdict",
   "doctrine_impact",
-  "review_disposition"
+  "review_disposition",
+  "impression_verdict",
+  "person_work_fit",
+  "thesis_fit",
+  "proof_route_fit",
+  "artifact_recall",
+  "demo_signal"
 ];
 
 const forbiddenAnalyticsFragments = [

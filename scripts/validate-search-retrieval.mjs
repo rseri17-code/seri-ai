@@ -119,6 +119,10 @@ const cases = [
     expectedFirstUrl: "/start-here"
   },
   {
+    query: "Where can a reviewer submit first-impression evidence about person-work fit demo feeling and artifact recall?",
+    expectedFirstUrl: "/contact"
+  },
+  {
     query: "Where is the practitioner review packet for evaluating Ravikanth's professional representation and evidence?",
     expectedFirstUrl: "/publication-pack/ravikanth-seri-practitioner-review-packet.md"
   },

@@ -1197,6 +1197,23 @@
       "result": "Pass"
     },
     {
+      "prompt": "Where can a reviewer submit first-impression evidence about person-work fit, artifact recall, and demo feeling?",
+      "expected": "Route to Contact and explain bounded first-impression evidence fields without claiming reviews already exist.",
+      "requiredAnswerIncludes": [
+        "First-Time Visitor Review Kit",
+        "/contact",
+        "first-impression evidence",
+        "bounded categories",
+        "person-work fit",
+        "thesis clarity",
+        "proof route",
+        "artifact recall",
+        "demo feeling",
+        "No external practitioner verdicts have been published yet"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Where is the practitioner review packet for evaluating Ravikanth's professional representation and evidence?",
       "expected": "Route to the practitioner review packet and state that no external practitioner verdicts exist yet.",
       "requiredAnswerIncludes": [
@@ -1384,6 +1401,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 116,
-  "passingFixtures": 116
+  "fixtureCount": 117,
+  "passingFixtures": 117
 }

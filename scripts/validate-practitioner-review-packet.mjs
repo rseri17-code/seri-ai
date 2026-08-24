@@ -78,11 +78,15 @@ expect(
   visitorKit.reviewAssets.some((asset) => asset.href === "/work" && /GitHub|Sentinalai|project proof|public-code/i.test(`${asset.label} ${asset.description}`)),
   "Visitor review kit must link to Work as the public-code and project-proof review asset."
 );
-expect(contactPage.includes("visitorReviewKit.reviewAssets"), "Contact page must render visitor review kit assets.");
-expect(contactPage.includes("practitionerReviewPacket.minimumEvidenceQuorum"), "Contact page must render the minimum evidence quorum.");
-expect(contactPage.includes("practitionerReviewPacket.reviewRunProtocol"), "Contact page must render the review run protocol.");
+expect(contactPage.includes("contactReviewAssets"), "Contact page must render visitor review kit assets through the client-safe contact review contract.");
+expect(contactPage.includes("contactReviewMinimumEvidenceQuorum"), "Contact page must render the minimum evidence quorum through the client-safe contact review contract.");
+expect(contactPage.includes("contactReviewRunProtocol"), "Contact page must render the review run protocol through the client-safe contact review contract.");
 expect(contactPage.includes("artifactsInspected"), "Contact page must capture artifacts inspected.");
 expect(contactPage.includes("reviewDisposition"), "Contact page must capture review disposition.");
+expect(contactPage.includes("First-impression evidence"), "Contact page must capture first-impression evidence.");
+for (const field of ["firstImpressionVerdict", "personWorkFit", "thesisFit", "proofRouteFit", "artifactRecall", "demoSignal"]) {
+  expect(contactPage.includes(field), `Contact page must capture ${field}.`);
+}
 expect(contactPage.includes("Recruiter / hiring-facing reviewer"), "Contact page reviewer roles must cover recruiter/hiring quorum.");
 expect(scorecard.includes("Practitioner Review Packet"), "Scorecard must mention the Practitioner Review Packet.");
 

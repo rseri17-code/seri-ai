@@ -21,6 +21,7 @@ const conformanceProfileUrl = "/publication-pack/operational-intelligence-confor
 const workUrl = "/work";
 const libraryUrl = "/library";
 const startHereUrl = "/start-here";
+const contactUrl = "/contact";
 const nowUrl = "/now";
 const resumeUrl = "/resume";
 const backgroundUrl = "/background";
@@ -43,6 +44,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/, askLiveReviewUrl],
   [/practitioner review packet|external practitioner review|review ravikanth.*evidence|professional representation review|career clarity review|first impression review|does.*represent ravikanth|evaluate.*professional operating system/, practitionerReviewUrl],
   [/(visual qa|mobile qa).*(screenshot|viewport|evidence)|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/, visualQaUrl],
+  [/submit.*first[- ]impression|capture.*first[- ]impression|first[- ]impression evidence|person-work fit|demo feeling|artifact recall/, contactUrl],
   [/visitor review|first[- ]time review|first[- ]time visitor review|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/, startHereUrl],
   [/certification|credential|education|degree|aws solutions architect|kubernetes administrator|data scientist|artificial intelligence associate|datapower|university of new haven|north carolina state/, resumeUrl],
   [/thinking lifecycle|linkedin post.*field note|field note.*pattern.*framework|canonical technical asset.*interactive demonstration/, radarUrl],

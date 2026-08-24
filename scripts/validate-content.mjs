@@ -73,9 +73,10 @@ const requiredProofBacklogFields = ["title", "summary", "updatedAt", "principle"
 const requiredProofBacklogItemFields = ["slug", "claim", "evidenceNeeded", "currentEvidence", "nextProof", "wouldChange", "status", "href"];
 const requiredQualityScorecardFields = ["title", "updatedAt", "scale", "rule", "dimensions"];
 const requiredQualityScorecardDimensionFields = ["name", "score", "evidence", "gap", "nextProof"];
-const requiredVisitorReviewKitFields = ["title", "updatedAt", "purpose", "principle", "reviewPath", "reviewQuestions", "reviewAssets", "publicChannels", "publicSafetyBoundary"];
+const requiredVisitorReviewKitFields = ["title", "updatedAt", "purpose", "principle", "reviewPath", "reviewQuestions", "firstImpressionFields", "reviewAssets", "publicChannels", "publicSafetyBoundary"];
 const requiredVisitorReviewPathFields = ["step", "href", "question"];
 const requiredVisitorReviewAssetFields = ["href", "label", "description"];
+const requiredFirstImpressionFieldFields = ["field", "label", "capture", "options"];
 const requiredIdentityAssetFields = ["title", "updatedAt", "href", "type", "purpose", "usage", "limitations"];
 const requiredRegistryFields = ["title", "slug", "summary", "type", "route", "status", "frameworkLayers", "relatedPrinciples", "relatedPatterns", "relatedArtifacts", "relatedProducts", "relatedLibraryAssets", "publicSafe", "createdAt", "updatedAt", "seo"];
 const requiredHarnessFields = ["headline", "statement", "category", "beliefs", "loop", "proofObjects"];
@@ -786,6 +787,32 @@ for (const required of [
 ]) {
   if (!JSON.stringify(visitorReviewKit.reviewQuestions).includes(required)) {
     errors.push(`content/visitor-review-kit.json: reviewQuestions missing north-star review question "${required}"`);
+  }
+}
+if (!Array.isArray(visitorReviewKit.firstImpressionFields) || visitorReviewKit.firstImpressionFields.length < 5) {
+  errors.push("content/visitor-review-kit.json: firstImpressionFields must include at least five categorical fields");
+} else {
+  const firstImpressionFields = new Set(visitorReviewKit.firstImpressionFields.map((item) => item.field));
+  for (const required of ["personWorkFit", "thesisFit", "proofRouteFit", "artifactRecall", "demoSignal"]) {
+    if (!firstImpressionFields.has(required)) {
+      errors.push(`content/visitor-review-kit.json: firstImpressionFields missing ${required}`);
+    }
+  }
+  for (const item of visitorReviewKit.firstImpressionFields) {
+    validateRequiredFields("content/visitor-review-kit.json", item, requiredFirstImpressionFieldFields, { requireSlug: false });
+    const owner = `content/visitor-review-kit.json:firstImpressionFields:${item.field ?? "unknown"}`;
+    if (String(item.capture ?? "").length < 80) {
+      errors.push(`${owner}: capture must explain what evidence the field records`);
+    }
+    if (!Array.isArray(item.options) || item.options.length < 4) {
+      errors.push(`${owner}: options must provide bounded categorical choices`);
+    }
+  }
+  const firstImpressionText = JSON.stringify(visitorReviewKit.firstImpressionFields);
+  for (const required of ["Specific to Ravikanth", "Mostly anonymous", "Followed without coaching", "Strong demo feeling"]) {
+    if (!firstImpressionText.includes(required)) {
+      errors.push(`content/visitor-review-kit.json: firstImpressionFields missing option "${required}"`);
+    }
   }
 }
 if (!Array.isArray(visitorReviewKit.reviewAssets) || visitorReviewKit.reviewAssets.length < 6) {

@@ -494,9 +494,10 @@ export function buildPublicSourceIndex(): PublicSource[] {
         visitorReviewKit.purpose,
         visitorReviewKit.principle,
         visitorReviewKit.publicSafetyBoundary,
-        "first-time visitor review kit. visitor feedback. practitioner review. what was clear. what was confusing. most memorable idea. strongest claim. weakest claim. evidence needed. implementation question. submit public-safe review.",
+        "first-time visitor review kit. visitor feedback. practitioner review. first-impression evidence. person-work fit. thesis clarity. proof route. artifact recall. demo feeling. anonymous product signal. what was clear. what was confusing. most memorable idea. strongest claim. weakest claim. evidence needed. implementation question. submit public-safe review.",
         visitorReviewKit.reviewPath.flatMap((item) => [item.step, item.href, item.question]).join(". "),
         visitorReviewKit.reviewQuestions.join(". "),
+        visitorReviewKit.firstImpressionFields.flatMap((item) => [item.field, item.label, item.capture, ...item.options]).join(". "),
         visitorReviewKit.reviewAssets.flatMap((item) => [item.href, item.label, item.description]).join(". "),
         visitorReviewKit.publicChannels.flatMap((item) => [item.href, item.label, item.description]).join(". ")
       ].join(". "),
@@ -511,6 +512,32 @@ export function buildPublicSourceIndex(): PublicSource[] {
       principles: ["Evidence before conclusions"],
       patterns: ["/patterns/evaluation-and-replay", "/patterns/evidence-driven-rca", "/patterns/human-in-the-loop-operational-ai"],
       products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
+      id: "profile:first-impression-evidence-capture",
+      title: "First-Impression Evidence Capture",
+      description: "Contact review form contract for capturing whether first-time visitors understand Ravikanth Seri, the work, the proof route, and the artifact without treating prose feedback as proof.",
+      content: [
+        "First-impression evidence capture.",
+        "Contact review form.",
+        "Submit first-impression evidence through /contact.",
+        "Bounded categories: first-impression verdict, person-work fit, thesis clarity, proof route, artifact recall, and demo feeling.",
+        "Use this to detect whether seri.ai feels specific to Ravikanth Seri or mostly anonymous, whether the proof route works without coaching, and whether any surface feels like a demo instead of a durable technical reference.",
+        "No external first-impression verdicts have been published yet.",
+        visitorReviewKit.firstImpressionFields.flatMap((item) => [item.field, item.label, item.capture, ...item.options]).join(". ")
+      ].join(". "),
+      url: "/contact",
+      type: "registry" as const,
+      category: "review evidence",
+      tags: ["first impression", "visitor review", "Ravikanth Seri", "person-work fit", "artifact recall", "demo feeling"],
+      author: "Ravikanth Seri",
+      assetType: "review",
+      date: visitorReviewKit.updatedAt,
+      frameworkLayers: ["Evidence Layer", "Evaluation Layer", "Operator Layer"],
+      principles: ["Evidence before conclusions"],
+      patterns: [],
+      products: [],
       status: "published" as const
     },
     {

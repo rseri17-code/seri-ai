@@ -726,12 +726,22 @@ for (const required of [
 }
 
 const contactPage = fs.readFileSync(path.join(root, "app", "contact", "page.tsx"), "utf8");
-const contactContractSource = [contactPage, visitorReviewKitContent].join("\n");
+const contactReviewSource = fs.readFileSync(path.join(root, "content", "contact-review.ts"), "utf8");
+const contactContractSource = [contactPage, contactReviewSource, visitorReviewKitContent].join("\n");
 for (const required of [
-  "visitorReviewKit",
-  "visitorReviewKit.publicChannels",
-  "visitorReviewKit.reviewAssets",
-  "visitorReviewKit.publicSafetyBoundary",
+  "contactReviewChannels",
+  "contactReviewAssets",
+  "contactReviewMinimumEvidenceQuorum",
+  "contactReviewRunProtocol",
+  "firstImpressionSelects",
+  "contactReviewPublicSafetyBoundary",
+  "First-impression evidence",
+  "firstImpressionVerdict",
+  "personWorkFit",
+  "thesisFit",
+  "proofRouteFit",
+  "artifactRecall",
+  "demoSignal",
   "https://www.linkedin.com/in/ravikanthseri/",
   "https://github.com/rseri17-code",
   "/work",

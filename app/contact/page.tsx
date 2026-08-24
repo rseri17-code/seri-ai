@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Section } from "@/components/section";
-import { practitionerReviewPacket } from "@/content/practitioner-review-packet";
-import { visitorReviewKit } from "@/content/visitor-review-kit";
+import { contactReviewAssets, contactReviewChannels, contactReviewMinimumEvidenceQuorum, contactReviewPublicSafetyBoundary, contactReviewRunProtocol, firstImpressionSelects } from "@/content/contact-review";
 import { captureSafeEvent } from "@/lib/analytics-events";
 
 export default function ContactPage() {
@@ -16,7 +15,7 @@ export default function ContactPage() {
   return (
     <Section eyebrow="Contact" title="Collaborate on Operational Intelligence, AI agents, and enterprise AI systems." level="h1">
       <div className="mx-auto mb-6 grid max-w-6xl gap-3 md:grid-cols-4">
-        {visitorReviewKit.publicChannels.map(({ href, label, description }) => (
+        {contactReviewChannels.map(([href, label, description]) => (
           <Link
             key={href}
             href={href}
@@ -115,6 +114,12 @@ export default function ContactPage() {
                 review_verdict: String(form.get("reviewVerdict") || "unspecified"),
                 doctrine_impact: String(form.get("doctrineImpact") || "unspecified"),
                 review_disposition: String(form.get("reviewDisposition") || "unspecified"),
+                impression_verdict: String(form.get("firstImpressionVerdict") || "unspecified"),
+                person_work_fit: String(form.get("personWorkFit") || "unspecified"),
+                thesis_fit: String(form.get("thesisFit") || "unspecified"),
+                proof_route_fit: String(form.get("proofRouteFit") || "unspecified"),
+                artifact_recall: String(form.get("artifactRecall") || "unspecified"),
+                demo_signal: String(form.get("demoSignal") || "unspecified"),
                 latency_ms: Math.round(performance.now() - startedAt)
               });
               setReviewStatus(response.ok ? "sent" : "error");
@@ -131,6 +136,12 @@ export default function ContactPage() {
                 review_verdict: String(form.get("reviewVerdict") || "unspecified"),
                 doctrine_impact: String(form.get("doctrineImpact") || "unspecified"),
                 review_disposition: String(form.get("reviewDisposition") || "unspecified"),
+                impression_verdict: String(form.get("firstImpressionVerdict") || "unspecified"),
+                person_work_fit: String(form.get("personWorkFit") || "unspecified"),
+                thesis_fit: String(form.get("thesisFit") || "unspecified"),
+                proof_route_fit: String(form.get("proofRouteFit") || "unspecified"),
+                artifact_recall: String(form.get("artifactRecall") || "unspecified"),
+                demo_signal: String(form.get("demoSignal") || "unspecified"),
                 latency_ms: Math.round(performance.now() - startedAt)
               });
               setReviewStatus("error");
@@ -148,7 +159,7 @@ export default function ContactPage() {
           <div className="rounded border border-white/10 bg-ink/70 p-4">
             <h3 className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Review kit</h3>
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              {visitorReviewKit.reviewAssets.map(({ href, label, description }) => (
+              {contactReviewAssets.map(([href, label, description]) => (
                 <Link
                   key={href}
                   href={href}
@@ -160,34 +171,62 @@ export default function ContactPage() {
               ))}
             </div>
             <p className="mt-3 text-xs leading-5 text-slate-400">
-              Ground feedback in evidence. {visitorReviewKit.publicSafetyBoundary}
+              Ground feedback in evidence. {contactReviewPublicSafetyBoundary}
             </p>
           </div>
           <div className="rounded border border-amber/25 bg-amber/[0.04] p-4">
             <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">
-              {practitionerReviewPacket.minimumEvidenceQuorum.title}
+              {contactReviewMinimumEvidenceQuorum.title}
             </h3>
             <p className="mt-3 text-sm leading-6 text-slate-300">
-              {practitionerReviewPacket.minimumEvidenceQuorum.summary}
+              {contactReviewMinimumEvidenceQuorum.summary}
             </p>
             <div className="mt-4 grid gap-2">
-              {practitionerReviewPacket.minimumEvidenceQuorum.requiredCoverage.map((item) => (
+              {contactReviewMinimumEvidenceQuorum.requiredCoverage.map((item) => (
                 <p key={item} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs leading-5 text-slate-300">
                   {item}
                 </p>
               ))}
             </div>
             <p className="mt-4 border-l border-amber/35 pl-3 text-xs leading-5 text-slate-400">
-              {practitionerReviewPacket.minimumEvidenceQuorum.completionRule}
+              {contactReviewMinimumEvidenceQuorum.completionRule}
             </p>
           </div>
           <div className="rounded border border-white/10 bg-ink/60 p-4">
             <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-signal">Review run protocol</h3>
             <div className="mt-3 grid gap-2">
-              {practitionerReviewPacket.reviewRunProtocol.map((item) => (
-                <div key={item.phase} className="rounded border border-white/10 bg-white/[0.03] p-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">{item.phase}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-300">{item.instruction}</p>
+              {contactReviewRunProtocol.map(([phase, instruction]) => (
+                <div key={phase} className="rounded border border-white/10 bg-white/[0.03] p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">{phase}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-300">{instruction}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded border border-mint/20 bg-mint/[0.045] p-4">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-mint">First-impression evidence</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              Use this after the first review path to record whether the site represents Ravikanth, the work, and the thesis without coaching.
+            </p>
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              <div>
+                <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="first-impression-verdict">First-impression verdict</label>
+                <select id="first-impression-verdict" name="firstImpressionVerdict" className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white">
+                  <option>Not assessed</option>
+                  <option>Clear and specific</option>
+                  <option>Clear but generic</option>
+                  <option>Technically strong but anonymous</option>
+                  <option>Confusing</option>
+                </select>
+              </div>
+              {firstImpressionSelects.map(([field, label, options]) => (
+                <div key={field}>
+                  <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor={field}>{label}</label>
+                  <select id={field} name={field} className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white">
+                    {options.map((option) => (
+                      <option key={option}>{option}</option>
+                    ))}
+                  </select>
                 </div>
               ))}
             </div>

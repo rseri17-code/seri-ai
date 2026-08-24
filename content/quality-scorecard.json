@@ -7,7 +7,7 @@
     {
       "name": "Professional Representation",
       "score": 8.8,
-      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, contact paths, the First-Time Visitor Review Kit, Practitioner Review Packet, portrait intake contract, durable first-viewport screenshots, a durable non-photographic public identity mark, and an approved portrait rendered on home, background, and resume make Ravikanth Seri visible as the author and engineer behind the work.",
+      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, contact paths, the First-Time Visitor Review Kit, Practitioner Review Packet, first-impression evidence capture, portrait intake contract, durable first-viewport screenshots, a durable non-photographic public identity mark, and an approved portrait rendered on home, background, and resume make Ravikanth Seri visible as the author and engineer behind the work.",
       "gap": "The approved portrait is integrated, but completed external first-impression review is still missing, so the person-work-evidence path is not yet independently validated.",
       "nextProof": "Run the Practitioner Review Packet with external reviewers at mobile, tablet, and desktop widths and record whether they can identify Ravikanth, his work, his thesis, and the evidence path without coaching."
     },
@@ -63,7 +63,7 @@
     {
       "name": "Evidence Quality",
       "score": 7.9,
-      "evidence": "Resume provenance, public-code boundaries, doctrine citations, eval fixtures, proof backlog, First-Time Visitor Review Kit, Practitioner Review Packet, and evidence-led pages reduce unsupported claims.",
+      "evidence": "Resume provenance, public-code boundaries, doctrine citations, eval fixtures, proof backlog, First-Time Visitor Review Kit, Practitioner Review Packet, first-impression evidence categories, and evidence-led pages reduce unsupported claims.",
       "gap": "The strongest remaining evidence is external: completed practitioner review, benchmark results, live telemetry, and visual QA artifacts.",
       "nextProof": "Execute the proof backlog and review kit, then update claims only when new evidence supports them."
     },
@@ -84,14 +84,14 @@
     {
       "name": "Ask Ravi",
       "score": 8.3,
-      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, a versioned persona contract, intent-aware follow-up questions, project-proof routing, public-code rubric routing, visitor-review routing, practitioner-review routing, review-quorum routing, visual-QA routing, credential-evidence routing, identity-asset and portrait-intake routing, mobile-touch evidence routing, keyboard-accessibility evidence routing, Ask live review packet routing, and 116 passing fixtures.",
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, a versioned persona contract, intent-aware follow-up questions, project-proof routing, public-code rubric routing, visitor-review routing, first-impression evidence routing, practitioner-review routing, review-quorum routing, visual-QA routing, credential-evidence routing, identity-asset and portrait-intake routing, mobile-touch evidence routing, keyboard-accessibility evidence routing, Ask live review packet routing, and 117 passing fixtures.",
       "gap": "A controlled Ask live review packet exists, but no live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
       "nextProof": "Run the Ask live review packet and publish qualitative labels without raw prompts or aggregate model-quality scores."
     },
     {
       "name": "Search / Discoverability",
       "score": 8.5,
-      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, resume credential evidence, public-code review rubric, public-code review record fields, project proof, proof backlog, visitor review, practitioner review, visual QA, identity asset, portrait intake, mobile touch walkthroughs, keyboard accessibility walkthroughs, Ask live review packet, and 68 canonical retrieval checks.",
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, resume credential evidence, public-code review rubric, public-code review record fields, project proof, proof backlog, visitor review, first-impression evidence capture, practitioner review, visual QA, identity asset, portrait intake, mobile touch walkthroughs, keyboard accessibility walkthroughs, Ask live review packet, and 69 canonical retrieval checks.",
       "gap": "Live search-console evidence and real query behavior are not yet available.",
       "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
     },

@@ -23,8 +23,8 @@ export default function AdminPage() {
     ["Review view", "practitioner_reviews"],
     ["Quorum view", "practitioner_review_quorum_status"],
     ["Dimension view", "practitioner_review_dimension_summary"],
-    ["Fields", "reviewer role, doctrine verdict, mode, dimension, verdict, artifacts inspected, review disposition, evidence observed, reasoning loss, limitation, doctrine impact"],
-    ["Readiness", "five reviews, role coverage, four-artifact inspection, skeptical signal, evidence-needed notes"],
+    ["Fields", "reviewer role, doctrine verdict, mode, dimension, verdict, artifacts inspected, review disposition, first-impression verdict, person-work fit, thesis fit, proof route, artifact recall, demo signal"],
+    ["Readiness", "five reviews, role coverage, four-artifact inspection, skeptical signal, evidence-needed notes, first-impression signal"],
     ["Release gate", "npm run validate:contracts"],
     ["Public entry", "/contact"]
   ];
@@ -72,7 +72,7 @@ export default function AdminPage() {
         <h2 className="text-xl font-semibold text-white">Practitioner review operations</h2>
         <p className="mt-3 leading-7 text-slate-300">
           Skeptical review should become product evidence. The contact API stores structured practitioner reviews,
-          and Supabase exposes a queryable view for doctrine verdicts, challenged claims, evidence requests, and implementation blockers.
+          and Supabase exposes a queryable view for doctrine verdicts, first-impression signal, challenged claims, evidence requests, and implementation blockers.
         </p>
         <div className="mt-4 grid gap-3 md:grid-cols-5">
           {practitionerReviewContract.map(([label, value]) => (

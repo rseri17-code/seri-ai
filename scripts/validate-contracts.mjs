@@ -29,6 +29,7 @@ function expectFile(relativePath) {
 
 const contactRoutePath = "app/api/contact/route.ts";
 const contactPagePath = "app/contact/page.tsx";
+const contactReviewPath = "content/contact-review.ts";
 const visitorReviewKitPath = "content/visitor-review-kit.json";
 const evidenceWikiPath = "content/wiki/operational-intelligence-evidence-pack.mdx";
 const evidenceArtifactPath = "public/publication-pack/operational-intelligence-evidence-pack.md";
@@ -47,6 +48,7 @@ const aiPath = "lib/ai.ts";
 
 const contactRoute = read(contactRoutePath);
 const contactPage = read(contactPagePath);
+const contactReview = read(contactReviewPath);
 const visitorReviewKit = read(visitorReviewKitPath);
 const evidenceWiki = read(evidenceWikiPath);
 const evidenceArtifact = read(evidenceArtifactPath);
@@ -76,6 +78,12 @@ expectIncludes(contactRoutePath, contactRoute, [
   "reasoningLoss",
   "reviewLimitation",
   "doctrineImpact",
+  "firstImpressionVerdict",
+  "personWorkFit",
+  "thesisFit",
+  "proofRouteFit",
+  "artifactRecall",
+  "demoSignal",
   "strongestClaim",
   "weakestClaim",
   "evidenceNeeded",
@@ -83,10 +91,16 @@ expectIncludes(contactRoutePath, contactRoute, [
   "Practitioner review"
 ]);
 
-expectIncludes(contactPagePath, [contactPage, visitorReviewKit].join("\n"), [
+expectIncludes(contactPagePath, [contactPage, contactReview, visitorReviewKit].join("\n"), [
   "Practitioner review",
   "Review kit",
   "practitioner-review",
+  "contactReviewChannels",
+  "contactReviewAssets",
+  "contactReviewPublicSafetyBoundary",
+  "contactReviewMinimumEvidenceQuorum",
+  "contactReviewRunProtocol",
+  "firstImpressionSelects",
   "reviewerRole",
   "doctrineVerdict",
   "reviewMode",
@@ -98,6 +112,13 @@ expectIncludes(contactPagePath, [contactPage, visitorReviewKit].join("\n"), [
   "reasoningLoss",
   "reviewLimitation",
   "doctrineImpact",
+  "First-impression evidence",
+  "firstImpressionVerdict",
+  "personWorkFit",
+  "thesisFit",
+  "proofRouteFit",
+  "artifactRecall",
+  "demoSignal",
   "strongestClaim",
   "weakestClaim",
   "evidenceNeeded",
@@ -146,6 +167,14 @@ expectIncludes(supabaseSchemaPath, supabaseSchema, [
   "reasoning_loss",
   "review_limitation",
   "doctrine_impact",
+  "first_impression_verdict",
+  "person_work_fit",
+  "thesis_fit",
+  "proof_route_fit",
+  "artifact_recall",
+  "demo_signal",
+  "clear_specific_first_impressions",
+  "weak_first_impressions",
   "evidence_needed",
   "implementation_question",
   "total_reviews",

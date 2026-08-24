@@ -50,6 +50,64 @@
     "Would you describe the site as Ravikanth Seri's public professional operating system, an Operational Intelligence reference, or something else?",
     "Did any page feel like a demo rather than a durable technical reference?"
   ],
+  "firstImpressionFields": [
+    {
+      "field": "personWorkFit",
+      "label": "Person-work fit",
+      "capture": "Whether the reviewer can identify Ravikanth Seri as the engineer behind the work without reading the site as anonymous product copy.",
+      "options": [
+        "Specific to Ravikanth",
+        "Partly specific",
+        "Mostly anonymous",
+        "Not assessable"
+      ]
+    },
+    {
+      "field": "thesisFit",
+      "label": "Thesis clarity",
+      "capture": "Whether the reviewer can state the Operational Intelligence thesis in their own words after the first review path.",
+      "options": [
+        "Clear",
+        "Partly clear",
+        "Confusing",
+        "Not assessable"
+      ]
+    },
+    {
+      "field": "proofRouteFit",
+      "label": "Proof route",
+      "capture": "Whether the reviewer can move from person to work to thesis to artifact to evidence without coaching.",
+      "options": [
+        "Followed without coaching",
+        "Followed with hesitation",
+        "Lost the thread",
+        "Not assessable"
+      ]
+    },
+    {
+      "field": "artifactRecall",
+      "label": "Artifact recall",
+      "capture": "Which public artifact the reviewer remembers first after the review path, so memorability can be tied to inspected evidence instead of general impression.",
+      "options": [
+        "Operations Room",
+        "Ask Ravikanth",
+        "Doctrine or Reference Architecture",
+        "Work or public code",
+        "None"
+      ]
+    },
+    {
+      "field": "demoSignal",
+      "label": "Demo feeling",
+      "capture": "Whether the reviewer experiences any part of the site as a demo instead of a durable technical reference.",
+      "options": [
+        "No demo feeling",
+        "Some demo feeling",
+        "Strong demo feeling",
+        "Not assessable"
+      ]
+    }
+  ],
   "reviewAssets": [
     {
       "href": "/wiki/operational-intelligence-canonical-doctrine",

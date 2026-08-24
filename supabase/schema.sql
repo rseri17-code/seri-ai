@@ -69,6 +69,12 @@ select
   metadata->>'reasoningLoss' as reasoning_loss,
   metadata->>'reviewLimitation' as review_limitation,
   metadata->>'doctrineImpact' as doctrine_impact,
+  metadata->>'firstImpressionVerdict' as first_impression_verdict,
+  metadata->>'personWorkFit' as person_work_fit,
+  metadata->>'thesisFit' as thesis_fit,
+  metadata->>'proofRouteFit' as proof_route_fit,
+  metadata->>'artifactRecall' as artifact_recall,
+  metadata->>'demoSignal' as demo_signal,
   metadata->>'strongestClaim' as strongest_claim,
   metadata->>'weakestClaim' as weakest_claim,
   metadata->>'evidenceNeeded' as evidence_needed,
@@ -98,8 +104,15 @@ counts as (
     count(*) filter (
       where review_verdict ~* '(mixed|weak|unsupported|confusing|not assessable)'
         or doctrine_verdict ~* '(needs evidence|too close|not precise|needs governance)'
+        or first_impression_verdict ~* '(generic|anonymous|confusing)'
+        or person_work_fit ~* '(partly specific|mostly anonymous|not assessable)'
+        or thesis_fit ~* '(partly clear|confusing|not assessable)'
+        or proof_route_fit ~* '(hesitation|lost|not assessable)'
+        or demo_signal ~* '(some demo|strong demo|not assessable)'
         or review_disposition in ('Needs Evidence', 'Fix', 'Clarify', 'Remove')
     )::int as skeptical_or_mixed_reviews,
+    count(*) filter (where first_impression_verdict ~* '(clear and specific)')::int as clear_specific_first_impressions,
+    count(*) filter (where first_impression_verdict ~* '(generic|anonymous|confusing)')::int as weak_first_impressions,
     count(*) filter (where nullif(trim(coalesce(evidence_needed, '')), '') is not null)::int as evidence_needed_reviews,
     count(*) filter (where artifact_count >= 4)::int as four_artifact_reviews
   from review_rows
@@ -124,11 +137,17 @@ select
   coalesce(nullif(review_dimension, ''), 'unspecified') as review_dimension,
   coalesce(nullif(review_verdict, ''), 'unspecified') as review_verdict,
   coalesce(nullif(review_disposition, ''), 'unspecified') as review_disposition,
+  coalesce(nullif(first_impression_verdict, ''), 'unspecified') as first_impression_verdict,
+  coalesce(nullif(person_work_fit, ''), 'unspecified') as person_work_fit,
+  coalesce(nullif(thesis_fit, ''), 'unspecified') as thesis_fit,
+  coalesce(nullif(proof_route_fit, ''), 'unspecified') as proof_route_fit,
+  coalesce(nullif(artifact_recall, ''), 'unspecified') as artifact_recall,
+  coalesce(nullif(demo_signal, ''), 'unspecified') as demo_signal,
   count(*)::int as review_count,
   count(*) filter (where nullif(trim(coalesce(evidence_needed, '')), '') is not null)::int as evidence_needed_count,
   count(*) filter (where nullif(trim(coalesce(implementation_question, '')), '') is not null)::int as implementation_question_count
 from practitioner_reviews
-group by 1, 2, 3;
+group by 1, 2, 3, 4, 5, 6, 7, 8, 9;
 
 create table if not exists newsletter_subscribers (
   id uuid primary key default gen_random_uuid(),
