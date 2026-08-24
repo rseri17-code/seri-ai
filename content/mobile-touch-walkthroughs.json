@@ -15,7 +15,7 @@
       "route": "/ask",
       "surface": "Ask Ravikanth",
       "visitorTask": "Ask a public-safe question, submit it, inspect the answer packet, follow a related source, and recover the public-safe boundary.",
-      "startingSignal": "The route opens with Ask Ravikanth as a public research interface rather than a generic chatbot.",
+      "startingSignal": "The route opens with Ask Ravikanth as an evidence console over Ravikanth's public professional graph rather than a generic chatbot.",
       "touchTargets": [
         "Ask input labelled Ask a question about Ravikanth Seri's public work",
         "Send message button labelled Send message",

@@ -8,12 +8,12 @@ import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, Net
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ask Ravikanth | Operational Intelligence Public Research Interface",
+  title: "Ask Ravikanth | Evidence Console for Ravikanth Seri's Public Work",
   description: "Ask an AI grounded in Ravikanth Seri's public work on Operational Intelligence. Every answer cites its sources.",
   alternates: { canonical: "/ask" },
   openGraph: {
-    title: "Ask Ravikanth | Operational Intelligence Public Research Interface",
-    description: "An AI assistant over Ravikanth Seri's public work. It cites what it knows, names what it doesn't, and won't discuss non-public work.",
+    title: "Ask Ravikanth | Evidence Console for Ravikanth Seri's Public Work",
+    description: "An AI assistant over Ravikanth Seri's public work and professional graph. It cites what it knows, names what it doesn't, and won't discuss non-public work.",
     url: "/ask",
     type: "website"
   }
@@ -45,11 +45,11 @@ export default async function AskPage({
             <div className="mb-5 flex items-center gap-4">
               <ProfileMark size="sm" />
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Public research interface</p>
-                <p className="mt-1 text-sm text-slate-400">Operational Intelligence, systems judgment, projects, background, and artifacts.</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Evidence console</p>
+                <p className="mt-1 text-sm text-slate-400">Career evidence, systems judgment, public code, doctrine, and artifacts.</p>
               </div>
             </div>
-            <h2 className="text-3xl font-semibold leading-tight text-white">A serious idea should answer questions with receipts.</h2>
+            <h2 className="text-3xl font-semibold leading-tight text-white">A serious technical claim should survive inspection.</h2>
             <p className="mt-4 leading-7 text-slate-300">
               An AI assistant over Ravikanth&apos;s public writing, architecture, and evidence. It cites what it knows, names what it doesn&apos;t, and won&apos;t discuss non-public work.
             </p>
@@ -101,7 +101,7 @@ export default async function AskPage({
         </div>
       </Section>
 
-      <Section eyebrow="Guide paths" title="Use Ask Ravi as the navigation layer for the whole system.">
+      <Section eyebrow="Guide paths" title="Use Ask Ravi to move from question to evidence.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {askGuidePaths.map(([href, title, detail, prompt]) => (
             <Card key={href} className="h-full p-4">

@@ -104,10 +104,10 @@
     },
     {
       "name": "UX",
-      "score": 8.1,
-      "evidence": "Start Here, primary CTAs, proof paths, Ask prompts, related reading, reference assets, the First-Time Visitor Review Kit, and the Practitioner Review Packet provide guided navigation.",
-      "gap": "The Operations Room and long reference pages still need more observed user-review evidence.",
-      "nextProof": "Run a 10-20 minute first-time visitor walkthrough and record where users hesitate."
+      "score": 8.2,
+      "evidence": "Start Here, primary CTAs, proof paths, Ask prompts, related reading, reference assets, the First-Time Visitor Review Kit, Practitioner Review Packet, and a 10-minute proof route provide guided navigation from person to work to doctrine to artifact to evidence.",
+      "gap": "The Operations Room and long reference pages still need observed user-review evidence from people who do not already know Ravikanth or the thesis.",
+      "nextProof": "Run the 10-minute proof route with first-time reviewers and record where they hesitate or cannot answer the north-star questions."
     },
     {
       "name": "Mobile",
@@ -167,10 +167,10 @@
     },
     {
       "name": "Overall Memorability",
-      "score": 7.9,
-      "evidence": "The Operational Intelligence thesis, Operations Room, Ask Ravikanth, and proof-led professional graph are differentiated.",
-      "gap": "The signature artifact and first impression need more external validation and visual polish before they reliably feel unforgettable.",
-      "nextProof": "Use browser QA and practitioner review to sharpen the first 10 minutes around one memorable evidence-to-decision experience."
+      "score": 8,
+      "evidence": "The Operational Intelligence thesis, Operations Room, Ask Ravikanth evidence console, proof-led professional graph, and Start Here 10-minute proof route now converge around one memorable path: operator, work, thesis, artifact, evidence.",
+      "gap": "The signature artifact and first impression still need external validation and visual polish before they reliably feel unforgettable.",
+      "nextProof": "Use browser QA and practitioner review to test whether the 10-minute proof route produces one memorable evidence-to-decision experience."
     }
   ]
 }

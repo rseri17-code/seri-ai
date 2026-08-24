@@ -45,7 +45,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Ask how Operational Intelligence works, what OI-ROOM-001 proves, or where Ravikanth Seri's public evidence lives. I will cite sources, separate evidence from inference, name uncertainty, and stop when the record is thin.";
+      : "Start with a real question about Ravikanth Seri's work, Operational Intelligence, OI-ROOM-001, public code, or career evidence. Strong answers cite sources, separate evidence from inference, name uncertainty, and stop when the record is thin.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -232,8 +232,8 @@ export function Chat({
             <div className="flex items-center gap-3">
               <ProfileMark size="sm" />
               <div>
-                <p className="text-xs font-semibold uppercase text-slate-500">Public research interface</p>
-                <h2 className="text-xl font-semibold text-white">Question the doctrine, the Operations Room, and the public work.</h2>
+                <p className="text-xs font-semibold uppercase text-slate-500">Evidence console</p>
+                <h2 className="text-xl font-semibold text-white">Question the professional graph behind the doctrine, Operations Room, and public work.</h2>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 xl:w-[34rem]">
@@ -297,7 +297,7 @@ export function Chat({
           </button>
         </form>
         <div className="border-t border-white/10 bg-black/15 p-3 lg:hidden">
-          <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-500">Good first questions</p>
+          <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-500">Strong first questions</p>
           <div className="mt-2 grid gap-2 sm:grid-cols-2">
             {prompts.slice(0, 4).map((prompt) => (
               <button
@@ -366,11 +366,11 @@ export function Chat({
             </div>
           ) : null}
           <p className="mt-4 text-xs leading-5 text-slate-400">
-            This interface answers from Ravikanth Seri&apos;s public materials. Strong answers cite sources, name uncertainty, and stop when the evidence stops.
+            Ask Ravikanth works only from approved public materials. It should cite sources, name uncertainty, and stop when the evidence stops.
           </p>
         </div>
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
-          <h2 className="font-semibold text-white">Suggested investigations</h2>
+          <h2 className="font-semibold text-white">Inspection prompts</h2>
           <div className="mt-4 space-y-2">
             {prompts.map((prompt) => (
               <button

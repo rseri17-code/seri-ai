@@ -43,6 +43,44 @@ const reviewSpine = [
   ["/investigation-room", "Operations Room"]
 ] as const;
 
+const tenMinuteProofRoute = [
+  {
+    minutes: "00-02",
+    href: "/background",
+    title: "Establish the operator",
+    question: "Who is Ravikanth, and why is this work grounded in production systems?",
+    proof: "Career arc, public-safe production-delivery chain, and the infrastructure-to-AI operating path."
+  },
+  {
+    minutes: "02-04",
+    href: "/work",
+    title: "Inspect the operating record",
+    question: "What has he built or made inspectable?",
+    proof: "Public work, GitHub signal, project-proof boundaries, and what each artifact does not prove."
+  },
+  {
+    minutes: "04-06",
+    href: "/wiki/operational-intelligence-canonical-doctrine",
+    title: "Read the thesis",
+    question: "What is the model, and where does it differ from observability or AIOps?",
+    proof: "Canonical definition, boundaries, ten layers, glossary, citations, and claim posture."
+  },
+  {
+    minutes: "06-08",
+    href: "/investigation-room",
+    title: "Run the case",
+    question: "Does the idea behave like an operational system rather than prose?",
+    proof: "OI-ROOM-001 evidence graph, hypotheses, contradiction, missing evidence, replay, gates, and approval."
+  },
+  {
+    minutes: "08-10",
+    href: "/wiki/operational-intelligence-evidence-pack",
+    title: "Challenge the claim",
+    question: "What would prove, weaken, or falsify the thesis?",
+    proof: "Proof backlog, control-comparison protocol, practitioner review packet, and known limitations."
+  }
+] as const;
+
 const orientationPath = [
   {
     href: "/background",
@@ -116,6 +154,27 @@ export default function StartHerePage() {
               <span className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">{step.label}</span>
               <span className="mt-3 block font-semibold text-white">{step.title}</span>
               <span className="mt-2 block text-sm leading-6 text-slate-300">{step.detail}</span>
+            </Link>
+          ))}
+        </div>
+      </Card>
+      <Card className="mb-6 border-white/15 bg-white/[0.045]">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-mint">10-minute proof route</p>
+            <h2 className="mt-3 text-2xl font-semibold text-white">A serious visitor should leave with a defensible read.</h2>
+          </div>
+          <p className="max-w-2xl text-sm leading-6 text-slate-300">
+            This route turns the success test into an inspection sequence: operator, work, thesis, artifact, evidence.
+          </p>
+        </div>
+        <div className="mt-5 grid gap-3 lg:grid-cols-5">
+          {tenMinuteProofRoute.map((step) => (
+            <Link key={step.minutes} href={step.href} className="rounded border border-white/10 bg-black/20 p-4 hover:border-mint/45">
+              <span className="font-mono text-xs font-semibold text-mint">{step.minutes}</span>
+              <span className="mt-3 block font-semibold text-white">{step.title}</span>
+              <span className="mt-2 block text-sm leading-5 text-slate-300">{step.question}</span>
+              <span className="mt-3 block border-t border-white/10 pt-3 text-xs leading-5 text-slate-400">{step.proof}</span>
             </Link>
           ))}
         </div>

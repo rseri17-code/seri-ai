@@ -276,7 +276,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       ? primarySource.content.slice(0, 420)
       : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
   const ravikanthContext =
-    "Ask Ravi is an AI assistant, not Ravikanth personally. Ask Ravikanth is a public research interface over Ravikanth Seri's public work, approved public work, and approved public sources: the Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
+    "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
   const linkedinContext =
     /linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)
       ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, distinguish a dynamic operational view from a static graph, and connect ops for observability with observability for AI."

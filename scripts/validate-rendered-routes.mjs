@@ -40,6 +40,11 @@ const routeContracts = [
       "Ravikanth Seri, explained through the work.",
       "Public-safe boundary",
       "First read in order",
+      "10-minute proof route",
+      "A serious visitor should leave with a defensible read.",
+      "Establish the operator",
+      "Inspect the operating record",
+      "Challenge the claim",
       "Who is Ravikanth Seri?",
       "What has he built?",
       "What is he building now?",
@@ -49,7 +54,8 @@ const routeContracts = [
     ],
     before: [
       ["3-minute orientation", "First read in order"],
-      ["First read in order", "Serious technical review path"],
+      ["First read in order", "10-minute proof route"],
+      ["10-minute proof route", "Serious technical review path"],
       ["Serious technical review path", "Visitor proof map"]
     ]
   },
