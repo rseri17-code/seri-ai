@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `6735363 Validate scorecard graph evidence counts`
+- `ba43e75 Avoid counted public repo proof claims`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `6735363 Validate scorecard graph evidence counts`
+- `ba43e75 Avoid counted public repo proof claims`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `6735363 Validate scorecard graph evidence counts`
+- `ba43e75 Avoid counted public repo proof claims`
 
 Recent improvements:
 
@@ -99,6 +99,7 @@ Recent improvements:
 - Practitioner review operations now expose Supabase quorum and dimension-summary views for role coverage, four-artifact inspection, skeptical or mixed signal, evidence-needed notes, and dimension/disposition analysis before publishing any positive summary from external reviews.
 - Project proof pages now render Ask fixture coverage from `evalReport.fixtures.length` instead of hard-coded content, and validators reject stale hard-coded live fixture counts in the public project proof ledger.
 - Scorecard graph-health and search-discoverability evidence counts are now checked against live `buildPublishingIndex`, `buildKnowledgeGraph`, and retrieval fixtures, so asset, relationship, framework-layer, registry, pattern, principle, and retrieval-query counts cannot drift silently.
+- Public-code evidence now avoids counted Sentinalai repository inventory claims; the public-code ledger tells reviewers what to inspect and `validate:content` rejects unvalidated repository inventory counts as proof.
 
 ## Current Highest-Value Gaps
 
@@ -229,6 +230,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex avoiding counted public repo proof claims
+
+- **Resolved**: The public-code evidence ledger no longer publishes brittle counted Sentinalai inventory claims from a prior local checkout. It now frames the authorized public repository reference as an inspection path for agent notes, investigation skill files, playbook configuration, eval scenarios, receipt-shaped artifacts, memory/wiki structure, and public-safe architecture notes. `validate:content` rejects unvalidated repository inventory counts such as file, folder, commit, star, contributor, agent-note, skill, playbook, or eval-scenario counts in `observedPublicStructure`. Evidence: `content/public-code.json`, `scripts/validate-content.mjs`, `npm run validate:content`, `npm run validate:coherence`, `npm run validate:retrieval`, `npm run evals`, `npm run lint`, `npm run typecheck`, `npm run scan:public-safety`, `git diff --check`. Public-safety risk: lower; the site no longer turns public repository inventory into proof or implies metrics that were not freshly validated.
 
 ### 2026-08-24 — Codex validating scorecard graph evidence counts
 
