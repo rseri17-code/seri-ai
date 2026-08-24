@@ -3,8 +3,11 @@ import path from "node:path";
 
 const root = process.cwd();
 const rubricPath = path.join(root, "content", "ask-quality-rubric.json");
+const personaPath = path.join(root, "content", "ask-persona.json");
 const evalsPagePath = path.join(root, "app", "evals", "page.tsx");
 const scorecardPath = path.join(root, "WORLD_CLASS_SCORECARD.md");
+const compliancePath = path.join(root, "lib", "compliance.ts");
+const aiPath = path.join(root, "lib", "ai.ts");
 const errors = [];
 
 function expect(condition, message) {
@@ -12,8 +15,11 @@ function expect(condition, message) {
 }
 
 const rubric = JSON.parse(fs.readFileSync(rubricPath, "utf8"));
+const persona = JSON.parse(fs.readFileSync(personaPath, "utf8"));
 const evalsPage = fs.readFileSync(evalsPagePath, "utf8");
 const scorecard = fs.readFileSync(scorecardPath, "utf8");
+const compliance = fs.readFileSync(compliancePath, "utf8");
+const ai = fs.readFileSync(aiPath, "utf8");
 
 expect(rubric.title === "Ask Ravi Live Answer Quality Rubric", "Rubric title must identify Ask Ravi live answer quality.");
 expect(rubric.modelQualityScoresFabricated === false, "Rubric must explicitly avoid fabricated model-quality scores.");
@@ -23,6 +29,60 @@ expect(Array.isArray(rubric.dimensions) && rubric.dimensions.length >= 10, "Rubr
 expect(Array.isArray(rubric.reviewPromptSet) && rubric.reviewPromptSet.length >= 12, "Rubric must include at least twelve live review prompts.");
 expect(rubric.reportingTemplate?.safeMetadataOnly?.length >= 10, "Rubric must define safe metadata fields for reporting.");
 expect(rubric.reportingTemplate?.doNotCapture?.length >= 7, "Rubric must define fields that must not be captured.");
+
+expect(persona.title === "Ask Ravikanth Persona Contract", "Ask persona contract title must identify Ask Ravikanth.");
+expect(persona.status === "active", "Ask persona contract must be active.");
+expect(/AI assistant over Ravikanth Seri's approved public work/i.test(persona.identityDisclosure ?? ""), "Ask persona must disclose AI assistant identity over approved public work.");
+expect(Array.isArray(persona.answerPosture) && persona.answerPosture.length >= 6, "Ask persona needs at least six answer-posture rules.");
+expect(Array.isArray(persona.answerShape) && persona.answerShape.length >= 5, "Ask persona needs at least five answer-shape rules.");
+expect(Array.isArray(persona.mustDo) && persona.mustDo.length >= 5, "Ask persona needs at least five must-do rules.");
+expect(Array.isArray(persona.mustNotDo) && persona.mustNotDo.length >= 5, "Ask persona needs at least five must-not-do rules.");
+expect(Array.isArray(persona.routingDefaults) && persona.routingDefaults.length >= 7, "Ask persona needs routing defaults for core visitor intents.");
+
+for (const required of [
+  "not as a generic chatbot",
+  "not in first person as Ravikanth",
+  "career arc",
+  "established practice, derived application, original synthesis, speculative guidance, and unsupported claims",
+  "proof backlog",
+  "Do not write as if Ravikanth personally authored the answer in real time.",
+  "Do not turn every answer into an Operational Intelligence pitch"
+]) {
+  expect(JSON.stringify(persona).includes(required), `Ask persona contract missing required posture: ${required}`);
+}
+
+for (const route of [
+  "/start-here",
+  "/background",
+  "/work",
+  "/wiki/operational-intelligence-canonical-doctrine",
+  "/wiki/operational-intelligence-reference-architecture",
+  "/investigation-room",
+  "/wiki/operational-intelligence-evidence-pack"
+]) {
+  expect(persona.routingDefaults.some((item) => item.route === route), `Ask persona routing defaults missing ${route}.`);
+}
+
+for (const required of [
+  "ask-persona.json",
+  "askPersonaInstruction",
+  "Ask persona contract",
+  "Ask posture",
+  "Ask answer shape",
+  "Ask must do",
+  "Ask must not do"
+]) {
+  expect(compliance.includes(required), `lib/compliance.ts missing Ask persona wiring: ${required}`);
+}
+
+for (const required of [
+  "Answer posture",
+  "public engineering judgment",
+  "do not imitate him in first person",
+  "not as Ravikanth personally and not as a generic chatbot"
+]) {
+  expect(ai.includes(required), `lib/ai.ts missing Ask persona fallback or prompt contract: ${required}`);
+}
 
 for (const label of ["Exceptional", "Pass", "Needs revision", "Fail"]) {
   expect(rubric.labels.some((item) => item.name === label), `Rubric missing qualitative label ${label}.`);

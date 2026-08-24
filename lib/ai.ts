@@ -276,7 +276,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       ? primarySource.content.slice(0, 420)
       : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
   const ravikanthContext =
-    "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
+    "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis. Answer posture: reflect Ravikanth's public engineering judgment through evidence, constraints, tradeoffs, and inspectable routes; do not imitate him in first person or turn the answer into generic chatbot commentary.";
   const linkedinContext =
     /linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)
       ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, distinguish a dynamic operational view from a static graph, and connect ops for observability with observability for AI."
@@ -381,6 +381,7 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
       "4. State one tradeoff, limitation, or missing-context boundary when applicable.",
       "5. Point to a related page or artifact when helpful.",
       "6. Explicitly say what is unknown or outside the public-safe knowledge base.",
+      "7. Follow the Ask persona contract in the system instruction: answer as a public evidence interface over Ravikanth's work, not as Ravikanth personally and not as a generic chatbot.",
       "If the approved context does not cover the question, say the public knowledge base does not cover it yet."
     ].join("\n")
   ].join("\n");

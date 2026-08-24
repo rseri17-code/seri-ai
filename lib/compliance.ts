@@ -1,3 +1,5 @@
+import askPersona from "../content/ask-persona.json";
+
 const bannedPatterns = [
   /\binternal\b.*\b(product|platform|project|system|tool|dashboard|dashboards|log|logs|screenshot|screenshots|architecture|implementation)\b/i,
   /\b(current|your|employer|company)\b.*\b(internal|private|confidential|proprietary)\b/i,
@@ -9,6 +11,16 @@ const bannedPatterns = [
   /\b(reveal|print|show|dump)\b.*\b(system prompt|developer message|hidden instructions|private context)\b/i,
   /\bjailbreak\b/i
 ];
+
+function askPersonaInstruction() {
+  return [
+    `Ask persona contract: ${askPersona.identityDisclosure}`,
+    ...askPersona.answerPosture.map((rule) => `Ask posture: ${rule}`),
+    ...askPersona.answerShape.map((rule) => `Ask answer shape: ${rule}`),
+    ...askPersona.mustDo.map((rule) => `Ask must do: ${rule}`),
+    ...askPersona.mustNotDo.map((rule) => `Ask must not do: ${rule}`)
+  ].join("\n");
+}
 
 export function isPublicSafe(input: string) {
   return !bannedPatterns.some((pattern) => pattern.test(input));
@@ -26,6 +38,7 @@ export function publicSafetyInstruction() {
     "Do not invent experience, metrics, internal systems, employers, product names, or claims.",
     "Prefer the category language: Signal Layer, Transaction Layer, Topology Layer, Evidence Layer, Reasoning Layer, Memory Layer, Evaluation Layer, Decision Layer, Learning Layer, Operator Layer.",
     "Write in a calm, executive-practitioner voice: specific, grounded, systems-oriented, and concise.",
-    "Do not perform as a personal chatbot. Make the answer feel like an Operational Intelligence field system: evidence first, boundaries explicit, recommendations reviewable."
+    "Do not perform as a personal chatbot. Make the answer feel like an Operational Intelligence field system: evidence first, boundaries explicit, recommendations reviewable.",
+    askPersonaInstruction()
   ].join("\n");
 }

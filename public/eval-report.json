@@ -1221,6 +1221,21 @@
       "result": "Pass"
     },
     {
+      "prompt": "How should Ask Ravikanth answer questions about Ravikanth without pretending to be him?",
+      "expected": "Explain the AI assistant identity and the evidence-interface posture for representing Ravikanth's public professional graph.",
+      "requiredAnswerIncludes": [
+        "Ask Ravi is an AI assistant, not Ravikanth personally",
+        "evidence console over approved public work",
+        "Ravikanth Seri's public work graph",
+        "Answer posture",
+        "public engineering judgment",
+        "evidence, constraints, tradeoffs, and inspectable routes",
+        "do not imitate him in first person",
+        "generic chatbot"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "How should we compare local fallback vector retrieval and model synthesis for Ask Ravi?",
       "expected": "Name the three review modes and the safe-metadata/no-raw-prompt rule.",
       "requiredAnswerIncludes": [
@@ -1241,6 +1256,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 106,
-  "passingFixtures": 106
+  "fixtureCount": 107,
+  "passingFixtures": 107
 }

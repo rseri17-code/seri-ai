@@ -251,7 +251,7 @@ function deterministicFallbackAnswer(question) {
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
   const ravikanthContext =
-    "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis.";
+    "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis. Answer posture: reflect Ravikanth's public engineering judgment through evidence, constraints, tradeoffs, and inspectable routes; do not imitate him in first person or turn the answer into generic chatbot commentary.";
   const linkedinContext =
     /linkedin|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)
       ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, distinguish a dynamic operational view from a static graph, and connect ops for observability with observability for AI."
