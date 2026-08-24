@@ -5,6 +5,7 @@ const root = process.cwd();
 const handoffPath = path.join(root, "CLAUDE_HANDOFF.md");
 const packagePath = path.join(root, "package.json");
 const claudeHandoffScriptPath = path.join(root, "scripts/create-claude-handoff.mjs");
+const evalReportPath = path.join(root, "content", "eval-report.json");
 const errors = [];
 
 function expect(condition, message) {
@@ -13,7 +14,9 @@ function expect(condition, message) {
 
 const handoff = fs.readFileSync(handoffPath, "utf8");
 const pkg = JSON.parse(fs.readFileSync(packagePath, "utf8"));
+const evalReport = JSON.parse(fs.readFileSync(evalReportPath, "utf8"));
 const claudeHandoffScript = fs.readFileSync(claudeHandoffScriptPath, "utf8");
+const evalFixtureCount = evalReport.fixtures?.length ?? 0;
 
 for (const missionFile of ["NORTH_STAR.md", "AGENTS.md", "CLAUDE.md"]) {
   expect(fs.existsSync(path.join(root, missionFile)), `${missionFile} missing: both agents depend on it for shared mission context`);
@@ -96,6 +99,8 @@ for (const banned of [
 }
 
 expect(/`[a-f0-9]{7,40} [^`]+`/.test(handoff), "CLAUDE_HANDOFF.md must include a commit-shaped sync point.");
+expect(evalFixtureCount >= 35, "Eval report must include at least 35 fixtures before handoff can claim Ask coverage.");
+expect(handoff.includes(`Ask deterministic fixtures cover ${evalFixtureCount} passing cases.`), "CLAUDE_HANDOFF.md current product state must use the current Ask fixture count.");
 expect(pkg.scripts["handoff:claude"] === "node scripts/create-claude-handoff.mjs", "package.json missing handoff:claude script");
 expect(pkg.scripts["validate:handoff"] === "node scripts/validate-agent-handoff.mjs", "package.json missing validate:handoff script");
 expect(pkg.scripts.test.includes("validate:handoff"), "npm test must run validate:handoff");

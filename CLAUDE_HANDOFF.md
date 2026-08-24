@@ -86,7 +86,7 @@ Recent improvements:
 - Ask Ravikanth is framed as an evidence console over Ravikanth's public professional graph.
 - Keyboard accessibility walkthrough evidence exists for Ask Ravikanth and Operations Room.
 - Search retrieval covers 66 canonical queries.
-- Ask deterministic fixtures cover 106 passing cases.
+- Ask deterministic fixtures cover 107 passing cases.
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.
 - Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.

@@ -3,6 +3,8 @@ import path from "node:path";
 
 const root = process.cwd();
 const errors = [];
+const evalReport = JSON.parse(fs.readFileSync(path.join(root, "content", "eval-report.json"), "utf8"));
+const evalFixtureCount = evalReport.fixtures?.length ?? 0;
 
 const requiredEnvKeys = [
   "NEXT_PUBLIC_SITE_URL",
@@ -158,6 +160,31 @@ for (const required of [
   "Do not call seri.ai complete because a build passes"
 ]) {
   expect(scorecard.includes(required), `WORLD_CLASS_SCORECARD.md missing "${required}"`);
+}
+
+const excellenceReport = read("PRODUCT_EXCELLENCE_REPORT.md");
+for (const required of [
+  `${evalFixtureCount} deterministic fixtures pass`,
+  "versioned persona contract",
+  "intent-aware follow-up questions",
+  "35 pages and 22 components",
+  "home first-load JS at 107 kB",
+  "Operations Room first-load JS at 226 kB",
+  "approved portrait provenance is documented",
+  "physical-device touch checks"
+]) {
+  expect(excellenceReport.includes(required), `PRODUCT_EXCELLENCE_REPORT.md current scorecard missing "${required}"`);
+}
+
+for (const stale of [
+  "71 deterministic fixtures pass",
+  "35 pages and 19 components",
+  "home first-load JS reported at 150",
+  "Operations Room at 194 kB",
+  "needs documented consent before real portrait use",
+  "Confirm portrait provenance"
+]) {
+  expect(!excellenceReport.includes(stale), `PRODUCT_EXCELLENCE_REPORT.md current scorecard contains stale evidence: ${stale}`);
 }
 
 const contentSource = read("lib/content.ts");

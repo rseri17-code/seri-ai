@@ -155,20 +155,20 @@ Date: 2026-07-26
 | --- | --- | --- |
 | Content authority | Doctrine, reference architecture, publication pack, evidence pack, public-safe case, citations, claim posture. | Strong, needs external practitioner review. |
 | Technical depth | Ten-layer framework, state/contract artifacts, Operations Room, eval gates, reference PDFs. | Strong, needs measured case-study evidence. |
-| UX and visual quality | Homepage copy now leads with evidence-first operating model; Operations Room graph appears before secondary controls; Ask opens as a receipt-inspection surface. | Improving, still needs production visual QA and stronger artifact dominance. |
-| Ask Ravi usefulness and safety | 71 deterministic fixtures pass; fallback, refusal, routing, citation, AI-disclosure, safe operational metadata, and internal observability contracts validated. | Strong deterministic beta, needs live model quality telemetry. |
-| Accessibility | `validate:a11y` covers 35 pages and 19 components. | Strong automated coverage, needs manual keyboard/screen-reader pass. |
-| Performance | `npm run build` passed performance budgets; home first-load JS reported at 150 kB, Operations Room at 194 kB. | Acceptable, keep watching Operations Room payload. |
+| UX and visual quality | Homepage copy leads with evidence-first operating model; Operations Room graph appears before secondary controls; Ask opens as an evidence console; 27 durable first-viewport screenshots and source-validated mobile touch notes now cover the dense routes. | Improving, still needs external hierarchy/density review and physical-device checks. |
+| Ask Ravi usefulness and safety | 107 deterministic fixtures pass; fallback, refusal, routing, citation, AI-disclosure, safe operational metadata, versioned persona contract, intent-aware follow-up questions, and observability contracts are validated. | Strong deterministic beta, needs live reviewer-labeled answer quality and production retrieval evidence. |
+| Accessibility | `validate:a11y` covers 35 pages and 22 components; source-validated keyboard walkthrough notes cover Ask Ravikanth and Operations Room. | Strong automated/source-validated coverage, needs browser-recorded keyboard and screen-reader pass. |
+| Performance | `npm run build` passed performance budgets; latest production build reports home first-load JS at 107 kB and Operations Room first-load JS at 226 kB. | Acceptable, keep watching Operations Room payload and real-device interaction latency. |
 | SEO and discovery | Canonical metadata, JSON-LD, sitemap, robots, RSS, OG/Twitter images, `/llms.txt`. | Strong. |
 | Reliability and SRE maturity | API fallback/rate-limit contracts, timeout budgets, safe Ask response metadata, deployment config validators, memoized static corpus indexes, Ask observability dashboard contract, beta operations runbook, and production build pass without static-generation retries in the latest run. | Stronger beta posture, still needs live production dashboard data and alert evidence. |
-| Security and privacy | Public-safety scan passes; unconfirmed portrait removed; portrait source references now blocked. | Improved, needs documented consent before real portrait use. |
+| Security and privacy | Public-safety scan passes; approved portrait provenance is documented through the portrait intake contract; Ask analytics and review packets avoid raw prompt capture. | Improved, needs production secret scope and rotation verification before broader launch. |
 | Maintainability | Content/route/publishing/retrieval/analytics validators pass; eval report generation is deterministic and no longer creates timestamp-only release churn. | Strong. |
-| Mobile | Existing validators and prior browser checks cover mobile overflow; source hierarchy now places the Operations Room graph earlier. Current iteration did not complete fresh screenshots due in-app browser/local dev instability. | Needs fresh manual visual pass on production deployment. |
+| Mobile | Viewport contracts, 390px screenshot artifacts, responsive Ask prompts, and source-validated mobile touch walkthrough notes cover Ask, Operations Room, Doctrine, Radar, and Work. | Needs physical-device touch checks and external first-time reviewer hesitation notes. |
 
 ### Prioritized Backlog
 
-1. Confirm portrait provenance: intended image, permission to reuse, source, optimization target, alt text, and public placement.
-2. Run a fresh production visual QA pass outside the unstable in-app browser for home, Ask, Operations Room, Work, Background, Doctrine, and mobile 390px.
+1. Run external first-impression and practitioner reviews for the person-work-evidence path.
+2. Run physical-device touch checks, browser-recorded keyboard checks, and screen-reader spot checks for Ask, Operations Room, Doctrine, Radar, and Work.
 3. Connect live PostHog/Vercel Ask observability dashboards to the metadata contract: latency buckets, failure rate, source count, refusal category, answer mode, retrieval mode, and cost-safe metadata without prompt capture.
 4. Add practitioner review evidence for the doctrine and reference architecture.
 5. Add measured comparison artifacts: dashboard-only versus chatbot-only versus Operational Intelligence workflow on OI-ROOM-001.
