@@ -52,13 +52,18 @@ Expected output format:
 
 Focus first on whether a serious visitor can answer:
 1. Who is Ravikanth Seri?
-2. What has he done professionally?
-3. What has he built?
+2. How has his career evolved?
+3. What has he actually built?
 4. What is he building now?
-5. What is his strongest technical thesis?
-6. What evidence supports the thesis?
-7. Where can the work be inspected?
-8. Why would a serious engineering organization want a technical conversation with him?
+5. What technical problems does he specialize in?
+6. How does he think about architecture and engineering?
+7. What has he published?
+8. What frameworks and reference architectures has he developed?
+9. What production experience supports his thinking?
+10. What open-source and public work can be inspected?
+11. What distinguishes his engineering judgment?
+12. What is he learning, researching, and advancing?
+13. Why would a world-class engineering organization want to work with him?
 
 Here is the standing Codex/Claude operating contract:
 

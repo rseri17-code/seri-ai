@@ -103,7 +103,7 @@ const orientationPath = [
   {
     href: "/wiki/operational-intelligence-canonical-doctrine",
     label: "4. Doctrine",
-    title: "How does he think?",
+    title: "How does he think about architecture and engineering?",
     detail: "Read the canonical model that separates observability, AIOps, incident practice, knowledge graphs, and AI evaluation."
   },
   {

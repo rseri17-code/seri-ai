@@ -1204,19 +1204,21 @@ const requiredVisitorQuestions = [
   "What has he done professionally?",
   "How has his career evolved?",
   "What is his current technical focus?",
-  "What has he built?",
-  "What production engineering problems has he solved?",
+  "What has he actually built?",
+  "What technical problems does he specialize in?",
   "What is he building now?",
   "What are his strongest technical capabilities?",
-  "How does he think?",
-  "What has he written?",
-  "What original frameworks or synthesis has he produced?",
-  "Where can I inspect his technical work?",
+  "How does he think about architecture and engineering?",
+  "What has he published?",
+  "What frameworks and reference architectures has he developed?",
+  "What open-source and public work can be inspected?",
   "What does his GitHub show?",
   "What does his resume show?",
-  "What evidence supports his achievements?",
+  "What production experience supports his thinking?",
+  "What distinguishes his engineering judgment?",
+  "What is he learning, researching, and advancing?",
   "How can I contact him?",
-  "Why would I want to hire, collaborate with, or learn from him?"
+  "Why would a world-class engineering organization want to work with him?"
 ];
 if (!Array.isArray(professionalGraph.visitorSuccessQuestions) || professionalGraph.visitorSuccessQuestions.length !== requiredVisitorQuestions.length) {
   errors.push(`content/professional-graph.json: visitorSuccessQuestions must include exactly ${requiredVisitorQuestions.length} north-star questions`);

@@ -84,7 +84,7 @@
     {
       "name": "Ask Ravi",
       "score": 8.3,
-      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, a versioned persona contract, intent-aware follow-up questions, project-proof routing, public-code rubric routing, visitor-review routing, practitioner-review routing, review-quorum routing, visual-QA routing, credential-evidence routing, identity-asset and portrait-intake routing, mobile-touch evidence routing, keyboard-accessibility evidence routing, Ask live review packet routing, and 108 passing fixtures.",
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, a versioned persona contract, intent-aware follow-up questions, project-proof routing, public-code rubric routing, visitor-review routing, practitioner-review routing, review-quorum routing, visual-QA routing, credential-evidence routing, identity-asset and portrait-intake routing, mobile-touch evidence routing, keyboard-accessibility evidence routing, Ask live review packet routing, and 115 passing fixtures.",
       "gap": "A controlled Ask live review packet exists, but no live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
       "nextProof": "Run the Ask live review packet and publish qualitative labels without raw prompts or aggregate model-quality scores."
     },

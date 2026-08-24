@@ -176,6 +176,7 @@ function inferRelatedArtifacts(question) {
   if (/written|writing|published|article|library|ideas|frameworks?/.test(lower)) {
     artifacts.add("/library");
     artifacts.add("/ideas");
+    artifacts.add("/framework");
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }
   if (/publication spine|reading order|what should i read first|body of work|which publications|published assets|field notes.*patterns|doctrine.*field notes.*patterns|each asset prove/.test(lower)) {
@@ -191,7 +192,7 @@ function inferRelatedArtifacts(question) {
     artifacts.add("/patterns/agentic-incident-investigation");
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }
-  if (/ravikanth|resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence|recruiter|founder|who is|professional profile|hire|collaborate|learn from him/.test(lower)) {
+  if (/ravikanth|resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence|recruiter|founder|who is|professional profile|hire|collaborate|learn from him|work with him|engineering organization|technical problems?|speciali[sz]e/.test(lower)) {
     artifacts.add("/resume");
     artifacts.add("/background");
   }
@@ -252,7 +253,7 @@ function inferSuggestedNextQuestion(question) {
   if (/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten|quality scorecard|rate the site|current rating|current score/.test(lower)) {
     return "What evidence would change the current scorecard or proof backlog?";
   }
-  if (/recruiter|founder|hire|collaborate|learn from him|who is ravikanth|professional profile|resume|background|experience|career|certification|credential|education/.test(lower)) {
+  if (/recruiter|founder|hire|collaborate|learn from him|work with him|engineering organization|who is ravikanth|professional profile|resume|background|experience|career|certification|credential|education|technical problems?|speciali[sz]e/.test(lower)) {
     return "Which public evidence best shows Ravikanth's career arc and architecture judgment?";
   }
   if (/doctrine|definition|define|canonical|boundary|boundaries|glossary|what is operational intelligence|observability|aiops|agentops/.test(lower)) {
@@ -269,7 +270,7 @@ function inferSuggestedNextQuestion(question) {
 
 function deterministicFallbackAnswer(question) {
   const lower = normalizeQuestionIntent(question);
-  const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education/.test(lower);
+  const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education|technical problems?|speciali[sz]e|work with him|engineering organization/.test(lower);
   const layers = inferFrameworkLayers(question);
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
@@ -285,7 +286,7 @@ function deterministicFallbackAnswer(question) {
       ? " Credential evidence: /resume lists education and certifications as supporting evidence with issuer, status, source class, and explicit limits. Current public evidence includes MS Industrial Engineering from University of New Haven, Artificial Intelligence Associate and Certified Data Scientist from North Carolina State University, historical AWS Solutions Architect Associate status expired Mar 2023, Certified Kubernetes Administrator, and IBM Certified DataPower Administrator. Credentials support the career arc but do not replace inspectable project, architecture, evaluation, or public-work evidence."
       : "";
   const visitorSuccessContext =
-    /start here|first[- ]time|visitor|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lower)
+    /start here|first[- ]time|visitor|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|work with him|engineering organization|professional profile|success map|core questions/.test(lower)
       ? " Visitor success map: /start-here is the best first stop for the north-star questions that connect Ravikanth Seri's career, public work, current focus, GitHub, LinkedIn, resume, contact path, and Operational Intelligence thesis."
       : "";
   const visitorReviewContext =
@@ -297,7 +298,7 @@ function deterministicFallbackAnswer(question) {
       ? " Practitioner review packet: /publication-pack/ravikanth-seri-practitioner-review-packet.md is the structured external-review protocol for evaluating professional representation: whether seri.ai represents Ravikanth Seri, his career arc, public work, technical authority, evidence quality, Operations Room usefulness, Ask usefulness, and memorability. Its minimum external evidence quorum requires at least five public-safe reviews across SRE/reliability, principal architecture, AI systems or governance, executive/founder/product, and recruiter or hiring-facing perspectives. It requires at least four inspected artifacts, at least one skeptical or mixed verdict, explicit evidence-needed notes, and revision if reviewers cannot explain the person-work-thesis relationship or classify Operational Intelligence as renamed observability or generic AIOps. It captures safe metadata only and does not claim external practitioner verdicts yet."
       : "";
   const architectureJudgmentContext =
-    /architecture judgment|constraints? .*preserve|governed ai action|governed execution|replay evaluation|transaction journeys?|just skills/.test(lower)
+    /architecture judgment|engineering judgment|distinguish.*judgment|constraints? .*preserve|governed ai action|governed execution|replay evaluation|transaction journeys?|just skills/.test(lower)
       ? " Architecture judgment ledger: the public evidence emphasizes preserving operational evidence before model reasoning, governed execution before AI action, replay and evaluation before trust, transaction journeys before isolated alerts, and public-safe architecture instead of private anecdotes."
       : "";
   const publicCodeContext =

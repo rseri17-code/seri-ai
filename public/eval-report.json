@@ -380,6 +380,30 @@
       "result": "Pass"
     },
     {
+      "prompt": "What has Ravikanth actually built?",
+      "expected": "Route to public work, projects, and artifacts instead of private claims.",
+      "requiredAnswerIncludes": [
+        "Related page or artifact",
+        "/work",
+        "/projects",
+        "/artifacts",
+        "Public source"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "What technical problems does Ravikanth specialize in?",
+      "expected": "Route to resume and background evidence without reducing the profile to a skills list.",
+      "requiredAnswerIncludes": [
+        "Related page or artifact",
+        "/resume",
+        "/background",
+        "Public source",
+        "Suggested next question: Which public evidence best shows Ravikanth's career arc and architecture judgment?"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "What has Ravikanth built and where can I inspect it?",
       "expected": "Route to public work, projects, and artifacts.",
       "requiredAnswerIncludes": [
@@ -387,6 +411,30 @@
         "/work",
         "/projects",
         "/artifacts"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "What has Ravikanth published?",
+      "expected": "Route to library, ideas, framework, and doctrine assets.",
+      "requiredAnswerIncludes": [
+        "Related page or artifact",
+        "/library",
+        "/ideas",
+        "/framework",
+        "/wiki/operational-intelligence-canonical-doctrine"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "What frameworks and reference architectures has Ravikanth developed?",
+      "expected": "Route to framework, doctrine, library, and ideas without overstating industry-standard status.",
+      "requiredAnswerIncludes": [
+        "Related page or artifact",
+        "/framework",
+        "/library",
+        "/ideas",
+        "/wiki/operational-intelligence-canonical-doctrine"
       ],
       "result": "Pass"
     },
@@ -403,6 +451,17 @@
       "result": "Pass"
     },
     {
+      "prompt": "What open-source and public work can be inspected?",
+      "expected": "Route to Work and public GitHub signal with repository-proof boundaries.",
+      "requiredAnswerIncludes": [
+        "Public code inspection path",
+        "github.com/rseri17-code",
+        "/work",
+        "Do not infer repository metrics"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "How can I contact Ravikanth or start a collaboration conversation?",
       "expected": "Route to Contact and public profile links without capturing private prompt text.",
       "requiredAnswerIncludes": [
@@ -413,13 +472,38 @@
       "result": "Pass"
     },
     {
-      "prompt": "Why would someone hire, collaborate with, or learn from Ravikanth?",
+      "prompt": "What production experience supports Ravikanth's thinking?",
+      "expected": "Route to production-delivery evidence and resume/background without protected implementation details.",
+      "requiredAnswerIncludes": [
+        "Production delivery path",
+        "/background",
+        "/work",
+        "/resume",
+        "Public source"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "What distinguishes Ravikanth's engineering judgment?",
+      "expected": "Route to the architecture judgment ledger and public-safe proof surfaces.",
+      "requiredAnswerIncludes": [
+        "Architecture judgment ledger",
+        "operational evidence before model reasoning",
+        "governed execution before AI action",
+        "/work",
+        "/resume",
+        "/background"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Why would a world-class engineering organization want to work with Ravikanth?",
       "expected": "Use the visitor success map and proof surfaces rather than unsupported self-promotion.",
       "requiredAnswerIncludes": [
         "Visitor success map",
         "/start-here",
-        "/work",
         "/resume",
+        "/background",
         "Public source"
       ],
       "result": "Pass"
@@ -1282,6 +1366,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 108,
-  "passingFixtures": 108
+  "fixtureCount": 115,
+  "passingFixtures": 115
 }

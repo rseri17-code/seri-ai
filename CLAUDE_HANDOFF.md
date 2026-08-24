@@ -86,14 +86,14 @@ Recent improvements:
 - Ask Ravikanth is framed as an evidence console over Ravikanth's public professional graph.
 - Keyboard accessibility walkthrough evidence exists for Ask Ravikanth and Operations Room.
 - Search retrieval covers 67 canonical queries.
-- Ask deterministic fixtures cover 108 passing cases.
+- Ask deterministic fixtures cover 115 passing cases.
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.
 - Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.
 - Ask Ravikanth now has a versioned persona contract wired into the system instruction and local fallback. The contract requires an evidence-interface posture over Ravikanth's public professional graph, not first-person imitation and not generic chatbot behavior.
 - Ask follow-up behavior is now intent-aware for GitHub/Sentinalai inspection, proof gaps and scorecard questions, recruiter/career questions, doctrine comparisons, Operations Room investigation questions, and contact/collaboration questions.
-- Ask scorecard evidence now reflects 108 passing fixtures, the versioned persona contract, intent-aware follow-up questions, and review-quorum routing, and `validate:ask-quality` guards the fixture count against drifting from the eval report.
-- Product Excellence report current scorecard now reflects 108 Ask fixtures, persona/follow-up contracts, review-quorum routing, current accessibility coverage, latest performance numbers, and integrated portrait provenance. `validate:deployment` and `validate:handoff` now guard the report and handoff against stale evidence claims.
+- Ask scorecard evidence now reflects 115 passing fixtures, the versioned persona contract, intent-aware follow-up questions, and review-quorum routing, and `validate:ask-quality` guards the fixture count against drifting from the eval report.
+- Product Excellence report current scorecard now reflects 115 Ask fixtures, persona/follow-up contracts, review-quorum routing, current accessibility coverage, latest performance numbers, and integrated portrait provenance. `validate:deployment` and `validate:handoff` now guard the report and handoff against stale evidence claims.
 - The Practitioner Review Packet now defines a minimum external evidence quorum: at least five public-safe reviews across SRE/reliability, architecture, AI/governance, executive/product, and recruiter/hiring perspectives, plus a skeptical or mixed verdict and explicit revision triggers for person-work-thesis confusion or OI/observability/AIOps boundary failure.
 - Practitioner review capture now records artifacts inspected and review disposition as first-class fields in the Contact form, contact API metadata, Supabase `practitioner_reviews` view, admin dashboard contract, public packet, README, and validators.
 - Practitioner review operations now expose Supabase quorum and dimension-summary views for role coverage, four-artifact inspection, skeptical or mixed signal, evidence-needed notes, and dimension/disposition analysis before publishing any positive summary from external reviews.
@@ -133,13 +133,18 @@ Do not invent private details.
 Evaluate whether the current first 10 minutes of the product lets a serious visitor answer:
 
 1. Who is Ravikanth Seri?
-2. What has he done professionally?
-3. What has he built?
+2. How has his career evolved?
+3. What has he actually built?
 4. What is he building now?
-5. What is his strongest technical thesis?
-6. What evidence supports the thesis?
-7. Where can the work be inspected?
-8. Why would a serious engineering organization want a technical conversation with him?
+5. What technical problems does he specialize in?
+6. How does he think about architecture and engineering?
+7. What has he published?
+8. What frameworks and reference architectures has he developed?
+9. What production experience supports his thinking?
+10. What open-source and public work can be inspected?
+11. What distinguishes his engineering judgment?
+12. What is he learning, researching, and advancing?
+13. Why would a world-class engineering organization want to work with him?
 
 Focus on:
 
@@ -259,7 +264,7 @@ Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address o
 
 ### 2026-08-24 — Codex guarding project proof fixture counts
 
-- **Resolved**: The Operational Intelligence Copilot project proof ledger no longer hard-codes an obsolete Ask fixture count. `content/project-proof.json` now uses a `{fixtureCount}` token, project pages render the live value from `evalReport.fixtures.length`, and `validate:content` rejects future hard-coded live fixture counts in project proof evidence. The built `/projects/operational-intelligence-copilot` page rendered `108 passing trust fixtures`, matching the current eval report. Evidence: `content/project-proof.json`, `app/projects/[slug]/page.tsx`, `scripts/validate-content.mjs`, `scripts/validate-content-coherence.mjs`, `npm run validate:content`, `npm run validate:coherence`, `npm run evals`, `npm run typecheck`, `npm run lint`, `npm run scan:public-safety`, `npm run build`, `git diff --check`. Public-safety risk: none; this is evidence-accounting and stale-fact prevention only.
+- **Resolved**: The Operational Intelligence Copilot project proof ledger no longer hard-codes an obsolete Ask fixture count. `content/project-proof.json` now uses a `{fixtureCount}` token, project pages render the live value from `evalReport.fixtures.length`, and `validate:content` rejects future hard-coded live fixture counts in project proof evidence. Evidence: `content/project-proof.json`, `app/projects/[slug]/page.tsx`, `scripts/validate-content.mjs`, `scripts/validate-content-coherence.mjs`, `npm run validate:content`, `npm run validate:coherence`, `npm run evals`, `npm run typecheck`, `npm run lint`, `npm run scan:public-safety`, `npm run build`, `git diff --check`. Public-safety risk: none; this is evidence-accounting and stale-fact prevention only.
 
 ### 2026-08-24 — Codex adding practitioner review quorum views
 
@@ -271,7 +276,7 @@ Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address o
 
 ### 2026-08-24 — Codex adding external review quorum protocol
 
-- **Resolved**: The Practitioner Review Packet now defines what an external evidence run must include before the site can honestly strengthen claims from review feedback. The packet requires at least five public-safe reviews across SRE/reliability, principal architecture, AI systems or governance, executive/founder/product, and recruiter/hiring-facing perspectives; at least four inspected artifacts; at least one skeptical or mixed verdict; explicit evidence-needed notes; and revision triggers if reviewers cannot explain the person-work-thesis relationship or treat Operational Intelligence as renamed observability or generic AIOps. The Contact practitioner-review form now renders the quorum and review-run protocol, the approved source index exposes it to Ask/retrieval, and deterministic Ask coverage increased to 108 passing fixtures. Evidence: `content/practitioner-review-packet.json`, `app/contact/page.tsx`, `public/publication-pack/ravikanth-seri-practitioner-review-packet.md`, `lib/content.ts`, `lib/ai.ts`, `scripts/run-evals.mjs`, `content/eval-report.json`, `public/eval-report.json`, `WORLD_CLASS_SCORECARD.md`, `PRODUCT_EXCELLENCE_REPORT.md`, `npm test`, `npm run build`, `npm run lint`, `npm run scan:public-safety`, `git diff --check`. Public-safety risk: lower; the change explicitly blocks confidential review material and prevents testimonial-style reputation claims without sufficient evidence.
+- **Resolved**: The Practitioner Review Packet now defines what an external evidence run must include before the site can honestly strengthen claims from review feedback. The packet requires at least five public-safe reviews across SRE/reliability, principal architecture, AI systems or governance, executive/founder/product, and recruiter/hiring-facing perspectives; at least four inspected artifacts; at least one skeptical or mixed verdict; explicit evidence-needed notes; and revision triggers if reviewers cannot explain the person-work-thesis relationship or treat Operational Intelligence as renamed observability or generic AIOps. The Contact practitioner-review form now renders the quorum and review-run protocol, the approved source index exposes it to Ask/retrieval, and deterministic Ask coverage now stands at 115 passing fixtures. Evidence: `content/practitioner-review-packet.json`, `app/contact/page.tsx`, `public/publication-pack/ravikanth-seri-practitioner-review-packet.md`, `lib/content.ts`, `lib/ai.ts`, `scripts/run-evals.mjs`, `content/eval-report.json`, `public/eval-report.json`, `WORLD_CLASS_SCORECARD.md`, `PRODUCT_EXCELLENCE_REPORT.md`, `npm test`, `npm run build`, `npm run lint`, `npm run scan:public-safety`, `git diff --check`. Public-safety risk: lower; the change explicitly blocks confidential review material and prevents testimonial-style reputation claims without sufficient evidence.
 
 ### 2026-08-24 — Codex aligning Product Excellence evidence
 

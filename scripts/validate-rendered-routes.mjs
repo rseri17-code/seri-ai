@@ -51,9 +51,10 @@ const routeContracts = [
       "Inspect the operating record",
       "Challenge the claim",
       "Who is Ravikanth Seri?",
-      "What has he built?",
+      "What has he actually built?",
       "What is he building now?",
       "How has his career evolved?",
+      "What open-source and public work can be inspected?",
       "Visitor proof map",
       "Serious technical review path"
     ],
