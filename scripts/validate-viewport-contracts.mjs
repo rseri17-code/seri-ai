@@ -47,7 +47,7 @@ const routeContracts = [
       "Source coverage",
       "Related route",
       "Latency budget",
-      "Good first questions",
+      "Strong first questions",
       "mt-2 grid gap-2 sm:grid-cols-2",
       "min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2",
       "lg:hidden",

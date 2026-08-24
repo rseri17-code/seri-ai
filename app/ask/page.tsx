@@ -8,12 +8,12 @@ import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, Net
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ask Ravikanth | Operational Intelligence Public Research Interface",
+  title: "Ask Ravikanth | Evidence Console for Ravikanth Seri's Public Work",
   description: "Question Ravikanth Seri's Operational Intelligence thesis, architecture judgment, projects, background, writing, GitHub, LinkedIn signal, and AI systems through cited public evidence.",
   alternates: { canonical: "/ask" },
   openGraph: {
-    title: "Ask Ravikanth | Operational Intelligence Public Research Interface",
-    description: "A cited, public-safe AI research interface over Ravikanth Seri's Operational Intelligence work and approved public sources.",
+    title: "Ask Ravikanth | Evidence Console for Ravikanth Seri's Public Work",
+    description: "A cited, public-safe evidence console over Ravikanth Seri's Operational Intelligence work, professional graph, and approved public sources.",
     url: "/ask",
     type: "website"
   }
@@ -38,20 +38,20 @@ export default async function AskPage({
 
   return (
     <>
-      <Section eyebrow="Ask Ravikanth" title="Ask the public record to defend the thesis." level="h1">
+      <Section eyebrow="Ask Ravikanth" title="Interrogate the public record behind the work." level="h1">
         <Chat initialPrompt={initialPrompt} suggestedPrompts={askRaviPrompts} />
         <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.055] p-5">
             <div className="mb-5 flex items-center gap-4">
               <ProfileMark size="sm" />
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Public research interface</p>
-                <p className="mt-1 text-sm text-slate-400">Operational Intelligence, systems judgment, projects, background, and artifacts.</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Evidence console</p>
+                <p className="mt-1 text-sm text-slate-400">Career evidence, systems judgment, public code, doctrine, and artifacts.</p>
               </div>
             </div>
-            <h2 className="text-3xl font-semibold leading-tight text-white">A serious idea should answer questions with receipts.</h2>
+            <h2 className="text-3xl font-semibold leading-tight text-white">A serious technical claim should survive inspection.</h2>
             <p className="mt-4 leading-7 text-slate-300">
-              Ask Ravikanth about the doctrine, architecture, Operations Room, projects, background, and public work. The assistant cites approved sources, names uncertainty, and stops at the public-safe boundary.
+              Use Ask Ravikanth to trace the doctrine, architecture, Operations Room, projects, background, and public work back to approved evidence. Strong answers cite sources, mark inference, and stop at the public-safe boundary.
             </p>
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               {["Ground claims", "Expose sources", "Separate inference", "Stop at evidence"].map((step) => (
@@ -101,7 +101,7 @@ export default async function AskPage({
         </div>
       </Section>
 
-      <Section eyebrow="Guide paths" title="Use Ask Ravi as the navigation layer for the whole system.">
+      <Section eyebrow="Guide paths" title="Use Ask Ravi to move from question to evidence.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {askGuidePaths.map(([href, title, detail, prompt]) => (
             <Card key={href} className="h-full p-4">
