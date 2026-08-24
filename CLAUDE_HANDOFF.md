@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `733270e Align Ask scorecard evidence with fixtures`
+- `da71c9e Sync excellence report with Ask evidence`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `733270e Align Ask scorecard evidence with fixtures`
+- `da71c9e Sync excellence report with Ask evidence`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `733270e Align Ask scorecard evidence with fixtures`
+- `da71c9e Sync excellence report with Ask evidence`
 
 Recent improvements:
 
@@ -93,6 +93,7 @@ Recent improvements:
 - Ask Ravikanth now has a versioned persona contract wired into the system instruction and local fallback. The contract requires an evidence-interface posture over Ravikanth's public professional graph, not first-person imitation and not generic chatbot behavior.
 - Ask follow-up behavior is now intent-aware for GitHub/Sentinalai inspection, proof gaps and scorecard questions, recruiter/career questions, doctrine comparisons, Operations Room investigation questions, and contact/collaboration questions.
 - Ask scorecard evidence now reflects 107 passing fixtures, the versioned persona contract, and intent-aware follow-up questions, and `validate:ask-quality` guards the fixture count against drifting from the eval report.
+- Product Excellence report current scorecard now reflects 107 Ask fixtures, persona/follow-up contracts, current accessibility coverage, latest performance numbers, and integrated portrait provenance. `validate:deployment` and `validate:handoff` now guard the report and handoff against stale evidence claims.
 
 ## Current Highest-Value Gaps
 
@@ -223,6 +224,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex aligning Product Excellence evidence
+
+- **Resolved**: The Product Excellence report no longer carried stale evidence from earlier iterations. It now matches the current Ask fixture count, persona contract, intent-aware follow-up behavior, accessibility coverage, performance numbers, portrait provenance, and open proof gaps. `validate:deployment` now rejects stale report claims, and `validate:handoff` now checks the Claude handoff fixture count against `content/eval-report.json`. Evidence: `PRODUCT_EXCELLENCE_REPORT.md`, `CLAUDE_HANDOFF.md`, `scripts/validate-deployment-config.mjs`, `scripts/validate-agent-handoff.mjs`, `npm run validate:handoff`, `npm run validate:deployment`, `npm test`, `npm run build`, `npm run lint`, `npm run scan:public-safety`, `git diff --check`. Public-safety risk: none — evidence accounting only.
 
 ### 2026-08-24 — Codex aligning Ask scorecard evidence
 
