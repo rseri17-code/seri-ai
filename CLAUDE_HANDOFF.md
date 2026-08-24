@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point for Claude review:
 
-- `8509124 Add professional profile discovery map`
+- `b427115 Index profile discovery in knowledge graph`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `8509124 Add professional profile discovery map`
+- `b427115 Index profile discovery in knowledge graph`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `8509124 Add professional profile discovery map`
+- `b427115 Index profile discovery in knowledge graph`
 
 Recent improvements:
 
