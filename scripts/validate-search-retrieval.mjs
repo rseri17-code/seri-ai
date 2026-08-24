@@ -75,6 +75,10 @@ const cases = [
     expectedFirstUrl: "/work"
   },
   {
+    query: "What should a reviewer record when evaluating public code project proof for repository surface verdict reasoning loss and next proof?",
+    expectedFirstUrl: "/work"
+  },
+  {
     query: "Where is the publication spine and reading order for Ravikanth's body of work?",
     expectedFirstUrl: "/library"
   },

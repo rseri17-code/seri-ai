@@ -616,6 +616,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
         publicCode.summary,
         "GitHub. public code. open-source signal. Sentinalai. public repositories. inspectable engineering signal.",
         "Public code review rubric. SentinalAI public structure. Deterministic investigation. Policy gate. Playbooks. Eval scenarios. Receipt-shaped artifacts. Operational memory.",
+        publicCode.reviewRecordFields.flatMap((item) => [item.field, item.capture, item.whyItMatters]).join(". "),
         publicCode.reviewRubric.flatMap((item) => [item.question, item.lookFor, item.supports, item.doNotInfer]).join(". "),
         publicCode.observedPublicStructure.join(". "),
         publicCode.entries.flatMap((item) => [item.label, item.href, item.status, item.whatToInspect, item.publicSafeUse, item.proofBoundary, ...item.related]).join(". ")

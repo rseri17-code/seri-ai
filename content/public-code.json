@@ -1,6 +1,38 @@
 {
   "title": "Public Code and Inspectable Engineering Signal",
   "summary": "Public-safe index of code and repository surfaces a visitor can inspect without relying on private systems, internal project names, confidential metrics, screenshots, logs, or employer architecture.",
+  "reviewRecordFields": [
+    {
+      "field": "Repository surface inspected",
+      "capture": "Name the public repository, README section, artifact, project page, or proof ledger entry inspected.",
+      "whyItMatters": "Prevents generic GitHub impressions from being treated as evidence and keeps the review anchored to inspectable public material."
+    },
+    {
+      "field": "Visible engineering behavior",
+      "capture": "Record the public design choice observed, such as deterministic playbook flow, policy gate, receipt shape, eval scenario, replay surface, or memory boundary.",
+      "whyItMatters": "Separates concrete engineering signal from unsupported claims about production adoption or non-public system behavior."
+    },
+    {
+      "field": "Verdict",
+      "capture": "Classify the inspected evidence as strong, mixed, weak, or not assessable for the specific review question.",
+      "whyItMatters": "Keeps project proof dimensional and reviewable instead of collapsing it into a vague positive impression."
+    },
+    {
+      "field": "Reasoning loss or ambiguity",
+      "capture": "State what was missing, ambiguous, unverifiable, contradicted, or too dependent on private context.",
+      "whyItMatters": "Turns weak public code evidence into the next improvement queue rather than a hidden reputational gap."
+    },
+    {
+      "field": "Boundary respected",
+      "capture": "Confirm that the review did not infer repository metrics, production adoption, private deployments, internal integrations, live incident outcomes, or confidential behavior.",
+      "whyItMatters": "Preserves the public-safe boundary while still allowing serious reviewers to inspect the engineering work."
+    },
+    {
+      "field": "Next proof",
+      "capture": "Name the README improvement, runnable walkthrough, eval fixture, architecture note, reviewer follow-up, or public artifact that would strengthen the claim.",
+      "whyItMatters": "Converts the review into a concrete evidence backlog for improving the public body of work."
+    }
+  ],
   "reviewRubric": [
     {
       "question": "Does the public repository show an operational reasoning loop rather than a generic chatbot wrapper?",

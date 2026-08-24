@@ -60,7 +60,8 @@ const requiredChangelogFields = ["version", "date", "title", "description", "tag
 const requiredResumeFields = ["headline", "location", "contact", "summary", "strengths", "architectureHighlights", "publicProof", "sourceProvenance", "experience", "skills", "education", "certifications"];
 const requiredProfessionalGraphFields = ["identity", "careerEvolution", "careerStory", "capabilityEvidence", "architectThesis", "architectureJudgment", "productionDelivery", "proofLedger", "reviewSpine", "operatingStandards", "credibilityQuestions", "proofLinks", "visitorSuccessQuestions", "relationships"];
 const requiredProductionDeliveryFields = ["stage", "responsibility", "publicEvidence", "reviewQuestion", "href"];
-const requiredPublicCodeFields = ["title", "summary", "reviewRubric", "observedPublicStructure", "entries"];
+const requiredPublicCodeFields = ["title", "summary", "reviewRecordFields", "reviewRubric", "observedPublicStructure", "entries"];
+const requiredPublicCodeReviewRecordFields = ["field", "capture", "whyItMatters"];
 const requiredPublicCodeEntryFields = ["label", "href", "status", "whatToInspect", "publicSafeUse", "proofBoundary", "related"];
 const requiredProjectProofFields = ["title", "updatedAt", "principle", "items"];
 const requiredProjectProofItemFields = ["slug", "claim", "visibleArtifact", "inspectionPath", "evidence", "limitation", "nextProof", "reviewQuestion", "related"];
@@ -1241,6 +1242,23 @@ if (!JSON.stringify(professionalGraph).includes("Ask Ravikanth") || !JSON.string
 
 const publicCode = requireJsonObject(publicCodePath, "content/public-code.json");
 validateRequiredFields("content/public-code.json", publicCode, requiredPublicCodeFields, { requireSlug: false });
+if (!Array.isArray(publicCode.reviewRecordFields) || publicCode.reviewRecordFields.length < 6) {
+  errors.push("content/public-code.json: reviewRecordFields must include at least six project-code review evidence fields");
+} else {
+  for (const item of publicCode.reviewRecordFields) {
+    const owner = `content/public-code.json:reviewRecordFields:${item.field ?? "unknown"}`;
+    validateRequiredFields(owner, item, requiredPublicCodeReviewRecordFields, { requireSlug: false });
+    if (String(item.capture ?? "").length < 80 || String(item.whyItMatters ?? "").length < 80) {
+      errors.push(`${owner}: capture and whyItMatters must define substantial reviewer evidence guidance`);
+    }
+  }
+  const reviewRecordText = JSON.stringify(publicCode.reviewRecordFields);
+  for (const required of ["Repository surface inspected", "Visible engineering behavior", "Verdict", "Reasoning loss or ambiguity", "Boundary respected", "Next proof", "production adoption", "repository metrics"]) {
+    if (!reviewRecordText.includes(required)) {
+      errors.push(`content/public-code.json: reviewRecordFields missing ${required}`);
+    }
+  }
+}
 if (!Array.isArray(publicCode.reviewRubric) || publicCode.reviewRubric.length < 4) {
   errors.push("content/public-code.json: reviewRubric must include at least four public-code review questions");
 } else {

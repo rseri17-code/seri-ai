@@ -215,7 +215,7 @@ export default function WorkPage() {
               investigation skills, playbooks, eval scenarios, receipt-shaped artifacts, memory, and architecture notes.
             </p>
             <div className="mt-5 grid gap-3">
-              {publicCode.observedPublicStructure.map((item) => (
+              {publicCode.observedPublicStructure.slice(0, 2).map((item) => (
                 <p key={item} className="rounded border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-slate-200">
                   {item}
                 </p>
@@ -223,7 +223,7 @@ export default function WorkPage() {
             </div>
           </Card>
           <div className="grid gap-3 md:grid-cols-2">
-            {publicCode.reviewRubric.slice(0, 3).map((item) => (
+            {publicCode.reviewRubric.slice(0, 2).map((item) => (
               <Card key={item.question} className="p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Review question</p>
                 <h3 className="mt-3 font-semibold leading-6 text-white">{item.question}</h3>
@@ -234,6 +234,20 @@ export default function WorkPage() {
             ))}
           </div>
         </div>
+        <Card className="mt-4 border-white/10 bg-black/20">
+          <h2 className="text-2xl font-semibold text-white">What a project-code review should record.</h2>
+          <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-300">
+            A useful review produces evidence, not a compliment. Capture the inspected surface, visible behavior, verdict,
+            ambiguity, boundary respected, and next proof so public code can strengthen the work without overclaiming it.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {publicCode.reviewRecordFields.map((item) => (
+              <span key={item.field} className="rounded border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-mint">
+                {item.field}
+              </span>
+            ))}
+          </div>
+        </Card>
       </Section>
 
       <Section eyebrow="Project proof" title="What each project proves, and what it does not.">

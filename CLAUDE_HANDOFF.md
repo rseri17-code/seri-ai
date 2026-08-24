@@ -85,7 +85,7 @@ Recent improvements:
 - Homepage no longer opens with artifact-inventory language.
 - Ask Ravikanth is framed as an evidence console over Ravikanth's public professional graph.
 - Keyboard accessibility walkthrough evidence exists for Ask Ravikanth and Operations Room.
-- Search retrieval covers 66 canonical queries.
+- Search retrieval covers 67 canonical queries.
 - Ask deterministic fixtures cover 108 passing cases.
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.
@@ -101,6 +101,7 @@ Recent improvements:
 - Scorecard graph-health and search-discoverability evidence counts are now checked against live `buildPublishingIndex`, `buildKnowledgeGraph`, and retrieval fixtures, so asset, relationship, framework-layer, registry, pattern, principle, and retrieval-query counts cannot drift silently.
 - Public-code evidence now avoids counted Sentinalai repository inventory claims; the public-code ledger tells reviewers what to inspect and `validate:content` rejects unvalidated repository inventory counts as proof.
 - Public-code/project proof is now a first-class proof-backlog gap. The Evidence Pack, Markdown export, Ask fallback, eval fixture, scorecard, and validators now state that GitHub/Sentinalai/Work/Projects proof requires reviewer walkthroughs and must not infer repository metrics, production adoption, private deployments, private integrations, or live incident outcomes.
+- The Work page now renders a compact project-code review-record checklist, and the public-code ledger defines the evidence fields reviewers should capture: repository surface inspected, visible engineering behavior, verdict, reasoning loss or ambiguity, boundary respected, and next proof. Search retrieval now covers 67 canonical queries, including public-code review-record intent routed to `/work`.
 
 ## Current Highest-Value Gaps
 
@@ -236,6 +237,10 @@ Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address o
 ### 2026-08-24 — Codex adding public-code/project proof backlog
 
 - **Resolved**: Work/Public Code proof is now tracked as a formal evidence gap instead of only appearing in the scorecard. `content/proof-backlog.json` now includes `public-code-project-proof`; the Evidence Pack web page and Markdown export expose the same proof area; Ask fallback and the deterministic fixture for "what is still missing before 10/10 evidence quality" now include public-code/project proof walkthroughs; validators require the backlog slug, public-code/project proof theme, inspection-protocol status, Public Project Proof Ledger language, public-code review rubric language, and the exact "Do not infer repository metrics" boundary. The rendered Evidence Pack page was also slimmed by moving dense worksheet tables to the downloadable evidence artifact, keeping the critical route under the production performance budget. Evidence: `content/proof-backlog.json`, `content/wiki/operational-intelligence-evidence-pack.mdx`, `public/publication-pack/operational-intelligence-evidence-pack.md`, `lib/ai.ts`, `scripts/run-evals.mjs`, `content/eval-report.json`, `scripts/validate-content.mjs`, `scripts/validate-content-coherence.mjs`, `WORLD_CLASS_SCORECARD.md`, `npm run validate:content`, `npm run validate:coherence`, `npm run validate:retrieval`, `npm run evals`, `npm run lint`, `npm run typecheck`, `npm run scan:public-safety`, `npm test`, `npm run build`, `git diff --check`. Public-safety risk: lower; the site now makes project/repository proof falsifiable without treating public code presence as production proof.
+
+### 2026-08-24 — Codex adding project-code review record fields
+
+- **Resolved**: Public-code review now has an evidence-record shape instead of only review questions. `content/public-code.json` defines `reviewRecordFields` for repository surface inspected, visible engineering behavior, verdict, reasoning loss or ambiguity, boundary respected, and next proof. `/work` renders those fields as a compact checklist beneath the public-code inspection rubric, while the full guidance remains indexed for search and Ask through `content/site.ts` and `lib/content.ts`. Validators require the record fields and guard that they include production-adoption and repository-metric boundaries; canonical retrieval now includes a query for public-code project proof review records and routes it to `/work`. Evidence: `content/public-code.json`, `app/work/page.tsx`, `content/site.ts`, `lib/content.ts`, `scripts/validate-content.mjs`, `scripts/validate-content-coherence.mjs`, `scripts/validate-search-retrieval.mjs`, `content/quality-scorecard.json`, `WORLD_CLASS_SCORECARD.md`, `npm run validate:content`, `npm run validate:coherence`, `npm run validate:retrieval`, `npm run validate:knowledge-graph`, `npm run scan:public-safety`, `npm run lint`, `npm run typecheck`, `npm run build`, `git diff --check`. Public-safety risk: lower; reviewers can produce usable public evidence without converting repository presence into unsupported proof.
 
 ### 2026-08-24 — Codex avoiding counted public repo proof claims
 
