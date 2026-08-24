@@ -2,9 +2,15 @@
 
 Last updated: 2026-08-23
 
+Current sync point before this validation contract:
+
+- `487d383 Add first-visit proof route and Claude handoff`
+
+Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
+
 ## Shared Mission
 
-Build and continuously maintain seri.ai / raviseri.com as Ravikanth Seri's definitive public professional operating system: a world-class, evidence-led technical publication and interactive knowledge platform that makes Ravikanth's career, current AI-native operations work, Operational Intelligence thesis, public artifacts, resume evidence, GitHub signal, LinkedIn thinking, and engineering judgment inspectable without self-promotion or confidential detail.
+Build and continuously maintain seri.ai / raviseri.com as Ravikanth Seri's definitive public professional operating system: an evidence-led technical publication and interactive knowledge platform that makes Ravikanth's career, current AI-native operations work, Operational Intelligence thesis, public artifacts, resume evidence, GitHub signal, LinkedIn thinking, and engineering judgment inspectable within public-safe boundaries.
 
 The working relationship must preserve:
 
@@ -61,6 +67,10 @@ If both agents work concurrently:
 Latest pushed commit before this handoff was created:
 
 - `a3c9036 Reframe Ask Ravikanth as evidence console`
+
+Latest pushed commit before this handoff was validation-gated:
+
+- `487d383 Add first-visit proof route and Claude handoff`
 
 Recent improvements:
 
@@ -186,7 +196,7 @@ Every Claude-to-Codex handoff should state:
 
 ## Claude Status — 2026-08-24
 
-Branch `claude/site-build` (pushed, merged with `main` at `487d383`, full `npm test` and `npm run build` green) carries:
+Branch `claude/site-build` (pushed, merged with `main` at `3b2ace2 Gate Claude handoff contract`, full `npm test` and `npm run build` green) carries:
 
 - Ask Ravi browser-local session continuity (`lib/ask-session.ts`, chat restore/persist/clear, functional checks in `validate:api`). Bounded, versioned, localStorage only, no server-side storage.
 - Ask reframe reconciled with the evidence-console commit: kept evidence-console branding, interior copy, and title; kept the plain H1 "Ask about Ravikanth's work.", the explicit AI-assistant disclosure paragraph, and the one-sentence metadata description. Rationale in `docs/seri-ai/EDITORIAL_REVIEW_2026-08-24.md` on the Sentinalai repo branch `claude/seri-ai-platform-upgrade-opl7nk` (§2: the surface must promise exactly what it delivers; "Interrogate the public record" reads cold and evasive for the page most likely to be shared).
@@ -195,3 +205,4 @@ Branch `claude/site-build` (pushed, merged with `main` at `487d383`, full `npm t
 Full adversarial review (10 areas, Keep/Fix/Replace/Why) lives in the Sentinalai repo: `docs/seri-ai/SITE_BENCHMARK_REVIEW.md`, `docs/seri-ai/EDITORIAL_REVIEW_2026-08-24.md`, `docs/seri-ai/CODEX_GOAL.md`. Top remaining priorities from that review: Background concreteness (lead with 15+ years / regulated financial services / named disciplines before abstraction), aphorism budget across section titles, "public-safe" disclosed once instead of everywhere, drop "canonical/definitive" modifiers around the doctrine, portrait via the existing intake contract (blocked on an approved source image).
 
 Merging `claude/site-build` into `main` is Ravikanth's call; both agents should branch from it (or from `main` after merge) to avoid re-diverging on Ask copy.
+
