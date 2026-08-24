@@ -6,11 +6,11 @@ import { operationalIntelligenceSystem } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Operations Room | seri.ai",
-  description: "A public-safe Operational Intelligence investigation room for OI-ROOM-001: evidence graph, hypothesis lifecycle, replay, evaluation gates, and human approval.",
+  description: "Watch an investigation hold itself accountable: a synthetic production incident where every conclusion shows its evidence, contradictions stay visible, and nothing ships without a named human approving it.",
   alternates: { canonical: "/investigation-room" },
   openGraph: {
     title: "Operations Room | seri.ai",
-    description: "Run the synthetic OI-ROOM-001 investigation through evidence, contradiction, missing context, evaluation gates, and accountable human approval.",
+    description: "Run a synthetic production incident where conclusions must show their evidence, contradictions stay visible, and no action ships without human approval.",
     url: "/investigation-room",
     type: "website"
   }

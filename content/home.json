@@ -224,20 +224,20 @@
   ],
   "falsificationTests": [
     [
-      "Contradiction stays visible",
-      "Evidence that weakens the preferred explanation remains in the packet."
+      "If experienced SREs cannot tell it apart from existing practice",
+      "The category claim fails. Practitioner review is the test, and no external verdicts are published yet."
     ],
     [
-      "Unknowns stay named",
-      "Missing evidence is preserved instead of converted into confident narrative."
+      "If two teams read the layer contracts incompatibly",
+      "The framework claim fails. Independent public-safe implementation is the test."
     ],
     [
-      "Reasoning can replay",
-      "The investigation leaves enough context to reproduce how confidence moved."
+      "If the evidence graph adds structure without changing decisions",
+      "The architecture claim fails. Control comparison against dashboard-only, chatbot-only, and ticket-only modes is the test."
     ],
     [
-      "Humans keep authority",
-      "Operational change remains behind owner review, reversibility, and approval class."
+      "If replay cannot reproduce how confidence moved",
+      "The reasoning claim fails. Replay seeds and the deterministic eval fixtures are the test."
     ]
   ],
   "heroBuilderProof": [
