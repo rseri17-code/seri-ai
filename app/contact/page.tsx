@@ -204,6 +204,7 @@ export default function ContactPage() {
             <option>Governance reviewer</option>
             <option>Executive buyer</option>
             <option>Founder / product leader</option>
+            <option>Recruiter / hiring-facing reviewer</option>
           </select>
           <label className="sr-only" htmlFor="doctrine-verdict">Doctrine verdict</label>
           <select id="doctrine-verdict" name="doctrineVerdict" className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white">

@@ -77,6 +77,59 @@ select
 from contact_messages
 where kind = 'practitioner-review';
 
+create or replace view practitioner_review_quorum_status as
+with review_rows as (
+  select
+    *,
+    case
+      when nullif(trim(coalesce(artifacts_inspected, '')), '') is null then 0
+      else cardinality(regexp_split_to_array(artifacts_inspected, '\s*(,|;|\n)\s*'))
+    end as artifact_count
+  from practitioner_reviews
+),
+counts as (
+  select
+    count(*)::int as total_reviews,
+    count(*) filter (where reviewer_role ~* '(sre|reliability)')::int as sre_reliability_reviews,
+    count(*) filter (where reviewer_role ~* '(principal|architect|solutions architect)')::int as architecture_reviews,
+    count(*) filter (where reviewer_role ~* '(ai engineer|ai systems|governance)')::int as ai_governance_reviews,
+    count(*) filter (where reviewer_role ~* '(executive|founder|product leader|product)')::int as executive_product_reviews,
+    count(*) filter (where reviewer_role ~* '(recruiter|hiring)')::int as recruiter_hiring_reviews,
+    count(*) filter (
+      where review_verdict ~* '(mixed|weak|unsupported|confusing|not assessable)'
+        or doctrine_verdict ~* '(needs evidence|too close|not precise|needs governance)'
+        or review_disposition in ('Needs Evidence', 'Fix', 'Clarify', 'Remove')
+    )::int as skeptical_or_mixed_reviews,
+    count(*) filter (where nullif(trim(coalesce(evidence_needed, '')), '') is not null)::int as evidence_needed_reviews,
+    count(*) filter (where artifact_count >= 4)::int as four_artifact_reviews
+  from review_rows
+)
+select
+  *,
+  (
+    total_reviews >= 5
+    and sre_reliability_reviews >= 1
+    and architecture_reviews >= 1
+    and ai_governance_reviews >= 1
+    and executive_product_reviews >= 1
+    and recruiter_hiring_reviews >= 1
+    and skeptical_or_mixed_reviews >= 1
+    and evidence_needed_reviews >= 1
+    and four_artifact_reviews >= 1
+  ) as ready_for_positive_summary
+from counts;
+
+create or replace view practitioner_review_dimension_summary as
+select
+  coalesce(nullif(review_dimension, ''), 'unspecified') as review_dimension,
+  coalesce(nullif(review_verdict, ''), 'unspecified') as review_verdict,
+  coalesce(nullif(review_disposition, ''), 'unspecified') as review_disposition,
+  count(*)::int as review_count,
+  count(*) filter (where nullif(trim(coalesce(evidence_needed, '')), '') is not null)::int as evidence_needed_count,
+  count(*) filter (where nullif(trim(coalesce(implementation_question, '')), '') is not null)::int as implementation_question_count
+from practitioner_reviews
+group by 1, 2, 3;
+
 create table if not exists newsletter_subscribers (
   id uuid primary key default gen_random_uuid(),
   email text not null unique,

@@ -357,7 +357,7 @@ The assistant must refuse confidential or employer-specific questions. It should
 3. Add Supabase environment variables to Vercel.
 4. Ingest approved public content through `/api/ingest` if you want pgvector retrieval beyond local content.
 
-The `contact_messages` table stores normal contact messages, beta feedback, and practitioner reviews. Practitioner reviews use `kind = 'practitioner-review'` and preserve structured fields in `metadata` so feedback can be analyzed without scraping prose. The `practitioner_reviews` view exposes reviewer role, doctrine verdict, reviewed mode, review dimension, review verdict, artifacts inspected, review disposition, strongest claim, weakest claim, evidence needed, implementation question, and notes for review operations.
+The `contact_messages` table stores normal contact messages, beta feedback, and practitioner reviews. Practitioner reviews use `kind = 'practitioner-review'` and preserve structured fields in `metadata` so feedback can be analyzed without scraping prose. The `practitioner_reviews` view exposes reviewer role, doctrine verdict, reviewed mode, review dimension, review verdict, artifacts inspected, review disposition, strongest claim, weakest claim, evidence needed, implementation question, and notes for review operations. The `practitioner_review_quorum_status` view reports whether the review run has enough role coverage, four-artifact inspections, skeptical or mixed verdicts, and evidence-needed notes to support a public positive summary. The `practitioner_review_dimension_summary` view groups feedback by dimension, verdict, and disposition so review findings can become precise fixes rather than testimonials.
 
 Example ingestion:
 

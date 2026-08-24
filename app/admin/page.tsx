@@ -20,8 +20,11 @@ export default function AdminPage() {
   const newsletterExport = buildMonthlyNewsletterExport("2026-07");
   const practitionerReviewContract = [
     ["Storage", "contact_messages.kind = practitioner-review"],
-    ["Queryable view", "practitioner_reviews"],
+    ["Review view", "practitioner_reviews"],
+    ["Quorum view", "practitioner_review_quorum_status"],
+    ["Dimension view", "practitioner_review_dimension_summary"],
     ["Fields", "reviewer role, doctrine verdict, mode, dimension, verdict, artifacts inspected, review disposition, evidence observed, reasoning loss, limitation, doctrine impact"],
+    ["Readiness", "five reviews, role coverage, four-artifact inspection, skeptical signal, evidence-needed notes"],
     ["Release gate", "npm run validate:contracts"],
     ["Public entry", "/contact"]
   ];

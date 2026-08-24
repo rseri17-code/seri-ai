@@ -134,6 +134,8 @@ expectIncludes(supabaseSchemaPath, supabaseSchema, [
   "practitioner-review",
   "contact_messages_kind_created_at_idx",
   "create or replace view practitioner_reviews",
+  "create or replace view practitioner_review_quorum_status",
+  "create or replace view practitioner_review_dimension_summary",
   "doctrine_verdict",
   "review_mode",
   "review_dimension",
@@ -145,7 +147,18 @@ expectIncludes(supabaseSchemaPath, supabaseSchema, [
   "review_limitation",
   "doctrine_impact",
   "evidence_needed",
-  "implementation_question"
+  "implementation_question",
+  "total_reviews",
+  "sre_reliability_reviews",
+  "architecture_reviews",
+  "ai_governance_reviews",
+  "executive_product_reviews",
+  "recruiter_hiring_reviews",
+  "skeptical_or_mixed_reviews",
+  "four_artifact_reviews",
+  "ready_for_positive_summary",
+  "evidence_needed_count",
+  "implementation_question_count"
 ]);
 expectIncludes(publishingPath, publishing, [
   "referencePublicationAssets",
