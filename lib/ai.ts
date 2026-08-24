@@ -287,6 +287,20 @@ function inferSuggestedNextQuestion(question: string) {
   return "Show how the shared case moves through the ten-layer framework.";
 }
 
+function trimToSentence(text: string, limit: number) {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= limit) {
+    return clean;
+  }
+  const clipped = clean.slice(0, limit);
+  const lastStop = Math.max(clipped.lastIndexOf(". "), clipped.lastIndexOf("! "), clipped.lastIndexOf("? "));
+  if (lastStop > limit * 0.4) {
+    return clipped.slice(0, lastStop + 1);
+  }
+  const lastSpace = clipped.lastIndexOf(" ");
+  return `${clipped.slice(0, lastSpace > 0 ? lastSpace : limit)}\u2026`;
+}
+
 function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
   const lower = normalizeQuestionIntent(question);
   const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education|technical problems?|speciali[sz]e|work with him|engineering organization/.test(lower);
@@ -298,7 +312,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
   const sourceLine = primarySource ? `${primarySource.title} (${primarySource.url})` : "No matching approved public source";
   const direct =
     context.length > 0
-      ? primarySource.content.slice(0, 420)
+      ? trimToSentence(primarySource.content, 420)
       : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
   const asksAboutAskPersona =
     /are you ravikanth|are you him|are you the real|are you a bot|are you an ai|are you human|who are you|pretend|persona|imitat|first person|answer posture|how should ask/.test(lower);
@@ -386,7 +400,9 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     `Related page or artifact: ${relatedArtifacts.join(", ")}.`,
     "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public knowledge base and the public-safe knowledge base.",
     `Suggested next question: ${suggestedNextQuestion}`
-  ].join("\n\n");
+  ]
+    .join("\n\n")
+    .replace(/([.!?])\s*\.(?=\s|$)/g, "$1");
 }
 
 export type AskAnswerMode = "ai_synthesis" | "local_fallback" | "timeout_fallback";
