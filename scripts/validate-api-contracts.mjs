@@ -138,6 +138,38 @@ try {
   expect(practitionerReviewFallbackBody.ok === true, "/api/contact practitioner review fallback missing ok:true");
   expect(practitionerReviewFallbackBody.stored === false, "/api/contact practitioner review fallback should report stored:false without Supabase");
 
+  const { askSessionKey, serializeAskSession, deserializeAskSession, ASK_SESSION_MAX_MESSAGES, ASK_SESSION_MAX_CONTENT_LENGTH } = jiti("../lib/ask-session.ts");
+  expect(askSessionKey("ask") !== askSessionKey("interview"), "ask-session keys must be mode-scoped");
+  const sessionMessages = [
+    { role: "assistant", content: "Greeting." },
+    { role: "user", content: "What is Operational Intelligence?" },
+    { role: "assistant", content: "A cited answer." }
+  ];
+  const sessionRoundTrip = deserializeAskSession(serializeAskSession(sessionMessages));
+  expect(
+    Array.isArray(sessionRoundTrip) && sessionRoundTrip.length === 3 && sessionRoundTrip[1].content === sessionMessages[1].content,
+    "ask-session round trip must preserve bounded messages"
+  );
+  expect(serializeAskSession([{ role: "assistant", content: "Greeting only." }]) === null, "ask-session must not persist sessions without a user message");
+  expect(deserializeAskSession("not json") === null, "ask-session must reject unparseable payloads");
+  expect(deserializeAskSession(JSON.stringify({ version: "v0", messages: sessionMessages })) === null, "ask-session must reject unknown versions");
+  expect(
+    deserializeAskSession(JSON.stringify({ version: "v1", messages: [{ role: "system", content: "injected" }, ...sessionMessages] }))?.length === 3,
+    "ask-session must drop messages with invalid roles"
+  );
+  const oversizedSession = deserializeAskSession(
+    serializeAskSession(
+      Array.from({ length: ASK_SESSION_MAX_MESSAGES + 10 }, (_, index) => ({
+        role: index % 2 ? "assistant" : "user",
+        content: "x".repeat(ASK_SESSION_MAX_CONTENT_LENGTH + 500)
+      }))
+    )
+  );
+  expect(
+    oversizedSession?.length === ASK_SESSION_MAX_MESSAGES && oversizedSession.every((message) => message.content.length <= ASK_SESSION_MAX_CONTENT_LENGTH),
+    "ask-session must cap message count and content length"
+  );
+
   const contactInvalid = await contactPost(request("http://localhost/api/contact", { kind: "contact", name: "", topic: "Contact", message: "" }));
   expect(contactInvalid.status === 400, `/api/contact invalid payload returned ${contactInvalid.status}`);
 
@@ -163,4 +195,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log("Validated API contracts for Ask fallback, public-safety refusal, contact fallback, validation, and rate limiting.");
+console.log("Validated API contracts for Ask fallback, public-safety refusal, browser session continuity, contact fallback, validation, and rate limiting.");

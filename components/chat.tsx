@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ProfileMark } from "@/components/profile-mark";
 import type { ChatMessage } from "@/lib/ai";
 import { captureSafeEvent, categorizeQuestion } from "@/lib/analytics-events";
+import { askSessionKey, deserializeAskSession, serializeAskSession } from "@/lib/ask-session";
 
 type ApiResponse = {
   answer: string;
@@ -55,8 +56,47 @@ export function Chat({
   const [sources, setSources] = useState<Array<{ title: string; url: string; excerpt: string }>>([]);
   const [responseMeta, setResponseMeta] = useState<ApiResponse["meta"]>();
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionRestored, setSessionRestored] = useState(false);
   const initialPromptRef = useRef(initialPrompt);
   const autoSubmittedRef = useRef(false);
+
+  useEffect(() => {
+    if (initialPromptRef.current.trim()) {
+      return;
+    }
+    try {
+      const restored = deserializeAskSession(window.localStorage.getItem(askSessionKey(mode)));
+      if (restored) {
+        setMessages(restored);
+        setSessionRestored(true);
+      }
+    } catch {
+      // Storage unavailable (private mode, blocked): start fresh.
+    }
+  }, [mode]);
+
+  useEffect(() => {
+    try {
+      const serialized = serializeAskSession(messages);
+      if (serialized) {
+        window.localStorage.setItem(askSessionKey(mode), serialized);
+      }
+    } catch {
+      // Storage unavailable: session continuity is best-effort only.
+    }
+  }, [messages, mode]);
+
+  function clearSession() {
+    try {
+      window.localStorage.removeItem(askSessionKey(mode));
+    } catch {
+      // Storage unavailable: nothing persisted to clear.
+    }
+    setMessages([{ role: "assistant", content: initialAssistantMessage }]);
+    setSources([]);
+    setResponseMeta(undefined);
+    setSessionRestored(false);
+  }
 
   async function sendMessage(question = input) {
     if (!question.trim() || isLoading) {
@@ -228,6 +268,16 @@ export function Chat({
             </div>
           ) : null}
         </div>
+        {hasAskedQuestion || sessionRestored ? (
+          <div className="flex items-center justify-between gap-3 border-t border-white/10 bg-black/15 px-4 py-2">
+            <p className="text-[0.68rem] leading-4 text-slate-500">
+              {sessionRestored ? "Session restored from this browser. Nothing is stored on the server." : "Session saved in this browser only. Nothing is stored on the server."}
+            </p>
+            <button type="button" onClick={clearSession} className="shrink-0 rounded border border-white/10 px-2 py-1 text-[0.68rem] font-semibold text-slate-300 hover:border-mint/40 hover:text-mint">
+              Clear session
+            </button>
+          </div>
+        ) : null}
         <form
           className="flex gap-2 border-t border-white/10 p-3"
           onSubmit={(event) => {
