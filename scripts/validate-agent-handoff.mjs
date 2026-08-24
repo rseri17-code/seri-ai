@@ -4,6 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const handoffPath = path.join(root, "CLAUDE_HANDOFF.md");
 const packagePath = path.join(root, "package.json");
+const claudeHandoffScriptPath = path.join(root, "scripts/create-claude-handoff.mjs");
 const errors = [];
 
 function expect(condition, message) {
@@ -12,6 +13,7 @@ function expect(condition, message) {
 
 const handoff = fs.readFileSync(handoffPath, "utf8");
 const pkg = JSON.parse(fs.readFileSync(packagePath, "utf8"));
+const claudeHandoffScript = fs.readFileSync(claudeHandoffScriptPath, "utf8");
 
 for (const required of [
   "# Claude Handoff for seri.ai",
@@ -45,6 +47,7 @@ for (const required of [
   "Do not inflate claims.",
   "Do not invent private details.",
   "Codex Validation Gates",
+  "npm run handoff:claude",
   "npm run validate:content",
   "npm run validate:coherence",
   "npm run validate:routes",
@@ -76,9 +79,15 @@ for (const banned of [
 }
 
 expect(/`[a-f0-9]{7,40} [^`]+`/.test(handoff), "CLAUDE_HANDOFF.md must include a commit-shaped sync point.");
+expect(pkg.scripts["handoff:claude"] === "node scripts/create-claude-handoff.mjs", "package.json missing handoff:claude script");
 expect(pkg.scripts["validate:handoff"] === "node scripts/validate-agent-handoff.mjs", "package.json missing validate:handoff script");
 expect(pkg.scripts.test.includes("validate:handoff"), "npm test must run validate:handoff");
 expect(pkg.scripts.build.includes("validate:handoff"), "npm run build must run validate:handoff");
+expect(claudeHandoffScript.includes("git log -1 --oneline"), "create-claude-handoff.mjs must include the latest commit.");
+expect(claudeHandoffScript.includes("git status --short --branch"), "create-claude-handoff.mjs must include branch sync state.");
+expect(claudeHandoffScript.includes("CLAUDE_HANDOFF.md"), "create-claude-handoff.mjs must include the standing handoff contract.");
+expect(claudeHandoffScript.includes("Do not redesign the application."), "create-claude-handoff.mjs must preserve route and design constraints.");
+expect(claudeHandoffScript.includes("Do not invent private details."), "create-claude-handoff.mjs must preserve public-safety constraints.");
 
 if (errors.length) {
   console.error(errors.join("\n"));

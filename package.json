@@ -13,6 +13,7 @@
     "lint": "eslint .",
     "test": "npm run validate:content && npm run validate:coherence && npm run validate:handoff && npm run validate:contracts && npm run validate:reference && npm run validate:doctrine && npm run validate:deployment && npm run validate:security && npm run validate:routes && npm run validate:links && npm run validate:viewport && npm run validate:visual-qa && npm run validate:touch && npm run validate:keyboard && npm run validate:ask-quality && npm run validate:ask-live-review && npm run validate:practitioner-review && npm run validate:portrait-intake && npm run validate:publishing && npm run validate:knowledge-graph && npm run validate:discovery && npm run validate:retrieval && npm run validate:analytics && npm run validate:api && npm run validate:a11y && npm run evals && npm run typecheck",
     "typecheck": "tsc --noEmit",
+    "handoff:claude": "node scripts/create-claude-handoff.mjs",
     "validate:content": "node scripts/validate-content.mjs",
     "validate:coherence": "node scripts/validate-content-coherence.mjs",
     "validate:handoff": "node scripts/validate-agent-handoff.mjs",

@@ -8,6 +8,12 @@ Current sync point before this validation contract:
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
+Generate the current Claude prompt with:
+
+```bash
+npm run handoff:claude
+```
+
 ## Shared Mission
 
 Build and continuously maintain seri.ai / raviseri.com as Ravikanth Seri's definitive public professional operating system: an evidence-led technical publication and interactive knowledge platform that makes Ravikanth's career, current AI-native operations work, Operational Intelligence thesis, public artifacts, resume evidence, GitHub signal, LinkedIn thinking, and engineering judgment inspectable within public-safe boundaries.
