@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `8f744e5 Ground Ask Ravikanth persona contract`
+- `46bb280 Make Ask followups intent aware`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `8f744e5 Ground Ask Ravikanth persona contract`
+- `46bb280 Make Ask followups intent aware`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `8f744e5 Ground Ask Ravikanth persona contract`
+- `46bb280 Make Ask followups intent aware`
 
 Recent improvements:
 
@@ -91,6 +91,7 @@ Recent improvements:
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.
 - Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.
 - Ask Ravikanth now has a versioned persona contract wired into the system instruction and local fallback. The contract requires an evidence-interface posture over Ravikanth's public professional graph, not first-person imitation and not generic chatbot behavior.
+- Ask follow-up behavior is now intent-aware for GitHub/Sentinalai inspection, proof gaps and scorecard questions, recruiter/career questions, doctrine comparisons, Operations Room investigation questions, and contact/collaboration questions.
 
 ## Current Highest-Value Gaps
 
@@ -221,6 +222,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex implementing intent-aware Ask follow-ups
+
+- **Resolved**: Ask Ravikanth no longer always ends deterministic fallback answers with the same OI-ROOM-001 follow-up. It now infers the next inspection question from visitor intent: public code/Sentinalai, proof gap/scorecard, recruiter/career, doctrine comparison, Operations Room investigation, or contact. The model system instruction also includes persona routing defaults, and deterministic fixtures pin the doctrine, recruiter, public-code, and proof-gap follow-up behavior. Evidence: `lib/ai.ts`, `lib/compliance.ts`, `scripts/run-evals.mjs`, `content/eval-report.json`, `public/eval-report.json`, `scripts/validate-ask-quality-rubric.mjs`, full `npm test`, `npm run build`, `npm run lint`, `npm run scan:public-safety`, `git diff --check`. Public-safety risk: lower; follow-ups now steer visitors toward inspectable public evidence instead of generic continuation.
 
 ### 2026-08-24 — Codex implementing Ask persona contract
 
