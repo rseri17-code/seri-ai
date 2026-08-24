@@ -1140,6 +1140,26 @@
       "result": "Pass"
     },
     {
+      "prompt": "What external review quorum would make seri.ai evidence stronger?",
+      "expected": "Explain the minimum review quorum, required coverage, skeptical verdict requirement, and revision triggers without claiming the reviews exist.",
+      "requiredAnswerIncludes": [
+        "Practitioner review packet",
+        "minimum external evidence quorum",
+        "at least five public-safe reviews",
+        "SRE/reliability",
+        "principal architecture",
+        "AI systems or governance",
+        "executive/founder/product",
+        "recruiter or hiring-facing",
+        "at least four inspected artifacts",
+        "skeptical or mixed verdict",
+        "person-work-thesis relationship",
+        "renamed observability or generic AIOps",
+        "does not claim external practitioner verdicts yet"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Where are the durable visual QA screenshots and viewport evidence?",
       "expected": "Route to the Visual QA report and name remaining limitations.",
       "requiredAnswerIncludes": [
@@ -1260,6 +1280,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 107,
-  "passingFixtures": 107
+  "fixtureCount": 108,
+  "passingFixtures": 108
 }

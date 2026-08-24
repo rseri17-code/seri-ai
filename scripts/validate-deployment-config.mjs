@@ -169,7 +169,7 @@ for (const required of [
   "intent-aware follow-up questions",
   "35 pages and 22 components",
   "home first-load JS at 107 kB",
-  "Operations Room first-load JS at 226 kB",
+  "Operations Room first-load JS at 227 kB",
   "approved portrait provenance is documented",
   "physical-device touch checks"
 ]) {

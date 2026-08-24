@@ -10,6 +10,31 @@ This packet gives experienced reviewers a structured, public-safe way to evaluat
 
 The reviewer should decide what the site proves, what remains unsupported, what feels generic, what is memorable, and what evidence would change the assessment.
 
+## Minimum External Evidence Quorum
+
+A review run is useful only when it covers multiple ways a serious visitor may evaluate Ravikanth Seri and the Operational Intelligence body of work.
+
+- Minimum reviewer count: 5
+- At least one SRE or reliability engineer reviews the Operations Room and doctrine boundaries.
+- At least one principal architect or solutions architect reviews the reference architecture and implementation precision.
+- At least one AI systems or governance reviewer reviews Ask Ravikanth, evaluation gates, refusal behavior, and human-control boundaries.
+- At least one executive, founder, or product leader reviews the first-10-minute clarity and memorability path.
+- At least one recruiter or hiring-facing reviewer reviews whether Ravikanth Seri is visible as the professional identity behind the work.
+
+Completion rule: do not publish a positive review summary unless the run includes at least five public-safe reviews, at least four inspected artifacts, at least one skeptical or mixed verdict, and explicit evidence-needed notes.
+
+Revision trigger: if two reviewers cannot explain the person-work-thesis relationship, or two reviewers classify Operational Intelligence as renamed observability or generic AIOps, revise the homepage, Start Here path, doctrine boundaries, or Operations Room walkthrough before requesting more praise.
+
+## Review Run Protocol
+
+| Phase | Instruction |
+| --- | --- |
+| Before review | Tell the reviewer not to use confidential employer details, internal screenshots, logs, private metrics, or non-public architecture. |
+| First 10 minutes | Ask the reviewer to follow Start Here, Background, Work, Doctrine, Operations Room, and Evidence Pack before judging polish. |
+| Evidence capture | Capture only role, route, dimension, verdict, inspected public artifacts, strongest claim, weakest claim, evidence needed, implementation question, and limitation. |
+| Decision | Classify feedback as Keep, Fix, Clarify, Remove, or Needs Evidence; do not convert it into testimonials or aggregate reputation claims. |
+| Doctrine update | Only update the doctrine or reference architecture when feedback identifies a boundary ambiguity, unsupported claim, missing failure mode, or implementation obstacle. |
+
 ## Reviewer Roles
 
 - SRE / reliability engineer

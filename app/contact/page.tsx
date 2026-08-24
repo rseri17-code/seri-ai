@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Section } from "@/components/section";
+import { practitionerReviewPacket } from "@/content/practitioner-review-packet";
 import { visitorReviewKit } from "@/content/visitor-review-kit";
 import { captureSafeEvent } from "@/lib/analytics-events";
 
@@ -159,6 +160,35 @@ export default function ContactPage() {
             <p className="mt-3 text-xs leading-5 text-slate-400">
               Ground feedback in evidence. {visitorReviewKit.publicSafetyBoundary}
             </p>
+          </div>
+          <div className="rounded border border-amber/25 bg-amber/[0.04] p-4">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-amber">
+              {practitionerReviewPacket.minimumEvidenceQuorum.title}
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              {practitionerReviewPacket.minimumEvidenceQuorum.summary}
+            </p>
+            <div className="mt-4 grid gap-2">
+              {practitionerReviewPacket.minimumEvidenceQuorum.requiredCoverage.map((item) => (
+                <p key={item} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs leading-5 text-slate-300">
+                  {item}
+                </p>
+              ))}
+            </div>
+            <p className="mt-4 border-l border-amber/35 pl-3 text-xs leading-5 text-slate-400">
+              {practitionerReviewPacket.minimumEvidenceQuorum.completionRule}
+            </p>
+          </div>
+          <div className="rounded border border-white/10 bg-ink/60 p-4">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-signal">Review run protocol</h3>
+            <div className="mt-3 grid gap-2">
+              {practitionerReviewPacket.reviewRunProtocol.map((item) => (
+                <div key={item.phase} className="rounded border border-white/10 bg-white/[0.03] p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">{item.phase}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-300">{item.instruction}</p>
+                </div>
+              ))}
+            </div>
           </div>
           <label className="sr-only" htmlFor="review-name">Name</label>
           <input id="review-name" name="name" required className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="Name" />

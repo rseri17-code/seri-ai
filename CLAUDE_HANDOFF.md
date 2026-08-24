@@ -86,14 +86,14 @@ Recent improvements:
 - Ask Ravikanth is framed as an evidence console over Ravikanth's public professional graph.
 - Keyboard accessibility walkthrough evidence exists for Ask Ravikanth and Operations Room.
 - Search retrieval covers 66 canonical queries.
-- Ask deterministic fixtures cover 107 passing cases.
+- Ask deterministic fixtures cover 108 passing cases.
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.
 - Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.
 - Ask Ravikanth now has a versioned persona contract wired into the system instruction and local fallback. The contract requires an evidence-interface posture over Ravikanth's public professional graph, not first-person imitation and not generic chatbot behavior.
 - Ask follow-up behavior is now intent-aware for GitHub/Sentinalai inspection, proof gaps and scorecard questions, recruiter/career questions, doctrine comparisons, Operations Room investigation questions, and contact/collaboration questions.
-- Ask scorecard evidence now reflects 107 passing fixtures, the versioned persona contract, and intent-aware follow-up questions, and `validate:ask-quality` guards the fixture count against drifting from the eval report.
-- Product Excellence report current scorecard now reflects 107 Ask fixtures, persona/follow-up contracts, current accessibility coverage, latest performance numbers, and integrated portrait provenance. `validate:deployment` and `validate:handoff` now guard the report and handoff against stale evidence claims.
+- Ask scorecard evidence now reflects 108 passing fixtures, the versioned persona contract, intent-aware follow-up questions, and review-quorum routing, and `validate:ask-quality` guards the fixture count against drifting from the eval report.
+- Product Excellence report current scorecard now reflects 108 Ask fixtures, persona/follow-up contracts, review-quorum routing, current accessibility coverage, latest performance numbers, and integrated portrait provenance. `validate:deployment` and `validate:handoff` now guard the report and handoff against stale evidence claims.
 
 ## Current Highest-Value Gaps
 

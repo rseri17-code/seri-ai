@@ -25,6 +25,12 @@ expect(/no external practitioner verdicts/i.test(packet.evidenceLevel ?? ""), "P
 expect(Array.isArray(packet.reviewerRoles) && packet.reviewerRoles.length >= 7, "Packet must define at least seven reviewer roles.");
 expect(Array.isArray(packet.reviewSequence) && packet.reviewSequence.length >= 7, "Packet must define at least seven review sequence steps.");
 expect(Array.isArray(packet.reviewDimensions) && packet.reviewDimensions.length >= 8, "Packet must define at least eight review dimensions.");
+expect(packet.minimumEvidenceQuorum?.minimumReviewerCount >= 5, "Packet must require at least five external reviews before positive review summaries.");
+expect(Array.isArray(packet.minimumEvidenceQuorum?.requiredCoverage) && packet.minimumEvidenceQuorum.requiredCoverage.length >= 5, "Packet must define role-specific review coverage.");
+expect(/skeptical or mixed verdict/i.test(packet.minimumEvidenceQuorum?.completionRule ?? ""), "Packet completion rule must require skeptical or mixed evidence.");
+expect(/person-work-thesis relationship/i.test(packet.minimumEvidenceQuorum?.revisionTrigger ?? ""), "Packet revision trigger must protect the person-work-thesis relationship.");
+expect(/renamed observability or generic AIOps/i.test(packet.minimumEvidenceQuorum?.revisionTrigger ?? ""), "Packet revision trigger must test OI differentiation from adjacent practice.");
+expect(Array.isArray(packet.reviewRunProtocol) && packet.reviewRunProtocol.length >= 5, "Packet must define a review run protocol.");
 expect(Array.isArray(packet.safeMetadataOnly) && packet.safeMetadataOnly.length >= 10, "Packet must define safe metadata fields.");
 expect(Array.isArray(packet.doNotCapture) && packet.doNotCapture.length >= 8, "Packet must define do-not-capture fields.");
 expect(Array.isArray(packet.verdicts) && packet.verdicts.includes("Not assessable"), "Packet must include Not assessable verdict.");
@@ -49,6 +55,11 @@ for (const required of [
   "Interactive artifact usefulness",
   "Ask usefulness and safety",
   "Memorability",
+  "Minimum External Evidence Quorum",
+  "at least five public-safe reviews",
+  "Review Run Protocol",
+  "person-work-thesis relationship",
+  "renamed observability or generic AIOps",
   "Do Not Capture",
   "aggregate reputation claims"
 ]) {
@@ -60,6 +71,8 @@ expect(
   "Visitor review kit must link to the practitioner review packet."
 );
 expect(contactPage.includes("visitorReviewKit.reviewAssets"), "Contact page must render visitor review kit assets.");
+expect(contactPage.includes("practitionerReviewPacket.minimumEvidenceQuorum"), "Contact page must render the minimum evidence quorum.");
+expect(contactPage.includes("practitionerReviewPacket.reviewRunProtocol"), "Contact page must render the review run protocol.");
 expect(scorecard.includes("Practitioner Review Packet"), "Scorecard must mention the Practitioner Review Packet.");
 
 if (errors.length) {

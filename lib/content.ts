@@ -67,6 +67,8 @@ const referenceSources = [
         .flatMap((step) => [step.step, step.route, step.question, step.failureSignal])
         .join(". ")}. Review dimensions: ${practitionerReviewPacket.reviewDimensions
         .flatMap((dimension) => [dimension.name, dimension.question, dimension.evidenceToInspect.join(", ")])
+        .join(". ")}. Minimum external evidence quorum: ${practitionerReviewPacket.minimumEvidenceQuorum.minimumReviewerCount} public-safe reviews. Required coverage: ${practitionerReviewPacket.minimumEvidenceQuorum.requiredCoverage.join(" ")} Completion rule: ${practitionerReviewPacket.minimumEvidenceQuorum.completionRule} Revision trigger: ${practitionerReviewPacket.minimumEvidenceQuorum.revisionTrigger} Review run protocol: ${practitionerReviewPacket.reviewRunProtocol
+        .flatMap((phase) => [phase.phase, phase.instruction])
         .join(". ")}. Safe metadata only: ${practitionerReviewPacket.safeMetadataOnly.join(", ")}. Do not capture: ${practitionerReviewPacket.doNotCapture.join(", ")}. Verdicts: ${practitionerReviewPacket.verdicts.join(", ")}. No external practitioner verdicts have been published yet.`,
     url: "/publication-pack/ravikanth-seri-practitioner-review-packet.md",
     type: "registry" as const,
