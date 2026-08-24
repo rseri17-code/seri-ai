@@ -996,7 +996,7 @@
         "touch walkthroughs",
         "external visual review",
         "stronger identity validation",
-        "approved portrait photo",
+        "approved portrait is integrated",
         "/wiki/operational-intelligence-evidence-pack"
       ],
       "result": "Pass"
@@ -1197,13 +1197,14 @@
     },
     {
       "prompt": "Is there an approved portrait photo for Ravikanth on seri.ai?",
-      "expected": "Route to portrait intake and state that no durable approved portrait file is present yet.",
+      "expected": "Route to portrait intake and state that the approved portrait is integrated with public-safe provenance and rendered on professional-orientation surfaces.",
       "requiredAnswerIncludes": [
         "Portrait status",
         "/identity/portrait-intake.md",
-        "No approved durable portrait file is currently present",
-        "explicitly approves a durable source image",
-        "visual QA"
+        "approved portrait is integrated",
+        "/identity/ravikanth-seri-portrait.webp",
+        "home, background, and resume",
+        "external first-impression review"
       ],
       "result": "Pass"
     },

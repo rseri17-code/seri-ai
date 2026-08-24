@@ -40,4 +40,4 @@ Limitations:
 
 - This is first-viewport evidence, not a complete manual scroll-through of every section.
 - Source-validated touch evidence does not replace external reviewer feedback; it also does not replace physical-device testing.
-- A durable non-photographic identity mark now exists in the repo; the approved portrait photo remains missing because no durable source image is present.
+- A durable non-photographic identity mark exists in the repo, and the approved portrait now renders on home, background, and resume; external first-impression review remains the identity proof gap.

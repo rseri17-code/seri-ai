@@ -294,15 +294,15 @@ function deterministicFallbackAnswer(question) {
       : "";
   const proofBacklogContext =
     /proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lower)
-      ? " Proof backlog: the Evidence Pack names the remaining proof work as practitioner review, control-comparison results, reviewer-labeled Ask quality, live beta reliability evidence, touch walkthroughs and external visual review, and stronger identity validation. A durable non-photographic identity mark now exists, but an approved portrait photo and external first-impression review remain open. Durable first-viewport screenshot artifacts are now captured for nine critical routes, so remaining visual proof should focus on touch use, hierarchy, density, and reviewer findings."
+      ? " Proof backlog: the Evidence Pack names the remaining proof work as practitioner review, control-comparison results, reviewer-labeled Ask quality, live beta reliability evidence, touch walkthroughs and external visual review, and stronger identity validation. A durable non-photographic identity mark exists, and the approved portrait is integrated on home, background, and resume; external first-impression review remains open. Durable first-viewport screenshot artifacts are captured for nine critical routes, so remaining visual proof should focus on touch use, hierarchy, density, and reviewer findings."
       : "";
   const identityAssetContext =
     /public identity mark|profile mark|identity mark|durable identity|portrait photo|portrait asset/.test(lower)
-      ? " Identity asset: Ravikanth Seri Public Identity Mark is available at /identity/ravikanth-seri-identity-mark.svg. It is a durable public-safe non-photographic identity mark, not a portrait photo, and it supports the person-work-evidence path without replacing career evidence, public proof, or an approved portrait when one is available. Portrait intake is defined at /identity/portrait-intake.md."
+      ? " Identity asset: Ravikanth Seri Public Identity Mark is available at /identity/ravikanth-seri-identity-mark.svg. It is a durable public-safe non-photographic identity mark, not a portrait photo, and it supports the person-work-evidence path without replacing career evidence or public proof. The approved portrait is tracked through /identity/portrait-intake.md and renders on home, background, and resume."
       : "";
   const portraitIntakeContext =
     /approved portrait|portrait intake|portrait validation|portrait photo.*available|real portrait|source image|public-use permission/.test(lower)
-      ? " Portrait status: /identity/portrait-intake.md defines the approved portrait intake contract. No approved durable portrait file is currently present in the repository. A portrait should not be published until Ravikanth explicitly approves a durable source image, the image avoids employer branding or internal screens, and visual QA verifies the rendered asset."
+      ? " Portrait status: /identity/portrait-intake.md defines the approved portrait intake contract. The approved portrait is integrated at /identity/ravikanth-seri-portrait.webp with JPG fallback, sourced from a durable image explicitly provided by Ravikanth, and rendered on home, background, and resume. It avoids employer branding and internal screens; external first-impression review remains the next identity proof."
       : "";
   const qualityScorecardContext =
     /quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lower)

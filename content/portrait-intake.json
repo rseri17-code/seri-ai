@@ -29,7 +29,7 @@
     "overly stylized glamour crop",
     "asset with unclear public-use permission"
   ],
-  "publicationRule": "Do not publish a portrait file until the source image is durable and explicitly approved. Until then, keep the public identity mark as the canonical visual anchor and keep the missing portrait gap visible.",
+  "publicationRule": "Do not publish a portrait file until the source image is durable and explicitly approved. After integration, keep provenance, public identity mark fallback behavior, and external first-impression validation status visible.",
   "validationPlan": [
     "Verify the portrait file exists at the approved public path.",
     "Verify dimensions, file size, alt text, and public-safe source note.",

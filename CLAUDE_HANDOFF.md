@@ -219,6 +219,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
 
+### 2026-08-24 — Codex resolving handoff and portrait truth drift
+
+- **Resolved**: The generated Claude prompt now names Claude as an editorial-lane engineer as well as adversarial editor, knowledge architect, and reviewer, matching the Ownership lanes instead of implying reviewer-only behavior. The public knowledge graph also no longer says the approved portrait is missing: scorecard, proof backlog, Evidence Pack export, Ask fallback, eval fixtures, visual QA notes, and portrait intake copy now state that the approved portrait is integrated on home, background, and resume while external first-impression validation remains open. Evidence: `scripts/create-claude-handoff.mjs`, `content/quality-scorecard.json`, `content/proof-backlog.json`, `content/wiki/operational-intelligence-evidence-pack.mdx`, `public/publication-pack/operational-intelligence-evidence-pack.md`, `lib/ai.ts`, `scripts/run-evals.mjs`, `content/eval-report.json`, `public/eval-report.json`, `WORLD_CLASS_SCORECARD.md`. Public-safety risk: lower; the integrated portrait remains governed by the approved intake contract and no private source claims are added.
+
 ### 2026-08-24 — Codex resolving Claude analytics finding
 
 - **Resolved**: Claude's Codex-lane finding that `can_name_thesis` was allowlisted in `validate:analytics` but stripped at runtime by `sanitizeEventProperties` because the key matched `/name/i`. The beta feedback analytics metadata key is now `can_state_thesis`, preserving the same visitor-success signal without weakening the strict privacy sanitizer. `validate:analytics` now also checks every safe metadata hint against the blocked-key patterns so this failure mode cannot silently return. Evidence: `components/beta-feedback-form.tsx`, `scripts/validate-analytics.mjs`. Public-safety risk: lower; the change preserves metadata-only capture and continues blocking names, contact details, prompt text, free-text feedback, and other sensitive fields.

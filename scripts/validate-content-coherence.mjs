@@ -779,11 +779,12 @@ for (const required of [
   "source-validated keyboard accessibility walkthrough",
   "browser-recorded keyboard tab-order checks",
   "physical-device checks",
-  "portrait-intake-ready",
+  "portrait-integrated",
   "durable non-photographic public identity mark",
   "approved portrait intake contract",
+  "approved portrait rendered on professional-orientation surfaces",
   "/identity/portrait-intake.md",
-  "approved portrait photo through /identity/portrait-intake.md",
+  "Run external first-impression review",
   "/publication-pack/ravikanth-seri-practitioner-review-packet.md",
   "/ideas/oi-room-001-control-comparison",
   "/publication-pack/ask-ravi-live-review-packet.md",
@@ -854,7 +855,7 @@ for (const required of [
   "durable non-photographic public identity mark",
   "portrait intake contract",
   "/identity/portrait-intake.md",
-  "approved portrait photo",
+  "approved portrait rendered on home, background, and resume",
   "Execute the proof backlog"
 ]) {
   expect(qualityScorecardContractSource.includes(required), `Quality scorecard missing contract: ${required}`);

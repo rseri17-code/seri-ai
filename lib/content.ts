@@ -93,7 +93,7 @@ const referenceSources = [
     title: "seri.ai Visual QA Evidence",
     description: "First-viewport browser evidence for nine critical routes across mobile, tablet, and desktop widths.",
     content:
-      "seri.ai Visual QA Evidence. 2026-08-22 first-viewport browser captures. 27 screenshots across Home, Start Here, Ask Ravikanth, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack. Mobile 390x844, tablet 768x1024, desktop 1440x1000. Zero horizontal overflow findings, zero console-error pages, visible H1 and main content for every captured route. Limitations: first-viewport evidence only, not external reviewer feedback, not full touch walkthrough. A durable non-photographic identity mark exists, while an approved portrait photo remains missing.",
+      "seri.ai Visual QA Evidence. 2026-08-22 first-viewport browser captures. 27 screenshots across Home, Start Here, Ask Ravikanth, Operations Room, Work, Background, Canonical Doctrine, Radar, and Evidence Pack. Mobile 390x844, tablet 768x1024, desktop 1440x1000. Zero horizontal overflow findings, zero console-error pages, visible H1 and main content for every captured route. Limitations: first-viewport evidence only, not external reviewer feedback, not full touch walkthrough. A durable non-photographic identity mark exists, and the approved portrait is integrated on professional-orientation surfaces.",
     url: "/visual-qa/2026-08-22/report.md",
     type: "registry" as const,
     category: "Quality Evidence",

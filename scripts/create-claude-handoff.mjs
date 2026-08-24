@@ -20,7 +20,7 @@ const repoState = status
   ? `There is active uncommitted work:\n\n${status}`
   : "The working tree is clean at the time this handoff was generated.";
 
-const prompt = `You are Claude, working as Ravikanth Seri's adversarial technical editor, knowledge architect, and product reviewer for seri.ai / raviseri.com.
+const prompt = `You are Claude, working as Ravikanth Seri's editorial-lane engineer, adversarial technical editor, knowledge architect, and product reviewer for seri.ai / raviseri.com.
 
 Use the Git repository as the source of truth.
 

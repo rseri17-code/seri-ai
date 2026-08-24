@@ -1,15 +1,15 @@
 {
   "title": "seri.ai 24-Dimension Quality Scorecard",
-  "updatedAt": "2026-08-22",
+  "updatedAt": "2026-08-24",
   "scale": "0 to 10, evidence-based, non-inflated",
   "rule": "A score reaches 10 only when current evidence shows no material gap against the intended world-class technical publication and professional representation bar.",
   "dimensions": [
     {
       "name": "Professional Representation",
       "score": 8.8,
-      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, contact paths, the First-Time Visitor Review Kit, Practitioner Review Packet, portrait intake contract, durable first-viewport screenshots, and a durable non-photographic public identity mark make Ravikanth Seri visible as the author and engineer behind the work.",
-      "gap": "An approved portrait photo and completed external first-impression review are still missing, so the person-work-evidence path is not yet independently validated.",
-      "nextProof": "Add the approved portrait photo through /identity/portrait-intake.md when available, then run the Practitioner Review Packet with external reviewers at mobile, tablet, and desktop widths."
+      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, contact paths, the First-Time Visitor Review Kit, Practitioner Review Packet, portrait intake contract, durable first-viewport screenshots, a durable non-photographic public identity mark, and an approved portrait rendered on home, background, and resume make Ravikanth Seri visible as the author and engineer behind the work.",
+      "gap": "The approved portrait is integrated, but completed external first-impression review is still missing, so the person-work-evidence path is not yet independently validated.",
+      "nextProof": "Run the Practitioner Review Packet with external reviewers at mobile, tablet, and desktop widths and record whether they can identify Ravikanth, his work, his thesis, and the evidence path without coaching."
     },
     {
       "name": "Career Clarity",

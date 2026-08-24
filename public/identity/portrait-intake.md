@@ -38,7 +38,7 @@ This is the public-safe intake contract for adding a real portrait of Ravikanth 
 
 ## Publication Rule
 
-Do not publish a portrait file until the source image is durable and explicitly approved. Until then, keep the public identity mark as the canonical visual anchor and keep the missing portrait gap visible.
+Do not publish a portrait file until the source image is durable and explicitly approved. After integration, keep provenance, public identity mark fallback behavior, and external first-impression validation status visible.
 
 ## Validation Plan
 

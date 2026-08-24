@@ -41,7 +41,8 @@ if (fs.existsSync(reportPath)) {
     "0 recorded console-error pages",
     "Mobile Operations Room shows the live investigation graph",
     "does not replace external reviewer feedback",
-    "durable non-photographic identity mark now exists",
+    "durable non-photographic identity mark exists",
+    "approved portrait now renders on home, background, and resume",
     "Source-validated mobile touch walkthrough notes captured",
     "/visual-qa/2026-08-22/mobile-touch-walkthroughs.md"
   ]) {

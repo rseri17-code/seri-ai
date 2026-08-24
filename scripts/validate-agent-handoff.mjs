@@ -103,6 +103,7 @@ expect(pkg.scripts.build.includes("validate:handoff"), "npm run build must run v
 expect(claudeHandoffScript.includes("git log -1 --oneline"), "create-claude-handoff.mjs must include the latest commit.");
 expect(claudeHandoffScript.includes("git status --short --branch"), "create-claude-handoff.mjs must include branch sync state.");
 expect(claudeHandoffScript.includes("CLAUDE_HANDOFF.md"), "create-claude-handoff.mjs must include the standing handoff contract.");
+expect(claudeHandoffScript.includes("editorial-lane engineer"), "create-claude-handoff.mjs must name Claude's editorial implementation lane.");
 expect(claudeHandoffScript.includes("Do not redesign the application."), "create-claude-handoff.mjs must preserve route and design constraints.");
 expect(claudeHandoffScript.includes("Do not invent private details."), "create-claude-handoff.mjs must preserve public-safety constraints.");
 
