@@ -13,6 +13,22 @@ function expect(condition, message) {
 const handoff = fs.readFileSync(handoffPath, "utf8");
 const pkg = JSON.parse(fs.readFileSync(packagePath, "utf8"));
 
+for (const missionFile of ["NORTH_STAR.md", "AGENTS.md", "CLAUDE.md"]) {
+  expect(fs.existsSync(path.join(root, missionFile)), `${missionFile} missing: both agents depend on it for shared mission context`);
+}
+for (const [file, references] of [
+  ["AGENTS.md", ["NORTH_STAR.md", "CLAUDE_HANDOFF.md", "npm test", "npm run build"]],
+  ["CLAUDE.md", ["NORTH_STAR.md", "AGENTS.md", "CLAUDE_HANDOFF.md"]]
+]) {
+  const filePath = path.join(root, file);
+  if (fs.existsSync(filePath)) {
+    const content = fs.readFileSync(filePath, "utf8");
+    for (const reference of references) {
+      expect(content.includes(reference), `${file} must reference ${reference} so both agents load the same mission and protocol`);
+    }
+  }
+}
+
 for (const required of [
   "# Claude Handoff for seri.ai",
   "Build and continuously maintain seri.ai / raviseri.com",
