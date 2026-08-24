@@ -46,7 +46,7 @@
       "question": "What is the minimum replay record required before an AI recommendation is trusted?",
       "whyItMatters": "A production AI operations system must survive model, prompt, retrieval, and tool changes without losing the ability to replay why a recommendation was made.",
       "currentEvidence": "Replay Seed, Evaluation Gate, conformance profile, decision packet example, and deterministic Ask fixtures define repeatable behavior checks.",
-      "nextProof": "Add more public-safe replay cases only when they test distinct failure modes such as stale context, contradictory evidence, missing ownership, or unsafe action.",
+      "nextProof": "Add more synthetic replay cases only when they test distinct failure modes such as stale context, contradictory evidence, missing ownership, or unsafe action.",
       "wouldChangeMind": "If replay records become too expensive or too noisy for operators to use, the architecture must simplify the replay contract.",
       "href": "/publication-pack/operational-intelligence-conformance-profile.md"
     },

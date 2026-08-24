@@ -442,7 +442,7 @@ for (const required of [
   "visitorReviewKit.purpose",
   "visitorReviewKit.principle",
   "visitorReviewKit.reviewPath.map",
-  "Submit public-safe review",
+  "Submit review",
   "Doctrine",
   "Reference Architecture",
   "Evidence Pack",

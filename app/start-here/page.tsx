@@ -49,7 +49,7 @@ const tenMinuteProofRoute = [
     href: "/background",
     title: "Establish the operator",
     question: "Who is Ravikanth, and why is this work grounded in production systems?",
-    proof: "Career arc, public-safe production-delivery chain, and the infrastructure-to-AI operating path."
+    proof: "Career arc, production-delivery chain, and the infrastructure-to-AI operating path."
   },
   {
     minutes: "02-04",
@@ -201,7 +201,7 @@ export default function StartHerePage() {
             <p className="mt-3 text-sm leading-6 text-slate-300">{visitorReviewKit.purpose}</p>
             <p className="mt-4 border-l border-amber/40 pl-4 text-sm leading-6 text-slate-300">{visitorReviewKit.principle}</p>
             <Link href="/contact" className="mt-5 inline-flex rounded border border-amber/35 px-4 py-3 text-sm font-semibold text-amber hover:border-amber/60">
-              Submit public-safe review
+              Submit review
             </Link>
           </div>
           <div className="grid gap-2 sm:grid-cols-2">

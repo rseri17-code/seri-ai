@@ -11,7 +11,7 @@ import { professionalGraph } from "@/content/site";
 const proofStrip = [
   ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
   ["Architecture", "Contracts, schemas, state machines, approval gates, and conformance levels."],
-  ["Operations Room", "A public-safe investigation instrument for evidence, replay, hypotheses, and review."],
+  ["Operations Room", "A synthetic-case investigation instrument for evidence, replay, hypotheses, and review."],
   ["Ask Ravi", "An AI assistant over the public work; how it is tested is itself public at /evals."]
 ];
 
@@ -26,7 +26,7 @@ const proofStrip = [
 
 
 const inspectionLedger = [
-  ["/start-here", "Visitor Proof Map", "The fastest public-safe path through Ravikanth Seri's work, GitHub, resume, and Operational Intelligence thesis."],
+  ["/start-here", "Visitor Proof Map", "The fastest path through Ravikanth Seri's work, GitHub, resume, and Operational Intelligence thesis."],
   ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "Definition, boundaries, ten layers, glossary, and claim posture."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Contracts, state machines, schemas, gates, and conformance levels."],
   ["/investigation-room", "Operations Room", "Synthetic investigation with evidence graph, replay, contradiction, missing evidence, and approval."],

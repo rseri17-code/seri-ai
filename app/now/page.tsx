@@ -16,7 +16,7 @@ const builderLedger = [
   [
     "/wiki/operational-intelligence-canonical-doctrine",
     "Doctrine frozen at v1.0",
-    "Definitions, boundaries, ten layers, glossary, claim classification, and public-safe OI-ROOM-001 framing."
+    "Definitions, boundaries, ten layers, glossary, claim classification, and synthetic OI-ROOM-001 framing."
   ],
   [
     "/wiki/operational-intelligence-reference-architecture",
@@ -31,7 +31,7 @@ const builderLedger = [
   [
     "/evals",
     "Ask Ravi trust fixtures",
-    "Deterministic behavior checks for grounding, refusal, citation presence, related routing, and public-safe boundaries."
+    "Deterministic behavior checks for grounding, refusal, citation presence, and related routing."
   ],
   [
     "/wiki/operational-intelligence-publication-pack",
@@ -48,7 +48,7 @@ const builderLedger = [
 const proofCheckpoints = [
   "Collect practitioner criticism from SRE, architecture, AI engineering, governance, founder, and executive reviewers.",
   "Compare OI-ROOM-001 against dashboard-only and chatbot-only baselines.",
-  "Add more public-safe replay cases only when they test a distinct failure mode.",
+  "Add more synthetic replay cases only when they test a distinct failure mode.",
   "Use review feedback to revise v1.x assets without drifting the canonical terminology.",
   "Keep Ask Ravi grounded in published assets rather than private memory or personality imitation."
 ] as const;

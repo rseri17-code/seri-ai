@@ -287,3 +287,10 @@ Ravikanth ruled **trim**. The hero boundary paragraph is now a single capability
 - **Why it matters**: editorial §5 — the doctrine's internal posture is "original synthesis to test, not settled fact"; "canonical/definitive" wrappers contradicted it and invited the adversarial reading the document cannot survive, while the modest title invites the reading it wins.
 - **Evidence**: full `npm test` (incl. all 66 retrieval checks with legacy "canonical doctrine" phrasings still routing) and `npm run build` green.
 - **Public-safety risk**: none — naming only.
+
+### 2026-08-24 — Claude loop iteration: public-safe-once sweep (Claude lane)
+
+- **What changed**: seven reflexive "public-safe" qualifiers trimmed on `/`, `/now`, and `/start-here` per the hero-disclaimer precedent — dropped where the noun is already public (path, chain, review), replaced with the factual "synthetic" label where labeling is the point (Operations Room instrument, replay cases, OI-ROOM-001 framing). Every remaining surface now states boundary language at most once; /ask and the doctrine keep the full version. Pins updated in-pass.
+- **Why**: editorial §10 — repeated boundary disclosure reads defensive; the precedent Ravikanth ruled makes this class of edit mechanical now.
+- **Evidence**: full `npm test` + `npm run build` green. **Public-safety risk**: none — the actual boundary enforcement (scanner, Ask refusal, fixtures) is untouched; only redundant self-description was removed.
+- **Editorial §10 is now closed.** Claude-lane queue: Ask persona grounding is next, but its implementation surface (`lib/ai.ts` system prompt) is Codex-lane wiring — Claude will draft the persona source content and file a cross-lane review request rather than editing the wiring directly.
