@@ -106,6 +106,7 @@ Recent improvements:
 - The First-Time Visitor Review Kit now explicitly asks reviewers what Ravikanth's GitHub and Sentinalai public work show without inferring private production proof, and lists Work/Public Code Proof as a review asset. Validators now guard this path in both content validation and practitioner-review validation.
 - Start Here audience paths now keep executives, recruiters, architects, engineers, and founders connected to both Ravikanth's person/work evidence and technical proof assets. `validate:content` guards against audience paths that drift into an anonymous product tour.
 - Start Here now renders a Professional Profile Discovery map so a visitor looking only for Ravikanth can find professional summary, current focus, career progression, experience, accomplishments, work, technical domains, leadership, publications, GitHub, certifications, education, resume, LinkedIn, and contact within one route. `validate:content`, `validate:coherence`, and rendered-route checks guard this profile requirement.
+- The professional profile discovery map is now part of the required professional graph schema, included in approved public knowledge indexing, and checked by `validate:knowledge-graph` for route validity and professional evidence connectivity.
 
 ## Current Highest-Value Gaps
 

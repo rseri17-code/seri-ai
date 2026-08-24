@@ -203,6 +203,16 @@ for (const route of requiredProfessionalRoutes) {
   expect(assetUrls.has(route) || routeExists(route), `${route}: missing from reachable public knowledge graph surface`);
 }
 
+const approvedExternalProfileRoutes = new Set(["https://github.com/rseri17-code", "https://www.linkedin.com/in/ravikanthseri/"]);
+for (const item of professionalGraph.profileDiscovery ?? []) {
+  const owner = `profileDiscovery:${item.need ?? "unknown"}`;
+  for (const field of ["primaryHref", "evidenceHref"]) {
+    const route = item[field];
+    expect(approvedExternalProfileRoutes.has(route) || routeExists(route), `${owner}: ${field} does not resolve to a public graph surface: ${route}`);
+  }
+  expect(String(item.proof ?? "").length >= 90, `${owner}: proof must explain the evidence path`);
+}
+
 const professionalText = [
   professionalGraph.identity?.person,
   professionalGraph.identity?.currentFocus,
@@ -210,9 +220,10 @@ const professionalText = [
   ...(professionalGraph.careerEvolution ?? []).flatMap((item) => [item.stage, item.focus, item.publicEvidence]),
   ...(professionalGraph.capabilityEvidence ?? []).flatMap((item) => [item.capability, item.evidence, item.href]),
   ...(professionalGraph.proofLinks ?? []).flatMap((item) => [item.label, item.href, item.reason]),
+  ...(professionalGraph.profileDiscovery ?? []).flatMap((item) => [item.need, item.primaryHref, item.evidenceHref, item.proof]),
   ...(publicCode.entries ?? []).flatMap((item) => [item.label, item.href, item.whatToInspect, item.publicSafeUse])
 ].join(" ");
-for (const required of ["Ravikanth Seri", "Operational Intelligence", "production AI", "GitHub", "resume", "public-safe"]) {
+for (const required of ["Ravikanth Seri", "Operational Intelligence", "production AI", "GitHub", "LinkedIn", "resume", "certifications", "education", "contact", "public-safe"]) {
   expect(professionalText.toLowerCase().includes(required.toLowerCase()), `professional graph evidence missing ${required}`);
 }
 
