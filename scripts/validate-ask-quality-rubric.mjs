@@ -4,8 +4,10 @@ import path from "node:path";
 const root = process.cwd();
 const rubricPath = path.join(root, "content", "ask-quality-rubric.json");
 const personaPath = path.join(root, "content", "ask-persona.json");
+const evalReportPath = path.join(root, "content", "eval-report.json");
 const evalsPagePath = path.join(root, "app", "evals", "page.tsx");
 const scorecardPath = path.join(root, "WORLD_CLASS_SCORECARD.md");
+const qualityScorecardPath = path.join(root, "content", "quality-scorecard.json");
 const compliancePath = path.join(root, "lib", "compliance.ts");
 const aiPath = path.join(root, "lib", "ai.ts");
 const errors = [];
@@ -16,10 +18,14 @@ function expect(condition, message) {
 
 const rubric = JSON.parse(fs.readFileSync(rubricPath, "utf8"));
 const persona = JSON.parse(fs.readFileSync(personaPath, "utf8"));
+const evalReport = JSON.parse(fs.readFileSync(evalReportPath, "utf8"));
 const evalsPage = fs.readFileSync(evalsPagePath, "utf8");
 const scorecard = fs.readFileSync(scorecardPath, "utf8");
+const qualityScorecard = JSON.parse(fs.readFileSync(qualityScorecardPath, "utf8"));
 const compliance = fs.readFileSync(compliancePath, "utf8");
 const ai = fs.readFileSync(aiPath, "utf8");
+const askDimension = qualityScorecard.dimensions?.find((dimension) => dimension.name === "Ask Ravi");
+const evalFixtureCount = evalReport.fixtures?.length ?? 0;
 
 expect(rubric.title === "Ask Ravi Live Answer Quality Rubric", "Rubric title must identify Ask Ravi live answer quality.");
 expect(rubric.modelQualityScoresFabricated === false, "Rubric must explicitly avoid fabricated model-quality scores.");
@@ -29,6 +35,11 @@ expect(Array.isArray(rubric.dimensions) && rubric.dimensions.length >= 10, "Rubr
 expect(Array.isArray(rubric.reviewPromptSet) && rubric.reviewPromptSet.length >= 12, "Rubric must include at least twelve live review prompts.");
 expect(rubric.reportingTemplate?.safeMetadataOnly?.length >= 10, "Rubric must define safe metadata fields for reporting.");
 expect(rubric.reportingTemplate?.doNotCapture?.length >= 7, "Rubric must define fields that must not be captured.");
+expect(evalFixtureCount >= 35, "Eval report must include at least 35 Ask fixtures.");
+expect(askDimension, "Quality scorecard must include Ask Ravi dimension.");
+expect(askDimension?.evidence?.includes(`${evalFixtureCount} passing fixtures`), "Quality scorecard Ask evidence must use the current eval fixture count.");
+expect(scorecard.includes(`${evalFixtureCount} passing fixtures`), "WORLD_CLASS_SCORECARD.md must use the current eval fixture count.");
+expect(scorecard.includes(`${evalFixtureCount} deterministic fixtures`), "WORLD_CLASS_SCORECARD.md Ask evidence table must use the current deterministic fixture count.");
 
 expect(persona.title === "Ask Ravikanth Persona Contract", "Ask persona contract title must identify Ask Ravikanth.");
 expect(persona.status === "active", "Ask persona contract must be active.");
@@ -49,6 +60,11 @@ for (const required of [
   "Do not turn every answer into an Operational Intelligence pitch"
 ]) {
   expect(JSON.stringify(persona).includes(required), `Ask persona contract missing required posture: ${required}`);
+}
+
+for (const required of ["versioned persona contract", "intent-aware follow-up questions"]) {
+  expect(askDimension?.evidence?.includes(required), `Quality scorecard Ask evidence missing ${required}.`);
+  expect(scorecard.includes(required), `WORLD_CLASS_SCORECARD.md missing Ask evidence ${required}.`);
 }
 
 for (const route of [
