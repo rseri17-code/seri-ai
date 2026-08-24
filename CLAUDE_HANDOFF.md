@@ -1,10 +1,10 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-08-23
+Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `487d383 Add first-visit proof route and Claude handoff`
+- `e596d1e Align portrait evidence across knowledge graph`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `a3c9036 Reframe Ask Ravikanth as evidence console`
+- `e596d1e Align portrait evidence across knowledge graph`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `487d383 Add first-visit proof route and Claude handoff`
+- `e596d1e Align portrait evidence across knowledge graph`
 
 Recent improvements:
 
@@ -88,6 +88,8 @@ Recent improvements:
 - Search retrieval covers 66 canonical queries.
 - Ask deterministic fixtures cover 106 passing cases.
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
+- The approved portrait is integrated on home, background, and resume through the portrait intake contract.
+- Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.
 
 ## Current Highest-Value Gaps
 
@@ -98,7 +100,7 @@ The scorecard intentionally does not claim 10/10. The strongest remaining gaps a
 - Ask Ravi: deterministic fixtures are strong, but reviewer-labeled live answer quality is not yet proven.
 - Reliability: local gates exist, but live uptime, Ask latency, fallback rate, and contact persistence evidence are still missing.
 - Visual Design: source and viewport evidence exists, but external hierarchy/density review remains open.
-- Professional Representation: an approved portrait photo and completed external first-impression review are still missing.
+- Professional Representation: the approved portrait is integrated; completed external first-impression review is still missing.
 
 ## Claude's Next Best Review
 
@@ -210,7 +212,7 @@ Branch `claude/site-build` (pushed, merged with `main` at `3b2ace2 Gate Claude h
 - Ask reframe reconciled with the evidence-console commit: kept evidence-console branding, interior copy, and title; kept the plain H1 "Ask about Ravikanth's work.", the explicit AI-assistant disclosure paragraph, and the one-sentence metadata description. Rationale in `docs/seri-ai/EDITORIAL_REVIEW_2026-08-24.md` on the Sentinalai repo branch `claude/seri-ai-platform-upgrade-opl7nk` (§2: the surface must promise exactly what it delivers; "Interrogate the public record" reads cold and evasive for the page most likely to be shared).
 - Homepage person-first pass: first-person identity paragraph grounded in resume facts; removed three duplicated thesis statements (hero public-safe disclaimer, "narrow on purpose" self-description, field-origin duplicate) to stay under the rendered budget; homepage CI-count proof item replaced with a pointer to /evals. Validator pins re-anchored.
 
-Full adversarial review (10 areas, Keep/Fix/Replace/Why) lives in the Sentinalai repo: `docs/seri-ai/SITE_BENCHMARK_REVIEW.md`, `docs/seri-ai/EDITORIAL_REVIEW_2026-08-24.md`, `docs/seri-ai/CODEX_GOAL.md`. Top remaining priorities from that review: Background concreteness (lead with 15+ years / regulated financial services / named disciplines before abstraction), aphorism budget across section titles, "public-safe" disclosed once instead of everywhere, drop "canonical/definitive" modifiers around the doctrine, portrait via the existing intake contract (blocked on an approved source image).
+Full adversarial review (10 areas, Keep/Fix/Replace/Why) lives in the Sentinalai repo: `docs/seri-ai/SITE_BENCHMARK_REVIEW.md`, `docs/seri-ai/EDITORIAL_REVIEW_2026-08-24.md`, `docs/seri-ai/CODEX_GOAL.md`. Resolved priorities from that review include Background concreteness, aphorism budget across section titles, "public-safe" disclosed once, doctrine title softening, and portrait integration through the intake contract. Remaining highest-value Claude-lane target: Ask persona grounding and follow-up behavior, with any implementation touching `lib/ai.ts` routed back through Codex-lane validation.
 
 Merging `claude/site-build` into `main` is Ravikanth's call; both agents should branch from it (or from `main` after merge) to avoid re-diverging on Ask copy.
 
@@ -218,6 +220,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex refreshing Claude handoff current state
+
+- **Resolved**: The handoff header and Current Product State now point at `e596d1e Align portrait evidence across knowledge graph`, and the Current Highest-Value Gaps no longer say the approved portrait is missing. The handoff now distinguishes integrated portrait evidence from the still-open external first-impression review. Evidence: `CLAUDE_HANDOFF.md`, `npm run handoff:claude`. Public-safety risk: none — documentation-only, no new claims beyond already validated public assets.
 
 ### 2026-08-24 — Codex resolving handoff and portrait truth drift
 
@@ -271,7 +277,7 @@ Ravikanth provided the portrait directly (commit `07a514f`, 800x800 JPEG, explic
 
 - **Verdict: approved.** The strip implements the Background-concreteness priority correctly — 15+ years, regulated financial services, the modernization path, and current focus are exactly the facts the editorial review said should lead this page, all resume-sourced and public-safe. Placing them inside the intro card directly under the summary is the right position. Noun-lists are acceptable here because the strip is a labeled grid, not prose.
 - **Fixed in-lane (micro)**: "OpenTelemetry-style telemetry" → "OpenTelemetry instrumentation" — the resume names OpenTelemetry directly, and the hedge weakened the concreteness the strip exists to provide. Page + coherence pin updated together.
-- Background concreteness is now resolved as a priority item. Remaining Claude-lane queue: aphorism budget across section titles, "public-safe once" disclosure pass (partially blocked on the frozen hero-disclaimer ruling), doctrine title softening, Ask persona/follow-ups. Codex-lane reminder still open: `can_name_thesis` analytics property is stripped by the /name/i sanitizer.
+- Background concreteness is now resolved as a priority item. At the time of this ledger entry, the remaining Claude-lane queue was aphorism budget across section titles, "public-safe once" disclosure pass, doctrine title softening, and Ask persona/follow-ups; subsequent ledger entries resolved the first three. The `can_name_thesis` analytics issue was also later resolved by renaming the safe metadata key to `can_state_thesis`.
 
 ### 2026-08-24 — Ruling implemented: hero disclaimer (frozen item 2)
 
