@@ -15,7 +15,7 @@ export const metadata: Metadata = publicRouteMetadata({
 });
 
 const referenceShelf = [
-  ["/wiki/operational-intelligence-canonical-doctrine", "Canonical Doctrine", "Definition, boundaries, ten-layer model, glossary, claim posture, and citations."],
+  ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine", "Definition, boundaries, ten-layer model, glossary, claim posture, and citations."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Contracts, schemas, state machines, governance, evaluation gates, and conformance levels."],
   ["/wiki/operational-intelligence-evidence-pack", "Evidence Pack", "Benchmark rubric, control comparisons, practitioner review, and falsification criteria."],
   ["/wiki/operational-intelligence-publication-pack", "Publication Pack", "Diagrams, comparison tables, decision packet, walkthrough, executive summary, glossary, and PDFs."],

@@ -70,7 +70,7 @@ export function buildLlmsTxt(siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http
 
 function labelForRoute(route: string) {
   const labels: Record<string, string> = {
-    "/wiki/operational-intelligence-canonical-doctrine": "Operational Intelligence Canonical Doctrine v1.0",
+    "/wiki/operational-intelligence-canonical-doctrine": "Operational Intelligence Doctrine v1.0",
     "/wiki/operational-intelligence-reference-architecture": "Operational Intelligence Reference Architecture v1.0",
     "/wiki/operational-intelligence-publication-pack": "Operational Intelligence Publication Pack",
     "/wiki/operational-intelligence-evidence-pack": "Operational Intelligence Evidence Pack",

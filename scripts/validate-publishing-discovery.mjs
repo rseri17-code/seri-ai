@@ -96,7 +96,7 @@ for (const route of canonicalRoutes.slice(0, 4)) {
 }
 
 const publishingSearchCases = [
-  ["canonical doctrine", "/wiki/operational-intelligence-canonical-doctrine"],
+  ["doctrine", "/wiki/operational-intelligence-canonical-doctrine"],
   ["reference architecture conformance", "/wiki/operational-intelligence-reference-architecture"],
   ["publication pack diagrams pdf", "/wiki/operational-intelligence-publication-pack"],
   ["evidence pack falsification criteria", "/wiki/operational-intelligence-evidence-pack"],

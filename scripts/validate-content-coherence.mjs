@@ -443,7 +443,7 @@ for (const required of [
   "visitorReviewKit.principle",
   "visitorReviewKit.reviewPath.map",
   "Submit public-safe review",
-  "Canonical Doctrine",
+  "Doctrine",
   "Reference Architecture",
   "Evidence Pack",
   "Publication Pack",

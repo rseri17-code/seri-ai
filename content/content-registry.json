@@ -1,8 +1,8 @@
 [
   {
-    "title": "Operational Intelligence Canonical Doctrine v1.0",
+    "title": "Operational Intelligence Doctrine v1.0",
     "slug": "operational-intelligence-canonical-doctrine",
-    "summary": "The definitive public doctrine for Operational Intelligence definitions, boundaries, framework layers, OI-ROOM-001, glossary, citations, and original contribution.",
+    "summary": "The public doctrine for Operational Intelligence definitions, boundaries, framework layers, OI-ROOM-001, glossary, citations, and original contribution.",
     "type": "framework",
     "route": "/wiki/operational-intelligence-canonical-doctrine",
     "status": "published",
@@ -54,7 +54,7 @@
     "createdAt": "2026-07-17",
     "updatedAt": "2026-07-25",
     "seo": {
-      "title": "Operational Intelligence Canonical Doctrine v1.0",
+      "title": "Operational Intelligence Doctrine v1.0",
       "description": "The canonical public doctrine for Operational Intelligence."
     }
   },

@@ -390,7 +390,7 @@
     },
     {
       "prompt": "What has Ravikanth written and what frameworks has he developed?",
-      "expected": "Route to the library, ideas, framework, and canonical doctrine.",
+      "expected": "Route to the library, ideas, framework, and doctrine.",
       "requiredAnswerIncludes": [
         "Related page or artifact",
         "/library",
@@ -587,12 +587,12 @@
       "result": "Pass"
     },
     {
-      "prompt": "Where should a technical reviewer start if they want the canonical doctrine?",
-      "expected": "Route to the Operational Intelligence Canonical Doctrine.",
+      "prompt": "Where should a technical reviewer start if they want the doctrine?",
+      "expected": "Route to the Operational Intelligence Doctrine.",
       "requiredAnswerIncludes": [
         "Related page or artifact",
         "/wiki/operational-intelligence-canonical-doctrine",
-        "Canonical Doctrine"
+        "Doctrine"
       ],
       "result": "Pass"
     },
@@ -659,9 +659,9 @@
     },
     {
       "prompt": "Which public asset should Ask Ravi prefer for doctrine and boundaries?",
-      "expected": "Prefer the Canonical Doctrine for definitions and boundaries.",
+      "expected": "Prefer the Doctrine for definitions and boundaries.",
       "requiredAnswerIncludes": [
-        "Canonical Doctrine",
+        "Doctrine",
         "/wiki/operational-intelligence-canonical-doctrine",
         "Public source"
       ],
@@ -669,7 +669,7 @@
     },
     {
       "prompt": "How should the doctrine classify established, derived, original, speculative, and unsupported claims?",
-      "expected": "Route to Canonical Doctrine and Evidence Pack claim discipline.",
+      "expected": "Route to Doctrine and Evidence Pack claim discipline.",
       "requiredAnswerIncludes": [
         "Claim discipline",
         "established practice",

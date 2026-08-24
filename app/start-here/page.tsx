@@ -12,7 +12,7 @@ export const metadata: Metadata = publicRouteMetadata({
 });
 
 const routeLabels: Record<string, string> = {
-  "/wiki/operational-intelligence-canonical-doctrine": "Canonical Doctrine",
+  "/wiki/operational-intelligence-canonical-doctrine": "Doctrine",
   "/wiki/operational-intelligence-reference-architecture": "Reference Architecture",
   "/wiki/operational-intelligence-evidence-pack": "Evidence Pack",
   "/wiki/operational-intelligence-publication-pack": "Publication Pack",

@@ -286,7 +286,7 @@ function deterministicFallbackAnswer(question) {
       : "";
   const publicationSpineContext =
     /publication spine|reading order|what should i read first|body of work|which publications|published assets|field notes.*patterns|doctrine.*field notes.*patterns|each asset prove|written|writing|published|article|library/.test(lower)
-      ? " Publication spine: the Library organizes the body of work as Define, Specify, Demonstrate, Challenge, and Connect. It points readers from the Canonical Doctrine to the Reference Architecture, Operations Room, Evidence Pack, and Ravikanth's public work so each asset has a clear proof job."
+      ? " Publication spine: the Library organizes the body of work as Define, Specify, Demonstrate, Challenge, and Connect. It points readers from the Doctrine to the Reference Architecture, Operations Room, Evidence Pack, and Ravikanth's public work so each asset has a clear proof job."
       : "";
   const productionDeliveryContext =
     /architecture.*engineering.*integration|architecture to production|production delivery|delivery chain|governance.*production|evaluation.*governance|operating loop|production experience|production judgment/.test(lower)
@@ -325,9 +325,9 @@ function deterministicFallbackAnswer(question) {
       ? `Direct answer: ${ravikanthContext}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}`
       : `Direct answer: Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}`,
     `Relevant framework layers: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
-    "Public source: approved public content registry, including the Canonical Doctrine, Reference Architecture, Publication Pack, Evidence Pack, framework, and public wiki sources.",
+    "Public source: approved public content registry, including the Doctrine, Reference Architecture, Publication Pack, Evidence Pack, framework, and public wiki sources.",
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before presenting the doctrine as credible.",
-    referenceAssetMatches.length ? `Reference asset match: ${referenceAssetMatches.join("; ")}.` : "Reference asset match: use the Canonical Doctrine, Reference Architecture, Publication Pack, and Evidence Pack as the primary review spine.",
+    referenceAssetMatches.length ? `Reference asset match: ${referenceAssetMatches.join("; ")}.` : "Reference asset match: use the Doctrine, Reference Architecture, Publication Pack, and Evidence Pack as the primary review spine.",
     "Public profile links: github.com/rseri17-code and linkedin.com/in/ravikanthseri.",
     "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, replay, evaluation gates, operational memory, and human-reviewed action.",
     "Tradeoff or limitation: this local fallback is deterministic and lexical; semantic retrieval and model-generated synthesis improve when production AI and vector search keys are configured.",

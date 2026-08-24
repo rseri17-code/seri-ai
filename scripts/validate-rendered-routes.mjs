@@ -176,7 +176,7 @@ const routeContracts = [
     file: "wiki/operational-intelligence-canonical-doctrine.html",
     maxBytes: 260_000,
     required: [
-      "Operational Intelligence Canonical Doctrine",
+      "Operational Intelligence Doctrine",
       "Operational Intelligence is not a replacement",
       "Ten-layer framework",
       "OI-ROOM-001",

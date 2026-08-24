@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import type { PublicSource } from "@/lib/content";
 
 const suggestedQueries = [
-  "canonical doctrine",
+  "doctrine",
   "evidence graph",
   "OI-ROOM-001 walkthrough",
   "evaluation gates",

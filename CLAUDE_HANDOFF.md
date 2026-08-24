@@ -280,3 +280,10 @@ Ravikanth ruled **trim**. The hero boundary paragraph is now a single capability
 - **Evidence**: full `npm test` and `npm run build` green; coherence and rendered pins updated in the same pass (13 pin updates in `validate-content-coherence.mjs`, 1 in `validate-rendered-routes.mjs`).
 - **Public-safety risk**: none — titles only, no factual or boundary changes.
 - **Next in Claude lane**: doctrine title softening ("Canonical Doctrine" → "Doctrine v1.0" in display strings, route slugs untouched) — filed as the next dedicated pass since it ripples through registry, search, and retrieval pins. Then Ask persona grounding.
+
+### 2026-08-24 — Claude: doctrine title softening (Claude lane)
+
+- **What changed**: "Canonical Doctrine" → "Doctrine" and "definitive public doctrine" → "public doctrine" across 22 files of display strings (wiki frontmatter/prose, registry, graph labels, search, evals, llms.txt builder, validator pins updated in the same pass). Route slug `operational-intelligence-canonical-doctrine` untouched; `content/changelog.json` left as historical record; "canonical definition" (the one-sentence definition inside the doctrine) intentionally kept — it is precise usage, not grandiosity.
+- **Why it matters**: editorial §5 — the doctrine's internal posture is "original synthesis to test, not settled fact"; "canonical/definitive" wrappers contradicted it and invited the adversarial reading the document cannot survive, while the modest title invites the reading it wins.
+- **Evidence**: full `npm test` (incl. all 66 retrieval checks with legacy "canonical doctrine" phrasings still routing) and `npm run build` green.
+- **Public-safety risk**: none — naming only.

@@ -87,7 +87,7 @@
     },
     {
       "route": "/wiki/operational-intelligence-canonical-doctrine",
-      "surface": "Canonical Doctrine",
+      "surface": "Doctrine",
       "visitorTask": "Use mobile contents, scan the doctrine, ask follow-up questions, and continue into related reading without losing orientation.",
       "startingSignal": "The doctrine page exposes Contents and Ask questions before the long body on mobile.",
       "touchTargets": [

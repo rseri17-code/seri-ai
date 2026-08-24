@@ -149,7 +149,7 @@
     {
       "stage": "Architecture",
       "responsibility": "Define operating boundaries, system responsibilities, control points, and a public-safe decision model before implementation details dominate.",
-      "publicEvidence": "Canonical Doctrine, Reference Architecture, architecture judgment ledger, and layer contracts.",
+      "publicEvidence": "Doctrine, Reference Architecture, architecture judgment ledger, and layer contracts.",
       "reviewQuestion": "Is the problem decomposed into evidence, reasoning, evaluation, decision, and operator-control surfaces before model reasoning?",
       "href": "/wiki/operational-intelligence-reference-architecture"
     },
@@ -222,7 +222,7 @@
   "reviewSpine": [
     {
       "href": "/wiki/operational-intelligence-canonical-doctrine",
-      "label": "Canonical Doctrine",
+      "label": "Doctrine",
       "detail": "The definition, boundaries, ten-layer model, glossary, claim posture, and public-safe OI-ROOM-001 case."
     },
     {
@@ -308,7 +308,7 @@
     },
     {
       "href": "/wiki/operational-intelligence-canonical-doctrine",
-      "label": "Canonical Doctrine",
+      "label": "Doctrine",
       "detail": "Definitions, boundaries, ten layers, glossary, and OI-ROOM-001 framing."
     },
     {
