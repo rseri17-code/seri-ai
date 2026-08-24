@@ -1,6 +1,6 @@
 {
   "title": "First-Time Visitor Review Kit",
-  "updatedAt": "2026-08-22",
+  "updatedAt": "2026-08-24",
   "purpose": "Convert subjective first impressions into public-safe evidence about whether seri.ai clearly represents Ravikanth Seri, his work, and the Operational Intelligence thesis.",
   "principle": "A serious review should identify whether the visitor can explain Ravikanth Seri, name the Operational Intelligence thesis, state what became clear, name what stayed confusing, cite what evidence was inspected, identify the strongest claim, and say what evidence would change the reviewer's mind.",
   "reviewPath": [
@@ -46,6 +46,7 @@
     "Which claim would you challenge first?",
     "What evidence would change your mind?",
     "What would block a real implementation?",
+    "Can you explain what Ravikanth's GitHub and Sentinalai public work show without inferring private production proof?",
     "Would you describe the site as Ravikanth Seri's public professional operating system, an Operational Intelligence reference, or something else?",
     "Did any page feel like a demo rather than a durable technical reference?"
   ],
@@ -69,6 +70,11 @@
       "href": "/wiki/operational-intelligence-evidence-pack",
       "label": "Evidence Pack",
       "description": "Benchmarks, control comparisons, falsification criteria, and conformance checklist."
+    },
+    {
+      "href": "/work",
+      "label": "Work and Public Code Proof",
+      "description": "Operating record, GitHub and Sentinalai inspection path, project proof ledger, public-code review rubric, and boundaries on what not to infer."
     },
     {
       "href": "/publication-pack/ravikanth-seri-practitioner-review-packet.md",

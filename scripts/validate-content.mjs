@@ -727,7 +727,8 @@ for (const required of [
   "Can you explain who Ravikanth Seri is without repeating homepage copy?",
   "Can you name the Operational Intelligence thesis in one sentence?",
   "Which public artifact did you inspect before forming an opinion?",
-  "What evidence would change your mind?"
+  "What evidence would change your mind?",
+  "Can you explain what Ravikanth's GitHub and Sentinalai public work show without inferring private production proof?"
 ]) {
   if (!JSON.stringify(visitorReviewKit.reviewQuestions).includes(required)) {
     errors.push(`content/visitor-review-kit.json: reviewQuestions missing north-star review question "${required}"`);
@@ -741,6 +742,16 @@ if (!Array.isArray(visitorReviewKit.reviewAssets) || visitorReviewKit.reviewAsse
     if (!String(item.href ?? "").startsWith("/")) {
       errors.push(`content/visitor-review-kit.json:reviewAssets:${item.label ?? "unknown"} href must be internal`);
     }
+  }
+  const reviewAssetHrefs = new Set(visitorReviewKit.reviewAssets.map((item) => item.href));
+  for (const required of ["/work", "/wiki/operational-intelligence-evidence-pack", "/investigation-room", "/publication-pack/ravikanth-seri-practitioner-review-packet.md"]) {
+    if (!reviewAssetHrefs.has(required)) {
+      errors.push(`content/visitor-review-kit.json: reviewAssets must include ${required}`);
+    }
+  }
+  const workReviewAsset = visitorReviewKit.reviewAssets.find((item) => item.href === "/work");
+  if (!/GitHub|Sentinalai|project proof|public-code/i.test(`${workReviewAsset?.label ?? ""} ${workReviewAsset?.description ?? ""}`)) {
+    errors.push("content/visitor-review-kit.json: /work review asset must explicitly cover GitHub, Sentinalai, or public-code/project proof");
   }
 }
 if (!Array.isArray(visitorReviewKit.publicChannels) || visitorReviewKit.publicChannels.length < 4) {

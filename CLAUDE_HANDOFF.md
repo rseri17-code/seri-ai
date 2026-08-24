@@ -2,9 +2,9 @@
 
 Last updated: 2026-08-24
 
-Current sync point for Claude review:
+Current sync point before this handoff refresh:
 
-- `8e25f87 Refresh Claude handoff after search alignment`
+- `eb21085 Refresh Claude handoff sync point`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `8e25f87 Refresh Claude handoff after search alignment`
+- `eb21085 Refresh Claude handoff sync point`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `8e25f87 Refresh Claude handoff after search alignment`
+- `eb21085 Refresh Claude handoff sync point`
 
 Recent improvements:
 
@@ -103,6 +103,7 @@ Recent improvements:
 - Public-code/project proof is now a first-class proof-backlog gap. The Evidence Pack, Markdown export, Ask fallback, eval fixture, scorecard, and validators now state that GitHub/Sentinalai/Work/Projects proof requires reviewer walkthroughs and must not infer repository metrics, production adoption, private deployments, private integrations, or live incident outcomes.
 - The Work page now renders a compact project-code review-record checklist, and the public-code ledger defines the evidence fields reviewers should capture: repository surface inspected, visible engineering behavior, verdict, reasoning loss or ambiguity, boundary respected, and next proof. Search retrieval now covers 67 canonical queries, including public-code review-record intent routed to `/work`.
 - Proof-backlog search intent now stays anchored to the Evidence Pack even when the query mentions public-code/project proof; separate project-code inspection and review-record queries still route to `/work`.
+- The First-Time Visitor Review Kit now explicitly asks reviewers what Ravikanth's GitHub and Sentinalai public work show without inferring private production proof, and lists Work/Public Code Proof as a review asset. Validators now guard this path in both content validation and practitioner-review validation.
 
 ## Current Highest-Value Gaps
 

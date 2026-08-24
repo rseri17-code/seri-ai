@@ -74,6 +74,10 @@ expect(
   visitorKit.reviewAssets.some((asset) => asset.href === "/publication-pack/ravikanth-seri-practitioner-review-packet.md"),
   "Visitor review kit must link to the practitioner review packet."
 );
+expect(
+  visitorKit.reviewAssets.some((asset) => asset.href === "/work" && /GitHub|Sentinalai|project proof|public-code/i.test(`${asset.label} ${asset.description}`)),
+  "Visitor review kit must link to Work as the public-code and project-proof review asset."
+);
 expect(contactPage.includes("visitorReviewKit.reviewAssets"), "Contact page must render visitor review kit assets.");
 expect(contactPage.includes("practitionerReviewPacket.minimumEvidenceQuorum"), "Contact page must render the minimum evidence quorum.");
 expect(contactPage.includes("practitionerReviewPacket.reviewRunProtocol"), "Contact page must render the review run protocol.");
