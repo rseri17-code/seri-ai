@@ -1,8 +1,8 @@
 {
   "title": "Ravikanth Seri Approved Portrait Intake",
-  "updatedAt": "2026-08-22",
-  "status": "waiting_for_approved_source_image",
-  "evidenceLevel": "Intake contract exists; no approved durable portrait file is currently present in the repository.",
+  "updatedAt": "2026-08-24",
+  "status": "integrated",
+  "evidenceLevel": "Approved portrait integrated: source explicitly approved and provided directly by Ravikanth Seri (committed 07a514f, 800x800 JPEG), optimized to 40 KB WebP + 62 KB JPEG at the contracted paths, rendered on home, background, and resume with the public identity mark as fallback. Before integration: no approved durable portrait file was present.",
   "purpose": "Define the public-safe requirements for adding a real portrait of Ravikanth Seri without weakening provenance, accessibility, performance, or professional tone.",
   "targetAsset": {
     "preferredPath": "/identity/ravikanth-seri-portrait.webp",
@@ -36,5 +36,6 @@
     "Run visual QA at mobile, tablet, and desktop widths.",
     "Run public-safety scan and rendered-route validation.",
     "Update the scorecard only after the portrait renders in the professional identity surfaces."
-  ]
+  ],
+  "sourceProvenance": "Source image uploaded directly to the repository by Ravikanth Seri on 2026-08-24 (commit 07a514f) with explicit approval for public use on seri.ai; original preserved in git history. Not an unapproved LinkedIn scrape, not a temporary path, and not an AI-generated replacement portrait."
 }

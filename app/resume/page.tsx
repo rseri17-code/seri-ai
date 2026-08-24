@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Award, BrainCircuit, Download, ExternalLink, GitBranch, MapPin, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 import { Card } from "@/components/card";
+import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor } from "@/components/tracked-link";
 import { evalReport, professionalGraph, publicCode, resume } from "@/content/site";
@@ -33,6 +34,7 @@ export default function ResumePage() {
       <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="space-y-5">
         <Card>
+          <div className="mb-4"><Portrait size="lg" /></div>
           <div className="flex items-center gap-2 text-sm text-slate-400">
             <MapPin size={16} className="text-mint" />
             <span>{resume.location}</span>

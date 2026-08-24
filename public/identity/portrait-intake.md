@@ -1,8 +1,8 @@
 # Ravikanth Seri Approved Portrait Intake
 
-Updated: 2026-08-22
+Updated: 2026-08-24
 
-Evidence level: intake contract exists; no approved durable portrait file is currently present in the repository.
+Status: integrated. The approved portrait was provided directly by Ravikanth Seri with explicit public-use approval (repository commit 07a514f), optimized to the contracted WebP and JPEG paths, and rendered on the home, background, and resume surfaces. Before integration, no approved durable portrait file was present in the repository.
 
 This is the public-safe intake contract for adding a real portrait of Ravikanth Seri to seri.ai.
 

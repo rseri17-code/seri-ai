@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, BrainCircuit, GitBranch, Linkedin, ShieldCheck, Workflow } from "lucide-react";
 import { Card } from "@/components/card";
+import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";
 import { evalReport, professionalGraph, resume } from "@/content/site";
@@ -27,7 +28,10 @@ export default function BackgroundPage() {
       <Section eyebrow="Background" title="The operating background behind the Operational Intelligence thesis." level="h1">
         <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
           <Card className="border-mint/25 bg-mint/[0.05]">
-            <BrainCircuit className="mb-5 text-mint" />
+            <div className="mb-5 flex items-center gap-4">
+              <Portrait size="lg" />
+              <BrainCircuit className="text-mint" />
+            </div>
             <h2 className="text-3xl font-semibold text-white">Ravikanth Seri builds from the operator side of enterprise AI.</h2>
             <p className="mt-4 text-lg leading-8 text-slate-300">
               {resume.summary}

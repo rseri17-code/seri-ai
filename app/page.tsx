@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BrainCircuit, ClipboardCheck, FileText, GitBranch, Linkedin, Network, ShieldCheck, Sparkles } from "lucide-react";
 import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
-import { ProfileMark } from "@/components/profile-mark";
+import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
 import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeHeroBuilderProof, homeHeroFlow, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReferenceAssets, homeReviewerPaths } from "@/content/home";
@@ -79,7 +79,7 @@ export default function Home() {
             </p>
             <div className="mt-5 rounded-lg border border-white/10 bg-black/25 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                <ProfileMark />
+                <Portrait size="lg" />
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Ravikanth Seri</p>
                   <h2 className="mt-2 text-2xl font-semibold leading-7 text-white">

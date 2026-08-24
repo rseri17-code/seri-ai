@@ -18,8 +18,19 @@ const identityAsset = JSON.parse(fs.readFileSync(identityPath, "utf8"));
 const scorecard = fs.readFileSync(scorecardPath, "utf8");
 
 expect(intake.title === "Ravikanth Seri Approved Portrait Intake", "Portrait intake title must name Ravikanth Seri.");
-expect(intake.status === "waiting_for_approved_source_image", "Portrait intake must not claim an approved image exists.");
-expect(/no approved durable portrait file/i.test(intake.evidenceLevel ?? ""), "Portrait intake evidence level must name missing durable portrait file.");
+const portraitIntegrated =
+  fs.existsSync(path.join(root, "public", "identity", "ravikanth-seri-portrait.webp")) &&
+  fs.existsSync(path.join(root, "public", "identity", "ravikanth-seri-portrait.jpg"));
+if (portraitIntegrated) {
+  expect(intake.status === "integrated", "Portrait files exist, so intake status must be integrated.");
+  expect(/explicitly approved|explicit approval/i.test(intake.sourceProvenance ?? ""), "Integrated portrait must record explicit-approval provenance.");
+  const webpSize = fs.statSync(path.join(root, "public", "identity", "ravikanth-seri-portrait.webp")).size;
+  const jpgSize = fs.statSync(path.join(root, "public", "identity", "ravikanth-seri-portrait.jpg")).size;
+  expect(webpSize <= 250_000 && jpgSize <= 250_000, "Portrait assets must each stay at or under 250 KB.");
+} else {
+  expect(intake.status === "waiting_for_approved_source_image", "Portrait intake must not claim an approved image exists.");
+  expect(/no approved durable portrait file/i.test(intake.evidenceLevel ?? ""), "Portrait intake evidence level must name missing durable portrait file.");
+}
 expect(intake.targetAsset?.preferredPath === "/identity/ravikanth-seri-portrait.webp", "Portrait intake must define the preferred WebP path.");
 expect(intake.targetAsset?.fallbackPath === "/identity/ravikanth-seri-portrait.jpg", "Portrait intake must define the fallback JPG path.");
 expect(intake.targetAsset?.displayAlt === "Portrait of Ravikanth Seri", "Portrait intake must define plain alt text.");
