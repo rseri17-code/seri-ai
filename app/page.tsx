@@ -55,13 +55,13 @@ export default function Home() {
             <div>
             <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Operational Intelligence reference system by Ravikanth Seri
+              Ravikanth Seri / Operational Intelligence
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              Operations should explain themselves before AI acts.
+              Enterprise AI should earn operational trust before it touches production.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              Ravikanth Seri is building a public operating model for AI-native operations: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
+              This is Ravikanth Seri&apos;s public work on the operating layer enterprises need around AI: shared context, evidence-backed reasoning, visible uncertainty, evaluation gates, replay, and human authority before consequential action.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/start-here" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
@@ -74,6 +74,9 @@ export default function Home() {
                 Read the doctrine
               </TrackedLink>
             </div>
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
+              The work is inspectable without private systems: synthetic cases, cited sources, explicit uncertainty, and public-safe engineering artifacts.
+            </p>
             <div className="mt-5 rounded-lg border border-white/10 bg-black/25 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                 <ProfileMark />
