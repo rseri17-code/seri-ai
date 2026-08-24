@@ -58,10 +58,10 @@ export default function Home() {
               Ravikanth Seri / Operational Intelligence
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              Enterprise AI should earn operational trust before it touches production.
+              Operations should explain themselves before AI acts.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              This is Ravikanth Seri&apos;s public work on the operating layer enterprises need around AI: shared context, evidence-backed reasoning, visible uncertainty, evaluation gates, replay, and human authority before consequential action.
+              Ravikanth Seri is building a public operating model for AI-native operations: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/start-here" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">

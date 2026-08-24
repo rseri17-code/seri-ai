@@ -353,13 +353,12 @@ if (!JSON.stringify(home).includes("public-safe") && !JSON.stringify(home).inclu
 }
 for (const required of [
   "Ravikanth Seri / Operational Intelligence",
-  "Enterprise AI should earn operational trust before it touches production.",
-  "This is Ravikanth Seri&apos;s public work",
-  "shared context",
-  "evidence-backed reasoning",
-  "visible uncertainty",
-  "evaluation gates",
-  "human authority",
+  "Operations should explain themselves before AI acts.",
+  "Ravikanth Seri is building a public operating model for AI-native operations",
+  "preserve context",
+  "separate evidence from inference",
+  "expose uncertainty",
+  "keep human judgment in control",
   "inspectable without private systems"
 ]) {
   if (!homePageSource.includes(required)) {
