@@ -84,14 +84,14 @@
     {
       "name": "Ask Ravi",
       "score": 8.3,
-      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, public-code rubric routing, visitor-review routing, practitioner-review routing, visual-QA routing, credential-evidence routing, identity-asset and portrait-intake routing, mobile-touch evidence routing, Ask live review packet routing, and 105 passing fixtures.",
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, project-proof routing, public-code rubric routing, visitor-review routing, practitioner-review routing, visual-QA routing, credential-evidence routing, identity-asset and portrait-intake routing, mobile-touch evidence routing, keyboard-accessibility evidence routing, Ask live review packet routing, and 106 passing fixtures.",
       "gap": "A controlled Ask live review packet exists, but no live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
       "nextProof": "Run the Ask live review packet and publish qualitative labels without raw prompts or aggregate model-quality scores."
     },
     {
       "name": "Search / Discoverability",
       "score": 8.5,
-      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, resume credential evidence, public-code review rubric, project proof, proof backlog, visitor review, practitioner review, visual QA, identity asset, portrait intake, mobile touch walkthroughs, Ask live review packet, and 65 canonical retrieval checks.",
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, resume credential evidence, public-code review rubric, project proof, proof backlog, visitor review, practitioner review, visual QA, identity asset, portrait intake, mobile touch walkthroughs, keyboard accessibility walkthroughs, Ask live review packet, and 66 canonical retrieval checks.",
       "gap": "Live search-console evidence and real query behavior are not yet available.",
       "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
     },
@@ -118,10 +118,10 @@
     },
     {
       "name": "Accessibility",
-      "score": 8.4,
-      "evidence": "Automated accessibility validation covers semantic headings, labels, focus styling, reduced motion, navigation, and graph fallbacks.",
-      "gap": "Manual keyboard and screen-reader spot checks are still needed for Ask and Operations Room.",
-      "nextProof": "Run manual a11y walkthroughs and encode any repeatable failures into validators."
+      "score": 8.5,
+      "evidence": "Automated accessibility validation covers semantic headings, labels, focus styling, reduced motion, navigation, graph fallbacks, and the Keyboard Accessibility Walkthrough Notes artifact for Ask and Operations Room. The evidence level is source-validated keyboard accessibility walkthrough notes, not a screen-reader lab run.",
+      "gap": "browser-recorded keyboard tab-order checks, screen-reader spot checks, and external assistive-technology review are still missing.",
+      "nextProof": "Run browser-recorded keyboard and screen-reader walkthroughs for Ask and Operations Room, then encode any repeatable failures into validators."
     },
     {
       "name": "SEO",

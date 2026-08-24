@@ -1,0 +1,73 @@
+{
+  "title": "Keyboard Accessibility Walkthrough Notes",
+  "updatedAt": "2026-08-22",
+  "evidenceLevel": "Source-validated keyboard walkthrough contract; not a screen-reader lab run.",
+  "summary": "Repeatable keyboard review notes for dense interactive routes where visitors need to navigate, submit, recover, and inspect evidence without a pointer.",
+  "principle": "Keyboard access should preserve the same professional evidence path as pointer interaction: orient, act, inspect feedback, follow sources, and recover context.",
+  "limitations": [
+    "This is not external reviewer feedback.",
+    "This is not a screen-reader transcript.",
+    "This does not prove physical-device touch comfort.",
+    "Future manual assistive-technology checks should verify announcement quality, reading order, and graph fallback comprehension."
+  ],
+  "routes": [
+    {
+      "route": "/ask",
+      "surface": "Ask Ravikanth",
+      "visitorTask": "Open Ask, reach the prompt input, submit a public-safe question, inspect answer status, follow a related source, and recover the public-safe boundary.",
+      "keyboardPath": [
+        "Use skip link to reach main content.",
+        "Tab through quick prompts and guide cards without losing visible focus.",
+        "Focus the question input and submit with the labelled Ask button.",
+        "Use answer metadata, citations, and related-page links after the response renders.",
+        "Return to Start Here, Work, or cited source links through normal tab order."
+      ],
+      "sourceEvidence": [
+        "app/layout.tsx defines skip link and main-content target.",
+        "components/chat.tsx exposes labelled input, submit behavior, status text, source links, related artifact links, and visible focus classes.",
+        "scripts/validate-accessibility.mjs verifies button/link names, focus-visible styling, reduced motion, responsive navigation, and search labels.",
+        "scripts/run-evals.mjs validates Ask fallback, citation, refusal, route, and public-code/credential/portrait routing behavior."
+      ],
+      "observedPasses": [
+        "Keyboard users have a labelled text-entry path into Ask.",
+        "Source and related-route links remain ordinary links rather than pointer-only controls.",
+        "The public-safe boundary is available through answer text and surrounding route context."
+      ],
+      "remainingRisks": [
+        "A screen-reader pass must verify announcement order for answer status, sources, and metadata.",
+        "A browser keyboard recording should confirm no focus trap appears after long answers.",
+        "Live model latency and failure states need reviewer observation."
+      ],
+      "status": "source-validated-keyboard-path"
+    },
+    {
+      "route": "/investigation-room",
+      "surface": "Operations Room",
+      "visitorTask": "Start the guided investigation, move through evidence, replay, hypotheses, action gate, and decision packet, then inspect graph fallback meaning without relying on animation alone.",
+      "keyboardPath": [
+        "Use skip link to enter the Operations Room content.",
+        "Tab through guided-mode controls, investigation tabs, evidence toggles, and decision packet actions.",
+        "Use labelled buttons and native controls for mode changes and evidence review.",
+        "Inspect observation, inference, contradiction, missing evidence, confirmed fact, and approval-gate text outside the visual graph.",
+        "Use reduced-motion behavior so replay meaning is conveyed by state text, not motion alone."
+      ],
+      "sourceEvidence": [
+        "app/simulator/simulator.tsx renders labelled investigation controls, evidence state text, hypothesis status, approval gate, and decision packet sections.",
+        "scripts/validate-accessibility.mjs verifies named buttons/links, focus-visible styling, reduced-motion support, and SVG labelling rules.",
+        "scripts/validate-viewport-contracts.mjs and scripts/validate-rendered-routes.mjs guard the route identity, visual contract, and critical rendered content.",
+        "public/visual-qa/2026-08-22/mobile-touch-walkthroughs.md records source-validated dense-route walkthrough notes for the Operations Room."
+      ],
+      "observedPasses": [
+        "The route does not rely only on the animated graph; evidence and decision state are also represented as text.",
+        "Guided-mode and evidence controls are implemented as reachable interactive elements.",
+        "Reduced-motion support exists at the global CSS layer."
+      ],
+      "remainingRisks": [
+        "A browser keyboard recording should confirm the exact tab sequence and focus visibility through every Operations Room section.",
+        "A screen-reader pass should verify graph fallback comprehension and section heading order.",
+        "External reviewers should report where the dense investigation surface becomes tiring."
+      ],
+      "status": "source-validated-keyboard-path"
+    }
+  ]
+}

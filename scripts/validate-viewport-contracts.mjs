@@ -30,8 +30,8 @@ const routeContracts = [
       "homeHeroBuilderProof",
       "homeMobileArtifactSignals",
       "lg:hidden",
-      "Start here",
-      "Run OI-ROOM-001"
+      "Begin with the thesis",
+      "Open the Operations Room"
     ]
   },
   {
@@ -145,23 +145,23 @@ for (const contract of routeContracts) {
 
 const homePage = read("app/page.tsx");
 expect(
-  homePage.indexOf("Start here") < homePage.indexOf("Run OI-ROOM-001"),
-  "/: homepage should present Start Here before deeper technical paths for first-time visitors"
+  homePage.indexOf("Begin with the thesis") < homePage.indexOf("Open the Operations Room"),
+  "/: homepage should present the thesis before deeper technical paths for first-time visitors"
 );
 expect(
-  homePage.indexOf("Start here") < homePage.indexOf("The material is public-safe by design"),
-  "/: homepage primary Start Here CTA must render before the inspection/trust paragraph"
+  homePage.indexOf("Begin with the thesis") < homePage.indexOf("The material is public-safe by design"),
+  "/: homepage primary thesis CTA must render before the inspection/trust paragraph"
 );
 expect(
-  homePage.indexOf("Start here") < homePage.indexOf("Field origin"),
-  "/: homepage primary Start Here CTA must render before the field-origin proof module"
+  homePage.indexOf("Begin with the thesis") < homePage.indexOf("Field origin"),
+  "/: homepage primary thesis CTA must render before the field-origin proof module"
 );
 expect(
-  homePage.indexOf("Run OI-ROOM-001") < homePage.indexOf("The material is public-safe by design"),
+  homePage.indexOf("Open the Operations Room") < homePage.indexOf("The material is public-safe by design"),
   "/: homepage primary CTAs must render before the inspection/trust paragraph so mobile visitors see an action in the first viewport"
 );
 expect(
-  homePage.indexOf("Run OI-ROOM-001") < homePage.indexOf("Field origin"),
+  homePage.indexOf("Open the Operations Room") < homePage.indexOf("Field origin"),
   "/: homepage primary CTAs must render before the field-origin proof module so mobile visitors get an action before deeper explanation"
 );
 

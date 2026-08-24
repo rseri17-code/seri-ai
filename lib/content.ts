@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { articles, askLiveReviewPacket, contentRegistry, identityAsset, mobileTouchWalkthroughs, nowPage, patterns, portraitIntake, practitionerReviewPacket, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
+import { articles, askLiveReviewPacket, contentRegistry, identityAsset, keyboardAccessibilityWalkthroughs, mobileTouchWalkthroughs, nowPage, patterns, portraitIntake, practitionerReviewPacket, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, visitorReviewKit } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
 
@@ -742,6 +742,43 @@ export function buildPublicSourceIndex(): PublicSource[] {
       author: "Ravikanth Seri",
       assetType: "evidence",
       date: mobileTouchWalkthroughs.updatedAt,
+      frameworkLayers: ["Evidence Layer", "Evaluation Layer", "Operator Layer"],
+      principles: ["Evidence before conclusions"],
+      patterns: ["evaluation-and-replay", "human-in-the-loop-operational-ai"],
+      products: ["/products/reasonops"],
+      status: "published" as const
+    },
+    {
+      id: "reference:keyboard-accessibility-walkthroughs-2026-08-22",
+      title: keyboardAccessibilityWalkthroughs.title,
+      description: "Source-validated keyboard walkthrough notes for Ask Ravikanth and Operations Room with explicit screen-reader and browser-recording limitations.",
+      content: [
+        keyboardAccessibilityWalkthroughs.title,
+        keyboardAccessibilityWalkthroughs.evidenceLevel,
+        keyboardAccessibilityWalkthroughs.summary,
+        keyboardAccessibilityWalkthroughs.principle,
+        keyboardAccessibilityWalkthroughs.limitations.join(". "),
+        keyboardAccessibilityWalkthroughs.routes
+          .flatMap((item) => [
+            item.route,
+            item.surface,
+            item.visitorTask,
+            item.keyboardPath.join(". "),
+            item.sourceEvidence.join(". "),
+            item.observedPasses.join(". "),
+            item.remainingRisks.join(". "),
+            item.status
+          ])
+          .join(". "),
+        "keyboard accessibility walkthrough. focus order. tab order. skip link. Ask Ravikanth. Operations Room. source-validated keyboard paths. screen-reader gap."
+      ].join(". "),
+      url: "/visual-qa/2026-08-22/keyboard-accessibility-walkthroughs.md",
+      type: "registry" as const,
+      category: "Quality Evidence",
+      tags: ["keyboard accessibility", "a11y", "Ask Ravikanth", "Operations Room", "focus", "screen-reader gap"],
+      author: "Ravikanth Seri",
+      assetType: "evidence",
+      date: keyboardAccessibilityWalkthroughs.updatedAt,
       frameworkLayers: ["Evidence Layer", "Evaluation Layer", "Operator Layer"],
       principles: ["Evidence before conclusions"],
       patterns: ["evaluation-and-replay", "human-in-the-loop-operational-ai"],

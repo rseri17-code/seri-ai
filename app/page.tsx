@@ -61,14 +61,14 @@ export default function Home() {
               Operations should explain themselves before AI acts.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              seri.ai publishes the doctrine, reference architecture, investigation artifacts, and evaluation harness for Operational Intelligence: the discipline of turning telemetry, topology, transactions, change, memory, and evaluation into evidence-backed operational judgment.
+              Ravikanth Seri is building a public operating model for AI-native operations: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/start-here" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Start here <ArrowRight size={18} />
+                Begin with the thesis <ArrowRight size={18} />
               </TrackedLink>
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
-                Run OI-ROOM-001
+                Open the Operations Room
               </TrackedLink>
               <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
                 Read the doctrine

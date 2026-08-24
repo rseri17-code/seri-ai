@@ -1169,6 +1169,20 @@
       "result": "Pass"
     },
     {
+      "prompt": "Where are the keyboard accessibility walkthrough notes for Ask and Operations Room?",
+      "expected": "Route to the keyboard walkthrough artifact and preserve the screen-reader limitation.",
+      "requiredAnswerIncludes": [
+        "Keyboard accessibility evidence",
+        "/visual-qa/2026-08-22/keyboard-accessibility-walkthroughs.md",
+        "Ask Ravikanth",
+        "Operations Room",
+        "source-validated keyboard paths",
+        "not a screen-reader transcript",
+        "assistive-technology testing remain open"
+      ],
+      "result": "Pass"
+    },
+    {
       "prompt": "Where is Ravikanth's durable public identity mark, and is it a portrait photo?",
       "expected": "Route to the durable identity mark while stating that it is not a portrait photo and does not replace public proof.",
       "requiredAnswerIncludes": [
@@ -1226,6 +1240,6 @@
     "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 105,
-  "passingFixtures": 105
+  "fixtureCount": 106,
+  "passingFixtures": 106
 }

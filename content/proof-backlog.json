@@ -47,11 +47,11 @@
     {
       "slug": "visual-mobile-qa",
       "claim": "The site feels publication-grade on mobile, tablet, and desktop for first-time executives, engineers, recruiters, and founders.",
-      "evidenceNeeded": "Durable screenshots and keyboard walkthrough notes for the homepage, Ask Ravikanth, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack at mobile, tablet, and desktop widths.",
-      "currentEvidence": "Source-level viewport contracts, accessibility validation, rendered-route checks, performance budgets, browser-controlled mobile/tablet/desktop route checks, 27 durable first-viewport screenshots, and source-validated mobile touch walkthrough notes now cover Ask, Operations Room, Doctrine, Radar, and Work.",
-      "nextProof": "Run physical-device touch checks and external hierarchy/density review, then convert any concrete failures into regression checks.",
+      "evidenceNeeded": "Durable screenshots, touch walkthrough notes, and keyboard walkthrough notes for the homepage, Ask Ravikanth, Operations Room, Work, Background, Doctrine, Radar, and Evidence Pack at mobile, tablet, and desktop widths.",
+      "currentEvidence": "Source-level viewport contracts, accessibility validation, rendered-route checks, performance budgets, browser-controlled mobile/tablet/desktop route checks, 27 durable first-viewport screenshots, source-validated mobile touch walkthrough notes for Ask, Operations Room, Doctrine, Radar, and Work, and source-validated keyboard accessibility walkthrough notes for Ask and Operations Room.",
+      "nextProof": "Run physical-device touch checks, browser-recorded keyboard tab-order checks, assistive-technology or screen-reader checks, and external hierarchy/density review, then convert any concrete failures into regression checks.",
       "wouldChange": "If the Operations Room or homepage still feels like a demo at realistic viewports, reduce visual noise and sharpen first-task clarity without changing the architecture.",
-      "status": "touch-notes-captured",
+      "status": "keyboard-notes-captured",
       "href": "/investigation-room"
     },
     {

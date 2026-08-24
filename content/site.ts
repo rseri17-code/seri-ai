@@ -25,6 +25,7 @@ import practitionerReviewPacketData from "./practitioner-review-packet.json";
 import identityAssetData from "./identity-asset.json";
 import portraitIntakeData from "./portrait-intake.json";
 import mobileTouchWalkthroughsData from "./mobile-touch-walkthroughs.json";
+import keyboardAccessibilityWalkthroughsData from "./keyboard-accessibility-walkthroughs.json";
 import contentRegistryData from "./content-registry.json";
 import harnessThesisData from "./harness-thesis.json";
 import canonicalDefinitionData from "./canonical-definition.json";
@@ -322,6 +323,29 @@ export type MobileTouchWalkthroughs = {
 
 export const mobileTouchWalkthroughs = mobileTouchWalkthroughsData satisfies MobileTouchWalkthroughs;
 
+export type KeyboardAccessibilityWalkthroughRoute = {
+  route: string;
+  surface: string;
+  visitorTask: string;
+  keyboardPath: string[];
+  sourceEvidence: string[];
+  observedPasses: string[];
+  remainingRisks: string[];
+  status: string;
+};
+
+export type KeyboardAccessibilityWalkthroughs = {
+  title: string;
+  updatedAt: string;
+  evidenceLevel: string;
+  summary: string;
+  principle: string;
+  limitations: string[];
+  routes: KeyboardAccessibilityWalkthroughRoute[];
+};
+
+export const keyboardAccessibilityWalkthroughs = keyboardAccessibilityWalkthroughsData satisfies KeyboardAccessibilityWalkthroughs;
+
 export type ContentType = "framework" | "pattern" | "artifact" | "library" | "product" | "principle" | "background" | "domain" | "system";
 export type ContentStatus = "published" | "planned" | "draft";
 
@@ -549,6 +573,21 @@ export const approvedKnowledge = [
     item.startingSignal,
     ...item.touchTargets,
     ...item.walkthroughSteps,
+    ...item.sourceEvidence,
+    ...item.observedPasses,
+    ...item.remainingRisks,
+    item.status
+  ]),
+  keyboardAccessibilityWalkthroughs.title,
+  keyboardAccessibilityWalkthroughs.evidenceLevel,
+  keyboardAccessibilityWalkthroughs.summary,
+  keyboardAccessibilityWalkthroughs.principle,
+  ...keyboardAccessibilityWalkthroughs.limitations,
+  ...keyboardAccessibilityWalkthroughs.routes.flatMap((item) => [
+    item.route,
+    item.surface,
+    item.visitorTask,
+    ...item.keyboardPath,
     ...item.sourceEvidence,
     ...item.observedPasses,
     ...item.remainingRisks,

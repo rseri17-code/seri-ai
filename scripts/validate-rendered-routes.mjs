@@ -15,18 +15,19 @@ const routeContracts = [
       "Operations should explain themselves before AI acts.",
       "Ravikanth Seri",
       "Operational Intelligence reference system",
+      "public operating model for AI-native operations",
       "Field origin",
       "teams lose shared context",
-      "Start here",
-      "Run OI-ROOM-001",
+      "Begin with the thesis",
+      "Open the Operations Room",
       "Visitor Proof Map",
       "Decision packet preview",
       "The posts converge on one enterprise failure mode"
     ],
     before: [
-      ["Start here", "Run OI-ROOM-001"],
-      ["Start here", "The material is public-safe by design"],
-      ["Run OI-ROOM-001", "The material is public-safe by design"]
+      ["Begin with the thesis", "Open the Operations Room"],
+      ["Begin with the thesis", "The material is public-safe by design"],
+      ["Open the Operations Room", "The material is public-safe by design"]
     ]
   },
   {

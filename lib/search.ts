@@ -11,6 +11,7 @@ const referenceArchitectureUrl = "/wiki/operational-intelligence-reference-archi
 const evidencePackUrl = "/wiki/operational-intelligence-evidence-pack";
 const visualQaUrl = "/visual-qa/2026-08-22/report.md";
 const touchWalkthroughUrl = "/visual-qa/2026-08-22/mobile-touch-walkthroughs.md";
+const keyboardWalkthroughUrl = "/visual-qa/2026-08-22/keyboard-accessibility-walkthroughs.md";
 const askLiveReviewUrl = "/publication-pack/ask-ravi-live-review-packet.md";
 const practitionerReviewUrl = "/publication-pack/ravikanth-seri-practitioner-review-packet.md";
 const identityAssetUrl = "/identity/ravikanth-seri-identity-mark.svg";
@@ -38,6 +39,7 @@ const directReferenceBoosts: Array<[RegExp, string]> = [
   [/approved portrait|portrait intake|portrait validation|portrait photo.*available|real portrait|source image|public-use permission/, portraitIntakeUrl],
   [/quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target/, evidencePackUrl],
   [/touch walkthrough|mobile touch|tap target|dense interactive route|physical-device|physical device|source-validated mobile/, touchWalkthroughUrl],
+  [/keyboard accessibility|keyboard walkthrough|focus order|tab order|screen-reader|screen reader|a11y walkthrough|assistive technology/, keyboardWalkthroughUrl],
   [/ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/, askLiveReviewUrl],
   [/practitioner review packet|external practitioner review|review ravikanth.*evidence|professional representation review|career clarity review|first impression review|does.*represent ravikanth|evaluate.*professional operating system/, practitionerReviewUrl],
   [/(visual qa|mobile qa).*(screenshot|viewport|evidence)|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/, visualQaUrl],

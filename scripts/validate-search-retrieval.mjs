@@ -268,6 +268,10 @@ const cases = [
   {
     query: "Where is the portrait intake and validation contract for Ravikanth's approved source image?",
     expectedFirstUrl: "/identity/portrait-intake.md"
+  },
+  {
+    query: "Where are the keyboard accessibility walkthrough notes for Ask and Operations Room?",
+    expectedFirstUrl: "/visual-qa/2026-08-22/keyboard-accessibility-walkthroughs.md"
   }
 ];
 
