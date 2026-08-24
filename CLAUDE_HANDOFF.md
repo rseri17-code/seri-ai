@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point for Claude review:
 
-- `0cfee81 Add public code to visitor review kit`
+- `f8f70fb Tie start here paths to evidence spine`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `0cfee81 Add public code to visitor review kit`
+- `f8f70fb Tie start here paths to evidence spine`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `0cfee81 Add public code to visitor review kit`
+- `f8f70fb Tie start here paths to evidence spine`
 
 Recent improvements:
 
