@@ -184,3 +184,14 @@ Every Claude-to-Codex handoff should state:
 - What evidence is missing.
 - What should not be changed.
 
+## Claude Status — 2026-08-24
+
+Branch `claude/site-build` (pushed, merged with `main` at `487d383`, full `npm test` and `npm run build` green) carries:
+
+- Ask Ravi browser-local session continuity (`lib/ask-session.ts`, chat restore/persist/clear, functional checks in `validate:api`). Bounded, versioned, localStorage only, no server-side storage.
+- Ask reframe reconciled with the evidence-console commit: kept evidence-console branding, interior copy, and title; kept the plain H1 "Ask about Ravikanth's work.", the explicit AI-assistant disclosure paragraph, and the one-sentence metadata description. Rationale in `docs/seri-ai/EDITORIAL_REVIEW_2026-08-24.md` on the Sentinalai repo branch `claude/seri-ai-platform-upgrade-opl7nk` (§2: the surface must promise exactly what it delivers; "Interrogate the public record" reads cold and evasive for the page most likely to be shared).
+- Homepage person-first pass: first-person identity paragraph grounded in resume facts; removed three duplicated thesis statements (hero public-safe disclaimer, "narrow on purpose" self-description, field-origin duplicate) to stay under the rendered budget; homepage CI-count proof item replaced with a pointer to /evals. Validator pins re-anchored.
+
+Full adversarial review (10 areas, Keep/Fix/Replace/Why) lives in the Sentinalai repo: `docs/seri-ai/SITE_BENCHMARK_REVIEW.md`, `docs/seri-ai/EDITORIAL_REVIEW_2026-08-24.md`, `docs/seri-ai/CODEX_GOAL.md`. Top remaining priorities from that review: Background concreteness (lead with 15+ years / regulated financial services / named disciplines before abstraction), aphorism budget across section titles, "public-safe" disclosed once instead of everywhere, drop "canonical/definitive" modifiers around the doctrine, portrait via the existing intake contract (blocked on an approved source image).
+
+Merging `claude/site-build` into `main` is Ravikanth's call; both agents should branch from it (or from `main` after merge) to avoid re-diverging on Ask copy.
