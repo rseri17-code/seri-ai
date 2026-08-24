@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `ba43e75 Avoid counted public repo proof claims`
+- `76d8f8b Add public code project proof backlog`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `ba43e75 Avoid counted public repo proof claims`
+- `76d8f8b Add public code project proof backlog`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `ba43e75 Avoid counted public repo proof claims`
+- `76d8f8b Add public code project proof backlog`
 
 Recent improvements:
 
@@ -100,6 +100,7 @@ Recent improvements:
 - Project proof pages now render Ask fixture coverage from `evalReport.fixtures.length` instead of hard-coded content, and validators reject stale hard-coded live fixture counts in the public project proof ledger.
 - Scorecard graph-health and search-discoverability evidence counts are now checked against live `buildPublishingIndex`, `buildKnowledgeGraph`, and retrieval fixtures, so asset, relationship, framework-layer, registry, pattern, principle, and retrieval-query counts cannot drift silently.
 - Public-code evidence now avoids counted Sentinalai repository inventory claims; the public-code ledger tells reviewers what to inspect and `validate:content` rejects unvalidated repository inventory counts as proof.
+- Public-code/project proof is now a first-class proof-backlog gap. The Evidence Pack, Markdown export, Ask fallback, eval fixture, scorecard, and validators now state that GitHub/Sentinalai/Work/Projects proof requires reviewer walkthroughs and must not infer repository metrics, production adoption, private deployments, private integrations, or live incident outcomes.
 
 ## Current Highest-Value Gaps
 
@@ -111,6 +112,7 @@ The scorecard intentionally does not claim 10/10. The strongest remaining gaps a
 - Reliability: local gates exist, but live uptime, Ask latency, fallback rate, and contact persistence evidence are still missing.
 - Visual Design: source and viewport evidence exists, but external hierarchy/density review remains open.
 - Professional Representation: the approved portrait is integrated; completed external first-impression review is still missing.
+- Work / Project Proof: public-code boundaries and project proof ledgers exist, but external reviewer walkthroughs and stronger public-safe runnable examples are still missing.
 
 ## Claude's Next Best Review
 
@@ -230,6 +232,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex adding public-code/project proof backlog
+
+- **Resolved**: Work/Public Code proof is now tracked as a formal evidence gap instead of only appearing in the scorecard. `content/proof-backlog.json` now includes `public-code-project-proof`; the Evidence Pack web page and Markdown export expose the same proof area; Ask fallback and the deterministic fixture for "what is still missing before 10/10 evidence quality" now include public-code/project proof walkthroughs; validators require the backlog slug, public-code/project proof theme, inspection-protocol status, Public Project Proof Ledger language, public-code review rubric language, and the exact "Do not infer repository metrics" boundary. The rendered Evidence Pack page was also slimmed by moving dense worksheet tables to the downloadable evidence artifact, keeping the critical route under the production performance budget. Evidence: `content/proof-backlog.json`, `content/wiki/operational-intelligence-evidence-pack.mdx`, `public/publication-pack/operational-intelligence-evidence-pack.md`, `lib/ai.ts`, `scripts/run-evals.mjs`, `content/eval-report.json`, `scripts/validate-content.mjs`, `scripts/validate-content-coherence.mjs`, `WORLD_CLASS_SCORECARD.md`, `npm run validate:content`, `npm run validate:coherence`, `npm run validate:retrieval`, `npm run evals`, `npm run lint`, `npm run typecheck`, `npm run scan:public-safety`, `npm test`, `npm run build`, `git diff --check`. Public-safety risk: lower; the site now makes project/repository proof falsifiable without treating public code presence as production proof.
 
 ### 2026-08-24 — Codex avoiding counted public repo proof claims
 
