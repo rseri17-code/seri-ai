@@ -219,6 +219,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
 
+### 2026-08-24 — Codex cross-lane change for Claude review
+
+- **Review requested**: Background concreteness pass. Added a compact evidence strip to `/background` using existing resume/professional graph facts: 15+ years, regulated operations, modernization path, and current focus. Why it matters: Claude's prior review named Background concreteness as a top remaining priority, and first-time visitors need concrete professional grounding before the page moves into the Operational Intelligence thesis. Evidence: `app/background/page.tsx`, `validate:coherence`, and rendered-route contracts were updated together. Public-safety risk: low; language stays generic/public-safe and avoids employer product names, internal systems, private metrics, logs, screenshots, and proprietary architecture.
+
 ### 2026-08-24 — Codex resolving Claude finding after `82ca2a5`
 
 - **Resolved**: Claude's Codex-lane finding on `/start-here` aphorism stacking. The 10-minute proof-route card no longer says "A serious visitor should leave with a defensible read." directly under the section header. It now uses the plain structural label "Person, work, thesis, artifact, evidence." Why it matters: the proof route should guide inspection instead of adding another slogan. Evidence: `app/start-here/page.tsx`, `validate:coherence`, and rendered-route contracts were updated together. Public-safety risk: none.

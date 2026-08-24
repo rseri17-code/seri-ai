@@ -122,6 +122,10 @@ const routeContracts = [
     maxBytes: 150_000,
     required: [
       "The operating background behind the Operational Intelligence thesis",
+      "15+ years",
+      "Regulated operations",
+      "Modernization path",
+      "Current focus",
       "What the career arc trained him to protect.",
       "Preserved constraint",
       "Ravikanth Seri",

@@ -22,6 +22,13 @@ export const metadata: Metadata = {
 
 const formatFixtureText = (text: string) => text.replace("{fixtureCount}", String(evalReport.fixtures.length));
 
+const backgroundEvidence = [
+  ["15+ years", "Distributed enterprise systems, integration, identity, observability, platform reliability, and production support."],
+  ["Regulated operations", "Financial-services operating context where reliability, governance, access boundaries, and auditability shape architecture."],
+  ["Modernization path", "Enterprise integration to Kubernetes, OpenTelemetry-style telemetry, AIOps workflows, and production AI-assisted operations."],
+  ["Current focus", "Agentic operations, evaluation, replay, runtime governance, and evidence-backed incident investigation."]
+] as const;
+
 export default function BackgroundPage() {
   return (
     <>
@@ -36,6 +43,14 @@ export default function BackgroundPage() {
             <p className="mt-4 text-lg leading-8 text-slate-300">
               {resume.summary}
             </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {backgroundEvidence.map(([label, detail]) => (
+                <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{label}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{detail}</p>
+                </div>
+              ))}
+            </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="/resume" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
                 View resume <ArrowRight size={18} />
