@@ -100,10 +100,17 @@ try {
       topic: "Beta feedback",
       message: "Controlled beta feedback",
       visitorType: "Architect",
+      visitIntent: "Evaluate the thesis",
+      proofPathCompleted: "10-minute proof route",
+      canExplainRavikanth: "Yes",
+      canNameThesis: "Partially",
+      confidenceLevel: "Medium",
       clear: "The doctrine boundary was clear.",
       confusing: "Nothing for this fixture.",
       memorable: "Evidence before conclusions.",
-      missing: "More practitioner evidence."
+      missing: "More practitioner evidence.",
+      evidenceInspected: "Homepage, Work, and Evidence Pack.",
+      evidenceWouldChangeMind: "Independent reviewer comparison across the same synthetic case."
     })
   );
   const contactFallbackBody = await json(contactFallback);

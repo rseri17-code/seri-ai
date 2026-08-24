@@ -709,6 +709,16 @@ if (!Array.isArray(visitorReviewKit.reviewPath) || visitorReviewKit.reviewPath.l
 if (!Array.isArray(visitorReviewKit.reviewQuestions) || visitorReviewKit.reviewQuestions.length < 10) {
   errors.push("content/visitor-review-kit.json: reviewQuestions must include at least ten first-time visitor questions");
 }
+for (const required of [
+  "Can you explain who Ravikanth Seri is without repeating homepage copy?",
+  "Can you name the Operational Intelligence thesis in one sentence?",
+  "Which public artifact did you inspect before forming an opinion?",
+  "What evidence would change your mind?"
+]) {
+  if (!JSON.stringify(visitorReviewKit.reviewQuestions).includes(required)) {
+    errors.push(`content/visitor-review-kit.json: reviewQuestions missing north-star review question "${required}"`);
+  }
+}
 if (!Array.isArray(visitorReviewKit.reviewAssets) || visitorReviewKit.reviewAssets.length < 6) {
   errors.push("content/visitor-review-kit.json: reviewAssets must include at least six review assets");
 } else {

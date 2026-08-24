@@ -2,7 +2,7 @@
   "title": "First-Time Visitor Review Kit",
   "updatedAt": "2026-08-22",
   "purpose": "Convert subjective first impressions into public-safe evidence about whether seri.ai clearly represents Ravikanth Seri, his work, and the Operational Intelligence thesis.",
-  "principle": "A serious review should identify what became clear, what stayed confusing, what evidence was inspected, what claim felt strongest, and what evidence would change the reviewer's mind.",
+  "principle": "A serious review should identify whether the visitor can explain Ravikanth Seri, name the Operational Intelligence thesis, state what became clear, name what stayed confusing, cite what evidence was inspected, identify the strongest claim, and say what evidence would change the reviewer's mind.",
   "reviewPath": [
     {
       "step": "Orient",
@@ -38,6 +38,8 @@
   "reviewQuestions": [
     "What was clear after the first three minutes?",
     "What was still confusing after the first three minutes?",
+    "Can you explain who Ravikanth Seri is without repeating homepage copy?",
+    "Can you name the Operational Intelligence thesis in one sentence?",
     "Which idea was most memorable?",
     "Which public artifact did you inspect before forming an opinion?",
     "Which claim felt strongest, and why?",
