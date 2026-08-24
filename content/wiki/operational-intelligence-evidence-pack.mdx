@@ -87,49 +87,28 @@ The comparison should be reported as an evidence ledger entry with limitations. 
 
 ## Reviewer-Run Worksheet
 
-Use this worksheet when asking an experienced practitioner to review OI-ROOM-001. The reviewer should not be asked whether the site looks impressive. The reviewer should decide what each mode preserves, loses, invents, or leaves untestable.
+Use the full worksheet in the downloadable evidence artifact when asking an experienced practitioner to review OI-ROOM-001: [Operational Intelligence Evidence Pack](/publication-pack/operational-intelligence-evidence-pack.md).
 
-### Run Setup
+The reviewer should not be asked whether the site looks impressive. The review should decide what each investigation mode preserves, loses, invents, or leaves untestable.
 
-| Step | Reviewer action | Required evidence |
-| --- | --- | --- |
-| 1 | Read the same OI-ROOM-001 case facts for every mode. | Synthetic facts, red herring, contradiction, missing evidence, transaction timing, approval boundary |
-| 2 | Inspect dashboard-only output. | Notes on what the dashboard made visible and what the operator had to infer |
-| 3 | Inspect chatbot-only output. | Notes on citations, uncertainty, unsupported claims, and action language |
-| 4 | Inspect ticket-only output. | Notes on timeline quality, ownership, and replayability |
-| 5 | Inspect Operational Intelligence output. | Evidence graph, hypothesis state, evaluation gates, decision packet, approval class, replay seed |
-| 6 | Record one evidence ledger entry per dimension. | Result, limitation, failure signal, and next improvement |
+Minimum reviewer run:
 
-### Scoring Discipline
+- Read the same OI-ROOM-001 case facts for every mode.
+- Inspect dashboard-only, chatbot-only, ticket-only, and Operational Intelligence outputs.
+- Record what became visible, what had to be inferred, what lost provenance, and what action language became unsafe.
+- Check evidence graph state, hypothesis movement, evaluation gates, decision packet, approval class, and replay seed.
+- Record one evidence ledger entry per dimension.
 
-Do not publish one aggregate score. Score each mode independently on the dimension it is being tested against. Use these verdicts:
+Do not publish one aggregate score. Score each mode independently as strong, mixed, weak, or not assessable.
 
-- Strong: the mode exposes enough evidence for another reviewer to reproduce the judgment.
-- Mixed: the mode preserves useful information but loses an important state, boundary, source, or uncertainty.
-- Weak: the mode depends on private memory, unsupported inference, hidden assumptions, or unreviewable action language.
-- Not assessable: the mode does not expose enough information to judge.
+Each evidence ledger entry should include reviewer role, mode reviewed, dimension, verdict, evidence observed, reasoning loss, limitation, and doctrine impact.
 
-### Evidence Ledger Entry
+Failure examples to look for:
 
-| Field | Required content |
-| --- | --- |
-| Reviewer role | SRE, architect, AI engineer, governance reviewer, executive, or other |
-| Mode reviewed | Dashboard-only, chatbot-only, ticket-only, or Operational Intelligence workflow |
-| Dimension | Evidence completeness, transaction reconstruction, contradiction handling, missing-evidence honesty, hypothesis quality, decision safety, replayability, or reviewer confidence |
-| Verdict | Strong, mixed, weak, or not assessable |
-| Evidence observed | Public-safe artifact, source link, state transition, label, packet field, or missing item |
-| Reasoning loss | What disappeared, became ambiguous, or was invented |
-| Limitation | What this run does not prove |
-| Doctrine impact | No change, clarify term, clarify layer boundary, add fixture, revise invariant, or remove claim |
-
-### Failure Examples
-
-| Failure | Why it weakens the doctrine | Improvement |
-| --- | --- | --- |
-| Chatbot-only output gives a fluent RCA with no source trail. | It shows narrative synthesis can outrun evidence. | Require citation relevance and missing-evidence checks before RCA language. |
-| Dashboard-only output spots latency quickly but loses transaction path. | It shows visibility is necessary but not sufficient for decision review. | Preserve transaction timing as a first-class record. |
-| Ticket-only output preserves final resolution but not hypothesis movement. | It weakens replay and learning because future reviewers cannot see alternatives. | Record hypothesis lifecycle and rejected alternatives. |
-| Operational Intelligence output takes longer but does not improve contradiction handling. | It falsifies the claim that extra structure improves judgment for this case. | Simplify the workflow or revise the evidence-layer contract. |
+- Fluent RCA with no source trail.
+- Fast dashboard detection that loses transaction path.
+- Ticket history that preserves final resolution but loses hypothesis movement.
+- Operational Intelligence structure that adds process weight without improving contradiction handling.
 
 ## Practitioner Review Model
 
@@ -176,6 +155,7 @@ The current backlog names the evidence still required before stronger public cla
 | Production reliability | Live route, Ask latency, fallback, contact, and safe analytics evidence. | Local deployment, API, rendering, and budget gates pass. | Review beta telemetry. | Errors or latency make review unreliable. |
 | Visual, mobile, and accessibility QA | Screenshots, touch walkthrough notes, keyboard walkthrough notes, and device evidence for core routes at mobile, tablet, and desktop widths. | Viewport, a11y, rendered, performance, screenshot, source-validated mobile touch walkthrough, and source-validated keyboard accessibility walkthrough checks pass. | Run physical-device checks, browser-recorded keyboard tab-order checks, screen-reader checks, and external hierarchy/density review. | The site still feels like a demo or keyboard users cannot complete key workflows. |
 | Identity asset | Approved portrait or identity asset connected to the person-work-evidence path. | Public routes link Ravikanth to the work, a durable non-photographic public identity mark exists, `/identity/portrait-intake.md` defines the approved portrait intake contract, and the approved portrait renders on home, background, and resume. | Run external first-impression review to verify that the person-work-evidence path is clear, credible, and specific to Ravikanth. | The site feels anonymous or uses an unapproved image. |
+| Public code and project proof | Reviewer walkthroughs of GitHub, the user-authorized Sentinalai public repository reference, Work, Projects, and the Public Project Proof Ledger. | Work, Projects, the public-code review rubric, Ask/Search routing, and validators define what can be inspected. Do not infer repository metrics, production adoption, private deployment, private integrations, or live incident outcomes from public code alone. | Run project proof review questions with external reviewers and improve public-safe README or runnable walkthrough evidence where useful. | Reviewers cannot tell what the public code proves, or infer private production outcomes from repository presence. |
 
 ## Minimum Conformance Checklist
 

@@ -1,7 +1,7 @@
 {
   "title": "Operational Intelligence Proof Backlog",
   "summary": "Current public-safe evidence still needed to strengthen the Operational Intelligence doctrine, Ravikanth Seri's professional representation, and the seri.ai product proof loop.",
-  "updatedAt": "2026-08-22",
+  "updatedAt": "2026-08-24",
   "principle": "The site should publish claims only as far as the evidence supports them, and unresolved proof gaps should be visible to serious reviewers.",
   "items": [
     {
@@ -63,6 +63,16 @@
       "wouldChange": "If visitors still experience the site as an anonymous product, rebalance homepage and navigation copy toward Ravikanth as author without turning it into self-promotion.",
       "status": "portrait-integrated",
       "href": "/identity/portrait-intake.md"
+    },
+    {
+      "slug": "public-code-project-proof",
+      "claim": "Public repositories and project pages can demonstrate Ravikanth Seri's engineering judgment only when they expose inspectable design choices, boundaries, and review questions without implying private production adoption.",
+      "evidenceNeeded": "Reviewer walkthroughs that inspect the GitHub profile, the user-authorized Sentinalai public repository reference, Work, Projects, and the Public Project Proof Ledger for runnable examples, public-safe architecture boundaries, and what each artifact does or does not prove.",
+      "currentEvidence": "Work, Projects, the Public Project Proof Ledger, the public-code review rubric, Sentinalai inspection path, Ask and Search routing, and content validation define what reviewers should inspect. Do not infer repository metrics, production adoption, private deployment, private integrations, or live incident outcomes from public code alone.",
+      "nextProof": "Run the project proof review questions with external reviewers, improve the representative public repository README or runnable walkthroughs only with public-safe details, and publish dimension-level findings without private metrics.",
+      "wouldChange": "If reviewers cannot tell what the public code proves, or if they infer production adoption, private integrations, or live incident outcomes from repository presence, narrow the claim and strengthen the public-code boundary.",
+      "status": "inspection-protocol-defined",
+      "href": "/work"
     }
   ]
 }

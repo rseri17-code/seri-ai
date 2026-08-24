@@ -814,7 +814,15 @@ if (!/^\d{4}-\d{2}-\d{2}$/.test(proofBacklog.updatedAt ?? "")) {
 if (!/evidence|proof|claim/i.test(proofBacklog.principle ?? "")) {
   errors.push("content/proof-backlog.json: principle must preserve evidence-backed claim discipline");
 }
-const requiredProofSlugs = ["practitioner-review", "control-comparison", "ask-quality", "production-reliability", "visual-mobile-qa", "identity-asset"];
+const requiredProofSlugs = [
+  "practitioner-review",
+  "control-comparison",
+  "ask-quality",
+  "production-reliability",
+  "visual-mobile-qa",
+  "identity-asset",
+  "public-code-project-proof"
+];
 if (!Array.isArray(proofBacklog.items) || proofBacklog.items.length !== requiredProofSlugs.length) {
   errors.push(`content/proof-backlog.json: items must include exactly ${requiredProofSlugs.length} current proof gaps`);
 } else {
@@ -840,7 +848,7 @@ if (!Array.isArray(proofBacklog.items) || proofBacklog.items.length !== required
     }
   }
   const backlogText = JSON.stringify(proofBacklog);
-  for (const required of ["practitioner", "control", "Ask", "reliability", "visual", "identity", "evidence"]) {
+  for (const required of ["practitioner", "control", "Ask", "reliability", "visual", "identity", "public-code", "project proof", "evidence"]) {
     if (!backlogText.toLowerCase().includes(required.toLowerCase())) {
       errors.push(`content/proof-backlog.json: missing proof backlog theme ${required}`);
     }
