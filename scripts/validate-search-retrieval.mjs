@@ -1,12 +1,17 @@
+import fs from "node:fs";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 import jitiFactory from "jiti";
 
+const root = process.cwd();
+
 const jiti = jitiFactory(fileURLToPath(import.meta.url), {
   interopDefault: true,
-  alias: { "@": process.cwd() }
+  alias: { "@": root }
 });
 
 const { localSearch } = jiti("../lib/search.ts");
+const { qualityScorecard } = jiti("../content/site.ts");
 
 const cases = [
   {
@@ -276,6 +281,8 @@ const cases = [
 ];
 
 const errors = [];
+const scorecard = fs.readFileSync(path.join(root, "WORLD_CLASS_SCORECARD.md"), "utf8");
+const handoff = fs.readFileSync(path.join(root, "CLAUDE_HANDOFF.md"), "utf8");
 
 for (const testCase of cases) {
   const hits = localSearch(testCase.query, 8);
@@ -290,6 +297,21 @@ for (const testCase of cases) {
         `Top URLs: ${uniqueUrls.slice(0, 5).join(", ")}`
       ].join("\n")
     );
+  }
+}
+
+const retrievalCount = cases.length;
+const searchDimension = qualityScorecard.dimensions?.find((dimension) => dimension.name === "Search / Discoverability");
+if (!searchDimension?.evidence?.includes(`${retrievalCount} canonical retrieval checks`)) {
+  errors.push(`Quality scorecard Search / Discoverability evidence must use current retrieval count: ${retrievalCount}`);
+}
+for (const [label, source, phrase] of [
+  ["WORLD_CLASS_SCORECARD.md", scorecard, `${retrievalCount} canonical retrieval checks`],
+  ["WORLD_CLASS_SCORECARD.md", scorecard, `Search retrieval now covers ${retrievalCount} canonical queries`],
+  ["CLAUDE_HANDOFF.md", handoff, `Search retrieval covers ${retrievalCount} canonical queries.`]
+]) {
+  if (!source.includes(phrase)) {
+    errors.push(`${label} must use current retrieval count phrase: ${phrase}`);
   }
 }
 

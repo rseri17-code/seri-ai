@@ -5,6 +5,7 @@ import jitiFactory from "jiti";
 
 const root = process.cwd();
 const appDir = path.join(root, "app");
+const scorecardPath = path.join(root, "WORLD_CLASS_SCORECARD.md");
 const jiti = jitiFactory(fileURLToPath(import.meta.url), {
   interopDefault: true,
   alias: { "@": root }
@@ -75,6 +76,7 @@ implementedRoutes.add("/sitemap.xml");
 
 const assets = buildPublishingIndex().filter((asset) => asset.status === "published");
 const graph = buildKnowledgeGraph();
+const scorecard = fs.readFileSync(scorecardPath, "utf8");
 const assetIds = new Set(assets.map((asset) => asset.id));
 const assetUrls = new Set(assets.map((asset) => normalizeRoute(asset.url)));
 const shareableRoutes = new Set(getShareableReferenceRoutes().map(normalizeRoute));
@@ -218,6 +220,17 @@ for (const dimension of qualityScorecard.dimensions ?? []) {
   if (dimension.name === "Knowledge-Graph Health") {
     expect(dimension.gap.toLowerCase().includes("health"), "Knowledge-Graph Health scorecard gap must name health evidence");
     expect(dimension.nextProof.toLowerCase().includes("validator"), "Knowledge-Graph Health scorecard next proof must reference validator");
+    for (const expected of [
+      `${assets.length} assets`,
+      `${graph.relationships.length} relationships`,
+      `${frameworkLayerNames.length} layers`,
+      `${contentRegistry.length} registry items`,
+      `${patterns.length} patterns`,
+      `${principles.length} principles`
+    ]) {
+      expect(dimension.evidence.includes(expected), `Knowledge-Graph Health JSON scorecard must use current graph count: ${expected}`);
+      expect(scorecard.includes(expected), `WORLD_CLASS_SCORECARD.md must use current graph count: ${expected}`);
+    }
   }
 }
 
