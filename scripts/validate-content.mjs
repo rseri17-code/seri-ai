@@ -3,6 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const wikiDir = path.join(root, "content", "wiki");
+const homePagePath = path.join(root, "app", "page.tsx");
 const sitePath = path.join(root, "content", "site-config.json");
 const homePath = path.join(root, "content", "home.json");
 const askPath = path.join(root, "content", "ask.json");
@@ -163,6 +164,7 @@ function requireJsonObject(filePath, label) {
 }
 
 const files = fs.existsSync(wikiDir) ? fs.readdirSync(wikiDir).filter((file) => file.endsWith(".mdx")) : [];
+const homePageSource = fs.readFileSync(homePagePath, "utf8");
 const slugs = new Set(files.map((file) => file.replace(/\.mdx$/, "")));
 let publishedCount = 0;
 
@@ -348,6 +350,35 @@ if (!Array.isArray(home.heroFlow) || home.heroFlow.length < 5 || !home.heroFlow.
 }
 if (!JSON.stringify(home).includes("public-safe") && !JSON.stringify(home).includes("public proof")) {
   errors.push("content/home.json: homepage content must preserve public-safe proof posture");
+}
+for (const required of [
+  "Ravikanth Seri / Operational Intelligence",
+  "Enterprise AI should earn operational trust before it touches production.",
+  "This is Ravikanth Seri&apos;s public work",
+  "shared context",
+  "evidence-backed reasoning",
+  "visible uncertainty",
+  "evaluation gates",
+  "human authority",
+  "inspectable without private systems"
+]) {
+  if (!homePageSource.includes(required)) {
+    errors.push(`app/page.tsx: homepage first impression missing required positioning phrase: ${required}`);
+  }
+}
+for (const forbidden of [
+  "seri.ai publishes the doctrine",
+  "public home for thinking",
+  "AI resume",
+  "generic resume",
+  "world-class engineer",
+  "thought leader",
+  "visionary",
+  "pioneer"
+]) {
+  if (homePageSource.toLowerCase().includes(forbidden.toLowerCase())) {
+    errors.push(`app/page.tsx: homepage first impression contains weak or inflated phrase: ${forbidden}`);
+  }
 }
 
 const ask = requireJsonObject(askPath, "content/ask.json");
