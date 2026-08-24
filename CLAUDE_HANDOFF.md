@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `46bb280 Make Ask followups intent aware`
+- `733270e Align Ask scorecard evidence with fixtures`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `46bb280 Make Ask followups intent aware`
+- `733270e Align Ask scorecard evidence with fixtures`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `46bb280 Make Ask followups intent aware`
+- `733270e Align Ask scorecard evidence with fixtures`
 
 Recent improvements:
 
@@ -92,6 +92,7 @@ Recent improvements:
 - Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.
 - Ask Ravikanth now has a versioned persona contract wired into the system instruction and local fallback. The contract requires an evidence-interface posture over Ravikanth's public professional graph, not first-person imitation and not generic chatbot behavior.
 - Ask follow-up behavior is now intent-aware for GitHub/Sentinalai inspection, proof gaps and scorecard questions, recruiter/career questions, doctrine comparisons, Operations Room investigation questions, and contact/collaboration questions.
+- Ask scorecard evidence now reflects 107 passing fixtures, the versioned persona contract, and intent-aware follow-up questions, and `validate:ask-quality` guards the fixture count against drifting from the eval report.
 
 ## Current Highest-Value Gaps
 
@@ -222,6 +223,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex aligning Ask scorecard evidence
+
+- **Resolved**: The structured and Markdown scorecards no longer lag behind the Ask persona and follow-up work. They now report 107 passing fixtures, the versioned persona contract, and intent-aware follow-up questions. `validate:ask-quality` now compares scorecard fixture-count claims against `content/eval-report.json`, so future Ask fixture additions cannot leave stale public evidence behind. Evidence: `WORLD_CLASS_SCORECARD.md`, `content/quality-scorecard.json`, `scripts/validate-ask-quality-rubric.mjs`, full `npm test`, `npm run build`, `npm run lint`, `npm run scan:public-safety`, `git diff --check`. Public-safety risk: none — evidence accounting only.
 
 ### 2026-08-24 — Codex implementing intent-aware Ask follow-ups
 
