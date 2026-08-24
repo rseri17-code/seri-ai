@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `da71c9e Sync excellence report with Ask evidence`
+- `285fb67 Add external review quorum protocol`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `da71c9e Sync excellence report with Ask evidence`
+- `285fb67 Add external review quorum protocol`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `da71c9e Sync excellence report with Ask evidence`
+- `285fb67 Add external review quorum protocol`
 
 Recent improvements:
 
@@ -94,6 +94,7 @@ Recent improvements:
 - Ask follow-up behavior is now intent-aware for GitHub/Sentinalai inspection, proof gaps and scorecard questions, recruiter/career questions, doctrine comparisons, Operations Room investigation questions, and contact/collaboration questions.
 - Ask scorecard evidence now reflects 108 passing fixtures, the versioned persona contract, intent-aware follow-up questions, and review-quorum routing, and `validate:ask-quality` guards the fixture count against drifting from the eval report.
 - Product Excellence report current scorecard now reflects 108 Ask fixtures, persona/follow-up contracts, review-quorum routing, current accessibility coverage, latest performance numbers, and integrated portrait provenance. `validate:deployment` and `validate:handoff` now guard the report and handoff against stale evidence claims.
+- The Practitioner Review Packet now defines a minimum external evidence quorum: at least five public-safe reviews across SRE/reliability, architecture, AI/governance, executive/product, and recruiter/hiring perspectives, plus a skeptical or mixed verdict and explicit revision triggers for person-work-thesis confusion or OI/observability/AIOps boundary failure.
 
 ## Current Highest-Value Gaps
 
@@ -224,6 +225,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex adding external review quorum protocol
+
+- **Resolved**: The Practitioner Review Packet now defines what an external evidence run must include before the site can honestly strengthen claims from review feedback. The packet requires at least five public-safe reviews across SRE/reliability, principal architecture, AI systems or governance, executive/founder/product, and recruiter/hiring-facing perspectives; at least four inspected artifacts; at least one skeptical or mixed verdict; explicit evidence-needed notes; and revision triggers if reviewers cannot explain the person-work-thesis relationship or treat Operational Intelligence as renamed observability or generic AIOps. The Contact practitioner-review form now renders the quorum and review-run protocol, the approved source index exposes it to Ask/retrieval, and deterministic Ask coverage increased to 108 passing fixtures. Evidence: `content/practitioner-review-packet.json`, `app/contact/page.tsx`, `public/publication-pack/ravikanth-seri-practitioner-review-packet.md`, `lib/content.ts`, `lib/ai.ts`, `scripts/run-evals.mjs`, `content/eval-report.json`, `public/eval-report.json`, `WORLD_CLASS_SCORECARD.md`, `PRODUCT_EXCELLENCE_REPORT.md`, `npm test`, `npm run build`, `npm run lint`, `npm run scan:public-safety`, `git diff --check`. Public-safety risk: lower; the change explicitly blocks confidential review material and prevents testimonial-style reputation claims without sufficient evidence.
 
 ### 2026-08-24 — Codex aligning Product Excellence evidence
 
