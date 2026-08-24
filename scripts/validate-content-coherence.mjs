@@ -633,7 +633,7 @@ for (const required of [
 	  "askRaviPrompts",
 	  "askThesisLenses",
 	  "signalName",
-	  "Ask the public record to defend the thesis.",
+	  "Ask about Ravikanth's work.",
 	  "A serious idea should answer questions with receipts.",
 	  "public evidence only; uncertainty stays visible",
 	  "Public research interface",

@@ -9,11 +9,11 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Ask Ravikanth | Operational Intelligence Public Research Interface",
-  description: "Question Ravikanth Seri's Operational Intelligence thesis, architecture judgment, projects, background, writing, GitHub, LinkedIn signal, and AI systems through cited public evidence.",
+  description: "Ask an AI grounded in Ravikanth Seri's public work on Operational Intelligence. Every answer cites its sources.",
   alternates: { canonical: "/ask" },
   openGraph: {
     title: "Ask Ravikanth | Operational Intelligence Public Research Interface",
-    description: "A cited, public-safe AI research interface over Ravikanth Seri's Operational Intelligence work and approved public sources.",
+    description: "An AI assistant over Ravikanth Seri's public work. It cites what it knows, names what it doesn't, and won't discuss non-public work.",
     url: "/ask",
     type: "website"
   }
@@ -38,7 +38,7 @@ export default async function AskPage({
 
   return (
     <>
-      <Section eyebrow="Ask Ravikanth" title="Ask the public record to defend the thesis." level="h1">
+      <Section eyebrow="Ask Ravikanth" title="Ask about Ravikanth's work." level="h1">
         <Chat initialPrompt={initialPrompt} suggestedPrompts={askRaviPrompts} />
         <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.055] p-5">
@@ -51,7 +51,7 @@ export default async function AskPage({
             </div>
             <h2 className="text-3xl font-semibold leading-tight text-white">A serious idea should answer questions with receipts.</h2>
             <p className="mt-4 leading-7 text-slate-300">
-              Ask Ravikanth about the doctrine, architecture, Operations Room, projects, background, and public work. The assistant cites approved sources, names uncertainty, and stops at the public-safe boundary.
+              An AI assistant over Ravikanth&apos;s public writing, architecture, and evidence. It cites what it knows, names what it doesn&apos;t, and won&apos;t discuss non-public work.
             </p>
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               {["Ground claims", "Expose sources", "Separate inference", "Stop at evidence"].map((step) => (
