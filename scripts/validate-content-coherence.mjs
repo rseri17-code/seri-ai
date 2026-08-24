@@ -1142,7 +1142,7 @@ for (const required of [
   "Regulated operations",
   "Financial-services operating context where reliability, governance, access boundaries, and auditability shape architecture.",
   "Modernization path",
-  "Enterprise integration to Kubernetes, OpenTelemetry-style telemetry, AIOps workflows, and production AI-assisted operations.",
+  "Enterprise integration to Kubernetes, OpenTelemetry instrumentation, AIOps workflows, and production AI-assisted operations.",
   "Current focus",
   "Agentic operations, evaluation, replay, runtime governance, and evidence-backed incident investigation.",
   "Enterprise integration and infrastructure foundation",

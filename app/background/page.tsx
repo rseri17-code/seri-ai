@@ -25,7 +25,7 @@ const formatFixtureText = (text: string) => text.replace("{fixtureCount}", Strin
 const backgroundEvidence = [
   ["15+ years", "Distributed enterprise systems, integration, identity, observability, platform reliability, and production support."],
   ["Regulated operations", "Financial-services operating context where reliability, governance, access boundaries, and auditability shape architecture."],
-  ["Modernization path", "Enterprise integration to Kubernetes, OpenTelemetry-style telemetry, AIOps workflows, and production AI-assisted operations."],
+  ["Modernization path", "Enterprise integration to Kubernetes, OpenTelemetry instrumentation, AIOps workflows, and production AI-assisted operations."],
   ["Current focus", "Agentic operations, evaluation, replay, runtime governance, and evidence-backed incident investigation."]
 ] as const;
 
