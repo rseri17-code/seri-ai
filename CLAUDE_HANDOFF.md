@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point for Claude review:
 
-- `823c0fd Align visitor questions to north star`
+- `8509124 Add professional profile discovery map`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `823c0fd Align visitor questions to north star`
+- `8509124 Add professional profile discovery map`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `823c0fd Align visitor questions to north star`
+- `8509124 Add professional profile discovery map`
 
 Recent improvements:
 
