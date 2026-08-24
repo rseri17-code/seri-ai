@@ -34,7 +34,7 @@
         "/wiki/operational-intelligence-evidence-pack",
         "/work"
       ],
-      "evidence": "The assistant has deterministic fallback behavior, public-safety refusal, related-route recommendations, citation expectations, prompt-injection coverage, answer metadata, and 93 passing trust fixtures.",
+      "evidence": "The assistant has deterministic fallback behavior, public-safety refusal, related-route recommendations, citation expectations, prompt-injection coverage, answer metadata, and {fixtureCount} passing trust fixtures.",
       "limitation": "This proves local trust-contract coverage and public-safe answer discipline; it does not prove live model synthesis quality, vector retrieval quality, or reviewer-labeled helpfulness in production.",
       "nextProof": "Compare fallback, vector retrieval, and model synthesis across the live answer rubric using safe metadata and reviewer labels.",
       "reviewQuestion": "Does the assistant cite public sources, expose uncertainty, refuse confidential prompts, and route the visitor to the right proof surface?",

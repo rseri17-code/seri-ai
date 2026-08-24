@@ -922,7 +922,10 @@ for (const required of [
 const projectPage = fs.readFileSync(path.join(root, "app", "projects", "[slug]", "page.tsx"), "utf8");
 for (const required of [
   "projectProof",
+  "evalReport",
   "const projectContracts",
+  "formatProofText",
+  "evalReport.fixtures.length",
   "Project proof ledger",
   "Public proof claim",
   "Inspectable evidence",

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ClipboardCheck, GitBranch, Route, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
-import { operationalIntelligenceFramework, projectProof, projects } from "@/content/site";
+import { evalReport, operationalIntelligenceFramework, projectProof, projects } from "@/content/site";
 import { buildPublishingIndex } from "@/lib/publishing";
 
 export function generateStaticParams() {
@@ -108,6 +108,7 @@ const inspectionLabels: Record<string, string> = {
 };
 
 const inspectionLink = (href: string): [string, string] => [href, inspectionLabels[href] ?? href.replace(/^\//, "").replace(/[-/]/g, " ")];
+const formatProofText = (text: string) => text.replace("{fixtureCount}", String(evalReport.fixtures.length));
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -195,7 +196,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <h2 className="text-2xl font-semibold text-white">Project proof ledger</h2>
             <div className="mt-5 grid gap-3">
               {[
-                ["Inspectable evidence", proof.evidence],
+                ["Inspectable evidence", formatProofText(proof.evidence)],
                 ["Boundary", proof.limitation],
                 ["Next proof", proof.nextProof],
                 ["Reviewer question", proof.reviewQuestion]

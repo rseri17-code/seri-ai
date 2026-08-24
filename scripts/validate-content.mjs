@@ -37,6 +37,7 @@ const operationalIntelligenceFrameworkPath = path.join(root, "content", "operati
 const operationalIntelligenceSystemPath = path.join(root, "content", "operational-intelligence-system.json");
 const assetTypesPath = path.join(root, "content", "asset-types.json");
 const releaseModelPath = path.join(root, "content", "release-model.json");
+const evalReportPath = path.join(root, "content", "eval-report.json");
 const requiredSiteFields = ["name", "owner", "tagline", "positioning", "description", "authorLine", "nowSignal", "brandBelief", "productPromise", "operatingSystem", "compliance", "links", "nav"];
 const requiredHomeFields = ["profileLinks", "harnessThesis", "linkedInSignals", "builderDna", "articles", "patterns", "categoryContrast", "primaryPaths", "operatingRules", "reviewerPaths", "referenceAssets", "falsificationTests", "heroBuilderProof", "operatorOriginProof", "heroFlow", "mobileArtifactSignals"];
 const requiredHomeSignalFields = ["name", "description"];
@@ -503,6 +504,8 @@ for (const project of projects) {
 }
 
 const projectProof = requireJsonObject(projectProofPath, "content/project-proof.json");
+const evalReport = requireJsonObject(evalReportPath, "content/eval-report.json");
+const evalFixtureCount = Array.isArray(evalReport.fixtures) ? evalReport.fixtures.length : 0;
 validateRequiredFields("content/project-proof.json", projectProof, requiredProjectProofFields, { requireSlug: false });
 if (!/^\d{4}-\d{2}-\d{2}$/.test(projectProof.updatedAt ?? "")) {
   errors.push("content/project-proof.json: updatedAt must be YYYY-MM-DD");
@@ -534,6 +537,9 @@ if (!Array.isArray(projectProof.items) || projectProof.items.length !== projects
     if (!String(item.limitation ?? "").toLowerCase().includes("does not")) {
       errors.push(`${owner}: limitation must explicitly state what the project does not prove`);
     }
+    if (/\b\d+\s+passing trust fixtures\b/i.test(String(item.evidence ?? ""))) {
+      errors.push(`${owner}: evidence must not hard-code Ask fixture counts; use {fixtureCount}`);
+    }
     if (!String(item.visibleArtifact ?? "").startsWith("/")) {
       errors.push(`${owner}: visibleArtifact must be an internal route`);
     }
@@ -548,6 +554,13 @@ if (!Array.isArray(projectProof.items) || projectProof.items.length !== projects
     if (!Array.isArray(item.related) || item.related.length < 3) {
       errors.push(`${owner}: related must include at least three graph connections`);
     }
+  }
+  const askProof = projectProof.items.find((item) => item.slug === "operational-intelligence-copilot");
+  if (!String(askProof?.evidence ?? "").includes("{fixtureCount} passing trust fixtures")) {
+    errors.push("content/project-proof.json: Ask proof evidence must use the live {fixtureCount} token");
+  }
+  if (evalFixtureCount < 35) {
+    errors.push("content/eval-report.json: expected at least 35 Ask fixtures before project proof can cite fixture coverage");
   }
 }
 
