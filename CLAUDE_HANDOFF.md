@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `76d8f8b Add public code project proof backlog`
+- `6d5d96a Align proof backlog search intent`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `76d8f8b Add public code project proof backlog`
+- `6d5d96a Align proof backlog search intent`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `76d8f8b Add public code project proof backlog`
+- `6d5d96a Align proof backlog search intent`
 
 Recent improvements:
 
@@ -102,6 +102,7 @@ Recent improvements:
 - Public-code evidence now avoids counted Sentinalai repository inventory claims; the public-code ledger tells reviewers what to inspect and `validate:content` rejects unvalidated repository inventory counts as proof.
 - Public-code/project proof is now a first-class proof-backlog gap. The Evidence Pack, Markdown export, Ask fallback, eval fixture, scorecard, and validators now state that GitHub/Sentinalai/Work/Projects proof requires reviewer walkthroughs and must not infer repository metrics, production adoption, private deployments, private integrations, or live incident outcomes.
 - The Work page now renders a compact project-code review-record checklist, and the public-code ledger defines the evidence fields reviewers should capture: repository surface inspected, visible engineering behavior, verdict, reasoning loss or ambiguity, boundary respected, and next proof. Search retrieval now covers 67 canonical queries, including public-code review-record intent routed to `/work`.
+- Proof-backlog search intent now stays anchored to the Evidence Pack even when the query mentions public-code/project proof; separate project-code inspection and review-record queries still route to `/work`.
 
 ## Current Highest-Value Gaps
 
@@ -241,6 +242,10 @@ Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address o
 ### 2026-08-24 — Codex adding project-code review record fields
 
 - **Resolved**: Public-code review now has an evidence-record shape instead of only review questions. `content/public-code.json` defines `reviewRecordFields` for repository surface inspected, visible engineering behavior, verdict, reasoning loss or ambiguity, boundary respected, and next proof. `/work` renders those fields as a compact checklist beneath the public-code inspection rubric, while the full guidance remains indexed for search and Ask through `content/site.ts` and `lib/content.ts`. Validators require the record fields and guard that they include production-adoption and repository-metric boundaries; canonical retrieval now includes a query for public-code project proof review records and routes it to `/work`. Evidence: `content/public-code.json`, `app/work/page.tsx`, `content/site.ts`, `lib/content.ts`, `scripts/validate-content.mjs`, `scripts/validate-content-coherence.mjs`, `scripts/validate-search-retrieval.mjs`, `content/quality-scorecard.json`, `WORLD_CLASS_SCORECARD.md`, `npm run validate:content`, `npm run validate:coherence`, `npm run validate:retrieval`, `npm run validate:knowledge-graph`, `npm run scan:public-safety`, `npm run lint`, `npm run typecheck`, `npm run build`, `git diff --check`. Public-safety risk: lower; reviewers can produce usable public evidence without converting repository presence into unsupported proof.
+
+### 2026-08-24 — Codex aligning proof-backlog search intent
+
+- **Resolved**: Mixed proof-backlog queries that mention public-code/project proof no longer route first to `/work`. `lib/search.ts` now suppresses Work-specific boosts when the query explicitly asks for a proof backlog, proof gap, evidence gap, what is still missing, what remains, or not-yet-proven evidence; the Evidence Pack remains the canonical destination for unresolved proof gaps, while public-code inspection and review-record queries still route to `/work`. The scorecard Current Evidence row now names public-code/project proof inside the active Evidence Pack backlog, and coherence validation guards that phrase. Evidence: `WORLD_CLASS_SCORECARD.md`, `lib/search.ts`, `scripts/validate-content-coherence.mjs`, `scripts/validate-search-retrieval.mjs`, `npm run validate:content`, `npm run validate:coherence`, `npm run validate:retrieval`, `npm run validate:knowledge-graph`, `npm run lint`, `npm run typecheck`, `npm run scan:public-safety`, `npm run build`, `git diff --check`. Public-safety risk: lower; search now separates unresolved-evidence navigation from project-code inspection navigation.
 
 ### 2026-08-24 — Codex avoiding counted public repo proof claims
 
