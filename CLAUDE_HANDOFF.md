@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `8a8e250 Add practitioner review quorum views`
+- `1fb68a3 Guard project proof fixture counts`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `8a8e250 Add practitioner review quorum views`
+- `1fb68a3 Guard project proof fixture counts`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `8a8e250 Add practitioner review quorum views`
+- `1fb68a3 Guard project proof fixture counts`
 
 Recent improvements:
 
@@ -97,6 +97,7 @@ Recent improvements:
 - The Practitioner Review Packet now defines a minimum external evidence quorum: at least five public-safe reviews across SRE/reliability, architecture, AI/governance, executive/product, and recruiter/hiring perspectives, plus a skeptical or mixed verdict and explicit revision triggers for person-work-thesis confusion or OI/observability/AIOps boundary failure.
 - Practitioner review capture now records artifacts inspected and review disposition as first-class fields in the Contact form, contact API metadata, Supabase `practitioner_reviews` view, admin dashboard contract, public packet, README, and validators.
 - Practitioner review operations now expose Supabase quorum and dimension-summary views for role coverage, four-artifact inspection, skeptical or mixed signal, evidence-needed notes, and dimension/disposition analysis before publishing any positive summary from external reviews.
+- Project proof pages now render Ask fixture coverage from `evalReport.fixtures.length` instead of hard-coded content, and validators reject stale hard-coded live fixture counts in the public project proof ledger.
 
 ## Current Highest-Value Gaps
 
@@ -227,6 +228,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex guarding project proof fixture counts
+
+- **Resolved**: The Operational Intelligence Copilot project proof ledger no longer hard-codes an obsolete Ask fixture count. `content/project-proof.json` now uses a `{fixtureCount}` token, project pages render the live value from `evalReport.fixtures.length`, and `validate:content` rejects future hard-coded live fixture counts in project proof evidence. The built `/projects/operational-intelligence-copilot` page rendered `108 passing trust fixtures`, matching the current eval report. Evidence: `content/project-proof.json`, `app/projects/[slug]/page.tsx`, `scripts/validate-content.mjs`, `scripts/validate-content-coherence.mjs`, `npm run validate:content`, `npm run validate:coherence`, `npm run evals`, `npm run typecheck`, `npm run lint`, `npm run scan:public-safety`, `npm run build`, `git diff --check`. Public-safety risk: none; this is evidence-accounting and stale-fact prevention only.
 
 ### 2026-08-24 — Codex adding practitioner review quorum views
 
