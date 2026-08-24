@@ -63,6 +63,8 @@ select
   metadata->>'reviewMode' as review_mode,
   metadata->>'reviewDimension' as review_dimension,
   metadata->>'reviewVerdict' as review_verdict,
+  metadata->>'artifactsInspected' as artifacts_inspected,
+  metadata->>'reviewDisposition' as review_disposition,
   metadata->>'evidenceObserved' as evidence_observed,
   metadata->>'reasoningLoss' as reasoning_loss,
   metadata->>'reviewLimitation' as review_limitation,

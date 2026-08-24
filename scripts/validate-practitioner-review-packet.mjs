@@ -32,6 +32,8 @@ expect(/person-work-thesis relationship/i.test(packet.minimumEvidenceQuorum?.rev
 expect(/renamed observability or generic AIOps/i.test(packet.minimumEvidenceQuorum?.revisionTrigger ?? ""), "Packet revision trigger must test OI differentiation from adjacent practice.");
 expect(Array.isArray(packet.reviewRunProtocol) && packet.reviewRunProtocol.length >= 5, "Packet must define a review run protocol.");
 expect(Array.isArray(packet.safeMetadataOnly) && packet.safeMetadataOnly.length >= 10, "Packet must define safe metadata fields.");
+expect(packet.safeMetadataOnly.includes("artifacts_inspected"), "Packet safe metadata must include artifacts_inspected.");
+expect(packet.safeMetadataOnly.includes("review_disposition"), "Packet safe metadata must include review_disposition.");
 expect(Array.isArray(packet.doNotCapture) && packet.doNotCapture.length >= 8, "Packet must define do-not-capture fields.");
 expect(Array.isArray(packet.verdicts) && packet.verdicts.includes("Not assessable"), "Packet must include Not assessable verdict.");
 expect(/Do not publish raw confidential material or aggregate reputation claims/i.test(packet.publicationRule ?? ""), "Packet publication rule must block confidential material and aggregate reputation claims.");
@@ -58,6 +60,8 @@ for (const required of [
   "Minimum External Evidence Quorum",
   "at least five public-safe reviews",
   "Review Run Protocol",
+  "artifacts_inspected",
+  "review_disposition",
   "person-work-thesis relationship",
   "renamed observability or generic AIOps",
   "Do Not Capture",
@@ -73,6 +77,8 @@ expect(
 expect(contactPage.includes("visitorReviewKit.reviewAssets"), "Contact page must render visitor review kit assets.");
 expect(contactPage.includes("practitionerReviewPacket.minimumEvidenceQuorum"), "Contact page must render the minimum evidence quorum.");
 expect(contactPage.includes("practitionerReviewPacket.reviewRunProtocol"), "Contact page must render the review run protocol.");
+expect(contactPage.includes("artifactsInspected"), "Contact page must capture artifacts inspected.");
+expect(contactPage.includes("reviewDisposition"), "Contact page must capture review disposition.");
 expect(scorecard.includes("Practitioner Review Packet"), "Scorecard must mention the Practitioner Review Packet.");
 
 if (errors.length) {

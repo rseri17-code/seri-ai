@@ -48,7 +48,8 @@ const safeMetadataHints = [
   "review_mode",
   "review_dimension",
   "review_verdict",
-  "doctrine_impact"
+  "doctrine_impact",
+  "review_disposition"
 ];
 
 const forbiddenAnalyticsFragments = [

@@ -78,6 +78,8 @@ Revision trigger: if two reviewers cannot explain the person-work-thesis relatio
 - review_dimension
 - verdict
 - evidence_inspected
+- artifacts_inspected
+- review_disposition
 - strongest_claim
 - weakest_claim
 - confusing_point

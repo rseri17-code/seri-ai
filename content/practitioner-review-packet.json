@@ -144,6 +144,8 @@
     "review_dimension",
     "verdict",
     "evidence_inspected",
+    "artifacts_inspected",
+    "review_disposition",
     "strongest_claim",
     "weakest_claim",
     "confusing_point",

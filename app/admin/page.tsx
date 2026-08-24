@@ -21,7 +21,7 @@ export default function AdminPage() {
   const practitionerReviewContract = [
     ["Storage", "contact_messages.kind = practitioner-review"],
     ["Queryable view", "practitioner_reviews"],
-    ["Fields", "reviewer role, doctrine verdict, mode, dimension, verdict, evidence observed, reasoning loss, limitation, doctrine impact"],
+    ["Fields", "reviewer role, doctrine verdict, mode, dimension, verdict, artifacts inspected, review disposition, evidence observed, reasoning loss, limitation, doctrine impact"],
     ["Release gate", "npm run validate:contracts"],
     ["Public entry", "/contact"]
   ];

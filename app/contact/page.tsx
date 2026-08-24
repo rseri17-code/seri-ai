@@ -114,6 +114,7 @@ export default function ContactPage() {
                 review_dimension: String(form.get("reviewDimension") || "unspecified"),
                 review_verdict: String(form.get("reviewVerdict") || "unspecified"),
                 doctrine_impact: String(form.get("doctrineImpact") || "unspecified"),
+                review_disposition: String(form.get("reviewDisposition") || "unspecified"),
                 latency_ms: Math.round(performance.now() - startedAt)
               });
               setReviewStatus(response.ok ? "sent" : "error");
@@ -129,6 +130,7 @@ export default function ContactPage() {
                 review_dimension: String(form.get("reviewDimension") || "unspecified"),
                 review_verdict: String(form.get("reviewVerdict") || "unspecified"),
                 doctrine_impact: String(form.get("doctrineImpact") || "unspecified"),
+                review_disposition: String(form.get("reviewDisposition") || "unspecified"),
                 latency_ms: Math.round(performance.now() - startedAt)
               });
               setReviewStatus("error");
@@ -262,7 +264,19 @@ export default function ContactPage() {
                 <option>Remove claim</option>
               </select>
             </div>
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="review-disposition">Review disposition</label>
+              <select id="review-disposition" name="reviewDisposition" className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white">
+                <option>Needs Evidence</option>
+                <option>Keep</option>
+                <option>Fix</option>
+                <option>Clarify</option>
+                <option>Remove</option>
+              </select>
+            </div>
           </div>
+          <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="artifacts-inspected">Artifacts inspected</label>
+          <textarea id="artifacts-inspected" name="artifactsInspected" rows={3} className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="List the public routes, packets, PDFs, code, or artifacts inspected." />
           <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="evidence-observed">Evidence observed</label>
           <textarea id="evidence-observed" name="evidenceObserved" rows={3} className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="What public-safe evidence did you inspect?" />
           <label className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400" htmlFor="reasoning-loss">Reasoning loss</label>
