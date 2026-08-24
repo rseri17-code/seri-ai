@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point before this validation contract:
 
-- `1fb68a3 Guard project proof fixture counts`
+- `6735363 Validate scorecard graph evidence counts`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `1fb68a3 Guard project proof fixture counts`
+- `6735363 Validate scorecard graph evidence counts`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `1fb68a3 Guard project proof fixture counts`
+- `6735363 Validate scorecard graph evidence counts`
 
 Recent improvements:
 
@@ -98,6 +98,7 @@ Recent improvements:
 - Practitioner review capture now records artifacts inspected and review disposition as first-class fields in the Contact form, contact API metadata, Supabase `practitioner_reviews` view, admin dashboard contract, public packet, README, and validators.
 - Practitioner review operations now expose Supabase quorum and dimension-summary views for role coverage, four-artifact inspection, skeptical or mixed signal, evidence-needed notes, and dimension/disposition analysis before publishing any positive summary from external reviews.
 - Project proof pages now render Ask fixture coverage from `evalReport.fixtures.length` instead of hard-coded content, and validators reject stale hard-coded live fixture counts in the public project proof ledger.
+- Scorecard graph-health and search-discoverability evidence counts are now checked against live `buildPublishingIndex`, `buildKnowledgeGraph`, and retrieval fixtures, so asset, relationship, framework-layer, registry, pattern, principle, and retrieval-query counts cannot drift silently.
 
 ## Current Highest-Value Gaps
 
@@ -228,6 +229,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-24 — Codex validating scorecard graph evidence counts
+
+- **Resolved**: The evidence scorecard now has validator-backed graph-health and retrieval-count claims instead of unguarded copied counts. `validate:knowledge-graph` checks `content/quality-scorecard.json` and `WORLD_CLASS_SCORECARD.md` against live `buildPublishingIndex`, `buildKnowledgeGraph`, framework-layer, registry, pattern, and principle counts. `validate:retrieval` checks the Search / Discoverability scorecard and Claude handoff against the actual canonical retrieval fixture count. Evidence: `scripts/validate-knowledge-graph-health.mjs`, `scripts/validate-search-retrieval.mjs`, `npm run validate:knowledge-graph`, `npm run validate:retrieval`, `npm run validate:content`, `npm run validate:coherence`, `npm run lint`, `npm run typecheck`, `npm test`, `git diff --check`. Public-safety risk: none; this is stale-evidence prevention only.
 
 ### 2026-08-24 — Codex guarding project proof fixture counts
 
