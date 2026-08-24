@@ -4,7 +4,7 @@ Last updated: 2026-08-24
 
 Current sync point for Claude review:
 
-- `f8f70fb Tie start here paths to evidence spine`
+- `823c0fd Align visitor questions to north star`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -74,11 +74,11 @@ If both agents work concurrently:
 
 Latest pushed commit before this handoff was created:
 
-- `f8f70fb Tie start here paths to evidence spine`
+- `823c0fd Align visitor questions to north star`
 
 Latest pushed commit before this handoff was validation-gated:
 
-- `f8f70fb Tie start here paths to evidence spine`
+- `823c0fd Align visitor questions to north star`
 
 Recent improvements:
 
