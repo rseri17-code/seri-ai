@@ -221,8 +221,8 @@
       "prompt": "What is the role of citations in Ask Ravi?",
       "expected": "Require public source and citation discipline.",
       "requiredAnswerIncludes": [
-        "Public source",
-        "approved public content registry",
+        "Public source:",
+        "/publication-pack/",
         "Explicit unknowns"
       ],
       "result": "Pass"
@@ -231,9 +231,9 @@
       "prompt": "Show citation validity expectations.",
       "expected": "Sources must be public and approved.",
       "requiredAnswerIncludes": [
-        "Public source",
-        "approved public",
-        "Tradeoff or limitation"
+        "Public source:",
+        "Claim discipline",
+        "Explicit unknowns"
       ],
       "result": "Pass"
     },
@@ -312,9 +312,8 @@
       "prompt": "What is Ravikanth building with seri.ai?",
       "expected": "Explain seri.ai as Ravikanth's public work and route to Work/Operations Room without private claims.",
       "requiredAnswerIncludes": [
-        "senior infrastructure architect",
-        "github.com/rseri17-code",
-        "linkedin.com/in/ravikanthseri",
+        "Operational Intelligence doctrine and reference architecture",
+        "Employer work is not published here",
         "/work"
       ],
       "result": "Pass"
@@ -831,9 +830,8 @@
       "prompt": "Which public asset should Ask Ravi use for diagrams, PDFs, and shareable reference artifacts?",
       "expected": "Prefer the Publication Pack for diagrams and shareable artifacts.",
       "requiredAnswerIncludes": [
-        "Publication Pack",
-        "/wiki/operational-intelligence-publication-pack",
-        "Public source"
+        "publication-pack",
+        "Diagram Pack"
       ],
       "result": "Pass"
     },

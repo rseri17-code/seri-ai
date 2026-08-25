@@ -198,7 +198,7 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/patterns/agentic-incident-investigation");
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }
-  if (/resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|public evidence|professional profile|hire|recruiter|collaborate|learn from him|work with him|engineering organization|technical problems?|speciali[sz]e/.test(lower)) {
+  if (/resume|background|experience|career|certification|credential|linkedin|credible|credibility|architecture judgment|engineering judgment|distinguishes.*(judgment|engineering)|public evidence|professional profile|hire|recruiter|collaborate|learn from him|work with him|engineering organization|technical problems?|speciali[sz]e/.test(lower)) {
     artifacts.add("/resume");
     artifacts.add("/background");
   }

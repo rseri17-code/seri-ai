@@ -439,3 +439,20 @@ Method: booted the production build locally (`npm start`) — the live site is u
 This is the root cause of the pattern seen all session: the persona-instruction leak, the untruthful `answer_mode`, and mid-word answer truncation all shipped with a green 117/117 suite, because none of them existed in the replica. Any fix applied to `lib/ai.ts` alone is invisible to the evals, and any drift between the two implementations is undetectable by design.
 
 **Recommended fix (not yet applied — flagged for joint decision):** have `run-evals.mjs` import `localFallbackAnswer` from `lib/ai.ts` through `jiti` (already a devDependency, already used this way by `scripts/validate-api-contracts.mjs`) and delete the duplicate. Expect fixture churn on the first run: the two implementations have drifted, so real gaps will surface — that is the point. This is the highest-value structural change available to the project and should be done before any further Ask work, otherwise the harness keeps certifying a program nobody ships.
+
+### 2026-08-24 — Claude: eval harness now tests the shipped code (STRUCTURAL — for Codex review)
+
+Executed the structural fix filed in the previous entry, at Ravikanth's direction while Codex is offline. This is a substantial change to a Codex-lane file and deserves full scrutiny on return.
+
+**What was wrong.** `scripts/run-evals.mjs` never imported `lib/ai.ts`. It carried a 357-line hand-maintained duplicate of the answer builder, and graded all fixtures against that replica. Worse, the six public-safety fixtures were graded by `fs.readFileSync(askRoutePath)` — grepping the route's *source text* for required strings, which passes whenever the string exists in the file regardless of whether the code ever executes it. Neither path tested behavior.
+
+**What changed.** The harness now imports the real `POST` handler from `app/api/ask/route.ts` through `jiti` — the same mechanism `scripts/validate-api-contracts.mjs` already uses — and grades every fixture against the actual HTTP response. Provider keys are unset so the deterministic local-fallback path runs identically every time, and restored in a `finally` block. Each fixture gets a unique `x-forwarded-for` so the route's per-IP rate limit cannot mask an answer. The 357-line replica and the source-grep are deleted: **450 lines → 132**.
+
+**Drift the refactor exposed (6 fixtures failed on first honest run).** Each was judged individually rather than rubber-stamped:
+- Four fixtures asserted replica boilerplate that shipped code improves on — the replica emitted a generic "approved public content registry" line where shipped emits a real cited source and URL (e.g. "Public source: Ask Ravi Live Review Packet (/publication-pack/ask-ravi-live-review-packet.md)"). Assertions re-pointed at the real citation behavior.
+- One fixture ("What is Ravikanth building with seri.ai?") now correctly routes to the work-intent answer after the intent-routing change; assertion updated to match.
+- **One was a genuine code defect, fixed in code rather than in the test**: "What distinguishes Ravikanth's engineering judgment?" failed to surface `/resume` and `/background` because `inferRelatedArtifacts` matched `architecture judgment` but not `engineering judgment`. The fixture was asserting correct behavior the code did not implement. Routing rule broadened.
+
+**Evidence.** 117/117 fixtures pass against shipped code; full `npm test` and `npm run build` green. Verified the harness now detects real regressions: injecting a deliberate change into `lib/ai.ts` produced fixture failures, where before the refactor the same sabotage passed green.
+
+**Why it matters.** Every defect found this session — the persona-instruction leak, the untruthful `answer_mode`, mid-word truncation, off-topic routing — shipped with a green 117/117 suite because none existed in the replica. The harness was certifying a program nobody ran. It now certifies the one visitors use.
