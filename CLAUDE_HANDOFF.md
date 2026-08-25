@@ -423,3 +423,19 @@ Codex is out of credits, so Claude took over the two Codex-lane defects filed in
 ### Deploy verification — BLOCKED (needs Ravikanth)
 
 `https://seri.ai` and `https://raviseri.com` are unreachable from the agent environment: the egress proxy denies CONNECT with 403 (policy denial, logged as `connect_rejected` for `seri.ai:443`). Neither agent can confirm what production is actually serving, which means every Reliability, SEO, and Performance score on the scorecard remains inference from local builds rather than live evidence. This is the single largest blocked item and it needs a human with a browser: confirm Vercel is serving current `main`, confirm the portrait renders, and confirm whether provider keys are configured (if not, production is serving `local_fallback`, which is now labeled truthfully).
+
+### 2026-08-24 — Claude leading solo (Codex offline): Ask answers are now question-responsive
+
+Method: booted the production build locally (`npm start`) — the live site is unreachable from the agent environment — and ran the NORTH STAR's eight success-test questions through the real `/api/ask` endpoint.
+
+- **Defect found and fixed (severe)**: "What has he done professionally?" — success-test question #2 — returned an entirely off-topic answer about AI explainability ("AI should explain what it used, what it ignored…"), because the phrasing missed the `asksAboutRavikanth` intent match and fell through to generic lexical search. Separately, "What has he built?", "What is he building now?", and "Why would a serious engineering organization want a technical conversation with him?" all returned the *identical* career sentence: distinct questions, one blob answer.
+- **Fix**: broadened the intent match (pronoun and career phrasings: "done professionally", "his career", "what has he shipped", "why would") and replaced the single fixed blob with four intent-routed answers — identity, career, work, and value — each sourced from the resume and professional graph, each public-safe. Verified live: all four questions now return distinct, on-topic answers.
+- **Public-safety risk**: none. The work answer explicitly states "Employer work is not published here; the public artifacts are what can be inspected."
+
+### STRUCTURAL FINDING — the eval suite does not test the shipped code (for Codex on return)
+
+`scripts/run-evals.mjs` imports only `node:fs` and `node:path`. It never imports `lib/ai.ts`. It carries its own hand-maintained duplicate of the answer builder (`inferFrameworkLayers`, the context blocks, the direct-answer assembly), and the 117 fixtures are evaluated against that replica — not against the code that serves visitors.
+
+This is the root cause of the pattern seen all session: the persona-instruction leak, the untruthful `answer_mode`, and mid-word answer truncation all shipped with a green 117/117 suite, because none of them existed in the replica. Any fix applied to `lib/ai.ts` alone is invisible to the evals, and any drift between the two implementations is undetectable by design.
+
+**Recommended fix (not yet applied — flagged for joint decision):** have `run-evals.mjs` import `localFallbackAnswer` from `lib/ai.ts` through `jiti` (already a devDependency, already used this way by `scripts/validate-api-contracts.mjs`) and delete the duplicate. Expect fixture churn on the first run: the two implementations have drifted, so real gaps will surface — that is the point. This is the highest-value structural change available to the project and should be done before any further Ask work, otherwise the harness keeps certifying a program nobody ships.

@@ -303,7 +303,7 @@ function trimToSentence(text: string, limit: number) {
 
 function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
   const lower = normalizeQuestionIntent(question);
-  const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|why.*trust|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education|technical problems?|speciali[sz]e|work with him|engineering organization/.test(lower);
+  const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|what.*shipped|done professionally|professionally|his career|his experience|why.*trust|why would|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education|technical problems?|speciali[sz]e|work with him|engineering organization/.test(lower);
   const layers = inferFrameworkLayers(question);
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
@@ -316,9 +316,23 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
   const asksAboutAskPersona =
     /are you ravikanth|are you him|are you the real|are you a bot|are you an ai|are you human|who are you|pretend|persona|imitat|first person|answer posture|how should ask/.test(lower);
+  const ravikanthWorkAnswer =
+    "Publicly, Ravikanth has built the Operational Intelligence doctrine and reference architecture, the OI-ROOM-001 Operations Room investigation artifact, the public pattern library, and the evaluation harness that gates the claims on this site. Employer work is not published here; the public artifacts are what can be inspected.";
+  const ravikanthCareerAnswer =
+    "Ravikanth Seri has spent fifteen-plus years on distributed enterprise systems in regulated financial services: enterprise integration and API architecture, identity and platform engineering, cloud and Kubernetes modernization, observability and telemetry, and now production AI systems and Agentic SRE.";
+  const ravikanthValueAnswer =
+    "The case for a technical conversation is inspectable rather than asserted: a published doctrine that states its own falsification conditions, a reference architecture written so another team could implement it, a working investigation artifact, and an evaluation harness that gates every claim made here.";
+  const ravikanthIdentityAnswer =
+    "Ravikanth Seri is a senior infrastructure architect working on AI-native enterprise operations. His career runs from enterprise integration and API architecture through identity and platform engineering, cloud and Kubernetes modernization, and observability, into production AI systems, Agentic SRE, and the Operational Intelligence thesis published here.";
   const ravikanthContext = asksAboutAskPersona
     ? "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis. Answer posture: reflect Ravikanth's public engineering judgment through evidence, constraints, tradeoffs, and inspectable routes; do not imitate him in first person or turn the answer into generic chatbot commentary."
-    : "Ravikanth Seri is a senior infrastructure architect working on AI-native enterprise operations. His career runs from enterprise integration and API architecture through identity and platform engineering, cloud and Kubernetes modernization, and observability, into production AI systems, Agentic SRE, and the Operational Intelligence thesis published here.";
+    : /what.*(built|build|building|shipped|ship|created|made)|which.*(built|shipped)/.test(lower)
+      ? ravikanthWorkAnswer
+      : /why.*(hire|work with|talk|conversation|organi[sz]ation|team|recruit|collaborate|want)/.test(lower)
+        ? ravikanthValueAnswer
+        : /career|professionally|profession|experience|history|arc|done professionally|worked/.test(lower)
+          ? ravikanthCareerAnswer
+          : ravikanthIdentityAnswer;
   const linkedinContext =
     /linkedin|thinking lifecycle|field note|developed argument|canonical technical asset|public signal|signal source|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)
       ? " LinkedIn signal: Ravikanth's public posts frame operational context as an enterprise asset, describe the Context Acquisition Tax, argue for an Enterprise Context Layer, treat the SRE-agent harness as the durable product, distinguish a dynamic operational view from a static graph, and connect ops for observability with observability for AI. Thinking signal lifecycle: LinkedIn signal is not proof by itself; useful signals move from LinkedIn Post to Observation / Field Note to Developed Argument to Pattern to Framework to Canonical Technical Asset to Interactive Demonstration when justified. This prevents social-media chronology from becoming site structure and routes mature claims to /radar, /library, /patterns, /framework, the Doctrine, and /investigation-room."
