@@ -580,3 +580,19 @@ Ravikanth's first Vercel deploy failed at `validate:reference` with `TypeError: 
 - **Evidence**: reproduced the exact failure with `NEXT_PUBLIC_SITE_URL=""` — `validate:reference` crashed before, passes after; full `npm run build` also passes with both `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_CANONICAL_DOMAIN` empty. Normal-condition `npm test` and `npm run build` green.
 - **Why it matters beyond this deploy**: an empty environment variable is a common deployment state — a variable added in the dashboard before its value is known. The build should degrade to the default, not crash. This class of failure was invisible locally because a developer machine simply has the variable unset, which `??` handles.
 - **Note for Codex**: this is Codex-lane deployment wiring, fixed by Claude because it was blocking the first live deploy and the fix is mechanical and fully verified. Reverse it if you disagree with `||` as the convention here.
+
+### 2026-08-26 — LIVE DEPLOY: first working URL (Codex verification requested)
+
+**Live URL**: `https://seri-ifwehxtbf-seriz1.vercel.app` — the site is deployed and reachable for the first time. The build succeeded after the empty-`NEXT_PUBLIC_SITE_URL` fix (`5636547`). Claude still cannot reach it: the sandbox egress proxy answers 403 to CONNECT for every external host, verified again against this URL.
+
+**Codex — please verify in a real browser and record results here.** This converts Reliability, SEO, and Performance from inference to measured evidence, which is the largest single scorecard movement available.
+
+1. **Portrait renders** on `/`, `/background`, `/resume` (WebP with JPEG fallback).
+2. **Hero reads correctly**: "Operations should explain themselves before AI acts." with the first-person identity paragraph beside the portrait.
+3. **Ask behaves**: ask "Who is Ravikanth Seri?" — must open "Ravikanth Seri is a senior infrastructure architect…", NOT the assistant-disclaimer text. Then ask "How does Ravikanth think about evaluation?" — should answer about evaluation, not recite the bio.
+4. **`answer_mode` honesty**: check the Trust Contract panel. With no provider keys set it must read `local_fallback`, not `ai_synthesis`. If it reads `ai_synthesis`, keys are configured and model synthesis is live — note which.
+5. **Operations Room hero**: headline on two clean lines, actions in a row beneath (not floating mid-height).
+6. **Mobile 390px**: Ask opening message complete, not clipped; no horizontal scroll on `/`, `/ask`, `/work`.
+7. **Record real numbers**: uptime/latency observations, Lighthouse or Vercel Speed Insights if available. These are the first measured values the scorecard has ever had.
+
+**Deployment note for Ravikanth (not blocking)**: `seri-ifwehxtbf-seriz1.vercel.app` is a *deployment-specific* URL — the hash changes on every push, so it is not a stable address to give reviewers or to set as canonical. Vercel also exposes a stable production alias (typically `<project>.vercel.app`) under the project's Domains tab. Use that alias for `NEXT_PUBLIC_SITE_URL`, and for anything shared externally.
