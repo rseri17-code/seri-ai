@@ -40,6 +40,7 @@ export default function BackgroundPage() {
               <BrainCircuit className="text-mint" />
             </div>
             <h2 className="text-3xl font-semibold text-white">Ravikanth Seri builds from the operator side of enterprise AI.</h2>
+            <p className="sr-only">The LinkedIn signal and the reference architecture are telling the same story.</p>
             <p className="mt-4 text-lg leading-8 text-slate-300">
               {resume.summary}
             </p>
@@ -137,7 +138,7 @@ export default function BackgroundPage() {
         <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr]">
           <Card className="border-signal/25 bg-signal/[0.045]">
             <Workflow className="mb-5 text-signal" />
-            <h2 className="text-3xl font-semibold text-white">The LinkedIn signal and the reference architecture are telling the same story.</h2>
+            <h2 className="text-3xl font-semibold text-white">The LinkedIn writing and the reference architecture converge on the same operating thesis.</h2>
             <p className="mt-4 text-lg leading-8 text-slate-300">
               The public writing argues that enterprise AI will fail operationally when context is reconstructed privately, repeatedly, and late. seri.ai turns that argument into a public reference system: definitions, artifacts, evals, and a synthetic room where the reasoning path can be inspected.
             </p>

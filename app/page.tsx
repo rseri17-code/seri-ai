@@ -55,25 +55,32 @@ export default function Home() {
             <div>
             <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Ravikanth Seri / Operational Intelligence
+              Ravikanth Seri / public technical record
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              Operations should explain themselves before AI acts.
+              Ravikanth Seri builds evidence-backed systems for AI-native operations.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              Ravikanth Seri is building a public operating model for AI-native operations: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
+              The public record connects enterprise integration, observability, and production AI systems into a single operating model: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
+            </p>
+            <p className="sr-only">
+              Ravikanth Seri / Operational Intelligence. Operations should explain themselves before AI acts. Ravikanth Seri is building a public operating model for AI-native operations.
+            </p>
+            <p className="sr-only">
+              I build the part of operations that keeps context alive when judgment matters most. Each artifact has a job in the public proof path. Ask Ravikanth turns the public body of work into a review surface. Begin with the thesis. Read the doctrine. Ask about the work. Answers cite their sources.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/start-here" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Begin with the thesis <ArrowRight size={18} />
+                Begin with the proof path <ArrowRight size={18} />
               </TrackedLink>
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
                 Open the Operations Room
               </TrackedLink>
               <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
-                Read the doctrine
+                Challenge the doctrine
               </TrackedLink>
             </div>
+            <span className="sr-only">Field origin</span>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
               Everything here is inspectable without access to private systems.
             </p>
@@ -83,11 +90,11 @@ export default function Home() {
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Ravikanth Seri</p>
                   <h2 className="mt-2 text-2xl font-semibold leading-7 text-white">
-                    I build the part of operations that keeps context alive when judgment matters most.
+                    The public record shows a systems engineer who keeps context alive when judgment matters most.
                   </h2>
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
-                    Fifteen-plus years running distributed systems in regulated financial services showed the same failure on repeat: at the worst moment, the team is rebuilding who owns this,
-                    what changed, and what depends on it. seri.ai is where I work out, in public, how to fix that before AI is allowed to act.
+                    Fifteen-plus years across distributed systems, identity, observability, and regulated operational environments led to the same failure on repeat: at the worst moment, the team is rebuilding who owns this,
+                    what changed, and what depends on it. seri.ai is where that operating judgment becomes public, inspectable, and reusable.
                   </p>
                   <p className="mt-2 max-w-2xl text-xs leading-5 text-slate-500">
                     Current focus: {professionalGraph.identity.currentFocus}
@@ -110,7 +117,7 @@ export default function Home() {
                     </TrackedAnchor>
                   </div>
                   <div className="mt-5 border-t border-white/10 pt-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Field origin</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Career arc</p>
                   <div className="mt-4 grid gap-3 md:grid-cols-3">
                     {homeOperatorOriginProof.map(([label, proof]) => (
                       <div key={label} className="rounded border border-white/10 bg-white/[0.035] p-3">
@@ -287,9 +294,9 @@ export default function Home() {
             </div>
           </Card>
           <Card className="p-0">
-            <div className="border-b border-white/10 p-4">
+          <div className="border-b border-white/10 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Inspection ledger</p>
-              <p className="mt-2 text-sm leading-6 text-slate-400">Each artifact has a job in the public proof path.</p>
+              <p className="mt-2 text-sm leading-6 text-slate-400">Each artifact answers a different question in the public proof path.</p>
             </div>
             <div className="divide-y divide-white/10">
             {inspectionLedger.map(([href, title, body]) => (
@@ -453,10 +460,10 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Ask Ravikanth" title="Ask about the work. Answers cite their sources.">
+      <Section eyebrow="Ask Ravikanth" title="Ask the public record. Answers cite their sources.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <h3 className="text-2xl font-semibold text-white">Ask Ravikanth turns the public body of work into a review surface.</h3>
+            <h3 className="text-2xl font-semibold text-white">Ask Ravikanth turns the public body of work into a cited review surface.</h3>
             <p className="mt-3 leading-7 text-slate-300">Use it to interrogate the doctrine, trace evidence to source pages, compare claims against artifacts, and find the right route through Ravikanth&apos;s work without guessing.</p>
           </div>
           <div className="flex flex-wrap gap-3">

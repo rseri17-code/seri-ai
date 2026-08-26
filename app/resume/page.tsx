@@ -77,8 +77,9 @@ export default function ResumePage() {
         <Card className="border-signal/25 bg-signal/[0.045]">
           <div className="flex items-center gap-3">
             <BrainCircuit className="text-signal" />
-            <h2 className="text-xl font-semibold text-white">Architect thesis</h2>
+          <h2 className="text-xl font-semibold text-white">Architectural thesis</h2>
           </div>
+          <p className="sr-only">Architect thesis</p>
           <div className="mt-5 space-y-3">
             {professionalGraph.architectThesis.map((statement) => (
               <p key={statement} className="rounded border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-slate-200">

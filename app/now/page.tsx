@@ -68,9 +68,9 @@ export default function NowPage() {
       <Section eyebrow="Now" title="What Ravikanth is actively building and thinking through." level="h1">
         <Card className="mb-5 border-mint/25 bg-mint/[0.05]">
           <BrainCircuit className="mb-5 text-mint" />
-          <h2 className="text-3xl font-semibold text-white">The current work is Agentic SRE as an inspectable operating system.</h2>
+          <h2 className="text-3xl font-semibold text-white">The current work treats Agentic SRE as an inspectable operating system.</h2>
           <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
-            The live thread is not generic AI adoption. It is the architecture of operational agents that can collect evidence,
+            The work is not generic AI adoption. It is the architecture of operational agents that can collect evidence,
             build hypotheses, replay reasoning, evaluate behavior, preserve memory, and hand accountable decisions back to humans.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
@@ -148,7 +148,7 @@ export default function NowPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Proof loop" title="The next work is evidence, not more slogans.">
+        <Section eyebrow="Proof loop" title="The next work is evidence, not more slogans.">
         <Card className="border-signal/25 bg-signal/[0.055]">
           <h2 className="text-3xl font-semibold text-white">The useful question now is: what would convince another experienced engineer that the model works?</h2>
           <div className="mt-6 grid gap-3 md:grid-cols-2">

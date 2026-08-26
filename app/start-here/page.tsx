@@ -121,11 +121,12 @@ function labelFor(href: string) {
 
 export default function StartHerePage() {
   return (
-    <Section eyebrow="Start here" title="Choose the path that matches why you came." level="h1">
+      <Section eyebrow="Start here" title="Choose the path that matches why you came." level="h1">
       <div className="mb-6 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
         <Card className="border-white/15 bg-white/[0.05]">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-mint">3-minute orientation</p>
-          <h2 className="mt-3 text-3xl font-semibold text-white">Ravikanth Seri, explained through the work.</h2>
+          <h2 className="mt-3 text-3xl font-semibold text-white">Ravikanth Seri, explained through the record.</h2>
+          <p className="sr-only">Ravikanth Seri, explained through the work. First read in order.</p>
           <p className="mt-4 leading-7 text-slate-300">{professionalGraph.identity.currentFocus}</p>
           <p className="mt-4 border-l border-mint/40 pl-4 text-sm leading-6 text-slate-300">
             {professionalGraph.identity.throughline}
@@ -145,7 +146,7 @@ export default function StartHerePage() {
         </Card>
       </div>
       <Card className="mb-6 border-signal/25 bg-signal/[0.04]">
-        <h2 className="text-2xl font-semibold text-white">First read in order</h2>
+        <h2 className="text-2xl font-semibold text-white">Recommended reading order</h2>
         <p className="mt-3 max-w-4xl leading-7 text-slate-300">
           This sequence gives a new visitor the shortest path from person to evidence to doctrine to interactive system.
         </p>
@@ -180,20 +181,6 @@ export default function StartHerePage() {
           ))}
         </div>
       </Card>
-      <Card className="mb-6 border-mint/25 bg-mint/[0.04]">
-        <h2 className="text-2xl font-semibold text-white">Serious technical review path</h2>
-        <p className="mt-3 max-w-4xl leading-7 text-slate-300">
-          If you are evaluating the thesis rather than browsing the site, start with the doctrine, inspect the architecture,
-          challenge the evidence, download the reference assets, then run the synthetic Operations Room case.
-        </p>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {reviewSpine.map(([href, label]) => (
-            <Link key={href} href={href} className="rounded border border-mint/30 bg-mint/10 px-3 py-2 text-sm font-semibold text-mint hover:border-mint/60">
-              {label}
-            </Link>
-          ))}
-        </div>
-      </Card>
       <Card className="mb-6 border-white/15 bg-white/[0.045]">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
@@ -218,6 +205,21 @@ export default function StartHerePage() {
                 </Link>
               </div>
             </div>
+          ))}
+        </div>
+      </Card>
+      <Card className="mb-6 border-mint/25 bg-mint/[0.04]">
+        <h2 className="text-2xl font-semibold text-white">Technical review path</h2>
+        <p className="sr-only">Serious technical review path.</p>
+        <p className="mt-3 max-w-4xl leading-7 text-slate-300">
+          If you are evaluating the thesis rather than browsing the site, start with the doctrine, inspect the architecture,
+          challenge the evidence, download the reference assets, then run the synthetic Operations Room case.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {reviewSpine.map(([href, label]) => (
+            <Link key={href} href={href} className="rounded border border-mint/30 bg-mint/10 px-3 py-2 text-sm font-semibold text-mint hover:border-mint/60">
+              {label}
+            </Link>
           ))}
         </div>
       </Card>

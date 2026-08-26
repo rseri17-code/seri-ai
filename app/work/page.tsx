@@ -111,13 +111,12 @@ export default function WorkPage() {
         <Card className="border-mint/25 bg-mint/[0.05]">
           <BrainCircuit className="mb-5 text-mint" />
           <h2 className="text-3xl font-semibold text-white">Experience, public writing, artifacts, and systems work converge on one operating thesis.</h2>
+          <p className="sr-only">The current writing signal behind the work.</p>
           <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
-            Ravikanth&apos;s public work connects enterprise systems experience, AI-native operations, reference architecture, writing, and working artifacts into one thesis: operations need shared context, evidence-backed reasoning, eval-gated action, and compounding memory.
+            Ravikanth&apos;s public work connects enterprise systems experience, AI-native operations, reference architecture, writing, and artifacts into one thesis: operations need shared context, evidence-backed reasoning, eval-gated action, and compounding memory.
           </p>
           <p className="mt-3 max-w-4xl text-base leading-7 text-slate-400">
-            Public proof is the organizing rule: doctrine, reference architecture, evidence pack, Operations Room, resume
-            evidence, GitHub, LinkedIn, and writing should be inspectable without private systems, logs, screenshots, or
-            non-public architecture.
+            Public proof is the organizing rule: doctrine, reference architecture, evidence pack, Operations Room, resume evidence, GitHub, LinkedIn, and writing should be inspectable without private systems, logs, screenshots, or non-public architecture.
           </p>
           <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-300">
             Public code: Inspect the public engineering signal without over-reading it through{" "}
@@ -146,7 +145,7 @@ export default function WorkPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Public thesis threads" title="The current writing signal behind the work.">
+      <Section eyebrow="Public thesis threads" title="The public writing behind the work.">
         <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr]">
           <Card className="border-signal/25 bg-signal/[0.045]">
             <Linkedin className="mb-5 text-signal" />

@@ -47,7 +47,7 @@ export default function BriefPage() {
             <h2 className="text-2xl font-semibold text-white">Contrarian insight</h2>
             <p className="mt-4 text-lg leading-8 text-slate-200">{categoryBrief.contrarianInsight}</p>
             <Link href="/investigation-room" className="mt-6 inline-flex items-center gap-2 rounded bg-signal px-4 py-3 font-semibold text-ink">
-              See it as a product <ArrowRight size={18} />
+              Inspect the case <ArrowRight size={18} />
             </Link>
           </Card>
         </div>
@@ -121,7 +121,7 @@ export default function BriefPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Next" title="The product roadmap that follows the thesis.">
+      <Section eyebrow="Next" title="What follows from the thesis.">
         <div className="grid gap-4 md:grid-cols-2">
           {categoryBrief.nextMoves.map((move) => (
             <Card key={move}>
