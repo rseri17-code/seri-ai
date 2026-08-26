@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
 
-export const alt = "seri.ai - Operational Intelligence for AI-native operations";
+export const alt = "Ravikanth Seri | seri.ai";
 export const size = {
   width: 1200,
   height: 630
@@ -49,7 +49,7 @@ export default function Image() {
         />
         <div style={{ display: "flex", justifyContent: "space-between", position: "relative" }}>
           <div style={{ border: "1px solid rgba(95, 242, 181, 0.32)", borderRadius: 999, color: "#5ff2b5", fontSize: 28, fontWeight: 700, padding: "14px 22px" }}>
-            seri.ai
+            Ravikanth Seri
           </div>
           <div style={{ color: "#94a3b8", fontSize: 24, paddingTop: 16 }}>{site.owner}</div>
         </div>

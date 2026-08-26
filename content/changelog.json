@@ -1,5 +1,16 @@
 [
   {
+    "version": "v0.11",
+    "date": "2026-08-26",
+    "title": "Recentered the public identity surfaces around Ravikanth Seri",
+    "description": "The root metadata and social preview image now lead with Ravikanth Seri instead of the product name alone, while preserving seri.ai as the site identity. This makes the public professional home easier to recognize in search, sharing, and previews without changing the site architecture or the underlying Operational Intelligence body of work.",
+    "tags": [
+      "identity",
+      "metadata",
+      "seo"
+    ]
+  },
+  {
     "version": "v0.10",
     "date": "2026-08-26",
     "title": "Redacted public-safety boundary fixtures and hardened eval contracts",

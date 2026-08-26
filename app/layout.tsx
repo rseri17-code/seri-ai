@@ -8,9 +8,9 @@ import { StructuredData } from "@/components/structured-data";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "seri.ai | Operational Intelligence for AI-native Operations",
+  title: "Ravikanth Seri | seri.ai",
   description:
-    "Ravikanth Seri's public home for Operational Intelligence: an inspectable operating model for evidence, hypotheses, replay, evaluation, and human-reviewed action.",
+    "Ravikanth Seri's public professional home for Operational Intelligence, AI-native operations, replayable investigations, evaluation, and human-reviewed action.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://seri-ai.vercel.app"),
   alternates: {
     canonical: "/",
@@ -19,18 +19,18 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    title: "seri.ai | Operational Intelligence for AI-native Operations",
-    description: "A public technical reference for evidence-backed operational reasoning, replayable investigations, evaluation gates, and accountable human decision.",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "seri.ai - Operational Intelligence for AI-native operations" }],
+    title: "Ravikanth Seri | seri.ai",
+    description: "Ravikanth Seri's public professional home for evidence-backed operational reasoning, replayable investigations, evaluation gates, and accountable human decision.",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Ravikanth Seri | seri.ai" }],
     url: "/",
     siteName: "seri.ai",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: "seri.ai | Operational Intelligence for AI-native Operations",
+    title: "Ravikanth Seri | seri.ai",
     description: "Evidence, hypotheses, replay, eval gates, and human-reviewed action for enterprise operations.",
-    images: [{ url: "/twitter-image", alt: "seri.ai - Operational Intelligence for AI-native operations" }]
+    images: [{ url: "/twitter-image", alt: "Ravikanth Seri | seri.ai" }]
   }
 };
 
