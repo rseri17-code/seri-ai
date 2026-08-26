@@ -32,7 +32,8 @@ const backgroundEvidence = [
 export default function BackgroundPage() {
   return (
     <>
-      <Section eyebrow="Background" title="The operating background behind the Operational Intelligence thesis." level="h1">
+      <Section eyebrow="Background" title="Ravikanth Seri's background and operating arc." level="h1">
+        <p className="sr-only">The operating background behind the Operational Intelligence thesis.</p>
         <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
           <Card className="border-mint/25 bg-mint/[0.05]">
             <div className="mb-5 flex items-center gap-4">
@@ -79,7 +80,8 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Career story" title="From enterprise infrastructure to AI operations judgment.">
+      <Section eyebrow="Career story" title="Ravikanth Seri's career story.">
+        <p className="sr-only">From enterprise infrastructure to AI operations judgment.</p>
         <div className="grid gap-3">
           {professionalGraph.careerStory.map((stage, index) => (
             <Card key={stage.stage} className="p-4">
@@ -134,7 +136,8 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Point of view" title="Context, evidence, and accountable action.">
+      <Section eyebrow="Point of view" title="Ravikanth Seri's point of view.">
+        <p className="sr-only">Context, evidence, and accountable action.</p>
         <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr]">
           <Card className="border-signal/25 bg-signal/[0.045]">
             <Workflow className="mb-5 text-signal" />

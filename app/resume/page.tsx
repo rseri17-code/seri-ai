@@ -30,7 +30,8 @@ const impactLedger = [
 
 export default function ResumePage() {
   return (
-    <Section eyebrow="Interactive resume" title={resume.headline} level="h1">
+    <Section eyebrow="Interactive resume" title="Ravikanth Seri's public resume." level="h1">
+      <p className="sr-only">Interactive resume</p>
       <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="space-y-5">
         <Card>
@@ -60,7 +61,7 @@ export default function ResumePage() {
         <Card className="border-mint/25 bg-mint/[0.045]">
           <div className="flex items-center gap-3">
             <ShieldCheck className="text-mint" />
-            <h2 className="text-xl font-semibold text-white">Impact ledger</h2>
+          <h2 className="text-xl font-semibold text-white">Impact ledger</h2>
           </div>
           <p className="mt-3 text-sm leading-6 text-slate-300">
             Public-safe proof points that explain the operating background behind the Operational Intelligence thesis.
@@ -116,7 +117,7 @@ export default function ResumePage() {
         <Card>
           <div className="flex items-center gap-3">
             <GitBranch className="text-signal" />
-            <h2 className="text-xl font-semibold text-white">Career throughline</h2>
+          <h2 className="text-xl font-semibold text-white">Career throughline</h2>
           </div>
           <div className="mt-5 space-y-3">
             {professionalGraph.careerEvolution.slice(0, 3).map((item) => (
@@ -145,7 +146,7 @@ export default function ResumePage() {
           <Card className="border-signal/25 bg-signal/[0.04]">
             <div className="flex items-center gap-3">
               <ShieldCheck className="text-signal" />
-              <h2 className="text-xl font-semibold text-white">Source provenance</h2>
+          <h2 className="text-xl font-semibold text-white">Source provenance</h2>
             </div>
             <p className="mt-3 text-sm leading-6 text-slate-300">
               Career evidence is synthesized from approved source classes, then converted into public-safe claims that can be challenged without exposing private systems.
@@ -161,7 +162,7 @@ export default function ResumePage() {
             </div>
           </Card>
           <Card>
-            <h2 className="text-xl font-semibold text-white">Public proof</h2>
+          <h2 className="text-xl font-semibold text-white">Public proof</h2>
             <div className="mt-5 space-y-3">
             {resume.publicProof.map((item) => (
               <a
