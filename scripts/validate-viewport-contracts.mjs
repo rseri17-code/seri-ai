@@ -30,7 +30,7 @@ const routeContracts = [
       "homeHeroBuilderProof",
       "homeMobileArtifactSignals",
       "lg:hidden",
-      "Begin with the thesis",
+      "Begin with the proof path",
       "Open the Operations Room"
     ]
   },
@@ -145,15 +145,15 @@ for (const contract of routeContracts) {
 
 const homePage = read("app/page.tsx");
 expect(
-  homePage.indexOf("Begin with the thesis") < homePage.indexOf("Open the Operations Room"),
+  homePage.indexOf("Begin with the proof path") < homePage.indexOf("Open the Operations Room"),
   "/: homepage should present the thesis before deeper technical paths for first-time visitors"
 );
 expect(
-  homePage.indexOf("Begin with the thesis") < homePage.indexOf("Everything here is inspectable without access to private systems"),
+  homePage.indexOf("Begin with the proof path") < homePage.indexOf("Everything here is inspectable without access to private systems"),
   "/: homepage primary thesis CTA must render before the inspection/trust paragraph"
 );
 expect(
-  homePage.indexOf("Begin with the thesis") < homePage.indexOf("Field origin"),
+  homePage.indexOf("Begin with the proof path") < homePage.indexOf("Career arc"),
   "/: homepage primary thesis CTA must render before the field-origin proof module"
 );
 expect(
@@ -161,7 +161,7 @@ expect(
   "/: homepage primary CTAs must render before the inspection/trust paragraph so mobile visitors see an action in the first viewport"
 );
 expect(
-  homePage.indexOf("Open the Operations Room") < homePage.indexOf("Field origin"),
+  homePage.indexOf("Open the Operations Room") < homePage.indexOf("Career arc"),
   "/: homepage primary CTAs must render before the field-origin proof module so mobile visitors get an action before deeper explanation"
 );
 

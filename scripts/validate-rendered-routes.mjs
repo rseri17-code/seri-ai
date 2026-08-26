@@ -19,20 +19,20 @@ const routeContracts = [
       "separate evidence from inference",
       "keep human judgment in control",
       "Everything here is inspectable without access to private systems",
-      "Field origin",
+      "Career arc",
       "the team is rebuilding who owns this,",
-      "Begin with the thesis",
+      "Begin with the proof path",
       "Open the Operations Room",
       "Visitor Proof Map",
       "Decision packet preview",
-      "The posts converge on one enterprise failure mode"
+      "public writing and working notes"
     ],
     before: [
-      ["Begin with the thesis", "Open the Operations Room"],
-      ["Begin with the thesis", "Everything here is inspectable without access to private systems"],
+      ["Begin with the proof path", "Open the Operations Room"],
+      ["Begin with the proof path", "Everything here is inspectable without access to private systems"],
       ["Open the Operations Room", "Everything here is inspectable without access to private systems"],
-      ["Begin with the thesis", "Field origin"],
-      ["Open the Operations Room", "Field origin"]
+      ["Begin with the proof path", "Career arc"],
+      ["Open the Operations Room", "Career arc"]
     ]
   },
   {
@@ -40,12 +40,10 @@ const routeContracts = [
     file: "start-here.html",
     maxBytes: 190_000,
     required: [
-      "Choose the path that matches why you came.",
+      "Choose the route that helps you understand Ravikanth Seri.",
       "3-minute orientation",
-      "Ravikanth Seri, explained through the work.",
-      "Public-safe boundary",
-      "First read in order",
-      "10-minute proof route",
+          "Public-safe boundary",
+          "10-minute proof route",
       "Person, work, thesis, artifact, evidence.",
       "Establish the operator",
       "Inspect the operating record",
@@ -62,13 +60,13 @@ const routeContracts = [
       "How has his career evolved?",
       "What open-source and public work can be inspected?",
       "Visitor proof map",
-      "Serious technical review path"
+      "Technical review path"
     ],
     before: [
-      ["3-minute orientation", "First read in order"],
-      ["First read in order", "10-minute proof route"],
-      ["10-minute proof route", "Serious technical review path"],
-      ["Serious technical review path", "Visitor proof map"]
+      ["3-minute orientation", "Recommended reading order"],
+      ["Recommended reading order", "10-minute proof route"],
+      ["10-minute proof route", "Technical review path"],
+      ["Technical review path", "Visitor proof map"]
     ]
   },
   {
@@ -114,13 +112,13 @@ const routeContracts = [
     file: "work.html",
     maxBytes: 195_000,
     required: [
-      "The operating record behind Operational Intelligence",
+      "operating record.",
       "Operating arc",
       "Architecture judgment",
       "Constraints the architecture preserves.",
       "Start with operational evidence before model reasoning.",
       "Treat AI action as governed execution, not autonomous heroics.",
-      "Inspect the public engineering signal without over-reading it",
+      "How to inspect the public code.",
       "Sentinalai",
       "Do not claim production adoption, private deployment details, internal integrations, repository metrics, or code behavior that is not visible in public source.",
       "GitHub",
@@ -133,7 +131,7 @@ const routeContracts = [
     file: "background.html",
     maxBytes: 150_000,
     required: [
-      "The operating background behind the Operational Intelligence thesis",
+      "background and operating arc.",
       "15+ years",
       "Regulated operations",
       "Modernization path",

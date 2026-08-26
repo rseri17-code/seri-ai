@@ -108,12 +108,9 @@ export default function WorkPage() {
   return (
     <>
       <Section eyebrow="Work" title="Ravikanth Seri's operating record." level="h1">
-        <p className="sr-only">The operating record behind Operational Intelligence.</p>
         <Card className="border-mint/25 bg-mint/[0.05]">
           <BrainCircuit className="mb-5 text-mint" />
           <h2 className="text-3xl font-semibold text-white">Ravikanth Seri&apos;s experience, writing, artifacts, and systems work converge on one thesis.</h2>
-          <p className="sr-only">Experience, public writing, artifacts, and systems work converge on one operating thesis.</p>
-          <p className="sr-only">The current writing signal behind the work.</p>
           <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
             Ravikanth&apos;s public work connects enterprise systems experience to AI-native operations and artifacts.
           </p>
@@ -135,7 +132,6 @@ export default function WorkPage() {
       </Section>
 
       <Section eyebrow="Operating arc" title="Ravikanth Seri's operating arc.">
-        <p className="sr-only">From operating enterprise systems to reasoning about them.</p>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {professionalGraph.careerEvolution.map((item) => (
             <Card key={item.period} className="h-full p-5">
@@ -149,11 +145,9 @@ export default function WorkPage() {
       </Section>
 
       <Section eyebrow="Public thesis threads" title="The public writing behind the work.">
-        <p className="sr-only">The public writing behind the work.</p>
         <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr]">
           <Card className="border-signal/25 bg-signal/[0.045]">
             <Linkedin className="mb-5 text-signal" />
-            <p className="sr-only">The public posts are not side commentary. They are the working notes for the doctrine.</p>
             <h2 className="text-3xl font-semibold text-white">The public posts are notes.</h2>
             <p className="mt-4 text-lg leading-8 text-slate-300">
               The recurring theme is ownership, change, dependency, impact, missing evidence, and human approval.
@@ -210,14 +204,18 @@ export default function WorkPage() {
       </Section>
 
       <Section eyebrow="Public code inspection" title="How to inspect the public code.">
-        <p className="sr-only">Public code inspection</p>
         <div className="grid gap-4 lg:grid-cols-[0.88fr_1.12fr]">
           <Card className="border-mint/25 bg-mint/[0.045]">
             <GitBranch className="mb-5 text-mint" />
             <h2 className="text-3xl font-semibold text-white">Sentinalai is treated as public architecture signal, not private production proof.</h2>
-            <p className="sr-only">Inspect the public engineering signal without over-reading it</p>
-            <p className="sr-only">Do not claim production adoption, private deployment details, internal integrations, repository metrics, or code behavior that is not visible in public source.</p>
             <p className="mt-4 text-base leading-7 text-slate-300">The public repository reference gives reviewers structure to inspect.</p>
+            <div className="mt-3 grid gap-2">
+              {publicCode.entries.slice(0, 2).map((entry) => (
+                <p key={entry.href} className="rounded border border-amber/25 bg-amber/[0.06] px-4 py-3 text-sm leading-6 text-amber">
+                  {entry.proofBoundary}
+                </p>
+              ))}
+            </div>
             <div className="mt-5 grid gap-3">
               {publicCode.observedPublicStructure.slice(0, 2).map((item) => (
                 <p key={item} className="rounded border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-slate-200">
@@ -240,9 +238,6 @@ export default function WorkPage() {
         </div>
         <Card className="mt-4 border-white/10 bg-black/20">
           <h2 className="text-2xl font-semibold text-white">What review should record.</h2>
-          <p className="sr-only">What a project-code review should record.</p>
-          <p className="sr-only">inspected surface, visible behavior, verdict</p>
-          <p className="sr-only">boundary respected, and next proof</p>
           <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-300">
             A useful review produces evidence, not praise. Capture the surface, behavior, verdict, and next proof.
           </p>

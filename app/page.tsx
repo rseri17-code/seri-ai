@@ -55,19 +55,13 @@ export default function Home() {
             <div>
             <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Ravikanth Seri / public professional home
+              Ravikanth Seri / Operational Intelligence
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              Ravikanth Seri writes and builds evidence-backed systems for AI-native operations.
+              Operations should explain themselves before AI acts.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              Ravikanth Seri&apos;s public record connects enterprise integration, observability, and production AI systems into a single operating model: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
-            </p>
-            <p className="sr-only">
-              Ravikanth Seri / Operational Intelligence. Operations should explain themselves before AI acts. Ravikanth Seri is building a public operating model for AI-native operations.
-            </p>
-            <p className="sr-only">
-              I build the part of operations that keeps context alive when judgment matters most. Each artifact has a job in the public proof path. Ask Ravikanth turns the public body of work into a review surface. Begin with the thesis. Read the doctrine. Ask about the work. Answers cite their sources.
+              Ravikanth Seri is building a public operating model for AI-native operations: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/start-here" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
@@ -80,7 +74,6 @@ export default function Home() {
                 Challenge the doctrine
               </TrackedLink>
             </div>
-            <span className="sr-only">Field origin</span>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
               Everything here is inspectable without access to private systems.
             </p>
@@ -90,11 +83,11 @@ export default function Home() {
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Ravikanth Seri</p>
                   <h2 className="mt-2 text-2xl font-semibold leading-7 text-white">
-                    Ravikanth Seri is a systems engineer who keeps context alive when judgment matters most.
+                    I build the part of operations that keeps context alive when judgment matters most.
                   </h2>
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
-                    Fifteen-plus years across distributed systems, identity, observability, and regulated operational environments led to the same failure on repeat: at the worst moment, the team is rebuilding who owns this,
-                    what changed, and what depends on it. seri.ai is where that operating judgment becomes public, inspectable, and reusable.
+                    Fifteen-plus years across distributed systems, identity, observability, and regulated financial-services operations showed me the same failure on repeat: at the worst moment, the team is rebuilding who owns this,
+                    what changed, and what depends on it. seri.ai is where I work that out in public, so the judgment is inspectable and reusable.
                   </p>
                   <p className="mt-2 max-w-2xl text-xs leading-5 text-slate-500">
                     Current focus: {professionalGraph.identity.currentFocus}
@@ -172,8 +165,6 @@ export default function Home() {
       </section>
 
       <Section eyebrow="Public thesis stream" title="Ravikanth Seri's public writing and working notes">
-        <p className="sr-only">Public thesis stream</p>
-        <p className="sr-only">The posts converge on one enterprise failure mode: operational context is recreated instead of owned.</p>
         <Card className="border-mint/25 bg-mint/[0.045] p-5">
           <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
             <div>
@@ -258,7 +249,6 @@ export default function Home() {
           <Card className="border-signal/25 bg-signal/[0.045] p-5">
             <ShieldCheck className="mb-5 text-signal" />
             <h3 className="text-2xl font-semibold text-white md:text-3xl">Inspection is part of the public record.</h3>
-            <p className="sr-only">Inspection is part of the product contract.</p>
             <p className="mt-4 text-base leading-7 text-slate-300">
               The thesis is exposed through definitions, contracts, synthetic evidence, evaluation gates, public work, and source-linked publishing. A visitor should be able to challenge the model without needing private systems or confidential examples.
             </p>
@@ -315,7 +305,6 @@ export default function Home() {
       </Section>
 
       <Section eyebrow="Start here" title="Three ways to understand Ravikanth Seri.">
-        <p className="sr-only">Three ways to challenge the thesis.</p>
         <div className="grid gap-4 lg:grid-cols-3">
           {homePrimaryPaths.map((path) => (
             <Link key={path.href} href={path.href}>

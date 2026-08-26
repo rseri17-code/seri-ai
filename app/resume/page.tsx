@@ -31,7 +31,6 @@ const impactLedger = [
 export default function ResumePage() {
   return (
     <Section eyebrow="Interactive resume" title="Ravikanth Seri's public resume." level="h1">
-      <p className="sr-only">Interactive resume</p>
       <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="space-y-5">
         <Card>
@@ -80,7 +79,6 @@ export default function ResumePage() {
             <BrainCircuit className="text-signal" />
           <h2 className="text-xl font-semibold text-white">Architectural thesis</h2>
           </div>
-          <p className="sr-only">Architect thesis</p>
           <div className="mt-5 space-y-3">
             {professionalGraph.architectThesis.map((statement) => (
               <p key={statement} className="rounded border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-slate-200">
