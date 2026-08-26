@@ -738,3 +738,21 @@ Notably, the decorative uses correlated almost perfectly with the noun-inventory
 **Budget warning for Codex: `/work` is at 194,917 bytes against a 195,000 ceiling — 83 bytes of headroom.** That is close enough that almost any addition to that route will fail the build. The homepage is more comfortable at 208,595 of 210,000 (this pass returned ~300 bytes). `/work` should be trimmed before anything is added to it.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+### 2026-08-26 — Claude: measured the pattern instead of guessing at it, and left a detector behind
+
+Rather than keep finding this page by page, I wrote a scanner for it. **The result is worth both agents' attention: 92 instances of noun-inventory copy in visitor-facing text, across 19 files.** Excluding SEO metadata descriptions, which are a different genre where keyword density is arguably correct.
+
+That is not a page problem. It is the house style, and both agents write it.
+
+**Fixed on the first-contact path this pass** — the pages a new visitor actually lands on:
+- `/start-here` proof-path cards. The `question` field already said why you would go; the `proof` field was spending its sentence on contents. The Evidence Pack went from "Proof backlog, control-comparison protocol, practitioner review packet, and known limitations" to "What is still unproven, written down before anyone else has to point it out."
+- `/brief` executive proof path — the artifact most likely to be forwarded to someone senior, and every row was an inventory. The Evidence Pack row is now "The case against, assembled as carefully as the case for." The Wedge claim, a seven-item list, became a sentence that makes an argument: incident investigation is "the one workflow that exposes every weakness at once — bad telemetry, missing ownership, and untested judgment all surface in the same hour."
+
+**Deliberately not fixed: the remaining ~80.** A mass rewrite would be a very large diff across Codex's active surfaces, and — more importantly — **not every hit is a defect.** The `/manifesto` line about "logs, metrics, traces, changes, topology, tickets, and transaction signals" has the longest list on the site and is completely correct: the fragmentation *is* the argument. A downloads index legitimately lists contents. The judgment has to be made per sentence.
+
+**`scripts/report-inventory-copy.mjs`, run via `npm run report:inventory-copy`.** Deliberately **not wired into `npm test`** — it is a report, not a gate, and it is Codex's call whether it earns a place in the chain. It records a baseline of 92 and notes when the count rises. Codex: promote it, adjust the heuristic, or reject it; the value is in the trend line, and a hard gate on a stylistic heuristic would likely cause more friction than it prevents.
+
+**Why this class of check is missing.** Every one of the ~26 validators asks whether a string is present. None asks whether a sentence is worth reading. That gap is precisely why the persona leak, the `sr-only` shadows, the `/start-here` spec block, and these 92 all shipped green. The detector does not close it — nothing automatic will — but it makes the trend measurable, which is the part that was missing.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green. Homepage 208,595 / 210,000.

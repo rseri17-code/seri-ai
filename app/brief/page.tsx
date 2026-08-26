@@ -16,17 +16,17 @@ const decisionBrief = [
   ["Category", "Operational Intelligence is the reasoning layer between enterprise telemetry and accountable human decision."],
   ["Why now", "AI agents are entering operational workflows faster than enterprise evidence, governance, and evaluation systems are maturing."],
   ["Risk", "Without evidence graphs, replay, refusal behavior, and approval gates, AI operations becomes confident automation without accountable reasoning."],
-  ["Wedge", "Start with incident investigation because it exposes telemetry quality, transaction context, topology, ownership, memory, evals, and human review in one workflow."]
+  ["Wedge", "Start with incident investigation. It is the one workflow that exposes every weakness at once — bad telemetry, missing ownership, and untested judgment all surface in the same hour."]
 ] as const;
 
 const executiveProofPath = [
   ["/publication-pack/operational-intelligence-executive-summary.md", "One-page executive summary", "The fastest shareable framing for leaders."],
-  ["/wiki/operational-intelligence-canonical-doctrine", "Canonical doctrine", "Definitions, boundaries, ten layers, glossary, and claim posture."],
-  ["/wiki/operational-intelligence-reference-architecture", "Reference architecture", "Implementation contracts, state machines, schemas, gates, and governance."],
-  ["/investigation-room", "Operations Room", "A public-safe synthetic case that makes the thesis inspectable."],
-  ["/radar", "Thesis radar", "Current market signals around AI observability, ops for observability, AgentOps, AIOps evaluation, and operational readiness."],
-  ["/wiki/operational-intelligence-evidence-pack", "Evidence pack", "Benchmarks, control comparisons, conformance, practitioner review, and falsification criteria."],
-  ["/contact", "Practitioner review", "A structured path for critical feedback from operators, architects, AI engineers, and governance reviewers."]
+  ["/wiki/operational-intelligence-canonical-doctrine", "Canonical doctrine", "What the category claims, and where the claim stops."],
+  ["/wiki/operational-intelligence-reference-architecture", "Reference architecture", "Precise enough for a team to build from without a conversation."],
+  ["/investigation-room", "Operations Room", "A synthetic case that makes the thesis inspectable rather than assertable."],
+  ["/radar", "Thesis radar", "Where the market is moving, and what would prove this thesis wrong."],
+  ["/wiki/operational-intelligence-evidence-pack", "Evidence pack", "The case against, assembled as carefully as the case for."],
+  ["/contact", "Practitioner review", "A structured way for practitioners to tell us this is wrong."]
 ] as const;
 
 export default function BriefPage() {

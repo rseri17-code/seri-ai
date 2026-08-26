@@ -57,28 +57,28 @@ const tenMinuteProofRoute = [
     href: "/work",
     title: "Inspect the operating record",
     question: "What has he built or made inspectable?",
-    proof: "Public work, GitHub signal, project-proof boundaries, and what each artifact does not prove."
+    proof: "Real repositories and real limits — every entry states what it proves and what it does not."
   },
   {
     minutes: "04-06",
     href: "/wiki/operational-intelligence-canonical-doctrine",
     title: "Read the thesis",
     question: "What is the model, and where does it differ from observability or AIOps?",
-    proof: "Canonical definition, boundaries, ten layers, glossary, citations, and claim posture."
+    proof: "The full definition, and an explicit line marking where the claim stops."
   },
   {
     minutes: "06-08",
     href: "/investigation-room",
     title: "Run the case",
     question: "Does the idea behave like an operational system rather than prose?",
-    proof: "OI-ROOM-001 evidence graph, hypotheses, contradiction, missing evidence, replay, gates, and approval."
+    proof: "A synthetic case you can replay, including the contradiction it had to resolve."
   },
   {
     minutes: "08-10",
     href: "/wiki/operational-intelligence-evidence-pack",
     title: "Challenge the claim",
     question: "What would prove, weaken, or falsify the thesis?",
-    proof: "Proof backlog, control-comparison protocol, practitioner review packet, and known limitations."
+    proof: "What is still unproven, written down before anyone else has to point it out."
   }
 ] as const;
 

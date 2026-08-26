@@ -43,7 +43,8 @@
     "validate:links": "node scripts/validate-links.mjs",
     "scan:public-safety": "node scripts/scan-public-safety.mjs",
     "audit:security": "npm audit --audit-level=high",
-    "evals": "node scripts/run-evals.mjs"
+    "evals": "node scripts/run-evals.mjs",
+    "report:inventory-copy": "node scripts/report-inventory-copy.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.56.0",
