@@ -34,7 +34,7 @@ export function StructuredData() {
       {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
-        "name": site.name,
+        "name": site.owner,
         "url": siteUrl,
         "description": site.description,
         "inLanguage": "en-US",

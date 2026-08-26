@@ -1,5 +1,16 @@
 [
   {
+    "version": "v0.12",
+    "date": "2026-08-26",
+    "title": "Recentered the persistent site chrome and schema around Ravikanth Seri",
+    "description": "The global header and WebSite structured data now present Ravikanth Seri as the primary identity, which makes every route feel more like a public professional home and less like a generic product shell. The surrounding domain identity and public-safe Operational Intelligence body of work remain intact.",
+    "tags": [
+      "identity",
+      "chrome",
+      "schema"
+    ]
+  },
+  {
     "version": "v0.11",
     "date": "2026-08-26",
     "title": "Recentered the public identity surfaces around Ravikanth Seri",
