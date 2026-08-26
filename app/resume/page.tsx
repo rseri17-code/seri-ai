@@ -63,7 +63,7 @@ export default function ResumePage() {
           <h2 className="text-xl font-semibold text-white">Impact ledger</h2>
           </div>
           <p className="mt-3 text-sm leading-6 text-slate-300">
-            Public-safe proof points that explain the operating background behind the Operational Intelligence thesis.
+            The operating background the thesis came out of, stated as numbers rather than adjectives.
           </p>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
             {impactLedger.map(([value, label]) => (

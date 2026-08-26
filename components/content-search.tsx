@@ -91,7 +91,7 @@ export function ContentSearch({ sources }: { sources: PublicSource[] }) {
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-mint">Search workbench</p>
             <p className="mt-2 text-sm leading-6 text-slate-300">
-              Search across doctrine, architecture notes, patterns, projects, artifacts, principles, and public-safe reference exports.
+              Searches everything published here, including the reference exports.
             </p>
           </div>
           <p aria-live="polite" className="rounded border border-white/10 bg-black/20 px-3 py-2 text-sm font-semibold text-white">

@@ -13,7 +13,7 @@ export const metadata: Metadata = publicRouteMetadata({
 
 export default function ProjectsPage() {
   return (
-    <Section eyebrow="Projects" title="Public-safe builds and reference patterns." level="h1">
+    <Section eyebrow="Projects" title="Builds and the patterns they turned into." level="h1">
       <div className="grid gap-4 md:grid-cols-3">
         {projects.map((project) => (
           <Link key={project.slug} href={`/projects/${project.slug}`}>

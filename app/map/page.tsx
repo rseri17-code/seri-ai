@@ -182,7 +182,7 @@ export default function MapPage() {
             <Network className="mb-5 text-mint" />
             <h2 className="text-3xl font-semibold text-white">{publishingGraph.nodes.length} nodes, {publishingGraph.relationships.length} relationships</h2>
             <p className="mt-4 leading-7 text-slate-300">
-              Articles, field notes, patterns, artifacts, products, principles, and framework entries are indexed as one public-safe graph.
+              Everything published here is indexed as a single graph, so any entry can be traced to what it depends on.
               Relationships are inferred from framework layers, tags, principles, patterns, products, and artifacts.
             </p>
           </Card>

@@ -98,7 +98,7 @@ const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }
     Icon: UserRound,
     items: [
       ["/background", "Professional background", resume.summary],
-      ["/resume", "Interactive resume", "Career evidence, capabilities, and public-safe enterprise architecture experience."],
+      ["/resume", "Interactive resume", "The full career record, with what each role actually involved."],
       ["/contact", "Contact", "Reach out about Operational Intelligence, Agentic SRE, architecture, and collaboration."]
     ]
   }

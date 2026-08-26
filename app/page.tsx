@@ -27,13 +27,13 @@ const proofStrip = [
 
 const inspectionLedger = [
   ["/start-here", "Visitor Proof Map", "The fastest path through Ravikanth Seri's work, GitHub, resume, and Operational Intelligence thesis."],
-  ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "Definition, boundaries, ten layers, glossary, and claim posture."],
-  ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Contracts, state machines, schemas, gates, and conformance levels."],
-  ["/investigation-room", "Operations Room", "Synthetic investigation with evidence graph, replay, contradiction, missing evidence, and approval."],
-  ["/evals", "Trust Evals", `${homeEvalReport.fixtures.length} deterministic fixtures covering grounding, refusal, routing, and citations.`],
-  ["/radar", "Thesis Radar", "Market signals for AI observability, ops for observability, AgentOps, AIOps evaluation, and operational readiness."],
-  ["/library", "Publishing System", "Searchable, cited, linked assets connected to framework layers, patterns, RSS, and Ask retrieval."],
-  ["/work", "Public Work", "Public-safe experience, systems judgment, resume proof, GitHub, LinkedIn, and current work."]
+  ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "What Operational Intelligence claims, and where the claim stops."],
+  ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Precise enough to build from: contracts, schemas, and gates."],
+  ["/investigation-room", "Operations Room", "A synthetic incident you can work end to end, including what the evidence missed."],
+  ["/evals", "Trust Evals", `${homeEvalReport.fixtures.length} fixtures checking whether Ask stays grounded, refuses well, and cites.`],
+  ["/radar", "Thesis Radar", "Where the market is moving, and what would prove the thesis wrong."],
+  ["/library", "Publishing System", "Everything written down, searchable and cited well enough to reuse."],
+  ["/work", "Public Work", "Fifteen years of it, with the proof attached."]
 ] as const;
 
 

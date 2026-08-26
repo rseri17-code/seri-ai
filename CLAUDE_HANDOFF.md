@@ -718,3 +718,23 @@ One pin was legitimately re-pointed (the "Thesis spine" caption), which is the c
 Still un-audited: `/evals`, `/contact`, and the doctrine/wiki page template.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+### 2026-08-26 — Claude: the homepage route index, and what "public-safe" is doing in visitor copy
+
+**The homepage route index was the highest-visibility instance of the pattern.** Seven destinations, and all seven descriptions were the same shape: a comma-inventory of four to five abstract nouns. "Definition, boundaries, ten layers, glossary, and claim posture." "Contracts, state machines, schemas, gates, and conformance levels." "Searchable, cited, linked assets connected to framework layers, patterns, RSS, and Ask retrieval." Because every entry scanned identically, the list gave a visitor no basis for choosing one — which is the entire job of a route index.
+
+Rewritten so each says what you would go there *for*: Doctrine is now "What Operational Intelligence claims, and where the claim stops"; Radar is "Where the market is moving, and what would prove the thesis wrong"; Work is "Fifteen years of it, with the proof attached." The seven labels are validator-pinned and were left alone — only the descriptions changed, which is the surgical cut.
+
+**On "public-safe": it appeared 40 times in visitor-facing code, doing three different jobs.** Worth separating, because the term is not uniformly a problem.
+
+- *Load-bearing and honest* — where it marks a synthetic fixture or an actual boundary: the Operations Room's "Replay uses synthetic public-safe evidence only", the `/start-here` boundary panel, the `/evals` limitation note. These are disclosures. **Keep them.** The term is doing real work: it tells a reader this is not production data.
+- *Decorative* — where it modifies a noun on a public website: "Public-safe builds and reference patterns", "Public-safe experience, systems judgment, resume proof…", "indexed as one public-safe graph". On a public page every artifact is public by definition, so the modifier asserts nothing and reads as a compliance tic. **Removed in eight places.**
+- *Simulator provenance labels* — roughly a dozen repetitions across adjacent fixture labels ("public-safe scenario fixture", "public-safe dependency model", "public-safe alert fixture"). Individually meaningful, collectively noise; one statement at the top of the panel would carry the same information. **Left alone and flagged for Codex** — it is simulator-data territory and not worth an oscillation.
+
+Notably, the decorative uses correlated almost perfectly with the noun-inventory habit — the same sentences carried both. They come from the same reflex of summarizing the system instead of addressing a reader.
+
+**Process note: one pin was missed by an over-specific grep.** I checked for the full sentence "Public-safe proof points that explain the operating background…" and found no pin, but the validator pins the four-word substring "Public-safe proof points". `npm test` caught it immediately, which is the harness working correctly — but the lesson for both agents is to grep pins on the **shortest distinctive fragment**, not the whole sentence.
+
+**Budget warning for Codex: `/work` is at 194,917 bytes against a 195,000 ceiling — 83 bytes of headroom.** That is close enough that almost any addition to that route will fail the build. The homepage is more comfortable at 208,595 of 210,000 (this pass returned ~300 bytes). `/work` should be trimmed before anything is added to it.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.

@@ -39,7 +39,7 @@ export default function ChangelogPage() {
           <Card className="border-mint/25 bg-mint/[0.05]">
             <h2 className="text-3xl font-semibold text-white">Every release should make Ravikanth Seri&apos;s body of work more inspectable, not merely larger.</h2>
             <p className="mt-4 text-lg leading-8 text-slate-300">
-              The release log tracks public-safe publications, proof objects, evaluation surfaces, and product improvements that strengthen the Operational Intelligence reference system.
+              Each entry says what was added and what it made possible to check. Growth that adds nothing inspectable is not progress.
             </p>
           </Card>
           <div className="grid gap-3 md:grid-cols-2">

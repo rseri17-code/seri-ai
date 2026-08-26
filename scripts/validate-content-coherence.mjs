@@ -1116,7 +1116,7 @@ for (const required of [
   "200 hours / quarter",
   "evalReport.fixtures.length",
   "v1.0 doctrine",
-  "Public-safe proof points",
+  "stated as numbers rather than adjectives",
   "Ravikanth Seri's public resume.",
   "Architecture judgment ledger",
   "Public code inspection path",
