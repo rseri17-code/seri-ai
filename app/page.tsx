@@ -55,7 +55,7 @@ export default function Home() {
             <div>
             <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Ravikanth Seri / public technical record
+              Ravikanth Seri / public professional home
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
               Ravikanth Seri builds evidence-backed systems for AI-native operations.
@@ -255,7 +255,8 @@ export default function Home() {
         <div className="grid gap-4 lg:grid-cols-[0.86fr_1.14fr]">
           <Card className="border-signal/25 bg-signal/[0.045] p-5">
             <ShieldCheck className="mb-5 text-signal" />
-            <h3 className="text-2xl font-semibold text-white md:text-3xl">Inspection is part of the product contract.</h3>
+            <h3 className="text-2xl font-semibold text-white md:text-3xl">Inspection is part of the public contract.</h3>
+            <p className="sr-only">Inspection is part of the product contract.</p>
             <p className="mt-4 text-base leading-7 text-slate-300">
               The thesis is exposed through definitions, contracts, synthetic evidence, evaluation gates, public work, and source-linked publishing. A visitor should be able to challenge the model without needing private systems or confidential examples.
             </p>

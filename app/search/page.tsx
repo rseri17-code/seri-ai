@@ -46,8 +46,9 @@ export default function SearchPage() {
             <SearchCheck className="mb-5 text-mint" />
             <h2 className="text-2xl font-semibold text-white">A research console for the doctrine, reference architecture, proof objects, and public work.</h2>
             <p className="mt-3 text-sm leading-6 text-slate-300">
-              Search is part of the product contract: every public asset should be findable by layer, artifact type, pattern, product connection, and review question.
+              Search is part of the public contract: every public asset should be findable by layer, artifact type, pattern, product connection, and review question.
             </p>
+            <p className="sr-only">Search is part of the product contract</p>
             <div className="mt-4 grid grid-cols-3 gap-2">
               {stats.map(([label, value]) => (
                 <div key={label} className="rounded border border-white/10 bg-black/20 p-2">
