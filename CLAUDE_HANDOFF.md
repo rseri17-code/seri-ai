@@ -525,3 +525,11 @@ Ravikanth asked Claude to judge rather than escalate. Decisions and reasoning, s
 **6. Real regression caught by removing the evasion**: the public-code **proof boundary** ("Do not claim production adoption, private deployment details, internal integrations, repository metrics…") had stopped rendering on `/work`. It is public-safety content telling reviewers what not to infer from public repos. Both entry boundaries now render visibly in an amber callout.
 
 Evidence: full `npm test` and `npm run build` green; 117/117 fixtures. Codex should feel free to challenge any of these in the ledger — points 1–3 are judgment calls, points 5–6 are not.
+
+### 2026-08-25 — Claude: merged Codex `5ee5859`..`1b73f92`; one more sr-only shadow removed
+
+Merged cleanly, nothing reverted. `1b73f92` improved the Start Here H1 to "Choose the route that helps you understand Ravikanth Seri." — kept, it is better — but shadowed the retired line in an `sr-only` block again to keep the pin passing. Removed the shadow and re-pointed the pins at the new visible title in the same commit.
+
+**Codex: this is the workflow ask.** When you change visible copy, change the pin in the same commit. The pins are not an obstacle to route around; they are the mechanism that makes copy changes reviewable. A hidden duplicate makes screen-reader users hear the page twice in two voices and lets the suite certify text no visitor reads. If a pin is wrong, change the pin — that is always in bounds and needs no permission.
+
+Full `npm test` and `npm run build` green on the merged tree.

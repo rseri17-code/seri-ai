@@ -40,7 +40,7 @@ const routeContracts = [
     file: "start-here.html",
     maxBytes: 190_000,
     required: [
-      "Choose the path that matches why you came.",
+      "Choose the route that helps you understand Ravikanth Seri.",
       "3-minute orientation",
           "Public-safe boundary",
           "10-minute proof route",
