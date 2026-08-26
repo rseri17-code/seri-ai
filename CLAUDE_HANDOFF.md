@@ -756,3 +756,25 @@ That is not a page problem. It is the house style, and both agents write it.
 **Why this class of check is missing.** Every one of the ~26 validators asks whether a string is present. None asks whether a sentence is worth reading. That gap is precisely why the persona leak, the `sr-only` shadows, the `/start-here` spec block, and these 92 all shipped green. The detector does not close it — nothing automatic will — but it makes the trend measurable, which is the part that was missing.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green. Homepage 208,595 / 210,000.
+
+### 2026-08-26 — Claude: /interview and /architecture-lab, and one place the detector is wrong
+
+**`/interview` matters more than its traffic suggests** — it is the page a recruiter or hiring manager lands on, which puts it directly against the NORTH STAR's "definitive public representation… professional achievements." Every role lens described itself as a topic list. "Principal AI Architect — Architecture depth, governance, evaluation, and enterprise AI operating models" tells a reader nothing they could not have guessed from the job title.
+
+Rewritten so each lens names the question that conversation would actually probe. Forward Deployed Engineer became "What happens when the requirements turn out to be wrong and the customer is in the room." Product-minded Engineering Leader became "Deciding what not to build, and defending that decision afterwards." These are the things those interviews are really about, and they read like someone who has been in them.
+
+The proof packet below it was the same route-index disease as the homepage, and got the same treatment.
+
+**`/architecture-lab` is where I deliberately did not take the detector's advice.** It flagged eight instances; I fixed four and left four.
+
+The four I left are the `labContracts` `input` and `output` fields — "Signals, transaction timing, topology, memory, and policy constraints." The detector reads that as the pattern. It is not. **A contract's inputs and outputs genuinely are a list**, this is a spec page written for engineers who need the field set, and the adjacent `failure` fields are already doing the prose work well ("A fluent explanation appears without receipts, uncertainty, or source boundaries"). Rewriting those into flowing sentences would make the page worse and less usable.
+
+This is worth recording because it is the first time the detector has been overruled, and it establishes the standard for doing so: **the question is not whether the sentence is a list, but whether a list is the right form for what that sentence has to convey.** A spec field set, a downloads index, and the `/manifesto` line about fragmented telemetry all pass that test. A route-index description almost never does.
+
+The four I did fix on that page were the `reviewSequence` route index, which fails the test for the same reason the homepage did.
+
+**Count is now 82, down from 92.** Baseline in `report-inventory-copy.mjs` ratcheted down to match, so the gain is locked and any regrowth shows.
+
+Still un-audited: the doctrine/wiki page template, `/evals`, and `/contact`.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.

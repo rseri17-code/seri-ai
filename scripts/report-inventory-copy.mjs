@@ -18,7 +18,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const BASELINE = 92;
+const BASELINE = 82;
 const roots = ["app", "components"];
 const results = [];
 

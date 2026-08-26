@@ -44,10 +44,10 @@ const labContracts = [
 ] as const;
 
 const reviewSequence = [
-  ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine", "Definitions, boundaries, claims, and glossary."],
-  ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Contracts, state machines, data objects, gates, and governance."],
-  ["/wiki/operational-intelligence-publication-pack", "Publication Pack", "Diagrams, comparison tables, decision packet, walkthrough, and PDFs."],
-  ["/wiki/operational-intelligence-evidence-pack", "Evidence Pack", "Benchmark rubric, conformance checklist, and falsification criteria."]
+  ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine", "What the category is, and what it explicitly is not."],
+  ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Precise enough to implement without a conversation first."],
+  ["/wiki/operational-intelligence-publication-pack", "Publication Pack", "The diagrams and worked examples, in a form you can forward."],
+  ["/wiki/operational-intelligence-evidence-pack", "Evidence Pack", "How to check the claims, and what would break them."]
 ] as const;
 
 export default function ArchitectureLabPage() {

@@ -14,18 +14,18 @@ export const metadata: Metadata = publicRouteMetadata({
 });
 
 const modes = [
-  ["Principal AI Architect", "Architecture depth, governance, evaluation, and enterprise AI operating models.", Cpu],
-  ["Forward Deployed Engineer", "Customer-facing problem solving, implementation judgment, and ambiguity handling.", Rocket],
-  ["Enterprise AI Solutions Architect", "Reference architectures, stakeholder translation, platform adoption, and production readiness.", Network],
-  ["Product-minded Engineering Leader", "Category thinking, product judgment, roadmap discipline, and operating cadence.", Users],
-  ["Operational Intelligence Founder", "ReasonOps, market thesis, product wedge, and public body of work.", BriefcaseBusiness]
+  ["Principal AI Architect", "How the architecture holds up when governance and evaluation are the constraint rather than an afterthought.", Cpu],
+  ["Forward Deployed Engineer", "What happens when the requirements turn out to be wrong and the customer is in the room.", Rocket],
+  ["Enterprise AI Solutions Architect", "Getting a reference architecture adopted by teams who did not ask for one.", Network],
+  ["Product-minded Engineering Leader", "Deciding what not to build, and defending that decision afterwards.", Users],
+  ["Operational Intelligence Founder", "The thesis, the wedge, and why this is a category rather than a feature.", BriefcaseBusiness]
 ];
 
 const proofPacket = [
-  ["/work", "Work index", "Systems, frameworks, domains, artifacts, writing, and background in one review path."],
-  ["/resume", "Interactive resume", "Career evidence, architecture highlights, public proof, skills, education, and certifications."],
-  ["/projects/operational-intelligence-copilot", "Copilot proof page", "Evidence path, framework handoff, failure modes, and related reference assets."],
-  ["/architecture-lab", "Architecture lab", "Reusable implementation contracts for evidence, replay, evaluation, and operator control."],
+  ["/work", "Work index", "Everything in one place, ordered so you can stop as soon as you have enough."],
+  ["/resume", "Interactive resume", "The conventional record, with the architecture decisions attached to each role."],
+  ["/projects/operational-intelligence-copilot", "Copilot proof page", "One project traced end to end, including the failure modes it is designed around."],
+  ["/architecture-lab", "Architecture lab", "The implementation contracts, reusable as written."],
   ["/evals", "Trust report", "Deterministic behavior fixtures for Ask Ravi and public-safe refusal."],
   ["/contact", "Practitioner review", "Structured path for external critique and follow-up."]
 ] as const;
