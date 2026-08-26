@@ -68,7 +68,7 @@ export default function NowPage() {
       <Section eyebrow="Now" title="What Ravikanth is actively building and thinking through." level="h1">
         <Card className="mb-5 border-mint/25 bg-mint/[0.05]">
           <BrainCircuit className="mb-5 text-mint" />
-          <h2 className="text-3xl font-semibold text-white">The current work treats Agentic SRE as an inspectable operating system.</h2>
+          <h2 className="text-3xl font-semibold text-white">Ravikanth Seri is treating Agentic SRE as an inspectable operating system.</h2>
           <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
             The work is not generic AI adoption. It is the architecture of operational agents that can collect evidence,
             build hypotheses, replay reasoning, evaluate behavior, preserve memory, and hand accountable decisions back to humans.

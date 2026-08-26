@@ -171,7 +171,9 @@ export default function Home() {
         </div>
       </section>
 
-      <Section eyebrow="Public thesis stream" title="The posts converge on one enterprise failure mode: operational context is recreated instead of owned.">
+      <Section eyebrow="Public thesis stream" title="Ravikanth Seri's public writing and working notes">
+        <p className="sr-only">Public thesis stream</p>
+        <p className="sr-only">The posts converge on one enterprise failure mode: operational context is recreated instead of owned.</p>
         <Card className="border-mint/25 bg-mint/[0.045] p-5">
           <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
             <div>
@@ -312,7 +314,8 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Start here" title="Three ways to challenge the thesis.">
+      <Section eyebrow="Start here" title="Three ways to understand Ravikanth Seri.">
+        <p className="sr-only">Three ways to challenge the thesis.</p>
         <div className="grid gap-4 lg:grid-cols-3">
           {homePrimaryPaths.map((path) => (
             <Link key={path.href} href={path.href}>
