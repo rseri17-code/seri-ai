@@ -49,7 +49,7 @@ export default function LibraryPage() {
             <BookOpen className="mb-5 text-mint" />
             <h2 className="text-2xl font-semibold text-white">Not a blog. A compounding body of work.</h2>
             <p className="mt-4 leading-7 text-slate-300">
-              The Library collects doctrine, reference architecture, evidence packs, diagrams, field guides, memos, and essays that define the language of Operational Intelligence.
+              Doctrine, reference architecture, evidence packs, and field guides &mdash; written to be cited, argued with, and reused by people building the same thing.
             </p>
             <div className="mt-5 grid grid-cols-2 gap-3">
               {corpusStats.map(([label, value]) => (

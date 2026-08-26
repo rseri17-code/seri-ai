@@ -70,8 +70,9 @@ export default function NowPage() {
           <BrainCircuit className="mb-5 text-mint" />
           <h2 className="text-3xl font-semibold text-white">Ravikanth Seri is treating Agentic SRE as an inspectable operating system.</h2>
           <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
-            The work is not generic AI adoption. It is the architecture of operational agents that can collect evidence,
-            build hypotheses, replay reasoning, evaluate behavior, preserve memory, and hand accountable decisions back to humans.
+            Not generic AI adoption. The question is narrower: what does an operational agent have to do before anyone
+            should let it near production? Gather evidence, hold competing explanations open, and hand the decision back
+            to a human who can see exactly how it was reached.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/work" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">

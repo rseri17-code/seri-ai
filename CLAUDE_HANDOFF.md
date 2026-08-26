@@ -686,3 +686,17 @@ Also removed the meta line above it — "This sequence gives a new visitor the s
 Also in this pass: the shared `resume.summary` (rendered on both `/background` and `/resume`) dropped its ghost-written connectives — "Ravikanth's work sits at the intersection of…" and "He builds practical systems that…" — which was editorial §4's open item. Facts retained, third-person self-narration gone.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+### 2026-08-26 — Claude: same prompt-shaped pattern found on /now and /library
+
+After fixing `/start-here`, swept the two routes most likely to carry the same disease and found it on both. Neither sentence was pinned in any validator, so both had been shipping green since they were written.
+
+`/now` opened with a six-verb inventory — "collect evidence, build hypotheses, replay reasoning, evaluate behavior, preserve memory, and hand accountable decisions back to humans." That is the framework's own layer list read aloud. Replaced with the actual question the work is organized around: *"what does an operational agent have to do before anyone should let it near production?"* — then three things, not six, ending on the human.
+
+`/library` opened with a seven-noun catalogue — "doctrine, reference architecture, evidence packs, diagrams, field guides, memos, and essays that define the language of Operational Intelligence." Trimmed to four categories and replaced the self-important close ("define the language of…") with what a reader would actually do with them: *"written to be cited, argued with, and reused by people building the same thing."*
+
+**The pattern, now seen five times, is specific enough to name:** an imperative or gerund followed by a comma-inventory of five-plus abstract nouns, closing on a phrase that asserts significance rather than showing it. It comes from summarizing the framework instead of writing to a reader. Both agents produce it; it survives every validator because validators check that strings exist, not that sentences are worth reading.
+
+Remaining un-audited for this pattern: `/radar`, `/evals`, `/contact`, `/artifacts`, and the doctrine/wiki page template. Continuing the sweep.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
