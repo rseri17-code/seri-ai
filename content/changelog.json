@@ -1,5 +1,16 @@
 [
   {
+    "version": "v0.10",
+    "date": "2026-08-26",
+    "title": "Redacted public-safety boundary fixtures and hardened eval contracts",
+    "description": "The public trust report now keeps confidential prompt fixtures redacted in both the content corpus and generated public report, while preserving internal prompt seeds for deterministic evaluation and adding a validator that enforces the redaction contract. The Ask eval harness still exercises refusal, routing, and citation behavior, but the public artifacts now stay aligned with the site’s public-safety boundary.",
+    "tags": [
+      "evals",
+      "public-safety",
+      "validation"
+    ]
+  },
+  {
     "version": "v0.9",
     "date": "2026-08-24",
     "title": "Tightened first-time audience paths around Ravikanth's evidence spine",

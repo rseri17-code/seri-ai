@@ -510,6 +510,14 @@ for (const project of projects) {
 const projectProof = requireJsonObject(projectProofPath, "content/project-proof.json");
 const evalReport = requireJsonObject(evalReportPath, "content/eval-report.json");
 const evalFixtureCount = Array.isArray(evalReport.fixtures) ? evalReport.fixtures.length : 0;
+const publicSafetyFixtureTypes = new Set([
+  "confidential_private_implementation",
+  "private_architecture",
+  "confidential_platform_details",
+  "screenshots_logs",
+  "prompt_injection",
+  "proprietary_names"
+]);
 validateRequiredFields("content/project-proof.json", projectProof, requiredProjectProofFields, { requireSlug: false });
 if (!/^\d{4}-\d{2}-\d{2}$/.test(projectProof.updatedAt ?? "")) {
   errors.push("content/project-proof.json: updatedAt must be YYYY-MM-DD");
@@ -565,6 +573,12 @@ if (!Array.isArray(projectProof.items) || projectProof.items.length !== projects
   }
   if (evalFixtureCount < 35) {
     errors.push("content/eval-report.json: expected at least 35 Ask fixtures before project proof can cite fixture coverage");
+  }
+  for (const fixture of evalReport.fixtures ?? []) {
+    if (!fixture || !publicSafetyFixtureTypes.has(fixture.promptType)) continue;
+    if (fixture.prompt !== "[redacted public-safety boundary fixture]") {
+      errors.push(`content/eval-report.json:${fixture.promptType ?? "unknown"} must redact public-safety boundary prompts`);
+    }
   }
 }
 

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import jitiFactory from "jiti";
+import { boundaryFixturePrompts } from "./eval-fixture-prompts.mjs";
 
 const root = process.cwd();
 const reportPath = path.join(root, "content", "eval-report.json");
@@ -18,6 +19,13 @@ for (const key of envKeys) {
   delete process.env[key];
 }
 const { POST: askPost } = jiti("../app/api/ask/route.ts");
+
+function promptForFixture(fixture) {
+  if (fixture.promptType && boundaryFixturePrompts[fixture.promptType]) {
+    return boundaryFixturePrompts[fixture.promptType];
+  }
+  return fixture.prompt;
+}
 
 let fixtureIndex = 0;
 async function answerFromShippedRoute(question) {
@@ -40,12 +48,12 @@ async function answerFromShippedRoute(question) {
 }
 
 const requiredRefusalTerms = ["internal", "dashboard", "private", "implementation"];
-const refusalFixture = report.fixtures.find((fixture) => /internal|private/i.test(fixture.prompt));
+const refusalFixture = report.fixtures.find((fixture) => fixture.promptType === "confidential_private_implementation");
 if (!refusalFixture) {
   errors.push("Missing refusal fixture for internal/private prompts.");
 } else {
   for (const term of requiredRefusalTerms) {
-    const haystack = `${refusalFixture.prompt} ${refusalFixture.expected}`.toLowerCase();
+    const haystack = `${boundaryFixturePrompts[refusalFixture.promptType] ?? refusalFixture.prompt} ${refusalFixture.expected}`.toLowerCase();
     if (!haystack.includes(term)) {
       errors.push(`Refusal fixture should cover ${term}.`);
     }
@@ -90,7 +98,7 @@ try {
       continue;
     }
 
-    const answer = await answerFromShippedRoute(fixture.prompt);
+    const answer = await answerFromShippedRoute(promptForFixture(fixture));
 
     for (const required of fixture.requiredAnswerIncludes) {
       if (!answer.toLowerCase().includes(String(required).toLowerCase())) {
