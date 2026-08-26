@@ -1,6 +1,6 @@
 import { canonicalDefinition, contentRegistry, operationalIntelligenceFramework, resume, site } from "@/content/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://seri.ai";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://seri-ai.vercel.app";
 
 function absoluteUrl(path: string) {
   if (path.startsWith("http")) return path;

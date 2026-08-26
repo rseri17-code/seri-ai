@@ -1,5 +1,5 @@
 export function getRuntimeEnvironment() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://seri.ai";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://seri-ai.vercel.app";
   const canonicalDomain = process.env.NEXT_PUBLIC_CANONICAL_DOMAIN || new URL(siteUrl).hostname;
   const aiProvider = process.env.AI_PROVIDER === "anthropic" ? "anthropic" : "openai";
   const openAiConfigured = Boolean(process.env.OPENAI_API_KEY);

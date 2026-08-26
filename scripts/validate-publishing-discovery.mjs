@@ -63,9 +63,9 @@ for (const asset of assets) {
   expect(asset.frameworkLayers.length > 0 || asset.assetType === "principle", `${asset.url}: missing framework-layer relationship`);
 }
 
-const rss = buildRssFeed("https://seri.ai");
+const rss = buildRssFeed("https://seri-ai.vercel.app");
 const rssItems = extractTags(rss, "item");
-const rssLinks = extractTags(rss, "link").filter((link) => link.startsWith("https://seri.ai/"));
+const rssLinks = extractTags(rss, "link").filter((link) => link.startsWith("https://seri-ai.vercel.app/"));
 const rssGuids = extractTags(rss, "guid");
 
 expect(rss.startsWith("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"), "RSS feed missing XML declaration");
@@ -76,7 +76,7 @@ expect(new Set(rssGuids).size === rssGuids.length, "RSS feed contains duplicate 
 expect(rss.includes("Operational Intelligence field notes, patterns, artifacts, and product updates."), "RSS feed missing channel description");
 
 for (const route of canonicalRoutes.slice(0, 4)) {
-  expect(rss.includes(`https://seri.ai${route}`), `RSS feed missing canonical route ${route}`);
+  expect(rss.includes(`https://seri-ai.vercel.app${route}`), `RSS feed missing canonical route ${route}`);
 }
 
 const changelog = getPublicationChangelog();

@@ -596,3 +596,15 @@ Ravikanth's first Vercel deploy failed at `validate:reference` with `TypeError: 
 7. **Record real numbers**: uptime/latency observations, Lighthouse or Vercel Speed Insights if available. These are the first measured values the scorecard has ever had.
 
 **Deployment note for Ravikanth (not blocking)**: `seri-ifwehxtbf-seriz1.vercel.app` is a *deployment-specific* URL — the hash changes on every push, so it is not a stable address to give reviewers or to set as canonical. Vercel also exposes a stable production alias (typically `<project>.vercel.app`) under the project's Domains tab. Use that alias for `NEXT_PUBLIC_SITE_URL`, and for anything shared externally.
+
+### 2026-08-26 — Claude: canonical URLs repointed to the live deployment
+
+**Stable production alias is `https://seri-ai.vercel.app`.** Repointed every protocol-qualified canonical default from `https://seri.ai` to the live URL across 13 files: `app/layout.tsx` (`metadataBase`), `app/sitemap.ts`, `app/robots.ts`, `app/api/ingest/route.ts`, `components/structured-data.tsx` (JSON-LD), `lib/env.ts`, `lib/publishing.ts` (RSS), `lib/llms.ts`, `.env.example`, and the four validators that pin those URLs.
+
+**Why this was urgent, not cosmetic.** `seri.ai` currently resolves to a domain-for-sale parking page. Until this change, the deployed site emitted canonical tags, a sitemap, `robots.txt`, RSS item links, JSON-LD, and OG URLs all pointing at that parked domain. Search engines treat a canonical tag as an instruction about which URL is authoritative — the live site was actively telling crawlers that the real page lived on a for-sale listing. That is worse than having no canonical at all, and it would have suppressed indexing of the actual site.
+
+**The brand string is untouched.** `content/site-config.json` still reads `"name": "seri.ai"` — the product is still called seri.ai. Only protocol-qualified URLs moved.
+
+**Reverting later is one line.** If the `seri.ai` domain is acquired, set `NEXT_PUBLIC_SITE_URL=https://seri.ai` in Vercel; the code defaults exist only as a fallback for when the variable is unset, and after the `??`→`||` fix an empty value also falls back safely.
+
+Evidence: `npm test` and `npm run build` green; zero protocol-qualified `https://seri.ai` references remain in `app/`, `lib/`, `scripts/`, `components/`; empty-env-var build still passes.

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { buildPublishingIndex, getShareableReferenceRoutes } from "@/lib/publishing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://seri.ai";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://seri-ai.vercel.app";
   const staticRoutes = [
     "",
     "/work",

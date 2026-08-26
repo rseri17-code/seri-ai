@@ -3,7 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const serverAppDir = path.join(root, ".next", "server", "app");
-const siteUrl = "https://seri.ai";
+const siteUrl = "https://seri-ai.vercel.app";
 const errors = [];
 
 const routeContracts = [

@@ -14,7 +14,7 @@ const canonicalReferenceRoutes = [
   "/contact"
 ];
 
-export function buildLlmsTxt(siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://seri.ai") {
+export function buildLlmsTxt(siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://seri-ai.vercel.app") {
   const assets = buildPublishingIndex()
     .filter((asset) => asset.status === "published")
     .filter((asset) => canonicalReferenceRoutes.includes(asset.url) || asset.assetType === "pattern" || asset.assetType === "article")

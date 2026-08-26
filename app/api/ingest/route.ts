@@ -40,7 +40,7 @@ export async function POST(request: Request) {
           return chunks.map(async (chunk, index) => ({
             title: source.title,
             source_type: mapSourceType(source.type),
-            source_url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://seri.ai"}${source.url}`,
+            source_url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://seri-ai.vercel.app"}${source.url}`,
             content: chunk,
             chunk_index: index,
             public_safe: true,

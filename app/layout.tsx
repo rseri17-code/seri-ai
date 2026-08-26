@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "seri.ai | Operational Intelligence for AI-native Operations",
   description:
     "Ravikanth Seri's public home for Operational Intelligence: an inspectable operating model for evidence, hypotheses, replay, evaluation, and human-reviewed action.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://seri.ai"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://seri-ai.vercel.app"),
   alternates: {
     canonical: "/",
     types: {
