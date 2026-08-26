@@ -640,3 +640,15 @@ Acting as design owner at Ravikanth's direction, taking the two judgment calls f
 **Result, measured across 11 routes at 1440x1000 and 390x844: zero target-size violations at either viewport.** The audit script encodes the inline-prose exemption so it does not produce false positives on body copy.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+### 2026-08-26 — Claude: /work now opens with career facts, not claims about the work
+
+`/work` is where a recruiter or engineering leader actually decides, and it opened with three stacked abstractions before a single fact: "…experience, writing, artifacts, and systems work converge on one thesis", then "…connects enterprise systems experience to AI-native operations and artifacts", then a noun-inventory of proof surfaces. Nothing concrete appeared until the career-arc dates well below the fold — even though the concrete material already existed in `content/professional-graph.json`.
+
+**Now**: "Fifteen-plus years running enterprise systems, now applied to AI that acts on production." followed by the actual arc — middleware and API architecture in regulated financial services, then modernization, telemetry correlation and Kubernetes reliability, and since 2025 bounded AI agents with deterministic orchestration and tool governance. Same show-don't-tell move applied to the hero earlier today: state the facts, let the reader draw the conclusion the abstraction was asserting.
+
+Two secondary wins from the same edit: the trailing noun-inventory ("doctrine, architecture, evidence pack, Operations Room, resume, GitHub, and LinkedIn") is gone, continuing the comma-inventory cleanup from editorial §7; and the `Public proof` phrase required by the touch-walkthrough contract was retained inside the sharper sentence rather than re-pinned around it.
+
+The rewrite pushed `/work` 252 bytes over its rendered budget. Tightened the copy to fit rather than raising the budget — third time today that constraint has forced better writing rather than worse, which is an argument for keeping the budgets tight.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.

@@ -110,12 +110,15 @@ export default function WorkPage() {
       <Section eyebrow="Work" title="Ravikanth Seri's operating record." level="h1">
         <Card className="border-mint/25 bg-mint/[0.05]">
           <BrainCircuit className="mb-5 text-mint" />
-          <h2 className="text-3xl font-semibold text-white">Ravikanth Seri&apos;s experience, writing, artifacts, and systems work converge on one thesis.</h2>
+          <h2 className="text-3xl font-semibold text-white">
+            Fifteen-plus years running enterprise systems, now applied to AI that acts on production.
+          </h2>
           <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
-            Ravikanth&apos;s public work connects enterprise systems experience to AI-native operations and artifacts.
+            Middleware and API architecture in regulated financial services, then modernization, telemetry correlation, and Kubernetes reliability.
+            Since 2025: bounded AI agents, deterministic orchestration, tool governance.
           </p>
           <p className="mt-3 max-w-4xl text-base leading-7 text-slate-400">
-            Public proof stays the rule: doctrine, architecture, evidence pack, Operations Room, resume, GitHub, and LinkedIn.
+            Public proof is the rule: everything below states what it proves and what it does not.
           </p>
           <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-300">
             Inspect{" "}
