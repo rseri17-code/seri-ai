@@ -39,8 +39,6 @@ export default async function AskPage({
   return (
     <>
       <Section eyebrow="Ask Ravikanth" title="Ask the public record." level="h1">
-        {/* Ask about Ravikanth's work. */}
-        <p className="sr-only">Ask about Ravikanth&apos;s work.</p>
         <Chat initialPrompt={initialPrompt} suggestedPrompts={askRaviPrompts} />
         <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.055] p-5">

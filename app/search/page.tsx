@@ -45,11 +45,9 @@ export default function SearchPage() {
           <Card className="border-mint/25 bg-mint/[0.045] p-5">
             <SearchCheck className="mb-5 text-mint" />
             <h2 className="text-2xl font-semibold text-white">A public research index for the doctrine, reference architecture, proof objects, and public work.</h2>
-            <p className="sr-only">A research console for the doctrine, reference architecture, proof objects, and public work.</p>
             <p className="mt-3 text-sm leading-6 text-slate-300">
               Search is part of the public record: every public asset should be findable by layer, artifact type, pattern, work connection, and review question.
             </p>
-            <p className="sr-only">Search is part of the product contract</p>
             <div className="mt-4 grid grid-cols-3 gap-2">
               {stats.map(([label, value]) => (
                 <div key={label} className="rounded border border-white/10 bg-black/20 p-2">
