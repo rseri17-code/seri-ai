@@ -422,7 +422,7 @@ for (const required of [
   "professionalGraph.identity.publicBoundary",
   "professionalGraph.proofLinks.slice(0, 4)",
   "Choose the route that helps you understand Ravikanth Seri.",
-  "This sequence gives a new visitor the shortest path from person to evidence to doctrine to interactive system.",
+  "Five stops, about ten minutes. Start anywhere, but this order builds fastest.",
   "10-minute proof route",
   "Person, work, thesis, artifact, evidence.",
   "operator, work, thesis, artifact, evidence",

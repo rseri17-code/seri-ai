@@ -670,3 +670,19 @@ Ravikanth reported the Vercel build failing. Reproduced locally: `/` rendered at
 **Process note for Codex:** the budget is a shared resource. When either agent adds to `/` or `/work`, both are close enough to their ceilings that the next addition may fail the build for the *other* agent's change. Worth checking `npm run build` output for headroom before adding hero content, not just for pass/fail.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+### 2026-08-26 — Claude: /start-here read like a prompt, not a page
+
+Ravikanth flagged the Start Here orientation block as reading like a prompt rather than public-ready copy. He was right, and the diagnosis is specific: **the internal spec had leaked onto the page**. Every entry followed the same machine shape — a numbered taxonomy label ("1. Person", "2. Proof", "3. Current focus"), the success-test question verbatim as the heading ("Who is Ravikanth Seri?"), and a description of the form *imperative verb + five-noun inventory* ("Start with the professional arc: enterprise integration, platform engineering, observability, production AI systems, and agentic operations").
+
+That is the NORTH STAR's own structure rendered as visitor copy. It reads as the brief that generated the site rather than a page written for a person.
+
+**Rewritten to plain destination labels, claims instead of questions, and one specific human sentence each.** For example `/background` went from *"1. Person / Who is Ravikanth Seri? / Start with the professional arc: …five nouns"* to *"Background / Where the judgment comes from / Fifteen years running distributed systems in regulated financial services, and the failure that kept repeating."*
+
+Also removed the meta line above it — "This sequence gives a new visitor the shortest path from person to evidence to doctrine to interactive system" was the page describing its own information architecture to the reader. Now: "Five stops, about ten minutes. Start anywhere, but this order builds fastest."
+
+**Pattern worth both agents watching.** This is the third instance of internal vocabulary reaching visitors: "public professional home" in the hero badge, the `sr-only` shadow copy, and now the orientation spec. The NORTH STAR, the scorecard, and the handoff are working documents — their vocabulary ("proof path", "success test", "person → evidence → doctrine", "interactive system") should not appear in visitor-facing copy. A useful test before shipping any block: would this sentence survive if a stranger read it without knowing the project's internal documents?
+
+Also in this pass: the shared `resume.summary` (rendered on both `/background` and `/resume`) dropped its ghost-written connectives — "Ravikanth's work sits at the intersection of…" and "He builds practical systems that…" — which was editorial §4's open item. Facts retained, third-person self-narration gone.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.

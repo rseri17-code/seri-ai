@@ -553,7 +553,7 @@
   {
     "title": "Professional Background",
     "slug": "professional-background",
-    "summary": "Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial-services environments. Ravikanth's work sits at the intersection of AI-native operations, observability, identity modernization, Kubernetes platforms, runtime governance, and incident investigation. He builds practical systems that turn telemetry, transactions, topology, and operational memory into evidence-backed decisions.",
+    "summary": "Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial services. Current work is production AI agent systems for enterprise operations: bounded execution, agent observability, evaluation, and runtime governance. That work rests on a foundation of enterprise integration, identity modernization, Kubernetes platforms, and telemetry correlation, and on a single operating conviction: an operational decision should be able to show the evidence behind it.",
     "type": "background",
     "route": "/background",
     "status": "published",
@@ -578,7 +578,7 @@
     "updatedAt": "2026-07-16",
     "seo": {
       "title": "Ravikanth Seri Background",
-      "description": "Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial-services environments. Ravikanth's work sits at the intersection of AI-native operations, observability, identity modernization, Kubernetes platforms, runtime governance, and incident investigation. He builds practical systems that turn telemetry, transactions, topology, and operational memory into evidence-backed decisions."
+      "description": "Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial services. Current work is production AI agent systems for enterprise operations: bounded execution, agent observability, evaluation, and runtime governance. That work rests on a foundation of enterprise integration, identity modernization, Kubernetes platforms, and telemetry correlation, and on a single operating conviction: an operational decision should be able to show the evidence behind it."
     }
   },
   {

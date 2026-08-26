@@ -85,33 +85,33 @@ const tenMinuteProofRoute = [
 const orientationPath = [
   {
     href: "/background",
-    label: "1. Person",
-    title: "Who is Ravikanth Seri?",
-    detail: "Start with the professional arc: enterprise integration, platform engineering, observability, production AI systems, and agentic operations."
+    label: "Background",
+    title: "Where the judgment comes from",
+    detail: "Fifteen years running distributed systems in regulated financial services, and the failure that kept repeating."
   },
   {
     href: "/work",
-    label: "2. Proof",
-    title: "What has the work produced?",
-    detail: "Inspect the operating record: projects, artifacts, public writing, architecture material, GitHub signal, and review spine."
+    label: "Work",
+    title: "What actually got built",
+    detail: "Projects, architecture, and public code. Each one states what it proves and what it does not."
   },
   {
     href: "/now",
-    label: "3. Current focus",
-    title: "What is he building now?",
-    detail: "See the current thesis around Operational Intelligence, AI-assisted operations, evaluation, replay, and governed agentic systems."
+    label: "Now",
+    title: "What he is working on",
+    detail: "Current research, the open questions, and the evidence that would settle them."
   },
   {
     href: "/wiki/operational-intelligence-canonical-doctrine",
-    label: "4. Doctrine",
-    title: "How does he think about architecture and engineering?",
-    detail: "Read the canonical model that separates observability, AIOps, incident practice, knowledge graphs, and AI evaluation."
+    label: "Doctrine",
+    title: "The model, stated plainly enough to argue with",
+    detail: "What Operational Intelligence is, what it is not, and what would prove it wrong."
   },
   {
     href: "/ask",
-    label: "5. Ask",
-    title: "Can the body of work answer back?",
-    detail: "Ask questions against approved public content, with citations, refusal boundaries, and deterministic trust fixtures."
+    label: "Ask",
+    title: "Put it under question",
+    detail: "An AI over the public record. It cites its sources, names uncertainty, and refuses what it cannot support."
   }
 ] as const;
 
@@ -147,7 +147,7 @@ export default function StartHerePage() {
       <Card className="mb-6 border-signal/25 bg-signal/[0.04]">
         <h2 className="text-2xl font-semibold text-white">Recommended reading order</h2>
         <p className="mt-3 max-w-4xl leading-7 text-slate-300">
-          This sequence gives a new visitor the shortest path from person to evidence to doctrine to interactive system.
+          Five stops, about ten minutes. Start anywhere, but this order builds fastest.
         </p>
         <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
           {orientationPath.map((step) => (
