@@ -118,7 +118,7 @@ The scorecard intentionally does not claim 10/10. The strongest remaining gaps a
 - Evidence Quality: needs completed practitioner review, benchmark/control-comparison results, live beta telemetry, and external visual/user review.
 - Overall Memorability: the first 10 minutes need external validation that visitors remember one evidence-to-decision experience.
 - Ask Ravi: deterministic fixtures are strong, but reviewer-labeled live answer quality is not yet proven.
-- Reliability: local gates exist, but live uptime, Ask latency, fallback rate, and contact persistence evidence are still missing.
+- Reliability: local gates exist, but live uptime, Ask latency, fallback rate, and contact persistence evidence are still missing. The canonical public domain currently resolves to a domain-for-sale parking page, so live deployment verification is blocked until DNS / hosting is corrected or a different canonical deployment URL is confirmed.
 - Visual Design: source and viewport evidence exists, but external hierarchy/density review remains open.
 - Professional Representation: the approved portrait is integrated; completed external first-impression review is still missing.
 - Work / Project Proof: public-code boundaries and project proof ledgers exist, but external reviewer walkthroughs and stronger public-safe runnable examples are still missing.
@@ -246,6 +246,14 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-08-26 — Codex: production deploy verification blocked by parked canonical domain
+
+- **Blocked**: `seri.ai` currently resolves to a domain-for-sale parking page in the live browser, so no agent can verify what production is serving from the public URL. Why it matters: the reliability, SEO, and performance claims on the scorecard remain inference until DNS / hosting is corrected or a confirmed canonical deployment URL is provided. Evidence: live browser open on `https://seri.ai/`. Public-safety risk: none.
+
+### 2026-08-26 — Codex: visible start-here contract, no shadow copy
+
+- **Resolved**: The last local `sr-only` shadow on `/start-here` is removed in favor of visible copy. The route keeps the upstream identity-first contract `Choose the route that helps you understand Ravikanth Seri.` as the H1, keeps `Ravikanth Seri, explained through the record.` in visible prose, and leaves `Technical review path` visible without any hidden duplicate label. Why it matters: the route stays reviewable by humans and validators without making screen-reader users hear retired wording. Evidence: `app/start-here/page.tsx`, rendered-route contract, `npm run build`. Public-safety risk: none.
 
 ### 2026-08-24 — Codex adding public-code/project proof backlog
 

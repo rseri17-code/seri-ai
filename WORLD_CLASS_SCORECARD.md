@@ -1,6 +1,6 @@
 # seri.ai World-Class Scorecard
 
-Last updated: 2026-08-24
+Last updated: 2026-08-26
 
 This scorecard tracks whether seri.ai is becoming a durable public technical reference and personal engineering portfolio for Ravikanth Seri. It is not a marketing score and does not claim public-launch perfection. A category is complete only when evidence proves it, not when the site merely describes it.
 
@@ -29,7 +29,7 @@ Scale: `0-10`, evidence-based and non-inflated. A `10` means current evidence sh
 | Accessibility | 8.5 | Automated a11y validation covers headings, labels, focus, reduced motion, navigation, graph fallbacks, and the Keyboard Accessibility Walkthrough Notes artifact for Ask and Operations Room. The evidence level is source-validated keyboard accessibility walkthrough notes, not a screen-reader lab run. | Browser-recorded keyboard tab-order checks, screen-reader spot checks, and external assistive-technology review are still missing. | Run browser-recorded keyboard and screen-reader walkthroughs for Ask and Operations Room, then encode repeatable failures into validators. |
 | SEO | 8.3 | Sitemap, robots, RSS, llms.txt, OG images, canonical metadata, JSON-LD, and rendered metadata checks exist. | Live indexing and social-preview feedback are missing. | Inspect production indexing and previews after beta traffic. |
 | Performance | 8.7 | Production build, static generation, rendered-route validation, and performance budgets pass. | Operations Room needs real-device interaction latency evidence. | Measure route and interaction latency on preview or production devices. |
-| Reliability | 8.0 | API timeouts, rate limiting, fallbacks, local build gates, route validation, and runbook guidance exist. | Live uptime, Ask latency, fallback rate, and contact persistence evidence are missing. | Review Vercel and privacy-safe analytics after beta traffic. |
+| Reliability | 8.0 | API timeouts, rate limiting, fallbacks, local build gates, route validation, and runbook guidance exist. | Live uptime, Ask latency, fallback rate, and contact persistence evidence are missing; the canonical public domain currently resolves to a domain-for-sale parking page, so production verification is externally blocked until DNS / hosting is corrected or an alternate canonical deployment URL is confirmed. | Review Vercel and privacy-safe analytics after beta traffic. |
 | Security & Privacy | 8.6 | Public-safety scanner, env hygiene, prompt-injection fixtures, no raw prompt analytics, and dependency audit command are present. | Production secret scoping and rotation evidence still need verification. | Verify Vercel env scopes and document secret-rotation evidence. |
 | Maintainability | 8.7 | Durable content lives in structured files with TypeScript exports and validators across content, routes, links, publishing, and Ask. | Some UI-local support arrays remain. | Move only arrays that improve governance, retrieval quality, or review speed. |
 | Publication Quality | 8.5 | Doctrine, reference architecture, publication pack, evidence pack, glossary, diagrams, PDFs, RSS, and changelog exist. | Needs more field-tested examples and reviewer-driven revisions. | Version doctrine and reference changes only when evidence justifies them. |
