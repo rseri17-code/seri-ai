@@ -64,6 +64,24 @@ export default function Home() {
               Most incidents are slow not because the data is missing, but because nobody can assemble it fast enough to decide.{" "}
               Ravikanth Seri is building a public operating model for AI-native operations: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
             </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="rounded border border-white/10 bg-white/[0.035] p-3">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-signal">Who</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.person}</p>
+              </div>
+              <div className="rounded border border-white/10 bg-white/[0.035] p-3">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-signal">What</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.siteRole}</p>
+              </div>
+              <div className="rounded border border-white/10 bg-white/[0.035] p-3">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-signal">Now</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.currentFocus}</p>
+              </div>
+              <Link href="/start-here" className="rounded border border-white/10 bg-white/[0.035] p-3 transition hover:border-mint/45">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-signal">Proof path</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.throughline}</p>
+              </Link>
+            </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/start-here" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
                 Begin with the proof path <ArrowRight size={18} />
