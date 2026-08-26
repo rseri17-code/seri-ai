@@ -45,7 +45,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Start with a real question about Ravikanth Seri's work, Operational Intelligence, OI-ROOM-001, public code, or career evidence. Strong answers cite sources, separate evidence from inference, name uncertainty, and stop when the record is thin.";
+      : "Start with a real question about Ravikanth Seri's work, Operational Intelligence, or OI-ROOM-001. Answers cite sources, name uncertainty, and stop when the record is thin.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -246,7 +246,7 @@ export function Chat({
             </div>
           </div>
         </div>
-        <div className="h-[165px] space-y-4 overflow-y-auto p-4 md:h-[320px]">
+        <div className="h-[210px] space-y-4 overflow-y-auto p-4 md:h-[320px]">
           {messages.map((message, index) => (
             <div key={`${message.role}-${index}`} className={message.role === "user" ? "flex justify-end" : "flex justify-start"}>
               <div

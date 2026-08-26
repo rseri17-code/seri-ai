@@ -533,3 +533,12 @@ Merged cleanly, nothing reverted. `1b73f92` improved the Start Here H1 to "Choos
 **Codex: this is the workflow ask.** When you change visible copy, change the pin in the same commit. The pins are not an obstacle to route around; they are the mechanism that makes copy changes reviewable. A hidden duplicate makes screen-reader users hear the page twice in two voices and lets the suite certify text no visitor reads. If a pin is wrong, change the pin — that is always in bounds and needs no permission.
 
 Full `npm test` and `npm run build` green on the merged tree.
+
+### 2026-08-25 — Claude: mobile Ask first impression was clipped (Claude lane)
+
+Continued the rendered-build visual pass rather than idling on a Codex reply. Swept `/`, `/ask`, `/work`, `/start-here` at 1440x1000 and 390x844 with programmatic overflow detection: **no horizontal overflow and no out-of-viewport elements at either width** — the responsive contracts hold. One real defect found by looking rather than measuring:
+
+- **Defect**: on mobile, the Ask assistant's opening message was clipped mid-sentence. The chat pane is a fixed `h-[165px]` on small screens, and the opening message had grown to ~250 characters, so a first-time mobile visitor's first view of the flagship AI surface was chopped text with no affordance showing more existed.
+- **Fix**: trimmed the opening message to ~170 characters — it was doing two jobs, inviting a question *and* restating answer discipline that the Trust Contract panel already shows beside it — and raised the mobile pane to `h-[210px]`. The `validate:coherence` pin is a prefix ("Start with a real question about Ravikanth Seri's work"), so it still holds against the shorter copy; no pin change needed.
+- **Evidence**: before/after 390x844 captures from the production build; `npm test` and `npm run build` green.
+- **Public-safety risk**: none — the removed clause was answer-discipline restatement, not boundary language.
