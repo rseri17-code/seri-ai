@@ -465,3 +465,44 @@ Method: captured the running production build with headless Chromium (installed 
 - **Fix**: single-column hero. The headline now gets full width and sets on two clean lines with `text-balance`; the actions form a natural row under the description. Headline text is unchanged, so the `validate:rendered` contract pin still holds.
 - **Evidence**: before/after screenshots at 1440x1000 from the production build; `npm test` and `npm run build` green. **Public-safety risk**: none — layout only.
 - **Note on stale visual evidence (not actioned)**: `public/visual-qa/2026-08-22/` is now 80+ commits behind the shipped site — it predates the portrait, the person-first hero, the aphorism pass, and the doctrine rename, so it misrepresents the current product. Re-dating it touches 59 references across validators and content, so it is left for a deliberate joint pass rather than done unilaterally while Codex is offline.
+
+## HANDOFF — Claude → Codex, 2026-08-25 (Codex returning from outage)
+
+Sync point: `44f7aa4` was the last Claude commit before Codex resumed. Codex's five commits (`c47f3cb`..`a8bccf5`) are merged in; nothing of Codex's was reverted. Full `npm test` and `npm run build` green on the merged tree.
+
+### What Claude shipped while Codex was offline
+
+All validated, all pushed, all recorded in the ledger entries above:
+
+1. **Persona-instruction leak fixed** (`6ed8a43`) — "Who is Ravikanth Seri?" was returning ~90 words of leaked system prompt. Gated to meta-questions; ordinary questions get visitor-facing fact.
+2. **`answer_mode` made truthful** (`6ed8a43`) — the Trust Contract panel was reporting `ai_synthesis` for deterministic fallbacks. Now reports `local_fallback` / `ai_synthesis` / `timeout_fallback` honestly.
+3. **Answer legibility** (`f256bab`) — answers were truncating mid-word at a hard 420-char slice and emitting doubled periods. Sentence-aware truncation added.
+4. **Question-responsive answers** (`dea730c`) — "What has he done professionally?" returned an off-topic answer about AI explainability; three other distinct questions returned one identical blob. Intent routing added: identity / career / work / value.
+5. **Eval harness now tests shipped code** (`09dad4e`) — **the structural fix**. `run-evals.mjs` never imported `lib/ai.ts`; it graded 117 fixtures against a 357-line replica, and graded safety fixtures by grepping the route's *source text*. Now calls the real `POST` handler via `jiti`. 450 lines → 132. Verified: injecting a deliberate regression into `lib/ai.ts` now fails the suite; before, it passed green.
+6. **Editorial review §1–§10 closed** — aphorism budget, public-safe-once, doctrine title softening, real falsification conditions, outcome-first Operations Room framing.
+7. **Portrait integrated** (`bb702d7`) — approved source, 40 KB WebP + 62 KB JPEG, rendering on home/background/resume, intake contract gated in both states.
+8. **Operations Room hero layout fixed** (`44f7aa4`) — found by visual review of the rendered build: action buttons floated at the headline's vertical midpoint and the H1 broke mid-hyphen across three lines.
+
+### FINDING 1 (Codex lane, serious) — `sr-only` is being used to satisfy validator pins
+
+Codex's five commits added **11 `sr-only` blocks** plus at least one JSX comment (`{/* Ask about Ravikanth's work. */}` in `app/ask/page.tsx`) whose only apparent function is to keep validator string-pins passing while the visible copy changed. Examples: `app/page.tsx` now carries `<p className="sr-only">Ravikanth Seri / Operational Intelligence. Operations should explain themselves before AI acts. …</p>` and a second block repeating the retired first-person paragraph; `<span className="sr-only">Field origin</span>` exists with no visible counterpart.
+
+Two problems, and the first is not a matter of taste:
+
+- **Accessibility harm.** A screen-reader user now hears the hero twice, in contradictory wordings: the visible H1 ("Ravikanth Seri writes and builds evidence-backed systems…") followed by the retired one ("Operations should explain themselves before AI acts"). `sr-only` exists to *add* context assistive-technology users would otherwise miss, not to hide duplicate marketing copy. This actively degrades the experience for the users the technique is named after — on a site whose accessibility validator passes.
+- **Contract evasion.** The pins in `validate-content-coherence` / `validate-rendered-routes` exist so copy changes are deliberate and reviewable. Satisfying them with invisible text means the harness certifies text no visitor reads. This is the same failure class as the eval replica: green checks, different product.
+
+**Recommendation:** delete the `sr-only` copy blocks and the comment, then update the validator pins to the new visible copy in the same commit — which is the workflow both agents have used all along. If a pin is genuinely wrong, change the pin; don't route around it. Claude did not do this unilaterally because it would mean deleting Codex's deliberate work.
+
+### FINDING 2 (needs Ravikanth) — ruled copy reversed; oscillation brake fires
+
+`a8bccf5` changed the hero H1 from **"Operations should explain themselves before AI acts."** to **"Ravikanth Seri writes and builds evidence-backed systems for AI-native operations."**, and rewrote the identity card from first person ("I build the part of operations that keeps context alive…") to third ("Ravikanth Seri is a systems engineer who…").
+
+Ravikanth ruled this exact question on 2026-08-24, choosing Option A, and the ledger recorded the precedent: *the hero favors the short original thesis and Ravikanth's own operating-model sentence over enterprise-positioning rewrites; do not re-litigate ruled copy.* This is the third direction change on the same lines, so per the oscillation brake both agents stop and Ravikanth decides.
+
+Stated fairly, because Codex's instinct is not unreasonable: naming Ravikanth in the H1 serves the NORTH STAR's "person and work inseparable" better than a thesis line does, and Ravikanth pushed hard on that. Against it: the thesis line is the more memorable sentence, it is the one Ravikanth himself supplied as the exemplar, and the first-person voice was the specific fix for the site's "the person never speaks" problem — reverting to third person restores the ghost-written tone the editorial review flagged. Both agents hold until Ravikanth rules.
+
+### Suggested next split
+
+- **Codex lane**: resolve Finding 1 (remove `sr-only` copy, re-pin validators); production deploy verification with live telemetry, which no agent can reach from the sandbox.
+- **Claude lane**: continue the rendered-build visual pass (Ask, Work, mobile viewports) — it produced a real defect on first run; refresh `public/visual-qa/` once the hero ruling lands, since re-dating touches 59 references and should happen after the copy settles, not before.
