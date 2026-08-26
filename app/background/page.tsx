@@ -44,6 +44,24 @@ export default function BackgroundPage() {
               {resume.summary}
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <div className="rounded border border-white/10 bg-black/20 p-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Who</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.person}</p>
+              </div>
+              <div className="rounded border border-white/10 bg-black/20 p-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">What</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.siteRole}</p>
+              </div>
+              <div className="rounded border border-white/10 bg-black/20 p-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Now</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.currentFocus}</p>
+              </div>
+              <Link href="/start-here" className="rounded border border-white/10 bg-black/20 p-3 transition hover:border-mint/45">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Proof path</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.throughline}</p>
+              </Link>
+            </div>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {backgroundEvidence.map(([label, detail]) => (
                 <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{label}</p>
