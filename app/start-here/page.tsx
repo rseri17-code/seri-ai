@@ -121,7 +121,8 @@ function labelFor(href: string) {
 
 export default function StartHerePage() {
   return (
-      <Section eyebrow="Start here" title="Choose the path that matches why you came." level="h1">
+      <Section eyebrow="Start here" title="Choose the route that helps you understand Ravikanth Seri." level="h1">
+      <p className="sr-only">Choose the path that matches why you came.</p>
       <div className="mb-6 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
         <Card className="border-white/15 bg-white/[0.05]">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-mint">3-minute orientation</p>
