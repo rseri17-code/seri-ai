@@ -456,3 +456,12 @@ Executed the structural fix filed in the previous entry, at Ravikanth's directio
 **Evidence.** 117/117 fixtures pass against shipped code; full `npm test` and `npm run build` green. Verified the harness now detects real regressions: injecting a deliberate change into `lib/ai.ts` produced fixture failures, where before the refactor the same sabotage passed green.
 
 **Why it matters.** Every defect found this session — the persona-instruction leak, the untruthful `answer_mode`, mid-word truncation, off-topic routing — shipped with a green 117/117 suite because none existed in the replica. The harness was certifying a program nobody ran. It now certifies the one visitors use.
+
+### 2026-08-25 — Claude: Operations Room hero layout fix (visual review, Claude lane)
+
+Method: captured the running production build with headless Chromium (installed outside the repo so `package.json` stays untouched) and reviewed the rendered pages as a designer rather than reading source.
+
+- **Defect found**: the signature-artifact hero used `lg:grid-cols-[1fr_auto] lg:items-center`, so the four action buttons floated at the vertical midpoint of the headline block — reading as a layout accident with dead space beneath — and the button column consumed roughly 700px, leaving the H1 too narrow to ever fit, so it broke mid-hyphen across three lines ("Operations Room / for evidence- / backed decisions").
+- **Fix**: single-column hero. The headline now gets full width and sets on two clean lines with `text-balance`; the actions form a natural row under the description. Headline text is unchanged, so the `validate:rendered` contract pin still holds.
+- **Evidence**: before/after screenshots at 1440x1000 from the production build; `npm test` and `npm run build` green. **Public-safety risk**: none — layout only.
+- **Note on stale visual evidence (not actioned)**: `public/visual-qa/2026-08-22/` is now 80+ commits behind the shipped site — it predates the portrait, the person-first hero, the aphorism pass, and the doctrine rename, so it misrepresents the current product. Re-dating it touches 59 references across validators and content, so it is left for a deliberate joint pass rather than done unilaterally while Codex is offline.
