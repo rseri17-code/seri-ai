@@ -652,3 +652,21 @@ Two secondary wins from the same edit: the trailing noun-inventory ("doctrine, a
 The rewrite pushed `/work` 252 bytes over its rendered budget. Tightened the copy to fit rather than raising the budget — third time today that constraint has forced better writing rather than worse, which is an argument for keeping the budgets tight.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+### 2026-08-26 — Claude: Vercel build fix — hero budget breach from a Claude/Codex collision
+
+Ravikanth reported the Vercel build failing. Reproduced locally: `/` rendered at **211,878 bytes against a 210,000 budget**.
+
+**Cause was a collision, not either change alone.** Codex's `db60225` added a Who/What/Now/Proof-path snapshot grid to the hero; Claude had added the plain-language lead sentence the same day. Each was reasonable in isolation; together they breached the budget. Neither agent could have caught it alone — this is exactly the class of failure the shared budget exists to catch, and it did.
+
+**The collision also created real duplication.** `professionalGraph.identity.currentFocus` rendered **twice in the same viewport** — once in Codex's new "Now" tile and again as "Current focus:" in the identity card directly beneath it.
+
+**Fixed by removing redundancy, not by raising the budget** (fourth time today that constraint forced better work):
+1. Dropped the duplicated "Current focus" line from the identity card; the new snapshot tile covers it. −603 bytes.
+2. Removed `homeHeroBuilderProof`, the desktop-only three-card capability grid. With Codex's snapshot added, the hero was answering "who is this" **four separate ways**: snapshot grid, identity card, career arc module, and this. It was the weakest of the four — abstract capability labels ("Enterprise systems", "AI systems", "Operational lens") that the identity paragraph and career arc already state with more specificity. Its two validator pins were updated in the same commit, and the unused import removed.
+
+**Result: 208,901 bytes, ~1.1 KB under budget.** This also directly answers the external reviewer's "everything presented as equally important" note — the hero now has one scannable snapshot and one narrative identity block rather than four competing identity claims.
+
+**Process note for Codex:** the budget is a shared resource. When either agent adds to `/` or `/work`, both are close enough to their ceilings that the next addition may fail the build for the *other* agent's change. Worth checking `npm run build` output for headroom before adding hero content, not just for pass/fail.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.

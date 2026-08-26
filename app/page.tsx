@@ -5,7 +5,7 @@ import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeHeroBuilderProof, homeHeroFlow, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReferenceAssets, homeReviewerPaths } from "@/content/home";
+import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeHeroFlow, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReferenceAssets, homeReviewerPaths } from "@/content/home";
 import { professionalGraph } from "@/content/site";
 
 const proofStrip = [
@@ -108,9 +108,6 @@ export default function Home() {
                     Fifteen-plus years across distributed systems, identity, observability, and regulated financial-services operations showed me the same failure on repeat: at the worst moment, the team is rebuilding who owns this,
                     what changed, and what depends on it. seri.ai is where I work that out in public, so the judgment is inspectable and reusable.
                   </p>
-                  <p className="mt-2 max-w-2xl text-xs leading-5 text-slate-500">
-                    Current focus: {professionalGraph.identity.currentFocus}
-                  </p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {professionalGraph.proofLinks.slice(0, 3).map((item) => (
                       <Link key={item.href} href={item.href} className="rounded border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-mint/40 hover:text-mint">
@@ -166,14 +163,6 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-            </div>
-            <div className="mt-5 hidden gap-2 lg:grid lg:grid-cols-3">
-              {homeHeroBuilderProof.map(([label, proof]) => (
-                <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
-                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-300">{proof}</p>
-                </div>
-              ))}
             </div>
             </div>
             <div className="hidden lg:block lg:self-center">

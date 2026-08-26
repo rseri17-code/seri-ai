@@ -227,7 +227,6 @@ for (const required of [
   "const inspectionLedger",
   "homeCategoryContrast",
   "homeFalsificationTests",
-  "homeHeroBuilderProof",
   "homeOperatorOriginProof",
   "homeHeroFlow",
   "homeMobileArtifactSignals",

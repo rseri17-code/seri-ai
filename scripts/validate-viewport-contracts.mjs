@@ -27,7 +27,6 @@ const routeContracts = [
       "lg:grid-cols-[1.05fr_0.95fr]",
       "lg:grid-cols",
       "HeroIntelligenceMap",
-      "homeHeroBuilderProof",
       "homeMobileArtifactSignals",
       "lg:hidden",
       "Begin with the proof path",
