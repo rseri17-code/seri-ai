@@ -17,49 +17,49 @@ const artifacts = [
     href: "/wiki/operational-intelligence-publication-pack",
     title: "Operational Intelligence Publication Pack",
     type: "Reference Pack",
-    description: "The navigable package for diagrams, comparison tables, decision packet example, printable walkthrough, executive summary, glossary, and PDFs.",
+    description: "The whole argument in one place — what the doctrine claims, how the architecture works, and the diagrams that show it. Start here if you want the full thesis rather than a slice.",
     icon: FileText
   },
   {
     href: "/wiki/operational-intelligence-evidence-pack",
     title: "Operational Intelligence Evidence Pack",
     type: "Evidence Pack",
-    description: "Benchmark rubric, control comparisons, minimum conformance checklist, practitioner review path, evidence ledger, and falsification criteria.",
+    description: "The skeptic’s version. What would have to be true for the thesis to hold, what would falsify it, and what has not been measured yet.",
     icon: ClipboardCheck
   },
   {
     href: "/investigation-room",
     title: "Operational Intelligence Operations Room",
     type: "Workbench",
-    description: "Interactive evidence-first operations room with graph replay, timeline, hypotheses, confidence, RCA packet, and release gates.",
+    description: "Work a synthetic incident end to end. Evidence accumulates, competing explanations stay open, and the decision packet assembles where you can watch it.",
     icon: ClipboardCheck
   },
   {
     href: "/map",
     title: "Operational Intelligence Map",
     type: "Map",
-    description: "The visual operating system connecting layers, patterns, product surfaces, and public assets.",
+    description: "How every piece here connects, in one diagram — for readers who would rather see the structure than read about it.",
     icon: Map
   },
   {
     href: "/products/reasonops",
     title: "ReasonOps Public Brief",
     type: "Public Brief",
-    description: "The public expression of Operational Intelligence.",
+    description: "What the doctrine looks like as a product, described concretely enough to argue with.",
     icon: Boxes
   },
   {
     href: "/patterns/evidence-driven-rca",
     title: "Evidence-Driven RCA Field Guide",
     type: "Field Guide",
-    description: "A reusable public-safe pattern for separating facts, hypotheses, confidence, and action.",
+    description: "How to keep facts, hypotheses, and confidence apart during an investigation so the write-up survives review. Reusable as written.",
     icon: GitBranch
   },
   {
     href: "/patterns/evaluation-and-replay",
     title: "AI Evaluation Rubric",
     type: "Pattern",
-    description: "A release-gate model for groundedness, refusal behavior, evidence coverage, and usefulness.",
+    description: "The gate an AI system should pass before it ships: is it grounded, does it refuse well, does it cite. Applied to the assistant on this site.",
     icon: FileText
   }
 ];
@@ -83,7 +83,7 @@ const reviewerSharePackets = [
 export default function ArtifactsPage() {
   return (
     <>
-      <Section eyebrow="Artifacts" title="Public-safe proof objects for the Operational Intelligence thesis." level="h1">
+      <Section eyebrow="Artifacts" title="Objects you can open, read, and argue with." level="h1">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {artifacts.map((artifact) => {
             const Icon = artifact.icon;

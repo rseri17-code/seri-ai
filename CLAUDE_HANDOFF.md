@@ -700,3 +700,21 @@ After fixing `/start-here`, swept the two routes most likely to carry the same d
 Remaining un-audited for this pattern: `/radar`, `/evals`, `/contact`, `/artifacts`, and the doctrine/wiki page template. Continuing the sweep.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+### 2026-08-26 — Claude: /artifacts and /radar — catalogue copy and pages narrating their own layout
+
+Continued the sweep. Two distinct variants of the same disease.
+
+**`/artifacts` described contents instead of purpose.** All seven artifact cards answered "what is inside this?" with a comma-inventory — the Publication Pack was "diagrams, comparison tables, decision packet example, printable walkthrough, executive summary, glossary, and PDFs." That is a packing list. A reader scanning seven cards cannot use it to choose, because every card looks the same shape. Rewritten so each says what it settles: the Publication Pack is now "the whole argument in one place… start here if you want the full thesis rather than a slice"; the Evidence Pack is "the skeptic's version. What would have to be true for the thesis to hold, what would falsify it, and what has not been measured yet."
+
+The section heading "Public-safe proof objects for the Operational Intelligence thesis" became "Objects you can open, read, and argue with." Same meaning, no internal vocabulary.
+
+**`/radar` narrated its own layout twice.** A paragraph read "This is the working map behind the Radar: public themes…, adjacent market movement, the Operational Intelligence claim, and the question that would weaken the claim" — directly above a table whose four columns are *already labeled* Market signal, OI claim, and Falsification. It was prose restating adjacent column headers. Replaced with something that tells the reader how to read the table skeptically: "A market moving the same direction is a signal, not a confirmation. The last column is the one that matters."
+
+**One finding worth flagging to Codex.** The lifecycle paragraph spelled a pipeline out longhand — "The path is LinkedIn Post to Observation / Field Note to Developed Argument to Pattern to Framework to Canonical Technical Asset to Interactive Demonstration when justified" — immediately above a numbered list rendering exactly those stages. Five of those phrases are validator pins in `validate-content-coherence.mjs`. On inspection the pins are satisfied by the `thinkingLifecycleDisplay` data array in the same file, so the prose was pure duplication and could be removed without touching the contract. But the shape is worth naming: **a sentence whose job is to contain strings the harness greps for is the same failure as the `sr-only` shadow copy** — copy written for the validator rather than the reader. When a pin can be satisfied by data or by a rendered label, prefer that over prose.
+
+One pin was legitimately re-pointed (the "Thesis spine" caption), which is the correct move when visible copy changes deliberately — as distinct from shadowing the old string somewhere invisible to keep it green.
+
+Still un-audited: `/evals`, `/contact`, and the doctrine/wiki page template.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.

@@ -48,7 +48,7 @@ export default function RadarPage() {
                 ))}
               </div>
               <p className="mt-3 text-sm leading-6 text-slate-400">
-                The page is organized around public themes, market signals, testable claims, and falsification questions.
+                Every theme below is paired with the question that would prove it wrong.
               </p>
             </div>
             <a
@@ -76,7 +76,7 @@ export default function RadarPage() {
         <Card className="p-0">
           <div className="border-b border-white/10 p-5">
             <p className="max-w-4xl text-sm leading-6 text-slate-300">
-              This is the working map behind the Radar: public themes from Ravikanth&apos;s posts, adjacent market movement, the Operational Intelligence claim, and the question that would weaken the claim.
+              A market moving the same direction is a signal, not a confirmation. The last column is the one that matters — what would have to show up for the claim to be wrong.
             </p>
           </div>
           <div className="divide-y divide-white/10">
@@ -107,7 +107,7 @@ export default function RadarPage() {
       <Section eyebrow="Thinking signal lifecycle" title="LinkedIn is a signal source, not a publishing queue.">
         <Card>
           <p className="max-w-4xl text-sm leading-6 text-slate-300">
-            Ideas move forward only when they become reusable engineering knowledge. The path is LinkedIn Post to Observation / Field Note to Developed Argument to Pattern to Framework to Canonical Technical Asset to Interactive Demonstration when justified.
+            Ideas move forward only when they become reusable engineering knowledge. Each stage below links to where its output actually lives, so the pipeline can be checked instead of taken on trust.
           </p>
           <ol className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             {thinkingLifecycleDisplay.map((item, index) => (

@@ -614,7 +614,7 @@ for (const required of [
   "Challenge the evidence",
   "Public thought process",
   "Thesis spine",
-  "The page is organized around public themes, market signals, testable claims, and falsification questions.",
+  "Every theme below is paired with the question that would prove it wrong.",
   "The LinkedIn themes become useful only when they become testable claims.",
   "Thinking signal lifecycle",
   "LinkedIn is a signal source, not a publishing queue.",
