@@ -105,7 +105,7 @@ export default function LibraryPage() {
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                       <h2 className="text-xl font-semibold text-white">{stage.name}</h2>
-                      <Link href={stage.primaryAsset} className="text-sm font-semibold text-signal hover:text-amber">
+                      <Link href={stage.primaryAsset} className="inline-flex min-h-[24px] items-center text-sm font-semibold text-signal hover:text-amber">
                         Primary asset
                       </Link>
                     </div>

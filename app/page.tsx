@@ -61,6 +61,7 @@ export default function Home() {
               Operations should explain themselves before AI acts.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
+              Most incidents are slow not because the data is missing, but because nobody can assemble it fast enough to decide.{" "}
               Ravikanth Seri is building a public operating model for AI-native operations: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -70,7 +71,7 @@ export default function Home() {
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
                 Open the Operations Room
               </TrackedLink>
-              <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">
+              <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex min-h-[24px] items-center gap-2 px-1 py-3 font-semibold text-slate-300 underline decoration-white/25 underline-offset-4 hover:text-white">
                 Challenge the doctrine
               </TrackedLink>
             </div>

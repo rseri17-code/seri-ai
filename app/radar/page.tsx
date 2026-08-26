@@ -115,7 +115,7 @@ export default function RadarPage() {
                 <p className="font-mono text-xs text-signal">0{index + 1}</p>
                 <h2 className="mt-2 text-base font-semibold leading-6 text-white">{item.stage}</h2>
                 <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-mint">{item.output}</p>
-                <Link href={item.evidenceHref} className="mt-3 inline-flex max-w-full items-center gap-2 text-xs font-semibold text-slate-300 hover:text-mint">
+                <Link href={item.evidenceHref} className="mt-3 inline-flex min-h-[24px] max-w-full items-center gap-2 text-xs font-semibold text-slate-300 hover:text-mint">
                   <span className="truncate">Inspect source</span>
                   <ArrowUpRight size={13} />
                 </Link>
@@ -160,7 +160,7 @@ export default function RadarPage() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`${source.label}: ${source.evidenceType}`}
-                    className="text-sm font-semibold text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-mint"
+                    className="inline-flex min-h-[24px] items-center text-sm font-semibold text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-mint"
                   >
                     {source.label}
                   </a>

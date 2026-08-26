@@ -626,3 +626,17 @@ Audited 11 routes at 1440x1000 and 5 at 390x844 against the running production b
 **External review cross-check.** A third-party review flagged "what looks like a duplicated second nav row in the markup". Verified and **not reproducible on the live page**: one `<nav>` with 15 links in DOM, 8 reachable on desktop and 2 on mobile; the rest are `display:none` via responsive classes and are correctly skipped by assistive tech. The reviewer was reading raw markup and saw both breakpoint variants. Its diagram-label finding, by contrast, was correct and is now fixed and quantified.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+### 2026-08-26 — Claude: hero hierarchy, plain-language lead, WCAG target sizes site-wide
+
+Acting as design owner at Ravikanth's direction, taking the two judgment calls from the external review.
+
+**1. Plain-language lead before any site vocabulary.** The hero went straight from the thesis headline into "public operating model / preserve context / separate evidence from inference" — correct, but it asks a cold reader to accept the vocabulary before they have the problem. Added one jargon-free sentence that any engineer or executive recognises immediately: *"Most incidents are slow not because the data is missing, but because nobody can assemble it fast enough to decide."* It states the pain first, so the operating-model sentence that follows reads as an answer rather than an assertion. Ravikanth's ruled thesis sentence is untouched.
+
+**2. One dominant action.** Three CTAs sat at near-equal visual weight, which gives a first-time visitor no default. Now a real three-tier hierarchy: filled primary ("Begin with the proof path"), outlined secondary ("Open the Operations Room"), underlined text tertiary ("Challenge the doctrine"). DOM order is unchanged, so the mobile-first ordering contracts in `validate:viewport` and `validate:rendered` still hold — the hierarchy is carried by weight, not by sequence.
+
+**3. WCAG 2.2 AA target size, finished site-wide.** Extended the earlier fix to the remaining routes: `/radar` "Inspect source" (16px) and its evidence-source links (20px), `/library` "Primary asset" (20px). `/evals` `/eval-report.json` was deliberately left alone — it sits inline inside a sentence, which success criterion 2.5.8 explicitly exempts, and padding it would break the prose line.
+
+**Result, measured across 11 routes at 1440x1000 and 390x844: zero target-size violations at either viewport.** The audit script encodes the inline-prose exemption so it does not produce false positives on body copy.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
