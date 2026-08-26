@@ -639,7 +639,7 @@ export function getPublicationChangelog() {
     }));
 }
 
-export function buildRssFeed(siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://seri.ai") {
+export function buildRssFeed(siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://seri.ai") {
   const assets = buildPublishingIndex().filter((asset) => asset.status === "published").slice(0, 50);
   const items = assets
     .map(

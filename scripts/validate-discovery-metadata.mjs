@@ -125,7 +125,7 @@ function expectIncludes(file, content, values) {
 const siteUrl = "https://seri.ai";
 const layout = read("app/layout.tsx");
 expectIncludes("app/layout.tsx", layout, [
-  "metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? \"https://seri.ai\")",
+  "metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || \"https://seri.ai\")",
   "seri.ai | Operational Intelligence for AI-native Operations",
   "Ravikanth Seri's public home for Operational Intelligence",
   "A public technical reference for evidence-backed operational reasoning",
