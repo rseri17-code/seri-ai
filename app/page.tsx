@@ -61,7 +61,7 @@ export default function Home() {
               Ravikanth Seri builds evidence-backed systems for AI-native operations.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              The public record connects enterprise integration, observability, and production AI systems into a single operating model: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
+              Ravikanth Seri&apos;s public record connects enterprise integration, observability, and production AI systems into a single operating model: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
             </p>
             <p className="sr-only">
               Ravikanth Seri / Operational Intelligence. Operations should explain themselves before AI acts. Ravikanth Seri is building a public operating model for AI-native operations.
@@ -255,7 +255,7 @@ export default function Home() {
         <div className="grid gap-4 lg:grid-cols-[0.86fr_1.14fr]">
           <Card className="border-signal/25 bg-signal/[0.045] p-5">
             <ShieldCheck className="mb-5 text-signal" />
-            <h3 className="text-2xl font-semibold text-white md:text-3xl">Inspection is part of the public contract.</h3>
+            <h3 className="text-2xl font-semibold text-white md:text-3xl">Inspection is part of the public record.</h3>
             <p className="sr-only">Inspection is part of the product contract.</p>
             <p className="mt-4 text-base leading-7 text-slate-300">
               The thesis is exposed through definitions, contracts, synthetic evidence, evaluation gates, public work, and source-linked publishing. A visitor should be able to challenge the model without needing private systems or confidential examples.
