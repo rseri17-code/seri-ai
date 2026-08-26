@@ -58,7 +58,7 @@ export default function Home() {
               Ravikanth Seri / public professional home
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              Ravikanth Seri builds evidence-backed systems for AI-native operations.
+              Ravikanth Seri writes and builds evidence-backed systems for AI-native operations.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
               Ravikanth Seri&apos;s public record connects enterprise integration, observability, and production AI systems into a single operating model: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
@@ -90,7 +90,7 @@ export default function Home() {
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Ravikanth Seri</p>
                   <h2 className="mt-2 text-2xl font-semibold leading-7 text-white">
-                    The public record shows a systems engineer who keeps context alive when judgment matters most.
+                    Ravikanth Seri is a systems engineer who keeps context alive when judgment matters most.
                   </h2>
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
                     Fifteen-plus years across distributed systems, identity, observability, and regulated operational environments led to the same failure on repeat: at the worst moment, the team is rebuilding who owns this,

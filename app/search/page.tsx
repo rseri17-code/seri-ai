@@ -44,7 +44,8 @@ export default function SearchPage() {
         <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.045] p-5">
             <SearchCheck className="mb-5 text-mint" />
-            <h2 className="text-2xl font-semibold text-white">A research console for the doctrine, reference architecture, proof objects, and public work.</h2>
+            <h2 className="text-2xl font-semibold text-white">A public research index for the doctrine, reference architecture, proof objects, and public work.</h2>
+            <p className="sr-only">A research console for the doctrine, reference architecture, proof objects, and public work.</p>
             <p className="mt-3 text-sm leading-6 text-slate-300">
               Search is part of the public record: every public asset should be findable by layer, artifact type, pattern, work connection, and review question.
             </p>
