@@ -8,7 +8,7 @@ import { publicRouteMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = publicRouteMetadata({
   title: "Artifacts | seri.ai",
-  description: "Public-safe artifacts for Operational Intelligence: maps, simulators, product briefs, frameworks, and evaluation rubrics.",
+  description: "Public-safe artifacts for Operational Intelligence: maps, simulators, briefs, frameworks, and evaluation rubrics.",
   path: "/artifacts"
 });
 
@@ -43,9 +43,9 @@ const artifacts = [
   },
   {
     href: "/products/reasonops",
-    title: "ReasonOps Product Brief",
+    title: "ReasonOps Public Brief",
     type: "Product Brief",
-    description: "The product/platform expression of Operational Intelligence.",
+    description: "The public expression of Operational Intelligence.",
     icon: Boxes
   },
   {
