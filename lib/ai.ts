@@ -284,6 +284,24 @@ function inferSuggestedNextQuestion(question: string) {
   if (/contact|reach out|collaboration|conversation/.test(lower)) {
     return "What should I inspect before contacting Ravikanth?";
   }
+  if (/evaluation|eval gate|quality gate|regression|fixture|test/.test(lower)) {
+    return "What would a failing evaluation gate actually block?";
+  }
+  if (/replay|reproduce|seed|determinis/.test(lower)) {
+    return "What does a replay seed have to capture for the reasoning to be reproducible?";
+  }
+  if (/memory|learning|research|advancing|what next|roadmap|now/.test(lower)) {
+    return "Which open question is Ravikanth trying to close next, and what evidence would close it?";
+  }
+  if (/read first|start|where do i begin|orientation|new here|overview/.test(lower)) {
+    return "After the doctrine, which artifact best tests whether the model holds?";
+  }
+  if (/observability|telemetry|signal|metric|trace|monitor/.test(lower)) {
+    return "Where does observability stop being enough, and what has to take over?";
+  }
+  if (/agent|agentic|automation|autonom/.test(lower)) {
+    return "What has to be true before an agent is allowed to change production?";
+  }
   return "Show how the shared case moves through the ten-layer framework.";
 }
 
@@ -314,6 +332,8 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     context.length > 0
       ? trimToSentence(primarySource.content, 420)
       : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
+  const namesSpecificTopic =
+    /evaluation|eval gate|observability|telemetry|replay|evidence graph|hypothesis|operational memory|transaction|topology|doctrine|framework|layer|agentic|incident|rca|root cause|governance|guardrail|retrieval|knowledge graph|operations room|oi-room/.test(lower);
   const asksAboutAskPersona =
     /are you ravikanth|are you him|are you the real|are you a bot|are you an ai|are you human|who are you|pretend|persona|imitat|first person|answer posture|how should ask/.test(lower);
   const ravikanthWorkAnswer =
@@ -403,7 +423,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth ? `${ravikanthContext}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext} ${direct}` : `${direct}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}`}`,
+    `Direct answer: ${asksAboutRavikanth && !namesSpecificTopic ? `${ravikanthContext}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext} ${direct}` : `${direct}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",

@@ -219,11 +219,17 @@ function normalizeQueryIntent(query: string) {
     .replace(/\bpobservability\b/g, "observability");
 }
 
+// Person-name tokens carry no topical signal: "how does Ravikanth think about evaluation"
+// should retrieve on "evaluation", not on the name that appears in almost every document.
+const PERSON_TOKENS = new Set(["ravikanth", "seri", "his", "him", "does", "think", "about", "what", "how", "the", "and", "for"]);
+
 export function localSearch(query: string, limit = 5): SearchHit[] {
   const lowerQuery = normalizeQueryIntent(query);
-  const terms = lowerQuery
+  const allTerms = lowerQuery
     .split(/\W+/)
     .filter((term) => term.length > 2);
+  const topicTerms = allTerms.filter((term) => !PERSON_TOKENS.has(term));
+  const terms = topicTerms.length > 0 ? topicTerms : allTerms;
 
   return buildPublicSourceIndex()
     .map((source) => {
