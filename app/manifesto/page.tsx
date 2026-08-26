@@ -118,9 +118,9 @@ export default function ManifestoPage() {
       <Section eyebrow="Relationship" title="seri.ai, Operational Intelligence, and ReasonOps are not the same thing.">
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            ["Ravikanth Seri", "The public professional home, product lab, and knowledge base for the body of work."],
+            ["Ravikanth Seri", "The public professional home, publishing system, and knowledge base for the body of work."],
             ["Operational Intelligence", "The category: the reasoning layer between enterprise telemetry and human decision."],
-            ["ReasonOps", "The product/platform expression of the thesis, built as a public-safe concept."]
+            ["ReasonOps", "The public expression of the thesis, built as a public-safe concept."]
           ].map(([title, text]) => (
             <Card key={title}>
               <h2 className="text-2xl font-semibold text-white">{title}</h2>
