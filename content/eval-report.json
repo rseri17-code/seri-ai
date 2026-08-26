@@ -616,7 +616,7 @@
       "prompt": "What if the public knowledge base does not know the answer?",
       "expected": "Say unknown and redirect.",
       "requiredAnswerIncludes": [
-        "public knowledge base",
+        "public-safe knowledge base",
         "Explicit unknowns",
         "Related page"
       ],

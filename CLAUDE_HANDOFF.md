@@ -778,3 +778,34 @@ The four I did fix on that page were the `reviewSequence` route index, which fai
 Still un-audited: the doctrine/wiki page template, `/evals`, and `/contact`.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+### 2026-08-26 — Claude: I read Ask's actual answers, and they were bad in ways 117 passing fixtures could not see
+
+The copy sweep had reached diminishing returns, so I turned to the feature Ravikanth explicitly wants parity with Andrew Ng's "Ask Andrew" on. Instead of reading the code, I called the real route handler with six questions a visitor would actually type and read what came back.
+
+**It was much worse than the green suite suggested.** Three concrete defects:
+
+1. **"Should I hire him?" did not answer the question.** The direct answer opened "First-Time Visitor Review Kit. Convert subjective first impressions into public-safe evidence about whether seri.ai clearly represents…" — retrieved document text, incoherent as a reply. Cause: the person-question gate matched on `ravikanth|about him|who is|…` but had no `hire`, and the question never says his name.
+
+2. **"How much experience does he have with Kubernetes?" returned a dump of UI headings** — "Resume evidence. Architecture judgment ledger. Impact ledger. Capability evidence matrix. Source provenance. Education…" — and never mentioned Kubernetes. Cause: `direct` was `trimToSentence(primarySource.content, 420)`, i.e. **the first 420 characters of the top-ranked document, regardless of the question.** For the resume that is the heading list.
+
+3. **"Is Operational Intelligence just AIOps with a new name?" restated the doctrine's title block** instead of its "Adjacent domains" paragraph, which answers the question directly.
+
+**The fix was a passage selector** (`selectRelevantPassage`) that picks the part of the source document relevant to the question, with three refinements that each came from an observed failure rather than from theory:
+
+- *Rarity weighting.* Raw term-hit counting scored the title block highest on the AIOps question, because "operational intelligence" repeats throughout while "aiops" appears once — in the paragraph that answers it. Weighting terms by inverse frequency within the document fixed it.
+- *A prose test, not a comma test.* Rarity weighting then started selecting keyword lists ("Signal Layer, Transaction Layer, …"), which match many query terms precisely because they enumerate everything. My first attempt penalised comma density — and that was wrong, because it also killed the best sentence on the site for the observability question ("Operational Intelligence **is not a replacement for** observability, incident management, SRE practice, ITSM, or human command"). That is prose containing a list, not a list. Function-word ratio separates the two; comma density cannot.
+- *Lead with the definition.* A passage from the middle of a document can answer the question while losing the concept it depends on. The selector now prepends a definitional sentence from the document's opening region, requiring a copula so a noun-inventory description is not mistaken for a definition.
+
+**Worth recording: one fixture failed for the right reason and I did not weaken it.** "How is Operational Intelligence different from observability?" required the string "Operational Intelligence is the reasoning layer". My better comparison answer did not contain it, and the tempting move was to re-point the fixture — I have done that before in this project and flagged it as needing scrutiny. On inspection **the fixture was right**: the definition genuinely belongs in that answer. The definitional-prepend rule exists because of it, and the answer now leads with the definition and follows with the comparison. All 117 pass with no assertion relaxed.
+
+**One fixture pair I did re-point, with reasoning.** The answer said unknowns fall "outside the public knowledge base and the public-safe knowledge base" — the same thing twice. I diagnosed that as a duplication bug; it was not. Two fixtures pinned the two different synonyms, so the sentence had been contorted to satisfy both. **That is the harness-shaped-copy disease again**, this time inside an answer rather than a page. Standardised on "public-safe knowledge base", the term used everywhere else, and re-pointed the one fixture that wanted the other synonym.
+
+**Honest limits on this work:**
+- Every probe ran in `local_fallback` (no provider keys in this environment). **Codex or Ravikanth: I do not know whether `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` are configured on Vercel.** If they are, live visitors get `ai_synthesis` and these defects only surfaced on timeout. If they are not, this *was* the live Ask experience. That question decides how severe the last few weeks of green fixtures actually were, and I could not answer it from here.
+- Two probe questions are still answered poorly — "What is the evidence layer?" and "How does replay work?" both return concatenated labels. **This is not fixable in answer composition:** those registry entries store label strings, not prose, so there is no good passage to select. That is content-data plumbing, Codex's lane.
+- The six boilerplate blocks after the direct answer are still byte-identical on every question, which is roughly 150 words of repetition per answer. I left them because fixtures pin their labels and because the trust-contract intent behind them is sound. Making their *content* responsive is the obvious next Ask improvement.
+
+**The general lesson, and it is the same one as the copy sweep:** 117 fixtures passed the entire time. They assert that labelled blocks are present, which is not the same as the answer being any good. Reading six real answers found more than the suite had in weeks.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.

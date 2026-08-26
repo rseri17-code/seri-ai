@@ -319,9 +319,105 @@ function trimToSentence(text: string, limit: number) {
   return `${clipped.slice(0, lastSpace > 0 ? lastSpace : limit)}\u2026`;
 }
 
+const PASSAGE_FUNCTION_WORDS = new Set([
+  "is", "are", "was", "were", "be", "been", "the", "a", "an", "of", "to", "in", "on", "for",
+  "with", "that", "which", "not", "but", "and", "or", "as", "at", "by", "from", "it", "its",
+  "this", "these", "those", "into", "than", "then", "when", "where", "how", "why", "can",
+  "should", "must", "does", "do", "has", "have", "had", "so", "if", "because", "while"
+]);
+
+const PASSAGE_STOP_WORDS = new Set([
+  "what", "how", "why", "does", "did", "the", "and", "for", "with", "has", "have", "much",
+  "about", "his", "him", "she", "her", "they", "them", "are", "was", "were", "that", "this",
+  "there", "here", "any", "some", "you", "your", "who", "when", "where", "which", "can", "could",
+  "would", "should", "many", "most", "more", "than", "then", "from", "into", "over", "just"
+]);
+
+/**
+ * Pick the passage inside a source document that actually answers the question.
+ *
+ * The previous behaviour took the first 420 characters of the top-ranked document,
+ * which meant a question about Kubernetes experience returned the resume page's
+ * heading list, and a question comparing Operational Intelligence to AIOps returned
+ * the doctrine's title block rather than its "Adjacent domains" paragraph.
+ */
+function selectRelevantPassage(content: string, question: string, limit: number) {
+  const clean = content.replace(/\s+/g, " ").trim();
+  const sentences = clean.split(/(?<=[.!?])\s+/).filter((sentence) => sentence.length > 25);
+  if (sentences.length < 2) {
+    return trimToSentence(clean, limit);
+  }
+
+  const terms = (question.toLowerCase().match(/[a-z0-9]+/g) ?? []).filter(
+    (term) => term.length > 2 && !PASSAGE_STOP_WORDS.has(term)
+  );
+  if (terms.length === 0) {
+    return trimToSentence(clean, limit);
+  }
+
+  // Weight each term by how rare it is inside this document. Without this a question
+  // like "is this just AIOps with a new name?" scores the title block highest, because
+  // "operational intelligence" repeats throughout while "aiops" appears once in the
+  // paragraph that actually answers it.
+  const lowerSentences = sentences.map((sentence) => sentence.toLowerCase());
+  const weights = new Map(
+    terms.map((term) => {
+      const hits = lowerSentences.filter((sentence) => sentence.includes(term)).length;
+      return [term, hits === 0 ? 0 : Math.log(1 + sentences.length / hits)];
+    })
+  );
+
+  let bestIndex = -1;
+  let bestScore = 0;
+  lowerSentences.forEach((sentence, index) => {
+    const weighted = terms.reduce((total, term) => total + (sentence.includes(term) ? (weights.get(term) ?? 0) : 0), 0);
+    // Distinguish a keyword list ("Signal Layer, Transaction Layer, ...") from prose that
+    // happens to contain a list ("Operational Intelligence is not a replacement for
+    // observability, incident management, ..."). Comma density cannot tell them apart —
+    // both are comma-dense — but function words can: a bare enumeration has almost none.
+    const words = sentence.split(" ");
+    const functionWords = words.filter((word) => PASSAGE_FUNCTION_WORDS.has(word.replace(/[^a-z]/g, ""))).length;
+    const proseRatio = functionWords / Math.max(words.length, 1);
+    const listPenalty = proseRatio < 0.1 ? 3 : 1;
+    const score = weighted / listPenalty;
+    if (score > bestScore) {
+      bestScore = score;
+      bestIndex = index;
+    }
+  });
+
+  if (bestIndex < 0) {
+    return trimToSentence(clean, limit);
+  }
+
+  let passage = sentences[bestIndex];
+  for (let index = bestIndex + 1; index < sentences.length && passage.length < limit; index += 1) {
+    passage = `${passage} ${sentences[index]}`;
+  }
+
+  // A passage pulled from the middle of a document can answer the specific question while
+  // losing the definition it depends on. Lead with the document's opening sentence when it
+  // is a real sentence rather than a heading, so the reader gets "what this is" before
+  // "the part you asked about".
+  if (bestIndex > 0) {
+    // Look for a definitional sentence near the top ("X is the ..."). Documents often open
+    // with a title and a description line before the definition, so check the first few
+    // sentences rather than only the first, and require a copula so a noun-inventory
+    // description is not mistaken for a definition.
+    const definition = sentences
+      .slice(0, Math.min(4, bestIndex))
+      .find((sentence) => sentence.length > 60 && / (is|are) /.test(sentence));
+    if (definition) {
+      return trimToSentence(`${definition} ${passage}`, limit);
+    }
+  }
+
+  return trimToSentence(passage, limit);
+}
+
 function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
   const lower = normalizeQuestionIntent(question);
-  const asksAboutRavikanth = /ravikanth|about me|about him|who is|what.*building|what.*built|what.*shipped|done professionally|professionally|his career|his experience|why.*trust|why would|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education|technical problems?|speciali[sz]e|work with him|engineering organization/.test(lower);
+  const asksAboutRavikanth = /ravikanth|about me|about him|who is|hire|hiring|worth talking|worth a conversation|good fit|right person|what.*building|what.*built|what.*shipped|done professionally|professionally|his career|his experience|why.*trust|why would|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education|technical problems?|speciali[sz]e|work with him|engineering organization/.test(lower);
   const layers = inferFrameworkLayers(question);
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
@@ -330,7 +426,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
   const sourceLine = primarySource ? `${primarySource.title} (${primarySource.url})` : "No matching approved public source";
   const direct =
     context.length > 0
-      ? trimToSentence(primarySource.content, 420)
+      ? selectRelevantPassage(primarySource.content, question, 420)
       : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
   const namesSpecificTopic =
     /evaluation|eval gate|observability|telemetry|replay|evidence graph|hypothesis|operational memory|transaction|topology|doctrine|framework|layer|agentic|incident|rca|root cause|governance|guardrail|retrieval|knowledge graph|operations room|oi-room/.test(lower);
@@ -348,7 +444,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     ? "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis. Answer posture: reflect Ravikanth's public engineering judgment through evidence, constraints, tradeoffs, and inspectable routes; do not imitate him in first person or turn the answer into generic chatbot commentary."
     : /what.*(built|build|building|shipped|ship|created|made)|which.*(built|shipped)/.test(lower)
       ? ravikanthWorkAnswer
-      : /why.*(hire|work with|talk|conversation|organi[sz]ation|team|recruit|collaborate|want)/.test(lower)
+      : /why.*(hire|work with|talk|conversation|organi[sz]ation|team|recruit|collaborate|want)|should i (hire|talk|reach|contact|work with)|worth (hiring|talking|a conversation)|good fit|right person|why him/.test(lower)
         ? ravikanthValueAnswer
         : /career|professionally|profession|experience|history|arc|done professionally|worked/.test(lower)
           ? ravikanthCareerAnswer
@@ -423,7 +519,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth && !namesSpecificTopic ? `${ravikanthContext}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext} ${direct}` : `${direct}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}`}`,
+    `Direct answer: ${asksAboutRavikanth && !namesSpecificTopic ? `${ravikanthContext}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}` : `${direct}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",
@@ -432,7 +528,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, replay, evaluation gates, operational memory, and human-reviewed action.",
     "Tradeoff or limitation: this local fallback is deterministic and lexical; semantic retrieval and model-generated synthesis improve when production AI and vector search keys are configured.",
     `Related page or artifact: ${relatedArtifacts.join(", ")}.`,
-    "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public knowledge base and the public-safe knowledge base.",
+    "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public-safe knowledge base.",
     `Suggested next question: ${suggestedNextQuestion}`
   ]
     .join("\n\n")
