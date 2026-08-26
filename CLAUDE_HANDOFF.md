@@ -1,10 +1,10 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-08-24
+Last updated: 2026-08-26
 
 Current sync point for Claude review:
 
-- `05701b5 Add first-impression evidence capture`
+- `cde1df0 Strengthen background and resume identity framing`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -108,6 +108,7 @@ Recent improvements:
 - Start Here audience paths now keep executives, recruiters, architects, engineers, and founders connected to both Ravikanth's person/work evidence and technical proof assets. `validate:content` guards against audience paths that drift into an anonymous product tour.
 - Start Here now renders a Professional Profile Discovery map so a visitor looking only for Ravikanth can find professional summary, current focus, career progression, experience, accomplishments, work, technical domains, leadership, publications, GitHub, certifications, education, resume, LinkedIn, and contact within one route. `validate:content`, `validate:coherence`, and rendered-route checks guard this profile requirement.
 - The professional profile discovery map is now part of the required professional graph schema, included in the public source index, and checked by `validate:knowledge-graph` for route validity and professional evidence connectivity.
+- Start Here is being tightened one step further so the visible route copy keeps the identity-first orientation while the validator contract remains intact during the transition.
 - Radar now exposes a thinking-signal lifecycle showing how a LinkedIn Post can become Observation / Field Note, Developed Argument, Pattern, Framework, Canonical Technical Asset, and Interactive Demonstration when justified. The detailed lifecycle is governed in `content/thesis-radar-lifecycle.json`, indexed into the public source index, routed through search, covered by Ask fixture 116, and kept off the rendered page payload with a compact display timeline.
 
 ## Current Highest-Value Gaps
