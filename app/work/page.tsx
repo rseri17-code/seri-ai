@@ -209,11 +209,9 @@ export default function WorkPage() {
             <GitBranch className="mb-5 text-mint" />
             <h2 className="text-3xl font-semibold text-white">Sentinalai is treated as public architecture signal, not private production proof.</h2>
             <p className="mt-4 text-base leading-7 text-slate-300">The public repository reference gives reviewers structure to inspect.</p>
-            <div className="mt-3 grid gap-2">
+            <div className="mt-3 rounded border border-amber/25 bg-amber/[0.06] px-4 py-3 text-sm leading-6 text-amber">
               {publicCode.entries.slice(0, 2).map((entry) => (
-                <p key={entry.href} className="rounded border border-amber/25 bg-amber/[0.06] px-4 py-3 text-sm leading-6 text-amber">
-                  {entry.proofBoundary}
-                </p>
+                <p key={entry.href}>{entry.proofBoundary}</p>
               ))}
             </div>
             <div className="mt-5 grid gap-3">

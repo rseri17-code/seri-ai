@@ -6,7 +6,7 @@ const nodes = [
   { id: "change", label: "Change", detail: "reviewed event", x: 43, y: 18, tone: "amber" },
   { id: "graph", label: "Evidence Graph", detail: "owner + topology", x: 48, y: 53, tone: "mint" },
   { id: "memory", label: "Memory", detail: "prior pattern", x: 45, y: 86, tone: "signal" },
-  { id: "decision", label: "Decision Packet", detail: "approval required", x: 82, y: 54, tone: "amber" }
+  { id: "decision", label: "Decision Packet", detail: "approval required", x: 86, y: 62, tone: "amber" }
 ];
 
 const edges = [

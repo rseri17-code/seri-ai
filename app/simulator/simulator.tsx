@@ -874,7 +874,7 @@ export function IncidentSimulator() {
               </div>
               <Link
                 href={`/ask?prompt=${encodeURIComponent(`Explain the ${selectedScenario.caseId} Operations Room case and the public-safe decision packet.`)}`}
-                className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-mint"
+                className="mt-3 inline-flex min-h-[24px] items-center gap-2 text-sm font-semibold text-mint"
               >
                 Ask about this case <ArrowRight size={15} />
               </Link>
@@ -1163,7 +1163,7 @@ export function IncidentSimulator() {
             <p className="mt-2 text-sm leading-6 text-slate-300">{operationalIntelligenceSystem.decisionPacket.evalStandard}</p>
             <Link
               href={`/map`}
-              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-mint"
+              className="mt-3 inline-flex min-h-[24px] items-center gap-2 text-sm font-semibold text-mint"
             >
               Trace this in the Map <ArrowRight size={15} />
             </Link>

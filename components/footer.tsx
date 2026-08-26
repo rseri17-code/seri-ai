@@ -20,11 +20,11 @@ export function Footer() {
         <p className="flex flex-wrap gap-x-3 gap-y-2">
           <span className="font-semibold uppercase tracking-[0.16em] text-mint">Public review kit</span>
           {reviewKit.map(([href, label]) => (
-            <Link key={href} href={href} className="text-slate-300 hover:text-white">{label}</Link>
+            <Link key={href} href={href} className="inline-flex min-h-[24px] items-center text-slate-300 hover:text-white">{label}</Link>
           ))}
-          <a href={site.links.github} target="_blank" rel="noreferrer" className="text-slate-300 hover:text-white">GitHub</a>
-          <a href={site.links.linkedin} target="_blank" rel="noreferrer" className="text-slate-300 hover:text-white">LinkedIn</a>
-          <Link href="/rss.xml" className="text-slate-300 hover:text-white">RSS</Link>
+          <a href={site.links.github} target="_blank" rel="noreferrer" className="inline-flex min-h-[24px] items-center text-slate-300 hover:text-white">GitHub</a>
+          <a href={site.links.linkedin} target="_blank" rel="noreferrer" className="inline-flex min-h-[24px] items-center text-slate-300 hover:text-white">LinkedIn</a>
+          <Link href="/rss.xml" className="inline-flex min-h-[24px] items-center text-slate-300 hover:text-white">RSS</Link>
         </p>
       </div>
     </footer>

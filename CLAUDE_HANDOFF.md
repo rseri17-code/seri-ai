@@ -608,3 +608,21 @@ Ravikanth's first Vercel deploy failed at `validate:reference` with `TypeError: 
 **Reverting later is one line.** If the `seri.ai` domain is acquired, set `NEXT_PUBLIC_SITE_URL=https://seri.ai` in Vercel; the code defaults exist only as a fallback for when the variable is unset, and after the `??`→`||` fix an empty value also falls back safely.
 
 Evidence: `npm test` and `npm run build` green; zero protocol-qualified `https://seri.ai` references remain in `app/`, `lib/`, `scripts/`, `components/`; empty-env-var build still passes.
+
+### 2026-08-26 — Claude: senior-UX visual audit of the rendered build (Claude lane)
+
+Audited 11 routes at 1440x1000 and 5 at 390x844 against the running production build, measuring rather than eyeballing: clipped text, tap-target size, accessible names, empty headings, SVG label legibility, and label collision.
+
+**Clean:** no clipped text, no missing `alt`, no empty headings, no unlabeled interactive elements, no horizontal overflow at either width.
+
+**Fixed — WCAG 2.2 AA target size (2.5.8).** Standalone nav links and CTAs rendered at 16–20px, below the 24×24 minimum for pointer targets. Raised footer review-kit links (4), Operations Room CTAs ("Ask about this case", "Trace this in the Map"), and the Ask guide-path icon links to ≥24px. Sub-24px targets on `/`, `/ask`, `/investigation-room`, `/start-here` went from 6/17/8/6 to **zero**. The two remaining 16px links on `/work` are inline prose links inside a sentence, which the success criterion explicitly exempts — deliberately left alone.
+
+**Fixed — diagram labels were illegible.** The evidence-graph labels rendered at **6–8px** on screen (`.sim-graph-label` 3px, `.sim-graph-detail` 2.35px in viewBox units). Scaled to 4.35px/3.4px, giving **11px/9px rendered**. Note the measurement trap: `getComputedStyle` reports viewBox units, not screen pixels — `getBoundingClientRect()` is the honest measure for scaled SVG.
+
+**Caught a regression I introduced.** The larger labels made "Evidence Graph" and "Decision Packet" overlap. Detected with a programmatic bounding-box intersection check rather than by eye, then fixed by moving the decision node (x 82→86, y 54→62) instead of shrinking the labels back. Overlaps: 2 → **0**, legibility retained.
+
+**Also held the performance budget honestly.** The proof-boundary callout pushed `/work` 92 bytes over its 195,000-byte rendered budget. Rather than raise the budget to make the build pass — the same failure class as the `sr-only` shadows — the markup was compacted into one container. Budget now passes on its own terms.
+
+**External review cross-check.** A third-party review flagged "what looks like a duplicated second nav row in the markup". Verified and **not reproducible on the live page**: one `<nav>` with 15 links in DOM, 8 reachable on desktop and 2 on mobile; the rest are `display:none` via responsive classes and are correctly skipped by assistive tech. The reviewer was reading raw markup and saw both breakpoint variants. Its diagram-label finding, by contrast, was correct and is now fixed and quantified.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
