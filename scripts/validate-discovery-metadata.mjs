@@ -126,9 +126,9 @@ const siteUrl = "https://seri-ai.vercel.app";
 const layout = read("app/layout.tsx");
 expectIncludes("app/layout.tsx", layout, [
   "metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || \"https://seri-ai.vercel.app\")",
-  "seri.ai | Operational Intelligence for AI-native Operations",
-  "Ravikanth Seri's public home for Operational Intelligence",
-  "A public technical reference for evidence-backed operational reasoning",
+  "Ravikanth Seri | seri.ai",
+  "Ravikanth Seri's public professional home for Operational Intelligence",
+  "Ravikanth Seri's public professional home for evidence-backed operational reasoning",
   "canonical: \"/\"",
   "\"application/rss+xml\": \"/rss.xml\"",
   "siteName: \"seri.ai\"",
@@ -158,7 +158,7 @@ for (const file of walk(path.join(root, "app")).filter((item) => /(?:page|layout
 
 const openGraphImage = read("app/opengraph-image.tsx");
 expectIncludes("app/opengraph-image.tsx", openGraphImage, [
-  "seri.ai - Operational Intelligence for AI-native operations",
+  "Ravikanth Seri | seri.ai",
   "width: 1200",
   "height: 630",
   "contentType = \"image/png\"",
