@@ -44,7 +44,7 @@ const artifacts = [
   {
     href: "/products/reasonops",
     title: "ReasonOps Public Brief",
-    type: "Product Brief",
+    type: "Public Brief",
     description: "The public expression of Operational Intelligence.",
     icon: Boxes
   },
