@@ -62,7 +62,7 @@ export default function ManifestoPage() {
             <p className="mt-6 text-lg leading-8 text-slate-300">{canonicalDefinition.support}</p>
           </Card>
           <Card>
-            <p className="text-sm font-semibold uppercase text-signal">seri.ai exists because</p>
+            <p className="text-sm font-semibold uppercase text-signal">Ravikanth Seri built seri.ai because</p>
             <p className="mt-4 text-2xl leading-10 text-slate-100">
               Enterprises can observe more than ever, but they still struggle to explain what changed, why it matters, what evidence supports it, and what should happen next.
             </p>

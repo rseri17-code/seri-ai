@@ -7,8 +7,8 @@ import { publicRouteMetadata } from "@/lib/metadata";
 import { buildPublishingIndex, getPublicationChangelog } from "@/lib/publishing";
 
 export const metadata: Metadata = publicRouteMetadata({
-  title: "Changelog | seri.ai",
-  description: "Product changelog for seri.ai as a living Operational Intelligence platform.",
+  title: "Changelog | Ravikanth Seri",
+  description: "Public release log for Ravikanth Seri's public professional home and Operational Intelligence body of work.",
   path: "/changelog"
 });
 
@@ -34,12 +34,12 @@ export default function ChangelogPage() {
 
   return (
     <>
-      <Section eyebrow="Changelog" title="seri.ai as a living product." level="h1">
+      <Section eyebrow="Release log" title="Ravikanth Seri's public release log." level="h1">
         <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.05]">
-            <h2 className="text-3xl font-semibold text-white">Every release should make the body of work more inspectable, not merely larger.</h2>
+            <h2 className="text-3xl font-semibold text-white">Every release should make Ravikanth Seri&apos;s body of work more inspectable, not merely larger.</h2>
             <p className="mt-4 text-lg leading-8 text-slate-300">
-              The changelog tracks public-safe publications, proof objects, evaluation surfaces, and product improvements that strengthen the Operational Intelligence reference system.
+              The release log tracks public-safe publications, proof objects, evaluation surfaces, and product improvements that strengthen the Operational Intelligence reference system.
             </p>
           </Card>
           <div className="grid gap-3 md:grid-cols-2">
@@ -66,7 +66,7 @@ export default function ChangelogPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Release discipline" title="How seri.ai should evolve from here.">
+      <Section eyebrow="Release discipline" title="How Ravikanth Seri&apos;s public work should evolve from here.">
         <div className="grid gap-4 md:grid-cols-3">
           {[
             ["Version deliberately", "Canonical doctrine and reference architecture changes should move as v1.x revisions unless evidence requires a breaking revision."],

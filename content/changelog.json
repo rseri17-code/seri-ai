@@ -1,5 +1,16 @@
 [
   {
+    "version": "v0.14",
+    "date": "2026-08-26",
+    "title": "Recentered the changelog and manifesto on Ravikanth Seri's authorship",
+    "description": "The changelog now reads as Ravikanth Seri's public release log, and the manifesto now explicitly states that Ravikanth Seri built seri.ai because the operational decision itself should be inspectable. This keeps the release surfaces aligned with the person-first identity framing already applied across the rest of the site.",
+    "tags": [
+      "identity",
+      "manifesto",
+      "release-log"
+    ]
+  },
+  {
     "version": "v0.13",
     "date": "2026-08-26",
     "title": "Recentered the footer and not-found surface on Ravikanth Seri",
