@@ -1,5 +1,16 @@
 [
   {
+    "version": "v0.13",
+    "date": "2026-08-26",
+    "title": "Recentered the footer and not-found surface on Ravikanth Seri",
+    "description": "The footer now describes seri.ai as Ravikanth Seri's public professional home for Operational Intelligence and public-safe technical work, and the not-found surface now uses the same person-first language. These are small but important cues that keep the site from drifting back toward a generic product shell.",
+    "tags": [
+      "identity",
+      "footer",
+      "routes"
+    ]
+  },
+  {
     "version": "v0.12",
     "date": "2026-08-26",
     "title": "Recentered the persistent site chrome and schema around Ravikanth Seri",
