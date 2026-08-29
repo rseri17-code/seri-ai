@@ -26,48 +26,36 @@
       "label": "Home"
     },
     {
+      "href": "/background",
+      "label": "Background"
+    },
+    {
+      "href": "/resume",
+      "label": "Resume"
+    },
+    {
       "href": "/work",
       "label": "Work"
     },
     {
       "href": "/framework",
-      "label": "Framework"
-    },
-    {
-      "href": "/work",
-      "label": "Proof path"
+      "label": "Operational Intelligence"
     },
     {
       "href": "/library",
-      "label": "Map"
-    },
-    {
-      "href": "/library",
-      "label": "Library"
+      "label": "Writing"
     },
     {
       "href": "/patterns",
       "label": "Patterns"
     },
     {
-      "href": "/products/reasonops",
-      "label": "ReasonOps"
-    },
-    {
       "href": "/investigation-room",
       "label": "Operations Room"
     },
     {
-      "href": "/framework",
-      "label": "Radar"
-    },
-    {
       "href": "/ask",
-      "label": "Ask Ravi"
-    },
-    {
-      "href": "/background",
-      "label": "Background"
+      "label": "Ask Ravikanth"
     },
     {
       "href": "/contact",
