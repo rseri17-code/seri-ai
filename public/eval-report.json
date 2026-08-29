@@ -586,7 +586,7 @@
       "expected": "Route to evals.",
       "requiredAnswerIncludes": [
         "Evaluation Layer",
-        "/evals",
+        "/ask",
         "Related page"
       ],
       "result": "Pass"
@@ -722,7 +722,7 @@
         "Related page or artifact",
         "/wiki/operational-intelligence-evidence-pack",
         "/investigation-room",
-        "/evals"
+        "/ask"
       ],
       "result": "Pass"
     },
@@ -776,7 +776,7 @@
         "/wiki/operational-intelligence-canonical-doctrine",
         "/wiki/operational-intelligence-reference-architecture",
         "/wiki/operational-intelligence-evidence-pack",
-        "/evals",
+        "/ask",
         "Claim discipline"
       ],
       "result": "Pass"
@@ -1118,7 +1118,7 @@
         "/work",
         "/resume",
         "/wiki/operational-intelligence-reference-architecture",
-        "/evals"
+        "/ask"
       ],
       "result": "Pass"
     },

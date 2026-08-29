@@ -15,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/architecture-lab",
     "/investigation-room",
     "/ask",
-    "/evals",
     "/background",
     "/resume",
     "/contact",

@@ -3,6 +3,7 @@ import { Card } from "@/components/card";
 import { ProfileMark } from "@/components/profile-mark";
 import { Section } from "@/components/section";
 import { askContextCards, askGuidePaths, askRaviPrompts, askThesisLenses } from "@/content/ask";
+import { evalReport } from "@/content/site";
 import Link from "next/link";
 import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, Network, ShieldCheck, type LucideIcon } from "lucide-react";
 import type { Metadata } from "next";
@@ -34,6 +35,7 @@ export default async function AskPage({
   searchParams: Promise<{ prompt?: string }>;
 }) {
   const params = await searchParams;
+  const evalFixtureCount = evalReport.fixtures.length;
   const initialPrompt = params.prompt ?? "";
 
   return (
@@ -52,6 +54,12 @@ export default async function AskPage({
             <h2 className="text-3xl font-semibold leading-tight text-white">A serious technical claim should survive inspection.</h2>
             <p className="mt-4 leading-7 text-slate-300">
               An AI assistant over Ravikanth&apos;s public writing, architecture, and evidence. It cites what it knows, names what it doesn&apos;t, and won&apos;t discuss non-public work.
+            </p>
+            <p className="mt-4 rounded border border-amber/25 bg-amber/[0.05] p-4 text-sm leading-6 text-slate-300">
+              <span className="font-semibold text-amber">How this actually works.</span> There is no model in the loop. Retrieval is
+              lexical and answers are assembled deterministically from approved public sources, so the same question returns the same
+              answer. That limits how fluent it can be, and it is why every answer names its source and its unknowns. Behaviour is held
+              to {" "}{evalFixtureCount} deterministic checks that run on every build.
             </p>
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               {["Ground claims", "Expose sources", "Separate inference", "Stop at evidence"].map((step) => (

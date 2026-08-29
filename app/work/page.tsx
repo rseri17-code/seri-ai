@@ -63,7 +63,7 @@ const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }
       registryWorkItem("evidence-graph-model"),
       ["/patterns/agentic-incident-investigation", "Hypothesis Lifecycle", "How competing explanations are proposed, supported, weakened, rejected, or promoted."],
       registryWorkItem("replay-seed-model"),
-      registryWorkItem("public-evaluation-gate"),
+      ["/ask", "Evaluation Gate", "Deterministic behaviour checks that run on every build before an answer ships."],
       ["/patterns/human-in-the-loop-operational-ai", "Operator Control Plane", "Human approval, override, escalation, and accountability for enterprise agent action."]
     ]
   },

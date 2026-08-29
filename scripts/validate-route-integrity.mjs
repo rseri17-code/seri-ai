@@ -27,7 +27,6 @@ const criticalRoutes = [
   "/architecture-lab",
   "/investigation-room",
   "/ask",
-  "/evals",
   "/background",
   "/resume",
   "/contact",

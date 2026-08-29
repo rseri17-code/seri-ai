@@ -35,7 +35,7 @@
       "/framework",
       "/library",
       "/investigation-room",
-      "/evals",
+      "/ask",
       "/wiki/operational-intelligence-publication-pack",
       "/wiki/operational-intelligence-evidence-pack"
     ],
@@ -94,7 +94,7 @@
       "/framework",
       "/library",
       "/investigation-room",
-      "/evals",
+      "/ask",
       "/wiki/operational-intelligence-publication-pack",
       "/wiki/operational-intelligence-evidence-pack",
       "/operational-intelligence-reference-architecture-v1.md"
@@ -151,7 +151,7 @@
       "/framework",
       "/library",
       "/investigation-room",
-      "/evals",
+      "/ask",
       "/wiki/operational-intelligence-evidence-pack",
       "/operational-intelligence-reference-architecture-v1.md",
       "/downloads/operational-intelligence-publication-pack.pdf"
@@ -207,7 +207,7 @@
       "/framework",
       "/library",
       "/investigation-room",
-      "/evals",
+      "/ask",
       "/contact",
       "/wiki/operational-intelligence-publication-pack",
       "/publication-pack/operational-intelligence-evidence-pack.md"
@@ -314,7 +314,7 @@
     "relatedArtifacts": [
       "/library",
       "/investigation-room",
-      "/evals",
+      "/ask",
       "/wiki/operational-intelligence-evidence-pack"
     ],
     "relatedProducts": [
@@ -363,7 +363,7 @@
     ],
     "relatedArtifacts": [
       "/investigation-room",
-      "/evals"
+      "/ask"
     ],
     "relatedProducts": [],
     "relatedLibraryAssets": [
@@ -409,7 +409,7 @@
     ],
     "relatedArtifacts": [
       "/library",
-      "/evals"
+      "/ask"
     ],
     "relatedProducts": [
       "/products/reasonops"
@@ -447,7 +447,7 @@
       "/patterns/evaluation-and-replay"
     ],
     "relatedArtifacts": [
-      "/evals",
+      "/ask",
       "/investigation-room"
     ],
     "relatedProducts": [
@@ -462,43 +462,6 @@
     "seo": {
       "title": "Ask Ravi",
       "description": "Public-safe companion for Ravikanth Seri's public work and Operational Intelligence thesis."
-    }
-  },
-  {
-    "title": "Public Evaluation Gate",
-    "slug": "public-evaluation-gate",
-    "summary": "seri.ai treats AI behavior as a product surface. The assistant is expected to stay grounded in approved public content, refuse confidential topics, cite useful sources, and name uncertainty instead of inventing authority.",
-    "type": "artifact",
-    "route": "/evals",
-    "status": "published",
-    "frameworkLayers": [
-      "Evaluation Layer",
-      "Evidence Layer",
-      "Operator Layer"
-    ],
-    "relatedPrinciples": [
-      "Evaluation before release",
-      "Replay before trust"
-    ],
-    "relatedPatterns": [
-      "/patterns/evaluation-and-replay"
-    ],
-    "relatedArtifacts": [
-      "/investigation-room"
-    ],
-    "relatedProducts": [
-      "/products/reasonops"
-    ],
-    "relatedLibraryAssets": [
-      "/ideas/evaluating-ai-for-operational-work",
-      "/ideas/ai-evaluation-is-operational-risk-management"
-    ],
-    "publicSafe": "public-safe",
-    "createdAt": "2026-07-16",
-    "updatedAt": "2026-07-16",
-    "seo": {
-      "title": "Public Evaluation Gate",
-      "description": "Reproducible public trust fixtures and limitations for Ask Ravi."
     }
   },
   {
@@ -527,7 +490,7 @@
     "relatedArtifacts": [
       "/framework",
       "/investigation-room",
-      "/evals",
+      "/ask",
       "/resume",
       "/background",
       "/wiki/operational-intelligence-canonical-doctrine",
@@ -681,7 +644,7 @@
       "/patterns/operational-memory"
     ],
     "relatedArtifacts": [
-      "/evals",
+      "/ask",
       "/investigation-room"
     ],
     "relatedProducts": [

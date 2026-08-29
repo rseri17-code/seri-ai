@@ -72,7 +72,12 @@
       "whatToInspect": "Repository names, README posture, commit activity, implementation examples, experiments, and public engineering artifacts.",
       "publicSafeUse": "Use as a public code signal connected to Ravikanth's Operational Intelligence, AI operations, automation, and architecture work.",
       "proofBoundary": "Do not infer private employer implementation details, production metrics, customer systems, or confidential architecture from public repository presence.",
-      "related": ["/work", "/resume", "/projects", "/library"]
+      "related": [
+        "/work",
+        "/resume",
+        "/projects",
+        "/library"
+      ]
     },
     {
       "label": "Sentinalai",
@@ -81,7 +86,12 @@
       "whatToInspect": "Public README, agent notes, investigation skills, playbook configuration, eval scenarios, receipt-shaped artifacts, memory/wiki structure, and public-safe architecture notes.",
       "publicSafeUse": "Treat as inspectable public evidence for the SentinalAI workstream and its relationship to AI-native operations, governed agents, deterministic investigation, operational memory, and Operational Intelligence themes.",
       "proofBoundary": "Do not claim production adoption, private deployment details, internal integrations, repository metrics, or code behavior that is not visible in public source.",
-      "related": ["/work", "/now", "/projects/operational-intelligence-copilot", "/wiki/operational-intelligence-reference-architecture"]
+      "related": [
+        "/work",
+        "/now",
+        "/projects/operational-intelligence-copilot",
+        "/wiki/operational-intelligence-reference-architecture"
+      ]
     },
     {
       "label": "seri.ai public artifacts",
@@ -90,7 +100,12 @@
       "whatToInspect": "Doctrine, reference architecture, Operations Room, publication pack, evidence pack, Ask trust fixtures, patterns, articles, and project descriptions.",
       "publicSafeUse": "Use as the primary public body of work when evaluating Ravikanth's architecture judgment and Operational Intelligence thesis.",
       "proofBoundary": "This proves public reasoning quality and artifact discipline; it does not prove private production outcomes unless separately supported by approved public evidence.",
-      "related": ["/work", "/wiki/operational-intelligence-canonical-doctrine", "/investigation-room", "/evals"]
+      "related": [
+        "/work",
+        "/wiki/operational-intelligence-canonical-doctrine",
+        "/investigation-room",
+        "/ask"
+      ]
     }
   ]
 }

@@ -29,7 +29,7 @@ const builderLedger = [
     "Synthetic incident workbench for evidence, transaction timing, hypotheses, replay, evaluation, and human approval."
   ],
   [
-    "/evals",
+    "/ask",
     "Ask Ravi trust fixtures",
     "Deterministic behavior checks for grounding, refusal, citation presence, and related routing."
   ],

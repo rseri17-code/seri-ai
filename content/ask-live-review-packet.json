@@ -49,7 +49,6 @@
   ],
   "requiredArtifactsToInspect": [
     "/ask",
-    "/evals",
     "/contact",
     "/wiki/operational-intelligence-canonical-doctrine",
     "/wiki/operational-intelligence-reference-architecture",

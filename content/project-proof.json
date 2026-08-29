@@ -30,7 +30,6 @@
       "visibleArtifact": "/ask",
       "inspectionPath": [
         "/ask",
-        "/evals",
         "/wiki/operational-intelligence-evidence-pack",
         "/work"
       ],
@@ -69,9 +68,9 @@
     {
       "slug": "ai-evaluation-workbench",
       "claim": "The AI Evaluation Workbench turns trust into release-gated behavior checks for operational AI: grounding, refusal, routing, replay, and regression.",
-      "visibleArtifact": "/evals",
+      "visibleArtifact": "/ask",
       "inspectionPath": [
-        "/evals",
+        "/ask",
         "/patterns/evaluation-and-replay",
         "/wiki/evaluation-and-replay",
         "/wiki/operational-intelligence-evidence-pack"

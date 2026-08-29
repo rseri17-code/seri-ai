@@ -19,7 +19,7 @@ const researchPrompts = [
   ["Architecture", "Which contracts make two implementations comparable?", "/wiki/operational-intelligence-reference-architecture"],
   ["Evidence", "What would convince a skeptical engineer that this model is useful?", "/wiki/operational-intelligence-evidence-pack"],
   ["Operations Room", "How does OI-ROOM-001 move from evidence to a decision packet?", "/investigation-room"],
-  ["Evaluation", "Which trust fixtures gate Ask Ravi behavior?", "/evals"],
+  ["Evaluation", "Which trust fixtures gate Ask Ravi behavior?", "/ask"],
   ["Public work", "Where is Ravikanth's public work connected to proof objects?", "/work"]
 ] as const;
 

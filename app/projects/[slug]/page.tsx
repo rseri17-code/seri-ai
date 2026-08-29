@@ -57,7 +57,6 @@ const projectContracts = {
     ],
     references: [
       ["/ask", "Ask Ravi"],
-      ["/evals", "Trust fixtures"],
       ["/wiki/operational-intelligence-evidence-pack", "Evidence pack"]
     ]
   },
@@ -70,7 +69,7 @@ const projectContracts = {
       "Stale ownership or dependency context weakens blast-radius claims."
     ],
     references: [
-      ["/library", "Operational map"],
+      ["/library", "Library"],
       ["/patterns/transaction-journey-reconstruction", "Transaction pattern"],
       ["/wiki/transaction-journeys", "Transaction note"]
     ]
@@ -84,7 +83,7 @@ const projectContracts = {
       "Production corrections never become replay fixtures."
     ],
     references: [
-      ["/evals", "Public evals"],
+      ["/ask", "Public evals"],
       ["/patterns/evaluation-and-replay", "Evaluation pattern"],
       ["/wiki/evaluation-and-replay", "Evaluation note"]
     ]
@@ -97,9 +96,8 @@ const inspectionLabels: Record<string, string> = {
   "/publication-pack/decision-packet-example.md": "Decision packet",
   "/wiki/operational-intelligence-evidence-pack": "Evidence pack",
   "/ask": "Ask Ravikanth",
-  "/evals": "Public evals",
   "/work": "Work index",
-  "/library": "Operational map",
+  "/library": "Library",
   "/patterns/transaction-journey-reconstruction": "Transaction journey pattern",
   "/wiki/transaction-journeys": "Transaction journeys note",
   "/ideas/transaction-intelligence-for-complex-enterprises": "Transaction Intelligence article",

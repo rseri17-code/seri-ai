@@ -36,7 +36,7 @@ for (const mode of ["local_fallback", "vector_retrieval", "model_synthesis"]) {
   expect(packet.reviewModes.some((entry) => entry.mode === mode), `Packet missing answer mode ${mode}.`);
 }
 
-for (const artifact of ["/ask", "/evals", "/contact", "/wiki/operational-intelligence-evidence-pack", "/publication-pack/ask-ravi-live-review-packet.md"]) {
+for (const artifact of ["/ask", "/ask", "/contact", "/wiki/operational-intelligence-evidence-pack", "/publication-pack/ask-ravi-live-review-packet.md"]) {
   expect(packet.requiredArtifactsToInspect.includes(artifact), `Packet missing required artifact ${artifact}.`);
 }
 

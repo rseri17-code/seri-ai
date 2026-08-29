@@ -151,12 +151,12 @@
       "failureMode": "Fluent output is trusted without testing operational behavior.",
       "operatorQuestion": "How do we know the reasoning system behaved safely and usefully?",
       "related": [
-        "/evals",
+        "/ask",
         "/patterns/evaluation-and-replay",
         "/wiki/evaluation-and-replay"
       ],
       "relatedPattern": "/patterns/evaluation-and-replay",
-      "relatedArtifact": "/evals",
+      "relatedArtifact": "/ask",
       "relatedLibraryAsset": "/ideas/ai-evaluation-is-operational-risk-management"
     },
     {

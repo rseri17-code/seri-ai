@@ -189,7 +189,7 @@
     ],
     [
       "AI engineer",
-      "/evals",
+      "/ask",
       "Trust evals",
       "Do retrieval, citation, refusal, and action-safety gates hold?"
     ],

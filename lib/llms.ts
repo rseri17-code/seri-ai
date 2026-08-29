@@ -8,7 +8,7 @@ const canonicalReferenceRoutes = [
   "/wiki/operational-intelligence-evidence-pack",
   "/framework",
   "/investigation-room",
-  "/evals",
+  "/ask",
   "/work",
   "/resume",
   "/contact"
@@ -76,7 +76,7 @@ function labelForRoute(route: string) {
     "/wiki/operational-intelligence-evidence-pack": "Operational Intelligence Evidence Pack",
     "/framework": "Operational Intelligence Framework",
     "/investigation-room": "Operations Room",
-    "/evals": "Public Trust Evals",
+    "/ask": "Public Trust Evals",
     "/work": "Public Work Index",
     "/resume": "Interactive Resume",
     "/contact": "Practitioner Review and Contact"

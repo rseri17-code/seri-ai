@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 const artifactLabels: Record<string, string> = {
   "/investigation-room": "Operations Room",
-  "/evals": "Trust fixtures",
-  "/library": "Operational map"
+  "/ask": "Trust fixtures",
+  "/library": "Library"
 };
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {

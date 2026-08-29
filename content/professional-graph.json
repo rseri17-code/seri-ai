@@ -100,7 +100,7 @@
     {
       "capability": "Evaluation and runtime governance",
       "proof": "Behavior fixtures, refusal tests, citation checks, release gates, tool controls, and approval boundaries.",
-      "href": "/evals"
+      "href": "/ask"
     },
     {
       "capability": "Public technical leadership",
@@ -130,7 +130,7 @@
       "decision": "Make replay and evaluation first-class architecture surfaces.",
       "constraint": "AI-assisted operations cannot be trusted if the same case cannot be replayed, compared, challenged, and regression-tested after model, prompt, data, or tool changes.",
       "publicEvidence": "Replay Seed, Ask trust fixtures, conformance profile, and reviewer-run worksheet define repeatable checks instead of one-off demo answers.",
-      "inspectHref": "/evals"
+      "inspectHref": "/ask"
     },
     {
       "decision": "Model transactions as journeys, not isolated alerts.",
@@ -172,7 +172,7 @@
       "responsibility": "Gate trust through deterministic fixtures, replay seeds, citation checks, refusal behavior, contradiction handling, and visible limitations.",
       "publicEvidence": "Ask trust report, Evidence Pack, reviewer-run worksheet, and public-safety fixtures.",
       "reviewQuestion": "Can the same case be replayed and regression-tested after prompt, model, data, or tool changes?",
-      "href": "/evals"
+      "href": "/ask"
     },
     {
       "stage": "Governance",
@@ -209,7 +209,7 @@
       "evidenceTemplate": "Ask Ravi and {fixtureCount} passing public trust evals",
       "inspect": "Review citation, refusal, routing, unknown-question, confidential-boundary, and prompt-injection fixtures.",
       "weakens": "If Ask Ravi answers unsupported questions confidently or stores private prompt text in analytics.",
-      "href": "/evals"
+      "href": "/ask"
     },
     {
       "claim": "The body of work connects engineering taste to professional proof.",
@@ -282,7 +282,7 @@
     {
       "question": "What should improve next?",
       "answer": "More benchmark-style field notes, live reviewer-labeled Ask quality, and practitioner feedback loops.",
-      "href": "/evals"
+      "href": "/ask"
     }
   ],
   "proofLinks": [
@@ -312,7 +312,7 @@
       "detail": "Definitions, boundaries, ten layers, glossary, and OI-ROOM-001 framing."
     },
     {
-      "href": "/evals",
+      "href": "/ask",
       "label": "Ask trust report",
       "detailTemplate": "{fixtureCount} deterministic fixtures for grounding, refusal, citations, routing, and public safety."
     }

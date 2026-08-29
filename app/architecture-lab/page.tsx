@@ -29,7 +29,7 @@ const labContracts = [
   },
   {
     name: "Evaluation contract",
-    route: "/evals",
+    route: "/ask",
     input: "Questions, expected behaviors, refusal cases, citation requirements, and related-page routing.",
     output: "Deterministic trust fixtures with explicit pass/fail behavior and known limitations.",
     failure: "Assistant quality is judged by confidence prose instead of reproducible behavior."

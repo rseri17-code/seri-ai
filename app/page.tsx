@@ -12,7 +12,7 @@ const proofStrip = [
   ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
   ["Architecture", "Contracts, schemas, state machines, approval gates, and conformance levels."],
   ["Operations Room", "A synthetic-case investigation instrument for evidence, replay, hypotheses, and review."],
-  ["Ask Ravi", "An AI assistant over the public work; how it is tested is itself public at /evals."]
+  ["Ask Ravi", "An AI assistant over the public work. It cites what it knows and names what it does not."]
 ];
 
 
@@ -30,7 +30,7 @@ const inspectionLedger = [
   ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "What Operational Intelligence claims, and where the claim stops."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Precise enough to build from: contracts, schemas, and gates."],
   ["/investigation-room", "Operations Room", "A synthetic incident you can work end to end, including what the evidence missed."],
-  ["/evals", "Trust Evals", `${homeEvalReport.fixtures.length} fixtures checking whether Ask stays grounded, refuses well, and cites.`],
+  ["/ask", "Trust Evals", `${homeEvalReport.fixtures.length} fixtures checking whether Ask stays grounded, refuses well, and cites.`],
   ["/radar", "Thesis Radar", "Where the market is moving, and what would prove the thesis wrong."],
   ["/library", "Publishing System", "Everything written down, searchable and cited well enough to reuse."],
   ["/work", "Public Work", "Fifteen years of it, with the proof attached."]
@@ -471,7 +471,7 @@ export default function Home() {
             <Link href="/ask" className="rounded bg-white px-5 py-3 font-semibold text-ink">
               Ask Ravikanth
             </Link>
-            <Link href="/evals" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+            <Link href="/ask" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
               View evals <ShieldCheck size={18} />
             </Link>
           </div>

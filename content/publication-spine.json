@@ -48,7 +48,7 @@
       "supportingAssets": [
         "/publication-pack/operational-intelligence-evidence-pack.md",
         "/ideas/oi-room-001-control-comparison",
-        "/evals"
+        "/ask"
       ],
       "readerQuestion": "What evidence would convince or weaken the claim that this model improves operational judgment?",
       "proofStandard": "The work names control modes, reviewer questions, evidence dimensions, limitations, unsupported claims, and measurable failure signals."

@@ -116,7 +116,7 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/visual-qa/2026-08-22/report.md");
     artifacts.add("/identity/ravikanth-seri-identity-mark.svg");
     artifacts.add("/contact");
-    artifacts.add("/evals");
+    artifacts.add("/ask");
     artifacts.add("/investigation-room");
     artifacts.add("/background");
   }
@@ -125,7 +125,7 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/visual-qa/2026-08-22/report.md");
     artifacts.add("/work");
     artifacts.add("/work");
-    artifacts.add("/evals");
+    artifacts.add("/ask");
     artifacts.add("/investigation-room");
   }
   if (/visual qa|mobile qa|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/.test(lower)) {
@@ -142,7 +142,7 @@ export function inferRelatedArtifacts(question: string) {
   }
   if (/ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/.test(lower)) {
     artifacts.add("/publication-pack/ask-ravi-live-review-packet.md");
-    artifacts.add("/evals");
+    artifacts.add("/ask");
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
     artifacts.add("/contact");
   }
@@ -165,13 +165,13 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/investigation-room");
   }
   if (/eval|evaluation|gate|trust|fixture|benchmark|baseline/.test(lower)) {
-    artifacts.add("/evals");
+    artifacts.add("/ask");
   }
   if (/skeptical technical reviewer|technical reviewer|challenge the operational intelligence model|challenge.*model/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
     artifacts.add("/wiki/operational-intelligence-reference-architecture");
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
-    artifacts.add("/evals");
+    artifacts.add("/ask");
     artifacts.add("/contact");
   }
   if (/project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|work|public work|project|building|product thesis|github|open source|open-source|code|repository|inspect|built/.test(lower)) {
@@ -207,7 +207,7 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/work");
     artifacts.add("/resume");
     artifacts.add("/wiki/operational-intelligence-reference-architecture");
-    artifacts.add("/evals");
+    artifacts.add("/ask");
   }
   return [...artifacts].slice(0, 12);
 }

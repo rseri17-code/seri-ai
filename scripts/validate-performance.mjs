@@ -24,7 +24,6 @@ const criticalHtmlFiles = [
   "index.html",
   "framework.html",
   "investigation-room.html",
-  "evals.html",
   "search.html",
   "wiki/operational-intelligence-canonical-doctrine.html",
   "wiki/operational-intelligence-reference-architecture.html",

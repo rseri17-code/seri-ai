@@ -129,7 +129,7 @@
       "evidenceToInspect": [
         "/wiki/operational-intelligence-evidence-pack",
         "/work",
-        "/evals"
+        "/ask"
       ]
     },
     {
@@ -153,7 +153,6 @@
       "question": "Does Ask Ravikanth retrieve, cite, refuse, and route correctly under realistic questions?",
       "evidenceToInspect": [
         "/ask",
-        "/evals",
         "/publication-pack/ask-ravi-live-review-packet.md"
       ]
     },

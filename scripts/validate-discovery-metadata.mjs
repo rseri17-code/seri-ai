@@ -23,7 +23,7 @@ const canonicalRoutes = [
   "/wiki/operational-intelligence-evidence-pack",
   "/framework",
   "/investigation-room",
-  "/evals",
+  "/ask",
   "/work",
   "/resume",
   "/contact"
@@ -69,10 +69,6 @@ const routeMetadataContracts = [
   {
     file: "app/framework/page.tsx",
     required: ["export const metadata", "Operational Intelligence Framework | Ravikanth Seri", "canonical: \"/framework\"", "url: \"/framework\""]
-  },
-  {
-    file: "app/evals/page.tsx",
-    required: ["export const metadata", "Evals | Public Operational Intelligence Trust Report", "canonical: \"/evals\"", "url: \"/evals\""]
   },
   {
     file: "app/resume/page.tsx",

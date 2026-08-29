@@ -5,7 +5,6 @@ const root = process.cwd();
 const rubricPath = path.join(root, "content", "ask-quality-rubric.json");
 const personaPath = path.join(root, "content", "ask-persona.json");
 const evalReportPath = path.join(root, "content", "eval-report.json");
-const evalsPagePath = path.join(root, "app", "evals", "page.tsx");
 const scorecardPath = path.join(root, "WORLD_CLASS_SCORECARD.md");
 const qualityScorecardPath = path.join(root, "content", "quality-scorecard.json");
 const compliancePath = path.join(root, "lib", "compliance.ts");
@@ -19,7 +18,6 @@ function expect(condition, message) {
 const rubric = JSON.parse(fs.readFileSync(rubricPath, "utf8"));
 const persona = JSON.parse(fs.readFileSync(personaPath, "utf8"));
 const evalReport = JSON.parse(fs.readFileSync(evalReportPath, "utf8"));
-const evalsPage = fs.readFileSync(evalsPagePath, "utf8");
 const scorecard = fs.readFileSync(scorecardPath, "utf8");
 const qualityScorecard = JSON.parse(fs.readFileSync(qualityScorecardPath, "utf8"));
 const compliance = fs.readFileSync(compliancePath, "utf8");
@@ -152,16 +150,6 @@ for (const unsafe of ["raw confidential prompt text", "private employer names", 
   expect(rubric.reportingTemplate.doNotCapture.includes(unsafe), `Rubric do-not-capture list missing ${unsafe}.`);
 }
 
-for (const required of [
-  "askQualityRubric",
-  "Live answer rubric",
-  "Human review labels",
-  "No model-quality score is published until reviewer-labeled sessions exist.",
-  "reviewPromptSet",
-  "modelQualityScoresFabricated"
-]) {
-  expect(evalsPage.includes(required), `/evals missing live answer rubric contract: ${required}`);
-}
 
 for (const required of [
   "reviewer-labeled answer rubrics",

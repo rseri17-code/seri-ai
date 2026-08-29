@@ -54,7 +54,6 @@ const knownRoutes = new Set([
   "/architecture-lab",
   "/investigation-room",
   "/ask",
-  "/evals",
   "/background",
   "/resume",
   "/contact",
@@ -168,7 +167,7 @@ for (const product of products) {
   expect(product.capabilities.length >= 3, `${owner}: needs at least three capabilities`);
 }
 
-for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack", "/work", "/framework", "/investigation-room", "/ask", "/evals", "/radar"]) {
+for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack", "/work", "/framework", "/investigation-room", "/ask", "/ask", "/radar"]) {
   expect(contentRegistry.some((item) => item.route === route), `critical registry route missing: ${route}`);
 }
 
@@ -299,7 +298,6 @@ for (const required of [
   "/wiki/operational-intelligence-canonical-doctrine",
   "/wiki/operational-intelligence-reference-architecture",
   "/wiki/operational-intelligence-evidence-pack",
-  "/evals",
   "/library",
   "/rss.xml",
   "/work",
@@ -397,7 +395,6 @@ for (const required of [
   "/wiki/operational-intelligence-evidence-pack",
   "/wiki/operational-intelligence-publication-pack",
   "/investigation-room",
-  "/evals",
   "/background"
 ]) {
   expect(workContractSource.includes(required), `/work missing reviewer proof spine contract: ${required}`);
@@ -429,7 +426,6 @@ for (const required of [
   "/wiki/operational-intelligence-reference-architecture",
   "/wiki/operational-intelligence-evidence-pack",
   "/investigation-room",
-  "/evals",
   "/work"
 ]) {
   expect(searchPage.includes(required), `/search missing research console contract: ${required}`);
@@ -682,31 +678,6 @@ for (const required of [
   expect(betaFeedbackForm.includes(required), `BetaFeedbackForm missing resilient submit contract: ${required}`);
 }
 
-const evalsPage = fs.readFileSync(path.join(root, "app", "evals", "page.tsx"), "utf8");
-for (const required of [
-  "const coverageBuckets",
-  "askQualityRubric",
-  "Coverage matrix",
-  "What the deterministic fixtures are protecting.",
-  "Live answer rubric",
-  "Human review labels",
-  "No model-quality score is published until reviewer-labeled sessions exist.",
-  "Safe reporting protocol",
-  "Review prompt set",
-  "Doctrine and definition",
-  "Framework layers",
-  "Adjacent-domain comparison",
-  "Evidence handling",
-  "Artifacts and routing",
-  "Safety and refusal",
-  "Interpretation rule",
-  "These fixtures prove deterministic public-safety and answer-shape behavior.",
-  "They do not prove live model quality",
-  "replay-backed workflow tests",
-  "practitioner review"
-]) {
-  expect(evalsPage.includes(required), `/evals missing coverage matrix contract: ${required}`);
-}
 
 const evidencePackWiki = fs.readFileSync(path.join(root, "content", "wiki", "operational-intelligence-evidence-pack.mdx"), "utf8");
 const evidencePackMarkdown = fs.readFileSync(path.join(root, "public", "publication-pack", "operational-intelligence-evidence-pack.md"), "utf8");
@@ -869,7 +840,6 @@ for (const required of [
   "/wiki/operational-intelligence-publication-pack",
   "/wiki/operational-intelligence-evidence-pack",
   "/investigation-room",
-  "/evals",
   "/contact"
 ]) {
   expect(nowContractSource.includes(required), `/now missing living builder ledger contract: ${required}`);
@@ -934,7 +904,6 @@ for (const required of [
   "/ask?prompt=",
   "encodeURIComponent(question)",
   "/investigation-room",
-  "/evals",
   "canonical",
   "openGraph"
 ]) {
@@ -1020,7 +989,6 @@ for (const required of [
   "/wiki/operational-intelligence-canonical-doctrine",
   "/investigation-room",
   "/patterns/topology-aware-reasoning",
-  "/evals",
   "/work"
 ]) {
   expect(resumeContractSource.includes(required), `/resume missing capability evidence contract: ${required}`);
@@ -1096,7 +1064,7 @@ for (const required of [
   "observability for AI",
   "/investigation-room",
   "/wiki/operational-intelligence-canonical-doctrine",
-  "/evals"
+  "/ask"
 ]) {
   expect(backgroundContractSource.includes(required), `/background missing operating-background contract: ${required}`);
 }
