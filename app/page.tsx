@@ -39,26 +39,32 @@ const inspectionLedger = [
 const professionalSnapshot = [
   {
     title: "Who is Ravikanth?",
+    href: "/background",
     body: `${professionalGraph.identity.person} is a ${professionalGraph.identity.siteRole} with a career that runs from enterprise integration to production AI systems.`
   },
   {
     title: "How has the career evolved?",
+    href: "/background",
     body: professionalGraph.careerEvolution.map((item) => item.stage).join(" → ")
   },
   {
     title: "What has he built?",
+    href: "/work",
     body: "Operational Intelligence doctrine, reference architecture, the Operations Room, Ask Ravi, the Evidence Pack, and public technical writing."
   },
   {
     title: "What is he building now?",
+    href: "/now",
     body: professionalGraph.identity.currentFocus
   },
   {
     title: "What does he specialize in?",
+    href: "/framework",
     body: "Production AI-assisted operations, agentic SRE, observability, transaction intelligence, runtime governance, and evaluation."
   },
   {
     title: "Why work with him?",
+    href: "/contact",
     body: "He brings production systems judgment, public-safe technical writing, reusable architectures, and evidence-led thinking."
   }
 ] as const;
@@ -349,16 +355,22 @@ export default function Home() {
 
       <Section eyebrow="Professional snapshot" title="The fast answer to who Ravikanth Seri is.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          <Card className="border-mint/25 bg-mint/[0.045] p-5 md:col-span-2 xl:col-span-1">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Current role</p>
-            <h3 className="mt-3 text-2xl font-semibold text-white">{professionalGraph.identity.person}</h3>
-            <p className="mt-3 text-sm leading-6 text-slate-300">{resume.summary}</p>
-          </Card>
-          {professionalSnapshot.map((item) => (
-            <Card key={item.title} className="p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{item.title}</p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
+          <Link href="/resume" className="block md:col-span-2 xl:col-span-1">
+            <Card className="border-mint/25 bg-mint/[0.045] p-5 transition hover:border-mint/45">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Current role</p>
+              <h3 className="mt-3 text-2xl font-semibold text-white">{professionalGraph.identity.person}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{resume.summary}</p>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-signal">Open the resume</p>
             </Card>
+          </Link>
+          {professionalSnapshot.map((item) => (
+            <Link key={item.title} href={item.href} className="block">
+              <Card className="p-5 transition hover:border-signal/40">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{item.title}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-mint">Inspect evidence</p>
+              </Card>
+            </Link>
           ))}
         </div>
       </Section>
