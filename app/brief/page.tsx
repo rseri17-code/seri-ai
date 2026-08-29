@@ -24,7 +24,7 @@ const executiveProofPath = [
   ["/wiki/operational-intelligence-canonical-doctrine", "Canonical doctrine", "What the category claims, and where the claim stops."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference architecture", "Precise enough for a team to build from without a conversation."],
   ["/investigation-room", "Operations Room", "A synthetic case that makes the thesis inspectable rather than assertable."],
-  ["/radar", "Thesis radar", "Where the market is moving, and what would prove this thesis wrong."],
+  ["/framework", "Thesis radar", "Where the market is moving, and what would prove this thesis wrong."],
   ["/wiki/operational-intelligence-evidence-pack", "Evidence pack", "The case against, assembled as carefully as the case for."],
   ["/contact", "Practitioner review", "A structured way for practitioners to tell us this is wrong."]
 ] as const;

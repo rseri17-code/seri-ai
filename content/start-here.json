@@ -71,13 +71,13 @@
     "readFirst": [
       "/work",
       "/now",
-      "/manifesto",
+      "/framework",
       "/products/reasonops",
-      "/radar"
+      "/framework"
     ],
     "ask": "What product opportunities exist around Operational Intelligence?",
     "matters": [
-      "/radar",
+      "/framework",
       "/now"
     ]
   }

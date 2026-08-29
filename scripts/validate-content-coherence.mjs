@@ -57,9 +57,7 @@ const knownRoutes = new Set([
   "/background",
   "/resume",
   "/contact",
-  "/manifesto",
   "/now",
-  "/radar",
   "/principles",
   "/wiki",
   "/llms.txt",
@@ -167,7 +165,7 @@ for (const product of products) {
   expect(product.capabilities.length >= 3, `${owner}: needs at least three capabilities`);
 }
 
-for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack", "/work", "/framework", "/investigation-room", "/ask", "/ask", "/radar"]) {
+for (const route of ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/wiki/operational-intelligence-publication-pack", "/wiki/operational-intelligence-evidence-pack", "/work", "/framework", "/investigation-room", "/ask", "/ask", "/framework"]) {
   expect(contentRegistry.some((item) => item.route === route), `critical registry route missing: ${route}`);
 }
 
@@ -287,7 +285,6 @@ for (const required of [
   "Open the Operations Room",
   "Challenge the doctrine",
   "Download publication pack",
-  "Challenge the evidence",
   "Executive",
   "SRE leader",
   "Principal architect",
@@ -514,31 +511,16 @@ const headerComponent = fs.readFileSync(path.join(root, "components", "header.ts
 for (const required of [
   "Ask Ravikanth",
   "href=\"/ask\"",
-  "href: \"/radar\""
+  "href: \"/framework\""
 ]) {
   expect(headerComponent.includes(required), `Header missing Ask Ravi companion CTA contract: ${required}`);
 }
 
-const radarPage = fs.readFileSync(path.join(root, "app", "radar", "page.tsx"), "utf8");
+const radarPage = fs.readFileSync(path.join(root, "app", "framework", "page.tsx"), "utf8");
 const siteContent = fs.readFileSync(path.join(root, "content", "site.ts"), "utf8");
 for (const required of [
   "Evidence posture",
   "These signals do not prove Operational Intelligence as a finished category",
-  "Challenge the evidence",
-  "Public thought process",
-  "Thesis spine",
-  "Every theme below is paired with the question that would prove it wrong.",
-  "The LinkedIn themes become useful only when they become testable claims.",
-  "Thinking signal lifecycle",
-  "LinkedIn is a signal source, not a publishing queue.",
-  "Ideas move forward only when they become reusable engineering knowledge.",
-  "thinkingLifecycleDisplay.map",
-  "LinkedIn Post",
-  "Observation / Field Note",
-  "Developed Argument",
-  "Canonical Technical Asset",
-  "Interactive Demonstration when justified",
-  "Market signal",
   "OI claim",
   "Falsification",
   "Enterprise Context Layer",
@@ -550,26 +532,24 @@ for (const required of [
   "NIST AI Risk Management Framework",
   "Operational Intelligence Thesis Radar",
   "ops for observability",
-  "observability for AI",
   "evidenceType",
   "supports",
-  "type: \"domain\"",
-  "route: \"/radar\""
+  "route: \"/framework\""
 ]) {
   expect(
     radarPage.includes(required) || siteContent.includes(required) || thesisRadarContent.includes(required) || normalizedContentRegistryContent.includes(required),
-    `/radar missing thesis radar evidence contract: ${required}`
+    `Thesis radar evidence contract missing on /framework: ${required}`
   );
 }
 
 const allowedRadarEvidenceTypes = new Set(["standard", "standard signal", "research", "implementation signal", "governance", "foundational practice"]);
 for (const trend of thesisRadar.trends) {
-  expect(trend.sources.length >= 2, `/radar trend "${trend.name}" must cite at least two public sources`);
+  expect(trend.sources.length >= 2, `Thesis radar trend "${trend.name}" must cite at least two public sources`);
   for (const source of trend.sources) {
-    expect(source.evidenceType, `/radar source "${source.label}" missing evidenceType`);
-    expect(allowedRadarEvidenceTypes.has(source.evidenceType), `/radar source "${source.label}" has unsupported evidenceType "${source.evidenceType}"`);
-    expect(source.supports && source.supports.length >= 48, `/radar source "${source.label}" must explain what claim it supports`);
-    expect(!/proves?|validates?|confirms?/i.test(source.supports), `/radar source "${source.label}" overstates evidence posture`);
+    expect(source.evidenceType, `Thesis radar source "${source.label}" missing evidenceType`);
+    expect(allowedRadarEvidenceTypes.has(source.evidenceType), `Thesis radar source "${source.label}" has unsupported evidenceType "${source.evidenceType}"`);
+    expect(source.supports && source.supports.length >= 48, `Thesis radar source "${source.label}" must explain what claim it supports`);
+    expect(!/proves?|validates?|confirms?/i.test(source.supports), `Thesis radar source "${source.label}" overstates evidence posture`);
   }
 }
 
@@ -1058,7 +1038,6 @@ for (const required of [
   "Move from background to inspectable evidence.",
   "/resume",
   "/work",
-  "/radar",
   "Thesis Radar",
   "ops for observability",
   "observability for AI",

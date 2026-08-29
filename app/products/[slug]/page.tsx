@@ -61,7 +61,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <Link href="/investigation-room" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
           Open Operations Room <ArrowRight size={18} />
         </Link>
-        <Link href="/manifesto" className="rounded border border-white/15 px-5 py-3 font-semibold text-white">
+        <Link href="/framework" className="rounded border border-white/15 px-5 py-3 font-semibold text-white">
           Read the manifesto
         </Link>
         <Link href="/library" className="rounded border border-white/15 px-5 py-3 font-semibold text-white">

@@ -98,15 +98,14 @@ const routeContracts = [
     ]
   },
   {
-    route: "/radar",
-    file: "app/radar/page.tsx",
+    route: "/framework",
+    file: "app/framework/page.tsx",
     minResponsiveTokens: 8,
     required: [
       "grid min-w-0 gap-4",
       "className=\"min-w-0\"",
-      "text-base leading-7 text-slate-200 md:text-xl md:leading-8",
-      "text-xl font-semibold leading-7 text-white",
-      "Thesis spine",
+      "OI claim",
+      "Falsification",
       "Evidence posture"
     ]
   },

@@ -59,7 +59,7 @@ const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }
     Icon: Layers,
     items: [
       registryWorkItem("operational-intelligence-framework"),
-      registryWorkItem("agentic-sre-harness-model"),
+      ["/framework", "Agentic SRE Harness", "The operating model for agents that investigate before they act."],
       registryWorkItem("evidence-graph-model"),
       ["/patterns/agentic-incident-investigation", "Hypothesis Lifecycle", "How competing explanations are proposed, supported, weakened, rejected, or promoted."],
       registryWorkItem("replay-seed-model"),
@@ -72,7 +72,7 @@ const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }
     Icon: BrainCircuit,
     items: [
       ["/framework", "Operational Intelligence", operationalIntelligenceFramework.subtitle],
-      ["/radar", "Agentic SRE", "Operational agents with evidence, replay, evals, memory, and human review."],
+      ["/framework", "Agentic SRE", "Operational agents with evidence, replay, evals, memory, and human review."],
       ["/patterns/transaction-journey-reconstruction", "Transaction Intelligence", "Customer and workflow journeys as the unit of operational reasoning."],
       ["/patterns/operational-memory", "Operational Memory", "Reusable incident decisions, mitigations, patterns, and replay seeds."],
       ["/ideas/incident-investigation-as-a-product-experience", "AI-native Incident Investigation", "Incident investigation as a guided product experience, not a frantic search session."],

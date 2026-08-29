@@ -13,15 +13,18 @@ const expectedViewports = {
   "desktop-1440": { width: 1440, height: 1000 }
 };
 
+// Scoped to routes that actually have captures from the 2026-08-22 run.
+// The route collapse retired /radar and /start-here, so their screenshots now show pages
+// that no longer exist, and /framework has changed substantially without being recaptured.
+// STALE: this evidence needs a fresh capture run once the restructure settles. Deliberately
+// not renaming old captures to cover new routes - that would claim verification we do not have.
 const expectedRoutes = [
   "/",
   "/work",
   "/ask",
   "/investigation-room",
-  "/work",
   "/background",
   "/wiki/operational-intelligence-canonical-doctrine",
-  "/radar",
   "/wiki/operational-intelligence-evidence-pack"
 ];
 
@@ -55,11 +58,20 @@ if (fs.existsSync(manifestPath)) {
   expect(manifest.capturedAt === "2026-08-22", "visual QA manifest must use the audited capture date");
   expect(manifest.baseUrl === "http://127.0.0.1:3017", "visual QA manifest must record the audited local base URL");
   expect(Array.isArray(manifest.results), "visual QA manifest results must be an array");
-  expect(manifest.results?.length === expectedRoutes.length * Object.keys(expectedViewports).length, "visual QA manifest must contain 27 route/viewport results");
+  // The manifest keeps captures for routes retired since the run. Those are historical
+  // evidence, not errors, so assert coverage of the routes we still ship rather than an
+  // exact count that a route retirement would break.
+  expect(
+    manifest.results?.length >= expectedRoutes.length * Object.keys(expectedViewports).length,
+    "visual QA manifest must cover every expected route at every viewport"
+  );
 
   for (const [viewportName, viewport] of Object.entries(expectedViewports)) {
     const results = manifest.results.filter((result) => result.viewport === viewportName);
-    expect(results.length === expectedRoutes.length, `${viewportName}: expected ${expectedRoutes.length} route captures`);
+    expect(
+      expectedRoutes.every((route) => results.some((item) => item.route === route)),
+      `${viewportName}: missing captures for one or more shipped routes`
+    );
     for (const route of expectedRoutes) {
       const result = results.find((item) => item.route === route);
       expect(Boolean(result), `${viewportName} ${route}: missing capture result`);
@@ -87,4 +99,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log("Validated visual QA artifacts across 27 screenshots, 9 routes, and 3 viewports.");
+console.log(`Validated visual QA artifacts across ${expectedRoutes.length} shipped routes and 3 viewports (capture run 2026-08-22; STALE for routes changed since).`);

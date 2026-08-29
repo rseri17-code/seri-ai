@@ -25,7 +25,7 @@ const contactUrl = "/contact";
 const nowUrl = "/now";
 const resumeUrl = "/resume";
 const backgroundUrl = "/background";
-const radarUrl = "/radar";
+const radarUrl = "/framework";
 const controlComparisonUrl = "/ideas/oi-room-001-control-comparison";
 const directReferenceBoosts: Array<[RegExp, string]> = [
   [/diagram|diagrams|state machine diagram|sequence diagram|evidence graph diagram|replay loop/, "/publication-pack/operational-intelligence-diagrams.md"],

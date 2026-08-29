@@ -1504,7 +1504,7 @@ if (!Array.isArray(publicationSpine.stages) || publicationSpine.stages.length !=
   }
 }
 
-const contentRegistry = requireJsonArray(contentRegistryPath, "content/content-registry.json", 14);
+const contentRegistry = requireJsonArray(contentRegistryPath, "content/content-registry.json", 12);
 const registryRoutes = contentRegistry.map((item) => item.route);
 const duplicateRegistryRoutes = registryRoutes.filter((route, index) => registryRoutes.indexOf(route) !== index);
 if (duplicateRegistryRoutes.length > 0) {
@@ -1542,7 +1542,7 @@ for (const item of contentRegistry) {
     errors.push(`${owner}: summary too short for discovery`);
   }
 }
-for (const route of ["/framework", "/investigation-room", "/ask", "/work", "/background", "/radar", "/products/reasonops"]) {
+for (const route of ["/framework", "/investigation-room", "/ask", "/work", "/background", "/framework", "/products/reasonops"]) {
   if (!registryRoutes.includes(route)) {
     errors.push(`content/content-registry.json: critical route missing ${route}`);
   }

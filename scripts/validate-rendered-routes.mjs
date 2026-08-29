@@ -36,27 +36,23 @@ const routeContracts = [
     ]
   },
   {
-    route: "/radar",
-    file: "radar.html",
-    maxBytes: 130_000,
+    route: "/framework",
+    file: "framework.html",
+    maxBytes: 190_000,
     required: [
-      "Operational Intelligence Thesis Radar",
-      "Thesis spine",
       "Enterprise Context Layer",
       "Context Acquisition Tax",
       "Harness over model",
       "Shared operational reasoning",
-      "Public thought process",
-      "Thinking signal lifecycle",
-      "LinkedIn Post",
-      "Observation / Field Note",
-      "Canonical Technical Asset",
-      "Interactive Demonstration when justified",
-      "Evidence posture"
+      "Evidence posture",
+      "Why this needs to be a layer rather than a feature.",
+      "Telemetry is not enough",
+      "Humans remain accountable",
+      "Falsification"
     ],
     before: [
-      ["Thesis spine", "Public thought process"],
-      ["Public thought process", "Market signals"]
+      ["Why this needs to be a layer rather than a feature.", "Evidence posture"],
+      ["Evidence posture", "Falsification"]
     ]
   },
   {

@@ -915,7 +915,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
           ])
           .join(". ")
       ].join(". "),
-      url: "/radar",
+      url: "/framework",
       type: "registry" as const,
       category: "thesis radar",
       tags: ["LinkedIn thesis", "Enterprise Context Layer", "Context Acquisition Tax", "Ops for observability", "Observability for AI", "AgentOps", "AI observability", "Operational Intelligence"],

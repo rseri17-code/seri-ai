@@ -121,7 +121,7 @@
       "status": "source-validated"
     },
     {
-      "route": "/radar",
+      "route": "/framework",
       "surface": "Thesis Radar",
       "visitorTask": "Inspect the thesis spine, market signals, source evidence, and falsification posture from a mobile viewport.",
       "startingSignal": "The route frames LinkedIn themes as testable claims instead of social proof.",

@@ -297,7 +297,7 @@
       "detail": "Systems, frameworks, artifacts, writing, public code signal, and review spine."
     },
     {
-      "href": "/radar",
+      "href": "/framework",
       "label": "Thesis Radar",
       "detail": "Market signals around observability for AI, ops for observability, AgentOps, AIOps evaluation, and operational readiness."
     },
@@ -399,7 +399,7 @@
     {
       "need": "LinkedIn",
       "primaryHref": "https://www.linkedin.com/in/ravikanthseri/",
-      "evidenceHref": "/radar",
+      "evidenceHref": "/framework",
       "proof": "LinkedIn is used as public thinking signal for posts, certifications, current building themes, thesis evolution, and radar-backed claims."
     },
     {
@@ -469,7 +469,7 @@
     {
       "question": "How does he think about architecture and engineering?",
       "answerLens": "He tends to separate observations from inferences, demand evidence before conclusions, preserve replay, expose tradeoffs, and keep consequential action under human control.",
-      "primaryHref": "/manifesto",
+      "primaryHref": "/framework",
       "evidenceHref": "/principles",
       "askPrompt": "How does Ravikanth think about architecture and engineering?"
     },
@@ -526,7 +526,7 @@
       "question": "What is he learning, researching, and advancing?",
       "answerLens": "The Now page tracks current research into operational memory, transaction journeys, AI-agent trust, replay records, evaluation gates, and governed operational action.",
       "primaryHref": "/now",
-      "evidenceHref": "/radar",
+      "evidenceHref": "/framework",
       "askPrompt": "What is Ravikanth learning, researching, and advancing?"
     },
     {

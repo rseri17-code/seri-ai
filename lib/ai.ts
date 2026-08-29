@@ -194,7 +194,7 @@ export function inferRelatedArtifacts(question: string) {
   }
   if (/linkedin|thinking lifecycle|field note|developed argument|canonical technical asset|public signal|signal source|context acquisition|enterprise context|operational context|shared context|harness|agentic sre|dynamic operational view|static graph|ops for observability|observability for ai|ai observability/.test(lower)) {
     artifacts.add("/work");
-    artifacts.add("/radar");
+    artifacts.add("/framework");
     artifacts.add("/patterns/agentic-incident-investigation");
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
   }

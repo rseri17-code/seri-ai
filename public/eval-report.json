@@ -649,7 +649,7 @@
         "Signal Layer",
         "Evidence Layer",
         "Evaluation Layer",
-        "/radar",
+        "/framework",
         "LinkedIn signal"
       ],
       "result": "Pass"
@@ -1363,7 +1363,7 @@
         "Canonical Technical Asset",
         "Interactive Demonstration when justified",
         "prevents social-media chronology",
-        "/radar"
+        "/framework"
       ],
       "result": "Pass"
     },

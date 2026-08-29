@@ -31,7 +31,7 @@ const inspectionLedger = [
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Precise enough to build from: contracts, schemas, and gates."],
   ["/investigation-room", "Operations Room", "A synthetic incident you can work end to end, including what the evidence missed."],
   ["/ask", "Trust Evals", `${homeEvalReport.fixtures.length} fixtures checking whether Ask stays grounded, refuses well, and cites.`],
-  ["/radar", "Thesis Radar", "Where the market is moving, and what would prove the thesis wrong."],
+  ["/framework", "Thesis Radar", "Where the market is moving, and what would prove the thesis wrong."],
   ["/library", "Publishing System", "Everything written down, searchable and cited well enough to reuse."],
   ["/work", "Public Work", "Fifteen years of it, with the proof attached."]
 ] as const;

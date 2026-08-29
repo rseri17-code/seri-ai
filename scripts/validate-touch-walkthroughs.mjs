@@ -10,7 +10,7 @@ const expectedRoutes = [
   "/ask",
   "/investigation-room",
   "/wiki/operational-intelligence-canonical-doctrine",
-  "/radar",
+  "/framework",
   "/work"
 ];
 
@@ -39,9 +39,9 @@ const sourceContracts = {
     files: ["app/wiki/[slug]/page.tsx"],
     required: ["Contents", "Ask questions", "Related reading", "Version history", "max-w-full overflow-x-auto"]
   },
-  "/radar": {
-    files: ["app/radar/page.tsx"],
-    required: ["Thesis spine", "Evidence posture", "aria-label={`${source.label}: ${source.evidenceType}`}", "min-w-0"]
+  "/framework": {
+    files: ["app/framework/page.tsx"],
+    required: ["Evidence posture", "OI claim", "Falsification", "min-w-0"]
   },
   "/work": {
     files: ["app/work/page.tsx"],
@@ -116,7 +116,7 @@ if (fs.existsSync(publicWalkthroughPath)) {
     "/ask",
     "/investigation-room",
     "/wiki/operational-intelligence-canonical-doctrine",
-    "/radar",
+    "/framework",
     "/work",
     "This closes the absence of mobile touch walkthrough notes"
   ]) {

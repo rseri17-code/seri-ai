@@ -55,10 +55,6 @@ const routeMetadataContracts = [
     required: ["export const metadata", "Operations Room | seri.ai", "OI-ROOM-001", "human approval", "canonical: \"/investigation-room\"", "url: \"/investigation-room\""]
   },
   {
-    file: "app/radar/page.tsx",
-    required: ["export const metadata", "Thesis Radar | Ravikanth Seri", "canonical: \"/radar\"", "url: \"/radar\"", "type: \"website\""]
-  },
-  {
     file: "app/work/page.tsx",
     required: ["export const metadata", "Work | Ravikanth Seri", "canonical: \"/work\"", "url: \"/work\"", "type: \"website\""]
   },

@@ -212,27 +212,27 @@ const cases = [
   },
   {
     query: "Where are the market signals for ops for observability and observability for AI?",
-    expectedFirstUrl: "/radar"
+    expectedFirstUrl: "/framework"
   },
   {
     query: "Where are the market signals for ops for ob servabillity and pobservabillity for ai?",
-    expectedFirstUrl: "/radar"
+    expectedFirstUrl: "/framework"
   },
   {
     query: "Explain the LinkedIn thesis around AgentOps, AI observability, and operational readiness.",
-    expectedFirstUrl: "/radar"
+    expectedFirstUrl: "/framework"
   },
   {
     query: "Where is the LinkedIn Post to field note to pattern to framework thinking lifecycle?",
-    expectedFirstUrl: "/radar"
+    expectedFirstUrl: "/framework"
   },
   {
     query: "Where is the public thought process for Enterprise Context Layer Context Acquisition Tax and harness over model?",
-    expectedFirstUrl: "/radar"
+    expectedFirstUrl: "/framework"
   },
   {
     query: "How does OpenTelemetry GenAI semantics support Ravikanth's thesis?",
-    expectedFirstUrl: "/radar"
+    expectedFirstUrl: "/framework"
   },
   {
     query: "Where are the Operational Intelligence state machine and evidence graph diagrams?",

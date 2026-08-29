@@ -229,54 +229,6 @@
     }
   },
   {
-    "title": "Operational Intelligence Thesis Radar",
-    "slug": "operational-intelligence-thesis-radar",
-    "summary": "Market signal map connecting Ravikanth Seri's public LinkedIn thesis to AI observability, ops for observability, AgentOps, AIOps evaluation, OpenTelemetry GenAI semantics, and enterprise AI operational readiness.",
-    "type": "domain",
-    "route": "/radar",
-    "status": "published",
-    "frameworkLayers": [
-      "Signal Layer",
-      "Topology Layer",
-      "Evaluation Layer",
-      "Operator Layer"
-    ],
-    "relatedPrinciples": [
-      "Evidence before conclusions",
-      "Evaluation is not a feature; it is the control system",
-      "Trustworthy agents need boundaries, not just intelligence",
-      "Operators need clarity, not more dashboards"
-    ],
-    "relatedPatterns": [
-      "/patterns/evidence-driven-rca",
-      "/patterns/agentic-incident-investigation",
-      "/patterns/evaluation-and-replay",
-      "/patterns/human-in-the-loop-operational-ai"
-    ],
-    "relatedArtifacts": [
-      "/framework",
-      "/investigation-room",
-      "/wiki/operational-intelligence-canonical-doctrine",
-      "/wiki/operational-intelligence-evidence-pack"
-    ],
-    "relatedProducts": [
-      "/products/reasonops"
-    ],
-    "relatedLibraryAssets": [
-      "/wiki/operational-intelligence-canonical-doctrine",
-      "/wiki/operational-intelligence-reference-architecture",
-      "/ideas/operational-intelligence-is-the-new-control-plane",
-      "/ideas/agentic-incident-investigation"
-    ],
-    "publicSafe": "public-safe",
-    "createdAt": "2026-07-30",
-    "updatedAt": "2026-07-30",
-    "seo": {
-      "title": "Operational Intelligence Thesis Radar",
-      "description": "Market signals grounding Operational Intelligence across AI observability, AgentOps, AIOps evaluation, OpenTelemetry, and operational readiness."
-    }
-  },
-  {
     "title": "Operational Intelligence Framework",
     "slug": "operational-intelligence-framework",
     "summary": "A public-safe reference model for systems that turn signals, transactions, topology, evidence, memory, evaluation, and human review into accountable operational decisions.",
@@ -367,7 +319,7 @@
     ],
     "relatedProducts": [],
     "relatedLibraryAssets": [
-      "/manifesto",
+      "/framework",
       "/ideas/agentic-systems-need-operating-models"
     ],
     "publicSafe": "public-safe",
@@ -542,47 +494,6 @@
     "seo": {
       "title": "Ravikanth Seri Background",
       "description": "Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial services. Current work is production AI agent systems for enterprise operations: bounded execution, agent observability, evaluation, and runtime governance. That work rests on a foundation of enterprise integration, identity modernization, Kubernetes platforms, and telemetry correlation, and on a single operating conviction: an operational decision should be able to show the evidence behind it."
-    }
-  },
-  {
-    "title": "Agentic SRE Harness Model",
-    "slug": "agentic-sre-harness-model",
-    "summary": "The real differentiator in Agentic SRE is not the model. It is the operating harness that lets a model investigate with evidence, stay inside policy, expose its reasoning, learn from outcomes, and hand control back to humans before high-risk action.",
-    "type": "framework",
-    "route": "/manifesto",
-    "status": "published",
-    "frameworkLayers": [
-      "Evidence Layer",
-      "Reasoning Layer",
-      "Evaluation Layer",
-      "Decision Layer",
-      "Operator Layer"
-    ],
-    "relatedPrinciples": [
-      "Models reason. Harnesses remember.",
-      "Incidents are temporary. Operational knowledge should not be.",
-      "Evidence-backed self-healing beats autonomy theater.",
-      "Shared context is the enterprise problem."
-    ],
-    "relatedPatterns": [
-      "/patterns/agentic-incident-investigation",
-      "/patterns/human-in-the-loop-operational-ai"
-    ],
-    "relatedArtifacts": [
-      "/investigation-room"
-    ],
-    "relatedProducts": [
-      "/products/reasonops"
-    ],
-    "relatedLibraryAssets": [
-      "/ideas/agentic-systems-need-operating-models"
-    ],
-    "publicSafe": "public-safe",
-    "createdAt": "2026-07-16",
-    "updatedAt": "2026-07-16",
-    "seo": {
-      "title": "Agentic SRE Harness Model",
-      "description": "The real differentiator in Agentic SRE is not the model. It is the operating harness that lets a model investigate with evidence, stay inside policy, expose its reasoning, learn from outcomes, and hand control back to humans before high-risk action."
     }
   },
   {

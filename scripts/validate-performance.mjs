@@ -16,8 +16,8 @@ const budgets = {
   // Ravikanth authorized collapsing 35 routes to ~6 on 2026-08-26, so they now track the
   // shrinking site rather than holding it at its largest. Lower them as routes retire;
   // they exist to catch an accidental drop in output, not to discourage subtraction.
-  prerenderRoutes: 64,
-  htmlFiles: 55
+  prerenderRoutes: 62,
+  htmlFiles: 53
 };
 
 const criticalHtmlFiles = [
