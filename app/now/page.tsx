@@ -74,6 +74,24 @@ export default function NowPage() {
             should let it near production? Gather evidence, hold competing explanations open, and hand the decision back
             to a human who can see exactly how it was reached.
           </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="rounded border border-white/10 bg-black/20 p-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Current focus</p>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{nowPage.currentFocus[0]}</p>
+            </div>
+            <div className="rounded border border-white/10 bg-black/20 p-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Building</p>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{nowPage.building[1]}</p>
+            </div>
+            <div className="rounded border border-white/10 bg-black/20 p-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Studying</p>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{nowPage.studying[0]}</p>
+            </div>
+            <Link href="/wiki/operational-intelligence-evidence-pack" className="rounded border border-white/10 bg-black/20 p-3 transition hover:border-mint/45">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Proof loop</p>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{proofCheckpoints[0]}</p>
+            </Link>
+          </div>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/work" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
               Review the work <ArrowRight size={18} />
