@@ -422,6 +422,14 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
   const suggestedNextQuestion = inferSuggestedNextQuestion(question);
+  const asksAboutReviewSpine =
+    /architecture judgment|architecture|doctrine|reference|public evidence|proof|review|inspect|artifact/.test(lower);
+  const asksAboutClaimPosture =
+    /citation|cite|claim|classif|established|derived|original|speculative|unsupported|skeptic|challenge|credible|credibility|evidence posture|validity|rigor/.test(lower);
+  const asksWhereToFindHim =
+    /github|linkedin|resume|contact|collaborat|recruiter|founder|credible|credential|certification|education|public proof|portfolio|public code|open.source|reach out|hire|profile|where can i/.test(lower);
+  const asksHowTheSystemWorks =
+    /oi-room|operations room|investigation|walkthrough|replay|framework|layer|evidence|hypothes|contradict|how does|how do|how would|how should|case model|decision packet|incident|rollback|operator|control plane|human review|human judgment|agent|recommend/.test(lower);
   const primarySource = context[0];
   const sourceLine = primarySource ? `${primarySource.title} (${primarySource.url})` : "No matching approved public source";
   const direct =
@@ -522,15 +530,30 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     `Direct answer: ${asksAboutRavikanth && !namesSpecificTopic ? `${ravikanthContext}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}` : `${direct}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
-    "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible.",
-    referenceAssetMatches.length ? `Reference asset match: ${referenceAssetMatches.join("; ")}.` : "Reference asset match: use the Doctrine, Reference Architecture, Publication Pack, and Evidence Pack as the primary review spine.",
-    "Public profile links: github.com/rseri17-code and linkedin.com/in/ravikanthseri.",
-    "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, replay, evaluation gates, operational memory, and human-reviewed action.",
+    // These blocks used to be emitted on every answer, which meant roughly 150 words of
+    // byte-identical text after each direct answer. The trust-contract intent is sound,
+    // but a disclosure that appears unconditionally carries no information after the
+    // first read. Each now appears when it is relevant to what was asked.
+    asksAboutClaimPosture
+      ? "Claim discipline: distinguish established practice, derived application, original synthesis, speculative guidance, and unsupported claims before treating an Operational Intelligence claim as credible."
+      : null,
+    referenceAssetMatches.length
+      ? `Reference asset match: ${referenceAssetMatches.join("; ")}.`
+      : asksAboutReviewSpine
+        ? "Reference asset match: use the Doctrine, Reference Architecture, Publication Pack, and Evidence Pack as the primary review spine."
+        : null,
+    asksWhereToFindHim ? "Public profile links: github.com/rseri17-code and linkedin.com/in/ravikanthseri." : null,
+    asksHowTheSystemWorks
+      ? "Concrete example: In OI-ROOM-001, a customer transaction degradation is treated as a public-safe case where signals become transaction context, evidence receipts, hypotheses, replay, evaluation gates, operational memory, and human-reviewed action."
+      : null,
+    // Kept unconditional: it discloses which answer mode produced this text, which is
+    // true of every answer and is the honest caveat a reader needs.
     "Tradeoff or limitation: this local fallback is deterministic and lexical; semantic retrieval and model-generated synthesis improve when production AI and vector search keys are configured.",
     `Related page or artifact: ${relatedArtifacts.join(", ")}.`,
     "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public-safe knowledge base.",
     `Suggested next question: ${suggestedNextQuestion}`
   ]
+    .filter((line): line is string => Boolean(line))
     .join("\n\n")
     .replace(/([.!?])\s*\.(?=\s|$)/g, "$1");
 }

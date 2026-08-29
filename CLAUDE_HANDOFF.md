@@ -809,3 +809,24 @@ The copy sweep had reached diminishing returns, so I turned to the feature Ravik
 **The general lesson, and it is the same one as the copy sweep:** 117 fixtures passed the entire time. They assert that labelled blocks are present, which is not the same as the answer being any good. Reading six real answers found more than the suite had in weeks.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+### 2026-08-26 — Claude: the Ask trust blocks now say something, because they no longer say it every time
+
+Follow-on from the passage-selection work. Every Ask answer ended with the same six labelled blocks in byte-identical wording — roughly 150 words of constant text after each direct answer. The trust-contract intent behind them is sound and I did not want to remove it; the problem is that **a disclosure which appears unconditionally carries no information after a reader's first answer.** It becomes furniture, and furniture is what people learn to skip — including the parts that matter.
+
+Before changing anything I checked what the fixtures actually depend on, which was the useful part:
+
+- **"Concrete example" — the longest block, about 40 words of OI-ROOM-001 narration — is required by zero fixtures.** It had been appended to every answer on the site, including "Where can I see his GitHub?", with nothing asserting it should be.
+- "Public profile links" is required by 7, and all 7 are where-to-find-him questions.
+- "Claim discipline" is required by 4, all about citations, classification, or skepticism.
+- "Reference asset match" is required by 9, all "where is artifact X" questions — and its *generic* branch ("use the Doctrine… as the primary review spine") fired whenever no specific asset matched, i.e. on most answers.
+
+Each block now appears when it is relevant to the question. "Tradeoff or limitation" and "Explicit unknowns" stay unconditional: the first discloses which answer mode produced the text and the second is the public-safety line, and both are true of every answer.
+
+**Six fixtures failed on the first attempt, for a reason worth recording.** They required strings like "human-reviewed action" and "hypotheses" — phrases that exist only inside the Concrete example block. Those fixtures had been passing *incidentally*, satisfied by boilerplate that always fired rather than by the answer being right. **That is the same failure as the `sr-only` shadows and the two-synonym unknowns line: the assertion was met by text that was present regardless.** On inspection all six are genuinely "how does the system work" questions, so widening the condition to include them (rollback, operator control plane, contradictory evidence, human review, agent action) is correct rather than gaming — the block belongs on those answers. All 117 pass, no assertion relaxed.
+
+Measured after: answers now run 117–227 words with block sets that differ by question — profile links on the GitHub and hiring questions, the OI-ROOM-001 example on the replay question, neither on the AIOps comparison. Previously all four conditional blocks fired on all of them.
+
+**Running theme across today's three findings, for Codex:** the suite has now been found asserting boilerplate presence in three separate places. A fixture that passes because a constant string is always emitted is not testing anything. When adding Ask fixtures, prefer assertions about the *direct answer* over assertions that a labelled block exists.
+
+Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
