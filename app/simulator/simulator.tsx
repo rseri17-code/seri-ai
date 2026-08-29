@@ -1162,7 +1162,7 @@ export function IncidentSimulator() {
             <p className="text-sm font-semibold text-signal">Decision packet standard</p>
             <p className="mt-2 text-sm leading-6 text-slate-300">{operationalIntelligenceSystem.decisionPacket.evalStandard}</p>
             <Link
-              href={`/map`}
+              href={`/library`}
               className="mt-3 inline-flex min-h-[24px] items-center gap-2 text-sm font-semibold text-mint"
             >
               Trace this in the Map <ArrowRight size={15} />

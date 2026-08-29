@@ -38,7 +38,7 @@ expect(Array.isArray(packet.doNotCapture) && packet.doNotCapture.length >= 8, "P
 expect(Array.isArray(packet.verdicts) && packet.verdicts.includes("Not assessable"), "Packet must include Not assessable verdict.");
 expect(/Do not publish raw confidential material or aggregate reputation claims/i.test(packet.publicationRule ?? ""), "Packet publication rule must block confidential material and aggregate reputation claims.");
 
-for (const route of ["/start-here", "/background", "/work", "/resume", "/wiki/operational-intelligence-evidence-pack", "/investigation-room", "/ask", "/contact"]) {
+for (const route of ["/work", "/background", "/work", "/resume", "/wiki/operational-intelligence-evidence-pack", "/investigation-room", "/ask", "/contact"]) {
   expect(JSON.stringify(packet).includes(route), `Packet missing review route ${route}.`);
 }
 

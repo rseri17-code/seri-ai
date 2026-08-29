@@ -130,7 +130,7 @@ try {
       reviewMode: "Operational Intelligence workflow",
       reviewDimension: "Contradiction handling",
       reviewVerdict: "Mixed",
-      artifactsInspected: "/start-here, /work, /investigation-room, /wiki/operational-intelligence-evidence-pack",
+      artifactsInspected: "/work, /investigation-room, /wiki/operational-intelligence-evidence-pack",
       reviewDisposition: "Needs Evidence",
       evidenceObserved: "Public-safe OI-ROOM-001 evidence graph.",
       reasoningLoss: "Contradiction was visible but needs stronger reviewer notes.",

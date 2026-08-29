@@ -43,10 +43,10 @@ export function inferRelatedArtifacts(question: string) {
   const lower = normalizeQuestionIntent(question);
   const artifacts = new Set<string>(["/framework"]);
   if (/start here|first[- ]time|visitor|understand ravikanth|who is ravikanth|what should i know|hire|collaborate|learn from him|professional profile|success map|core questions/.test(lower)) {
-    artifacts.add("/start-here");
+    artifacts.add("/work");
   }
   if (/visitor review|first[- ]time review|first[- ]time visitor review|first[- ]impression evidence|person-work fit|demo feeling|artifact recall|review kit|feedback kit|what was clear|what was confusing|most memorable idea|strongest claim|weakest claim|evidence would change|implementation question|submit.*review|evaluate.*site|evaluate.*ravikanth/.test(lower)) {
-    artifacts.add("/start-here");
+    artifacts.add("/work");
     artifacts.add("/publication-pack/ravikanth-seri-practitioner-review-packet.md");
     artifacts.add("/contact");
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
@@ -54,7 +54,7 @@ export function inferRelatedArtifacts(question: string) {
   }
   if (/practitioner review packet|external practitioner review|review ravikanth.*evidence|professional representation review|career clarity review|first impression review|does.*represent ravikanth|evaluate.*professional operating system/.test(lower)) {
     artifacts.add("/publication-pack/ravikanth-seri-practitioner-review-packet.md");
-    artifacts.add("/start-here");
+    artifacts.add("/work");
     artifacts.add("/background");
     artifacts.add("/work");
     artifacts.add("/contact");
@@ -101,7 +101,7 @@ export function inferRelatedArtifacts(question: string) {
   if (/public identity mark|profile mark|identity mark|durable identity|portrait photo|portrait asset/.test(lower)) {
     artifacts.add("/identity/ravikanth-seri-identity-mark.svg");
     artifacts.add("/identity/portrait-intake.md");
-    artifacts.add("/start-here");
+    artifacts.add("/work");
     artifacts.add("/work");
     artifacts.add("/resume");
   }
@@ -109,7 +109,7 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/identity/portrait-intake.md");
     artifacts.add("/identity/ravikanth-seri-identity-mark.svg");
     artifacts.add("/background");
-    artifacts.add("/start-here");
+    artifacts.add("/work");
   }
   if (/proof backlog|proof gap|evidence gap|what is still missing|what remains|not yet proven|external proof|live beta telemetry|visual qa|mobile qa|identity asset|what.*10\/10|what.*ten out of ten/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
@@ -123,7 +123,7 @@ export function inferRelatedArtifacts(question: string) {
   if (/quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
     artifacts.add("/visual-qa/2026-08-22/report.md");
-    artifacts.add("/start-here");
+    artifacts.add("/work");
     artifacts.add("/work");
     artifacts.add("/evals");
     artifacts.add("/investigation-room");
@@ -177,7 +177,7 @@ export function inferRelatedArtifacts(question: string) {
   if (/project proof|work proof|public project evidence|what.*project.*prove|project.*does not prove|inspectable project|review project|work|public work|project|building|product thesis|github|open source|open-source|code|repository|inspect|built/.test(lower)) {
     artifacts.add("/work");
     artifacts.add("/projects");
-    artifacts.add("/artifacts");
+    artifacts.add("/library");
   }
   if (/written|writing|published|article|library|ideas|frameworks?/.test(lower)) {
     artifacts.add("/library");

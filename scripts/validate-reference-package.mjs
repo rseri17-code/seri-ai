@@ -300,8 +300,8 @@ assertIncludes("app/simulator/simulator.tsx", operationsRoomWorkbench, [
   "Approval required"
 ]);
 
-const artifactsPage = read("app/artifacts/page.tsx");
-assertIncludes("app/artifacts/page.tsx", artifactsPage, [
+const artifactsPage = read("app/library/page.tsx");
+assertIncludes("app/library/page.tsx", artifactsPage, [
   "const downloadableArtifacts",
   "const reviewerSharePackets",
   "Downloadable artifacts",

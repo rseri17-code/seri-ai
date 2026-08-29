@@ -51,7 +51,7 @@
         "/wiki/transaction-journeys"
       ],
       "relatedPattern": "/patterns/transaction-journey-reconstruction",
-      "relatedArtifact": "/map",
+      "relatedArtifact": "/library",
       "relatedLibraryAsset": "/ideas/transaction-intelligence-for-complex-enterprises"
     },
     {
@@ -71,7 +71,7 @@
         "/patterns/topology-aware-reasoning"
       ],
       "relatedPattern": "/patterns/topology-aware-reasoning",
-      "relatedArtifact": "/map",
+      "relatedArtifact": "/library",
       "relatedLibraryAsset": "/ideas/knowledge-graphs-as-operational-memory"
     },
     {

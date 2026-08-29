@@ -491,7 +491,7 @@
       "question": "What open-source and public work can be inspected?",
       "answerLens": "Use Work, GitHub, Operations Room, Reference Architecture, Artifacts, Patterns, and the publication pack to inspect public-safe technical evidence.",
       "primaryHref": "/work",
-      "evidenceHref": "/artifacts",
+      "evidenceHref": "/library",
       "askPrompt": "What open-source and public work from Ravikanth can be inspected?"
     },
     {

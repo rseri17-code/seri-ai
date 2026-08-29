@@ -56,7 +56,7 @@ export default function BackgroundPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Now</p>
                 <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.currentFocus}</p>
               </div>
-              <Link href="/start-here" className="rounded border border-white/10 bg-black/20 p-3 transition hover:border-mint/45">
+              <Link href="/work" className="rounded border border-white/10 bg-black/20 p-3 transition hover:border-mint/45">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Proof path</p>
                 <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.throughline}</p>
               </Link>

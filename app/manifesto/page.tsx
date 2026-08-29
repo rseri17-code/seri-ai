@@ -67,7 +67,7 @@ export default function ManifestoPage() {
               Enterprises can observe more than ever, but they still struggle to explain what changed, why it matters, what evidence supports it, and what should happen next.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/map" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+              <Link href="/library" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
                 Explore the map <ArrowRight size={18} />
               </Link>
               <Link href="/investigation-room" className="rounded border border-white/15 px-5 py-3 font-semibold text-white">

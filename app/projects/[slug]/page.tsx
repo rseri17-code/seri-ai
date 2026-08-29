@@ -70,7 +70,7 @@ const projectContracts = {
       "Stale ownership or dependency context weakens blast-radius claims."
     ],
     references: [
-      ["/map", "Operational map"],
+      ["/library", "Operational map"],
       ["/patterns/transaction-journey-reconstruction", "Transaction pattern"],
       ["/wiki/transaction-journeys", "Transaction note"]
     ]
@@ -99,7 +99,7 @@ const inspectionLabels: Record<string, string> = {
   "/ask": "Ask Ravikanth",
   "/evals": "Public evals",
   "/work": "Work index",
-  "/map": "Operational map",
+  "/library": "Operational map",
   "/patterns/transaction-journey-reconstruction": "Transaction journey pattern",
   "/wiki/transaction-journeys": "Transaction journeys note",
   "/ideas/transaction-intelligence-for-complex-enterprises": "Transaction Intelligence article",

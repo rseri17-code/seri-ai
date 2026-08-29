@@ -36,7 +36,7 @@
   "routingDefaults": [
     {
       "intent": "who_is_ravikanth",
-      "route": "/start-here",
+      "route": "/work",
       "reason": "Best first stop for identity, career arc, current focus, work, thesis, and evidence path."
     },
     {

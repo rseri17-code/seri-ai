@@ -54,7 +54,7 @@
   "reviewSequence": [
     {
       "step": "Orient",
-      "route": "/start-here",
+      "route": "/work",
       "question": "Can the reviewer explain who Ravikanth Seri is, what he works on, and why the site exists within three minutes?",
       "failureSignal": "The site reads as an anonymous product, a generic resume, or a disconnected content archive."
     },
@@ -99,42 +99,73 @@
     {
       "name": "Professional representation",
       "question": "Does the site make Ravikanth Seri unmistakably visible as the author, engineer, and professional identity behind the work?",
-      "evidenceToInspect": ["/start-here", "/background", "/work", "/resume"]
+      "evidenceToInspect": [
+        "/work",
+        "/background",
+        "/resume"
+      ]
     },
     {
       "name": "Career clarity",
       "question": "Can the reviewer reconstruct the engineering evolution from infrastructure and integration into production AI operations?",
-      "evidenceToInspect": ["/background", "/resume", "/work"]
+      "evidenceToInspect": [
+        "/background",
+        "/resume",
+        "/work"
+      ]
     },
     {
       "name": "Technical authority",
       "question": "Does the body of work demonstrate architecture judgment through reusable models, boundaries, and tradeoffs?",
-      "evidenceToInspect": ["/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-reference-architecture", "/patterns"]
+      "evidenceToInspect": [
+        "/wiki/operational-intelligence-canonical-doctrine",
+        "/wiki/operational-intelligence-reference-architecture",
+        "/patterns"
+      ]
     },
     {
       "name": "Evidence quality",
       "question": "Are claims backed by inspectable public artifacts, explicit limitations, and falsification paths?",
-      "evidenceToInspect": ["/wiki/operational-intelligence-evidence-pack", "/work", "/evals"]
+      "evidenceToInspect": [
+        "/wiki/operational-intelligence-evidence-pack",
+        "/work",
+        "/evals"
+      ]
     },
     {
       "name": "Originality with restraint",
       "question": "Does the site distinguish established practice, derived practice, original synthesis, speculative guidance, and unsupported claims?",
-      "evidenceToInspect": ["/wiki/operational-intelligence-canonical-doctrine", "/publication-pack/operational-intelligence-comparison-tables.md"]
+      "evidenceToInspect": [
+        "/wiki/operational-intelligence-canonical-doctrine",
+        "/publication-pack/operational-intelligence-comparison-tables.md"
+      ]
     },
     {
       "name": "Interactive artifact usefulness",
       "question": "Does the Operations Room help the reviewer reason better than a static description would?",
-      "evidenceToInspect": ["/investigation-room", "/publication-pack/oi-room-001-printable-walkthrough.md"]
+      "evidenceToInspect": [
+        "/investigation-room",
+        "/publication-pack/oi-room-001-printable-walkthrough.md"
+      ]
     },
     {
       "name": "Ask usefulness and safety",
       "question": "Does Ask Ravikanth retrieve, cite, refuse, and route correctly under realistic questions?",
-      "evidenceToInspect": ["/ask", "/evals", "/publication-pack/ask-ravi-live-review-packet.md"]
+      "evidenceToInspect": [
+        "/ask",
+        "/evals",
+        "/publication-pack/ask-ravi-live-review-packet.md"
+      ]
     },
     {
       "name": "Memorability",
       "question": "Would the reviewer remember one specific idea, artifact, or engineering model after leaving the site?",
-      "evidenceToInspect": ["/", "/start-here", "/investigation-room", "/wiki/operational-intelligence-canonical-doctrine"]
+      "evidenceToInspect": [
+        "/",
+        "/work",
+        "/investigation-room",
+        "/wiki/operational-intelligence-canonical-doctrine"
+      ]
     }
   ],
   "safeMetadataOnly": [

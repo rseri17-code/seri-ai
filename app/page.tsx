@@ -26,7 +26,7 @@ const proofStrip = [
 
 
 const inspectionLedger = [
-  ["/start-here", "Visitor Proof Map", "The fastest path through Ravikanth Seri's work, GitHub, resume, and Operational Intelligence thesis."],
+  ["/work", "Visitor Proof Map", "The fastest path through Ravikanth Seri's work, GitHub, resume, and Operational Intelligence thesis."],
   ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "What Operational Intelligence claims, and where the claim stops."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Precise enough to build from: contracts, schemas, and gates."],
   ["/investigation-room", "Operations Room", "A synthetic incident you can work end to end, including what the evidence missed."],
@@ -77,13 +77,13 @@ export default function Home() {
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-signal">Now</p>
                 <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.currentFocus}</p>
               </div>
-              <Link href="/start-here" className="rounded border border-white/10 bg-white/[0.035] p-3 transition hover:border-mint/45">
+              <Link href="/work" className="rounded border border-white/10 bg-white/[0.035] p-3 transition hover:border-mint/45">
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-signal">Proof path</p>
                 <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.throughline}</p>
               </Link>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <TrackedLink href="/start-here" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+              <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
                 Begin with the proof path <ArrowRight size={18} />
               </TrackedLink>
               <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">

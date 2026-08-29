@@ -72,7 +72,7 @@
       "whatToInspect": "Repository names, README posture, commit activity, implementation examples, experiments, and public engineering artifacts.",
       "publicSafeUse": "Use as a public code signal connected to Ravikanth's Operational Intelligence, AI operations, automation, and architecture work.",
       "proofBoundary": "Do not infer private employer implementation details, production metrics, customer systems, or confidential architecture from public repository presence.",
-      "related": ["/work", "/resume", "/projects", "/artifacts"]
+      "related": ["/work", "/resume", "/projects", "/library"]
     },
     {
       "label": "Sentinalai",

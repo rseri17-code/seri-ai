@@ -250,7 +250,7 @@ if (!Array.isArray(site.nav) || site.nav.length < 10) {
   errors.push("content/site-config.json: nav must include the main public routes");
 } else {
   const navRoutes = new Set(site.nav.map((item) => item.href));
-  for (const route of ["/", "/work", "/framework", "/map", "/library", "/patterns", "/investigation-room", "/ask", "/background", "/contact"]) {
+  for (const route of ["/", "/work", "/framework", "/library", "/library", "/patterns", "/investigation-room", "/ask", "/background", "/contact"]) {
     if (!navRoutes.has(route)) {
       errors.push(`content/site-config.json: nav missing ${route}`);
     }

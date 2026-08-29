@@ -358,7 +358,7 @@
       "expected": "Route to Start Here and the visitor proof map.",
       "requiredAnswerIncludes": [
         "Visitor success map",
-        "/start-here",
+        "/work",
         "Public source",
         "Related page or artifact"
       ],
@@ -383,7 +383,7 @@
         "Related page or artifact",
         "/work",
         "/projects",
-        "/artifacts",
+        "/library",
         "Public source"
       ],
       "result": "Pass"
@@ -407,7 +407,7 @@
         "Related page or artifact",
         "/work",
         "/projects",
-        "/artifacts"
+        "/library"
       ],
       "result": "Pass"
     },
@@ -498,7 +498,7 @@
       "expected": "Use the visitor success map and proof surfaces rather than unsupported self-promotion.",
       "requiredAnswerIncludes": [
         "Visitor success map",
-        "/start-here",
+        "/work",
         "/resume",
         "/background",
         "Public source"
@@ -1186,7 +1186,7 @@
       "expected": "Route to Start Here, practitioner packet, and Contact with public-safe review guidance.",
       "requiredAnswerIncludes": [
         "First-Time Visitor Review Kit",
-        "/start-here",
+        "/work",
         "/publication-pack/ravikanth-seri-practitioner-review-packet.md",
         "/contact",
         "what was clear",

@@ -68,7 +68,7 @@ for (const required of ["versioned persona contract", "intent-aware follow-up qu
 }
 
 for (const route of [
-  "/start-here",
+  "/work",
   "/background",
   "/work",
   "/wiki/operational-intelligence-canonical-doctrine",

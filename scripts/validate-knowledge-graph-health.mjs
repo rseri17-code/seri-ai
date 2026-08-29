@@ -198,7 +198,7 @@ for (const [concept, bucket] of normalizedBuckets) {
 }
 expect(warnings.length <= 3, `knowledge graph has too many possible duplicate concepts: ${warnings.join(" | ")}`);
 
-const requiredProfessionalRoutes = ["/work", "/background", "/start-here", "/ask", "/investigation-room", "/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-evidence-pack"];
+const requiredProfessionalRoutes = ["/work", "/background", "/work", "/ask", "/investigation-room", "/wiki/operational-intelligence-canonical-doctrine", "/wiki/operational-intelligence-evidence-pack"];
 for (const route of requiredProfessionalRoutes) {
   expect(assetUrls.has(route) || routeExists(route), `${route}: missing from reachable public knowledge graph surface`);
 }

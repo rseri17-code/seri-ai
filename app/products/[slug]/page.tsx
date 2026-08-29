@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const artifactLabels: Record<string, string> = {
   "/investigation-room": "Operations Room",
   "/evals": "Trust fixtures",
-  "/map": "Operational map"
+  "/library": "Operational map"
 };
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -64,7 +64,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <Link href="/manifesto" className="rounded border border-white/15 px-5 py-3 font-semibold text-white">
           Read the manifesto
         </Link>
-        <Link href="/map" className="rounded border border-white/15 px-5 py-3 font-semibold text-white">
+        <Link href="/library" className="rounded border border-white/15 px-5 py-3 font-semibold text-white">
           Explore the map
         </Link>
       </div>

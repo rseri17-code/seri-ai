@@ -36,7 +36,7 @@ export default function FrameworkPage() {
               <Link href="/investigation-room" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
                 Run the Operations Room <ArrowRight size={18} />
               </Link>
-              <Link href="/map" className="inline-flex items-center gap-2 rounded border border-signal/40 px-5 py-3 font-semibold text-signal">
+              <Link href="/library" className="inline-flex items-center gap-2 rounded border border-signal/40 px-5 py-3 font-semibold text-signal">
                 View the Map
               </Link>
             </div>

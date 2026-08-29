@@ -2,8 +2,6 @@ import { site } from "@/content/site";
 import Link from "next/link";
 
 const reviewKit = [
-  ["/start-here", "Start Here"],
-  ["/artifacts", "Artifacts"],
   ["/search", "Search"]
 ] as const;
 

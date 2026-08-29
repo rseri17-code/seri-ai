@@ -36,40 +36,6 @@ const routeContracts = [
     ]
   },
   {
-    route: "/start-here",
-    file: "start-here.html",
-    maxBytes: 190_000,
-    required: [
-      "Choose the route that helps you understand Ravikanth Seri.",
-      "3-minute orientation",
-          "Public-safe boundary",
-          "10-minute proof route",
-      "Person, work, thesis, artifact, evidence.",
-      "Establish the operator",
-      "Inspect the operating record",
-      "Challenge the claim",
-      "Professional profile discovery",
-      "Everything a profile visitor should find in one or two interactions.",
-      "Current role and focus",
-      "Selected accomplishments",
-      "Technical domains",
-      "Contact information",
-      "Who is Ravikanth Seri?",
-      "What has he actually built?",
-      "What is he building now?",
-      "How has his career evolved?",
-      "What open-source and public work can be inspected?",
-      "Visitor proof map",
-      "Technical review path"
-    ],
-    before: [
-      ["3-minute orientation", "Recommended reading order"],
-      ["Recommended reading order", "10-minute proof route"],
-      ["10-minute proof route", "Technical review path"],
-      ["Technical review path", "Visitor proof map"]
-    ]
-  },
-  {
     route: "/radar",
     file: "radar.html",
     maxBytes: 130_000,

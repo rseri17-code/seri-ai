@@ -48,9 +48,9 @@
     {
       "slug": "transaction-graph-explorer",
       "claim": "The Transaction Graph Explorer expresses the thesis that operational reasoning should follow customer or workflow journeys, not isolated service dashboards.",
-      "visibleArtifact": "/map",
+      "visibleArtifact": "/library",
       "inspectionPath": [
-        "/map",
+        "/library",
         "/patterns/transaction-journey-reconstruction",
         "/wiki/transaction-journeys",
         "/ideas/transaction-intelligence-for-complex-enterprises"

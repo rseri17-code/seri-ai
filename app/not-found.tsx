@@ -12,7 +12,7 @@ export default function NotFound() {
           Ravikanth Seri&apos;s public site only exposes approved public artifacts. Use the map, library, or Ask Ravi to continue through the Operational Intelligence system.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link href="/map" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
+          <Link href="/library" className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
             Open Map <ArrowRight size={18} />
           </Link>
           <Link href="/ask" className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white">

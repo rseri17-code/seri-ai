@@ -501,7 +501,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
         visitorReviewKit.reviewAssets.flatMap((item) => [item.href, item.label, item.description]).join(". "),
         visitorReviewKit.publicChannels.flatMap((item) => [item.href, item.label, item.description]).join(". ")
       ].join(". "),
-      url: "/start-here",
+      url: "/work",
       type: "registry" as const,
       category: "evidence",
       tags: ["visitor review", "first-time visitor", "practitioner review", "feedback", "public-safe", "proof loop"],
@@ -701,7 +701,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
       title: "Ravikanth Seri Visitor Success Map",
       description: "Start-here orientation for Ravikanth Seri's career, work, evidence, GitHub, resume, contact path, and current focus.",
       content: "Visitor success map for hiring, collaboration, learning, profile, proof, and contact.",
-      url: "/start-here",
+      url: "/work",
       type: "registry" as const,
       category: "background",
       tags: ["start here", "visitor success", "professional profile", "career", "GitHub", "resume", "contact"],

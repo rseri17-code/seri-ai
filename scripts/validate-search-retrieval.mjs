@@ -108,15 +108,15 @@ const cases = [
   },
   {
     query: "Where should a first-time visitor start to understand Ravikanth Seri, his work, evidence, GitHub, resume, and contact path?",
-    expectedFirstUrl: "/start-here"
+    expectedFirstUrl: "/work"
   },
   {
     query: "What core questions should I answer before hiring collaborating with or learning from Ravikanth?",
-    expectedFirstUrl: "/start-here"
+    expectedFirstUrl: "/work"
   },
   {
     query: "Where is the first-time visitor review kit for evaluating whether seri.ai clearly represents Ravikanth?",
-    expectedFirstUrl: "/start-here"
+    expectedFirstUrl: "/work"
   },
   {
     query: "Where can a reviewer submit first-impression evidence about person-work fit demo feeling and artifact recall?",
@@ -132,7 +132,7 @@ const cases = [
   },
   {
     query: "How can I submit public-safe feedback about what was clear confusing memorable strongest weakest and what evidence would change my mind?",
-    expectedFirstUrl: "/start-here"
+    expectedFirstUrl: "/work"
   },
   {
     query: "Where can I inspect Ravikanth's architecture judgment and the constraints he preserves?",

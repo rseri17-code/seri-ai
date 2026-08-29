@@ -14,6 +14,23 @@ export const metadata: Metadata = publicRouteMetadata({
   path: "/library"
 });
 
+const downloadableArtifacts = [
+  ["/publication-pack/oi-room-001-control-comparison-run-001.md", "Control Comparison, Run 001", "The first execution of the comparison protocol, including the two findings that went against the thesis."],
+  ["/publication-pack/operational-intelligence-diagrams.md", "Diagram Pack", "Architecture, state-machine, sequence, evidence graph, and replay-loop diagrams."],
+  ["/publication-pack/decision-packet-example.md", "Decision Packet Example", "A reviewable action packet with approval class, risks, alternatives, and contradictory evidence."],
+  ["/publication-pack/oi-room-001-printable-walkthrough.md", "OI-ROOM-001 Walkthrough", "The printable synthetic case, start to finish."],
+  ["/downloads/operational-intelligence-publication-pack.pdf", "Publication Pack PDF", "The doctrine, reference architecture, diagrams and walkthrough in one file."],
+  ["/downloads/operational-intelligence-evidence-pack.pdf", "Evidence Pack PDF", "Benchmarks, control comparisons, practitioner review, and falsification criteria."],
+  ["/downloads/oi-room-001-printable-walkthrough.pdf", "Walkthrough PDF", "Printable investigation packet for review conversations."]
+] as const;
+
+const reviewerSharePackets = [
+  ["Executive reviewer", "/downloads/operational-intelligence-executive-summary.pdf", "Send the one-page summary first, then the Evidence Pack if the conversation turns to proof."],
+  ["Systems architect", "/wiki/operational-intelligence-reference-architecture", "Start with the contracts and state machines."],
+  ["SRE or operations reviewer", "/downloads/oi-room-001-printable-walkthrough.pdf", "Use OI-ROOM-001 to see how the evidence actually moves."],
+  ["AI governance reviewer", "/downloads/operational-intelligence-evidence-pack.pdf", "Benchmarks, refusal boundaries, and what would falsify the thesis."]
+] as const;
+
 const referenceShelf = [
   ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine", "Definition, boundaries, ten-layer model, glossary, claim posture, and citations."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Contracts, schemas, state machines, governance, evaluation gates, and conformance levels."],
@@ -175,6 +192,34 @@ export default function LibraryPage() {
                 <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
               </Card>
             </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Downloadable artifacts" title="Reference objects you can inspect or forward.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {downloadableArtifacts.map(([href, title, description]) => (
+            <Link key={href} href={href}>
+              <Card className="h-full transition hover:border-mint/40">
+                <p className="text-xs font-semibold uppercase text-mint">{href.endsWith(".pdf") ? "PDF export" : "Markdown artifact"}</p>
+                <h2 className="mt-3 text-xl font-semibold text-white">{title}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Reviewer share packets" title="Send the smallest artifact that matches the question.">
+        <div className="grid gap-4 md:grid-cols-2">
+          {reviewerSharePackets.map(([role, href, note]) => (
+            <Card key={role} className="h-full p-4">
+              <p className="text-xs font-semibold uppercase text-signal">{role}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{note}</p>
+              <Link href={href} className="mt-4 inline-flex min-h-[24px] items-center gap-2 text-sm font-semibold text-mint">
+                Open the artifact
+              </Link>
+            </Card>
           ))}
         </div>
       </Section>

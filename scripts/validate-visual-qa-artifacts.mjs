@@ -15,7 +15,7 @@ const expectedViewports = {
 
 const expectedRoutes = [
   "/",
-  "/start-here",
+  "/work",
   "/ask",
   "/investigation-room",
   "/work",
