@@ -5,7 +5,7 @@ import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeHeroFlow, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReferenceAssets, homeReviewerPaths } from "@/content/home";
+import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReferenceAssets, homeReviewerPaths } from "@/content/home";
 import { professionalGraph } from "@/content/site";
 
 const proofStrip = [
@@ -62,7 +62,8 @@ export default function Home() {
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
               They misfire because the operational context beneath them is fragmented, stale, or incomplete. I build the context
-              layer that keeps AI agents grounded in evidence &mdash; a public operating model for AI-native operations, so an agent
+              layer and the harness that runs on it &mdash; for enterprise SRE and platform teams putting agents near production,
+              where a wrong action has an owner and a blast radius. A public operating model for AI-native operations, so an agent
               reasons from attributable evidence instead of filling gaps with inference.
             </p>
             <p className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.05] p-4 text-base leading-7 text-slate-200">
@@ -165,17 +166,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="mt-6 rounded-lg border border-white/10 bg-black/20 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Operational Intelligence loop</p>
-              <div className="mt-3 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-200">
-                {homeHeroFlow.map((step, index) => (
-                  <span key={step} className="inline-flex items-center gap-2">
-                    <span className={index === 0 ? "text-mint" : index === homeHeroFlow.length - 1 ? "text-amber" : "text-white"}>{step}</span>
-                    {index < homeHeroFlow.length - 1 ? <span className="text-slate-600">/</span> : null}
-                  </span>
-                ))}
-              </div>
-            </div>
             </div>
             <div className="hidden lg:block lg:self-center">
               <HeroIntelligenceMap />
@@ -240,6 +230,12 @@ export default function Home() {
                 The point is not to rename observability, chat, or incident tracking. The point is to make the operational decision itself inspectable.
               </p>
             </div>
+            <details className="group">
+              <summary className="cursor-pointer list-none border-b border-white/10 px-5 py-3 text-sm font-semibold text-mint marker:hidden hover:bg-white/[0.03]">
+                Compare against dashboards, chat, tickets and runbooks
+                <span className="ml-2 font-normal text-slate-500 group-open:hidden">Expand</span>
+                <span className="ml-2 hidden font-normal text-slate-500 group-open:inline">Collapse</span>
+              </summary>
             <div className="divide-y divide-white/10">
               {homeCategoryContrast.map(([mode, promise, limitation]) => (
                 <div key={mode} className={`grid gap-3 p-4 md:grid-cols-[0.6fr_0.8fr_1.2fr] ${mode === "Operational Intelligence" ? "bg-mint/[0.045]" : ""}`}>
@@ -249,6 +245,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            </details>
           </Card>
           <Card className="border-amber/25 bg-amber/[0.045]">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">What would make the thesis credible or wrong.</p>
@@ -324,7 +321,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Start here" title="Three ways to understand Ravikanth Seri.">
+      <Section eyebrow="Start here" title="Five stops, about ten minutes. Start anywhere; this order builds fastest.">
         <div className="grid gap-4 lg:grid-cols-3">
           {homePrimaryPaths.map((path) => (
             <Link key={path.href} href={path.href}>
@@ -333,6 +330,17 @@ export default function Home() {
                 <h3 className="mt-4 text-2xl font-semibold text-white">{path.title}</h3>
                 <p className="mt-4 text-sm leading-7 text-slate-300">{path.body}</p>
                 <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-mint">Open <ArrowRight size={15} /></p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+          {homeReviewerPaths.map(([role, href, artifact, question]) => (
+            <Link key={role} href={href}>
+              <Card className="h-full p-4 transition hover:border-signal/40">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{role}</p>
+                <h3 className="mt-3 text-lg font-semibold text-white">{artifact}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{question}</p>
               </Card>
             </Link>
           ))}
@@ -365,49 +373,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Reference spine" title="The canonical assets, in reading order.">
-        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-          <Card className="border-amber/25 bg-amber/[0.045]">
-            <FileText className="mb-5 text-amber" />
-            <h3 className="text-3xl font-semibold text-white">The work is versioned as a public technical reference, not packaged as a resume.</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
-              Definitions live in the doctrine. Behavior lives in the reference architecture. Shareable review assets live in the publication pack. Proof and falsification live in the evidence pack.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/downloads/operational-intelligence-publication-pack.pdf" className="inline-flex items-center gap-2 rounded bg-amber px-5 py-3 font-semibold text-ink">
-                Download publication pack <FileText size={18} />
-              </Link>
-              <Link href="/wiki/operational-intelligence-evidence-pack" className="inline-flex items-center gap-2 rounded border border-amber/35 px-5 py-3 font-semibold text-amber">
-                Challenge the evidence
-              </Link>
-            </div>
-          </Card>
-          <div className="grid gap-3 md:grid-cols-2">
-            {homeReferenceAssets.map(([href, title, body]) => (
-              <Link key={href} href={href}>
-                <Card className="h-full p-4 transition hover:-translate-y-1 hover:border-amber/40">
-                  <h3 className="text-xl font-semibold text-white">{title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </Section>
 
-      <Section eyebrow="Reviewer paths" title="Where to start, by role.">
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
-          {homeReviewerPaths.map(([role, href, artifact, question]) => (
-            <Link key={role} href={href}>
-              <Card className="h-full p-4 transition hover:border-signal/40">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{role}</p>
-                <h3 className="mt-3 text-lg font-semibold text-white">{artifact}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{question}</p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
 
       <Section eyebrow="Engineering signature" title="Principles the work is built on.">
         <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
@@ -473,18 +439,44 @@ export default function Home() {
         </div>
       </Section>
 
+      <Section eyebrow="Reasons to get in touch" title="What a useful conversation usually looks like.">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {[
+            ["Speaking", "Conferences and internal engineering forums on agentic operations, evidence-grounded investigation, and what actually breaks between proof of concept and production."],
+            ["Advisory", "Teams putting agents into regulated production who need the context and governance layer designed before the model choice."],
+            ["Collaboration", "Practitioners building in the same space. Shared vocabulary is worth more to me than agreement."],
+            ["Practitioner review", "Tell me where the doctrine is wrong. Structured, public-safe, and no external verdicts have been published yet."],
+            ["Hiring and interviews", "Principal architect, AI systems, and observability leadership conversations."]
+          ].map(([label, body]) => (
+            <Link key={label} href="/contact">
+              <Card className="h-full p-4 transition hover:border-mint/40">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{label}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
       <Section eyebrow="Ask Ravikanth" title="Ask the public record. Answers cite their sources.">
         <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <h3 className="text-2xl font-semibold text-white">Ask Ravikanth turns the public body of work into a cited review surface.</h3>
-            <p className="mt-3 leading-7 text-slate-300">Use it to interrogate the doctrine, trace evidence to source pages, compare claims against artifacts, and find the right route through Ravikanth&apos;s work without guessing.</p>
+            <h3 className="text-2xl font-semibold text-white">An assistant over everything published here. Public record only.</h3>
+            <p className="mt-3 leading-7 text-slate-300">
+              It cites what it knows, names what it does not, and will not discuss employer systems. There is no model in the loop:
+              retrieval is lexical and answers are assembled deterministically, so the same question returns the same answer.
+            </p>
+            <p className="mt-3 text-sm leading-6 text-slate-400">
+              Worth asking: &ldquo;Is Operational Intelligence just AIOps renamed?&rdquo; &middot; &ldquo;What would falsify the
+              thesis?&rdquo; &middot; &ldquo;What has he actually shipped to production?&rdquo;
+            </p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link href="/ask" className="rounded bg-white px-5 py-3 font-semibold text-ink">
               Ask Ravikanth
             </Link>
-            <Link href="/ask" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
-              View evals <ShieldCheck size={18} />
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
+              Or talk to him directly <ShieldCheck size={18} />
             </Link>
           </div>
         </Card>

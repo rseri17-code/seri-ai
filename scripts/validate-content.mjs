@@ -359,7 +359,7 @@ if (!JSON.stringify(home).includes("public-safe") && !JSON.stringify(home).inclu
 for (const required of [
   "Ravikanth Seri / Operational Intelligence",
   "misfire because they lack intelligence",
-  "a public operating model for AI-native operations",
+  "public operating model for AI-native operations",
   "reconstruct what is happening now",
   "show how the evidence connects",
   "make uncertainty visible",

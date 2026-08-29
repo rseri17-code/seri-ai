@@ -962,3 +962,81 @@ the employer's system, and that is the model to follow.
 **Codex: do not add employer-specific product names, internal system names or unpublished
 operational metrics to this repo, even if you find them in a chat transcript or a local file.** If
 in doubt, flag rather than publish. This is the rule Ravikanth wrote and it applies to both agents.
+
+## CODEX HANDOFF — 2026-08-29 (second): homepage restructure, and where the remaining risk sits
+
+Codex: this follows the route-collapse handoff above. Same authorization, same direction.
+Ravikanth commissioned a principal-SRE-grade review (orientation, IA, conversion, integrity) and
+approved executing it. This entry records what changed and, more usefully, what it cost.
+
+### What changed
+
+**Hero.** Added the missing positioning: audience, artifact, stakes. The hook and the Authorized
+Misfire are unchanged. New line names "enterprise SRE and platform teams putting agents near
+production, where a wrong action has an owner and a blast radius" — previously the hero stated a
+failure mode without ever saying who it is for.
+
+**Navigation.** `Ask Ravikanth` was **absent from the header**. The flagship surface was unreachable
+from primary nav — a defect, not a preference. Added, with `Room` renamed to `Operations Room`
+because the short label is meaningless to a first-time visitor.
+
+**Orientation sections merged.** Three sections were doing overlapping orientation work: *Start
+here*, *Reference spine*, *Reviewer paths*. Reviewer paths folded into Start here; Reference spine
+removed (it duplicated the merged block, and `/library` now carries the downloads). Homepage went
+from ten sections to seven.
+
+**Reasons to engage** added before Ask: speaking, advisory, collaboration, practitioner review,
+hiring. Previously a visitor who wanted to make contact had to infer why that would be welcome.
+
+**Ask teaser rewritten** to state the boundary up front — public record only, no model in the loop,
+deterministic answers — plus three high-signal starter questions.
+
+**Progressive disclosure.** The category-boundary comparison now sits behind `<details>`.
+Deliberate choice of primitive: it needs no JS, survives SSR, stays keyboard-operable, and does not
+depend on hydration. **The falsification tests were left fully visible** — collapsing those would
+soften the site's most valuable stance, and that is off limits.
+
+### What this cost, and what you should watch
+
+**Byte budget is the binding constraint on `/`.** The additions pushed it to 214,045 against a
+210,000 ceiling. It came back under by removing the Reference spine section and the hero's loop
+strip, not by raising the budget. **`/` now renders at 204,558 — about 5.4KB of headroom.** That is
+the most it has had in a while, but treat it as the real limit on homepage work.
+
+**Two validator pins were dropped, not repointed**, and this is the one thing worth checking behind
+me: `"The canonical assets, in reading order."` and `"Download publication pack"` were homepage
+contracts for a section that no longer exists. I dropped them only after confirming
+`validate-reference-package.mjs` still asserts the publication-pack PDF three times against
+`app/library/page.tsx`. **The invariant is preserved; only its location moved.** If you disagree
+with that reasoning, the pins are the place to argue.
+
+**Pin fragility, again.** Two failures this pass came from copy wrapping across lines and from an
+article-case difference (`"a public operating model"` vs sentence-initial `"A public..."`). When
+pinning, prefer the shortest distinctive fragment that will survive reflow, and avoid leading
+articles.
+
+### Not done, and why
+
+**Mobile hero fit is unverified.** The brief requires both CTAs above the fold at 390x844. I cannot
+verify that without a capture run, and **the visual-QA evidence is stale** — the August captures
+predate nine retired routes and every change in this entry. Do not claim mobile polish until that
+is re-run. This is currently the largest unverified claim on the site.
+
+**Domain migration is planned, not executed.** Canonical, OG and schema.org all derive from
+`NEXT_PUBLIC_SITE_URL` and currently point at the Vercel host. When `seri.ai` is ready: set the env
+var (use `||`, not `??` — an empty string already broke one build), add 308 redirects, regenerate
+sitemap/robots/rss/llms.txt, and re-verify structured data.
+
+**External practitioner review remains at zero.** The stance is now an explicit invitation rather
+than an absence. When real public-safe feedback exists, present it restrained and attributed — do
+not build a testimonial wall.
+
+### The item that actually gates a 10/10
+
+The site carries **2,973 words of original writing across 11 articles, mean 270**. Everything in
+this entry is orientation and structure. None of it changes depth. A principal engineer judges
+depth of thought, and there is not yet enough writing to judge. **Codex: if you are choosing what to
+work on, the retrieval and content-data layer is the highest-value thing in your lane** — several
+registry entries store concatenated label strings rather than prose, which is why Ask still answers
+"What is the evidence layer?" with a keyword list. Fixing the corpus makes both the essays and Ask
+better; no amount of page work does.
