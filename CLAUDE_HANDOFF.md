@@ -32,6 +32,42 @@ The person and the work must remain inseparable.
 - Translate protected experience into public-safe architecture principles, reusable patterns, synthetic examples, generic engineering lessons, and public-safe case studies.
 - Prefer one durable reference over five shallow posts.
 - Preserve the existing route architecture unless Ravikanth explicitly asks for a route or architecture change.
+
+## AUTHORIZED STRUCTURAL CHANGE — 2026-08-26
+
+**Ravikanth explicitly authorized a route collapse on 2026-08-26.** This supersedes "Do not add
+routes" and "Do not redesign the site" for this specific change, and satisfies the "unless
+Ravikanth explicitly asks" clause above. Codex: this is sanctioned, not churn. Do not revert it.
+
+His words: *"I feel we are over complicating it. I want 10/10 version. I am not convinced with
+war room and evals. It's like contemplating my own. This should be my personal space, where I
+share what I think from my experience and show my body of work."*
+
+**Target: 35 routes to roughly 6.** Home / Writing / Work / Operational Intelligence / Ask / Contact.
+
+Retiring: evals, radar, map, architecture-lab, brief, manifesto, start-here, now, interview,
+interview-mode, artifacts, changelog, simulator, products, framework — folding their worthwhile
+content into the survivors rather than deleting it.
+
+Specific rulings from Ravikanth:
+- **/evals is retired entirely.** The eval harness keeps running in CI where it belongs. The
+  page was self-referential: the site arguing for its own credibility.
+- **The Operations Room is embedded inside the Operational Intelligence page**, not a standalone
+  credibility pillar. It stays because an interactive artifact is genuinely rare; it stops being
+  load-bearing for trust.
+- **Writing is the product.** Ideas, library, wiki, patterns and principles collapse into one stream.
+
+**The diagnosis behind this, which both agents should internalise:** the site carries roughly
+3,000 words of original writing (11 articles averaging 270 words; five wiki notes near 100 words)
+supporting 35 routes, 63 assets, 8,038 graph relationships, 26 validators, a scorecard, a proof
+backlog and an eval harness. Every reference site — Ng, Karpathy, Weng, Huyen — inverts that
+ratio: minimal apparatus, large body of writing. **The apparatus was compensating for the writing
+not being there.** Collapsing the structure exposes that rather than fixing it, so essay depth is
+tracked as its own workstream, not as a follow-up.
+
+Ravikanth also authorized Claude to expand four to five existing short articles into real essays,
+drawing only on material already published on the site, for him to edit. No new claims about his
+experience may be introduced by either agent.
 - Every stronger claim needs evidence, citation, boundary language, or a visible limitation.
 
 ## Role Split

@@ -35,3 +35,16 @@ Either agent may implement end-to-end inside its own lane; the other agent revie
 3. Post-merge async review is the default rhythm. Substantive cross-lane work is reviewed pre-merge via the ledger.
 4. **Oscillation brake**: if the same copy or decision changes direction twice, freeze it, present both versions side by side in the ledger for Ravikanth, and neither agent touches it until he rules.
 5. Reviews argue from `NORTH_STAR.md`, never from authorship.
+
+## AUTHORIZED STRUCTURAL CHANGE — 2026-08-26
+
+Ravikanth authorized collapsing the site from 35 routes to roughly six: Home / Writing / Work /
+Operational Intelligence / Ask / Contact. This supersedes the standing "do not add routes / do not
+redesign" constraints for this change only. **It is sanctioned, not churn — do not revert it.**
+
+/evals is retired entirely (the harness keeps running in CI). The Operations Room is embedded in
+the Operational Intelligence page rather than standing as a credibility pillar. Writing becomes the
+centre of the site.
+
+Full rationale, rulings and the substance-to-scaffolding diagnosis are in CLAUDE_HANDOFF.md under
+the same heading. Read it before touching routes.
