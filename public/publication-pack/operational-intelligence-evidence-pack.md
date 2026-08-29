@@ -114,6 +114,8 @@ Reviewers should score each mode on:
 - Replayability
 - Reviewer confidence
 
+**First run: [OI-ROOM-001 Control Comparison — Run 001](/publication-pack/oi-room-001-control-comparison-run-001.md)** (2026-08-26, run by the author, no independence). It returned two findings unfavourable to the doctrine: dashboard-only scores equal on numeric evidence completeness, and the protocol's own stated cost risk remains untested. Read its Limitations section before citing any result from it.
+
 Report the comparison as an evidence ledger entry with limitations. A favorable result strengthens the doctrine only for the tested case. An unfavorable result should revise the doctrine if the workflow adds process weight without improving decision quality.
 
 ## 8. Reviewer-Run Worksheet

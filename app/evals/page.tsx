@@ -59,12 +59,22 @@ export default function EvalsPage() {
 
   return (
     <>
-      <Section eyebrow="AI release gate" title="Operational AI should not ship without behavior evidence." level="h1">
+      <Section eyebrow="Agent observability" title="Operational AI should not ship without behavior evidence." level="h1">
         <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
           <Card>
             <ShieldAlert className="mb-5 text-mint" />
             <p className="text-lg leading-8 text-slate-200">
               {evalReport.summary} The point is not to make the assistant sound impressive. The point is to make expected behavior explicit, reproducible, and hard to quietly regress.
+            </p>
+            <p className="mt-4 leading-7 text-slate-300">
+              This page is also the worked example. Every answer the assistant returns reports which mode produced it, how long it
+              took, how many public sources it used, and which framework layers it touched. A refusal is its own mode, not a failure.
+            </p>
+            <p className="mt-4 leading-7 text-slate-300">
+              In production this assistant currently runs with <span className="text-white">no model in the loop</span>: retrieval is
+              lexical and answers are assembled deterministically. That is a real limit on answer quality and it is stated on every
+              answer. It is also why the behaviour below is checkable &mdash; the same question returns the same answer, so a
+              regression is something you can reproduce rather than something you argue about.
             </p>
             <div className="mt-6 rounded-lg border border-mint/25 bg-mint/10 p-5">
               <p className="text-sm uppercase tracking-[0.18em] text-mint">Fixture coverage</p>

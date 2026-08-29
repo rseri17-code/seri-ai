@@ -18,8 +18,8 @@
       "slug": "control-comparison",
       "claim": "The Operational Intelligence workflow improves reviewability compared with dashboard-only, chatbot-only, and ticket-only investigation modes.",
       "evidenceNeeded": "Same-facts OI-ROOM-001 comparison runs scored on evidence completeness, contradiction handling, missing-evidence honesty, hypothesis quality, decision safety, replayability, and reviewer confidence.",
-      "currentEvidence": "The OI-ROOM-001 control comparison article and Evidence Pack define modes, allowed inputs, primary risks, and worksheet dimensions.",
-      "nextProof": "Run the control comparison with independent reviewers and publish dimension-level results with limitations instead of an aggregate quality score.",
+      "currentEvidence": "Run 001 of the control comparison was executed on 2026-08-26 and published at /publication-pack/oi-room-001-control-comparison-run-001.md. It scores four modes across the seven dimensions and returned two findings unfavourable to the doctrine: dashboard-only scores equal on numeric evidence completeness, and the protocol's own stated cost risk is still untested. The run was performed by the author of the workflow under test, on a case he also authored, so it carries no independence.",
+      "nextProof": "Have an independent practitioner author a case and re-run the comparison. Run 001's largest stated limitation is that the case contains exactly the features the workflow handles, so an externally authored case is the specific evidence that would make the result meaningful.",
       "wouldChange": "If the workflow adds structure without improving judgment, simplify the model or narrow claims to the cases where structure helps.",
       "status": "protocol-defined",
       "href": "/ideas/oi-room-001-control-comparison"

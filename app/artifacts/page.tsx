@@ -67,6 +67,7 @@ const artifacts = [
 const downloadableArtifacts = [
   ["/publication-pack/operational-intelligence-diagrams.md", "Diagram Pack", "Architecture, state-machine, sequence, evidence graph, and replay-loop diagrams."],
   ["/publication-pack/decision-packet-example.md", "Decision Packet Example", "A reviewable action packet with approval class, risks, alternatives, contradictory evidence, and missing evidence."],
+  ["/publication-pack/oi-room-001-control-comparison-run-001.md", "Control Comparison, Run 001", "The first execution of the comparison protocol, including the two findings that went against the thesis."],
   ["/publication-pack/oi-room-001-printable-walkthrough.md", "OI-ROOM-001 Walkthrough", "The printable synthetic case walkthrough through evidence, hypotheses, gates, action, and learning."],
   ["/downloads/operational-intelligence-publication-pack.pdf", "Publication Pack PDF", "Shareable PDF for the doctrine, reference architecture, diagrams, tables, and walkthrough."],
   ["/downloads/operational-intelligence-evidence-pack.pdf", "Evidence Pack PDF", "Shareable PDF for benchmarks, control comparisons, practitioner review, and falsification criteria."],
