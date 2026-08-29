@@ -866,3 +866,99 @@ Measured after: answers now run 117–227 words with block sets that differ by q
 **Running theme across today's three findings, for Codex:** the suite has now been found asserting boilerplate presence in three separate places. A fixture that passes because a constant string is always emitted is not testing anything. When adding Ask fixtures, prefer assertions about the *direct answer* over assertions that a labelled block exists.
 
 Evidence: `npm test`, `npm run build`, 117/117 fixtures, 69/69 retrieval — all green.
+
+## CODEX HANDOFF — 2026-08-29: what changed, and why we are subtracting
+
+Codex: read this before touching routes or validators. Ravikanth asked for this handoff explicitly
+so the collapse does not read as churn.
+
+### The decision
+
+Ravikanth authorized reducing the site from 35 routes to roughly six: **Home / Writing / Work /
+Operational Intelligence / Ask / Contact.** His words: *"I feel we are over complicating it… This
+should be my personal space, where I share what I think from my experience and show my body of
+work."* He asked for comparison against Andrew Ng, Karpathy and similar sites.
+
+### Why — the measurement that settled it
+
+The site carried roughly **3,000 words of original writing**: 11 articles averaging 270 words, five
+wiki notes near 100 words. The two longest documents, the doctrine and the evidence pack, are
+specifications rather than essays.
+
+Around those 3,000 words sat 35 routes, 63 assets, 8,000+ graph relationships, 26 validators, a
+quality scorecard, a proof backlog and an eval harness.
+
+Every reference site inverts that ratio — minimal apparatus, large body of writing. Ng's site is
+small because it points at The Batch and his courses; Karpathy's is spare because each linked post
+is a serious essay. **The apparatus here was compensating for the writing not being there.**
+
+That is the whole rationale. It is not that the retired pages were badly built — several were built
+well. It is that they were the site talking about itself.
+
+### What is being retired, and the test applied
+
+The test: **does this page contain Ravikanth's thinking, or does it describe the site?**
+
+Retired so far — all failed that test:
+- `/evals` — the site arguing for its own credibility. The harness still runs on every build, which
+  is where it belongs. Its one genuinely good part, the honest limitation, moved to `/ask`.
+- `/map` — a diagram of the site's own structure.
+- `/artifacts` — an index of other pages.
+- `/start-here` — an orientation path through those pages.
+- `/changelog` — the site narrating its own maintenance.
+- `/interview`, `/interview-mode` — recruiter-mode duplicates of `/work` and `/ask`.
+
+Deferred deliberately, because they carry real thinking and need a destination first:
+`/manifesto` (the best prose on the site), `/brief`, `/radar`, `/framework`, `/architecture-lab`,
+`/products/reasonops`. **Do not delete these before the Operational Intelligence page exists.**
+
+### Rules followed while retiring, which should continue
+
+1. **Repoint, never orphan.** `/artifacts` held the only links to the publication-pack markdown and
+   PDF exports. Those moved to `/library` and `validate-reference-package` now asserts against that
+   page. Deleting the page without moving the downloads would have silently orphaned every PDF.
+2. **Preserve the invariant, change its location.** Where a validator protected something real,
+   re-point it rather than delete it. Where it only asserted that a retired page existed, remove it.
+3. **Stage deletions before running the suite** — `validate-security-hygiene` reads git-tracked
+   files, so an unstaged deletion crashes it with ENOENT.
+4. Clear `.next/types` after removing a route or `tsc` fails on stale generated types.
+
+### A harness finding worth your attention
+
+**The gates encoded "bigger is better" in at least three places**, and every one of them failed the
+build for *subtracting*:
+- `validate-performance`: a floor of 70 prerendered routes, and 60 HTML files.
+- `validate-content`: `requireJsonArray(contentRegistryPath, …, 15)` — removing one registry item
+  made the array fail its minimum and return empty, which then reported *every* critical route as
+  missing. That one sent me looking in entirely the wrong place.
+
+None of these ever caught a real defect. They are floors on output volume. I lowered them as routes
+retired and documented them as catching an accidental drop in output rather than discouraging
+subtraction. **Expect more of these as the collapse continues, and prefer fixing the assumption over
+raising the number.**
+
+This matters beyond the immediate fix: the harness structurally rewarded adding surface area, which
+is part of how the site reached 35 routes around 3,000 words of writing.
+
+### Ownership during the collapse
+
+Claude is driving the route collapse, page merges and editorial. **Codex: the highest-value work in
+your lane right now is the retrieval and content-data layer** — several registry entries store
+concatenated label strings rather than prose, which is why Ask answers questions like "What is the
+evidence layer?" with a keyword list. No amount of answer composition fixes that; it needs the
+corpus to hold sentences.
+
+### Source material — held outside the repo, pending Ravikanth's ruling
+
+Ravikanth supplied two resumes and his LinkedIn About text on 2026-08-29. They contain concrete
+production evidence that the site currently lacks, including named systems, employer context and
+operational metrics.
+
+**This repository is public.** Under the NORTH STAR public-safety rule those specifics are not being
+written into any file here — not into content, not into this handoff — until Ravikanth explicitly
+rules on what may be published. His own LinkedIn About text describes the same work without naming
+the employer's system, and that is the model to follow.
+
+**Codex: do not add employer-specific product names, internal system names or unpublished
+operational metrics to this repo, even if you find them in a chat transcript or a local file.** If
+in doubt, flag rather than publish. This is the rule Ravikanth wrote and it applies to both agents.
