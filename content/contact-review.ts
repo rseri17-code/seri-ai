@@ -34,7 +34,7 @@ export const contactReviewMinimumEvidenceQuorum = {
 
 export const contactReviewRunProtocol = [
   ["Before review", "Tell the reviewer not to use confidential employer details, internal screenshots, logs, private metrics, or non-public architecture."],
-  ["First 10 minutes", "Ask the reviewer to follow Start Here, Background, Work, Doctrine, Operations Room, and Evidence Pack before judging polish."],
+  ["First 10 minutes", "Ask the reviewer to follow Work, Background, Doctrine, Operations Room, and Evidence Pack before judging polish."],
   ["Evidence capture", "Capture only role, route, dimension, verdict, inspected public artifacts, strongest claim, weakest claim, evidence needed, implementation question, and limitation."],
   ["Decision", "Classify feedback as Keep, Fix, Clarify, Remove, or Needs Evidence; do not convert it into testimonials or aggregate reputation claims."],
   ["Doctrine update", "Only update the doctrine or reference architecture when feedback identifies a boundary ambiguity, unsupported claim, missing failure mode, or implementation obstacle."]

@@ -1,11 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import type { LucideIcon } from "lucide-react";
-import { ArrowRight, Boxes, BrainCircuit, ClipboardCheck, FileText, GitBranch, Layers, Linkedin, ShieldCheck, UserRound } from "lucide-react";
+import { ArrowRight, BrainCircuit, GitBranch, Linkedin } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";
-import { articles, contentRegistry, evalReport, operationalIntelligenceFramework, professionalGraph, projects, publicCode, resume } from "@/content/site";
+import { evalReport, professionalGraph, projects, publicCode } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Work | Ravikanth Seri",
@@ -20,89 +19,7 @@ export const metadata: Metadata = {
   }
 };
 
-type WorkItem = [href: string, label: string, detail: string];
-
-const registryItem = (slug: string) => {
-  const item = contentRegistry.find((entry) => entry.slug === slug);
-  if (!item) {
-    throw new Error(`Missing content registry item: ${slug}`);
-  }
-  return item;
-};
-
-const registryWorkItem = (slug: string): WorkItem => {
-  const item = registryItem(slug);
-  const suffix = item.status === "published" ? "" : " (planned)";
-  return [item.route, `${item.title}${suffix}`, item.summary];
-};
-
-const standardIcons: Record<string, LucideIcon> = {
-  ClipboardCheck,
-  GitBranch,
-  ShieldCheck
-};
-
 const formatFixtureText = (text: string) => text.replace("{fixtureCount}", String(evalReport.fixtures.length));
-
-const workSections: Array<{ title: string; Icon: LucideIcon; items: WorkItem[] }> = [
-  {
-    title: "Systems",
-    Icon: Boxes,
-    items: [
-      registryWorkItem("reasonops"),
-      registryWorkItem("operations-room"),
-      registryWorkItem("ask-ravikanth")
-    ]
-  },
-  {
-    title: "Frameworks",
-    Icon: Layers,
-    items: [
-      registryWorkItem("operational-intelligence-framework"),
-      ["/framework", "Agentic SRE Harness", "The operating model for agents that investigate before they act."],
-      registryWorkItem("evidence-graph-model"),
-      ["/patterns/agentic-incident-investigation", "Hypothesis Lifecycle", "How competing explanations are proposed, supported, weakened, rejected, or promoted."],
-      registryWorkItem("replay-seed-model"),
-      ["/ask", "Evaluation Gate", "Deterministic behaviour checks that run on every build before an answer ships."],
-      ["/patterns/human-in-the-loop-operational-ai", "Operator Control Plane", "Human approval, override, escalation, and accountability for enterprise agent action."]
-    ]
-  },
-  {
-    title: "Domains",
-    Icon: BrainCircuit,
-    items: [
-      ["/framework", "Operational Intelligence", operationalIntelligenceFramework.subtitle],
-      ["/framework", "Agentic SRE", "Operational agents with evidence, replay, evals, memory, and human review."],
-      ["/patterns/transaction-journey-reconstruction", "Transaction Intelligence", "Customer and workflow journeys as the unit of operational reasoning."],
-      ["/patterns/operational-memory", "Operational Memory", "Reusable incident decisions, mitigations, patterns, and replay seeds."],
-      ["/ideas/incident-investigation-as-a-product-experience", "AI-native Incident Investigation", "Incident investigation as a guided product experience, not a frantic search session."],
-      ["/patterns/topology-aware-reasoning", "Topology-aware reasoning", "Dependency and ownership context for blast-radius and action boundaries."],
-      ["/patterns/evaluation-and-replay", "Evaluation and replay", "Release gates and replay seeds for trustworthy operational AI."]
-    ]
-  },
-  {
-    title: "Artifacts",
-    Icon: GitBranch,
-    items: [
-      ...projects.slice(0, 3).map((project) => [`/projects/${project.slug}`, project.name, project.summary] as WorkItem),
-      ...resume.publicProof.map((item) => [item.href, item.label, item.description] as WorkItem)
-    ]
-  },
-  {
-    title: "Writing",
-    Icon: FileText,
-    items: articles.slice(0, 4).map((article) => [`/ideas/${article.slug}`, article.title, article.dek])
-  },
-  {
-    title: "Background",
-    Icon: UserRound,
-    items: [
-      ["/background", "Professional background", resume.summary],
-      ["/resume", "Interactive resume", "The full career record, with what each role actually involved."],
-      ["/contact", "Contact", "Reach out about Operational Intelligence, Agentic SRE, architecture, and collaboration."]
-    ]
-  }
-];
 
 export default function WorkPage() {
   return (

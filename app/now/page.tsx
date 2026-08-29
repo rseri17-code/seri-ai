@@ -88,7 +88,7 @@ export default function NowPage() {
               <p className="mt-2 text-sm leading-6 text-slate-200">{nowPage.studying[0]}</p>
             </div>
             <Link href="/wiki/operational-intelligence-evidence-pack" className="rounded border border-white/10 bg-black/20 p-3 transition hover:border-mint/45">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Proof loop</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Proof path</p>
               <p className="mt-2 text-sm leading-6 text-slate-200">{proofCheckpoints[0]}</p>
             </Link>
           </div>
@@ -148,7 +148,6 @@ export default function NowPage() {
           ))}
         </div>
       </Section>
-
       <Section eyebrow="Builder ledger" title="Current public assets that make the work inspectable.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {builderLedger.map(([href, title, description], index) => (
@@ -167,7 +166,7 @@ export default function NowPage() {
         </div>
       </Section>
 
-        <Section eyebrow="Proof loop" title="The next work is evidence, not more slogans.">
+      <Section eyebrow="Proof loop" title="The next work is evidence, not more slogans.">
         <Card className="border-signal/25 bg-signal/[0.055]">
           <h2 className="text-3xl font-semibold text-white">The useful question now is: what would convince another experienced engineer that the model works?</h2>
           <div className="mt-6 grid gap-3 md:grid-cols-2">

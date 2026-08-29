@@ -12,7 +12,6 @@ import thesisRadarData from "./thesis-radar.json";
 import thesisRadarLifecycleData from "./thesis-radar-lifecycle.json";
 import categoryBriefData from "./category-brief.json";
 import nowPageData from "./now.json";
-import startHerePathsData from "./start-here.json";
 import changelogData from "./changelog.json";
 import resumeData from "./resume.json";
 import professionalGraphData from "./professional-graph.json";
@@ -168,8 +167,6 @@ export type Pattern = {
 export const patterns = patternsData satisfies Pattern[];
 
 export const nowPage = nowPageData;
-
-export const startHerePaths = startHerePathsData;
 
 export const changelog = changelogData;
 
