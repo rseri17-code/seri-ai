@@ -194,12 +194,11 @@
       "failureMode": "Post-incident learning never reaches the next investigation.",
       "operatorQuestion": "What should the system learn for next time?",
       "related": [
-        "/now",
-        "/changelog"
+        "/now"
       ],
       "relatedPattern": "/patterns/operational-memory",
-      "relatedArtifact": "/changelog",
-      "relatedLibraryAsset": "/ideas/knowledge-graphs-as-operational-memory"
+      "relatedLibraryAsset": "/ideas/knowledge-graphs-as-operational-memory",
+      "relatedArtifact": "/investigation-room"
     },
     {
       "name": "Operator Layer",

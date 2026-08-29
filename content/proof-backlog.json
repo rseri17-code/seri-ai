@@ -42,7 +42,7 @@
       "nextProof": "After Vercel beta deployment, review production logs and analytics using only privacy-safe metadata and publish limitations in the release report or scorecard.",
       "wouldChange": "If fallback rate, route errors, or latency make review unreliable, prioritize reliability fixes before deeper publication work.",
       "status": "awaiting-live-beta-telemetry",
-      "href": "/changelog"
+      "href": "/work"
     },
     {
       "slug": "visual-mobile-qa",
