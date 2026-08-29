@@ -18,8 +18,8 @@ ever disagree, this section wins and the history is wrong.
 | Fact | Value |
 | --- | --- |
 | Routes | **26** (was 35 before the collapse) |
-| Homepage sections | **9** |
-| `/` rendered | 205,534 bytes / 210,000 budget |
+| Homepage sections | **8** |
+| `/` rendered | 200,210 bytes / 210,000 budget |
 | `/work` rendered | 120,476 / 195,000 |
 | `/framework` rendered | 124,039 |
 | Content registry items | 12 |
@@ -80,6 +80,39 @@ compensating for the writing not being there.** Subtraction is the mission, not 
 - **Published metrics have no stated method.** 80% ticket reduction, 200 hours/quarter, 120+ apps
   carry no baseline or window. On a site whose thesis is *show your evidence*, an unsourced
   percentage is the weakest thing on the page.
+
+## OSCILLATION EVENT — the homepage hero, 2026-08-29
+
+**This is the first time the brake in AGENTS.md has actually fired. Read it before touching the hero.**
+
+The hero changed direction twice in one day. Claude re-anchored it on Ravikanth's own LinkedIn
+framing — first person, opening on "AI agents don't misfire because they lack intelligence", with
+the Authorized Misfire as the named failure mode. Codex then replaced the H1 and lead paragraph with
+a third-person descriptive sentence ("Ravikanth Seri is a senior infrastructure and AI systems
+engineer building Operational Intelligence for enterprise operations") under the commit *Make
+homepage hero more person-first*.
+
+**Resolution: the first-person version was restored, because Ravikanth had already ruled on it.**
+He was asked directly and chose "Re-anchor the site on the LinkedIn framing", and the first-person
+voice closes the editorial review's oldest finding — that the site contained not one first-person
+sentence. This was not Claude overruling Codex; it was restoring a decision the principal had
+already made and that Codex could not have seen, because the handoff recording it was in a commit
+Codex had not read.
+
+**Codex's underlying instinct was right and was kept.** The concern was that a visitor could not
+answer "who is this" fast enough. Two things Codex built for that survive and are better than what
+they replaced:
+- the role badge, `Ravikanth Seri / Senior infrastructure and AI systems engineer`, which answers
+  the question without spending the H1 on a job title (three validator pins were repointed to it);
+- the **Professional snapshot** section, which superseded the hero's older Who/What/Now tile grid.
+  The grid was removed, not the snapshot.
+
+**Standing rule for both agents:** the H1 and hero lead paragraph are **frozen**. Ravikanth ruled;
+neither agent changes them again without a new ruling from him. Everything else in the hero is open.
+
+**Process lesson, and this one matters more than the copy.** Codex was working from a base that did
+not contain the ruling. Before rewriting any ruled surface, pull `origin/main` and read the STATE OF
+PLAY block. Decisions recorded only in a commit message do not reach the other agent.
 
 ## Harness pathology worth knowing
 

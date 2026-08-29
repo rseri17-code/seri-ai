@@ -91,12 +91,13 @@ export default function Home() {
               Ravikanth Seri / Senior infrastructure and AI systems engineer
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              Ravikanth Seri is a senior infrastructure and AI systems engineer building Operational Intelligence for enterprise operations.
+              AI agents don&apos;t misfire because they lack intelligence.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              He works where AI meets real systems: production reliability, observability, transaction context, evaluation,
-              and bounded action. The site is the public record of the ideas, artifacts, and evidence behind that work, with
-              the career arc visible from enterprise integration and infrastructure to production AI systems and agentic operations.
+              They misfire because the operational context beneath them is fragmented, stale, or incomplete. I build the context
+              layer and the harness that runs on it &mdash; for enterprise SRE and platform teams putting agents near production,
+              where a wrong action has an owner and a blast radius. A public operating model for AI-native operations, so an agent
+              reasons from attributable evidence instead of filling gaps with inference.
             </p>
             <p className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.05] p-4 text-base leading-7 text-slate-200">
               <span className="font-semibold text-amber">The Authorized Misfire.</span> The failure I design against: an action the
@@ -104,27 +105,9 @@ export default function Home() {
               valuable memory. They are not current production truth.
             </p>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
-              So the context layer has to reconstruct what is happening now, show how the evidence connects, make uncertainty
-              visible, and keep human judgment in control of anything consequential.
+              So the context layer has to reconstruct what is happening now, show how the evidence connects,
+              make uncertainty visible, and keep human judgment in control of anything consequential.
             </p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              <div className="rounded border border-white/10 bg-white/[0.035] p-3">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-signal">Who</p>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.person}</p>
-              </div>
-              <div className="rounded border border-white/10 bg-white/[0.035] p-3">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-signal">What</p>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.siteRole}</p>
-              </div>
-              <div className="rounded border border-white/10 bg-white/[0.035] p-3">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-signal">Now</p>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.currentFocus}</p>
-              </div>
-              <Link href="/work" className="rounded border border-white/10 bg-white/[0.035] p-3 transition hover:border-mint/45">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-signal">Proof path</p>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.throughline}</p>
-              </Link>
-            </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
                 Begin with the proof path <ArrowRight size={18} />
@@ -429,39 +412,6 @@ export default function Home() {
 
 
 
-      <Section eyebrow="Engineering signature" title="Principles the work is built on.">
-        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-          <Card className="border-mint/25 bg-mint/[0.045]">
-            <Sparkles className="mb-5 text-mint" />
-            <h3 className="text-3xl font-semibold text-white">{homeBuilderDna.title}</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">{homeBuilderDna.thesis}</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <TrackedAnchor
-                href={homeProfileLinks.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                eventName="profile_link_click"
-                eventProperties={{ destination: "linkedin", placement: "homepage_builder_signature" }}
-                className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white"
-              >
-                View LinkedIn <Linkedin size={18} />
-              </TrackedAnchor>
-              <Link href="/background" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
-                Background
-              </Link>
-            </div>
-          </Card>
-          <div className="grid gap-3 md:grid-cols-2">
-            {homeBuilderDna.principles.map((principle) => (
-              <Card key={principle.name} className="p-4">
-                <Network className="mb-4 text-signal" />
-                <h3 className="font-semibold text-white">{principle.name}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{principle.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
 
       <Section eyebrow="Current work" title="Field notes and reusable patterns.">
         <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">

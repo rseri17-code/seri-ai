@@ -357,7 +357,7 @@ if (!JSON.stringify(home).includes("public-safe") && !JSON.stringify(home).inclu
   errors.push("content/home.json: homepage content must preserve public-safe proof posture");
 }
 for (const required of [
-  "Ravikanth Seri / Operational Intelligence",
+  "Ravikanth Seri / Senior infrastructure and AI systems engineer",
   "misfire because they lack intelligence",
   "public operating model for AI-native operations",
   "reconstruct what is happening now",
