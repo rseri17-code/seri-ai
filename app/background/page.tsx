@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, BrainCircuit, GitBranch, Linkedin, ShieldCheck, Workflow } from "lucide-react";
+import { ArrowRight, BrainCircuit, GitBranch, Linkedin, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
@@ -104,6 +104,48 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Profile guide" title="Where to find the proof quickly.">
+        <Card className="border-mint/25 bg-mint/[0.04] p-5">
+          <p className="text-sm leading-7 text-slate-300">
+            Start with the summary, then move to resume, work, LinkedIn, GitHub, publications, certifications, education, and contact.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {professionalGraph.profileDiscovery
+              .filter((item) => [
+                "Professional summary",
+                "Current role and focus",
+                "Publications",
+                "GitHub",
+                "Certifications",
+                "Education",
+                "Resume",
+                "LinkedIn",
+                "Contact information"
+              ].includes(item.need))
+              .map((item) => (
+                <Link key={item.need} href={item.primaryHref} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-mint transition hover:border-mint/40">
+                  {item.need}
+                </Link>
+              ))}
+          </div>
+        </Card>
+      </Section>
+
+      <Section eyebrow="Point of view" title="Ravikanth Seri's point of view.">
+        <Card className="border-signal/25 bg-signal/[0.045]">
+          <p className="text-lg leading-8 text-slate-300">
+            The LinkedIn writing and the reference architecture converge on the same operating thesis: enterprise AI will fail operationally when context is reconstructed privately, repeatedly, and late.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {homeLinkedInSignals.slice(0, 3).map((signal) => (
+              <span key={signal.name} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-mint">
+                {signal.name}
+              </span>
+            ))}
+          </div>
+        </Card>
+      </Section>
+
       <Section eyebrow="Career story" title="Ravikanth Seri's career story.">
         <div className="grid gap-3">
           {professionalGraph.careerStory.map((stage, index) => (
@@ -154,26 +196,6 @@ export default function BackgroundPage() {
                   </div>
                 </Card>
               </Link>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section eyebrow="Point of view" title="Ravikanth Seri's point of view.">
-        <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr]">
-          <Card className="border-signal/25 bg-signal/[0.045]">
-            <Workflow className="mb-5 text-signal" />
-            <h2 className="text-3xl font-semibold text-white">The LinkedIn writing and the reference architecture converge on the same operating thesis.</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
-              The public writing argues that enterprise AI will fail operationally when context is reconstructed privately, repeatedly, and late. seri.ai turns that argument into a public reference system: definitions, artifacts, evals, and a synthetic room where the reasoning path can be inspected.
-            </p>
-          </Card>
-          <div className="grid gap-3 md:grid-cols-2">
-            {homeLinkedInSignals.map((signal) => (
-              <Card key={signal.name} className="p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{signal.name}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{signal.description}</p>
-              </Card>
             ))}
           </div>
         </div>
