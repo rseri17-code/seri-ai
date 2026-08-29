@@ -41,6 +41,24 @@ writing supported by 35 routes, 60+ assets, 26 validators, a scorecard, a proof 
 harness. Every reference site — Ng, Karpathy, Weng, Huyen — inverts that ratio. **The apparatus was
 compensating for the writing not being there.** Subtraction is the mission, not a detour.
 
+## LANE SPLIT — RULED 2026-08-29
+
+Visitor-facing copy has one owner. Split by **kind of change**, not by file; both agents work in
+the same files.
+
+- **Claude owns every string a visitor reads** — headings, paragraphs, labels, link and button text,
+  alt text, microcopy, section titles and section order. Plus editorial voice and IA.
+- **Codex owns everything that is not a visitor-facing string** — data wiring, imports, props,
+  components, layout, styling, a11y attributes, performance, build config, validators, and the
+  retrieval and content-data layer.
+
+Enforced by `npm run validate:ownership` (a banner at the top of all 25 visitor-facing pages, so the
+rule reaches whoever opens the file) and `npm run validate:ruled` (copy Ravikanth decided personally
+cannot be silently reverted). Both run in `test` and `build`.
+
+**Neither agent writes copy to satisfy a validator.** When copy moves deliberately, repoint the pin
+and record it here. A pin is not a reason to write a sentence.
+
 ## Decisions already made — do not reopen
 
 1. **`/evals` is retired.** The harness still runs on every build. A page arguing for the site's own

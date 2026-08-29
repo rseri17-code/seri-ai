@@ -20,13 +20,35 @@ Both agents serve one mission and one protocol:
 - Public-safety status unclear → flag for Ravikanth in `CLAUDE_HANDOFF.md`. Do not auto-publish.
 - Merging `claude/*` work into `main` is done by Ravikanth or with his explicit go-ahead.
 
-## Ownership lanes
+## Ownership lanes — RULED 2026-08-29, split by kind of change
 
-Either agent may implement end-to-end inside its own lane; the other agent reviews. Mechanical follow-ons of your own change (validator pin updates for your own copy) are in-lane wherever they live.
+Ravikanth ruled that visitor-facing copy has exactly one owner. Two agents rewriting the same prose
+produced draft-quality output, a homepage hero reverted twice in one day, and a paragraph that
+existed only to hold validator pins and rendered looking like debug output.
 
-- **Codex lane**: the validation harness and gates, build and deployment configuration, API routes and library wiring (search, retrieval, AI providers, Supabase), content-data plumbing, repo hygiene and scripts, performance budgets.
-- **Claude lane**: editorial voice and copy on public surfaces, page-level narrative and information architecture judgments, benchmark and red-team reviews, knowledge-graph editorial coherence, Ask Ravi persona and product framing.
-- **Cross-lane**: substantive changes in the other agent's lane go on a branch with a review request in the Review Ledger; the lane owner (or Ravikanth) merges.
+**The split is by kind of change, not by file.** Both agents work in the same files.
+
+| | Owns |
+| --- | --- |
+| **Claude** | Every string a visitor reads: headings, paragraphs, labels, link text, button text, alt text, microcopy, section order and section titles. Editorial voice. Information architecture. |
+| **Codex** | Everything that is not a visitor-facing string: data wiring, imports, props, component structure, layout, styling, accessibility attributes, performance, build config, validators, retrieval and content-data plumbing. |
+
+**Codex: do not rewrite prose on any page.** Restructure it, move it, wire it, make it responsive,
+make it accessible — all welcome. Changing the words is not.
+
+**Claude: do not silently rewrite validators to suit copy.** Repoint a pin when copy moves
+deliberately, and say so in CLAUDE_HANDOFF.md.
+
+**Never write copy to satisfy a validator.** If a pin fails because copy moved, repoint the pin or
+leave it failing and flag it. Copy written to feed a grep target is how the homepage acquired a
+paragraph nobody wrote for a reader.
+
+This is enforced, not just documented:
+- `npm run validate:ownership` — every visitor-facing page carries the ownership banner at the top,
+  so the rule reaches whoever opens the file rather than living only here.
+- `npm run validate:ruled` — copy Ravikanth decided personally fails the build if reverted.
+
+Both run in `test` and `build`.
 
 ## Cross-review protocol
 
