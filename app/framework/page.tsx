@@ -117,12 +117,15 @@ export default function FrameworkPage() {
             humans, workflows, automation and agents all consume the same thing.
           </p>
           <figure className="mt-5">
-            <img
-              src="/diagrams/enterprise-context-layer.jpg"
-              alt="Diagram titled Enterprise Context Layer. On the left, current state: six fragmented sources including CMDB, observability, identity, ServiceNow, CI/CD and topology connect by tangled lines to engineers, workflows, operations and AI agents, labelled the Context Acquisition Tax. In the centre, an Enterprise Context Layer maintains a single representation of operational reality covering ownership, topology, dependencies, changes, transactions, state and history, consumed by humans, workflows, automation and AI agents, and marked governed, secure, auditable and always current. On the right, future-state outcomes: trusted operational context, faster investigations, better decisions, reliable automation, cross-agent continuity and operational intelligence."
-              loading="lazy"
-              className="w-full rounded-lg border border-white/10"
-            />
+            <picture>
+              <source srcSet="/diagrams/enterprise-context-layer.webp" type="image/webp" />
+              <img
+                src="/diagrams/enterprise-context-layer.jpg"
+                alt="Diagram titled Enterprise Context Layer. On the left, current state: six fragmented sources including CMDB, observability, identity, ServiceNow, CI/CD and topology connect by tangled lines to engineers, workflows, operations and AI agents, labelled the Context Acquisition Tax. In the centre, an Enterprise Context Layer maintains a single representation of operational reality covering ownership, topology, dependencies, changes, transactions, state and history, consumed by humans, workflows, automation and AI agents, and marked governed, secure, auditable and always current. On the right, future-state outcomes: trusted operational context, faster investigations, better decisions, reliable automation, cross-agent continuity and operational intelligence."
+                loading="lazy"
+                className="w-full rounded-lg border border-white/10"
+              />
+            </picture>
           </figure>
           <p className="mt-4 max-w-3xl border-l-2 border-signal/50 pl-4 text-base italic leading-7 text-slate-200">
             Reasoning improves with every model. Context improves only when you maintain it.
@@ -144,12 +147,15 @@ export default function FrameworkPage() {
             is why these two diagrams are one system rather than two.
           </p>
           <figure className="mt-5">
-            <img
-              src="/diagrams/sre-agent-harness-architecture.jpg"
-              alt="Diagram titled SRE Agent Harness Architecture, subtitled how operational experience becomes operational intelligence. Eight stages run left to right: incident trigger, grounding layer, RCA investigation, evidence capture, pattern intelligence, operational memory, recovery outcome and learning update. Beneath them a long-term operational memory store holds incident history, failure patterns, dependency behaviour, recovery knowledge, outcome intelligence and a pattern index for similarity search. A continuous learning loop feeds back so the next incident starts with accumulated operational experience."
-              loading="lazy"
-              className="w-full rounded-lg border border-white/10"
-            />
+            <picture>
+              <source srcSet="/diagrams/sre-agent-harness-architecture.webp" type="image/webp" />
+              <img
+                src="/diagrams/sre-agent-harness-architecture.jpg"
+                alt="Diagram titled SRE Agent Harness Architecture, subtitled how operational experience becomes operational intelligence. Eight stages run left to right: incident trigger, grounding layer, RCA investigation, evidence capture, pattern intelligence, operational memory, recovery outcome and learning update. Beneath them a long-term operational memory store holds incident history, failure patterns, dependency behaviour, recovery knowledge, outcome intelligence and a pattern index for similarity search. A continuous learning loop feeds back so the next incident starts with accumulated operational experience."
+                loading="lazy"
+                className="w-full rounded-lg border border-white/10"
+              />
+            </picture>
           </figure>
           <p className="mt-4 max-w-3xl border-l-2 border-mint/50 pl-4 text-base italic leading-7 text-slate-200">
             Reasoning solves the current incident. Learning improves the next one.
