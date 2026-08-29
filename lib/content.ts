@@ -45,6 +45,30 @@ let allWikiNotesCache: WikiNote[] | null = null;
 let publishedWikiNotesCache: WikiNote[] | null = null;
 let publicSourceIndexCache: PublicSource[] | null = null;
 
+export function formatNaturalList(items: string[]) {
+  if (!items.length) {
+    return "";
+  }
+
+  if (items.length === 1) {
+    return items[0];
+  }
+
+  if (items.length === 2) {
+    return `${items[0]} and ${items[1]}`;
+  }
+
+  return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
+export function proseList(label: string, items: string[], verb = "include") {
+  if (!items.length) {
+    return `${label} are not listed.`;
+  }
+
+  return `${label} ${verb} ${formatNaturalList(items)}.`;
+}
+
 const referenceSources = [
   {
     id: "reference:ravikanth-seri-portrait-intake",
@@ -462,13 +486,13 @@ export function buildPublicSourceIndex(): PublicSource[] {
       content: [
         item.title,
         item.summary,
-        item.type,
-        item.frameworkLayers.join(", "),
-        item.relatedPrinciples.join(", "),
-        item.relatedPatterns.join(", "),
-        item.relatedArtifacts.join(", "),
-        item.relatedProducts.join(", "),
-        item.relatedLibraryAssets.join(", ")
+        `This entry is ${item.type === "artifact" ? "an artifact" : `a ${item.type}`}.`,
+        proseList("Framework coverage", item.frameworkLayers, "covers"),
+        proseList("Related principles", item.relatedPrinciples),
+        proseList("Related patterns", item.relatedPatterns),
+        proseList("Related artifacts", item.relatedArtifacts),
+        proseList("Related products", item.relatedProducts),
+        proseList("Related library assets", item.relatedLibraryAssets)
       ].join(". "),
       url: item.route,
       type: "registry" as const,
