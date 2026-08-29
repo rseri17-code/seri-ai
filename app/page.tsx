@@ -291,28 +291,17 @@ export default function Home() {
         </div>
       </Section>
 
-      <p className="mx-auto max-w-7xl px-4 pb-3 text-xs leading-6 text-slate-500 sm:px-6 lg:px-8">
-        Public thesis stream: {"Ravikanth Seri's public writing and working notes"}. LinkedIn thesis ledger: The public posts are treated as working notes for the doctrine, not as social proof.
-      </p>
 
-      <Section eyebrow="Professional snapshot" title="The fast answer to who Ravikanth Seri is.">
-        <p className="mb-4 max-w-4xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-          A visitor should be able to find his summary, current focus, career progression, experience, selected accomplishments,
-          selected work, technical domains, leadership, publications, GitHub, certifications, education, resume, LinkedIn,
-          and contact information without hunting across the site.
-        </p>
+      <Section eyebrow="The short version" title="Who I am, and where the evidence sits.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           <Link href="/resume" className="block md:col-span-2 xl:col-span-1">
             <Card className="border-mint/25 bg-mint/[0.045] p-5 transition hover:border-mint/45">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Current role</p>
               <h3 className="mt-3 text-2xl font-semibold text-white">{professionalGraph.identity.person}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-300">{resume.summary}</p>
-              <div className="mt-4 grid gap-2 text-xs leading-5 text-slate-400 sm:grid-cols-2">
-                <p>Location: {resume.location}</p>
-                <p>Current focus: {professionalGraph.identity.currentFocus}</p>
-                <p>Proof: Resume, GitHub, LinkedIn</p>
-                <p>More evidence: certifications and education</p>
-              </div>
+              <p className="mt-4 text-xs leading-5 text-slate-400">
+                Based in {resume.location}. Currently: {professionalGraph.identity.currentFocus}
+              </p>
               <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-signal">Open the resume</p>
             </Card>
           </Link>
@@ -384,6 +373,10 @@ export default function Home() {
 
 
       <Section eyebrow="Current work" title="Field notes and reusable patterns.">
+        <p className="mb-4 max-w-4xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
+          The LinkedIn posts are the working notes for all of this &mdash; drafts of the doctrine rather than social proof. What
+          survives argument there ends up here.
+        </p>
         <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
           <Card>
             <ClipboardCheck className="mb-5 text-signal" />

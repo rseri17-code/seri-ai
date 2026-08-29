@@ -25,7 +25,7 @@ const routeContracts = [
       "Open the Operations Room",
       "Visitor Proof Map",
       "Decision packet preview",
-      "public writing and working notes"
+      "working notes for all of this"
     ],
     before: [
       ["Begin with the proof path", "Open the Operations Room"],
