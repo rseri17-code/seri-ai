@@ -41,7 +41,7 @@ const proofStrip = [
 
 
 const inspectionLedger = [
-  ["/work", "Visitor Proof Map", "The fastest path through Ravikanth Seri's work, GitHub, resume, and Operational Intelligence thesis."],
+  ["/work", "Visitor Proof Map", "The shortest route from who he is to whether the thesis holds."],
   ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "What Operational Intelligence claims, and where the claim stops."],
   ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Precise enough to build from: contracts, schemas, and gates."],
   ["/investigation-room", "Operations Room", "A synthetic incident you can work end to end, including what the evidence missed."],
@@ -75,12 +75,12 @@ const professionalSnapshot = [
   {
     title: "What does he specialize in?",
     href: "/framework",
-    body: "Production AI-assisted operations, agentic SRE, observability, transaction intelligence, runtime governance, and evaluation."
+    body: "Getting agents to act on production evidence without losing the thread back to why."
   },
   {
     title: "Why work with him?",
     href: "/contact",
-    body: "He brings production systems judgment, public-safe technical writing, reusable architectures, and evidence-led thinking."
+    body: "Because I have run the systems these agents are being pointed at, and I write down what I got wrong."
   }
 ] as const;
 
@@ -118,9 +118,9 @@ export default function Home() {
               reasons from attributable evidence instead of filling gaps with inference.
             </p>
             <p className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.05] p-4 text-base leading-7 text-slate-200">
-              <span className="font-semibold text-amber">The Authorized Misfire.</span> The failure I design against is a
-              misfire because they lack intelligence: an action the system was permitted to take, grounded in context it should
-              not have trusted. Historical incidents and runbooks are valuable memory. They are not current production truth.
+              <span className="font-semibold text-amber">The Authorized Misfire.</span> The failure I design against: an action the
+              system was permitted to take, grounded in context it should not have trusted. Historical incidents and runbooks are
+              valuable memory. They are not current production truth.
             </p>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
               So the context layer has to reconstruct what is happening now, show how the evidence connects, make uncertainty visible, and keep human judgment in control of anything consequential.
@@ -252,7 +252,8 @@ export default function Home() {
             <ShieldCheck className="mb-5 text-signal" />
             <h3 className="text-2xl font-semibold text-white md:text-3xl">Inspection is part of the public record.</h3>
             <p className="mt-4 text-base leading-7 text-slate-300">
-              The thesis is exposed through definitions, contracts, synthetic evidence, evaluation gates, public work, and source-linked publishing. A visitor should be able to challenge the model without needing private systems or confidential examples.
+              You can argue with any of this without access to a private system. The definitions are written down, the contracts are
+              specified, the evidence is synthetic and inspectable, and every claim links to the thing it rests on.
             </p>
             <div className="mt-5 grid gap-2 sm:grid-cols-2">
               {proofStrip.map(([value, label]) => (

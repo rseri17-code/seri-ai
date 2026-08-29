@@ -23,10 +23,14 @@ const rulings = [
     ruledOn: "2026-08-29",
     decision:
       "Hero re-anchored on Ravikanth's own published LinkedIn framing: first person, opening on the misfire hook, with the Authorized Misfire named as the failure mode. He was asked directly and chose this over the alternatives.",
+    // Pin whole sentences, not floating fragments. The first version of this check pinned the
+    // bare phrase "misfire because they lack intelligence", which could be satisfied anywhere on
+    // the page - and was, by being spliced into the Authorized Misfire paragraph, leaving broken
+    // English in the hero. A fragment tells an agent which words to keep but not where.
     required: [
-      "misfire because they lack intelligence",
-      "I build the context",
-      "The Authorized Misfire."
+      "AI agents don&apos;t misfire because they lack intelligence.",
+      "I build the context\n              layer and the harness that runs on it",
+      "<span className=\"font-semibold text-amber\">The Authorized Misfire.</span> The failure I design against: an action the"
     ],
     forbidden: [
       "Ravikanth Seri is a senior infrastructure and AI systems engineer building Operational Intelligence"
