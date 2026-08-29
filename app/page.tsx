@@ -62,7 +62,8 @@ export default function Home() {
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
               He works where AI meets real systems: production reliability, observability, transaction context, evaluation,
-              and bounded action. The site is the public record of the ideas, artifacts, and evidence behind that work.
+              and bounded action. The site is the public record of the ideas, artifacts, and evidence behind that work, with
+              the career arc visible from enterprise integration and infrastructure to production AI systems and agentic operations.
             </p>
             <p className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.05] p-4 text-base leading-7 text-slate-200">
               <span className="font-semibold text-amber">The Authorized Misfire.</span> The failure I design against: an action the
