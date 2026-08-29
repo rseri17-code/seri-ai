@@ -358,11 +358,11 @@ if (!JSON.stringify(home).includes("public-safe") && !JSON.stringify(home).inclu
 }
 for (const required of [
   "Ravikanth Seri / Operational Intelligence",
-  "Operations should explain themselves before AI acts.",
-  "Ravikanth Seri is building a public operating model for AI-native operations",
-  "preserve context",
-  "separate evidence from inference",
-  "expose uncertainty",
+  "misfire because they lack intelligence",
+  "a public operating model for AI-native operations",
+  "reconstruct what is happening now",
+  "show how the evidence connects",
+  "make uncertainty visible",
   "keep human judgment in control",
   "inspectable without access to private systems"
 ]) {

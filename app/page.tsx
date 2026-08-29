@@ -58,11 +58,21 @@ export default function Home() {
               Ravikanth Seri / Operational Intelligence
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              Operations should explain themselves before AI acts.
+              AI agents don&apos;t misfire because they lack intelligence.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              Most incidents are slow not because the data is missing, but because nobody can assemble it fast enough to decide.{" "}
-              Ravikanth Seri is building a public operating model for AI-native operations: preserve context, separate evidence from inference, expose uncertainty, and keep human judgment in control before automation changes production.
+              They misfire because the operational context beneath them is fragmented, stale, or incomplete. I build the context
+              layer that keeps AI agents grounded in evidence &mdash; a public operating model for AI-native operations, so an agent
+              reasons from attributable evidence instead of filling gaps with inference.
+            </p>
+            <p className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.05] p-4 text-base leading-7 text-slate-200">
+              <span className="font-semibold text-amber">The Authorized Misfire.</span> The failure I design against: an action the
+              system was permitted to take, grounded in context it should not have trusted. Historical incidents and runbooks are
+              valuable memory. They are not current production truth.
+            </p>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
+              So the context layer has to reconstruct what is happening now, show how the evidence connects,
+              make uncertainty visible, and keep human judgment in control of anything consequential.
             </p>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               <div className="rounded border border-white/10 bg-white/[0.035] p-3">
@@ -94,6 +104,8 @@ export default function Home() {
               </TrackedLink>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
+              I most recently took an enterprise SRE investigation agent from thesis to production, owning it across architecture,
+              engineering, enterprise integration, evaluation and operationalization. That work is not public.{" "}
               Everything here is inspectable without access to private systems.
             </p>
             <div className="mt-5 rounded-lg border border-white/10 bg-black/25 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
