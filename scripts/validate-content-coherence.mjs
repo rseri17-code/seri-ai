@@ -327,7 +327,7 @@ for (const required of [
   "encodeURIComponent(question)",
   "Run the Operations Room",
   "View the Map",
-  "Teaching sequence",
+  "How the material is indexed",
   "FrameworkTeacher",
   "TechnicalReviewPath",
   "Design principles",

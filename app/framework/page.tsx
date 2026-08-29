@@ -62,7 +62,7 @@ const argumentsForCategory = [
 export default function FrameworkPage() {
   return (
     <>
-      <Section eyebrow="Framework" title={operationalIntelligenceFramework.title} level="h1">
+      <Section eyebrow="Operational Intelligence" title="The context layer, and the loop that runs on it." level="h1">
         <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.05]">
             <BrainCircuit className="mb-5 text-mint" />
@@ -205,8 +205,15 @@ export default function FrameworkPage() {
         </Card>
       </Section>
 
-      <Section eyebrow="Teaching sequence" title="Follow one synthetic investigation through all ten layers.">
-        <FrameworkTeacher />
+      <Section eyebrow="How the material is indexed" title="Ten layers, used for filing rather than for arguing.">
+        <p className="max-w-4xl text-base leading-7 text-slate-300">
+          The harness above is the model. These ten layers are the taxonomy underneath it: every published note,
+          pattern and artifact on this site is tagged to one of them, which is how retrieval and related-reading
+          work. They are a filing system, not a competing architecture &mdash; if the two ever disagree, the harness wins.
+        </p>
+        <div className="mt-5">
+          <FrameworkTeacher />
+        </div>
       </Section>
 
       <Section eyebrow="Review path" title="How to challenge the framework.">
