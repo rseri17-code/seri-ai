@@ -23,10 +23,10 @@ export const metadata: Metadata = {
 const formatFixtureText = (text: string) => text.replace("{fixtureCount}", String(evalReport.fixtures.length));
 
 const backgroundEvidence = [
-  ["15+ years", "Distributed enterprise systems, integration, identity, observability, platform reliability, and production support."],
-  ["Regulated operations", "Financial-services operating context where reliability, governance, access boundaries, and auditability shape architecture."],
-  ["Modernization path", "Enterprise integration to Kubernetes, OpenTelemetry instrumentation, AIOps workflows, and production AI-assisted operations."],
-  ["Current focus", "Agentic operations, evaluation, replay, runtime governance, and evidence-backed incident investigation."]
+  ["Fifteen years", "Long enough to watch the same failure repeat. The data almost always existed. Nobody could assemble it fast enough to decide anything."],
+  ["Regulated by default", "Financial services, where being wrong is expensive and every consequential action needs a named owner. That sets the floor on what an agent is allowed to do."],
+  ["Why modernization mattered", "Moving integration onto Kubernetes and instrumenting it properly taught me that telemetry volume and operational understanding are not the same thing."],
+  ["What I do now", "Build the context layer, and the harness that runs on it, so an agent reasons from attributable evidence instead of filling gaps with inference."]
 ] as const;
 
 export default function BackgroundPage() {
@@ -39,8 +39,16 @@ export default function BackgroundPage() {
               <Portrait size="lg" />
               <BrainCircuit className="text-mint" />
             </div>
-            <h2 className="text-3xl font-semibold text-white">Ravikanth Seri builds from the operator side of enterprise AI.</h2>
+            <h2 className="text-3xl font-semibold leading-tight text-white">
+              I spent fifteen years being paged when distributed systems failed in ways no single dashboard explained.
+            </h2>
             <p className="mt-4 text-lg leading-8 text-slate-300">
+              That is where the thesis comes from. Middleware and B2B integration first, then API gateways and identity, then
+              Kubernetes and telemetry &mdash; all of it in regulated environments where systems fail across ownership boundaries and
+              no one team can see the whole path. The alert was never the hard part. Assembling enough current context to decide
+              anything was.
+            </p>
+            <p className="mt-4 leading-7 text-slate-300">
               {resume.summary}
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">

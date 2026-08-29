@@ -85,7 +85,7 @@ const routeContracts = [
       "Do not claim production adoption, private deployment details, internal integrations, repository metrics, or code behavior that is not visible in public source.",
       "GitHub",
       "LinkedIn",
-      "Public proof"
+      "owned every stage"
     ]
   },
   {
@@ -95,9 +95,9 @@ const routeContracts = [
     required: [
       "background and operating arc.",
       "15+ years",
-      "Regulated operations",
-      "Modernization path",
-      "Current focus",
+      "Regulated by default",
+      "Why modernization mattered",
+      "What I do now",
       "What the career arc trained him to protect.",
       "Preserved constraint",
       "Ravikanth Seri",

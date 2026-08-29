@@ -93,7 +93,6 @@ const routeContracts = [
       "Operating arc",
       "md:grid-cols-2",
       "xl:grid-cols-4",
-      "xl:grid-cols-5",
       "lg:grid-cols-2"
     ]
   },

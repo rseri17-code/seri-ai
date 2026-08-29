@@ -45,7 +45,7 @@ const sourceContracts = {
   },
   "/work": {
     files: ["app/work/page.tsx"],
-    required: ["Operating arc", "Public proof", "Review spine", "Architecture judgment", "GitHub", "LinkedIn"]
+    required: ["Operating arc", "owned every stage", "Architecture judgment", "GitHub", "LinkedIn"]
   }
 };
 

@@ -110,15 +110,21 @@ export default function WorkPage() {
       <Section eyebrow="Work" title="Ravikanth Seri's operating record." level="h1">
         <Card className="border-mint/25 bg-mint/[0.05]">
           <BrainCircuit className="mb-5 text-mint" />
-          <h2 className="text-3xl font-semibold text-white">
-            Fifteen-plus years running enterprise systems, now applied to AI that acts on production.
+          <h2 className="text-3xl font-semibold leading-tight text-white">
+            I took an enterprise SRE investigation agent from thesis to production, and owned every stage of it.
           </h2>
           <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
-            Middleware and API architecture in regulated financial services, then modernization, telemetry correlation, and Kubernetes reliability.
-            Since 2025: bounded AI agents, deterministic orchestration, tool governance.
+            Problem definition, prototyping, architecture, enterprise integration, evaluation, governance, rollout, and running it in
+            production. Not one slice of that path &mdash; all of it, inside a regulated environment.
+          </p>
+          <p className="mt-4 max-w-4xl text-base leading-7 text-slate-300">
+            That boundary is where most agentic projects die. Getting across it is less about the model than about everything
+            underneath: whether the context an agent reasons from is current, whether its evidence is attributable, and whether a
+            human can still see how a decision was reached. Fifteen years of running enterprise systems before this is what made
+            those the questions I care about.
           </p>
           <p className="mt-3 max-w-4xl text-base leading-7 text-slate-400">
-            Public proof is the rule: everything below states what it proves and what it does not.
+            That work is not public. What follows is, and everything below states what it proves and what it does not.
           </p>
           <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-300">
             Inspect{" "}
@@ -293,61 +299,6 @@ export default function WorkPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Review spine" title="Start here if you are evaluating the work seriously.">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-          {professionalGraph.reviewSpine.map(({ href, label, detail }, index) => (
-            <Link key={href} href={href}>
-              <Card className="h-full transition hover:border-mint/40">
-                <p className="font-mono text-sm text-mint">{String(index + 1).padStart(2, "0")}</p>
-                <h2 className="mt-4 text-xl font-semibold text-white">{label}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{detail}</p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Operating standard" title="What strong reviewers should expect to see.">
-        <div className="grid gap-4 md:grid-cols-3">
-          {professionalGraph.operatingStandards.map(({ title, body, icon }) => {
-            const Icon = standardIcons[icon] ?? ShieldCheck;
-            return (
-              <Card key={title} className="h-full p-5">
-                <Icon className="mb-4 text-mint" />
-                <h2 className="text-xl font-semibold text-white">{title}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
-              </Card>
-            );
-          })}
-        </div>
-      </Section>
-
-      <Section eyebrow="Index" title="Explore the body of work without guessing where to click.">
-        <div className="grid gap-4 lg:grid-cols-2">
-          {workSections.map(({ title, Icon, items }) => (
-            <Card key={title} className="h-full">
-              <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-lg border border-signal/30 bg-signal/10 text-signal">
-                  <Icon size={20} />
-                </div>
-                <h2 className="text-2xl font-semibold text-white">{title}</h2>
-              </div>
-              <div className="mt-5 grid gap-3">
-                {items.map(([href, label]) => (
-                  <Link key={href} href={href} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-mint/40">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="font-semibold text-white">{label}</h3>
-                      </div>
-                      <ArrowRight className="mt-1 shrink-0 text-slate-500" size={16} />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </Card>
-          ))}
-        </div>
-      </Section>
 
     </>
   );
