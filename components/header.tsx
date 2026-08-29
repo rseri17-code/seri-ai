@@ -7,12 +7,14 @@ import { useEffect, useState } from "react";
 import { site } from "@/content/site";
 
 const primaryNav = [
+  { href: "/", label: "Home" },
+  { href: "/background", label: "Background" },
+  { href: "/resume", label: "Resume" },
   { href: "/work", label: "Work" },
   { href: "/framework", label: "Operational Intelligence" },
-  { href: "/wiki/operational-intelligence-canonical-doctrine", label: "Doctrine" },
+  { href: "/library", label: "Writing" },
+  { href: "/patterns", label: "Patterns" },
   { href: "/investigation-room", label: "Operations Room" },
-  { href: "/background", label: "Background" },
-  { href: "/ask", label: "Ask Ravikanth" },
   { href: "/contact", label: "Contact" }
 ];
 
@@ -76,15 +78,6 @@ export function Header() {
         </div>
         <div id="mobile-navigation" className={`${isMenuOpen ? "block" : "hidden"} border-t border-white/10 xl:hidden`}>
           <div className="mx-auto grid max-w-7xl grid-cols-2 gap-2 px-4 py-3 sm:grid-cols-3 sm:px-6 lg:px-8">
-            <Link
-              href="/ask"
-              aria-current={isActive("/ask") ? "page" : undefined}
-              className={`rounded px-3 py-2 text-sm transition ${
-                isActive("/ask") ? "bg-mint/15 text-mint" : "text-slate-300 hover:bg-white/5 hover:text-white"
-              }`}
-            >
-              Ask
-            </Link>
             {primaryNav.map((item) => (
               <Link
                 key={item.href}
