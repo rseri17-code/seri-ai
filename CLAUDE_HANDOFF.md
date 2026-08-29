@@ -1,10 +1,10 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-08-26
+Last updated: 2026-08-29
 
 Current sync point for Claude review:
 
-- `cde1df0 Strengthen background and resume identity framing`
+- `ea4adbf Tighten homepage professional profile`
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
@@ -118,6 +118,7 @@ Latest pushed commit before this handoff was validation-gated:
 
 Recent improvements:
 
+- Homepage front door now surfaces the professional profile earlier and more directly, including summary, current focus, career progression, resume, GitHub, LinkedIn, certifications, education, and contact without reintroducing the heavy public-thesis block.
 - Homepage no longer opens with artifact-inventory language.
 - Ask Ravikanth is framed as an evidence console over Ravikanth's public professional graph.
 - Keyboard accessibility walkthrough evidence exists for Ask Ravikanth and Operations Room.
