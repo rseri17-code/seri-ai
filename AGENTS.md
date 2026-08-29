@@ -48,3 +48,15 @@ centre of the site.
 
 Full rationale, rulings and the substance-to-scaffolding diagnosis are in CLAUDE_HANDOFF.md under
 the same heading. Read it before touching routes.
+
+## Where to start — 2026-08-29
+
+Read **CLAUDE_HANDOFF.md, the STATE OF PLAY block at the very top**, before touching anything. It is
+the current truth; everything below it in that file is chronological history and may be stale.
+
+It carries: measured state, the six decisions that must not be reopened, the open risks and
+unverified claims, three harness pathologies that will bite you, and the priority order.
+
+Two things that will cost you time if you miss them: stage deletions before running the suite
+(`validate-security-hygiene` reads git-tracked files), and clear `.next/types` after removing a
+route. Pin the shortest distinctive fragment, never a whole sentence.

@@ -1,10 +1,127 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-08-26
+Last updated: 2026-08-29
 
 Current sync point for Claude review:
 
-- `cde1df0 Strengthen background and resume identity framing`
+- `e8262b0 Homepage restructure: orientation, conversion, and the missing Ask nav entry`
+
+---
+
+# STATE OF PLAY — read this before anything else
+
+Everything below this block is chronological history. This section is the current truth. If the two
+ever disagree, this section wins and the history is wrong.
+
+## Measured state, 2026-08-29
+
+| Fact | Value |
+| --- | --- |
+| Routes | **26** (was 35 before the collapse) |
+| Homepage sections | **9** |
+| `/` rendered | 205,534 bytes / 210,000 budget |
+| `/work` rendered | 120,476 / 195,000 |
+| `/framework` rendered | 124,039 |
+| Content registry items | 12 |
+| Ask fixtures | 117 passing |
+| Retrieval queries | 69 passing |
+| Original writing | **11 articles, 2,973 words, mean 270** |
+| External practitioner reviews | **0** |
+| AI provider keys on Vercel | **none** — Ask runs lexical-only in production |
+| `npm test` / `npm run build` | green at `e8262b0` |
+
+## What this project is now
+
+Ravikanth authorized collapsing a 35-route site to roughly six on 2026-08-26, after concluding it
+was over-complicated. The site is **mid-collapse at 26**. The target is Home / Writing / Work /
+Operational Intelligence / Ask / Contact.
+
+The reason, stated once so it does not get re-litigated: the site carried ~3,000 words of original
+writing supported by 35 routes, 60+ assets, 26 validators, a scorecard, a proof backlog and an eval
+harness. Every reference site — Ng, Karpathy, Weng, Huyen — inverts that ratio. **The apparatus was
+compensating for the writing not being there.** Subtraction is the mission, not a detour.
+
+## Decisions already made — do not reopen
+
+1. **`/evals` is retired.** The harness still runs on every build. A page arguing for the site's own
+   credibility was the site contemplating itself.
+2. **The harness is the model; the ten layers are the filing system.** Both remain. `/framework`
+   states the tiebreak explicitly: if they disagree, the harness wins. The layers still drive asset
+   tagging, graph health and Ask metadata — do not remove them from the data layer.
+3. **The Operations Room stays, embedded in the thesis page**, not as a standalone credibility pillar.
+4. **No employer names, internal system names, or unpublished operational metrics in this repo.**
+   This repository is **public**. Ravikanth supplied resumes containing all three; none of it is
+   here and none of it may be added, even if found in a transcript. His own LinkedIn phrasing —
+   "an enterprise SRE investigation agent, thesis to production" — is the model.
+5. **Falsification content is never collapsed or softened.** Progressive disclosure applies to
+   comparisons and taxonomies, never to what would prove the thesis wrong.
+6. **Retirement rule: repoint, never orphan.** `/artifacts` held the only links to the PDFs; they
+   moved to `/library` and the validator followed. Deleting without moving would have silently
+   orphaned every download.
+
+## Open risks and unverified claims
+
+- **Visual QA is stale and this is the largest unverified claim on the site.** The August capture run
+  predates nine retired routes and every change since. Mobile polish and the "both CTAs above the
+  fold at 390x844" requirement are **not verified**. Do not claim otherwise.
+- **The site is in an inconsistent IA state.** Nav points at the collapsed structure while
+  `/resume`, `/projects`, `/ideas`, `/library`, `/wiki`, `/patterns`, `/principles` still exist
+  separately. This resolves when the merges land; until then it is a real wart.
+- **Ask is lexical-only in production.** Disclosed honestly on `/ask` and the homepage. If keys are
+  ever added, revisit that copy — it will become false.
+- **Two homepage validator pins were dropped rather than repointed** (`"The canonical assets, in
+  reading order."`, `"Download publication pack"`) after confirming `validate-reference-package.mjs`
+  still asserts the publication pack three times against `app/library/page.tsx`. The invariant moved;
+  it was not lost. This is the judgement most worth checking behind Claude.
+- **Job titles disagree with the resume.** Site says *AIOps Lead Architect* and *Infrastructure
+  Technical Lead — Identity and Observability*; the resume says *Senior Technical Lead — AIOps &
+  Observability* and *Technical Lead — Identity & Infrastructure*. **Awaiting Ravikanth.** Do not
+  pick the grander one.
+- **Published metrics have no stated method.** 80% ticket reduction, 200 hours/quarter, 120+ apps
+  carry no baseline or window. On a site whose thesis is *show your evidence*, an unsourced
+  percentage is the weakest thing on the page.
+
+## Harness pathology worth knowing
+
+The gates encoded "bigger is better" in at least three places, and every one failed the build for
+*subtracting*: a floor of 70 prerendered routes, 60 HTML files, and `requireJsonArray(..., 15)` on
+the content registry — that last one returned an empty array when one item was removed, then
+reported *every* critical route as missing. None ever caught a real defect. **Expect more as the
+collapse continues, and fix the assumption rather than raising the number.**
+
+Two mechanical traps: `validate-security-hygiene` reads git-tracked files, so **stage deletions
+before running the suite** or it crashes with ENOENT; and clear `.next/types` after removing a route
+or `tsc` fails on stale generated types.
+
+**Pin fragility:** grep the *shortest distinctive fragment*, never a whole sentence. Failures this
+week came from copy wrapping across lines, an HTML entity (`don&apos;t`), and a sentence-initial
+article. Prefer pinning data or rendered labels over prose.
+
+## Priority order from here
+
+1. **Essays.** 2,973 words is the one number that gates a 10/10 and the only one that has not moved.
+   Four to five pieces at 1,500+ words. Ravikanth edits; nothing about his experience is invented.
+2. **Codex lane, highest value: the content-data layer.** Several registry entries store
+   concatenated label strings rather than prose, which is why Ask answers "What is the evidence
+   layer?" with a keyword list. No amount of answer composition fixes that. Fixing the corpus
+   improves Ask *and* gives the essays material.
+3. Finish the merges: `/resume` + `/projects` into `/work`; `/ideas` + `/library` + `/wiki` +
+   `/patterns` + `/principles` into one Writing stream.
+4. Fresh visual-QA capture run across all shipped routes at three viewports.
+5. Domain migration when `seri.ai` is ready: set `NEXT_PUBLIC_SITE_URL` (**`||`, not `??`** — an
+   empty string already broke one build), 308 redirects, regenerate sitemap/robots/rss/llms.txt,
+   re-verify structured data.
+
+## Verify current state with
+
+```
+npm test && npm run build
+find app -name page.tsx | wc -l
+node -e "console.log(require('fs').statSync('.next/server/app/index.html').size)"
+npm run report:inventory-copy
+```
+
+---
 
 Refresh this sync point at the end of any future Codex-to-Claude handoff turn, and include the newest commit hash in the human handoff message even if this file is not edited.
 
