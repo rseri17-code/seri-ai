@@ -96,6 +96,67 @@ export default function FrameworkPage() {
         </div>
       </Section>
 
+      <Section eyebrow="The two halves" title="What has to exist beneath an agent, and what the agent has to do with it.">
+        <p className="max-w-4xl text-base leading-7 text-slate-300">
+          These are the same argument at two altitudes. The context layer is the substrate: maintained once, consumed by everything.
+          The harness is the loop that runs on top of it. An Authorized Misfire is what happens when the loop grounds itself on a
+          substrate nobody kept current.
+        </p>
+
+        <Card className="mt-5 p-4 sm:p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">One &mdash; the substrate</p>
+          <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The Enterprise Context Layer</h2>
+          <p className="mt-4 max-w-3xl leading-7 text-slate-300">
+            Today every engineer, every workflow and every agent reconstructs operational reality independently, each one pulling
+            separately from CMDB, observability, identity, ITSM, CI/CD and topology. I call that the Context Acquisition Tax, and it
+            is paid on every single investigation. Time spent reconstructing context is time not spent solving the problem.
+          </p>
+          <p className="mt-4 max-w-3xl leading-7 text-slate-300">
+            The alternative is to treat operational reality as shared infrastructure &mdash; one governed, auditable, continuously
+            maintained representation of ownership, topology, dependencies, changes, transactions, state and history &mdash; and let
+            humans, workflows, automation and agents all consume the same thing.
+          </p>
+          <figure className="mt-5">
+            <img
+              src="/diagrams/enterprise-context-layer.jpg"
+              alt="Diagram titled Enterprise Context Layer. On the left, current state: six fragmented sources including CMDB, observability, identity, ServiceNow, CI/CD and topology connect by tangled lines to engineers, workflows, operations and AI agents, labelled the Context Acquisition Tax. In the centre, an Enterprise Context Layer maintains a single representation of operational reality covering ownership, topology, dependencies, changes, transactions, state and history, consumed by humans, workflows, automation and AI agents, and marked governed, secure, auditable and always current. On the right, future-state outcomes: trusted operational context, faster investigations, better decisions, reliable automation, cross-agent continuity and operational intelligence."
+              loading="lazy"
+              className="w-full rounded-lg border border-white/10"
+            />
+          </figure>
+          <p className="mt-4 max-w-3xl border-l-2 border-signal/50 pl-4 text-base italic leading-7 text-slate-200">
+            Reasoning improves with every model. Context improves only when you maintain it.
+          </p>
+        </Card>
+
+        <Card className="mt-4 p-4 sm:p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Two &mdash; the loop</p>
+          <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The SRE Agent Harness</h2>
+          <p className="mt-4 max-w-3xl leading-7 text-slate-300">
+            An incident fires and the agent grounds itself in current telemetry, topology and configuration &mdash; that grounding
+            step is where it reads the context layer. It reasons toward a probable cause, captures what it observed in what sequence
+            and with what confidence, then asks whether this has happened before.
+          </p>
+          <p className="mt-4 max-w-3xl leading-7 text-slate-300">
+            The part that matters most is what happens after the incident closes. Operational memory records what actually worked in
+            production rather than what the runbook claims, every outcome counts as a data point whether it succeeded, failed or
+            partly worked, and the harness writes those results back. That write-back is what keeps the context layer current, which
+            is why these two diagrams are one system rather than two.
+          </p>
+          <figure className="mt-5">
+            <img
+              src="/diagrams/sre-agent-harness-architecture.jpg"
+              alt="Diagram titled SRE Agent Harness Architecture, subtitled how operational experience becomes operational intelligence. Eight stages run left to right: incident trigger, grounding layer, RCA investigation, evidence capture, pattern intelligence, operational memory, recovery outcome and learning update. Beneath them a long-term operational memory store holds incident history, failure patterns, dependency behaviour, recovery knowledge, outcome intelligence and a pattern index for similarity search. A continuous learning loop feeds back so the next incident starts with accumulated operational experience."
+              loading="lazy"
+              className="w-full rounded-lg border border-white/10"
+            />
+          </figure>
+          <p className="mt-4 max-w-3xl border-l-2 border-mint/50 pl-4 text-base italic leading-7 text-slate-200">
+            Reasoning solves the current incident. Learning improves the next one.
+          </p>
+        </Card>
+      </Section>
+
       <Section eyebrow="The argument" title="Why this needs to be a layer rather than a feature.">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
           {argumentsForCategory.map((entry) => (
