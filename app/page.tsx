@@ -55,16 +55,14 @@ export default function Home() {
             <div>
             <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Ravikanth Seri / Operational Intelligence
+              Ravikanth Seri / Senior infrastructure and AI systems engineer
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              AI agents don&apos;t misfire because they lack intelligence.
+              Ravikanth Seri builds Operational Intelligence for enterprise operations.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              They misfire because the operational context beneath them is fragmented, stale, or incomplete. I build the context
-              layer and the harness that runs on it &mdash; for enterprise SRE and platform teams putting agents near production,
-              where a wrong action has an owner and a blast radius. A public operating model for AI-native operations, so an agent
-              reasons from attributable evidence instead of filling gaps with inference.
+              He works where AI meets real systems: production reliability, observability, transaction context, evaluation,
+              and bounded action. The site is the public record of the ideas, artifacts, and evidence behind that work.
             </p>
             <p className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.05] p-4 text-base leading-7 text-slate-200">
               <span className="font-semibold text-amber">The Authorized Misfire.</span> The failure I design against: an action the
@@ -72,8 +70,8 @@ export default function Home() {
               valuable memory. They are not current production truth.
             </p>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
-              So the context layer has to reconstruct what is happening now, show how the evidence connects,
-              make uncertainty visible, and keep human judgment in control of anything consequential.
+              So the context layer has to reconstruct what is happening now, show how the evidence connects, make uncertainty
+              visible, and keep human judgment in control of anything consequential.
             </p>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               <div className="rounded border border-white/10 bg-white/[0.035] p-3">
