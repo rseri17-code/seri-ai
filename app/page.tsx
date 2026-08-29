@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, BrainCircuit, ClipboardCheck, GitBranch, Linkedin, Network, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BrainCircuit, ClipboardCheck, GitBranch, Linkedin, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReviewerPaths } from "@/content/home";
+import { homeArticles, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReviewerPaths } from "@/content/home";
 import { professionalGraph, resume } from "@/content/site";
 
 const proofStrip = [

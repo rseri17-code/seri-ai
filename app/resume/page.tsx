@@ -177,7 +177,7 @@ export default function ResumePage() {
               ))}
             </div>
           </Card>
-          <Card>
+        <Card>
           <h2 className="text-xl font-semibold text-white">Public proof</h2>
             <div className="mt-5 space-y-3">
             {resume.publicProof.map((item) => (
@@ -195,6 +195,20 @@ export default function ResumePage() {
                 <span className="mt-2 block text-sm text-mint">{item.value}</span>
                 <span className="mt-2 block text-sm leading-6 text-slate-300">{item.description}</span>
               </a>
+            ))}
+          </div>
+        </Card>
+        <Card className="border-signal/25 bg-signal/[0.045]">
+          <h2 className="text-xl font-semibold text-white">Published work</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            The publication trail is what turns the resume into a body of work. It keeps the doctrine, reference architecture, evidence pack, publication pack, and Operations Room inspectable together.
+          </p>
+          <div className="mt-5 space-y-3">
+            {professionalGraph.reviewSpine.map((item) => (
+              <Link key={item.href} href={item.href} className="block rounded border border-white/10 bg-ink px-4 py-3 transition hover:border-signal/40">
+                <span className="block font-semibold text-white">{item.label}</span>
+                <span className="mt-2 block text-sm leading-6 text-slate-300">{item.detail}</span>
+              </Link>
             ))}
           </div>
         </Card>
