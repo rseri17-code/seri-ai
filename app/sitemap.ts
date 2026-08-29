@@ -19,8 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/investigation-room",
     "/ask",
     "/evals",
-    "/interview",
-    "/interview-mode",
     "/background",
     "/resume",
     "/contact",

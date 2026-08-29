@@ -12,8 +12,12 @@ const budgets = {
   staticFileBytes: 260_000,
   htmlFileBytes: 275_000,
   criticalHtmlBytes: 260_000,
-  prerenderRoutes: 70,
-  htmlFiles: 60
+  // These are floors on how MUCH the site renders, which quietly rewarded adding routes.
+  // Ravikanth authorized collapsing 35 routes to ~6 on 2026-08-26, so they now track the
+  // shrinking site rather than holding it at its largest. Lower them as routes retire;
+  // they exist to catch an accidental drop in output, not to discourage subtraction.
+  prerenderRoutes: 67,
+  htmlFiles: 58
 };
 
 const criticalHtmlFiles = [

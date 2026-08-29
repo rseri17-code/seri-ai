@@ -31,8 +31,6 @@ const criticalRoutes = [
   "/investigation-room",
   "/ask",
   "/evals",
-  "/interview",
-  "/interview-mode",
   "/background",
   "/resume",
   "/contact",
@@ -99,7 +97,7 @@ for (const route of allRequiredRoutes) {
 
 for (const route of criticalRoutes) {
   const matchingRegistryItem = contentRegistry.find((item) => normalizeRoute(item.route) === route);
-  const routeNeedsRegistry = !["/", "/work", "/ideas", "/patterns", "/products", "/projects", "/artifacts", "/architecture-lab", "/interview", "/interview-mode", "/resume", "/principles", "/wiki", "/llms.txt", "/rss.xml", "/robots.txt", "/sitemap.xml"].includes(route);
+  const routeNeedsRegistry = !["/", "/work", "/ideas", "/patterns", "/products", "/projects", "/artifacts", "/architecture-lab", "/resume", "/principles", "/wiki", "/llms.txt", "/rss.xml", "/robots.txt", "/sitemap.xml"].includes(route);
   if (routeNeedsRegistry && !matchingRegistryItem && route !== "/contact" && route !== "/start-here" && route !== "/now" && route !== "/radar" && route !== "/library" && route !== "/map") {
     errors.push(`${route}: critical route is not represented in contentRegistry`);
   }

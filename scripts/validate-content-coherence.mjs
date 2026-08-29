@@ -58,8 +58,6 @@ const knownRoutes = new Set([
   "/investigation-room",
   "/ask",
   "/evals",
-  "/interview",
-  "/interview-mode",
   "/background",
   "/resume",
   "/contact",
@@ -1076,30 +1074,6 @@ for (const required of [
   expect(changelogPage.includes(required), `/changelog missing release ledger contract: ${required}`);
 }
 
-const interviewPage = fs.readFileSync(path.join(root, "app", "interview", "page.tsx"), "utf8");
-for (const required of [
-  "const proofPacket",
-  "const interviewPrompts",
-  "Proof packet",
-  "Review the evidence before asking interview questions",
-  "Work index",
-  "Interactive resume",
-  "Copilot proof page",
-  "Architecture lab",
-  "Trust report",
-  "Practitioner review",
-  "Explain Ravikanth's architecture judgment using only public evidence",
-  "What should a principal architect challenge",
-  "suggestedPrompts={interviewPrompts}",
-  "/work",
-  "/resume",
-  "/projects/operational-intelligence-copilot",
-  "/architecture-lab",
-  "/evals",
-  "/contact"
-]) {
-  expect(interviewPage.includes(required), `/interview missing evidence-led interview contract: ${required}`);
-}
 
 const resumePage = fs.readFileSync(path.join(root, "app", "resume", "page.tsx"), "utf8");
 const resumeContractSource = [resumePage, professionalGraphContent, publicCodeContent].join("\n");

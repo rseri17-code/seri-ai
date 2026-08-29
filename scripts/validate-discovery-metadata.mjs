@@ -51,10 +51,6 @@ const routeMetadataContracts = [
     required: ["generateMetadata", "article.title", "article.dek", "canonical: `/ideas/${article.slug}`", "type: \"article\""]
   },
   {
-    file: "app/interview-mode/page.tsx",
-    required: ["export const metadata", "Interview Mode | seri.ai", "technical reviewers"]
-  },
-  {
     file: "app/investigation-room/page.tsx",
     required: ["export const metadata", "Operations Room | seri.ai", "OI-ROOM-001", "human approval", "canonical: \"/investigation-room\"", "url: \"/investigation-room\""]
   },
