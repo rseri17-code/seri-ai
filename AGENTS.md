@@ -60,3 +60,11 @@ unverified claims, three harness pathologies that will bite you, and the priorit
 Two things that will cost you time if you miss them: stage deletions before running the suite
 (`validate-security-hygiene` reads git-tracked files), and clear `.next/types` after removing a
 route. Pin the shortest distinctive fragment, never a whole sentence.
+
+## Ruled copy is machine-enforced
+
+Some copy was decided by Ravikanth directly. `npm run validate:ruled` fails the build if it is
+reverted. If that gate fails, restore the ruled copy — do not repoint the check. A new ruling means
+updating `scripts/validate-ruled-copy.mjs` and CLAUDE_HANDOFF.md in the same commit.
+
+The homepage H1 and hero lead paragraph are currently frozen under a 2026-08-29 ruling.

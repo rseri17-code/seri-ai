@@ -222,7 +222,7 @@ for (const required of [
   "homeOperatorOriginProof",
   "homeHeroFlow",
   "homeMobileArtifactSignals",
-  "Ravikanth Seri / Senior infrastructure and AI systems engineer",
+  "Ravikanth Seri / Operational Intelligence",
   "Ravikanth Seri",
   "I build the part of operations that keeps context alive when judgment matters most.",
   "professionalGraph.identity.currentFocus",

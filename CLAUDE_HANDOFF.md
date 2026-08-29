@@ -107,6 +107,13 @@ they replaced:
 - the **Professional snapshot** section, which superseded the hero's older Who/What/Now tile grid.
   The grid was removed, not the snapshot.
 
+**This is now machine-enforced.** `npm run validate:ruled` (`scripts/validate-ruled-copy.mjs`, wired
+into both `test` and `build`) fails the build if the ruled hero copy is removed or the replaced
+wording reappears. It exists because prose in this file did not reach Codex in time — the hero was
+reverted twice on 2026-08-29, the second time while this handoff was being written. If that gate
+fails for you: restore the ruled copy, do not repoint the check. If Ravikanth issues a new ruling,
+update `scripts/validate-ruled-copy.mjs` and this file in the same commit.
+
 **Standing rule for both agents:** the H1 and hero lead paragraph are **frozen**. Ravikanth ruled;
 neither agent changes them again without a new ruling from him. Everything else in the hero is open.
 
@@ -268,6 +275,7 @@ Latest pushed commit before this handoff was validation-gated:
 
 Recent improvements:
 
+- Homepage front door now surfaces the professional profile earlier and more directly, including summary, current focus, career progression, resume, GitHub, LinkedIn, certifications, education, and contact without reintroducing the heavy public-thesis block.
 - Homepage no longer opens with artifact-inventory language.
 - Ask Ravikanth is framed as an evidence console over Ravikanth's public professional graph.
 - Keyboard accessibility walkthrough evidence exists for Ask Ravikanth and Operations Room.

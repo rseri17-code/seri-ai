@@ -14,7 +14,7 @@ const routeContracts = [
     required: [
       "misfire because they lack intelligence",
       "Ravikanth Seri",
-      "Ravikanth Seri / Senior infrastructure and AI systems engineer",
+      "Ravikanth Seri / Operational Intelligence",
       "reconstruct what is happening now",
       "show how the evidence connects",
       "keep human judgment in control",

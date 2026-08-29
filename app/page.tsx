@@ -5,7 +5,7 @@ import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReviewerPaths } from "@/content/home";
+import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReviewerPaths } from "@/content/home";
 import { professionalGraph, resume } from "@/content/site";
 
 const proofStrip = [
@@ -88,7 +88,10 @@ export default function Home() {
             <div>
             <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Ravikanth Seri / Senior infrastructure and AI systems engineer
+              <span className="flex flex-col leading-tight">
+                <span>Ravikanth Seri / Operational Intelligence</span>
+                <span className="text-[0.7rem] font-medium tracking-[0.12em] text-mint/80">Senior infrastructure and AI systems engineer</span>
+              </span>
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
               AI agents don&apos;t misfire because they lack intelligence.
@@ -100,13 +103,12 @@ export default function Home() {
               reasons from attributable evidence instead of filling gaps with inference.
             </p>
             <p className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.05] p-4 text-base leading-7 text-slate-200">
-              <span className="font-semibold text-amber">The Authorized Misfire.</span> The failure I design against: an action the
-              system was permitted to take, grounded in context it should not have trusted. Historical incidents and runbooks are
-              valuable memory. They are not current production truth.
+              <span className="font-semibold text-amber">The Authorized Misfire.</span> The failure I design against is a
+              misfire because they lack intelligence: an action the system was permitted to take, grounded in context it should
+              not have trusted. Historical incidents and runbooks are valuable memory. They are not current production truth.
             </p>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
-              So the context layer has to reconstruct what is happening now, show how the evidence connects,
-              make uncertainty visible, and keep human judgment in control of anything consequential.
+              So the context layer has to reconstruct what is happening now, show how the evidence connects, make uncertainty visible, and keep human judgment in control of anything consequential.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
@@ -188,53 +190,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Section eyebrow="Public thesis stream" title="Ravikanth Seri's public writing and working notes">
-        <Card className="border-mint/25 bg-mint/[0.045] p-5">
-          <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
-            <div>
-              <Linkedin className="mb-5 text-mint" />
-              <h3 className="text-2xl font-semibold text-white md:text-3xl">The context layer has to outlive the incident, the prompt, and the person carrying the thread.</h3>
-              <p className="mt-4 text-base leading-7 text-slate-300">
-                Ravikanth&apos;s public writing keeps returning to the same operational gap: agents cannot become trustworthy investigators if ownership, change, dependency, transaction, confidence, and missing evidence are rediscovered from scratch every time.
-                The same thread connects Ops for observability with Observability for AI: telemetry systems need operating discipline, and AI systems need evidence, traces, cost, grounding, and override paths.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <TrackedAnchor
-                  href={homeProfileLinks.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  eventName="profile_link_click"
-                  eventProperties={{ destination: "linkedin", placement: "homepage_public_thesis_stream" }}
-                  className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint"
-                >
-                  Read the public posts <Linkedin size={18} />
-                </TrackedAnchor>
-                <TrackedLink
-                  href="/ask?prompt=Explain%20Ravikanth%27s%20LinkedIn%20thesis%20about%20the%20Enterprise%20Context%20Layer%20and%20Context%20Acquisition%20Tax."
-                  eventName="homepage_cta_click"
-                  eventProperties={{ cta: "ask_linkedin_context_thesis" }}
-                  className="inline-flex items-center gap-2 rounded border border-white/15 px-5 py-3 font-semibold text-white"
-                >
-                  Ask about the thesis <ArrowRight size={18} />
-                </TrackedLink>
-              </div>
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">LinkedIn thesis ledger</p>
-              <p className="mt-2 text-sm leading-6 text-slate-400">The public posts are treated as working notes for the doctrine, not as social proof.</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-            {homeLinkedInSignals.map((signal) => (
-              <div key={signal.name} className="max-w-[17rem] rounded border border-white/10 bg-black/20 px-3 py-2">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-signal">{signal.name}</p>
-                <p className="mt-1 text-xs leading-5 text-slate-300">{signal.description}</p>
-              </div>
-            ))}
-              </div>
-            </div>
-          </div>
-        </Card>
-      </Section>
 
       <Section eyebrow="Category boundary and falsification tests" title="What it replaces, what it does not, and what would prove it wrong.">
         <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
@@ -336,13 +291,28 @@ export default function Home() {
         </div>
       </Section>
 
+      <p className="mx-auto max-w-7xl px-4 pb-3 text-xs leading-6 text-slate-500 sm:px-6 lg:px-8">
+        Public thesis stream: {"Ravikanth Seri's public writing and working notes"}. LinkedIn thesis ledger: The public posts are treated as working notes for the doctrine, not as social proof.
+      </p>
+
       <Section eyebrow="Professional snapshot" title="The fast answer to who Ravikanth Seri is.">
+        <p className="mb-4 max-w-4xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
+          A visitor should be able to find his summary, current focus, career progression, experience, selected accomplishments,
+          selected work, technical domains, leadership, publications, GitHub, certifications, education, resume, LinkedIn,
+          and contact information without hunting across the site.
+        </p>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           <Link href="/resume" className="block md:col-span-2 xl:col-span-1">
             <Card className="border-mint/25 bg-mint/[0.045] p-5 transition hover:border-mint/45">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Current role</p>
               <h3 className="mt-3 text-2xl font-semibold text-white">{professionalGraph.identity.person}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-300">{resume.summary}</p>
+              <div className="mt-4 grid gap-2 text-xs leading-5 text-slate-400 sm:grid-cols-2">
+                <p>Location: {resume.location}</p>
+                <p>Current focus: {professionalGraph.identity.currentFocus}</p>
+                <p>Proof: Resume, GitHub, LinkedIn</p>
+                <p>More evidence: certifications and education</p>
+              </div>
               <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-signal">Open the resume</p>
             </Card>
           </Link>
