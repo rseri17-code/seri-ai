@@ -91,7 +91,7 @@ export default function Home() {
               Ravikanth Seri / Senior infrastructure and AI systems engineer
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              Ravikanth Seri builds Operational Intelligence for enterprise operations.
+              Ravikanth Seri is a senior infrastructure and AI systems engineer building Operational Intelligence for enterprise operations.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
               He works where AI meets real systems: production reliability, observability, transaction context, evaluation,
