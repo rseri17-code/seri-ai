@@ -6,7 +6,7 @@ import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
 import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReviewerPaths } from "@/content/home";
-import { professionalGraph } from "@/content/site";
+import { professionalGraph, resume } from "@/content/site";
 
 const proofStrip = [
   ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
@@ -34,6 +34,33 @@ const inspectionLedger = [
   ["/framework", "Thesis Radar", "Where the market is moving, and what would prove the thesis wrong."],
   ["/library", "Publishing System", "Everything written down, searchable and cited well enough to reuse."],
   ["/work", "Public Work", "Fifteen years of it, with the proof attached."]
+] as const;
+
+const professionalSnapshot = [
+  {
+    title: "Who is Ravikanth?",
+    body: `${professionalGraph.identity.person} is a ${professionalGraph.identity.siteRole} with a career that runs from enterprise integration to production AI systems.`
+  },
+  {
+    title: "How has the career evolved?",
+    body: professionalGraph.careerEvolution.map((item) => item.stage).join(" → ")
+  },
+  {
+    title: "What has he built?",
+    body: "Operational Intelligence doctrine, reference architecture, the Operations Room, Ask Ravi, the Evidence Pack, and public technical writing."
+  },
+  {
+    title: "What is he building now?",
+    body: professionalGraph.identity.currentFocus
+  },
+  {
+    title: "What does he specialize in?",
+    body: "Production AI-assisted operations, agentic SRE, observability, transaction intelligence, runtime governance, and evaluation."
+  },
+  {
+    title: "Why work with him?",
+    body: "He brings production systems judgment, public-safe technical writing, reusable architectures, and evidence-led thinking."
+  }
 ] as const;
 
 
@@ -317,6 +344,22 @@ export default function Home() {
             ))}
             </div>
           </Card>
+        </div>
+      </Section>
+
+      <Section eyebrow="Professional snapshot" title="The fast answer to who Ravikanth Seri is.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <Card className="border-mint/25 bg-mint/[0.045] p-5 md:col-span-2 xl:col-span-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Current role</p>
+            <h3 className="mt-3 text-2xl font-semibold text-white">{professionalGraph.identity.person}</h3>
+            <p className="mt-3 text-sm leading-6 text-slate-300">{resume.summary}</p>
+          </Card>
+          {professionalSnapshot.map((item) => (
+            <Card key={item.title} className="p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{item.title}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
+            </Card>
+          ))}
         </div>
       </Section>
 
