@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, BrainCircuit, ClipboardCheck, FileText, GitBranch, Linkedin, Network, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BrainCircuit, ClipboardCheck, GitBranch, Linkedin, Network, ShieldCheck, Sparkles } from "lucide-react";
 import { Card } from "@/components/card";
 import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReferenceAssets, homeReviewerPaths } from "@/content/home";
-import { professionalGraph } from "@/content/site";
+import { homeArticles, homeBuilderDna, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeLinkedInSignals, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReviewerPaths } from "@/content/home";
+import { professionalGraph, resume } from "@/content/site";
 
 const proofStrip = [
   ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
@@ -36,6 +36,39 @@ const inspectionLedger = [
   ["/work", "Public Work", "Fifteen years of it, with the proof attached."]
 ] as const;
 
+const professionalSnapshot = [
+  {
+    title: "Who is Ravikanth?",
+    href: "/background",
+    body: `${professionalGraph.identity.person} is a ${professionalGraph.identity.siteRole} with a career that runs from enterprise integration to production AI systems.`
+  },
+  {
+    title: "How has the career evolved?",
+    href: "/background",
+    body: professionalGraph.careerEvolution.map((item) => item.stage).join(" → ")
+  },
+  {
+    title: "What has he built?",
+    href: "/work",
+    body: "Operational Intelligence doctrine, reference architecture, the Operations Room, Ask Ravi, the Evidence Pack, and public technical writing."
+  },
+  {
+    title: "What is he building now?",
+    href: "/now",
+    body: professionalGraph.identity.currentFocus
+  },
+  {
+    title: "What does he specialize in?",
+    href: "/framework",
+    body: "Production AI-assisted operations, agentic SRE, observability, transaction intelligence, runtime governance, and evaluation."
+  },
+  {
+    title: "Why work with him?",
+    href: "/contact",
+    body: "He brings production systems judgment, public-safe technical writing, reusable architectures, and evidence-led thinking."
+  }
+] as const;
+
 
 
 
@@ -55,16 +88,15 @@ export default function Home() {
             <div>
             <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
               <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              Ravikanth Seri / Operational Intelligence
+              Ravikanth Seri / Senior infrastructure and AI systems engineer
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              AI agents don&apos;t misfire because they lack intelligence.
+              Ravikanth Seri is a senior infrastructure and AI systems engineer building Operational Intelligence for enterprise operations.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              They misfire because the operational context beneath them is fragmented, stale, or incomplete. I build the context
-              layer and the harness that runs on it &mdash; for enterprise SRE and platform teams putting agents near production,
-              where a wrong action has an owner and a blast radius. A public operating model for AI-native operations, so an agent
-              reasons from attributable evidence instead of filling gaps with inference.
+              He works where AI meets real systems: production reliability, observability, transaction context, evaluation,
+              and bounded action. The site is the public record of the ideas, artifacts, and evidence behind that work, with
+              the career arc visible from enterprise integration and infrastructure to production AI systems and agentic operations.
             </p>
             <p className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.05] p-4 text-base leading-7 text-slate-200">
               <span className="font-semibold text-amber">The Authorized Misfire.</span> The failure I design against: an action the
@@ -72,8 +104,8 @@ export default function Home() {
               valuable memory. They are not current production truth.
             </p>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
-              So the context layer has to reconstruct what is happening now, show how the evidence connects,
-              make uncertainty visible, and keep human judgment in control of anything consequential.
+              So the context layer has to reconstruct what is happening now, show how the evidence connects, make uncertainty
+              visible, and keep human judgment in control of anything consequential.
             </p>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               <div className="rounded border border-white/10 bg-white/[0.035] p-3">
@@ -318,6 +350,28 @@ export default function Home() {
             ))}
             </div>
           </Card>
+        </div>
+      </Section>
+
+      <Section eyebrow="Professional snapshot" title="The fast answer to who Ravikanth Seri is.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <Link href="/resume" className="block md:col-span-2 xl:col-span-1">
+            <Card className="border-mint/25 bg-mint/[0.045] p-5 transition hover:border-mint/45">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Current role</p>
+              <h3 className="mt-3 text-2xl font-semibold text-white">{professionalGraph.identity.person}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{resume.summary}</p>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-signal">Open the resume</p>
+            </Card>
+          </Link>
+          {professionalSnapshot.map((item) => (
+            <Link key={item.title} href={item.href} className="block">
+              <Card className="p-5 transition hover:border-signal/40">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{item.title}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-mint">Inspect evidence</p>
+              </Card>
+            </Link>
+          ))}
         </div>
       </Section>
 

@@ -100,7 +100,7 @@ export function BetaFeedbackForm() {
         Proof path completed
         <select name="proofPathCompleted" className="mt-2 w-full rounded border border-white/10 bg-ink px-3 py-2 text-white">
           <option>Homepage only</option>
-          <option>Start Here</option>
+          <option>Work</option>
           <option>Work or Background</option>
           <option>Doctrine or Evidence Pack</option>
           <option>Operations Room</option>

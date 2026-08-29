@@ -20,7 +20,7 @@
         "Tab through quick prompts and guide cards without losing visible focus.",
         "Focus the question input and submit with the labelled Ask button.",
         "Use answer metadata, citations, and related-page links after the response renders.",
-        "Return to Start Here, Work, or cited source links through normal tab order."
+        "Return to Work, Background, or cited source links through normal tab order."
       ],
       "sourceEvidence": [
         "app/layout.tsx defines skip link and main-content target.",

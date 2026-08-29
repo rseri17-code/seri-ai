@@ -355,7 +355,7 @@
     },
     {
       "prompt": "Where should a first-time visitor start to understand Ravikanth Seri?",
-      "expected": "Route to Start Here and the visitor proof map.",
+      "expected": "Route to Work and the visitor proof map.",
       "requiredAnswerIncludes": [
         "Visitor success map",
         "/work",
@@ -1183,7 +1183,7 @@
     },
     {
       "prompt": "Where is the first-time visitor review kit for evaluating whether seri.ai clearly represents Ravikanth?",
-      "expected": "Route to Start Here, practitioner packet, and Contact with public-safe review guidance.",
+      "expected": "Route to Work, practitioner packet, and Contact with public-safe review guidance.",
       "requiredAnswerIncludes": [
         "First-Time Visitor Review Kit",
         "/work",

@@ -25,8 +25,41 @@ export default function ContactPage() {
           >
             <span className="text-sm font-semibold text-white">{label}</span>
             <span className="mt-2 block text-xs leading-5 text-slate-400">{description}</span>
-          </Link>
+            </Link>
         ))}
+      </div>
+      <div className="mx-auto mb-6 grid max-w-6xl gap-3 lg:grid-cols-[1fr_1fr]">
+        <div className="rounded-lg border border-mint/25 bg-mint/[0.045] p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Best use of this page</p>
+          <h2 className="mt-3 text-2xl font-semibold text-white">Pick the route that matches the reason you are here.</h2>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {[
+              ["/resume", "Hiring or role fit", "Start with the resume, then review the work and background pages."],
+              ["/wiki/operational-intelligence-evidence-pack", "Thesis review", "Use the Evidence Pack if you want to challenge the model on rigor."],
+              ["/investigation-room", "Product or systems review", "Run the synthetic case before deciding whether the operating model feels real."],
+              ["/ask", "Ask a question", "Use Ask Ravi when you want grounded answers over approved public work."]
+            ].map(([href, label, detail]) => (
+              <Link key={href} href={href} className="rounded border border-white/10 bg-black/20 p-3 transition hover:border-mint/45">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">{label}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{detail}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-lg border border-signal/25 bg-signal/[0.055] p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">What makes a good message</p>
+          <h2 className="mt-3 text-2xl font-semibold text-white">Be specific about the problem, the audience, and the decision you need help with.</h2>
+          <div className="mt-5 grid gap-3">
+            {[
+              "If you are a recruiter, say what role you are evaluating and what evidence you want to inspect.",
+              "If you are an operator or architect, name the system problem and the review surface you want to challenge.",
+              "If you are inviting collaboration, state the artifact, audience, and expected outcome.",
+              "If you are submitting a review, include the routes you inspected and the strongest claim that changed your mind."
+            ].map((item) => (
+              <p key={item} className="rounded border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-slate-200">{item}</p>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <form

@@ -7,14 +7,14 @@
     {
       "name": "Professional Representation",
       "score": 8.8,
-      "evidence": "Home, Start Here, Work, Background, Resume, GitHub, LinkedIn, contact paths, the First-Time Visitor Review Kit, Practitioner Review Packet, first-impression evidence capture, portrait intake contract, durable first-viewport screenshots, a durable non-photographic public identity mark, and an approved portrait rendered on home, background, and resume make Ravikanth Seri visible as the author and engineer behind the work.",
+      "evidence": "Home, Work, Background, Resume, GitHub, LinkedIn, contact paths, the First-Time Visitor Review Kit, Practitioner Review Packet, first-impression evidence capture, portrait intake contract, durable first-viewport screenshots, a durable non-photographic public identity mark, and an approved portrait rendered on home, background, and resume make Ravikanth Seri visible as the author and engineer behind the work.",
       "gap": "The approved portrait is integrated, but completed external first-impression review is still missing, so the person-work-evidence path is not yet independently validated.",
       "nextProof": "Run the Practitioner Review Packet with external reviewers at mobile, tablet, and desktop widths and record whether they can identify Ravikanth, his work, his thesis, and the evidence path without coaching."
     },
     {
       "name": "Career Clarity",
       "score": 9,
-      "evidence": "The professional graph, Background route, Start Here path, First-Time Visitor Review Kit, and Practitioner Review Packet show the arc from enterprise integration through cloud, observability, production AI systems, and Operational Intelligence.",
+      "evidence": "The professional graph, Background route, Work path, First-Time Visitor Review Kit, and Practitioner Review Packet show the arc from enterprise integration through cloud, observability, production AI systems, and Operational Intelligence.",
       "gap": "The career story is strong in structured content but still needs completed reviewer feedback from people who know nothing about Ravikanth.",
       "nextProof": "Run the Practitioner Review Packet with external reviewers and record where they become uncertain."
     },
@@ -105,7 +105,7 @@
     {
       "name": "UX",
       "score": 8.2,
-      "evidence": "Start Here, primary CTAs, proof paths, Ask prompts, related reading, reference assets, the First-Time Visitor Review Kit, Practitioner Review Packet, and a 10-minute proof route provide guided navigation from person to work to doctrine to artifact to evidence.",
+      "evidence": "Primary CTAs, proof paths, Ask prompts, related reading, reference assets, the First-Time Visitor Review Kit, Practitioner Review Packet, and a 10-minute proof route provide guided navigation from person to work to doctrine to artifact to evidence.",
       "gap": "The Operations Room and long reference pages still need observed user-review evidence from people who do not already know Ravikanth or the thesis.",
       "nextProof": "Run the 10-minute proof route with first-time reviewers and record where they hesitate or cannot answer the north-star questions."
     },
@@ -168,7 +168,7 @@
     {
       "name": "Overall Memorability",
       "score": 8,
-      "evidence": "The Operational Intelligence thesis, Operations Room, Ask Ravikanth evidence console, proof-led professional graph, and Start Here 10-minute proof route now converge around one memorable path: operator, work, thesis, artifact, evidence.",
+      "evidence": "The Operational Intelligence thesis, Operations Room, Ask Ravikanth evidence console, proof-led professional graph, and 10-minute proof route now converge around one memorable path: operator, work, thesis, artifact, evidence.",
       "gap": "The signature artifact and first impression still need external validation and visual polish before they reliably feel unforgettable.",
       "nextProof": "Use browser QA and practitioner review to test whether the 10-minute proof route produces one memorable evidence-to-decision experience."
     }
