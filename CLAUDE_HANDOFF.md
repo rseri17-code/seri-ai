@@ -40,6 +40,105 @@ not that a pin needs moving.
 
 ---
 
+---
+
+# CODEX: START HERE — what Claude changed on `claude/patterns-operating-model`
+
+Everything below this block is context and history. **This block is what you need to work.**
+Branch is 6 commits ahead of `main` (`2312eae`), 0 behind. `npm test` + `npm run build` green.
+
+## 1. What changed, file by file
+
+**Visitor-facing pages (Claude's lane — restructure freely, do not rewrite the prose):**
+
+| File | What changed |
+| --- | --- |
+| `app/page.tsx` | **Rewritten.** Nine sections → seven, ruled order. New hero (identity-first H1, 2 CTAs), Authorized Misfire as section 2, `OperationsRoomPreview` as section 3, three bodies of work, career staircase, four ideas, closing. |
+| `app/background/page.tsx` | Career spine added from `resume.experience`. Removed the `careerStory` render and the "Profile guide" section. Metadata rewritten. |
+| `components/operations-room-preview.tsx` | **New.** Ten-stage OI-ROOM-001 replay. ARIA tabs + roving tabindex. |
+| `components/header.tsx` | Nav 10 items → 5 + Ask. Disclosure breakpoint `xl` → `lg`. 44px targets. `Ask Ravikanth` → `Ask` under `sm`. |
+| `components/footer.tsx` | Boundary statement shortened to one line. |
+| `components/portrait.tsx` | New `xl` size (192px, soft-square crop). Other sizes unchanged. |
+| `components/beta-feedback.tsx` | 44px tap target on the toggle. Nothing else. |
+| `app/layout.tsx` | `main` now has `min-h-[calc(100vh-4.75rem)]`. **This is a CLS fix — see §4.** |
+
+**Data:**
+
+| File | What changed |
+| --- | --- |
+| `content/resume.json` | Real titles, month-level periods, employer names. New `employers` array per entry. Drives `/resume` and the `/background` spine. |
+| `content/professional-graph.json` | `careerEvolution` + identity fields rewritten. `careerStory` **untouched** — still rendered on `/resume`. |
+
+**Validators — 5 files, all repointed deliberately, none weakened:**
+
+`validate-content.mjs` · `validate-content-coherence.mjs` · `validate-rendered-routes.mjs` ·
+`validate-viewport-contracts.mjs` · `validate-ruled-copy.mjs` · `validate-accessibility.mjs`
+
+Two were **strengthened**: `validate-viewport-contracts` and `validate-rendered-routes` now assert
+the ruled seven-section order end to end. `validate-content.mjs` also now requires the `employers`
+field on every resume experience entry.
+
+## 2. Ruled — reverting any of this fails the build
+
+Ravikanth ruled these directly on 2026-08-30. They are in `AGENTS.md` too.
+
+- **Seven sections, this order:** Hero · Signature thesis · Flagship proof · Selected work ·
+  Career arc · Selected ideas · Closing invitation.
+- **Hero H1 is `I build evidence-grounded AI systems for enterprise operations.`** This
+  *superseded* the 2026-08-29 hero freeze, which pinned the misfire line as the H1. The misfire line
+  is still ruled copy — it now lives in section 2.
+- **Exactly two hero CTAs.** `Begin with the proof path` is forbidden copy; a third CTA was the
+  diagnosed problem.
+- **Nav is 5 items + Ask.** Do not re-expand.
+- **Real employer names are published.** Do not revert to "Major regulated financial-services
+  enterprise", and do not restore the invented titles *AIOps Lead Architect* /
+  *Infrastructure Technical Lead — Identity and Observability*.
+- **Do not restore to the homepage:** the falsification matrix, inspection ledger, persona-route
+  grid, five-stop visitor map, contact-reason grid. They were relocated, and their destinations were
+  verified before removal.
+
+**If `validate:ruled`, `validate:viewport` or `validate:rendered` fails for you, a ruling was
+reverted. Restore the copy — do not repoint the check.** Only a fresh ruling from Ravikanth changes
+these, and that updates `validate-ruled-copy.mjs` in the same commit.
+
+## 3. Open for Codex — highest value, in your lane
+
+1. **`components/operations-room-preview.tsx` is the flagship surface.** Performance and a11y work
+   there is wanted. Its ARIA tabs pattern *including the roving-tabindex focus management* is
+   deliberate — arrow keys must move selection **and** focus. Keep that.
+2. **Content-data layer** (still the top Codex-lane item from the earlier sprint): registry entries
+   storing concatenated label strings rather than prose is why Ask answers some questions with
+   keyword lists.
+3. **`/brief` is orphaned** by the homepage rebuild — its only inbound link was the persona grid.
+   It is on the authorized retirement list; finishing that retirement is the clean fix, not adding a
+   link back. Ravikanth's call.
+4. Layout, responsive behavior, props and wiring anywhere on the new homepage — welcome.
+
+## 4. Two traps worth knowing before you touch this
+
+**The CLS bug, because the first fix was wrong.** Under streaming SSR the footer and feedback block
+painted at y=726 *inside* a 900px viewport, then were pushed down when `main`'s content arrived:
+0.1933 against a 0.05 threshold, on roughly one load in ten. The `layout-shift` entry *named* the
+feedback block, so the first attempt reserved height there — and did nothing. **Root cause was
+`main` reserving no height.** Diagnose CLS from `previousRect`/`currentRect` geometry, not from
+which element the entry names. Now 0 across 20 loads at 1440x900 and 390x844.
+
+**The coherence homepage pin block used to assert a layout, not an invariant.** It pinned nearly
+every string on the old homepage, so it failed wholesale the moment the page was restructured — ~40
+errors for one intended change. It now pins section markers and outbound routes. Same harness
+pathology as the "bigger is better" floors documented further down: **fix the assumption, do not
+bend the page to the gate.**
+
+## 5. Known gaps — do not report these as done
+
+- **Homepage copy is 953 words vs a ~15% reduction target (~856).** Delivered -5.4%. Arithmetic is
+  in the refinement section below. Closing it needs Ravikanth's call, not an agent's.
+- **No Lighthouse run.** LCP/CLS/FCP/transfer are real Chromium measurements; the four Lighthouse
+  *scores* are not measured. Do not state them.
+- **Nothing here is live.** `seri-ai.vercel.app` serves `main`. Merging is Ravikanth's call.
+
+---
+
 # STATE OF PLAY — read this before anything else
 
 Everything below this block is chronological history. This section is the current truth. If the two
