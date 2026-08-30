@@ -27,11 +27,16 @@ export function Header() {
     setIsMenuOpen(false);
   }, [pathname]);
 
+  const navLinkClass = (href: string) =>
+    `shrink-0 whitespace-nowrap rounded px-2.5 py-2 text-sm transition xl:px-3 ${
+      isActive(href) ? "bg-white/10 text-white" : "text-slate-300 hover:bg-white/5 hover:text-white"
+    }`;
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/88 backdrop-blur-xl">
       <nav aria-label="Primary navigation">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-          <Link href="/" aria-label="Ravikanth Seri home" className="flex min-w-0 items-center gap-3">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
+          <Link href="/" aria-label="Ravikanth Seri home" className="flex min-w-0 shrink items-center gap-3">
             <span aria-hidden="true" className="relative grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-mint/35 bg-[radial-gradient(circle_at_30%_20%,rgba(95,242,181,0.28),transparent_42%),rgba(95,242,181,0.08)] shadow-[0_0_22px_rgba(95,242,181,0.16)]">
               <span className="absolute left-3 top-3 h-1.5 w-1.5 rounded-full bg-mint shadow-[0_0_12px_rgba(95,242,181,0.9)]" />
               <span className="absolute right-3 top-4 h-1.5 w-1.5 rounded-full bg-signal shadow-[0_0_12px_rgba(125,211,252,0.8)]" />
@@ -44,24 +49,23 @@ export function Header() {
               <span className="block truncate text-xs text-slate-400">Public professional home</span>
             </span>
           </Link>
-          <div className="hidden items-center gap-1 xl:flex">
+          <div className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 xl:flex">
             {primaryNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                className={`rounded px-3 py-2 text-sm transition ${
-                  isActive(item.href)
-                    ? "bg-white/10 text-white"
-                    : "text-slate-300 hover:bg-white/5 hover:text-white"
-                }`}
+                className={navLinkClass(item.href)}
               >
                 {item.label}
               </Link>
             ))}
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <Link href="/ask" className="rounded border border-mint/40 bg-mint/10 px-3 py-2 text-sm font-medium text-mint hover:bg-mint/15 sm:px-4">
+            <Link
+              href="/ask"
+              className="whitespace-nowrap rounded border border-mint/40 bg-mint/10 px-3 py-2 text-sm font-medium text-mint hover:bg-mint/15 sm:px-4"
+            >
               Ask Ravikanth
             </Link>
             <button
@@ -83,11 +87,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                className={`rounded px-3 py-2 text-sm transition ${
-                  isActive(item.href)
-                    ? "bg-white/10 text-white"
-                    : "text-slate-300 hover:bg-white/5 hover:text-white"
-                }`}
+                className={navLinkClass(item.href)}
               >
                 {item.label}
               </Link>
