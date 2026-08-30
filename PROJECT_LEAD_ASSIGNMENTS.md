@@ -56,6 +56,8 @@ Stage structure is obvious without reading body copy; no layout regressions; no 
 
 **Sequencing note:** Codex implements structure **before** Claude does heavy copy so Claude is not writing against a moving layout.
 
+**Status:** Nav mid-word wrap fix shipped by Project Lead on `main` (`bf885ac`). Patterns stage structure remains open for Codex.
+
 ---
 
 ## Assignment B — Claude (copy / information architecture)
@@ -76,6 +78,8 @@ Stage structure is obvious without reading body copy; no layout regressions; no 
 A principal SRE who has never seen the site can explain the four stages after one pass.
 
 **Hero freeze still stands:** Homepage H1 and hero lead paragraph remain frozen under the 2026-08-29 ruling. Do not touch them without a new ruling from Ravikanth.
+
+**Status:** Project Lead shipped a first-pass implementation on branch `lead/patterns-operating-model` for review. Claude should treat it as a draft to improve, not a finished artifact — tighten stage descriptions, the "How to read this" block, and card microcopy while preserving the four-stage order and thesis.
 
 ---
 
