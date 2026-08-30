@@ -84,7 +84,7 @@ export default function AdminPage() {
         </div>
       </Card>
       <Card className="mt-5">
-        <h2 className="text-xl font-semibold text-white">Ask Ravi observability contract</h2>
+        <h2 className="text-xl font-semibold text-white">Ask Ravikanth observability contract</h2>
         <p className="mt-3 leading-7 text-slate-300">
           Ask telemetry is intentionally metadata-only. It should help operators understand latency, grounding, fallback behavior,
           and safety pressure without storing raw visitor prompts, contact details, or private feedback text.

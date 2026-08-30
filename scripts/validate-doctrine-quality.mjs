@@ -124,7 +124,7 @@ expectIncludes(referencePath, reference, [
   "minimum architectural invariant",
   "Every consequential action needs approval boundaries",
   "Relationship to the doctrine",
-  "Relationship to Ask Ravi"
+  "Relationship to Ask Ravikanth"
 ]);
 
 expectIncludes(evidencePath, evidence, [

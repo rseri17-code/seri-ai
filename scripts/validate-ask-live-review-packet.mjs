@@ -17,7 +17,7 @@ const rubric = JSON.parse(fs.readFileSync(rubricPath, "utf8"));
 const publicPacket = fs.readFileSync(publicPacketPath, "utf8");
 const scorecard = fs.readFileSync(scorecardPath, "utf8");
 
-expect(packet.title === "Ask Ravi Live Review Packet", "Packet title must identify Ask Ravi live review.");
+expect(packet.title === "Ask Ravikanth Live Review Packet", "Packet title must identify Ask Ravikanth live review.");
 expect(packet.modelQualityScoresFabricated === false, "Packet must explicitly reject fabricated model-quality scores.");
 expect(packet.reviewStatus?.reviewerLabeledSessionsPublished === false, "Packet must not claim reviewer-labeled sessions exist.");
 expect(packet.reviewStatus?.aggregateQualityScorePublished === false, "Packet must not claim an aggregate quality score exists.");
@@ -66,4 +66,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated Ask Ravi live review packet across ${packet.requiredPromptCategories.length} prompt categories and ${packet.reviewModes.length} modes.`);
+console.log(`Validated Ask Ravikanth live review packet across ${packet.requiredPromptCategories.length} prompt categories and ${packet.reviewModes.length} modes.`);

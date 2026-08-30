@@ -42,7 +42,7 @@ Study clarity, restraint, information architecture, depth, credibility, discover
 
 ## Authoritative Sources
 
-Use every authorized source: latest and historical resumes, LinkedIn (experience, posts, articles, featured content), certifications, education, public GitHub repositories and READMEs, published essays, presentations, public research notes, and the existing platform surfaces (Doctrine, Reference Architecture, Patterns, Framework, Operations Room, Ask Ravi, Library, Work, Artifacts, Evals, /now, Background, Changelog). Treat them as one evolving professional knowledge graph, not disconnected content feeds.
+Use every authorized source: latest and historical resumes, LinkedIn (experience, posts, articles, featured content), certifications, education, public GitHub repositories and READMEs, published essays, presentations, public research notes, and the existing platform surfaces (Doctrine, Reference Architecture, Patterns, Framework, Operations Room, Ask Ravikanth, Library, Work, Artifacts, Evals, /now, Background, Changelog). Treat them as one evolving professional knowledge graph, not disconnected content feeds.
 
 ## Career Story
 
@@ -70,11 +70,11 @@ Treat the body of work as a continuously evolving knowledge graph with canonical
 
 ## Operational Intelligence Positioning
 
-Operational Intelligence is the strongest current intellectual pillar but must not erase the broader engineering identity. Canonical definition: **Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.** raviseri.com = the public professional operating system; Operational Intelligence = the technical thesis; Agentic SRE = application domain; ReasonOps = product expression; Operations Room = signature artifact; Doctrine = conceptual foundation; Reference Architecture = implementation-neutral specification; Ask Ravi = AI interface into verified public knowledge; Background = career evidence. Ravikanth must remain unmistakably the author, engineer, and professional identity behind the work.
+Operational Intelligence is the strongest current intellectual pillar but must not erase the broader engineering identity. Canonical definition: **Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.** raviseri.com = the public professional operating system; Operational Intelligence = the technical thesis; Agentic SRE = application domain; ReasonOps = product expression; Operations Room = signature artifact; Doctrine = conceptual foundation; Reference Architecture = implementation-neutral specification; Ask Ravikanth = AI interface into verified public knowledge; Background = career evidence. Ravikanth must remain unmistakably the author, engineer, and professional identity behind the work.
 
-## Ask Ravi
+## Ask Ravikanth
 
-Ask Ravi should become one of the strongest demonstrations of the platform. It MUST retrieve from approved public content, cite sources, distinguish fact from inference, expose uncertainty, refuse unsupported claims and confidential questions, resist prompt injection, maintain permission boundaries, route users to relevant content, state when information is unavailable, and clearly disclose that it is an AI assistant. It must not become a generic chatbot wrapper.
+Ask Ravikanth should become one of the strongest demonstrations of the platform. It MUST retrieve from approved public content, cite sources, distinguish fact from inference, expose uncertainty, refuse unsupported claims and confidential questions, resist prompt injection, maintain permission boundaries, route users to relevant content, state when information is unavailable, and clearly disclose that it is an AI assistant. It must not become a generic chatbot wrapper.
 
 ## Public-Safety Rule
 

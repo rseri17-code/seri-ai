@@ -22,10 +22,10 @@ const scorecard = fs.readFileSync(scorecardPath, "utf8");
 const qualityScorecard = JSON.parse(fs.readFileSync(qualityScorecardPath, "utf8"));
 const compliance = fs.readFileSync(compliancePath, "utf8");
 const ai = fs.readFileSync(aiPath, "utf8");
-const askDimension = qualityScorecard.dimensions?.find((dimension) => dimension.name === "Ask Ravi");
+const askDimension = qualityScorecard.dimensions?.find((dimension) => dimension.name === "Ask Ravikanth");
 const evalFixtureCount = evalReport.fixtures?.length ?? 0;
 
-expect(rubric.title === "Ask Ravi Live Answer Quality Rubric", "Rubric title must identify Ask Ravi live answer quality.");
+expect(rubric.title === "Ask Ravikanth Live Answer Quality Rubric", "Rubric title must identify Ask Ravikanth live answer quality.");
 expect(rubric.modelQualityScoresFabricated === false, "Rubric must explicitly avoid fabricated model-quality scores.");
 expect(Array.isArray(rubric.reviewProtocol) && rubric.reviewProtocol.length >= 6, "Rubric needs at least six review protocol rules.");
 expect(Array.isArray(rubric.labels) && rubric.labels.length === 4, "Rubric must define exactly four qualitative labels.");
@@ -34,7 +34,7 @@ expect(Array.isArray(rubric.reviewPromptSet) && rubric.reviewPromptSet.length >=
 expect(rubric.reportingTemplate?.safeMetadataOnly?.length >= 10, "Rubric must define safe metadata fields for reporting.");
 expect(rubric.reportingTemplate?.doNotCapture?.length >= 7, "Rubric must define fields that must not be captured.");
 expect(evalFixtureCount >= 35, "Eval report must include at least 35 Ask fixtures.");
-expect(askDimension, "Quality scorecard must include Ask Ravi dimension.");
+expect(askDimension, "Quality scorecard must include Ask Ravikanth dimension.");
 expect(askDimension?.evidence?.includes(`${evalFixtureCount} passing fixtures`), "Quality scorecard Ask evidence must use the current eval fixture count.");
 expect(scorecard.includes(`${evalFixtureCount} passing fixtures`), "WORLD_CLASS_SCORECARD.md must use the current eval fixture count.");
 expect(scorecard.includes(`${evalFixtureCount} deterministic fixtures`), "WORLD_CLASS_SCORECARD.md Ask evidence table must use the current deterministic fixture count.");
@@ -165,4 +165,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated Ask Ravi live answer rubric across ${rubric.dimensions.length} dimensions and ${rubric.reviewPromptSet.length} prompts.`);
+console.log(`Validated Ask Ravikanth live answer rubric across ${rubric.dimensions.length} dimensions and ${rubric.reviewPromptSet.length} prompts.`);

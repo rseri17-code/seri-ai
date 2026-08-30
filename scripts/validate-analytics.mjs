@@ -160,7 +160,7 @@ for (const required of [
 }
 
 for (const required of [
-  "Ask Ravi observability contract",
+  "Ask Ravikanth observability contract",
   "metadata-only",
   "askSafeMetadataFields",
   "askBlockedMetadataFields",

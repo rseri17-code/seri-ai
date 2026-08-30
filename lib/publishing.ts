@@ -679,7 +679,7 @@ export function buildMonthlyNewsletterExport(month: string) {
     "## Framework Coverage",
     ...unique(assets.flatMap((asset) => asset.frameworkLayers)).map((layer) => `- ${layer}`),
     "",
-    "## Ask Ravi Questions",
+    "## Ask Ravikanth Questions",
     ...unique(assets.flatMap((asset) => asset.askQuestions)).map((question) => `- ${question}`)
   ].join("\n");
 }

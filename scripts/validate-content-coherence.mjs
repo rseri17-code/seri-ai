@@ -311,10 +311,10 @@ for (const required of [
 
 const notFoundPage = fs.readFileSync(path.join(root, "app", "not-found.tsx"), "utf8");
 for (const required of [
-  "Use the map, library, or Ask Ravi",
-  "Ask Ravi"
+  "Use the map, library, or Ask Ravikanth",
+  "Ask Ravikanth"
 ]) {
-  expect(notFoundPage.includes(required), `/not-found missing Ask Ravi recovery contract: ${required}`);
+  expect(notFoundPage.includes(required), `/not-found missing Ask Ravikanth recovery contract: ${required}`);
 }
 
 const frameworkPage = fs.readFileSync(path.join(root, "app", "framework", "page.tsx"), "utf8");
@@ -365,7 +365,7 @@ for (const required of [
   "What to inspect",
   "What would weaken it",
   "If the doctrine cannot distinguish itself from observability, AIOps, SRE, ITIL, incident command, knowledge graphs, and AI evaluation.",
-  "If Ask Ravi answers unsupported questions confidently or stores private prompt text in analytics.",
+  "If Ask Ravikanth answers unsupported questions confidently or stores private prompt text in analytics.",
   "Definition discipline",
   "Action discipline",
   "Learning discipline",
@@ -411,7 +411,7 @@ for (const required of [
   "Which contracts make two implementations comparable?",
   "What would convince a skeptical engineer that this model is useful?",
   "How does OI-ROOM-001 move from evidence to a decision packet?",
-  "Which trust fixtures gate Ask Ravi behavior?",
+  "Which trust fixtures gate Ask Ravikanth behavior?",
   "Where is Ravikanth's public work connected to proof objects?",
   "/wiki/operational-intelligence-canonical-doctrine",
   "/wiki/operational-intelligence-reference-architecture",
@@ -507,7 +507,7 @@ for (const required of [
   "href=\"/ask\"",
   "href: \"/framework\""
 ]) {
-  expect(headerComponent.includes(required), `Header missing Ask Ravi companion CTA contract: ${required}`);
+  expect(headerComponent.includes(required), `Header missing Ask Ravikanth companion CTA contract: ${required}`);
 }
 
 const radarPage = fs.readFileSync(path.join(root, "app", "framework", "page.tsx"), "utf8");
@@ -580,7 +580,7 @@ for (const required of [
   "doctrine, architecture, projects, resume, GitHub, LinkedIn",
   "ProfileMark"
 ]) {
-  expect(askContractSource.includes(required), `/ask missing Ask Ravi public companion contract: ${required}`);
+  expect(askContractSource.includes(required), `/ask missing Ask Ravikanth public companion contract: ${required}`);
 }
 
 for (const relativePath of sourceFilesUnder("app").concat(sourceFilesUnder("components"), sourceFilesUnder("content"), sourceFilesUnder("lib"))) {
@@ -727,7 +727,7 @@ for (const required of [
   "Evidence Quality",
   "Work / Project Proof",
   "Knowledge-Graph Health",
-  "Ask Ravi",
+  "Ask Ravikanth",
   "Search / Discoverability",
   "Visual Design",
   "UX",
@@ -805,7 +805,7 @@ for (const required of [
   "Doctrine frozen at v1.0",
   "Reference architecture published",
   "Operations Room live",
-  "Ask Ravi trust fixtures",
+  "Ask Ravikanth trust fixtures",
   "Publication pack available",
   "Evidence pack open for review",
   "what would convince another experienced engineer",

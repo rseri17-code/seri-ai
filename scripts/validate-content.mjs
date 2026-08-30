@@ -982,7 +982,7 @@ const requiredQualityDimensions = [
   "Evidence Quality",
   "Work / Project Proof",
   "Knowledge-Graph Health",
-  "Ask Ravi",
+  "Ask Ravikanth",
   "Search / Discoverability",
   "Visual Design",
   "UX",

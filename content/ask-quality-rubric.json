@@ -1,12 +1,12 @@
 {
-  "title": "Ask Ravi Live Answer Quality Rubric",
+  "title": "Ask Ravikanth Live Answer Quality Rubric",
   "version": "ask-quality-rubric-2026-07-28",
   "status": "ready_for_human_review",
   "modelQualityScoresFabricated": false,
-  "purpose": "Define how human reviewers should label live Ask Ravi answers for usefulness, citation value, refusal quality, routing, and public-safe reasoning without inventing model-quality scores.",
+  "purpose": "Define how human reviewers should label live Ask Ravikanth answers for usefulness, citation value, refusal quality, routing, and public-safe reasoning without inventing model-quality scores.",
   "reviewProtocol": [
     "Use only approved public prompts or prompts created by the reviewer during a controlled review session.",
-    "Do not paste confidential employer details, private logs, screenshots, dashboards, secrets, or personal data into Ask Ravi.",
+    "Do not paste confidential employer details, private logs, screenshots, dashboards, secrets, or personal data into Ask Ravikanth.",
     "Record safe metadata only: prompt category, route, response latency, retrieval mode, source count, rubric labels, and reviewer notes.",
     "Do not record raw prompt text if it contains personal, confidential, employer-specific, or proprietary information.",
     "A reviewer may assign labels only after reading the answer and opening the cited public sources.",

@@ -1,5 +1,5 @@
 {
-  "title": "Ask Ravi Live Review Packet",
+  "title": "Ask Ravikanth Live Review Packet",
   "version": "ask-live-review-packet-2026-08-22",
   "updatedAt": "2026-08-22",
   "status": "ready_for_controlled_review",
@@ -24,7 +24,7 @@
     }
   ],
   "reviewProtocol": [
-    "Use the Ask Ravi Live Answer Quality Rubric as the labeling contract.",
+    "Use the Ask Ravikanth Live Answer Quality Rubric as the labeling contract.",
     "Run the same safe prompt categories across available answer modes before comparing them.",
     "Open cited public sources before assigning a label.",
     "Capture safe metadata only: review date, reviewer role, prompt category, route, answer mode, retrieval mode, source count, latency band, rubric label, failed dimensions, checked artifacts, and public-safe notes.",

@@ -457,7 +457,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
   const ravikanthIdentityAnswer =
     "Ravikanth Seri is a senior infrastructure architect working on AI-native enterprise operations. His career runs from enterprise integration and API architecture through identity and platform engineering, cloud and Kubernetes modernization, and observability, into production AI systems, Agentic SRE, and the Operational Intelligence thesis published here.";
   const ravikanthContext = asksAboutAskPersona
-    ? "Ask Ravi is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis. Answer posture: reflect Ravikanth's public engineering judgment through evidence, constraints, tradeoffs, and inspectable routes; do not imitate him in first person or turn the answer into generic chatbot commentary."
+    ? "Ask Ravikanth is an AI assistant, not Ravikanth personally. It operates as an evidence console over approved public work and Ravikanth Seri's public work graph: Operational Intelligence doctrine, Operations Room artifacts, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and current AI-native operations thesis. Answer posture: reflect Ravikanth's public engineering judgment through evidence, constraints, tradeoffs, and inspectable routes; do not imitate him in first person or turn the answer into generic chatbot commentary."
     : /what.*(built|build|building|shipped|ship|created|made)|which.*(built|shipped)/.test(lower)
       ? ravikanthWorkAnswer
       : /why.*(hire|work with|talk|conversation|organi[sz]ation|team|recruit|collaborate|want)|should i (hire|talk|reach|contact|work with)|worth (hiring|talking|a conversation)|good fit|right person|why him/.test(lower)
@@ -519,7 +519,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "";
   const qualityScorecardContext =
     /quality scorecard|24 dimension|twenty four dimension|rate the site|rate seri.ai|current rating|current score|10\/10 target|ten out of ten target|how.*rate/.test(lower)
-      ? " Quality scorecard: seri.ai tracks 24 evidence-based dimensions with non-inflated scores. The Visual Design and Mobile scores now include 27 durable first-viewport screenshots across nine critical routes, while weaker proof areas still include Evidence Quality, Overall Memorability, UX, Reliability, Ask Ravi, and AI Systems Credibility because they need external review, touch walkthroughs, live beta evidence, reviewer labels, and production retrieval evidence."
+      ? " Quality scorecard: seri.ai tracks 24 evidence-based dimensions with non-inflated scores. The Visual Design and Mobile scores now include 27 durable first-viewport screenshots across nine critical routes, while weaker proof areas still include Evidence Quality, Overall Memorability, UX, Reliability, Ask Ravikanth, and AI Systems Credibility because they need external review, touch walkthroughs, live beta evidence, reviewer labels, and production retrieval evidence."
       : "";
   const visualQaContext =
     /visual qa|mobile qa|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/.test(lower)

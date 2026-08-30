@@ -206,9 +206,9 @@
     },
     {
       "claim": "The AI surface is bounded by citations, refusals, and deterministic trust fixtures.",
-      "evidenceTemplate": "Ask Ravi and {fixtureCount} passing public trust evals",
+      "evidenceTemplate": "Ask Ravikanth and {fixtureCount} passing public trust evals",
       "inspect": "Review citation, refusal, routing, unknown-question, confidential-boundary, and prompt-injection fixtures.",
-      "weakens": "If Ask Ravi answers unsupported questions confidently or stores private prompt text in analytics.",
+      "weakens": "If Ask Ravikanth answers unsupported questions confidently or stores private prompt text in analytics.",
       "href": "/ask"
     },
     {

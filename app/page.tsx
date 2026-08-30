@@ -27,7 +27,7 @@ const proofStrip = [
   ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
   ["Architecture", "Contracts, schemas, state machines, approval gates, and conformance levels."],
   ["Operations Room", "A synthetic-case investigation instrument for evidence, replay, hypotheses, and review."],
-  ["Ask Ravi", "An AI assistant over the public work. It cites what it knows and names what it does not."]
+  ["Ask Ravikanth", "An AI assistant over the public work. It cites what it knows and names what it does not."]
 ];
 
 
@@ -65,7 +65,7 @@ const professionalSnapshot = [
   {
     title: "What has he built?",
     href: "/work",
-    body: "Operational Intelligence doctrine, reference architecture, the Operations Room, Ask Ravi, the Evidence Pack, and public technical writing."
+    body: "Operational Intelligence doctrine, reference architecture, the Operations Room, Ask Ravikanth, the Evidence Pack, and public technical writing."
   },
   {
     title: "What is he building now?",

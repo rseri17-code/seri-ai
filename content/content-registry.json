@@ -378,7 +378,7 @@
     }
   },
   {
-    "title": "Ask Ravi",
+    "title": "Ask Ravikanth",
     "slug": "ask-ravikanth",
     "summary": "A cited review interface over Ravikanth Seri's approved public work, Operational Intelligence content, projects, background, and reference artifacts.",
     "type": "system",
@@ -412,7 +412,7 @@
     "createdAt": "2026-07-16",
     "updatedAt": "2026-07-16",
     "seo": {
-      "title": "Ask Ravi",
+      "title": "Ask Ravikanth",
       "description": "Public-safe companion for Ravikanth Seri's public work and Operational Intelligence thesis."
     }
   },

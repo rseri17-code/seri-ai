@@ -2,7 +2,7 @@
   "caseId": "OI-ROOM-001",
   "caseTitle": "Customer transaction degradation",
   "caseSummary": "A public-safe investigation scenario where a critical customer journey degrades after a non-secret configuration change. The system must connect signal, transaction, topology, evidence, reasoning, memory, evaluation, decision, learning, and operator context before recommending a human-reviewed action.",
-  "promise": "The same case powers the Map, Operations Room, and Ask Ravi so visitors experience Operational Intelligence as a system, not a set of pages.",
+  "promise": "The same case powers the Map, Operations Room, and Ask Ravikanth so visitors experience Operational Intelligence as a system, not a set of pages.",
   "loop": [
     {
       "name": "Map the operating model",

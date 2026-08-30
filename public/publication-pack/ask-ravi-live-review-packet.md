@@ -1,4 +1,4 @@
-# Ask Ravi Live Review Packet
+# Ask Ravikanth Live Review Packet
 
 Updated: 2026-08-22
 
@@ -35,7 +35,7 @@ Evaluate whether Ask Ravikanth works as a useful interface over Ravikanth Seri's
 
 ## Reviewer Protocol
 
-1. Use the Ask Ravi Live Answer Quality Rubric as the labeling contract.
+1. Use the Ask Ravikanth Live Answer Quality Rubric as the labeling contract.
 2. Run the same safe prompt categories across available answer modes before comparing them.
 3. Open cited public sources before assigning a label.
 4. Capture safe metadata only: review date, reviewer role, prompt category, route, answer mode, retrieval mode, source count, latency band, rubric label, failed dimensions, checked artifacts, and public-safe notes.

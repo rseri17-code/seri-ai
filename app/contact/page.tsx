@@ -52,7 +52,7 @@ export default function ContactPage() {
               ["/resume", "Hiring or role fit", "Start with the resume, then review the work and background pages."],
               ["/wiki/operational-intelligence-evidence-pack", "Thesis review", "Use the Evidence Pack if you want to challenge the model on rigor."],
               ["/investigation-room", "Product or systems review", "Run the synthetic case before deciding whether the operating model feels real."],
-              ["/ask", "Ask a question", "Use Ask Ravi when you want grounded answers over approved public work."]
+              ["/ask", "Ask a question", "Use Ask Ravikanth when you want grounded answers over approved public work."]
             ].map(([href, label, detail]) => (
               <Link key={href} href={href} className="rounded border border-white/10 bg-black/20 p-3 transition hover:border-mint/45">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">{label}</p>

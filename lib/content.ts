@@ -102,7 +102,7 @@ const referenceSources = [
   },
   {
     id: "reference:ask-ravi-live-review-packet",
-    title: "Ask Ravi Live Review Packet",
+    title: "Ask Ravikanth Live Review Packet",
     description: "Public-safe review protocol for reviewer-labeled Ask Ravikanth sessions across local fallback, vector retrieval, and model synthesis.",
     content:
       `${askLiveReviewPacket.title}. ${askLiveReviewPacket.evidenceLevel} Purpose: ${askLiveReviewPacket.purpose} Review modes: ${formatNaturalList(askLiveReviewPacket.reviewModes
@@ -110,7 +110,7 @@ const referenceSources = [
     url: "/publication-pack/ask-ravi-live-review-packet.md",
     type: "registry" as const,
     category: "Quality Evidence",
-    tags: ["Ask Ravi", "reviewer-labeled", "answer quality", "safe metadata", "model synthesis", "vector retrieval"],
+    tags: ["Ask Ravikanth", "reviewer-labeled", "answer quality", "safe metadata", "model synthesis", "vector retrieval"],
     assetType: "artifact"
   },
   {
@@ -904,7 +904,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
       url: "/wiki/operational-intelligence-evidence-pack",
       type: "registry" as const,
       category: "evidence",
-      tags: ["quality scorecard", "10/10 target", "evidence quality", "visual design", "Ask Ravi", "professional representation"],
+      tags: ["quality scorecard", "10/10 target", "evidence quality", "visual design", "Ask Ravikanth", "professional representation"],
       author: "Ravikanth Seri",
       assetType: "evidence",
       date: qualityScorecard.updatedAt,

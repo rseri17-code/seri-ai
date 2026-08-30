@@ -113,7 +113,7 @@
     "version": "v0.4",
     "date": "2026-07-05",
     "title": "Added public eval report and upgraded simulator decisioning",
-    "description": "seri.ai now exposes a trust report for Ask Ravi behavior and turns the incident simulator into a scored investigation workflow with choices, confidence, and exportable RCA summary.",
+    "description": "seri.ai now exposes a trust report for Ask Ravikanth behavior and turns the incident simulator into a scored investigation workflow with choices, confidence, and exportable RCA summary.",
     "tags": [
       "evals",
       "trust",

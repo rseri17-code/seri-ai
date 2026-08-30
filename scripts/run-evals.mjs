@@ -70,7 +70,7 @@ if (!report.method || !/deterministic fixture/i.test(report.method)) {
 }
 
 if (!Array.isArray(report.fixtures) || report.fixtures.length < 35) {
-  errors.push("Ask Ravi beta evals must include at least 35 deterministic fixtures.");
+  errors.push("Ask Ravikanth beta evals must include at least 35 deterministic fixtures.");
 }
 
 if (report.modelBasedEvaluationUsed !== false) {
@@ -137,4 +137,4 @@ const generated = {
 };
 
 fs.writeFileSync(publicReportPath, `${JSON.stringify(generated, null, 2)}\n`);
-console.log(`Evaluated ${generated.fixtureCount} Ask Ravi trust fixtures (${generated.passingFixtures} passing).`);
+console.log(`Evaluated ${generated.fixtureCount} Ask Ravikanth trust fixtures (${generated.passingFixtures} passing).`);

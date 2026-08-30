@@ -99,7 +99,7 @@ Measurable output: gates report dimension-level results. A single aggregate trus
 ```mermaid
 sequenceDiagram
   participant Operator
-  participant Ask as Ask Ravi
+  participant Ask as Ask Ravikanth
   participant Evidence as Evidence Graph
   participant Eval as Evaluation Gate
   participant Decision as Decision Packet

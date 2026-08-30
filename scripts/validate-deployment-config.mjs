@@ -149,7 +149,7 @@ for (const required of [
   "Content authority",
   "Technical depth",
   "UX and visual quality",
-  "Ask Ravi usefulness and safety",
+  "Ask Ravikanth usefulness and safety",
   "Accessibility",
   "Performance",
   "SEO and discovery",

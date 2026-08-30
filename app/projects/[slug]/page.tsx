@@ -71,7 +71,7 @@ const projectContracts = {
       "Related pages are not surfaced when the answer needs deeper context."
     ],
     references: [
-      ["/ask", "Ask Ravi"],
+      ["/ask", "Ask Ravikanth"],
       ["/wiki/operational-intelligence-evidence-pack", "Evidence pack"]
     ]
   },

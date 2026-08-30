@@ -124,7 +124,7 @@ export default async function AskPage({
         </div>
       </Section>
 
-      <Section eyebrow="Guide paths" title="Use Ask Ravi to move from question to evidence.">
+      <Section eyebrow="Guide paths" title="Use Ask Ravikanth to move from question to evidence.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {askGuidePaths.map(([href, title, detail, prompt]) => (
             <Card key={href} className="h-full p-4">
