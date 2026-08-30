@@ -163,10 +163,39 @@ rewritten once, fixed in both places.
 
 Six pins repointed for deliberately changed copy. `npm test` and `npm run build` green.
 
-### Still open on this pickup
+### Ask and Operations Room — audited and fixed
 
-`/work`, `/background`, `/ask` framing and Operations Room usefulness not yet audited at the same
-depth. Homepage was audited string-by-string earlier and is clean.
+**The assistant had two names.** 45 occurrences of "Ask Ravi" against 41 of "Ask Ravikanth", both in
+visitor copy, roughly evenly split — nav and page titles said one, body copy and wiki notes said the
+other. "Ravi" appears nowhere else on a site that calls him Ravikanth Seri throughout. Standardized
+on **Ask Ravikanth** across pages, content, wiki notes, publication packs, `lib/`, and the
+scorecard, with validator pins repointed.
+
+**A regression I caused and caught.** The sweep initially renamed the eval fixture *prompts* as well
+as their expectations. Retrieval is lexical, so changing a query's wording changes which sources it
+returns — one fixture started failing because its answer no longer surfaced a publication-pack
+source. **Fixture prompts are test inputs, not copy.** Reverted the seven prompts; kept only the
+expectation renames, which must track shipped strings. Eight "Ask Ravi" occurrences remain on
+purpose: seven fixture prompts and one internal timeout label.
+
+**Operations Room copy is the strongest on the site** and mostly needed leaving alone — "Do the
+investigation before the narrative hardens" and "The room is useful only if it refuses to collapse
+facts, interpretations, gaps, and contradictions into one fluent RCA" are the two best sentences
+published anywhere here. Two weak spots fixed:
+
+- The lead was a six-verb inventory. It now tells the visitor what they will *see* happen: evidence
+  arriving out of order, the contradiction refusing to resolve, the recommendation stopping short of
+  acting.
+- The OI-ROOM-001 scenario summary described "a **public-safe** configuration change" — the modifier
+  belongs to the *description*, not to the change, so the jargon broke the fiction of the case
+  itself. It now states what makes the case interesting: three-way evidence, a red herring, and the
+  item that rules out the obvious explanation looking like good news on a dashboard.
+
+### Pickup status
+
+Homepage, `/work`, `/background`, `/framework`, `/ask` and the Operations Room have now all been
+audited at string level against rendered output. The first-10-minute pickup from Codex's handoff is
+complete.
 
 ## Decisions already made — do not reopen
 

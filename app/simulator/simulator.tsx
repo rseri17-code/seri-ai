@@ -106,7 +106,7 @@ const scenarios = [
     caseId: "OI-ROOM-001",
     title: "Customer transaction degradation",
     summary:
-      "A critical customer journey degrades after a public-safe configuration change. The harness must connect signal, transaction, topology, evidence, memory, evaluation, and human review before recommending action.",
+      "A critical customer journey starts failing shortly after a configuration change. The evidence points three ways at once, one of the signals is a red herring, and the thing that rules out the obvious explanation looks like good news on a dashboard.",
     trigger: "Completion drop after change window",
     impact: "Customer-facing workflow interruption",
     operatorGoal: "Protect customers while keeping operational change behind approval.",

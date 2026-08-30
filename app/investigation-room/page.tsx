@@ -46,9 +46,9 @@ export default function InvestigationRoomPage() {
               </div>
               <h1 className="text-balance text-3xl font-semibold text-white md:text-5xl">Operations Room for evidence-backed decisions</h1>
               <p className="mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 sm:block">
-                Run {operationalIntelligenceSystem.caseId} as a controlled investigation: reconstruct the transaction path,
-                preserve contradiction, expose missing evidence, compare hypotheses, inspect eval gates, export the decision packet,
-                and keep operational change behind accountable human approval.
+                Work {operationalIntelligenceSystem.caseId} the way you would a real incident. Advance the replay and watch the
+                evidence arrive out of order, the contradiction refuse to resolve itself, and the recommendation stop short of
+                acting until a human signs it off.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
