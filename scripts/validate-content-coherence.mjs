@@ -333,18 +333,21 @@ for (const required of [
   "Definition discipline",
   "Action discipline",
   "Learning discipline",
-  "Public code",
-  "Public code inspection",
-  "How to inspect the public code.",
-  "Sentinalai is treated as public architecture signal, not private production proof.",
-  "publicCode.reviewRubric",
-  "publicCode.reviewRecordFields",
-  "publicCode.observedPublicStructure",
-  "Review question",
+  // Repointed 2026-08-30. The "Public code inspection" section was removed by Ravikanth's ruling:
+  // it published a reviewer rubric ("Review question / Look for / Do not infer") and a six-field
+  // review record schema to visitors, teaching a stranger how to grade the work before showing any
+  // of it. What survived is folded into the hero: both repository links, what the public repo
+  // actually contains, and the boundary as one plain sentence.
+  //
+  // Note these pins are checked against workContractSource, which joins the page WITH
+  // content/public-code.json - so a pin matching only the JSON passes while rendering nothing.
+  // That is how several of the old pins stayed green. Pin page-only strings here.
+  "an incident-investigation pipeline with deterministic playbooks, policy gates, memory, receipts",
+  "It shows you the architecture I argue for.",
+  "not evidence of what runs in production anywhere",
   "publicCode.entries[0].href",
   "publicCode.entries[1].href",
   "Sentinalai",
-  "Do not claim production adoption, private deployment details, internal integrations, repository metrics, or code behavior that is not visible in public source.",
   "/wiki/operational-intelligence-canonical-doctrine",
   "/wiki/operational-intelligence-reference-architecture",
   "/wiki/operational-intelligence-evidence-pack",
@@ -353,6 +356,22 @@ for (const required of [
   "/background"
 ]) {
   expect(workContractSource.includes(required), `/work missing reviewer proof spine contract: ${required}`);
+}
+
+// Ravikanth's ruling, 2026-08-30: the reviewer rubric and the review-record schema are not visitor
+// copy. They stay in content/public-code.json as a worksheet; they must not be rendered on /work.
+for (const forbidden of [
+  "publicCode.reviewRubric",
+  "publicCode.reviewRecordFields",
+  "publicCode.observedPublicStructure",
+  "Review question",
+  "What review should record.",
+  "How to inspect the public code."
+]) {
+  expect(
+    !workPage.includes(forbidden),
+    `/work renders reviewer-rubric material that a 2026-08-30 ruling removed: ${forbidden}. It teaches a visitor how to grade the work instead of showing it. Keep it in content/public-code.json.`
+  );
 }
 
 

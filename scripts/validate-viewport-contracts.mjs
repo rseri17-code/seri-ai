@@ -89,7 +89,12 @@ const routeContracts = [
   {
     route: "/work",
     file: "app/work/page.tsx",
-    minResponsiveTokens: 9,
+    // Lowered 9 -> 6 on 2026-08-30 after the reviewer-rubric section was removed. This floor
+    // encoded the assumption that a page only ever grows: deleting a two-column section took the
+    // count to 7 and failed the build for subtracting, which is the same harness pathology as the
+    // prerender-count and HTML-file floors. The invariant that matters is that the page still
+    // adapts, and the `required` list below asserts that directly by naming the breakpoints.
+    minResponsiveTokens: 6,
     required: [
       "Operating arc",
       "md:grid-cols-2",

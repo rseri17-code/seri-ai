@@ -92,9 +92,11 @@ const routeContracts = [
       "Constraints the architecture preserves.",
       "Start with operational evidence before model reasoning.",
       "Treat AI action as governed execution, not autonomous heroics.",
-      "How to inspect the public code.",
+      // Repointed 2026-08-30: the reviewer-rubric section was removed from /work by ruling. What
+      // it usefully carried survives in the hero, asserted here instead.
+      "an incident-investigation pipeline with deterministic playbooks, policy gates, memory, receipts",
       "Sentinalai",
-      "Do not claim production adoption, private deployment details, internal integrations, repository metrics, or code behavior that is not visible in public source.",
+      "not evidence of what runs in production anywhere",
       "GitHub",
       "LinkedIn",
       "owned every stage"

@@ -58,16 +58,18 @@ export default function WorkPage() {
           <p className="mt-3 max-w-4xl text-base leading-7 text-slate-400">
             That work is not public. What follows is, and everything below states what it proves and what it does not.
           </p>
-          <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-300">
-            Inspect{" "}
-            <a href={publicCode.entries[0].href} target="_blank" rel="noreferrer" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
-              GitHub
-            </a>{" "}
-            and{" "}
+          <p className="mt-4 max-w-4xl text-base leading-7 text-slate-300">
+            The public one is{" "}
             <a href={publicCode.entries[1].href} target="_blank" rel="noreferrer" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
               Sentinalai
+            </a>{" "}
+            &mdash; an incident-investigation pipeline with deterministic playbooks, policy gates, memory, receipts, and
+            model assistance kept optional. Read it, along with the rest of my{" "}
+            <a href={publicCode.entries[0].href} target="_blank" rel="noreferrer" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
+              GitHub
             </a>
-            . Do not infer private implementation details from public source alone.
+            . It shows you the architecture I argue for. It is not evidence of what runs in production anywhere, and
+            nothing in it should be read back onto a private system.
           </p>
         </Card>
       </Section>
@@ -142,52 +144,6 @@ export default function WorkPage() {
             </Link>
           ))}
         </div>
-      </Section>
-
-      <Section eyebrow="Public code inspection" title="How to inspect the public code.">
-        <div className="grid gap-4 lg:grid-cols-[0.88fr_1.12fr]">
-          <Card className="border-mint/25 bg-mint/[0.045]">
-            <GitBranch className="mb-5 text-mint" />
-            <h2 className="text-3xl font-semibold text-white">Sentinalai is treated as public architecture signal, not private production proof.</h2>
-            <p className="mt-4 text-base leading-7 text-slate-300">The public repository reference gives reviewers structure to inspect.</p>
-            <div className="mt-3 rounded border border-amber/25 bg-amber/[0.06] px-4 py-3 text-sm leading-6 text-amber">
-              {publicCode.entries.slice(0, 2).map((entry) => (
-                <p key={entry.href}>{entry.proofBoundary}</p>
-              ))}
-            </div>
-            <div className="mt-5 grid gap-3">
-              {publicCode.observedPublicStructure.slice(0, 2).map((item) => (
-                <p key={item} className="rounded border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-slate-200">
-                  {item}
-                </p>
-              ))}
-            </div>
-          </Card>
-          <div className="grid gap-3 md:grid-cols-2">
-            {publicCode.reviewRubric.slice(0, 2).map((item) => (
-              <Card key={item.question} className="p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Review question</p>
-                <h3 className="mt-3 font-semibold leading-6 text-white">{item.question}</h3>
-                <p className="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-mint">Look for</p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{item.lookFor}</p>
-                <p className="mt-3 text-xs leading-5 text-amber">{item.doNotInfer}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-        <Card className="mt-4 border-white/10 bg-black/20">
-          <h2 className="text-2xl font-semibold text-white">What review should record.</h2>
-          <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-300">
-            A useful review produces evidence, not praise. Capture the surface, behavior, verdict, and next proof.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {publicCode.reviewRecordFields.map((item) => (
-              <span key={item.field} className="rounded border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-mint">
-                {item.field}
-              </span>
-            ))}
-          </div>
-        </Card>
       </Section>
 
       <Section eyebrow="Project proof" title="What each project proves, and what it does not.">
