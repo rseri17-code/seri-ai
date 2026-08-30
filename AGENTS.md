@@ -9,10 +9,11 @@ Both agents serve one mission and one protocol:
 
 1. **`NORTH_STAR.md`** — the authoritative goal, authored by Ravikanth. Read it before deciding what to work on. Before implementing any change, apply its final rule: does this materially improve the definitive public representation of Ravikanth Seri, his career, his current work, and his evolving body of engineering knowledge? If not, do not implement it.
 2. **`CLAUDE_HANDOFF.md`** — the live working protocol between the agents: role split, validation gates, handoff checklist, and current status. Read it at the start of every session. Update your status/sync section at the end of any session that pushes.
+3. **`PROJECT_LEAD_ASSIGNMENTS.md`** — active work ordered by the Project Lead (Grok). When present and marked ACTIVE, it sets the current sprint priority on top of STATE OF PLAY. Read it after NORTH_STAR and before choosing work.
 
 ## Coordination rules (both agents)
 
-- Git is the source of truth. `git fetch` before starting work; read the newest `CLAUDE_HANDOFF.md` from the remote, not from memory.
+- Git is the source of truth. `git fetch` before starting work; read the newest `CLAUDE_HANDOFF.md` and `PROJECT_LEAD_ASSIGNMENTS.md` from the remote, not from memory.
 - Branch conventions: Codex works on `main` or `codex/*`. Claude works on `claude/*` and merges the latest `main` into its branch before pushing. Never rewrite history on a branch the other agent (or Ravikanth) owns.
 - Nothing is pushed unless the full `npm test` and `npm run build` pass locally. No exceptions, including documentation-only changes — the harness gates the handoff contract too.
 - Copy contracts live in the validators (`validate:coherence`, `validate:rendered`, `validate:viewport`, `validate:handoff`). Whoever changes pinned copy updates the pins in the same commit.
@@ -71,13 +72,15 @@ centre of the site.
 Full rationale, rulings and the substance-to-scaffolding diagnosis are in CLAUDE_HANDOFF.md under
 the same heading. Read it before touching routes.
 
-## Where to start — 2026-08-29
+## Where to start — 2026-08-29 (updated by Project Lead)
 
-Read **CLAUDE_HANDOFF.md, the STATE OF PLAY block at the very top**, before touching anything. It is
-the current truth; everything below it in that file is chronological history and may be stale.
+1. `git fetch` and read **`PROJECT_LEAD_ASSIGNMENTS.md`** if it is marked ACTIVE.
+2. Read **CLAUDE_HANDOFF.md, the STATE OF PLAY block at the very top**.
+3. Execute the active Project Lead assignment in lane order (Codex structure first for Patterns; then Claude copy).
 
-It carries: measured state, the six decisions that must not be reopened, the open risks and
-unverified claims, three harness pathologies that will bite you, and the priority order.
+**Active assignment (2026-08-29):** Patterns ordered operating model + desktop nav mid-word wrap fix. Full briefs in `PROJECT_LEAD_ASSIGNMENTS.md`.
+
+STATE OF PLAY still carries: measured state, decisions that must not be reopened, open risks, harness pathologies, and longer-term priority order (essays, content-data layer, route merges, visual QA, domain).
 
 Two things that will cost you time if you miss them: stage deletions before running the suite
 (`validate-security-hygiene` reads git-tracked files), and clear `.next/types` after removing a
