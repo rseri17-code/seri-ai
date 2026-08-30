@@ -310,6 +310,59 @@ complete.
   carry no baseline or window. On a site whose thesis is *show your evidence*, an unsourced
   percentage is the weakest thing on the page.
 
+## HOMEPAGE REFINEMENT PASS, 2026-08-30 (second brief)
+
+A refinement of the shipped redesign. The seven sections, positioning, two hero actions, reduced
+nav and the Operations Room replay are unchanged and stay ruled.
+
+**Measured, at `1f26f0d`:**
+
+| | Before refinement | After |
+| --- | --- | --- |
+| Copy in `<main>` | 1,007 words | **953 (-5.4%)** |
+| Desktop page height | 7,564 px | **7,477 px** |
+| Mobile page height | 11,327 px | **10,897 px** |
+| Worst CLS over 20 loads | **0.1933** | **0** |
+| LCP desktop / mobile (4x CPU throttle) | — | **192 ms / 176 ms** |
+| Transfer desktop / mobile | — | 323 KB / 249 KB |
+| Overflow + sub-44px targets, 7 widths | 0 / 0 | 0 / 0 |
+
+**The CLS failure was real and is worth remembering.** Under streaming SSR the footer and the beta
+feedback block painted at y=726 *inside* a 900px viewport, then were pushed down when `main`'s
+content arrived. That is a 0.1933 spike against a 0.05 threshold, on roughly one load in ten - which
+is why it never showed up in single-run checks. **Root cause: `main` reserved no height.** It now
+carries `min-h-[calc(100vh-4.75rem)]`, so the reflow happens entirely below the fold. Measured 0
+across 20 loads at both 1440x900 and 390x844.
+
+Note the first attempt reserved height on the feedback block instead. That was the wrong cause and
+was reverted; only its genuine 44px tap-target fix was kept. **Diagnose CLS from
+`layout-shift` source geometry, not from which element the entry names first.**
+
+**COPY REDUCTION FELL SHORT AND HERE IS THE ARITHMETIC.** The brief asked for ~15% (target ~856
+words). Delivered 953, -5.4%. Prose trims removed roughly 98 words across the three bodies of work,
+the thesis section, the flagship intro and the closing. The same brief's career-arc requirement -
+each phase must show what it taught *and* what that enabled - added roughly 44 words back, plus a
+24-word closing paragraph for "why the thesis could only emerge from the whole journey". Net -54.
+
+Per-section word counts at 1440px, so the next pass can aim precisely:
+Hero 113 · Thesis 118 · Flagship 123 · Selected work 230 · Career arc 194 · Selected ideas 102 ·
+Closing 73.
+
+**Closing the remaining gap requires deleting something the brief also requires.** The only block
+big enough is Selected ideas (102 words), whose article deks are the "one-sentence relevance" the
+brief asks for - and those deks are the canonical ones in `content/articles.json`, shared with
+`/ideas` and `/library`, which this brief scoped out. **Ravikanth's call**, not an agent's: either
+accept ~950 words, or drop the deks from the homepage rendering only.
+
+**The 120+ applications claim was verified, not assumed.** It appears in `content/resume.json`
+(rendered on `/resume`) and in the published, downloadable `public/ravi-seri-public-resume.txt`.
+Retained. The separate standing caveat still applies and is unrelated to verification: it carries no
+stated baseline or window, like the other published metrics.
+
+**Not measured, still.** No Lighthouse run - the tooling is not installed here. LCP, CLS, FCP and
+transfer weight above are real Chromium measurements from a production build; Performance,
+Accessibility, Best Practices and SEO *scores* are not, and must not be reported as if they were.
+
 ## HOMEPAGE REDESIGN — RULED AND SHIPPED, 2026-08-30
 
 Ravikanth issued a homepage redesign brief. It is a **new ruling and it supersedes the 2026-08-29
