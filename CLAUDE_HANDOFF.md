@@ -4,7 +4,7 @@ Last updated: 2026-08-30
 
 Current sync point for Claude review:
 
-- `4d281f1 Narrow background search routing`
+- `9e333e9 Refine background review and retrieval coverage`
 
 ---
 
