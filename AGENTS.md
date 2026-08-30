@@ -13,7 +13,7 @@ Both agents serve one mission and one protocol:
 
 ## Coordination rules (both agents)
 
-- Git is the source of truth. `git fetch` before starting work; read the newest `CLAUDE_HANDOFF.md` and `PROJECT_LEAD_ASSIGNMENTS.md` from the remote, not from memory.
+- Git is the source of truth. `git fetch` before starting work; read the newest `CLAUDE_HANDOFF.md`, `PROJECT_LEAD_ASSIGNMENTS.md`, and this file from the remote, not from memory.
 - Branch conventions: Codex works on `main` or `codex/*`. Claude works on `claude/*` and merges the latest `main` into its branch before pushing. Never rewrite history on a branch the other agent (or Ravikanth) owns.
 - Nothing is pushed unless the full `npm test` and `npm run build` pass locally. No exceptions, including documentation-only changes — the harness gates the handoff contract too.
 - Copy contracts live in the validators (`validate:coherence`, `validate:rendered`, `validate:viewport`, `validate:handoff`). Whoever changes pinned copy updates the pins in the same commit.
@@ -72,19 +72,84 @@ centre of the site.
 Full rationale, rulings and the substance-to-scaffolding diagnosis are in CLAUDE_HANDOFF.md under
 the same heading. Read it before touching routes.
 
+---
+
+## SESSION HANDOFF — 2026-08-29 (Project Lead / Grok)
+
+Read this block first after `git fetch`. It is the current session truth for both agents.
+
+### Shared state
+
+- **Thesis:** Context layer first; the agent is not the moat.
+- **Patterns ruling:** `/patterns` is an **ordered operating model** (four stages), not a flat card grid.
+- **All 10 patterns implemented** in `content/patterns.json` and covered by the stage grouping on `/patterns`:
+
+| Stage | Name | Slugs (all ten) |
+| --- | --- | --- |
+| 1 | Investigation Core | `evidence-driven-rca`, `confidence-calibrated-rca`, `transaction-journey-reconstruction`, `change-impact-reasoning` |
+| 2 | Structural Reality | `topology-aware-reasoning` |
+| 3 | Memory & Shared Context | `operational-memory`, `shared-context-for-enterprise-agents` |
+| 4 | Agent Control Plane | `agentic-incident-investigation`, `human-in-the-loop-operational-ai`, `evaluation-and-replay` |
+
+- Detail routes: `/patterns/[slug]` via `generateStaticParams` — do not break them.
+- Pattern body definitions (problem/solution/architecture/failure modes) stay in `content/patterns.json`. Do not invent new pattern names.
+
+### Commits landed by Project Lead this session
+
+| Commit | What |
+| --- | --- |
+| `bf885ac` | Nav mid-word break fix (`overflow-wrap` + `whitespace-nowrap` on nav links) |
+| `d2d64bb` | `/patterns` four-stage structure (Codex lane; all 10 patterns grouped) |
+| `f5b9a3f` | `PROJECT_LEAD_ASSIGNMENTS.md` + AGENTS pointer (initial assignment) |
+
+### Handoff to Codex
+
+**Status of your lane on this sprint:** structure goals for nav + patterns stages are **DONE** on `main`.
+
+**Do next (when free):**
+1. Pull `main`. Confirm `/patterns` stage hierarchy and that all ten detail routes still resolve.
+2. Run full `npm test` && `npm run build`. If any validator pin broke from the stage regroup, **repoint the pin** in the same commit — do not rewrite Claude-owned prose to feed a grep.
+3. Highest remaining Codex-lane value outside this sprint: content-data layer (registry entries that store label strings instead of prose hurt Ask).
+4. Do **not** rewrite visitor-facing stage framing or pattern descriptions.
+
+### Handoff to Claude
+
+**Status:** structure is stable on `main` — safe to write framing copy.
+
+**Do next:**
+1. Pull `main` (include `d2d64bb` stage structure).
+2. Branch `claude/patterns-operating-model`.
+3. Own `/patterns` visitor-facing framing only:
+   - Page states ordered **operating model**, not catalog
+   - Short stage descriptions (1–2 sentences each)
+   - **How to read this** block (Investigation → Structure → Memory → Control)
+   - Thesis legible: context layer first; agent is not the moat
+4. Do **not** rewrite underlying pattern definitions in `patterns.json` unless a factual error is found.
+5. **Hero H1 and hero lead remain frozen** (2026-08-29 ruling). Do not touch them.
+6. Update `CLAUDE_HANDOFF.md` when done; repoint pins deliberately if copy moves.
+
+**Acceptance for Claude:** a principal SRE can explain the four stages after one pass.
+
+### What neither agent should do
+
+- Reorder the four stages without Ravikanth
+- Drop or duplicate a pattern slug from the stage map
+- Deep-dive new graph/schema product work until Ravikanth asks (explicitly deferred this session)
+- Re-open collapsed-route or hero decisions already ruled
+
+### Longer-term priority (unchanged)
+
+Essays depth, content-data corpus quality, route merges, visual QA, domain migration — see CLAUDE_HANDOFF STATE OF PLAY.
+
+---
+
 ## Where to start — 2026-08-29 (updated by Project Lead)
 
-1. `git fetch` and read **`PROJECT_LEAD_ASSIGNMENTS.md`** if it is marked ACTIVE.
-2. Read **CLAUDE_HANDOFF.md, the STATE OF PLAY block at the very top**.
-3. Execute the active Project Lead assignment in lane order (Codex structure first for Patterns; then Claude copy).
-
-**Active assignment (2026-08-29):** Patterns ordered operating model + desktop nav mid-word wrap fix. Full briefs in `PROJECT_LEAD_ASSIGNMENTS.md`.
-
-STATE OF PLAY still carries: measured state, decisions that must not be reopened, open risks, harness pathologies, and longer-term priority order (essays, content-data layer, route merges, visual QA, domain).
-
-Two things that will cost you time if you miss them: stage deletions before running the suite
-(`validate-security-hygiene` reads git-tracked files), and clear `.next/types` after removing a
-route. Pin the shortest distinctive fragment, never a whole sentence.
+1. `git fetch`
+2. Read **SESSION HANDOFF** above
+3. Read **`PROJECT_LEAD_ASSIGNMENTS.md`**
+4. Read **CLAUDE_HANDOFF.md STATE OF PLAY**
+5. Execute your lane’s **Do next** only
 
 ## Ruled copy is machine-enforced
 
