@@ -34,11 +34,14 @@ export const metadata: Metadata = publicRouteMetadata({
 const patternStages: Array<{
   id: string;
   title: string;
+  blurb: string;
   slugs: string[];
 }> = [
   {
     id: "investigation-core",
     title: "Investigation Core",
+    blurb:
+      "Reconstruct what happened, along which transaction path, after which change \u2014 and say how confident you are. Everything downstream inherits the honesty of this stage.",
     slugs: [
       "evidence-driven-rca",
       "confidence-calibrated-rca",
@@ -49,16 +52,22 @@ const patternStages: Array<{
   {
     id: "structural-reality",
     title: "Structural Reality",
+    blurb:
+      "Reason about the system as it is right now, not as the architecture diagram remembers it. Topology is usually the difference between a plausible explanation and a correct one.",
     slugs: ["topology-aware-reasoning"]
   },
   {
     id: "memory-and-shared-context",
     title: "Memory & Shared Context",
+    blurb:
+      "Keep what the last investigation learned, and make it readable by every human and agent that comes next. Without this, every incident starts from zero.",
     slugs: ["operational-memory", "shared-context-for-enterprise-agents"]
   },
   {
     id: "agent-control-plane",
     title: "Agent Control Plane",
+    blurb:
+      "Only here does an agent belong in the loop: bounded in what it can do, evaluated against fixtures, replayable after the fact, and answerable to a named human. This stage is last for a reason.",
     slugs: [
       "agentic-incident-investigation",
       "human-in-the-loop-operational-ai",
@@ -77,8 +86,35 @@ function patternsForStage(slugs: string[]): Pattern[] {
 
 export default function PatternsPage() {
   return (
-    <Section eyebrow="Patterns" title="Architecture patterns for AI-native operational systems." level="h1">
-      <div className="space-y-14">
+    <Section eyebrow="Patterns" title="Ten patterns, in the order you have to build them." level="h1">
+      <div className="max-w-4xl">
+        <p className="text-lg leading-8 text-slate-200">
+          This is not a catalogue. The order is the argument: each stage depends on the one before it, and only the last stage
+          mentions agents at all.
+        </p>
+        <p className="mt-4 leading-7 text-slate-300">
+          Stages one to three are the context layer &mdash; what happened, what the system actually looks like, and what was already
+          learned. Stage four is where an agent plugs into it. Most teams start at stage four and discover the first three were the
+          hard part. That is the whole thesis in one page: <span className="text-white">the agent is not the moat.</span>
+        </p>
+        <div className="mt-6 rounded-lg border border-white/10 bg-black/20 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">How to read this</p>
+          <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold text-slate-200">
+            <span className="text-mint">Investigation</span>
+            <span aria-hidden="true" className="text-slate-600">&rarr;</span>
+            <span>Structure</span>
+            <span aria-hidden="true" className="text-slate-600">&rarr;</span>
+            <span>Memory</span>
+            <span aria-hidden="true" className="text-slate-600">&rarr;</span>
+            <span className="text-amber">Control</span>
+          </p>
+          <p className="mt-3 text-sm leading-6 text-slate-400">
+            Establish the facts, then the structure they sit in, then what you keep from them. Hand control to an agent last.
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-12 space-y-14">
         {patternStages.map((stage, index) => {
           const stagePatterns = patternsForStage(stage.slugs);
           if (stagePatterns.length === 0) return null;
@@ -92,6 +128,9 @@ export default function PatternsPage() {
                 <h2 id={`stage-${stage.id}`} className="text-xl font-semibold text-white md:text-2xl">
                   {stage.title}
                 </h2>
+                <p className="mt-2 w-full max-w-3xl text-sm leading-6 text-slate-300 md:text-base md:leading-7">
+                  {stage.blurb}
+                </p>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {stagePatterns.map((pattern) => (

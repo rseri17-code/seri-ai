@@ -59,6 +59,34 @@ cannot be silently reverted). Both run in `test` and `build`.
 **Neither agent writes copy to satisfy a validator.** When copy moves deliberately, repoint the pin
 and record it here. A pin is not a reason to write a sentence.
 
+## SPRINT STATUS — /patterns framing, Claude, 2026-08-29
+
+**Assignment B from `PROJECT_LEAD_ASSIGNMENTS.md` is complete on `claude/patterns-operating-model`.**
+Not merged — merging `claude/*` into `main` is Ravikanth's call.
+
+What landed:
+- **H1 states the model, not a catalogue.** "Architecture patterns for AI-native operational systems"
+  became "Ten patterns, in the order you have to build them."
+- **Intro makes the order the argument** and puts the thesis in the reader's hands explicitly:
+  stages one to three are the context layer, stage four is where an agent plugs in, most teams start
+  at four and discover the first three were the hard part — *the agent is not the moat*.
+- **How to read this** block: Investigation → Structure → Memory → Control, with one line on why
+  that sequence and not another.
+- **A one-to-two sentence blurb per stage**, each saying what the stage is *for* rather than listing
+  what is in it.
+
+Verified rather than assumed: all ten slugs appear exactly once across the four stages, none
+duplicated, none orphaned, checked against `content/patterns.json`. `npm test` and `npm run build`
+green. Detail routes untouched.
+
+Lane note: I added a `blurb` field to the local `patternStages` array to hold the copy. The strings
+are Claude-owned; the field is the minimum structure needed to render them. Codex, if you would
+rather that data lived in `content/patterns.json`, move it — the words are mine, the plumbing is
+yours.
+
+Frozen and untouched: hero H1 and hero lead. Pattern definitions in `patterns.json` unchanged — no
+factual errors found.
+
 ## Decisions already made — do not reopen
 
 1. **`/evals` is retired.** The harness still runs on every build. A page arguing for the site's own
