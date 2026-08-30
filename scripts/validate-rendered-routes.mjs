@@ -104,17 +104,29 @@ const routeContracts = [
     route: "/background",
     file: "background.html",
     maxBytes: 150_000,
+    // Repointed 2026-08-30 for the background rebuild: the six ruled sections, the approved scale
+    // signals, and the closing line, asserted against the built page.
     required: [
       "Where the thesis comes from.",
       "15+ years",
-      "Regulated by default",
-      "Why modernization mattered",
-      "What I do now",
-      "What the career arc trained him to protect.",
-      "Preserved constraint",
+      "Senior Technical Lead in AIOps and Observability",
+      "How the judgment formed.",
+      "Container platforms and observability",
+      "The roles behind it.",
+      "enterprise SRE investigation agent from thesis to production",
+      "120+ enterprise applications",
+      "What I build now.",
+      "What experience trained me to protect.",
+      "Where to look next.",
       "Ravikanth Seri",
-      "Operational Intelligence",
-      "public-safe"
+      "Operational Intelligence"
+    ],
+    before: [
+      ["Where the thesis comes from.", "How the judgment formed."],
+      ["How the judgment formed.", "The roles behind it."],
+      ["The roles behind it.", "What I build now."],
+      ["What I build now.", "What experience trained me to protect."],
+      ["What experience trained me to protect.", "Where to look next."]
     ]
   },
   {

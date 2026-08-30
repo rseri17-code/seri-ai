@@ -946,67 +946,56 @@ for (const required of [
 
 const backgroundPage = fs.readFileSync(path.join(root, "app", "background", "page.tsx"), "utf8");
 const backgroundContractSource = [backgroundPage, professionalGraphContent].join("\n");
+// Repointed 2026-08-30 for the background rebuild. The previous block pinned nearly every string
+// on the old page, so it asserted a layout and failed wholesale (24 errors) the moment the page was
+// restructured. These pin the six ruled sections, the approved evidence, and the four outbound
+// destinations - what the page must keep, not how it was arranged.
 for (const required of [
-  "professionalGraph.careerEvolution",
-  "professionalGraph.credibilityQuestions",
-  "professionalGraph.proofLinks",
-  "homeLinkedInSignals",
-  "const backgroundEvidence",
+  // Section 1 - opening: identity, origin, present-tense positioning, two actions.
   "Where the thesis comes from.",
   "being paged when distributed systems failed in ways no single dashboard explained",
-  "Fifteen years",
-  "Nobody could assemble it fast enough to decide anything.",
-  "Regulated by default",
-  "every consequential action needs a named owner",
-  "Why modernization mattered",
-  "telemetry volume and operational understanding are not the same thing",
-  "Current focus",
-  "reasons from attributable evidence instead of filling gaps with inference",
-  "Enterprise integration and infrastructure foundation",
-  "Platform modernization, identity, Kubernetes, and observability",
-  "Production AI systems and agentic operations",
-  "Ravikanth Seri's point of view.",
-  "Career spine",
+  "Senior Technical Lead in AIOps and Observability",
+  "View the work",
+  "View the resume",
+  // Section 2 - causal progression, five phases.
+  "How the judgment formed.",
+  "const progression",
+  "Container platforms and observability",
+  // Section 3 - career spine, with the approved scale signal kept visible.
   "The roles behind it.",
-  "resume.experience.map",
-  "role.employers.map",
-  "Each role above is abridged to its first three responsibilities.",
-  "Enterprise Integration",
-  "Middleware & API Architecture",
-  "Identity & Platform Engineering",
-  "Cloud & Kubernetes",
-  "Observability & AIOps",
-  "Production AI Systems",
-  "Agentic Operations & Operational Intelligence",
-  "Production delivery",
-  "The public-safe delivery chain from architecture to operating loop.",
-  "professionalGraph.productionDelivery",
-  "Architecture",
-  "Engineering",
-  "Integration",
-  "Evaluation",
-  "Governance",
-  "Production Delivery",
-  "Reviewer question",
-  "enterprise AI will fail operationally when context is reconstructed privately, repeatedly, and late",
-  "What the career arc trained him to protect.",
-  "professionalGraph.architectureJudgment",
-  "Preserved constraint",
-  "Questions this page should answer.",
-  "What stays out of scope?",
-  "Public-safe boundary: employer-specific systems, private operational artifacts, proprietary names, and confidential architecture are excluded.",
-  "Move from background to inspectable evidence.",
+  "enterprise SRE investigation agent from thesis to production",
+  "120+ enterprise applications",
+  "Carried forward.",
+  // Section 4 - three pillars.
+  "What I build now.",
+  "Production agent systems",
+  "The operational context layer",
+  "Evaluation and governance",
+  // Section 5 - exactly four principles.
+  "What experience trained me to protect.",
+  "Evidence before reasoning",
+  "Freshness before confidence",
+  "Evaluation and replay before trust",
+  "Human authority before consequential action",
+  // Section 6 - four destinations and the closing line.
+  "Where to look next.",
+  "I spent fifteen years with the",
   "/resume",
   "/work",
-  "Thesis Radar",
-  "ops for observability",
-  "observability for AI",
   "/investigation-room",
-  "/wiki/operational-intelligence-canonical-doctrine",
-  "/ask"
+  "/contact"
 ]) {
   expect(backgroundContractSource.includes(required), `/background missing operating-background contract: ${required}`);
 }
+
+// The 2026-08-30 ruling: one container-runtime product name is banned from /background - copy,
+// metadata, alt text, hidden text and the file itself. Asserted here so a future edit that
+// reintroduces it fails the build rather than shipping. /resume is deliberately not covered: one of
+// his certifications carries the term in its official credential name.
+expect(
+  !/kubernetes/i.test(backgroundPage),
+  "/background: the container-runtime product name banned by the 2026-08-30 ruling appears in app/background/page.tsx. Use \"container platforms\", \"enterprise platform modernization\" or \"platform engineering\"."
+);
 
 if (errors.length) {
   console.error(errors.join("\n"));
