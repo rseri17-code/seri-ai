@@ -129,6 +129,68 @@ errors for one intended change. It now pins section markers and outbound routes.
 pathology as the "bigger is better" floors documented further down: **fix the assumption, do not
 bend the page to the gate.**
 
+## 4b. `/background` rebuild + a site-wide rendering fix, 2026-08-30
+
+**Six ruled sections:** Opening · Career progression · Career spine · What I build now ·
+Principles · Proof and next step. Enforced by `validate-content-coherence` and
+`validate-rendered-routes` (which also asserts the order).
+
+| | Before | After |
+| --- | --- | --- |
+| Words in `<main>` | 1,493 | **1,014** |
+| Rendered height | 7,598 px | **5,694 px (-25.1%)** |
+| Links | 25 | **10** |
+| H1 / H2 | 1 / 36 | **1 / 5** |
+| Banned term occurrences | 16 | **0** |
+
+**TERMINOLOGY RULING — one container-runtime product name is banned from `/background`.** Ravikanth
+ruled it on 2026-08-30: his career is broader than one runtime. The term must not appear in copy,
+headings, metadata, alt text, hidden text, any content object read into the page, **or the page file
+itself** — which is why `app/background/page.tsx` describes the rule without spelling the term out.
+Use "container platforms", "enterprise platform modernization" or "platform engineering", whichever
+is accurate. **Rewrite the sentence; never find-and-replace** — the platform depth has to survive.
+
+A gate in `validate-content-coherence.mjs` fails the build if it reappears in that file.
+
+**Two consequences worth knowing before you touch this:**
+- The role scope and bullets on `/background` are **page-local**, not read from
+  `resume.experience[].bullets`. Those bullets name the runtime and are shared with `/resume`, which
+  the brief scoped out. Titles, periods and employers still come from `content/resume.json`, so the
+  career record stays single-source.
+- **Do not "fix" `content/resume.json` certifications to satisfy this rule.** One certification
+  carries the term in its official credential name. A credential name is a proper noun; it is
+  accurate, it is his, and the ruling does not cover `/resume`.
+
+**SITE-WIDE CHANGE MADE UNDER A PAGE-SCOPED BRIEF — `app/loading.tsx` was deleted. Flagging it
+because it touches all 26 routes.**
+
+`/background` is statically prerendered, yet every response carried an `aria-busy="true"` region
+labelled "Loading page" plus pulsing blocks, in front of content that had already arrived. Root
+cause: **a `loading.tsx` anywhere in the segment path creates a Suspense boundary whose content
+needs JavaScript to reveal.** Measured with JS disabled, *every* route rendered an empty `<main>`.
+
+| Route, JS disabled | Before | After |
+| --- | --- | --- |
+| `/background` | 0 words | **1,014** |
+| `/` | 0 | **953** |
+| `/work` | 0 | **1,409** |
+| `/resume` | 0 | **2,006** |
+| `/ask` | 0 | **787** |
+| `/investigation-room` | 0 | **1,503** |
+
+Skeletons: 0 everywhere. The brief's static-first requirement could not be met for `/background`
+without this, and on a prerendered page the skeleton was never buying anything. **If anyone wants
+the loading UI back for genuinely async routes, add `loading.tsx` to that segment only — not the
+root**, or those routes stop rendering without JavaScript again.
+
+Measured after: LCP 112 ms desktop / 176 ms mobile at 4x CPU throttle, CLS 0, transfer 321 KB /
+251 KB. Zero overflow and zero sub-44px targets at 320/375/390/768/1024/1440/1920. 13 of 13 links
+resolve 200.
+
+**Reminder that cost time here:** `validate-security-hygiene` reads git-tracked files, so **stage
+deletions (`git add -A`) before running `npm test`** or it crashes with ENOENT. Already documented
+below; it fired again on this change.
+
 ## 5. Known gaps — do not report these as done
 
 - **Homepage copy is 953 words vs a ~15% reduction target (~856).** Delivered -5.4%. Arithmetic is
