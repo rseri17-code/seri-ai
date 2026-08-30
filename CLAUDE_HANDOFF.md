@@ -4,7 +4,7 @@ Last updated: 2026-08-30
 
 Current sync point for Claude review:
 
-- `67b7faf Polish corpus prose in publishing index`
+- `9e333e9 Refine background review and retrieval coverage`
 
 ---
 
@@ -24,11 +24,11 @@ ever disagree, this section wins and the history is wrong.
 | `/framework` rendered | 124,039 |
 | Content registry items | 12 |
 | Ask fixtures | 117 passing |
-| Retrieval queries | 69 passing |
+| Retrieval queries | 71 passing |
 | Original writing | **11 articles, 2,973 words, mean 270** |
 | External practitioner reviews | **0** |
 | AI provider keys on Vercel | **none** — Ask runs lexical-only in production |
-| `npm test` / `npm run build` | green at `67b7faf` |
+| `npm test` / `npm run build` | green at `4d281f1` |
 
 ## What this project is now
 
@@ -53,8 +53,19 @@ compensating for the writing not being there.** Subtraction is the mission, not 
   with homepage first impression, Start Here proof route, Ask framing, Work and Background clarity,
   Operations Room usefulness, and whether Operational Intelligence is differentiated without
   overclaiming.
+- **Background page pickup:** the current intro still reads like an infrastructure memoir and the
+  metadata still names Kubernetes explicitly. Claude should rewrite the visitor-facing wording
+  toward the more precise enterprise systems / observability / identity and access management /
+  container platforms framing already agreed in chat, while keeping the page evidence-led and
+  public-safe.
 - **Codex's current lane:** keep strengthening the corpus and retrieval plumbing, then validate and
   push only when the change materially improves the public body of work.
+- **Latest Codex tweak:** background-oriented queries now get a narrower retrieval boost, so
+  person/background searches can find `/background` without stealing architecture-spec queries from
+  `/wiki/operational-intelligence-reference-architecture`.
+- **Latest background-structure tweak:** the background route now shows the full four-stage career
+  evolution instead of stopping at the third stage, so the current production-delivery stage is
+  visible in the review path.
 
 ## LANE SPLIT — RULED 2026-08-29
 
@@ -453,7 +464,7 @@ Recent improvements:
 - Scorecard graph-health and search-discoverability evidence counts are now checked against live `buildPublishingIndex`, `buildKnowledgeGraph`, and retrieval fixtures, so asset, relationship, framework-layer, registry, pattern, principle, and retrieval-query counts cannot drift silently.
 - Public-code evidence now avoids counted Sentinalai repository inventory claims; the public-code ledger tells reviewers what to inspect and `validate:content` rejects unvalidated repository inventory counts as proof.
 - Public-code/project proof is now a first-class proof-backlog gap. The Evidence Pack, Markdown export, Ask fallback, eval fixture, scorecard, and validators now state that GitHub/Sentinalai/Work/Projects proof requires reviewer walkthroughs and must not infer repository metrics, production adoption, private deployments, private integrations, or live incident outcomes.
-- The Work page now renders a compact project-code review-record checklist, and the public-code ledger defines the evidence fields reviewers should capture: repository surface inspected, visible engineering behavior, verdict, reasoning loss or ambiguity, boundary respected, and next proof. Search retrieval now covers 69 canonical queries, including public-code review-record intent routed to `/work`.
+- The Work page now renders a compact project-code review-record checklist, and the public-code ledger defines the evidence fields reviewers should capture: repository surface inspected, visible engineering behavior, verdict, reasoning loss or ambiguity, boundary respected, and next proof. Search retrieval covers 71 canonical queries. It includes public-code review-record intent routed to `/work`.
 - Proof-backlog search intent now stays anchored to the Evidence Pack even when the query mentions public-code/project proof; separate project-code inspection and review-record queries still route to `/work`.
 - The First-Time Visitor Review Kit now explicitly asks reviewers what Ravikanth's GitHub and Sentinalai public work show without inferring private production proof, and lists Work/Public Code Proof as a review asset. Validators now guard this path in both content validation and practitioner-review validation.
 - The Contact practitioner-review form now captures first-impression evidence as bounded categories: first-impression verdict, person-work fit, thesis clarity, proof-route fit, artifact recall, and demo feeling. Supabase views expose those fields and quorum logic treats weak first impressions as skeptical signal; no external first-impression verdicts are claimed yet.
@@ -917,7 +928,7 @@ Continued exercising the shipped Ask route against questions not previously cove
 
 - **Fixed — topic questions returned a bio.** "How does Ravikanth think about evaluation?" returned the identity sentence instead of anything about evaluation, because `asksAboutRavikanth` matched the name and prepended the identity answer. A question can name Ravikanth *and* a topic; when it does, the topic has to lead. Added `namesSpecificTopic` so person-framed topic questions ("how does he think about replay / observability / governance") route to content. This matters directly for NORTH STAR question #9 — "How does he think?" — whose topic-specific forms were all answering with a résumé.
 - **Fixed — every question produced the same follow-up.** Three unrelated questions all suggested "Show how the shared case moves through the ten-layer framework", the default fallback, which makes the feature read as canned. Added six topic-specific follow-ups (evaluation, replay, memory/research, orientation, observability, agentic action), each phrased to move a visitor from curiosity to inspection, e.g. "What has to be true before an agent is allowed to change production?"
-- **Improved — retrieval no longer scores on person tokens.** `localSearch` now drops name/stopword tokens ("ravikanth", "seri", "how", "does", "think") when the query also carries topical terms, so "how does Ravikanth think about evaluation" retrieves on *evaluation*. Falls back to the full term list when a query is only about the person. All 69 canonical retrieval checks still pass.
+- **Improved — retrieval no longer scores on person tokens.** `localSearch` now drops name/stopword tokens ("ravikanth", "seri", "how", "does", "think") when the query also carries topical terms, so "how does Ravikanth think about evaluation" retrieves on *evaluation*. Falls back to the full term list when a query is only about the person. All 71 canonical retrieval checks still pass.
 
 **FINDING (Codex lane) — lexical scorer favours long documents.** After the above, person-framed topic questions still surface `/work` rather than the evaluation or replay material. Cause: `localSearch` scores by raw term-hit count with ~15 hand-tuned per-URL boosts, and `/work` receives `workBoost: +10` whenever any query term appears in its keyword set — "evaluation" is one. A long document that mentions everything therefore wins on most topical queries. Suggested direction: length-normalise the base score (a TF-IDF-style divisor) so breadth stops beating relevance, and let the existing boosts ride on top. Claude did not restructure this: `lib/search.ts` is Codex-lane retrieval wiring, the change puts 69 retrieval fixtures at risk, and Codex is online — better done deliberately with its eval loop than unilaterally. Evidence: ask "How does Ravikanth think about evaluation?" and "…about replay?" against the running build; both cite `/work`.
 

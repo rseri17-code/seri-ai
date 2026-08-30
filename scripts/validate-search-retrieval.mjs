@@ -99,6 +99,14 @@ const cases = [
     expectedFirstUrl: "/background"
   },
   {
+    query: "What is Ravikanth's enterprise data architecture background?",
+    expectedFirstUrl: "/background"
+  },
+  {
+    query: "Where can I inspect Ravikanth's identity and access management background?",
+    expectedFirstUrl: "/background"
+  },
+  {
     query: "How does Ravikanth show production delivery judgment without private implementation details?",
     expectedFirstUrl: "/background"
   },

@@ -48,7 +48,7 @@ export default function BackgroundPage() {
   return (
     <>
       <Section eyebrow="Background" title="Where the thesis comes from." level="h1">
-        <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="grid gap-5 lg:grid-cols-[1.04fr_0.96fr]">
           <Card className="border-mint/25 bg-mint/[0.05]">
             <div className="mb-5 flex items-center gap-4">
               <Portrait size="lg" />
@@ -106,9 +106,12 @@ export default function BackgroundPage() {
               </a>
             </div>
           </Card>
-          <div className="grid gap-3">
-            {professionalGraph.careerEvolution.slice(0, 3).map((item) => (
-              <Card key={item.period} className="p-4">
+          <div className="grid gap-3 sm:grid-cols-2">
+            {professionalGraph.careerEvolution.slice(0, 4).map((item) => (
+              <Card
+                key={item.period}
+                className="relative h-full overflow-hidden p-4 before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-gradient-to-b before:from-mint before:via-signal before:to-amber before:opacity-80"
+              >
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{item.period}</p>
                 <h2 className="mt-3 text-xl font-semibold text-white">{item.stage}</h2>
                 <p className="mt-3 text-sm leading-6 text-slate-300">{item.summary}</p>

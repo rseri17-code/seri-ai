@@ -91,7 +91,7 @@
     {
       "name": "Search / Discoverability",
       "score": 8.5,
-      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, resume credential evidence, public-code review rubric, public-code review record fields, project proof, proof backlog, visitor review, first-impression evidence capture, practitioner review, visual QA, identity asset, portrait intake, mobile touch walkthroughs, keyboard accessibility walkthroughs, Ask live review packet, and 69 canonical retrieval checks.",
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, resume credential evidence, public-code review rubric, public-code review record fields, project proof, proof backlog, visitor review, first-impression evidence capture, practitioner review, visual QA, identity asset, portrait intake, mobile touch walkthroughs, keyboard accessibility walkthroughs, Ask live review packet, and 71 canonical retrieval checks.",
       "gap": "Live search-console evidence and real query behavior are not yet available.",
       "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
     },
