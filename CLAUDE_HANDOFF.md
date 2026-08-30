@@ -4,41 +4,56 @@ Last updated: 2026-08-30
 
 Current sync point for Claude review:
 
-- Last `main` reviewed and merged in: `9e333e9 Refine background review and retrieval coverage`
-- Branch head: `7141086` on `claude/patterns-operating-model` — **6 commits ahead of `main` (`2312eae`),
-  0 behind.** `npm test` and `npm run build` green at that commit.
+- **`main` is at `a929ef2`.** Ravikanth gave the go-ahead on 2026-08-30 and
+  `claude/patterns-operating-model` was fast-forwarded into it. `main` and the branch are the same
+  commit; there is nothing outstanding on the branch.
+- `npm test` and `npm run build` were run **on `main` after the merge**, both green, and all twelve
+  key routes plus `sitemap.xml` and `rss.xml` returned 200 from the production build.
 
-## MERGE-READY: what is waiting on Ravikanth
+## MERGED TO MAIN — 2026-08-30
 
-`claude/patterns-operating-model` carries three pieces of work that are finished, gated and pushed.
-**Nothing here is live** — `seri-ai.vercel.app` serves `main`, which has none of it.
+Ravikanth gave the explicit go-ahead. `claude/patterns-operating-model` fast-forwarded into `main`
+with no conflicts (`main` had not moved since `2312eae`, which was already an ancestor).
+63 files changed, 1,880 insertions, 983 deletions.
 
 | Commit | What |
 | --- | --- |
-| `4fcb417` | `/background` gets a career spine; the two sections that hid it are cut |
-| `2b18912` | Real titles and employers published (his 2026-08-30 ruling) |
+| `4fcb417` | `/background` career spine; the two sections hiding it cut |
+| `2b18912` | Real titles and employers published |
 | `b49481f` | Homepage rebuilt as seven ruled sections, led by identity |
 | `47c0efc` | Redesign ruling recorded in AGENTS.md + this file |
 | `1f26f0d` | Homepage refinement: thesis hierarchy, career staircase, editorial portrait, CLS fix |
-| `7141086` | Refinement measurements and the copy-reduction shortfall recorded |
+| `7141086` | Refinement measurements and the copy-reduction shortfall |
+| `37a3736` | Handoff sync pointer + merge-ready summary |
+| `230d5ad` | Codex start-here brief |
+| `26d8d78` | `/background` rebuilt as six sections; root `loading.tsx` removed |
+| `a929ef2` | Background rebuild and rendering fix recorded |
 
-**Three things need Ravikanth, not an agent:**
+**Post-merge verification, run on `main`:** `npm test` green · `npm run build` green ·
+`/`, `/background`, `/work`, `/resume`, `/framework`, `/library`, `/contact`, `/ask`,
+`/investigation-room`, `/patterns`, `/sitemap.xml`, `/rss.xml` all 200 from the production build.
 
-1. **Merge to `main`.** Per PROJECT_LEAD_ASSIGNMENTS this is his call. Until then the live site
-   shows the pre-redesign homepage and the old `/background`.
-2. **Homepage copy reduction stopped at -5.4%, against a ~15% target.** The arithmetic and the one
-   remaining option are in the refinement section below. Closing the gap means dropping the article
-   deks from the homepage, which are canonical content shared with `/ideas` and `/library`.
-3. **`/brief` is orphaned** by the homepage rebuild. It is on the authorized retirement list;
-   recommendation is to finish that retirement rather than link back to it.
+**Rollback point: `2312eae`** — the last commit before this merge. A revert of the merge range
+restores the pre-redesign homepage and the old `/background`.
 
-**Codex, on picking this up:** read the two 2026-08-30 rulings in AGENTS.md before touching
-`app/page.tsx` or `components/header.tsx`. The seven-section order, the hero, the five-item nav and
-the ruled copy are all enforced by build gates now — `validate:ruled`, `validate:viewport` (section
-order), and `validate:rendered` (rendered order). A failing gate there means a ruling was reverted,
-not that a pin needs moving.
+**Deployment is not verified.** The merge is pushed; whether Vercel has built and promoted it, and
+whether the production alias points at that deployment, has not been checked from here. Verify the
+live URL and hard-refresh before treating this as shipped.
 
----
+### Still open, and these are Ravikanth's calls, not an agent's
+
+1. **`app/loading.tsx` was deleted — a site-wide change made under a page-scoped brief.** Rationale
+   and the JS-disabled measurements for six routes are in §4b. If loading UI is wanted back for a
+   genuinely async route, add `loading.tsx` **to that segment only, never the root**, or those
+   routes stop rendering without JavaScript again.
+2. **Homepage copy is 953 words against a ~15% reduction target (~856).** Delivered -5.4%. Closing
+   the gap means dropping the article deks, which are canonical content shared with `/ideas` and
+   `/library`.
+3. **`/brief` is orphaned.** Its only inbound link was the persona grid the homepage brief removed.
+   It is on the authorized retirement list; finishing that retirement is the clean fix.
+4. **No Lighthouse scores anywhere in this work.** LCP, CLS, FCP and transfer weight are real
+   Chromium measurements from production builds. The four Lighthouse *scores* are not measured and
+   must not be reported as if they were.
 
 ---
 

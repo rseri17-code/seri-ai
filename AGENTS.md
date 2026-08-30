@@ -151,6 +151,36 @@ Essays depth, content-data corpus quality, route merges, visual QA, domain migra
 4. Read **CLAUDE_HANDOFF.md STATE OF PLAY**
 5. Execute your lane’s **Do next** only
 
+## MERGED TO MAIN — 2026-08-30
+
+Ravikanth gave the go-ahead. `claude/patterns-operating-model` is now in `main`; the two are the
+same commit. **The rulings below are live, not proposals.** Codex: pull `main` before starting.
+
+`main` was verified after the merge — `npm test` and `npm run build` green, twelve key routes plus
+sitemap and RSS returning 200 from the production build. Rollback point is `2312eae`.
+
+One change in that merge is wider than the briefs that produced it and is worth knowing about:
+**`app/loading.tsx` was deleted.** A `loading.tsx` anywhere in the segment path created a Suspense
+boundary whose content needed JavaScript to reveal, so every route rendered an empty `<main>` with
+JS disabled. Removing it fixed all of them. If loading UI is wanted back for a genuinely async
+route, add `loading.tsx` **to that segment only, never the root**.
+
+## RULED 2026-08-30 — /background is six sections, and one runtime name is banned there
+
+`/background` is: Opening · Career progression · Career spine · What I build now · Principles ·
+Proof and next step. First person throughout. Enforced by `validate-content-coherence` and
+`validate-rendered-routes`, which also asserts the order.
+
+**One container-runtime product name must not appear on `/background`** — copy, headings, metadata,
+alt text, hidden text, any content object read into the page, or the page file itself. A gate fails
+the build if it reappears. Rewrite the sentence, never find-and-replace: say "container platforms",
+"enterprise platform modernization" or "platform engineering". The exact term and full reasoning are
+in CLAUDE_HANDOFF.md §4b.
+
+**Do not "fix" `content/resume.json` certifications to satisfy this.** One certification carries the
+term in its official credential name. A credential name is a proper noun, and the ruling does not
+cover `/resume`.
+
 ## RULED 2026-08-30 — the homepage is seven sections, identity first
 
 Ravikanth issued a homepage redesign brief. It **supersedes the 2026-08-29 hero freeze**;
