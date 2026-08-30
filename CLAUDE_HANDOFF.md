@@ -310,6 +310,67 @@ complete.
   carry no baseline or window. On a site whose thesis is *show your evidence*, an unsourced
   percentage is the weakest thing on the page.
 
+## HOMEPAGE REDESIGN — RULED AND SHIPPED, 2026-08-30
+
+Ravikanth issued a homepage redesign brief. It is a **new ruling and it supersedes the 2026-08-29
+hero freeze**, which pinned the misfire line as the H1. `scripts/validate-ruled-copy.mjs` was
+updated in the same commit, per the AGENTS.md rule. Read this before touching `app/page.tsx`.
+
+**The ruled structure is seven sections in this exact order.** A section-order gate in
+`validate-viewport-contracts.mjs` and rendered-order assertions in `validate-rendered-routes.mjs`
+fail the build if they are reordered:
+
+1 Hero · 2 Signature thesis · 3 Flagship proof · 4 Selected work · 5 Career arc ·
+6 Selected ideas · 7 Closing invitation
+
+**What changed and why.** The old page had exceptional substance and exposed all of it at once:
+nine sections, ten nav items, an H1 spending four lines on an abstract negation, and both CTAs
+below the fold. Identity now comes before doctrine. The misfire line survives as the signature
+thesis in section 2, where it deepens comprehension instead of delaying it.
+
+**New component:** `components/operations-room-preview.tsx` — ten stages of OI-ROOM-001 with
+confidence that falls when a contradiction lands. Full ARIA tabs pattern with roving tabindex
+(arrow/Home/End keys move selection *and* focus), and identical content under
+`prefers-reduced-motion`. Nothing in it is drawn from a real incident.
+
+**Measured on a production build, not asserted:**
+
+| | Before | After |
+| --- | --- | --- |
+| Mobile page height (390px) | 16,653 px | **11,327 px** (-32%) |
+| Desktop page height (1440px) | 9,290 px | **7,564 px** (-19%) |
+| CTAs above fold at 1440x900 | no (987 px) | **yes (733 px)** |
+| CTAs above fold at 1280x800 | no | **yes (733 px)** |
+| Primary CTA above fold at 390x844 | no (1,095 px) | **yes (826 px)** |
+| Horizontal overflow, 7 widths | 0 | 0 |
+| Sub-44px tap targets | 1 (wordmark) | **0** |
+| Homepage links resolving 200 | — | **20 of 20** |
+| Nav items | 10 | **5 + Ask** |
+
+**Pins repointed deliberately, never by bending copy.** The coherence block was the worst case: it
+pinned essentially every string on the old homepage, so it asserted a *layout* and failed wholesale
+the moment the page was restructured. It now asserts invariants. Two gates were strengthened rather
+than weakened — they assert the ruled section order end to end. This is the same harness pathology
+already documented below: **fix the assumption, do not bend the page to the gate.**
+
+**Content relocated, not destroyed.** Verified present on its destination page before removal:
+falsification tests, category boundary and the harness thesis are on `/framework`; the contact
+reasons are on `/contact`. The inspection ledger and five-stop map were link indexes whose every
+destination is still linked from the homepage or nav.
+
+**KNOWN CONSEQUENCE — `/brief` is now orphaned.** Its only inbound link was the homepage
+reviewer-path grid the brief instructed us to remove. It was already absent from the sitemap before
+this change, and it is on the authorized retirement list, so this is not a regression against the
+plan — but it should not sit silently orphaned. **Recommended: complete its already-authorized
+retirement**, folding anything worth keeping into `/work`, rather than adding a link back.
+
+**Not measured, and not claimed.** No Lighthouse or Core Web Vitals run — the tooling is not
+installed in this environment and installing it into the repo was out of scope for a homepage
+brief. The build-time budget check and the measurements above are what exist. A 404 appears in the
+mobile console on full-page capture; it reproduces on the pre-change baseline and no failed request
+appears when responses are watched directly, so it is pre-existing and unidentified, not introduced
+here. Do not report performance scores until someone runs them.
+
 ## OSCILLATION EVENT — the homepage hero, 2026-08-29
 
 **This is the first time the brake in AGENTS.md has actually fired. Read it before touching the hero.**

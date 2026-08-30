@@ -151,6 +151,26 @@ Essays depth, content-data corpus quality, route merges, visual QA, domain migra
 4. Read **CLAUDE_HANDOFF.md STATE OF PLAY**
 5. Execute your lane’s **Do next** only
 
+## RULED 2026-08-30 — the homepage is seven sections, identity first
+
+Ravikanth issued a homepage redesign brief. It **supersedes the 2026-08-29 hero freeze**;
+`scripts/validate-ruled-copy.mjs` was updated in the same commit and now enforces the new ruling.
+
+Seven sections, this order, enforced by build gates:
+1 Hero · 2 Signature thesis · 3 Flagship proof · 4 Selected work · 5 Career arc ·
+6 Selected ideas · 7 Closing invitation
+
+**Codex: this is sanctioned, not churn.** Do not restore the old H1, the third hero CTA, the
+falsification matrix, the inspection ledger, the persona-route grid, the five-stop visitor map or
+the contact-reason grid to the homepage. Do not re-expand the nav past five items plus Ask.
+
+Structural work on the new page is welcome and wanted: `components/operations-room-preview.tsx` is
+the flagship and is the highest-value surface for performance and a11y attention. Its ARIA tabs
+pattern including roving-tabindex focus management is deliberate — keep it.
+
+Full rationale, measurements, and the one known consequence (`/brief` is now orphaned) are in
+CLAUDE_HANDOFF.md under the same heading.
+
 ## RULED 2026-08-30 — real titles and employers are published
 
 Ravikanth ruled: *"yes , use real titles and employers"*. `content/resume.json` now carries his real
