@@ -87,13 +87,13 @@ const referenceSources = [
     title: "Ravikanth Seri Practitioner Review Packet",
     description: "Public-safe external review protocol for evaluating Ravikanth Seri's professional representation, career arc, inspectable work, and Operational Intelligence body of work.",
     content:
-      `${practitionerReviewPacket.title}. ${practitionerReviewPacket.evidenceLevel} Purpose: ${practitionerReviewPacket.purpose} Review principle: ${practitionerReviewPacket.reviewPrinciple} Reviewer roles: ${practitionerReviewPacket.reviewerRoles.join(", ")}. Review sequence: ${practitionerReviewPacket.reviewSequence
+      `${practitionerReviewPacket.title}. ${practitionerReviewPacket.evidenceLevel} Purpose: ${practitionerReviewPacket.purpose} Review principle: ${practitionerReviewPacket.reviewPrinciple} Reviewer roles: ${formatNaturalList(practitionerReviewPacket.reviewerRoles)}. Review sequence: ${practitionerReviewPacket.reviewSequence
         .flatMap((step) => [step.step, step.route, step.question, step.failureSignal])
         .join(". ")}. Review dimensions: ${practitionerReviewPacket.reviewDimensions
         .flatMap((dimension) => [dimension.name, dimension.question, dimension.evidenceToInspect.join(", ")])
         .join(". ")}. Minimum external evidence quorum: ${practitionerReviewPacket.minimumEvidenceQuorum.minimumReviewerCount} public-safe reviews. Required coverage: ${practitionerReviewPacket.minimumEvidenceQuorum.requiredCoverage.join(" ")} Completion rule: ${practitionerReviewPacket.minimumEvidenceQuorum.completionRule} Revision trigger: ${practitionerReviewPacket.minimumEvidenceQuorum.revisionTrigger} Review run protocol: ${practitionerReviewPacket.reviewRunProtocol
         .flatMap((phase) => [phase.phase, phase.instruction])
-        .join(". ")}. Safe metadata only: ${practitionerReviewPacket.safeMetadataOnly.join(", ")}. Do not capture: ${practitionerReviewPacket.doNotCapture.join(", ")}. Verdicts: ${practitionerReviewPacket.verdicts.join(", ")}. No external practitioner verdicts have been published yet.`,
+        .join(". ")}. Safe metadata only: ${formatNaturalList(practitionerReviewPacket.safeMetadataOnly)}. Do not capture: ${formatNaturalList(practitionerReviewPacket.doNotCapture)}. Verdicts: ${formatNaturalList(practitionerReviewPacket.verdicts)}. No external practitioner verdicts have been published yet.`,
     url: "/publication-pack/ravikanth-seri-practitioner-review-packet.md",
     type: "registry" as const,
     category: "Quality Evidence",
@@ -105,9 +105,8 @@ const referenceSources = [
     title: "Ask Ravi Live Review Packet",
     description: "Public-safe review protocol for reviewer-labeled Ask Ravikanth sessions across local fallback, vector retrieval, and model synthesis.",
     content:
-      `${askLiveReviewPacket.title}. ${askLiveReviewPacket.evidenceLevel} Purpose: ${askLiveReviewPacket.purpose} Review modes: ${askLiveReviewPacket.reviewModes
-        .map((mode) => mode.mode)
-        .join(", ")}. Required prompt categories: ${askLiveReviewPacket.requiredPromptCategories.join(", ")}. Safe metadata only: ${askLiveReviewPacket.safeMetadataOnly.join(", ")}. Do not capture: ${askLiveReviewPacket.doNotCapture.join(", ")}. No reviewer-labeled live Ask sessions have been published yet. No aggregate quality score is published until multiple reviewer-labeled sessions exist.`,
+      `${askLiveReviewPacket.title}. ${askLiveReviewPacket.evidenceLevel} Purpose: ${askLiveReviewPacket.purpose} Review modes: ${formatNaturalList(askLiveReviewPacket.reviewModes
+        .map((mode) => mode.mode))}. Required prompt categories: ${formatNaturalList(askLiveReviewPacket.requiredPromptCategories)}. Safe metadata only: ${formatNaturalList(askLiveReviewPacket.safeMetadataOnly)}. Do not capture: ${formatNaturalList(askLiveReviewPacket.doNotCapture)}. No reviewer-labeled live Ask sessions have been published yet. No aggregate quality score is published until multiple reviewer-labeled sessions exist.`,
     url: "/publication-pack/ask-ravi-live-review-packet.md",
     type: "registry" as const,
     category: "Quality Evidence",
@@ -443,7 +442,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
     id: `project:${project.slug}`,
     title: project.name,
     description: project.summary,
-    content: `${project.name}. ${project.summary}. ${project.detail}. ${project.capabilities.join(", ")}`,
+    content: `${project.name}. ${project.summary}. ${project.detail}. ${formatNaturalList(project.capabilities)}`,
     url: `/projects/${project.slug}`,
     type: "project" as const,
     category: "Projects",
@@ -487,7 +486,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
         item.title,
         item.summary,
         `This entry is ${item.type === "artifact" ? "an artifact" : `a ${item.type}`}.`,
-        proseList("It", item.frameworkLayers, "covers"),
+        proseList("Framework layers", item.frameworkLayers, "include"),
         proseList("Related principles", item.relatedPrinciples),
         proseList("Related patterns", item.relatedPatterns),
         proseList("Related artifacts", item.relatedArtifacts),

@@ -1,10 +1,10 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-08-29
+Last updated: 2026-08-30
 
 Current sync point for Claude review:
 
-- `e8262b0 Homepage restructure: orientation, conversion, and the missing Ask nav entry`
+- `67b7faf Polish corpus prose in publishing index`
 
 ---
 
@@ -28,7 +28,7 @@ ever disagree, this section wins and the history is wrong.
 | Original writing | **11 articles, 2,973 words, mean 270** |
 | External practitioner reviews | **0** |
 | AI provider keys on Vercel | **none** — Ask runs lexical-only in production |
-| `npm test` / `npm run build` | green at `e8262b0` |
+| `npm test` / `npm run build` | green at `67b7faf` |
 
 ## What this project is now
 
@@ -40,6 +40,21 @@ The reason, stated once so it does not get re-litigated: the site carried ~3,000
 writing supported by 35 routes, 60+ assets, 26 validators, a scorecard, a proof backlog and an eval
 harness. Every reference site — Ng, Karpathy, Weng, Huyen — inverts that ratio. **The apparatus was
 compensating for the writing not being there.** Subtraction is the mission, not a detour.
+
+## Current roles and pickup
+
+- **Claude owns visitor-facing copy.** That means headings, paragraphs, labels, link text, button
+  text, alt text, section titles, section order, editorial voice, and the first-impression critique
+  of how the site reads.
+- **Codex owns the non-copy layer.** That means data wiring, imports, props, component structure,
+  layout, styling, a11y attributes, performance, build config, validators, and the retrieval and
+  content-data plumbing.
+- **Claude's current pickup:** review the latest pushed state for first-10-minute clarity. Start
+  with homepage first impression, Start Here proof route, Ask framing, Work and Background clarity,
+  Operations Room usefulness, and whether Operational Intelligence is differentiated without
+  overclaiming.
+- **Codex's current lane:** keep strengthening the corpus and retrieval plumbing, then validate and
+  push only when the change materially improves the public body of work.
 
 ## LANE SPLIT — RULED 2026-08-29
 

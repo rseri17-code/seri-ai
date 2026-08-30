@@ -13,7 +13,7 @@ import {
   type Principle,
   type Project
 } from "../content/site";
-import { getPublishedWikiNotes, proseList, type WikiNote } from "./content";
+import { formatNaturalList, getPublishedWikiNotes, proseList, type WikiNote } from "./content";
 
 export type PublishingStatus = "draft" | "review" | "approved" | "published" | "archived" | "planned";
 
@@ -258,7 +258,7 @@ function patternAsset(pattern: Pattern): PublishingAsset {
 }
 
 function projectAsset(project: Project): PublishingAsset {
-  const content = `${project.name}. ${project.summary}. ${project.detail}. ${project.capabilities.join(", ")}`;
+  const content = `${project.name}. ${project.summary}. ${project.detail}. ${formatNaturalList(project.capabilities)}`;
   const frameworkLayers = inferFrameworkLayers(content);
   const asset: PublishingAsset = {
     id: `project:${project.slug}`,
@@ -381,7 +381,7 @@ function registryAsset(item: ContentRegistryItem): PublishingAsset {
     item.title,
     item.summary,
     `This entry is ${item.type === "artifact" ? "an artifact" : `a ${item.type}`}.`,
-    proseList("It", item.frameworkLayers, "covers"),
+    proseList("Framework layers", item.frameworkLayers, "include"),
     proseList("Related principles", item.relatedPrinciples),
     proseList("Related patterns", item.relatedPatterns),
     proseList("Related artifacts", item.relatedArtifacts),
@@ -634,7 +634,7 @@ export function getPublicationChangelog() {
       version: `pub-${asset.updatedAt}-${asset.slug}`,
       date: asset.updatedAt,
       title: `Published: ${asset.title}`,
-      description: `${asset.description} Connected to ${asset.frameworkLayers.slice(0, 3).join(", ") || "Operational Intelligence"}.`,
+      description: `${asset.description} Connected to ${formatNaturalList(asset.frameworkLayers.slice(0, 3)) || "Operational Intelligence"}.`,
       tags: unique([asset.assetType, asset.topic, ...asset.frameworkLayers.slice(0, 2)])
     }));
 }
