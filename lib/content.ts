@@ -980,7 +980,9 @@ export function searchPublicContent(query: string, category = "All", tag = "All"
     .filter((source) => tag === "All" || source.tags.includes(tag))
     .map((source) => {
       const haystack = `${source.title} ${source.description} ${source.content} ${source.tags.join(" ")}`.toLowerCase();
-      const score = terms.length ? terms.reduce((sum, term) => sum + (haystack.includes(term) ? 1 : 0), 0) : 1;
+      const tokenCount = haystack.split(/\W+/).filter((term) => term.length > 2).length;
+      const lengthPenalty = Math.max(1, Math.sqrt(tokenCount / 120 + 1));
+      const score = terms.length ? terms.reduce((sum, term) => sum + (haystack.includes(term) ? 1 : 0), 0) / lengthPenalty : 1;
       return { ...source, score };
     })
     .filter((source) => source.score > 0)

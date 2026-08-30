@@ -422,6 +422,14 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
   const relatedArtifacts = inferRelatedArtifacts(question);
   const referenceAssetMatches = inferReferenceAssetMatches(question);
   const suggestedNextQuestion = inferSuggestedNextQuestion(question);
+  const doctrineDefinitionContext =
+    /how should operational intelligence be defined|how is operational intelligence different from observability|what is operational intelligence|define operational intelligence|canonical definition/.test(lower)
+      ? " Operational Intelligence is the reasoning layer between enterprise telemetry and human decision."
+      : "";
+  const implementationBehaviorContext =
+    /implementation behavior|governance/.test(lower)
+      ? " Prefer the Operational Intelligence Reference Architecture for implementation behavior and governance."
+      : "";
   const asksAboutReviewSpine =
     /architecture judgment|architecture|doctrine|reference|public evidence|proof|review|inspect|artifact/.test(lower);
   const asksAboutClaimPosture =
@@ -527,7 +535,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       : "";
 
   return [
-    `Direct answer: ${asksAboutRavikanth && !namesSpecificTopic ? `${ravikanthContext}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}` : `${direct}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}`}`,
+    `Direct answer: ${asksAboutRavikanth && !namesSpecificTopic ? `${ravikanthContext}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}` : `${doctrineDefinitionContext}${implementationBehaviorContext}${direct}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}`}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     // These blocks used to be emitted on every answer, which meant roughly 150 words of

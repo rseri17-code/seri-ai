@@ -298,6 +298,8 @@ Recent improvements:
 - Ask Ravikanth is framed as an evidence console over Ravikanth's public professional graph.
 - Keyboard accessibility walkthrough evidence exists for Ask Ravikanth and Operations Room.
 - Search retrieval covers 69 canonical queries.
+- Retrieval now applies a small length penalty in the public search scorer so broad documents stop crowding out narrower matches; Ask remains anchored on the canonical doctrine and reference-architecture phrases for definition and governance prompts.
+- Ask evals were revalidated after the retrieval adjustment and returned 117/117 passing fixtures.
 - Ask deterministic fixtures cover 117 passing cases.
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.

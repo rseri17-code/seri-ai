@@ -219,6 +219,16 @@ function normalizeQueryIntent(query: string) {
     .replace(/\bpobservability\b/g, "observability");
 }
 
+function countSearchTokens(text: string) {
+  return text.split(/\W+/).filter((term) => term.length > 2).length;
+}
+
+function normalizeSearchScore(baseScore: number, haystack: string) {
+  const tokenCount = countSearchTokens(haystack);
+  const lengthPenalty = Math.max(1, Math.sqrt(tokenCount / 120 + 1));
+  return baseScore / lengthPenalty;
+}
+
 // Person-name tokens carry no topical signal: "how does Ravikanth think about evaluation"
 // should retrieve on "evaluation", not on the name that appears in almost every document.
 const PERSON_TOKENS = new Set(["ravikanth", "seri", "his", "him", "does", "think", "about", "what", "how", "the", "and", "for"]);
@@ -245,6 +255,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         source.assetType
       ].join(" ").toLowerCase();
       const baseScore = terms.reduce((sum, term) => sum + (lower.includes(term) ? 1 : 0) + (source.title.toLowerCase().includes(term) ? 2 : 0), 0);
+      const normalizedBaseScore = normalizeSearchScore(baseScore, lower);
       const canonicalDefinitionBoost =
         source.url === doctrineUrl && /what is operational intelligence|how should operational intelligence be defined|define operational intelligence|definition of operational intelligence|canonical definition/.test(lowerQuery)
           ? 50
@@ -304,7 +315,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         source.url === portraitIntakeUrl && /approved portrait|portrait intake|portrait validation|portrait photo.*available|real portrait|source image|public-use permission/.test(lowerQuery) ? 140 : 0;
       const visualQaBoost =
         source.url === visualQaUrl &&
-        /(visual qa|mobile qa).*(screenshot|viewport|evidence)|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error|touch walkthrough/.test(lowerQuery)
+        /(visual qa|mobile qa).*(screenshot|viewport|evidence)|screenshot artifacts|screenshots|viewport evidence|first[- ]viewport|horizontal overflow|console-error|console error/.test(lowerQuery)
           ? 130
           : 0;
       const touchWalkthroughBoost =
@@ -367,7 +378,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
           : 0;
       const directReferenceBoost = directReferenceBoosts.some(([pattern, url]) => source.url === url && !(asksForProofBacklog && url === workUrl) && pattern.test(lowerQuery)) ? 40 : 0;
       const score =
-        baseScore +
+        normalizedBaseScore +
         canonicalDefinitionBoost +
         doctrineBoost +
         referenceArchitectureBoost +
