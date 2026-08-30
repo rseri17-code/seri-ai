@@ -4,7 +4,7 @@ Last updated: 2026-08-30
 
 Current sync point for Claude review:
 
-- `67b7faf Polish corpus prose in publishing index`
+- `db92b9b Refresh Claude handoff sync and role split`
 
 ---
 
@@ -28,7 +28,7 @@ ever disagree, this section wins and the history is wrong.
 | Original writing | **11 articles, 2,973 words, mean 270** |
 | External practitioner reviews | **0** |
 | AI provider keys on Vercel | **none** — Ask runs lexical-only in production |
-| `npm test` / `npm run build` | green at `67b7faf` |
+| `npm test` / `npm run build` | green at `db92b9b` |
 
 ## What this project is now
 
