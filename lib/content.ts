@@ -487,7 +487,7 @@ export function buildPublicSourceIndex(): PublicSource[] {
         item.title,
         item.summary,
         `This entry is ${item.type === "artifact" ? "an artifact" : `a ${item.type}`}.`,
-        proseList("Framework coverage", item.frameworkLayers, "covers"),
+        proseList("It", item.frameworkLayers, "covers"),
         proseList("Related principles", item.relatedPrinciples),
         proseList("Related patterns", item.relatedPatterns),
         proseList("Related artifacts", item.relatedArtifacts),
