@@ -4,7 +4,7 @@ Last updated: 2026-08-30
 
 Current sync point for Claude review:
 
-- `db92b9b Refresh Claude handoff sync and role split`
+- `4d281f1 Narrow background search routing`
 
 ---
 
@@ -28,7 +28,7 @@ ever disagree, this section wins and the history is wrong.
 | Original writing | **11 articles, 2,973 words, mean 270** |
 | External practitioner reviews | **0** |
 | AI provider keys on Vercel | **none** — Ask runs lexical-only in production |
-| `npm test` / `npm run build` | green at `db92b9b` |
+| `npm test` / `npm run build` | green at `4d281f1` |
 
 ## What this project is now
 
@@ -60,6 +60,9 @@ compensating for the writing not being there.** Subtraction is the mission, not 
   public-safe.
 - **Codex's current lane:** keep strengthening the corpus and retrieval plumbing, then validate and
   push only when the change materially improves the public body of work.
+- **Latest Codex tweak:** background-oriented queries now get a narrower retrieval boost, so
+  person/background searches can find `/background` without stealing architecture-spec queries from
+  `/wiki/operational-intelligence-reference-architecture`.
 
 ## LANE SPLIT — RULED 2026-08-29
 
