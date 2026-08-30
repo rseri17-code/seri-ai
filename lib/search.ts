@@ -302,6 +302,12 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         /enterprise data architecture|data architecture|data governance|lineage|schema|contracts|identity and access management|iam|container platform|container platforms|observability|telemetry|operational architecture/.test(lowerQuery)
           ? 12
           : 0;
+      const backgroundPersonTechnicalBoost =
+        source.url === backgroundUrl &&
+        /ravikanth|who is|about ravikanth/.test(lowerQuery) &&
+        /enterprise data architecture|data architecture|data governance|lineage|schema|contracts|identity and access management|iam|container platform|container platforms|observability|telemetry|operational architecture/.test(lowerQuery)
+          ? 20
+          : 0;
       const productionDeliveryBoost =
         source.url === backgroundUrl &&
         /architecture.*engineering.*integration|architecture to production|production delivery|delivery chain|governance.*production|evaluation.*governance|operating loop|production experience|production judgment/.test(lowerQuery)
@@ -418,6 +424,7 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         practitionerReviewBoost +
         qualityScorecardBoost +
         projectProofBoost +
+        backgroundPersonTechnicalBoost +
         backgroundTechnicalBoost;
       return { source, content: source.content, score };
     })
