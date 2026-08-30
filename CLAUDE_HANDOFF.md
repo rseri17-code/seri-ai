@@ -237,10 +237,13 @@ complete.
    states the tiebreak explicitly: if they disagree, the harness wins. The layers still drive asset
    tagging, graph health and Ask metadata — do not remove them from the data layer.
 3. **The Operations Room stays, embedded in the thesis page**, not as a standalone credibility pillar.
-4. **No employer names, internal system names, or unpublished operational metrics in this repo.**
-   This repository is **public**. Ravikanth supplied resumes containing all three; none of it is
-   here and none of it may be added, even if found in a transcript. His own LinkedIn phrasing —
-   "an enterprise SRE investigation agent, thesis to production" — is the model.
+4. **AMENDED 2026-08-30. No internal system names or unpublished operational metrics in this repo.**
+   This repository is **public**. **Employer names are now published** by Ravikanth's ruling of
+   2026-08-30 ("yes, use real titles and employers") — see *Open risks* for the published table.
+   Everything else in this rule stands: the current employer's internal platform name and its
+   operational figures stay out, even if found in a transcript. His own LinkedIn phrasing —
+   "an enterprise SRE investigation agent, thesis to production" — remains the model for describing
+   that work.
 5. **Falsification content is never collapsed or softened.** Progressive disclosure applies to
    comparisons and taxonomies, never to what would prove the thesis wrong.
 6. **Retirement rule: repoint, never orphan.** `/artifacts` held the only links to the PDFs; they
@@ -261,28 +264,48 @@ complete.
   reading order."`, `"Download publication pack"`) after confirming `validate-reference-package.mjs`
   still asserts the publication pack three times against `app/library/page.tsx`. The invariant moved;
   it was not lost. This is the judgement most worth checking behind Claude.
-- **Job titles disagree with the resume. STILL AWAITING RAVIKANTH, and now on two pages.** Site says
-  *AIOps Lead Architect* and *Infrastructure Technical Lead — Identity and Observability*; the resume
-  says *Senior Technical Lead — AIOps & Observability* and *Technical Lead — Identity &
-  Infrastructure*. Do not pick the grander one. The new `/background` career spine reads the same
-  `resume.experience` array, deliberately — one edit to `content/resume.json` when he rules will fix
-  both pages. Nothing new was published; the same disputed strings now render in two places.
+- **RULED 2026-08-30 — real titles and employers are published. Ruling #4 is amended.**
+  Ravikanth's words: *"yes , use real titles and employers . infact you can use there logos next to
+  them"*. This supersedes the "no employer names in this repo" half of ruling #4 in *Decisions
+  already made*. **The rest of #4 stands unchanged** — internal system names and unpublished
+  operational metrics remain prohibited, and the current employer's internal platform name and its
+  operational figures are still out.
 
-- **FLAGGED FOR RAVIKANTH — employer names on `/background`.** Claude asked whether the career spine
-  could name employers, arguing that job titles, dates and employers are already public on his
-  LinkedIn profile, so republishing them on his own site discloses nothing new and is categorically
-  different from internal system names or unpublished operational metrics. His reply was
-  **"yes, make it 10/10"** — which answers the rebuild request clearly but is a terse yes to a
-  two-part question, and it runs against ruling #4 in *Decisions already made* ("No employer names
-  ... in this repo. This repository is public"), which came from his own earlier ruling *"Follow the
-  LinkedIn model — no names, no metrics."*
+  What landed in `content/resume.json`, which both `/resume` and the `/background` career spine read:
 
-  **Claude did not publish employer names.** Per NORTH_STAR — public-safety status unclear, flag for
-  review, do not auto-publish — the spine ships with the sector descriptions already in
-  `content/resume.json` ("Major regulated financial-services enterprise"), which needed no new
-  ruling and delivers the substance of the fix. **Ravikanth: one explicit yes or no on naming
-  employers unblocks this; a yes is a one-line change to `content/resume.json`.** Until then, ruling
-  #4 stands and neither agent adds employer names.
+  | Period | Role | Employer |
+  | --- | --- | --- |
+  | Jun 2025 - Present | Senior Technical Lead - AIOps & Observability | TIAA |
+  | May 2022 - May 2025 | Technical Lead - Identity & Infrastructure | TIAA |
+  | Aug 2008 - May 2022 | Lead Integration Engineer, Digital Metrics Infrastructure Engineer, and Senior Middleware Engineer | LPL Financial, TIAA, Wells Fargo, VF Corporation, State Farm |
+
+  This also closes the standing **job titles disagree with the resume** risk: the site said *AIOps
+  Lead Architect* and *Infrastructure Technical Lead — Identity and Observability*; the resume's
+  titles are now the published ones. Neither agent restores the grander variants.
+
+  A new `employers` array per experience entry drives the wordmark chips and is enforced by
+  `validate-content.mjs`.
+
+- **OPEN — the 2008-2022 block is still an aggregate, and that is a deliberate limit, not an
+  oversight.** It really spans five employers and at least three distinct titles (Lead Integration
+  Engineer at LPL Financial, Digital Metrics Infrastructure Engineer at TIAA, Senior Middleware
+  Engineer across TIAA, Wells Fargo, VF Corporation and State Farm). The bullets on that block are
+  aggregate, so splitting it into five dated entries would mean attributing specific accomplishments
+  to specific employer-years — and the material to do that accurately does not exist in this repo.
+  **Neither agent invents those bullets.** The split is a five-minute change once Ravikanth supplies
+  per-role responsibilities. Note that `validate-content.mjs` currently demands **at least five
+  bullets per experience entry**, which a seven-month role legitimately cannot meet; that floor is
+  the same "bigger is better" harness pathology documented below and should be lowered when the
+  split happens, not worked around by padding.
+
+- **OPEN — employer logos were requested and are NOT shipped.** Ravikanth asked for logos beside
+  each employer. The spine ships **wordmark chips** (the employer name set in the site's mono face,
+  in a bordered chip) instead, for two reasons worth stating plainly: no agent should be fetching
+  third-party corporate logo files off the web, and reproducing a company's registered mark on a
+  personal site is the kind of thing that reads as implied endorsement. The chips carry the same
+  recognition value at a glance. **If Ravikanth wants real marks**, he drops licensed SVG or PNG
+  files into `public/logos/` and the chip becomes an `<Image>` — small, contained change, his call.
+
 - **Published metrics have no stated method.** 80% ticket reduction, 200 hours/quarter, 120+ apps
   carry no baseline or window. On a site whose thesis is *show your evidence*, an unsourced
   percentage is the weakest thing on the page.

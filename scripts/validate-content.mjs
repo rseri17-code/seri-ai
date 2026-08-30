@@ -1099,7 +1099,7 @@ if (!Array.isArray(resume.experience) || resume.experience.length < 3) {
 } else {
   for (const item of resume.experience) {
     const owner = `content/resume.json:experience:${item.role ?? "unknown"}`;
-    for (const field of ["role", "organization", "period", "impact", "bullets"]) {
+    for (const field of ["role", "organization", "period", "impact", "bullets", "employers"]) {
       if (item[field] == null || item[field] === "" || (Array.isArray(item[field]) && item[field].length === 0)) {
         errors.push(`${owner}: missing ${field}`);
       }

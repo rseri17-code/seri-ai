@@ -64,9 +64,9 @@
   ],
   "experience": [
     {
-      "role": "AIOps Lead Architect",
-      "organization": "Major regulated financial-services enterprise",
-      "period": "2025 - Present",
+      "role": "Senior Technical Lead - AIOps & Observability",
+      "organization": "TIAA",
+      "period": "Jun 2025 - Present",
       "impact": "Leads architecture for production AI-assisted operational workflows that support observability, incident response, retrieval, evaluation, and governed tool use.",
       "bullets": [
         "Architected LLM-driven agent platforms for enterprise operations using deterministic orchestration, bounded execution, replayability, and human-in-the-loop governance.",
@@ -76,12 +76,15 @@
         "Designed evaluation workflows for root-cause analysis quality, workload reliability scoring, operational usefulness, and regression testing before production trust.",
         "Profiled model-selection tradeoffs across latency, cost, retrieval depth, token throughput, and reliability for production AI workload constraints.",
         "Authored executive technical memos and delivered architecture enablement sessions for operations, platform engineering, and leadership stakeholders."
+      ],
+      "employers": [
+        "TIAA"
       ]
     },
     {
-      "role": "Infrastructure Technical Lead - Identity and Observability",
-      "organization": "Major regulated financial-services enterprise",
-      "period": "2022 - 2025",
+      "role": "Technical Lead - Identity & Infrastructure",
+      "organization": "TIAA",
+      "period": "May 2022 - May 2025",
       "impact": "Led identity modernization, cloud-native platform reliability, observability integration, and automation initiatives across enterprise application environments.",
       "bullets": [
         "Led containerization and modernization of enterprise identity workloads on Kubernetes, improving scalability, deployment consistency, isolation, and reliability.",
@@ -89,12 +92,15 @@
         "Integrated OpenTelemetry-style pipelines across identity services and Kubernetes environments to improve tracing, telemetry correlation, diagnostics, and anomaly detection.",
         "Designed observability integration patterns across distributed tracing, runtime telemetry, and monitoring platforms for hybrid enterprise infrastructure.",
         "Automated OAuth onboarding and enterprise API workflows with Python, reducing identity support tickets by 80% and recovering about 200 engineering hours per quarter."
+      ],
+      "employers": [
+        "TIAA"
       ]
     },
     {
-      "role": "Enterprise Infrastructure and Middleware Engineer",
-      "organization": "Financial services, retail, insurance, and enterprise technology environments",
-      "period": "2008 - 2022",
+      "role": "Lead Integration Engineer, Digital Metrics Infrastructure Engineer, and Senior Middleware Engineer",
+      "organization": "LPL Financial, TIAA, Wells Fargo, VF Corporation, and State Farm",
+      "period": "Aug 2008 - May 2022",
       "impact": "Built a foundation across middleware, infrastructure operations, identity systems, distributed platforms, automation, and reliability engineering.",
       "bullets": [
         "Operated and modernized enterprise middleware, API gateway, B2B integration, identity, and infrastructure platforms in high-availability environments.",
@@ -103,6 +109,13 @@
         "Worked on cloud migration, containerization, deployment automation, and configuration-management workflows across Linux, application servers, and integration platforms.",
         "Partnered with engineering, security, and operations teams to improve reliability, access patterns, integration quality, and operational support models.",
         "Developed durable expertise in Linux, distributed systems, enterprise integration, cloud migration, automation, and production support."
+      ],
+      "employers": [
+        "LPL Financial",
+        "TIAA",
+        "Wells Fargo",
+        "VF Corporation",
+        "State Farm"
       ]
     }
   ],

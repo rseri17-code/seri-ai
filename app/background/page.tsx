@@ -130,7 +130,16 @@ export default function BackgroundPage() {
                 <div>
                   <p className="font-mono text-sm text-mint">{role.period}</p>
                   <h2 className="mt-3 text-xl font-semibold leading-7 text-white">{role.role}</h2>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">{role.organization}</p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {role.employers.map((employer) => (
+                      <span
+                        key={employer}
+                        className="rounded border border-white/15 bg-white/[0.04] px-2 py-1 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-slate-300"
+                      >
+                        {employer}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 <div>
                   <p className="text-sm leading-6 text-slate-300">{role.impact}</p>
@@ -148,11 +157,11 @@ export default function BackgroundPage() {
           ))}
         </div>
         <p className="mt-4 text-sm leading-7 text-slate-400">
-          Employers are identified by sector rather than by name. Each role above is abridged; the{" "}
+          Each role above is abridged to its first three responsibilities. The{" "}
           <Link href="/resume" className="font-semibold text-mint">
             resume
           </Link>{" "}
-          carries the full set of responsibilities, plus education and certifications.
+          carries the full set, plus education and certifications.
         </p>
       </Section>
 

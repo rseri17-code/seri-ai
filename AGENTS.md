@@ -151,6 +151,20 @@ Essays depth, content-data corpus quality, route merges, visual QA, domain migra
 4. Read **CLAUDE_HANDOFF.md STATE OF PLAY**
 5. Execute your lane’s **Do next** only
 
+## RULED 2026-08-30 — real titles and employers are published
+
+Ravikanth ruled: *"yes , use real titles and employers"*. `content/resume.json` now carries his real
+role titles, month-level periods, and employer names (TIAA, LPL Financial, Wells Fargo, VF
+Corporation, State Farm), rendered on `/resume` and in the `/background` career spine.
+
+**Codex: this is sanctioned. Do not revert it to the anonymized "Major regulated financial-services
+enterprise" phrasing**, and do not restore the older invented titles (*AIOps Lead Architect*,
+*Infrastructure Technical Lead — Identity and Observability*).
+
+The rest of the public-safety boundary is unchanged: internal system names and unpublished
+operational metrics stay out, including the current employer's internal platform name and its
+operational figures. Rationale and the open follow-ups are in CLAUDE_HANDOFF.md under *Open risks*.
+
 ## Ruled copy is machine-enforced
 
 Some copy was decided by Ravikanth directly. `npm run validate:ruled` fails the build if it is
