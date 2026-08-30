@@ -21,7 +21,7 @@ export function BetaFeedback() {
             setOpen((value) => !value);
             captureSafeEvent("beta_feedback_toggle", { open: !open });
           }}
-          className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white hover:border-mint/40 focus:outline-none focus:ring-2 focus:ring-mint/60"
+          className="inline-flex min-h-[44px] items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white hover:border-mint/40 focus:outline-none focus:ring-2 focus:ring-mint/60"
           aria-expanded={open}
         >
           <span aria-hidden="true" className="text-mint">

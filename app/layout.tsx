@@ -45,7 +45,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Analytics />
         <RouteVisitEvents />
         <Header />
-        <main id="main-content" tabIndex={-1}>
+        {/* Reserve a viewport for main. Under streaming SSR the footer and feedback block painted
+            before main's content arrived - measured at y=726 inside a 900px viewport - and were then
+            pushed down when it did, which is a ~0.19 CLS spike on roughly one load in ten. With a
+            viewport reserved, that reflow happens entirely below the fold. */}
+        <main id="main-content" tabIndex={-1} className="min-h-[calc(100vh-4.75rem)]">
           {children}
         </main>
         <BetaFeedback />

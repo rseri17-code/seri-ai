@@ -45,7 +45,7 @@ const steps: Step[] = [
   },
   {
     label: "Path",
-    heading: "The journey is reconstructed hop by hop, not summarised.",
+    heading: "The journey is reconstructed hop by hop, not summarized.",
     body: "Which services the transaction actually crossed, in order, with timing per hop and ownership attached. A dashboard shows that a service is unhealthy. This shows where the journey broke and who owns that segment.",
     kind: "observation",
     note: "Topology and ownership travel with the transaction",

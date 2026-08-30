@@ -365,10 +365,13 @@ for (const required of [
   "I build evidence-grounded AI systems for enterprise operations.",
   "enterprise SRE investigation",
   "misfire because they lack intelligence",
-  "reconstruct what is happening now",
-  "show how the evidence connects",
-  "uncertainty",
-  "in control of anything consequential",
+  // Repointed 2026-08-30 (refinement pass). Same four invariants the thesis section must state:
+  // rebuild current context, connect the findings, keep unknowns visible, leave the consequential
+  // action to a person. Only the wording moved.
+  "rebuild what is happening now",
+  "show how the findings connect",
+  "keep the unknowns visible",
+  "leave\n            anything consequential to a person",
   "inspectable without it"
 ]) {
   if (!homePageSource.includes(required)) {

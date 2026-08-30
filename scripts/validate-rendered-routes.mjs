@@ -22,15 +22,16 @@ const routeContracts = [
       "Explore the body of work",
       "misfire because they lack intelligence",
       "the Authorized Misfire",
-      "reconstruct what is happening now",
-      "show how the evidence connects",
+      "rebuild what is happening now",
+      "show how the findings connect",
+      "keep the unknowns visible",
       "Flagship proof",
       "OI-ROOM-001",
       "Three bodies of work.",
       "Career arc",
       "Four arguments worth disagreeing with.",
       "Start a conversation",
-      "public-safe by design"
+      "That system is private"
     ],
     before: [
       // A mobile visitor reaches an action before the page starts explaining itself.

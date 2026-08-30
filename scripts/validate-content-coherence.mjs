@@ -236,8 +236,8 @@ for (const required of [
   "Production agent systems",
   "The operational context layer",
   "Enterprise platform foundations",
-  "Public proof",
-  "What it taught me",
+  "Proof",
+  "Learned",
   // Section 5 - career arc as progression.
   "Career arc",
   "Each phase is why the next one was possible.",
@@ -246,7 +246,10 @@ for (const required of [
   // Section 7 - one primary action, plus the public-safety boundary stated once.
   "Start a conversation",
   "Or ask the public record",
-  "public-safe by design",
+  // The boundary statement was consolidated on 2026-08-30: one complete statement in the hero,
+  // where the production claim earns it, and a short site-wide form in the footer. It used to
+  // appear a third time in the closing section, which is the repetition that was removed.
+  "That system is private: no employer systems, logs",
   // Routes the homepage keeps reachable. /patterns is here because the nav no longer carries it.
   "/investigation-room",
   "/wiki/operational-intelligence-canonical-doctrine",

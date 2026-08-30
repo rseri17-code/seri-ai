@@ -18,6 +18,7 @@
  *   5 Career arc  6 Selected ideas  7 Closing invitation
  * Do not add an eighth section without a documented visitor need.
  */
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { OperationsRoomPreview } from "@/components/operations-room-preview";
@@ -32,10 +33,10 @@ const selectedWork = [
   {
     title: "Production agent systems",
     problem:
-      "An agent that can act on production needs more than a good model. It needs bounded execution, evidence it can cite, evaluation that runs before anyone trusts it, and a stopping point where a human decides.",
+      "Acting on production takes more than a good model: bounded execution, attributable findings, evaluation before trust, a point where a person decides.",
     role:
-      "I took an enterprise SRE investigation agent from thesis to production and owned it end to end — architecture, engineering, enterprise integration, evaluation and operationalization.",
-    proof: "Reference architecture, evaluation gates, and the governed tool-call model, all written down.",
+      "I took an enterprise SRE investigation agent from thesis to production, and owned it end to end: architecture, engineering, integration, evaluation, operationalization.",
+    proof: "Reference architecture, evaluation gates, and the governed tool-call model.",
     outcome:
       "The model was the easy part. Keeping its context current and its actions answerable was the work.",
     href: "/work",
@@ -45,11 +46,11 @@ const selectedWork = [
   {
     title: "The operational context layer",
     problem:
-      "At the worst possible moment, teams are rebuilding the same four things by hand: who owns this, what changed, what depends on it, and what the transaction actually did.",
+      "Under pressure, teams rebuild the same four answers by hand: who owns this, what changed, what depends on it, what the transaction did.",
     role:
-      "I design the layer that assembles that once — transactions, topology, change, ownership, evidence graphs, memory and replay — so agents, workflows and engineers reason from the same reality.",
-    proof: "Doctrine v1.0, the reference architecture, and ten architecture patterns in build order.",
-    outcome: "Build context once, or every consumer reconstructs it privately, repeatedly, and late.",
+      "I design the layer that assembles them once, so agents, workflows and engineers reason from the same reality.",
+    proof: "Doctrine v1.0, the reference architecture, ten patterns in build order.",
+    outcome: "Build context once, or every consumer rebuilds it privately and late.",
     href: "/framework",
     linkLabel: "Read the thesis",
     status: "Public reference architecture"
@@ -57,10 +58,10 @@ const selectedWork = [
   {
     title: "Enterprise platform foundations",
     problem:
-      "Regulated systems fail across ownership boundaries, and no single team can see the whole path. That is the environment the agents are being pointed at.",
+      "Regulated systems fail across ownership boundaries, where no team sees the whole path. That is where agents are being pointed.",
     role:
-      "Fifteen years of it: identity and access modernization, middleware and B2B integration, Kubernetes platforms, and observability in financial services.",
-    proof: "A zero-downtime OpenID Connect migration across 120+ applications, and the career record behind it.",
+      "Fifteen years of it: identity modernization, middleware and B2B integration, Kubernetes, and observability in financial services.",
+    proof: "A zero-downtime OpenID Connect migration across 120+ applications.",
     outcome: "Telemetry volume and operational understanding are not the same thing.",
     href: "/background",
     linkLabel: "Where the thesis comes from",
@@ -68,13 +69,36 @@ const selectedWork = [
   }
 ] as const;
 
-/** Section 5 — progression, not chronology. Each phase names what it made possible. */
+/**
+ * Section 5 — progression, not chronology. Each phase carries what it taught and what that made
+ * possible, so the arc reads as cause and effect rather than a timeline.
+ */
 const careerArc = [
-  ["Enterprise integration", "Systems that fail across boundaries taught me the alert is never the hard part."],
-  ["Identity and platform", "Migrations where one mistake reaches every application taught me what a blast radius is."],
-  ["Kubernetes and observability", "Instrumenting it properly taught me that more telemetry is not more understanding."],
-  ["Production AI systems", "Shipping an investigation agent taught me the context beneath it decides whether it is safe."],
-  ["Operational Intelligence", "Writing the argument down in public, including the parts that are still unproven."]
+  {
+    phase: "Enterprise integration",
+    taught: "Systems fail across boundaries. The alert is never the hard part.",
+    enabled: "Chase the path, not the symptom."
+  },
+  {
+    phase: "Identity and platform",
+    taught: "One bad migration step reaches every application at once.",
+    enabled: "Design for blast radius. Know who owns it."
+  },
+  {
+    phase: "Kubernetes and observability",
+    taught: "More telemetry was not more understanding.",
+    enabled: "Build for the decision, not the dashboard."
+  },
+  {
+    phase: "Production AI systems",
+    taught: "What sits beneath an agent decides whether it is safe to run.",
+    enabled: "Ship one, and find the model was the easy part."
+  },
+  {
+    phase: "Operational Intelligence",
+    taught: "The same four answers get rebuilt by hand under pressure, every time.",
+    enabled: "Write the argument down in public instead."
+  }
 ] as const;
 
 export default function Home() {
@@ -94,16 +118,15 @@ export default function Home() {
                 I build evidence-grounded AI systems for enterprise operations.
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg sm:leading-8">
-                My work connects live operational context, typed evidence, and machine reasoning to the person who
-                has to approve the action. So an agent can investigate a production system without losing the thread
-                back to why.
+                My work connects live operational context, attributable evidence, and machine reasoning &mdash; so
+                every recommended action keeps a clear path back to why.
               </p>
 
               <p className="mt-5 max-w-2xl border-l-2 border-mint/60 pl-4 text-base leading-7 text-slate-200 sm:pl-5">
                 Most recently I took an <strong className="font-semibold text-white">enterprise SRE investigation
                 agent from thesis to production</strong>, owning it across architecture, engineering, enterprise
-                integration, evaluation and operationalization. That system is private. Everything on this site is
-                inspectable without it.
+                integration, evaluation and operationalization. That system is private: no employer systems, logs
+                or architecture appear here. Everything on this site is inspectable without it.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -126,22 +149,20 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="lg:justify-self-end">
-              <div className="max-w-sm rounded-xl border border-white/12 bg-white/[0.03] p-6">
-                <Portrait size="lg" />
-                <p className="mt-5 text-lg font-semibold leading-7 text-white">{professionalGraph.identity.person}</p>
+            {/* Editorial portrait: no card, no border box. The image carries the presence and the
+                caption sits under it like a byline, so the hero reads as authored rather than filed. */}
+            <figure className="m-0 lg:justify-self-end">
+              <Portrait size="xl" />
+              <figcaption className="mt-5 max-w-xs">
+                <p className="text-lg font-semibold leading-7 text-white">{professionalGraph.identity.person}</p>
                 <p className="mt-1 text-sm leading-6 text-slate-300">{currentRole.role}</p>
-                <p className="mt-1 text-sm leading-6 text-slate-500">
-                  {currentRole.organization} &middot; {resume.location}
+                <p className="mt-1 text-xs leading-5 text-slate-500">
+                  {currentRole.organization} &middot; {resume.location} &middot; 15+ years in enterprise engineering
                 </p>
-                <p className="mt-5 border-t border-white/10 pt-5 text-sm leading-7 text-slate-300">
-                  Fifteen years running distributed enterprise systems in regulated financial services, before asking
-                  AI to reason about them.
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
+                <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
                   <Link
                     href="/resume"
-                    className="inline-flex min-h-[44px] items-center rounded border border-white/12 px-3 py-2 text-sm font-semibold text-slate-200 transition hover:border-mint/40 hover:text-mint"
+                    className="inline-flex min-h-[44px] items-center text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
                   >
                     Resume
                   </Link>
@@ -151,38 +172,43 @@ export default function Home() {
                     rel="noreferrer"
                     eventName="profile_link_click"
                     eventProperties={{ destination: "linkedin", placement: "homepage_hero_identity" }}
-                    className="inline-flex min-h-[44px] items-center rounded border border-white/12 px-3 py-2 text-sm font-semibold text-slate-200 transition hover:border-signal/40 hover:text-signal"
+                    className="inline-flex min-h-[44px] items-center text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
                   >
                     LinkedIn
                   </TrackedAnchor>
-                </div>
-              </div>
-            </div>
+                </p>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      {/* 2 — SIGNATURE THESIS. The Authorized Misfire, once, then a link to the doctrine. */}
+      {/* 2 — SIGNATURE THESIS. Eyebrow, short H2, prominent lead, then the concept once. */}
       <section className="border-b border-white/10 bg-white/[0.015]">
-        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber">The failure I design against</p>
-          <h2 className="mt-7 text-2xl font-semibold leading-[1.35] text-white sm:text-[2rem] sm:leading-[1.35]">
-            AI agents don&apos;t misfire because they lack intelligence. They misfire because the operational context
-            beneath them is fragmented, stale, incomplete, or trusted past the point where it was still true.
-          </h2>
-          <p className="mt-8 max-w-2xl text-lg leading-9 text-slate-300">
-            I call the result <strong className="font-semibold text-amber">the Authorized Misfire</strong>: an action
-            the system was permitted to take, grounded in context it should not have trusted. Nothing was breached and
-            no rule was broken. The evidence was simply older, thinner, or narrower than the decision resting on it.
+        <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber sm:text-sm">
+            The failure I design against
           </p>
-          <p className="mt-6 max-w-2xl text-lg leading-9 text-slate-300">
-            Historical incidents and runbooks are valuable memory. They are not current production truth. So the
-            context layer has to reconstruct what is happening now, show how the evidence connects, make uncertainty
-            visible, and keep a human in control of anything consequential.
+          <h2 className="mt-5 text-[1.75rem] font-semibold leading-tight text-white sm:text-4xl">
+            AI agents don&apos;t misfire because they lack intelligence.
+          </h2>
+          <p className="mt-6 max-w-2xl text-xl leading-9 text-slate-200 sm:text-2xl sm:leading-10">
+            They misfire when the operational context beneath them is fragmented, stale, incomplete, or trusted past
+            the point where it was still true.
+          </p>
+          <p className="mt-7 max-w-2xl text-lg leading-9 text-slate-300">
+            I call that <strong className="font-semibold text-amber">the Authorized Misfire</strong>: an action the
+            system was permitted to take, on context it should not have trusted. No rule was broken. What it knew was
+            older or thinner than the decision resting on it.
+          </p>
+          <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
+            Past incidents and runbooks are memory, not current production truth. The layer underneath has to
+            rebuild what is happening now, show how the findings connect, keep the unknowns visible, and leave
+            anything consequential to a person.
           </p>
           <Link
             href="/wiki/operational-intelligence-canonical-doctrine"
-            className="mt-9 inline-flex min-h-[44px] items-center gap-2 text-base font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
+            className="mt-8 inline-flex min-h-[44px] items-center gap-2 text-base font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
           >
             Read the doctrine, and what would prove it wrong <ArrowRight size={17} />
           </Link>
@@ -192,8 +218,7 @@ export default function Home() {
       {/* 3 — FLAGSHIP PROOF. The dominant moment on the page. */}
       <Section eyebrow="Flagship proof" title="Watch an investigation hold itself to account.">
         <p className="mb-8 max-w-3xl text-lg leading-9 text-slate-300">
-          Ten stages of a synthetic case. Step through it and the argument makes itself: a decision is not trusted
-          until its evidence can be replayed. Use the stage buttons, or the arrow keys.
+          Ten stages of a synthetic case. Step through it and the argument makes itself.
         </p>
         <OperationsRoomPreview />
       </Section>
@@ -215,11 +240,11 @@ export default function Home() {
                 <p className="text-base leading-8 text-slate-200">{item.role}</p>
                 <dl className="mt-6 grid gap-4 border-t border-white/10 pt-6">
                   <div>
-                    <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">Public proof</dt>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">Proof</dt>
                     <dd className="mt-2 text-sm leading-7 text-slate-300">{item.proof}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">What it taught me</dt>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">Learned</dt>
                     <dd className="mt-2 text-sm leading-7 text-slate-300">{item.outcome}</dd>
                   </div>
                 </dl>
@@ -235,29 +260,53 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* 5 — CAREER ARC. Progression, not the resume repeated. */}
+      {/* 5 — CAREER ARC. A staircase, not a list: each phase steps in from the one before it. */}
       <Section eyebrow="Career arc" title="Each phase is why the next one was possible.">
-        <ol className="grid gap-0 border-l border-white/12 pl-6 sm:pl-8">
-          {careerArc.map(([phase, lesson]) => (
-            <li key={phase} className="relative pb-9 last:pb-0">
-              <span aria-hidden className="absolute -left-[1.9rem] top-2 h-2.5 w-2.5 rounded-full bg-mint sm:-left-[2.4rem]" />
-              <h3 className="text-xl font-semibold text-white sm:text-2xl">{phase}</h3>
-              <p className="mt-2 max-w-2xl text-base leading-8 text-slate-300">{lesson}</p>
+        <ol className="max-w-5xl">
+          {careerArc.map((item, i) => (
+            <li
+              key={item.phase}
+              // The staircase is a desktop device only. Applied at every width it ate the text
+              // column on a 390px screen - by phase five the indent was over 5rem. On mobile the
+              // list stays a single flush vertical progression.
+              className="relative border-l border-white/12 pb-10 pl-6 last:border-l-transparent last:pb-0 sm:pl-8 lg:ml-[var(--step)]"
+              style={{ "--step": `${i * 1.35}rem` } as CSSProperties}
+            >
+              <span
+                aria-hidden
+                className="absolute -left-[0.4rem] top-1 grid h-3 w-3 place-items-center rounded-full border border-mint/60 bg-ink"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-mint" />
+              </span>
+              <p className="font-mono text-xs text-slate-500">
+                {String(i + 1).padStart(2, "0")} / 05
+              </p>
+              <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{item.phase}</h3>
+              <p className="mt-2 max-w-xl text-base leading-8 text-slate-300">{item.taught}</p>
+              <p className="mt-2 max-w-xl text-base leading-8 text-mint/85">
+                <span className="sr-only">Which made the next phase possible: </span>
+                <span aria-hidden>&rarr;&nbsp;</span>
+                {item.enabled}
+              </p>
             </li>
           ))}
         </ol>
-        <div className="mt-10 flex flex-wrap gap-4">
+        <p className="mt-10 max-w-2xl text-lg leading-9 text-slate-300">
+          Operational Intelligence is what those five add up to: not an idea I went looking for problems to fit,
+          but the shape the problems kept taking.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
           <Link
             href="/resume"
-            className="inline-flex min-h-[48px] items-center gap-2 rounded border border-white/25 px-5 py-3 font-semibold text-white transition hover:border-mint/50 hover:text-mint"
+            className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
           >
-            The interactive resume
+            The interactive resume <ArrowRight size={16} />
           </Link>
           <Link
             href="/background"
-            className="inline-flex min-h-[48px] items-center gap-2 rounded border border-white/25 px-5 py-3 font-semibold text-white transition hover:border-mint/50 hover:text-mint"
+            className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
           >
-            The longer background
+            The longer background <ArrowRight size={16} />
           </Link>
         </div>
       </Section>
@@ -305,15 +354,14 @@ export default function Home() {
       <section className="border-t border-white/10 bg-white/[0.015]">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <h2 className="text-3xl font-semibold leading-tight text-white md:text-4xl">
-            If you are putting agents anywhere near production, I would like to hear how it is going.
+            If you are putting agents near production, I would like to hear how it is going.
           </h2>
           <p className="mt-6 max-w-2xl text-lg leading-9 text-slate-300">
-            I am glad to talk with technical leaders hiring for Staff, Principal, architecture, AI systems or
-            observability leadership; practitioners building production agent systems; conference and engineering
-            forum organisers; and teams who want a second opinion on operational context, agent evaluation and
-            production governance.
+            Hiring for Staff, Principal, architecture, AI systems or observability leadership. Building production
+            agent systems. Organizing a conference or engineering forum. Or wanting a second opinion before putting
+            an agent somewhere that matters.
           </p>
-          <p className="mt-6 max-w-2xl text-lg leading-9 text-slate-300">
+          <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
             Telling me where the doctrine is wrong is the most useful thing you can do with it.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-5">
@@ -332,10 +380,6 @@ export default function Home() {
               Or ask the public record
             </Link>
           </div>
-          <p className="mt-10 max-w-2xl border-t border-white/10 pt-6 text-sm leading-7 text-slate-500">
-            Everything published here is public-safe by design: approved material and synthetic examples only. Private
-            employer systems, logs, dashboards, screenshots and proprietary architecture stay out of scope.
-          </p>
         </div>
       </section>
     </>

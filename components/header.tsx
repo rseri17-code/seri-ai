@@ -74,7 +74,9 @@ export function Header() {
               href="/ask"
               className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded border border-mint/40 bg-mint/10 px-3 py-2 text-sm font-semibold text-mint hover:bg-mint/15 sm:px-4"
             >
-              Ask Ravikanth
+              {/* The full label pushed the wordmark into an ellipsis at 390px. His name wins. */}
+              <span className="sm:hidden">Ask</span>
+              <span className="hidden sm:inline">Ask Ravikanth</span>
             </Link>
             <button
               type="button"

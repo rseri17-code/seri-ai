@@ -12,7 +12,7 @@ export function Footer() {
         <div>
           <p className="font-medium text-slate-200">{site.positioning}</p>
           <p className="mt-3 leading-6">
-            Public boundary: approved public material and synthetic examples only. Private employer systems, logs, dashboards, screenshots, and proprietary architecture stay out of scope.
+            Public artifacts and synthetic examples only. Private systems remain out of scope.
           </p>
         </div>
         <p className="flex flex-wrap gap-x-3 gap-y-2">
