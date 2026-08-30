@@ -295,7 +295,13 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         /show|shows|where|inspect|evidence|architecture judgment|skills|impact|certification|credential|education|degree|support/.test(lowerQuery)
           ? 35
           : 0;
-      const backgroundBoost = source.url === backgroundUrl && /who is ravikanth|about ravikanth|background|career|experience|linkedin|certification|credential|profile/.test(lowerQuery) ? 12 : 0;
+      const backgroundBoost = source.url === backgroundUrl && /who is ravikanth|about ravikanth|background|career|experience|linkedin|certification|credential|profile/.test(lowerQuery) ? 18 : 0;
+      const backgroundTechnicalBoost =
+        source.url === backgroundUrl &&
+        /who is ravikanth|about ravikanth|background|career|experience|linkedin|certification|credential|profile/.test(lowerQuery) &&
+        /enterprise data architecture|data architecture|data governance|lineage|schema|contracts|identity and access management|iam|container platform|container platforms|observability|telemetry|operational architecture/.test(lowerQuery)
+          ? 12
+          : 0;
       const productionDeliveryBoost =
         source.url === backgroundUrl &&
         /architecture.*engineering.*integration|architecture to production|production delivery|delivery chain|governance.*production|evaluation.*governance|operating loop|production experience|production judgment/.test(lowerQuery)
@@ -411,7 +417,8 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
         askLiveReviewBoost +
         practitionerReviewBoost +
         qualityScorecardBoost +
-        projectProofBoost;
+        projectProofBoost +
+        backgroundTechnicalBoost;
       return { source, content: source.content, score };
     })
     .filter((hit) => hit.score > 0)
