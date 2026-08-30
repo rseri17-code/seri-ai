@@ -74,7 +74,7 @@ const routeContracts = [
     file: "work.html",
     maxBytes: 195_000,
     required: [
-      "operating record.",
+      "What I have actually shipped.",
       "Operating arc",
       "Architecture judgment",
       "Constraints the architecture preserves.",
@@ -93,7 +93,7 @@ const routeContracts = [
     file: "background.html",
     maxBytes: 150_000,
     required: [
-      "background and operating arc.",
+      "Where the thesis comes from.",
       "15+ years",
       "Regulated by default",
       "Why modernization mattered",

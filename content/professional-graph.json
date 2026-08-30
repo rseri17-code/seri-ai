@@ -1,34 +1,34 @@
 {
   "identity": {
     "person": "Ravikanth Seri",
-    "siteRole": "public professional operating system",
+    "siteRole": "Where the work, the thinking, and the evidence behind both are published",
     "throughline": "Ravikanth Seri -> Career -> Work -> Ideas -> Evidence -> Reusable Engineering Knowledge",
-    "currentFocus": "Production AI-assisted operations, Agentic SRE, Operational Intelligence, evidence-driven incident investigation, agent observability, evaluation, replay, and human-controlled operational action.",
+    "currentFocus": "Building the context layer beneath production agents, and the harness that keeps their reasoning inspectable after the fact.",
     "publicBoundary": "Use public-safe architecture principles, reusable patterns, synthetic examples, and approved professional evidence. Do not publish private systems, internal product names, proprietary architecture, logs, screenshots, customer information, unpublished metrics, or confidential implementation details."
   },
   "careerEvolution": [
     {
       "period": "2008-2022",
       "stage": "Enterprise integration and infrastructure foundation",
-      "summary": "Built the operating base across middleware, APIs, identity, Linux, distributed systems, automation, production support, and reliability practices.",
+      "summary": "Fourteen years of being the person paged when integration-heavy systems failed across team boundaries. Learned that the alert is never the hard part.",
       "explains": "Why the current AI work starts from operational reality rather than model novelty."
     },
     {
       "period": "2022-2025",
       "stage": "Platform modernization, identity, Kubernetes, and observability",
-      "summary": "Connected modernization, zero-downtime migration, telemetry correlation, Kubernetes reliability, identity architecture, and enterprise automation.",
+      "summary": "Moved authentication for a large estate onto Kubernetes without downtime. Learned that telemetry volume and operational understanding are different things.",
       "explains": "Why ownership, topology, transaction context, migration risk, and telemetry quality are central to the public thesis."
     },
     {
       "period": "2025-now",
       "stage": "Production AI systems and agentic operations",
-      "summary": "Applies enterprise operating experience to bounded AI agents, deterministic orchestration, tool governance, evaluation, replay, agent observability, and human approval.",
+      "summary": "Took an investigation agent from thesis to production. The model was the easy part; keeping its context current and its actions answerable was not.",
       "explains": "Why Operational Intelligence is framed as a reasoning layer between telemetry and accountable human decision."
     },
     {
       "period": "Public body of work",
       "stage": "Operational Intelligence as inspectable public knowledge",
-      "summary": "Publishes doctrine, reference architecture, patterns, Operations Room, evidence pack, trust evals, and Ask Ravikanth as reviewable artifacts.",
+      "summary": "Writing the whole argument down in public, including the parts that are still unproven, so people can argue with it rather than take my word.",
       "explains": "How private professional lessons become public-safe reusable engineering knowledge."
     }
   ],

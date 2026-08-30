@@ -135,6 +135,34 @@ HTML on this site needs to account for the Suspense boundary or they will file t
 
 Neither string was pinned. `npm test` and `npm run build` green.
 
+### /work and /background — audited and fixed
+
+**Voice collision in the first two lines of both pages.** `/work` opened "Ravikanth Seri's operating
+record." then immediately "I took an enterprise SRE investigation agent from thesis to production".
+`/background` did the same. Third-person heading, first-person body, one screen apart. Both H1s are
+now first person: "What I have actually shipped." and "Where the thesis comes from."
+
+**The career arc was four consecutive noun inventories**, and it renders on *both* pages from shared
+`professionalGraph.careerEvolution` — so it read as eight keyword lists to anyone visiting both.
+Each entry now says what he did and what it taught, e.g. "Moved authentication for a large estate
+onto Kubernetes without downtime. Learned that telemetry volume and operational understanding are
+different things."
+
+**Two pieces of internal spec were rendering as visible text on `/background`:**
+- `identity.siteRole` displayed the literal string "public professional operating system".
+- `identity.throughline` displayed "Ravikanth Seri -> Career -> Work -> Ideas -> Evidence ->
+  Reusable Engineering Knowledge" under a "Proof path" label. That is the NORTH STAR's internal
+  throughline shown to visitors.
+
+The throughline string is pinned by `validate-agent-handoff.mjs`, but that pin is against
+**CLAUDE_HANDOFF.md, not the page** — so the page stopped rendering it and the contract is intact.
+Worth knowing: a pin existing does not mean the string belongs on screen.
+
+`identity.currentFocus` was also an eight-noun inventory rendering on both `/` and `/background`;
+rewritten once, fixed in both places.
+
+Six pins repointed for deliberately changed copy. `npm test` and `npm run build` green.
+
 ### Still open on this pickup
 
 `/work`, `/background`, `/ask` framing and Operations Room usefulness not yet audited at the same

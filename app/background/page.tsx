@@ -47,7 +47,7 @@ const backgroundEvidence = [
 export default function BackgroundPage() {
   return (
     <>
-      <Section eyebrow="Background" title="Ravikanth Seri's background and operating arc." level="h1">
+      <Section eyebrow="Background" title="Where the thesis comes from." level="h1">
         <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
           <Card className="border-mint/25 bg-mint/[0.05]">
             <div className="mb-5 flex items-center gap-4">
@@ -81,7 +81,7 @@ export default function BackgroundPage() {
               </div>
               <Link href="/work" className="rounded border border-white/10 bg-black/20 p-3 transition hover:border-mint/45">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Proof path</p>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.throughline}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">See what came out of it, and what each artifact does and does not prove.</p>
               </Link>
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">

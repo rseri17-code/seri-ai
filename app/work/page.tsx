@@ -39,7 +39,7 @@ const formatFixtureText = (text: string) => text.replace("{fixtureCount}", Strin
 export default function WorkPage() {
   return (
     <>
-      <Section eyebrow="Work" title="Ravikanth Seri's operating record." level="h1">
+      <Section eyebrow="Work" title="What I have actually shipped." level="h1">
         <Card className="border-mint/25 bg-mint/[0.05]">
           <BrainCircuit className="mb-5 text-mint" />
           <h2 className="text-3xl font-semibold leading-tight text-white">
@@ -72,7 +72,7 @@ export default function WorkPage() {
         </Card>
       </Section>
 
-      <Section eyebrow="Operating arc" title="Ravikanth Seri's operating arc.">
+      <Section eyebrow="Operating arc" title="How I got here, and what each stretch taught me.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {professionalGraph.careerEvolution.map((item) => (
             <Card key={item.period} className="h-full p-5">
