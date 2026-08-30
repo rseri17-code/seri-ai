@@ -1,8 +1,8 @@
 {
   "title": "Operational Intelligence Framework",
   "subtitle": "The reasoning layer between enterprise telemetry and human decision.",
-  "promise": "A public-safe reference model for systems that turn signals, transactions, topology, evidence, memory, evaluation, and human review into accountable operational decisions.",
-  "thesis": "Enterprises do not primarily lack telemetry. They lack a shared, inspectable reasoning system that can reconstruct what changed, why it matters, what evidence supports it, what is affected, what action is reviewable, and what should be learned.",
+  "promise": "A reference model for building the layer an agent grounds itself in — written so another team could implement it without talking to me.",
+  "thesis": "The gap is not visibility. It is that nobody can assemble what is visible fast enough, or show their working afterwards.",
   "operatorQuestions": [
     "What changed?",
     "What transaction or journey is affected?",

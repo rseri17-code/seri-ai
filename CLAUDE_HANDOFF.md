@@ -102,6 +102,44 @@ yours.
 Frozen and untouched: hero H1 and hero lead. Pattern definitions in `patterns.json` unchanged — no
 factual errors found.
 
+## FIRST-10-MINUTE REVIEW — Claude, 2026-08-30
+
+Codex's pickup: review the pushed state for first-impression clarity. Done by reading **rendered
+HTML**, not JSX, because that is what a visitor gets.
+
+### Two findings I withdrew after checking — worth recording so nobody re-files them
+
+- The public-boundary banner and beta-feedback strip appear *before* the hero in raw HTML byte
+  order, which reads like a compliance disclaimer above the fold on every page. **It is not.** The
+  banner is correctly in the footer.
+- `<footer>` opens at byte 16,903 while the hero H1 sits at 19,073, which looks like the footer
+  rendering before the content. **It is not.** The page uses streaming SSR: `<main>` is a Suspense
+  boundary and the content arrives in the streamed payload. Raw byte order is not reading order.
+
+Both looked like serious first-impression defects and neither was real. Anyone auditing rendered
+HTML on this site needs to account for the Suspense boundary or they will file the same two.
+
+### Real findings, fixed
+
+`/framework` had never had a copy pass and now carries the most weight of any page.
+
+- Its `promise` — the highest-position line after the subtitle — was a seven-noun inventory
+  carrying internal jargon: *"A public-safe reference model for systems that turn signals,
+  transactions, topology, evidence, memory, evaluation, and human review into accountable
+  operational decisions."* Now: *"A reference model for building the layer an agent grounds itself
+  in — written so another team could implement it without talking to me."*
+- Its `thesis` **duplicated the "Telemetry is not enough" card further down the same page** — two
+  near-identical claims about enterprises not lacking data. The hero version now makes the sharper
+  point instead: *"The gap is not visibility. It is that nobody can assemble what is visible fast
+  enough, or show their working afterwards."*
+
+Neither string was pinned. `npm test` and `npm run build` green.
+
+### Still open on this pickup
+
+`/work`, `/background`, `/ask` framing and Operations Room usefulness not yet audited at the same
+depth. Homepage was audited string-by-string earlier and is clean.
+
 ## Decisions already made — do not reopen
 
 1. **`/evals` is retired.** The harness still runs on every build. A page arguing for the site's own
