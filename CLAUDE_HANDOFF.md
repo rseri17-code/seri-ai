@@ -4,7 +4,7 @@ Last updated: 2026-08-30
 
 Current sync point for Claude review:
 
-- `9e333e9 Refine background review and retrieval coverage`
+- `9e333e9 Refine background review and retrieval coverage` (merged into `claude/patterns-operating-model`)
 
 ---
 
@@ -53,11 +53,32 @@ compensating for the writing not being there.** Subtraction is the mission, not 
   with homepage first impression, Start Here proof route, Ask framing, Work and Background clarity,
   Operations Room usefulness, and whether Operational Intelligence is differentiated without
   overclaiming.
-- **Background page pickup:** the current intro still reads like an infrastructure memoir and the
-  metadata still names Kubernetes explicitly. Claude should rewrite the visitor-facing wording
-  toward the more precise enterprise systems / observability / identity and access management /
-  container platforms framing already agreed in chat, while keeping the page evidence-led and
-  public-safe.
+- **Background page pickup: DONE this session.** Ravikanth's verdict on the live page was that it
+  "doesn't reflect my actual work in a professional way", and he was right for a specific reason:
+  a page called Background carried **no role, no employer, and no date anywhere on it**. It was
+  entirely thematic. It also told the career three times over — `careerEvolution` (4 blocks),
+  `careerStory` (7 blocks), plus four evidence tiles — and the `careerStory` blocks were technology
+  dumps, one eleven items long, each closed by an internal-sounding "Connects to:" line.
+  What changed:
+  - **Added a Career spine section** rendering `resume.experience`: period, role, sector-level
+    employer, the impact line, and the top three responsibilities per role. It reads from
+    `content/resume.json`, so titles stay single-source — see the open ruling below.
+  - **Removed the `careerStory` section** from `/background`. The data is untouched and still
+    renders on `/resume`; this only stops the same career being told twice on one page.
+  - **Removed the "Profile guide" section**, whose body was a nine-noun navigation sentence
+    ("Start with the summary, then move to resume, work, LinkedIn, GitHub, publications,
+    certifications, education, and contact"). The Proof path section already does that job.
+  - **Rewrote the page metadata.** It previously opened "Public-safe background narrative" — internal
+    vocabulary shown to visitors in search results — and ran a nine-noun keyword list naming
+    Kubernetes explicitly. Both are gone.
+  - **Relabelled one hero tile from "What" to "This site".** Sitting beside "Who: Ravikanth Seri",
+    it rendered `identity.siteRole` — a description of the website — where a reader expected his
+    role. On the page whose complaint was that it misrepresents him, that tile was doing exactly that.
+  - **Pins repointed deliberately** in `validate-content-coherence.mjs`: dropped `"Career story"`,
+    `"Ravikanth Seri's career story."` and `"Connects to:"` (page-only strings asserting the removed
+    section; the seven stage names still resolve against `professional-graph.json`), and added
+    `"Career spine"`, `"The roles behind it."`, `"resume.experience.map"` and the sector-employer
+    sentence. No copy was written to satisfy a grep.
 - **Codex's current lane:** keep strengthening the corpus and retrieval plumbing, then validate and
   push only when the change materially improves the public body of work.
 - **Latest Codex tweak:** background-oriented queries now get a narrower retrieval boost, so
@@ -240,10 +261,28 @@ complete.
   reading order."`, `"Download publication pack"`) after confirming `validate-reference-package.mjs`
   still asserts the publication pack three times against `app/library/page.tsx`. The invariant moved;
   it was not lost. This is the judgement most worth checking behind Claude.
-- **Job titles disagree with the resume.** Site says *AIOps Lead Architect* and *Infrastructure
-  Technical Lead — Identity and Observability*; the resume says *Senior Technical Lead — AIOps &
-  Observability* and *Technical Lead — Identity & Infrastructure*. **Awaiting Ravikanth.** Do not
-  pick the grander one.
+- **Job titles disagree with the resume. STILL AWAITING RAVIKANTH, and now on two pages.** Site says
+  *AIOps Lead Architect* and *Infrastructure Technical Lead — Identity and Observability*; the resume
+  says *Senior Technical Lead — AIOps & Observability* and *Technical Lead — Identity &
+  Infrastructure*. Do not pick the grander one. The new `/background` career spine reads the same
+  `resume.experience` array, deliberately — one edit to `content/resume.json` when he rules will fix
+  both pages. Nothing new was published; the same disputed strings now render in two places.
+
+- **FLAGGED FOR RAVIKANTH — employer names on `/background`.** Claude asked whether the career spine
+  could name employers, arguing that job titles, dates and employers are already public on his
+  LinkedIn profile, so republishing them on his own site discloses nothing new and is categorically
+  different from internal system names or unpublished operational metrics. His reply was
+  **"yes, make it 10/10"** — which answers the rebuild request clearly but is a terse yes to a
+  two-part question, and it runs against ruling #4 in *Decisions already made* ("No employer names
+  ... in this repo. This repository is public"), which came from his own earlier ruling *"Follow the
+  LinkedIn model — no names, no metrics."*
+
+  **Claude did not publish employer names.** Per NORTH_STAR — public-safety status unclear, flag for
+  review, do not auto-publish — the spine ships with the sector descriptions already in
+  `content/resume.json` ("Major regulated financial-services enterprise"), which needed no new
+  ruling and delivers the substance of the fix. **Ravikanth: one explicit yes or no on naming
+  employers unblocks this; a yes is a one-line change to `content/resume.json`.** Until then, ruling
+  #4 stands and neither agent adds employer names.
 - **Published metrics have no stated method.** 80% ticket reduction, 200 hours/quarter, 120+ apps
   carry no baseline or window. On a site whose thesis is *show your evidence*, an unsourced
   percentage is the weakest thing on the page.

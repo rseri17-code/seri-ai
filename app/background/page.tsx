@@ -25,11 +25,11 @@ import { evalReport, professionalGraph, resume } from "@/content/site";
 export const metadata: Metadata = {
   title: "Background | Ravikanth Seri",
   description:
-    "Public-safe background narrative for Ravikanth Seri, connecting enterprise systems experience, Operational Intelligence, Agentic SRE, observability, identity, Kubernetes, evaluation, and AI-native operations.",
+    "Fifteen years operating distributed enterprise systems in regulated financial services, the roles that produced them, and what they taught Ravikanth Seri about putting AI agents near production.",
   alternates: { canonical: "/background" },
   openGraph: {
     title: "Background | Ravikanth Seri",
-    description: "The operating background behind Ravikanth Seri's Operational Intelligence thesis and public AI-native operations work.",
+    description: "The roles, the systems, and the recurring failure behind Ravikanth Seri's Operational Intelligence thesis.",
     url: "/background",
     type: "website"
   }
@@ -72,7 +72,7 @@ export default function BackgroundPage() {
                 <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.person}</p>
               </div>
               <div className="rounded border border-white/10 bg-black/20 p-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">What</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">This site</p>
                 <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.siteRole}</p>
               </div>
               <div className="rounded border border-white/10 bg-black/20 p-3">
@@ -122,31 +122,38 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Profile guide" title="Where to find the proof quickly.">
-        <Card className="border-mint/25 bg-mint/[0.04] p-5">
-          <p className="text-sm leading-7 text-slate-300">
-            Start with the summary, then move to resume, work, LinkedIn, GitHub, publications, certifications, education, and contact.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {professionalGraph.profileDiscovery
-              .filter((item) => [
-                "Professional summary",
-                "Current role and focus",
-                "Publications",
-                "GitHub",
-                "Certifications",
-                "Education",
-                "Resume",
-                "LinkedIn",
-                "Contact information"
-              ].includes(item.need))
-              .map((item) => (
-                <Link key={item.need} href={item.primaryHref} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-mint transition hover:border-mint/40">
-                  {item.need}
-                </Link>
-              ))}
-          </div>
-        </Card>
+      <Section eyebrow="Career spine" title="The roles behind it.">
+        <div className="grid gap-3">
+          {resume.experience.map((role) => (
+            <Card key={role.period} className="p-4">
+              <div className="grid gap-4 md:grid-cols-[0.3fr_0.7fr]">
+                <div>
+                  <p className="font-mono text-sm text-mint">{role.period}</p>
+                  <h2 className="mt-3 text-xl font-semibold leading-7 text-white">{role.role}</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">{role.organization}</p>
+                </div>
+                <div>
+                  <p className="text-sm leading-6 text-slate-300">{role.impact}</p>
+                  <ul className="mt-4 grid gap-2">
+                    {role.bullets.slice(0, 3).map((bullet) => (
+                      <li key={bullet} className="flex gap-3 text-sm leading-6 text-slate-400">
+                        <span aria-hidden className="mt-[0.6rem] h-1 w-1 shrink-0 rounded-full bg-mint" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+        <p className="mt-4 text-sm leading-7 text-slate-400">
+          Employers are identified by sector rather than by name. Each role above is abridged; the{" "}
+          <Link href="/resume" className="font-semibold text-mint">
+            resume
+          </Link>{" "}
+          carries the full set of responsibilities, plus education and certifications.
+        </p>
       </Section>
 
       <Section eyebrow="Point of view" title="Ravikanth Seri's point of view.">
@@ -162,27 +169,6 @@ export default function BackgroundPage() {
             ))}
           </div>
         </Card>
-      </Section>
-
-      <Section eyebrow="Career story" title="Ravikanth Seri's career story.">
-        <div className="grid gap-3">
-          {professionalGraph.careerStory.map((stage, index) => (
-            <Card key={stage.stage} className="p-4">
-              <div className="grid gap-4 md:grid-cols-[0.24fr_0.76fr]">
-                <div>
-                  <p className="font-mono text-sm text-mint">{String(index + 1).padStart(2, "0")}</p>
-                  <h2 className="mt-3 text-xl font-semibold text-white">{stage.stage}</h2>
-                </div>
-                <div>
-                  <p className="text-sm leading-6 text-slate-300">{stage.summary}</p>
-                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-signal">Evidence</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">{stage.evidence}</p>
-                  <p className="mt-3 text-xs leading-5 text-mint">Connects to: {stage.connectsTo}</p>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
       </Section>
 
       <Section eyebrow="Production delivery" title="The public-safe delivery chain from architecture to operating loop.">
