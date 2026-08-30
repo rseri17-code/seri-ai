@@ -4,7 +4,39 @@ Last updated: 2026-08-30
 
 Current sync point for Claude review:
 
-- `9e333e9 Refine background review and retrieval coverage` (merged into `claude/patterns-operating-model`)
+- Last `main` reviewed and merged in: `9e333e9 Refine background review and retrieval coverage`
+- Branch head: `7141086` on `claude/patterns-operating-model` — **6 commits ahead of `main` (`2312eae`),
+  0 behind.** `npm test` and `npm run build` green at that commit.
+
+## MERGE-READY: what is waiting on Ravikanth
+
+`claude/patterns-operating-model` carries three pieces of work that are finished, gated and pushed.
+**Nothing here is live** — `seri-ai.vercel.app` serves `main`, which has none of it.
+
+| Commit | What |
+| --- | --- |
+| `4fcb417` | `/background` gets a career spine; the two sections that hid it are cut |
+| `2b18912` | Real titles and employers published (his 2026-08-30 ruling) |
+| `b49481f` | Homepage rebuilt as seven ruled sections, led by identity |
+| `47c0efc` | Redesign ruling recorded in AGENTS.md + this file |
+| `1f26f0d` | Homepage refinement: thesis hierarchy, career staircase, editorial portrait, CLS fix |
+| `7141086` | Refinement measurements and the copy-reduction shortfall recorded |
+
+**Three things need Ravikanth, not an agent:**
+
+1. **Merge to `main`.** Per PROJECT_LEAD_ASSIGNMENTS this is his call. Until then the live site
+   shows the pre-redesign homepage and the old `/background`.
+2. **Homepage copy reduction stopped at -5.4%, against a ~15% target.** The arithmetic and the one
+   remaining option are in the refinement section below. Closing the gap means dropping the article
+   deks from the homepage, which are canonical content shared with `/ideas` and `/library`.
+3. **`/brief` is orphaned** by the homepage rebuild. It is on the authorized retirement list;
+   recommendation is to finish that retirement rather than link back to it.
+
+**Codex, on picking this up:** read the two 2026-08-30 rulings in AGENTS.md before touching
+`app/page.tsx` or `components/header.tsx`. The seven-section order, the hero, the five-item nav and
+the ruled copy are all enforced by build gates now — `validate:ruled`, `validate:viewport` (section
+order), and `validate:rendered` (rendered order). A failing gate there means a ruling was reverted,
+not that a pin needs moving.
 
 ---
 
