@@ -53,6 +53,11 @@ compensating for the writing not being there.** Subtraction is the mission, not 
   with homepage first impression, Start Here proof route, Ask framing, Work and Background clarity,
   Operations Room usefulness, and whether Operational Intelligence is differentiated without
   overclaiming.
+- **Background page pickup:** the current intro still reads like an infrastructure memoir and the
+  metadata still names Kubernetes explicitly. Claude should rewrite the visitor-facing wording
+  toward the more precise enterprise systems / observability / identity and access management /
+  container platforms framing already agreed in chat, while keeping the page evidence-led and
+  public-safe.
 - **Codex's current lane:** keep strengthening the corpus and retrieval plumbing, then validate and
   push only when the change materially improves the public body of work.
 
