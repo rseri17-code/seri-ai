@@ -12,458 +12,332 @@
  * If a validator pin fails because copy moved, do not rewrite the copy to satisfy the pin.
  * Repoint the pin, or leave it and say so in CLAUDE_HANDOFF.md. Copy written to satisfy a
  * grep target is how this page ended up with a paragraph that existed only to hold pins.
+ *
+ * SECTION ORDER IS RULED (2026-08-30 homepage brief). Seven sections, in this order:
+ *   1 Hero  2 Signature thesis  3 Flagship proof  4 Selected work
+ *   5 Career arc  6 Selected ideas  7 Closing invitation
+ * Do not add an eighth section without a documented visitor need.
  */
 import Link from "next/link";
-import { ArrowRight, BrainCircuit, ClipboardCheck, GitBranch, Linkedin, ShieldCheck } from "lucide-react";
-import { Card } from "@/components/card";
-import { HeroIntelligenceMap } from "@/components/hero-intelligence-map";
+import { ArrowRight } from "lucide-react";
+import { OperationsRoomPreview } from "@/components/operations-room-preview";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { homeArticles, homeCategoryContrast, homeEvalReport, homeFalsificationTests, homeHarnessThesis, homeMobileArtifactSignals, homeOperatingRules, homeOperatorOriginProof, homePatterns, homePrimaryPaths, homeProfileLinks, homeReviewerPaths } from "@/content/home";
+import { homeArticles, homeProfileLinks } from "@/content/home";
 import { professionalGraph, resume } from "@/content/site";
 
-const proofStrip = [
-  ["Doctrine", "Definition, boundaries, ten-layer model, glossary, and references."],
-  ["Architecture", "Contracts, schemas, state machines, approval gates, and conformance levels."],
-  ["Operations Room", "A synthetic-case investigation instrument for evidence, replay, hypotheses, and review."],
-  ["Ask Ravikanth", "An AI assistant over the public work. It cites what it knows and names what it does not."]
-];
-
-
-
-
-
-
-
-
-
-
-
-const inspectionLedger = [
-  ["/work", "Visitor Proof Map", "The shortest route from who he is to whether the thesis holds."],
-  ["/wiki/operational-intelligence-canonical-doctrine", "Doctrine v1.0", "What Operational Intelligence claims, and where the claim stops."],
-  ["/wiki/operational-intelligence-reference-architecture", "Reference Architecture", "Precise enough to build from: contracts, schemas, and gates."],
-  ["/investigation-room", "Operations Room", "A synthetic incident you can work end to end, including what the evidence missed."],
-  ["/ask", "Trust Evals", `${homeEvalReport.fixtures.length} fixtures checking whether Ask stays grounded, refuses well, and cites.`],
-  ["/framework", "Thesis Radar", "Where the market is moving, and what would prove the thesis wrong."],
-  ["/library", "Publishing System", "Everything written down, searchable and cited well enough to reuse."],
-  ["/work", "Public Work", "Fifteen years of it, with the proof attached."]
-] as const;
-
-const professionalSnapshot = [
+/** Section 4 — exactly three bodies of work, each with problem, role, proof and outcome. */
+const selectedWork = [
   {
-    title: "Who is Ravikanth?",
-    href: "/background",
-    body: `${professionalGraph.identity.person} is a ${professionalGraph.identity.siteRole} with a career that runs from enterprise integration to production AI systems.`
-  },
-  {
-    title: "How has the career evolved?",
-    href: "/background",
-    body: professionalGraph.careerEvolution.map((item) => item.stage).join(" → ")
-  },
-  {
-    title: "What has he built?",
+    title: "Production agent systems",
+    problem:
+      "An agent that can act on production needs more than a good model. It needs bounded execution, evidence it can cite, evaluation that runs before anyone trusts it, and a stopping point where a human decides.",
+    role:
+      "I took an enterprise SRE investigation agent from thesis to production and owned it end to end — architecture, engineering, enterprise integration, evaluation and operationalization.",
+    proof: "Reference architecture, evaluation gates, and the governed tool-call model, all written down.",
+    outcome:
+      "The model was the easy part. Keeping its context current and its actions answerable was the work.",
     href: "/work",
-    body: "Operational Intelligence doctrine, reference architecture, the Operations Room, Ask Ravikanth, the Evidence Pack, and public technical writing."
+    linkLabel: "See the operating record",
+    status: "Production experience"
   },
   {
-    title: "What is he building now?",
-    href: "/now",
-    body: professionalGraph.identity.currentFocus
-  },
-  {
-    title: "What does he specialize in?",
+    title: "The operational context layer",
+    problem:
+      "At the worst possible moment, teams are rebuilding the same four things by hand: who owns this, what changed, what depends on it, and what the transaction actually did.",
+    role:
+      "I design the layer that assembles that once — transactions, topology, change, ownership, evidence graphs, memory and replay — so agents, workflows and engineers reason from the same reality.",
+    proof: "Doctrine v1.0, the reference architecture, and ten architecture patterns in build order.",
+    outcome: "Build context once, or every consumer reconstructs it privately, repeatedly, and late.",
     href: "/framework",
-    body: "Getting agents to act on production evidence without losing the thread back to why."
+    linkLabel: "Read the thesis",
+    status: "Public reference architecture"
   },
   {
-    title: "Why work with him?",
-    href: "/contact",
-    body: "Because I have run the systems these agents are being pointed at, and I write down what I got wrong."
+    title: "Enterprise platform foundations",
+    problem:
+      "Regulated systems fail across ownership boundaries, and no single team can see the whole path. That is the environment the agents are being pointed at.",
+    role:
+      "Fifteen years of it: identity and access modernization, middleware and B2B integration, Kubernetes platforms, and observability in financial services.",
+    proof: "A zero-downtime OpenID Connect migration across 120+ applications, and the career record behind it.",
+    outcome: "Telemetry volume and operational understanding are not the same thing.",
+    href: "/background",
+    linkLabel: "Where the thesis comes from",
+    status: "Career record"
   }
 ] as const;
 
-
-
-
-
-
-
-
-
-
+/** Section 5 — progression, not chronology. Each phase names what it made possible. */
+const careerArc = [
+  ["Enterprise integration", "Systems that fail across boundaries taught me the alert is never the hard part."],
+  ["Identity and platform", "Migrations where one mistake reaches every application taught me what a blast radius is."],
+  ["Kubernetes and observability", "Instrumenting it properly taught me that more telemetry is not more understanding."],
+  ["Production AI systems", "Shipping an investigation agent taught me the context beneath it decides whether it is safe."],
+  ["Operational Intelligence", "Writing the argument down in public, including the parts that are still unproven."]
+] as const;
 
 export default function Home() {
+  const currentRole = resume.experience[0];
+
   return (
     <>
-      <section className="grid-bg border-b border-white/10">
-        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:px-6 sm:py-8 lg:min-h-[90vh] lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+      {/* 1 — HERO. Identity, specialty, production proof, two actions. */}
+      <section className="border-b border-white/10">
+        <div className="mx-auto max-w-7xl px-4 py-7 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+          <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div>
-            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-mint/25 bg-mint/[0.06] px-4 py-2 text-sm font-semibold text-mint">
-              <span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_16px_rgba(95,242,181,0.9)]" />
-              <span className="flex flex-col leading-tight">
-                <span>Ravikanth Seri / Operational Intelligence</span>
-                <span className="text-[0.7rem] font-medium tracking-[0.12em] text-mint/80">Senior infrastructure and AI systems engineer</span>
-              </span>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-mint sm:text-sm">
+                Ravikanth Seri &mdash; Production AI systems &middot; Operational Intelligence
+              </p>
+              <h1 className="mt-4 max-w-3xl text-[2rem] font-semibold leading-[1.08] text-white sm:text-[2.75rem] lg:text-[3.15rem]">
+                I build evidence-grounded AI systems for enterprise operations.
+              </h1>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg sm:leading-8">
+                My work connects live operational context, typed evidence, and machine reasoning to the person who
+                has to approve the action. So an agent can investigate a production system without losing the thread
+                back to why.
+              </p>
+
+              <p className="mt-5 max-w-2xl border-l-2 border-mint/60 pl-4 text-base leading-7 text-slate-200 sm:pl-5">
+                Most recently I took an <strong className="font-semibold text-white">enterprise SRE investigation
+                agent from thesis to production</strong>, owning it across architecture, engineering, enterprise
+                integration, evaluation and operationalization. That system is private. Everything on this site is
+                inspectable without it.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <TrackedLink
+                  href="/investigation-room"
+                  eventName="homepage_cta_click"
+                  eventProperties={{ cta: "enter_operations_room" }}
+                  className="inline-flex min-h-[48px] items-center gap-2 rounded bg-mint px-6 py-3 text-base font-semibold text-ink"
+                >
+                  Enter the Operations Room <ArrowRight size={18} />
+                </TrackedLink>
+                <TrackedLink
+                  href="/work"
+                  eventName="homepage_cta_click"
+                  eventProperties={{ cta: "explore_body_of_work" }}
+                  className="inline-flex min-h-[48px] items-center gap-2 rounded border border-white/25 px-6 py-3 text-base font-semibold text-white transition hover:border-mint/50 hover:text-mint"
+                >
+                  Explore the body of work
+                </TrackedLink>
+              </div>
             </div>
-            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
-              AI agents don&apos;t misfire because they lack intelligence.
-            </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              They misfire because the operational context beneath them is fragmented, stale, or incomplete. I build the context
-              layer and the harness that runs on it &mdash; for enterprise SRE and platform teams putting agents near production,
-              where a wrong action has an owner and a blast radius. A public operating model for AI-native operations, so an agent
-              reasons from attributable evidence instead of filling gaps with inference.
-            </p>
-            <p className="mt-4 max-w-3xl rounded-lg border border-amber/25 bg-amber/[0.05] p-4 text-base leading-7 text-slate-200">
-              <span className="font-semibold text-amber">The Authorized Misfire.</span> The failure I design against: an action the
-              system was permitted to take, grounded in context it should not have trusted. Historical incidents and runbooks are
-              valuable memory. They are not current production truth.
-            </p>
-            <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
-              So the context layer has to reconstruct what is happening now, show how the evidence connects, make uncertainty visible, and keep human judgment in control of anything consequential.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <TrackedLink href="/work" eventName="homepage_cta_click" eventProperties={{ cta: "start_here" }} className="inline-flex items-center gap-2 rounded bg-mint px-5 py-3 font-semibold text-ink">
-                Begin with the proof path <ArrowRight size={18} />
-              </TrackedLink>
-              <TrackedLink href="/investigation-room" eventName="homepage_cta_click" eventProperties={{ cta: "enter_operations_room" }} className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
-                Open the Operations Room
-              </TrackedLink>
-              <TrackedLink href="/wiki/operational-intelligence-canonical-doctrine" eventName="homepage_cta_click" eventProperties={{ cta: "read_doctrine" }} className="inline-flex min-h-[24px] items-center gap-2 px-1 py-3 font-semibold text-slate-300 underline decoration-white/25 underline-offset-4 hover:text-white">
-                Challenge the doctrine
-              </TrackedLink>
-            </div>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-              I most recently took an enterprise SRE investigation agent from thesis to production, owning it across architecture,
-              engineering, enterprise integration, evaluation and operationalization. That work is not public.{" "}
-              Everything here is inspectable without access to private systems.
-            </p>
-            <div className="mt-5 rounded-lg border border-white/10 bg-black/25 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+
+            <div className="lg:justify-self-end">
+              <div className="max-w-sm rounded-xl border border-white/12 bg-white/[0.03] p-6">
                 <Portrait size="lg" />
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Ravikanth Seri</p>
-                  <h2 className="mt-2 text-2xl font-semibold leading-7 text-white">
-                    I build the part of operations that keeps context alive when judgment matters most.
-                  </h2>
-                  <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
-                    Fifteen-plus years across distributed systems, identity, observability, and regulated financial-services operations showed me the same failure on repeat: at the worst moment, the team is rebuilding who owns this,
-                    what changed, and what depends on it. seri.ai is where I work that out in public, so the judgment is inspectable and reusable.
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {professionalGraph.proofLinks.slice(0, 3).map((item) => (
-                      <Link key={item.href} href={item.href} className="rounded border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-mint/40 hover:text-mint">
-                        {item.label}
-                      </Link>
-                    ))}
-                    <TrackedAnchor
-                      href={homeProfileLinks.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      eventName="profile_link_click"
-                      eventProperties={{ destination: "linkedin", placement: "homepage_hero_identity" }}
-                      className="rounded border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-signal/40 hover:text-signal"
-                    >
-                      LinkedIn
-                    </TrackedAnchor>
-                  </div>
-                  <div className="mt-5 border-t border-white/10 pt-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Career arc</p>
-                  <div className="mt-4 grid gap-3 md:grid-cols-3">
-                    {homeOperatorOriginProof.map(([label, proof]) => (
-                      <div key={label} className="rounded border border-white/10 bg-white/[0.035] p-3">
-                        <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-mint">{label}</p>
-                        <p className="mt-2 text-xs leading-5 text-slate-300">{proof}</p>
-                      </div>
-                    ))}
-                  </div>
-                  </div>
+                <p className="mt-5 text-lg font-semibold leading-7 text-white">{professionalGraph.identity.person}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-300">{currentRole.role}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-500">
+                  {currentRole.organization} &middot; {resume.location}
+                </p>
+                <p className="mt-5 border-t border-white/10 pt-5 text-sm leading-7 text-slate-300">
+                  Fifteen years running distributed enterprise systems in regulated financial services, before asking
+                  AI to reason about them.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <Link
+                    href="/resume"
+                    className="inline-flex min-h-[44px] items-center rounded border border-white/12 px-3 py-2 text-sm font-semibold text-slate-200 transition hover:border-mint/40 hover:text-mint"
+                  >
+                    Resume
+                  </Link>
+                  <TrackedAnchor
+                    href={homeProfileLinks.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    eventName="profile_link_click"
+                    eventProperties={{ destination: "linkedin", placement: "homepage_hero_identity" }}
+                    className="inline-flex min-h-[44px] items-center rounded border border-white/12 px-3 py-2 text-sm font-semibold text-slate-200 transition hover:border-signal/40 hover:text-signal"
+                  >
+                    LinkedIn
+                  </TrackedAnchor>
                 </div>
               </div>
-            </div>
-            <div className="mt-5 grid gap-2 rounded-lg border border-white/10 bg-black/20 p-3 lg:hidden">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Decision packet preview</p>
-                <p className="font-mono text-xs text-mint">OI-ROOM-001</p>
-              </div>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                {homeMobileArtifactSignals.map(([label, value]) => (
-                  <div key={label} className="rounded border border-white/10 bg-white/[0.04] px-3 py-2">
-                    <p className="text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-slate-500">{label}</p>
-                    <p className="mt-1 text-sm font-semibold text-slate-100">{value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            </div>
-            <div className="hidden lg:block lg:self-center">
-              <HeroIntelligenceMap />
             </div>
           </div>
         </div>
       </section>
 
-      <Section eyebrow="Category boundary and falsification tests" title="What it replaces, what it does not, and what would prove it wrong.">
-        <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-          <Card className="p-0">
-            <div className="border-b border-white/10 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">What it replaces, and what it does not</p>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300">
-                The point is not to rename observability, chat, or incident tracking. The point is to make the operational decision itself inspectable.
-              </p>
-            </div>
-            <details className="group">
-              <summary className="cursor-pointer list-none border-b border-white/10 px-5 py-3 text-sm font-semibold text-mint marker:hidden hover:bg-white/[0.03]">
-                Compare against dashboards, chat, tickets and runbooks
-                <span className="ml-2 font-normal text-slate-500 group-open:hidden">Expand</span>
-                <span className="ml-2 hidden font-normal text-slate-500 group-open:inline">Collapse</span>
-              </summary>
-            <div className="divide-y divide-white/10">
-              {homeCategoryContrast.map(([mode, promise, limitation]) => (
-                <div key={mode} className={`grid gap-3 p-4 md:grid-cols-[0.6fr_0.8fr_1.2fr] ${mode === "Operational Intelligence" ? "bg-mint/[0.045]" : ""}`}>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{mode}</p>
-                  <h2 className="text-base font-semibold text-white">{promise}</h2>
-                  <p className="text-sm leading-6 text-slate-300">{limitation}</p>
-                </div>
-              ))}
-            </div>
-            </details>
-          </Card>
-          <Card className="border-amber/25 bg-amber/[0.045]">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">What would make the thesis credible or wrong.</p>
-            <div className="mt-5 grid gap-3">
-              {homeFalsificationTests.map(([value, label]) => (
-                <div key={value} className="rounded border border-white/10 bg-black/20 p-3">
-                  <p className="font-semibold text-white">{value}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">{label}</p>
-                </div>
-              ))}
-            </div>
-          </Card>
-        </div>
-      </Section>
-
-      <Section eyebrow="Reference system" title="Inspect the work.">
-        <div className="grid gap-4 lg:grid-cols-[0.86fr_1.14fr]">
-          <Card className="border-signal/25 bg-signal/[0.045] p-5">
-            <ShieldCheck className="mb-5 text-signal" />
-            <h3 className="text-2xl font-semibold text-white md:text-3xl">Inspection is part of the public record.</h3>
-            <p className="mt-4 text-base leading-7 text-slate-300">
-              You can argue with any of this without access to a private system. The definitions are written down, the contracts are
-              specified, the evidence is synthetic and inspectable, and every claim links to the thing it rests on.
-            </p>
-            <div className="mt-5 grid gap-2 sm:grid-cols-2">
-              {proofStrip.map(([value, label]) => (
-                <div key={value} className="rounded border border-white/10 bg-black/20 p-3">
-                  <p className="text-base font-semibold text-white">{value}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-400">{label}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <TrackedAnchor
-                href={homeProfileLinks.github}
-                target="_blank"
-                rel="noreferrer"
-                eventName="profile_link_click"
-                eventProperties={{ destination: "github", placement: "homepage_reference_system" }}
-                className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-3 text-sm font-semibold text-white"
-              >
-                GitHub <ArrowRight size={15} />
-              </TrackedAnchor>
-              <TrackedAnchor
-                href={homeProfileLinks.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                eventName="profile_link_click"
-                eventProperties={{ destination: "linkedin", placement: "homepage_reference_system" }}
-                className="inline-flex items-center gap-2 rounded border border-white/15 px-4 py-3 text-sm font-semibold text-white"
-              >
-                LinkedIn <Linkedin size={15} />
-              </TrackedAnchor>
-              <Link href="/rss.xml" className="inline-flex items-center gap-2 rounded border border-mint/40 px-4 py-3 text-sm font-semibold text-mint">
-                RSS <ArrowRight size={15} />
-              </Link>
-            </div>
-          </Card>
-          <Card className="p-0">
-          <div className="border-b border-white/10 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Inspection ledger</p>
-              <p className="mt-2 text-sm leading-6 text-slate-400">Each artifact answers a different question in the public proof path.</p>
-            </div>
-            <div className="divide-y divide-white/10">
-            {inspectionLedger.map(([href, title, body]) => (
-              <Link key={href} href={href} className="grid gap-2 p-4 transition hover:bg-white/[0.035] md:grid-cols-[0.42fr_1fr_auto] md:items-center">
-                <h2 className="text-base font-semibold text-white">{title}</h2>
-                <p className="text-sm leading-6 text-slate-300">{body}</p>
-                <ArrowRight size={16} className="text-mint" />
-              </Link>
-            ))}
-            </div>
-          </Card>
-        </div>
-      </Section>
-
-
-      <Section eyebrow="The short version" title="Who I am, and where the evidence sits.">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          <Link href="/resume" className="block md:col-span-2 xl:col-span-1">
-            <Card className="border-mint/25 bg-mint/[0.045] p-5 transition hover:border-mint/45">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Current role</p>
-              <h3 className="mt-3 text-2xl font-semibold text-white">{professionalGraph.identity.person}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{resume.summary}</p>
-              <p className="mt-4 text-xs leading-5 text-slate-400">
-                Based in {resume.location}. Currently: {professionalGraph.identity.currentFocus}
-              </p>
-              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-signal">Open the resume</p>
-            </Card>
+      {/* 2 — SIGNATURE THESIS. The Authorized Misfire, once, then a link to the doctrine. */}
+      <section className="border-b border-white/10 bg-white/[0.015]">
+        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber">The failure I design against</p>
+          <h2 className="mt-7 text-2xl font-semibold leading-[1.35] text-white sm:text-[2rem] sm:leading-[1.35]">
+            AI agents don&apos;t misfire because they lack intelligence. They misfire because the operational context
+            beneath them is fragmented, stale, incomplete, or trusted past the point where it was still true.
+          </h2>
+          <p className="mt-8 max-w-2xl text-lg leading-9 text-slate-300">
+            I call the result <strong className="font-semibold text-amber">the Authorized Misfire</strong>: an action
+            the system was permitted to take, grounded in context it should not have trusted. Nothing was breached and
+            no rule was broken. The evidence was simply older, thinner, or narrower than the decision resting on it.
+          </p>
+          <p className="mt-6 max-w-2xl text-lg leading-9 text-slate-300">
+            Historical incidents and runbooks are valuable memory. They are not current production truth. So the
+            context layer has to reconstruct what is happening now, show how the evidence connects, make uncertainty
+            visible, and keep a human in control of anything consequential.
+          </p>
+          <Link
+            href="/wiki/operational-intelligence-canonical-doctrine"
+            className="mt-9 inline-flex min-h-[44px] items-center gap-2 text-base font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
+          >
+            Read the doctrine, and what would prove it wrong <ArrowRight size={17} />
           </Link>
-          {professionalSnapshot.map((item) => (
-            <Link key={item.title} href={item.href} className="block">
-              <Card className="p-5 transition hover:border-signal/40">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{item.title}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{item.body}</p>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-mint">Inspect evidence</p>
-              </Card>
-            </Link>
-          ))}
         </div>
-      </Section>
+      </section>
 
-      <Section eyebrow="Start here" title="Five stops, about ten minutes. Start anywhere; this order builds fastest.">
-        <div className="grid gap-4 lg:grid-cols-3">
-          {homePrimaryPaths.map((path) => (
-            <Link key={path.href} href={path.href}>
-              <Card className="h-full transition hover:-translate-y-1 hover:border-mint/40">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{path.label}</p>
-                <h3 className="mt-4 text-2xl font-semibold text-white">{path.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-slate-300">{path.body}</p>
-                <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-mint">Open <ArrowRight size={15} /></p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-        <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
-          {homeReviewerPaths.map(([role, href, artifact, question]) => (
-            <Link key={role} href={href}>
-              <Card className="h-full p-4 transition hover:border-signal/40">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{role}</p>
-                <h3 className="mt-3 text-lg font-semibold text-white">{artifact}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{question}</p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Point of view" title={homeHarnessThesis.headline}>
-        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-          <Card className="border-signal/30 bg-signal/[0.055]">
-            <BrainCircuit className="mb-5 text-signal" />
-            <h3 className="text-3xl font-semibold text-white">The model is not the moat. The operating harness is.</h3>
-            <p className="mt-4 text-lg leading-8 text-slate-300">{homeHarnessThesis.statement}</p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {homeHarnessThesis.loop.map((step) => (
-                <span key={step} className="rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold uppercase text-slate-300">
-                  {step}
-                </span>
-              ))}
-            </div>
-          </Card>
-          <div className="grid gap-3 md:grid-cols-3">
-            {homeOperatingRules.map(([title, body]) => (
-              <Card key={title} className="p-5">
-                <ShieldCheck className="mb-4 text-mint" />
-                <h3 className="text-xl font-semibold text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-
-
-
-      <Section eyebrow="Current work" title="Field notes and reusable patterns.">
-        <p className="mb-4 max-w-4xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-          The LinkedIn posts are the working notes for all of this &mdash; drafts of the doctrine rather than social proof. What
-          survives argument there ends up here.
+      {/* 3 — FLAGSHIP PROOF. The dominant moment on the page. */}
+      <Section eyebrow="Flagship proof" title="Watch an investigation hold itself to account.">
+        <p className="mb-8 max-w-3xl text-lg leading-9 text-slate-300">
+          Ten stages of a synthetic case. Step through it and the argument makes itself: a decision is not trusted
+          until its evidence can be replayed. Use the stage buttons, or the arrow keys.
         </p>
-        <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
-          <Card>
-            <ClipboardCheck className="mb-5 text-signal" />
-            <h3 className="text-2xl font-semibold text-white">Latest field notes</h3>
-            <div className="mt-5 grid gap-3">
-              {homeArticles.map((article) => (
-                <Link key={article.slug} href={`/ideas/${article.slug}`} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-mint/40">
-                  <p className="text-xs font-semibold uppercase text-mint">{article.theme}</p>
-                  <h4 className="mt-2 font-semibold text-white">{article.title}</h4>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">{article.dek}</p>
-                </Link>
-              ))}
-            </div>
-          </Card>
-          <Card>
-            <GitBranch className="mb-5 text-mint" />
-            <h3 className="text-2xl font-semibold text-white">Architecture patterns</h3>
-            <div className="mt-5 grid gap-3">
-              {homePatterns.map((pattern) => (
-                <Link key={pattern.slug} href={`/patterns/${pattern.slug}`} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-signal/40">
-                  <h4 className="font-semibold text-white">{pattern.title}</h4>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">{pattern.description}</p>
-                </Link>
-              ))}
-            </div>
-          </Card>
-        </div>
+        <OperationsRoomPreview />
       </Section>
 
-      <Section eyebrow="Reasons to get in touch" title="What a useful conversation usually looks like.">
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {[
-            ["Speaking", "Conferences and internal engineering forums on agentic operations, evidence-grounded investigation, and what actually breaks between proof of concept and production."],
-            ["Advisory", "Teams putting agents into regulated production who need the context and governance layer designed before the model choice."],
-            ["Collaboration", "Practitioners building in the same space. Shared vocabulary is worth more to me than agreement."],
-            ["Practitioner review", "Tell me where the doctrine is wrong. Structured, public-safe, and no external verdicts have been published yet."],
-            ["Hiring and interviews", "Principal architect, AI systems, and observability leadership conversations."]
-          ].map(([label, body]) => (
-            <Link key={label} href="/contact">
-              <Card className="h-full p-4 transition hover:border-mint/40">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">{label}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{body}</p>
-              </Card>
-            </Link>
+      {/* 4 — SELECTED WORK. Exactly three bodies of work, editorial rather than a card wall. */}
+      <Section eyebrow="Selected work" title="Three bodies of work.">
+        <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10">
+          {selectedWork.map((item, i) => (
+            <article key={item.title} className="grid gap-6 bg-ink p-6 sm:p-8 lg:grid-cols-[0.44fr_0.56fr]">
+              <div>
+                <p className="font-mono text-sm text-mint">{String(i + 1).padStart(2, "0")}</p>
+                <h3 className="mt-4 text-2xl font-semibold leading-tight text-white sm:text-3xl">{item.title}</h3>
+                <p className="mt-4 inline-block rounded border border-white/12 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+                  {item.status}
+                </p>
+                <p className="mt-6 text-base leading-8 text-slate-400">{item.problem}</p>
+              </div>
+              <div className="lg:pt-14">
+                <p className="text-base leading-8 text-slate-200">{item.role}</p>
+                <dl className="mt-6 grid gap-4 border-t border-white/10 pt-6">
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">Public proof</dt>
+                    <dd className="mt-2 text-sm leading-7 text-slate-300">{item.proof}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">What it taught me</dt>
+                    <dd className="mt-2 text-sm leading-7 text-slate-300">{item.outcome}</dd>
+                  </div>
+                </dl>
+                <Link
+                  href={item.href}
+                  className="mt-6 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
+                >
+                  {item.linkLabel} <ArrowRight size={16} />
+                </Link>
+              </div>
+            </article>
           ))}
         </div>
       </Section>
 
-      <Section eyebrow="Ask Ravikanth" title="Ask the public record. Answers cite their sources.">
-        <Card className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
-          <div>
-            <h3 className="text-2xl font-semibold text-white">An assistant over everything published here. Public record only.</h3>
-            <p className="mt-3 leading-7 text-slate-300">
-              It cites what it knows, names what it does not, and will not discuss employer systems. There is no model in the loop:
-              retrieval is lexical and answers are assembled deterministically, so the same question returns the same answer.
-            </p>
-            <p className="mt-3 text-sm leading-6 text-slate-400">
-              Worth asking: &ldquo;Is Operational Intelligence just AIOps renamed?&rdquo; &middot; &ldquo;What would falsify the
-              thesis?&rdquo; &middot; &ldquo;What has he actually shipped to production?&rdquo;
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/ask" className="rounded bg-white px-5 py-3 font-semibold text-ink">
-              Ask Ravikanth
-            </Link>
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded border border-mint/40 px-5 py-3 font-semibold text-mint">
-              Or talk to him directly <ShieldCheck size={18} />
-            </Link>
-          </div>
-        </Card>
+      {/* 5 — CAREER ARC. Progression, not the resume repeated. */}
+      <Section eyebrow="Career arc" title="Each phase is why the next one was possible.">
+        <ol className="grid gap-0 border-l border-white/12 pl-6 sm:pl-8">
+          {careerArc.map(([phase, lesson]) => (
+            <li key={phase} className="relative pb-9 last:pb-0">
+              <span aria-hidden className="absolute -left-[1.9rem] top-2 h-2.5 w-2.5 rounded-full bg-mint sm:-left-[2.4rem]" />
+              <h3 className="text-xl font-semibold text-white sm:text-2xl">{phase}</h3>
+              <p className="mt-2 max-w-2xl text-base leading-8 text-slate-300">{lesson}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-10 flex flex-wrap gap-4">
+          <Link
+            href="/resume"
+            className="inline-flex min-h-[48px] items-center gap-2 rounded border border-white/25 px-5 py-3 font-semibold text-white transition hover:border-mint/50 hover:text-mint"
+          >
+            The interactive resume
+          </Link>
+          <Link
+            href="/background"
+            className="inline-flex min-h-[48px] items-center gap-2 rounded border border-white/25 px-5 py-3 font-semibold text-white transition hover:border-mint/50 hover:text-mint"
+          >
+            The longer background
+          </Link>
+        </div>
       </Section>
+
+      {/* 6 — SELECTED IDEAS. Four, as a reading sequence rather than a blog grid. */}
+      <Section eyebrow="Selected ideas" title="Four arguments worth disagreeing with.">
+        <ol className="max-w-4xl divide-y divide-white/10 border-y border-white/10">
+          {homeArticles.slice(0, 4).map((article, i) => (
+            <li key={article.slug}>
+              <Link
+                href={`/ideas/${article.slug}`}
+                className="group grid gap-3 py-7 transition sm:grid-cols-[auto_1fr] sm:gap-7"
+              >
+                <span className="font-mono text-sm text-slate-500 sm:pt-1.5">{String(i + 1).padStart(2, "0")}</span>
+                <span>
+                  <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-mint">
+                    {article.theme}
+                  </span>
+                  <span className="mt-3 block text-xl font-semibold leading-tight text-white group-hover:text-mint sm:text-2xl">
+                    {article.title}
+                  </span>
+                  <span className="mt-3 block max-w-2xl text-base leading-8 text-slate-400">{article.dek}</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-9 flex flex-wrap gap-x-8 gap-y-3">
+          <Link
+            href="/library"
+            className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
+          >
+            Everything I have written down <ArrowRight size={16} />
+          </Link>
+          <Link
+            href="/patterns"
+            className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
+          >
+            The ten architecture patterns, in build order <ArrowRight size={16} />
+          </Link>
+        </div>
+      </Section>
+
+      {/* 7 — CLOSING INVITATION. One primary action. */}
+      <section className="border-t border-white/10 bg-white/[0.015]">
+        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <h2 className="text-3xl font-semibold leading-tight text-white md:text-4xl">
+            If you are putting agents anywhere near production, I would like to hear how it is going.
+          </h2>
+          <p className="mt-6 max-w-2xl text-lg leading-9 text-slate-300">
+            I am glad to talk with technical leaders hiring for Staff, Principal, architecture, AI systems or
+            observability leadership; practitioners building production agent systems; conference and engineering
+            forum organisers; and teams who want a second opinion on operational context, agent evaluation and
+            production governance.
+          </p>
+          <p className="mt-6 max-w-2xl text-lg leading-9 text-slate-300">
+            Telling me where the doctrine is wrong is the most useful thing you can do with it.
+          </p>
+          <div className="mt-9 flex flex-wrap items-center gap-5">
+            <TrackedLink
+              href="/contact"
+              eventName="homepage_cta_click"
+              eventProperties={{ cta: "start_a_conversation" }}
+              className="inline-flex min-h-[48px] items-center gap-2 rounded bg-mint px-6 py-3 text-base font-semibold text-ink"
+            >
+              Start a conversation <ArrowRight size={18} />
+            </TrackedLink>
+            <Link
+              href="/ask"
+              className="inline-flex min-h-[48px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
+            >
+              Or ask the public record
+            </Link>
+          </div>
+          <p className="mt-10 max-w-2xl border-t border-white/10 pt-6 text-sm leading-7 text-slate-500">
+            Everything published here is public-safe by design: approved material and synthetic examples only. Private
+            employer systems, logs, dashboards, screenshots and proprietary architecture stay out of scope.
+          </p>
+        </div>
+      </section>
     </>
   );
 }

@@ -11,28 +11,39 @@ const routeContracts = [
     route: "/",
     file: "index.html",
     maxBytes: 210_000,
+    // Repointed 2026-08-30 for the homepage redesign. Rendered-HTML assertions for the seven
+    // ruled sections, checked against the built page rather than the source.
     required: [
-      "misfire because they lack intelligence",
+      "I build evidence-grounded AI systems for enterprise operations.",
       "Ravikanth Seri",
-      "Ravikanth Seri / Operational Intelligence",
+      "Production AI systems",
+      "enterprise SRE investigation",
+      "Enter the Operations Room",
+      "Explore the body of work",
+      "misfire because they lack intelligence",
+      "the Authorized Misfire",
       "reconstruct what is happening now",
       "show how the evidence connects",
-      "keep human judgment in control",
-      "Everything here is inspectable without access to private systems",
+      "Flagship proof",
+      "OI-ROOM-001",
+      "Three bodies of work.",
       "Career arc",
-      "the team is rebuilding who owns this,",
-      "Begin with the proof path",
-      "Open the Operations Room",
-      "Visitor Proof Map",
-      "Decision packet preview",
-      "working notes for all of this"
+      "Four arguments worth disagreeing with.",
+      "Start a conversation",
+      "public-safe by design"
     ],
     before: [
-      ["Begin with the proof path", "Open the Operations Room"],
-      ["Begin with the proof path", "Everything here is inspectable without access to private systems"],
-      ["Open the Operations Room", "Everything here is inspectable without access to private systems"],
-      ["Begin with the proof path", "Career arc"],
-      ["Open the Operations Room", "Career arc"]
+      // A mobile visitor reaches an action before the page starts explaining itself.
+      ["Enter the Operations Room", "The failure I design against"],
+      ["Explore the body of work", "The failure I design against"],
+      ["Enter the Operations Room", "Career arc"],
+      // Ruled section order, asserted end to end on the rendered page.
+      ["I build evidence-grounded AI systems for enterprise operations.", "The failure I design against"],
+      ["The failure I design against", "Flagship proof"],
+      ["Flagship proof", "Three bodies of work."],
+      ["Three bodies of work.", "Career arc"],
+      ["Career arc", "Four arguments worth disagreeing with."],
+      ["Four arguments worth disagreeing with.", "Start a conversation"]
     ]
   },
   {

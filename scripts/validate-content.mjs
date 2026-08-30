@@ -356,15 +356,20 @@ if (!Array.isArray(home.heroFlow) || home.heroFlow.length < 5 || !home.heroFlow.
 if (!JSON.stringify(home).includes("public-safe") && !JSON.stringify(home).includes("public proof")) {
   errors.push("content/home.json: homepage content must preserve public-safe proof posture");
 }
+// Repointed 2026-08-30 for the homepage redesign. These assert the same invariants against the
+// new hero and thesis section: identity before doctrine, the Authorized Misfire stated once, the
+// context-layer response, and the public/private boundary. Pin short fragments only - several of
+// the previous pins broke purely because the copy rewrapped across lines.
 for (const required of [
-  "Ravikanth Seri / Operational Intelligence",
+  "Production AI systems",
+  "I build evidence-grounded AI systems for enterprise operations.",
+  "enterprise SRE investigation",
   "misfire because they lack intelligence",
-  "public operating model for AI-native operations",
   "reconstruct what is happening now",
   "show how the evidence connects",
-  "make uncertainty visible",
-  "keep human judgment in control",
-  "inspectable without access to private systems"
+  "uncertainty",
+  "in control of anything consequential",
+  "inspectable without it"
 ]) {
   if (!homePageSource.includes(required)) {
     errors.push(`app/page.tsx: homepage first impression missing required positioning phrase: ${required}`);

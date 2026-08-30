@@ -22,15 +22,16 @@ const routeContracts = [
     file: "app/page.tsx",
     minResponsiveTokens: 18,
     required: [
-      "grid-cols-2",
-      "sm:grid-cols-2",
-      "lg:grid-cols-[1.05fr_0.95fr]",
-      "lg:grid-cols",
-      "HeroIntelligenceMap",
-      "homeMobileArtifactSignals",
-      "lg:hidden",
-      "Begin with the proof path",
-      "Open the Operations Room"
+      // Repointed 2026-08-30 for the redesign. The old list pinned specific grid classes and a
+      // hero widget, which is a layout, not a responsive invariant. These assert that the page
+      // still adapts: a stacking hero, a responsive selected-work composition, and the flagship
+      // preview, which is the one place where a horizontal rail has to stay usable on a phone.
+      "lg:grid-cols-[1.15fr_0.85fr]",
+      "lg:grid-cols-[0.44fr_0.56fr]",
+      "sm:grid-cols-[auto_1fr]",
+      "OperationsRoomPreview",
+      "min-h-[48px]",
+      "min-h-[44px]"
     ]
   },
   {
@@ -140,27 +141,47 @@ for (const contract of routeContracts) {
   expect(!source.includes("min-w-[100vw]"), `${contract.route}: ${contract.file} should avoid viewport min-width because it commonly causes mobile overflow`);
 }
 
-const homePage = read("app/page.tsx");
+// Index against the rendered markup only. The file header documents the ruled section order, so
+// indexing the raw source matched the comment instead of the section and reported a false break.
+const homePageSource = read("app/page.tsx");
+const homePage = homePageSource.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+// The invariant these protect is unchanged and still worth protecting: a mobile visitor must reach
+// an action before the page starts explaining itself. Only the CTA labels and the markers for
+// "deeper content" moved, in the 2026-08-30 redesign.
+const heroPrimaryCta = homePage.indexOf("Enter the Operations Room");
+const heroSecondaryCta = homePage.indexOf("Explore the body of work");
+expect(heroPrimaryCta > -1 && heroSecondaryCta > -1, "/: homepage must offer both hero actions");
 expect(
-  homePage.indexOf("Begin with the proof path") < homePage.indexOf("Open the Operations Room"),
-  "/: homepage should present the thesis before deeper technical paths for first-time visitors"
+  heroPrimaryCta < homePage.indexOf("The failure I design against"),
+  "/: homepage primary CTA must render before the signature-thesis section"
 );
 expect(
-  homePage.indexOf("Begin with the proof path") < homePage.indexOf("Everything here is inspectable without access to private systems"),
-  "/: homepage primary thesis CTA must render before the inspection/trust paragraph"
+  heroSecondaryCta < homePage.indexOf("The failure I design against"),
+  "/: both homepage CTAs must render before the signature-thesis section so mobile visitors see an action in the first viewport"
 );
 expect(
-  homePage.indexOf("Begin with the proof path") < homePage.indexOf("Career arc"),
-  "/: homepage primary thesis CTA must render before the field-origin proof module"
+  heroPrimaryCta < homePage.indexOf("Career arc"),
+  "/: homepage CTAs must render before the career arc so mobile visitors get an action before deeper explanation"
 );
-expect(
-  homePage.indexOf("Open the Operations Room") < homePage.indexOf("Everything here is inspectable without access to private systems"),
-  "/: homepage primary CTAs must render before the inspection/trust paragraph so mobile visitors see an action in the first viewport"
-);
-expect(
-  homePage.indexOf("Open the Operations Room") < homePage.indexOf("Career arc"),
-  "/: homepage primary CTAs must render before the field-origin proof module so mobile visitors get an action before deeper explanation"
-);
+// Section order is ruled. Assert it here so a reordering fails the build rather than shipping.
+const sectionOrder = [
+  "I build evidence-grounded AI systems for enterprise operations.",
+  "The failure I design against",
+  "Flagship proof",
+  "Three bodies of work.",
+  "Each phase is why the next one was possible.",
+  "Four arguments worth disagreeing with.",
+  "Start a conversation"
+].map((marker) => [marker, homePage.indexOf(marker)]);
+for (const [marker, at] of sectionOrder) {
+  expect(at > -1, `/: homepage missing ruled section marker "${marker}"`);
+}
+for (let i = 1; i < sectionOrder.length; i += 1) {
+  expect(
+    sectionOrder[i - 1][1] < sectionOrder[i][1],
+    `/: ruled homepage section order broken - "${sectionOrder[i][0]}" must follow "${sectionOrder[i - 1][0]}"`
+  );
+}
 
 const simulatorPage = read("app/investigation-room/page.tsx");
 for (const required of [

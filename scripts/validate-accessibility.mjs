@@ -113,7 +113,9 @@ const header = read("components/header.tsx");
   "aria-controls=\"mobile-navigation\"",
   "id=\"mobile-navigation\"",
   "isMenuOpen ? \"block\" : \"hidden\"",
-  "xl:hidden"
+  // The disclosure breakpoint moved xl -> lg on 2026-08-30: five nav items fit at laptop widths
+  // where ten did not. What matters is that a breakpoint-gated mobile menu exists, not which one.
+  "lg:hidden"
 ].forEach((required) => {
   if (!header.includes(required)) {
     errors.push(`components/header.tsx: missing responsive navigation contract "${required}"`);
