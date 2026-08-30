@@ -206,6 +206,42 @@ resolve 200.
 deletions (`git add -A`) before running `npm test`** or it crashes with ENOENT. Already documented
 below; it fired again on this change.
 
+## 4c. Reviewer rubric removed from `/work`, 2026-08-30
+
+Ravikanth spotted it on the live page and ruled it out. The "Public code inspection" section
+published **reviewer instructions to visitors**: a "Review question / Look for / Do not infer"
+scoring template, plus a six-chip record schema (Repository surface inspected · Visible engineering
+behavior · Verdict · Reasoning loss or ambiguity · Boundary respected · Next proof). It taught a
+stranger how to grade the work before showing them any of it.
+
+**This is the fourth time this defect class has been ruled on** — `/evals` retired, "Questions this
+page should answer" cut from `/background`, the inspection ledger cut from the homepage, now this.
+It survived only because no brief had covered `/work`. **If you find more apparatus-about-the-work
+standing where the work should be, it goes.**
+
+`content/public-code.json` is untouched — the rubric is a genuinely useful reviewer worksheet, just
+not visitor copy. What was worth keeping is folded into the `/work` hero in first person: both
+repository links, what the public repo actually contains, and the boundary as a plain sentence.
+
+**A negative gate now exists** in `validate-content-coherence.mjs`: rendering `reviewRubric`,
+`reviewRecordFields`, `observedPublicStructure`, "Review question", "What review should record." or
+"How to inspect the public code." on `/work` fails the build.
+
+**Two harness lessons, both worth remembering:**
+
+1. **A pin can match a JSON file and assert nothing about the page.** `workContractSource` joins
+   `app/work/page.tsx` **with** `content/public-code.json`. Several old pins matched only the JSON,
+   so they stayed green while nothing rendered. **Pin page-only strings, and check what the source
+   variable actually joins.**
+2. **Another "bigger is better" floor fired for subtracting.** `validate-viewport-contracts`
+   required ≥9 responsive tokens on `/work` and failed at 7 because a two-column section was
+   deleted. Lowered to 6 rather than padding the page — the `required` breakpoint list already
+   asserts the real invariant. That is now the fourth such floor found (prerender count, HTML files,
+   `requireJsonArray`, this one). **Expect more; fix the assumption, never the number.**
+
+Measured after: 1,212 words (from ~1,410), zero horizontal overflow at
+320/375/390/768/1024/1440/1920, every rubric string absent from the rendered page.
+
 ## 5. Known gaps — do not report these as done
 
 - **Homepage copy is 953 words vs a ~15% reduction target (~856).** Delivered -5.4%. Arithmetic is
