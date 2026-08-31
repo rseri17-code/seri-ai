@@ -15,8 +15,8 @@
     },
     {
       "period": "2022-2025",
-      "stage": "Platform modernization, identity, Kubernetes, and observability",
-      "summary": "Moved authentication for a large estate onto Kubernetes without downtime. Learned that telemetry volume and operational understanding are different things.",
+      "stage": "Platform modernization, identity, container platforms, and observability",
+      "summary": "Moved authentication for a large estate onto container platforms without downtime. Learned that telemetry volume and operational understanding are different things.",
       "explains": "Why ownership, topology, transaction context, migration risk, and telemetry quality are central to the public thesis."
     },
     {
@@ -52,9 +52,9 @@
       "connectsTo": "Operator Control Plane and runtime governance"
     },
     {
-      "stage": "Cloud & Kubernetes",
+      "stage": "Cloud & container platforms",
       "summary": "Extended the operating model into cloud-native and hybrid infrastructure, where deployment state, ownership, capacity, and runtime behavior must be understood together.",
-      "evidence": "Kubernetes, Helm, Terraform, Docker, AWS, Linux, hybrid cloud architecture, containerization, deployment automation, and configuration management.",
+      "evidence": "Container platforms, Helm, Terraform, Docker, AWS, Linux, hybrid cloud architecture, containerization, deployment automation, and configuration management.",
       "connectsTo": "Operational Memory and replayable change context"
     },
     {
@@ -94,7 +94,7 @@
     },
     {
       "capability": "Enterprise platform modernization",
-      "proof": "Kubernetes, identity modernization, observability integration, distributed systems, and regulated operational environments.",
+      "proof": "Container platforms, identity modernization, observability integration, distributed systems, and regulated operational environments.",
       "href": "/patterns/topology-aware-reasoning"
     },
     {
@@ -334,7 +334,7 @@
       "need": "Career progression",
       "primaryHref": "/background",
       "evidenceHref": "/resume",
-      "proof": "Evolution from enterprise integration through middleware, identity, Kubernetes, observability, production AI systems, and agentic operations."
+      "proof": "Evolution from enterprise integration through middleware, identity, container platforms, observability, production AI systems, and agentic operations."
     },
     {
       "need": "Experience",
@@ -358,7 +358,7 @@
       "need": "Technical domains",
       "primaryHref": "/resume",
       "evidenceHref": "/patterns",
-      "proof": "AI systems, Agentic SRE, distributed systems, observability, cloud, Kubernetes, identity, APIs, integration, reliability, and automation."
+      "proof": "AI systems, Agentic SRE, distributed systems, observability, cloud, container platforms, identity, APIs, integration, reliability, and automation."
     },
     {
       "need": "Leadership",
@@ -419,7 +419,7 @@
     },
     {
       "question": "What has he done professionally?",
-      "answerLens": "He has worked across enterprise integration, middleware, identity, Kubernetes, observability, AIOps, and production AI operations architecture.",
+      "answerLens": "He has worked across enterprise integration, middleware, identity, container platforms, observability, AIOps, and production AI operations architecture.",
       "primaryHref": "/resume",
       "evidenceHref": "/background",
       "askPrompt": "What has Ravikanth done professionally?"

@@ -61,7 +61,7 @@
     {
       "step": "Inspect career evidence",
       "route": "/background",
-      "question": "Can the reviewer connect enterprise integration, APIs, identity, cloud, Kubernetes, observability, and production AI systems into one engineering arc?",
+      "question": "Can the reviewer connect enterprise integration, APIs, identity, cloud, container platforms, observability, and production AI systems into one engineering arc?",
       "failureSignal": "The career story feels like a flat timeline or hides the systems foundation behind current AI language."
     },
     {

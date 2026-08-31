@@ -10,12 +10,12 @@
     "OpenTelemetry and related standards are expanding into GenAI and agent semantics, making AI behavior part of the operational data plane."
   ],
   "contrarianInsight": "The dashboard is not the destination. The destination is an operational reasoning layer that can explain what changed, why it matters, which evidence supports the conclusion, and what action a human should review.",
-  "wedge": "The wedge is the intersection of production infrastructure, observability, identity, Kubernetes, AI agent runtime governance, and incident investigation. That combination lets seri.ai talk about AI-native operations from operator reality, not abstract AI enthusiasm.",
+  "wedge": "The wedge is the intersection of production infrastructure, observability, identity, container platforms, AI agent runtime governance, and incident investigation. That combination lets seri.ai talk about AI-native operations from operator reality, not abstract AI enthusiasm.",
   "proofPoints": [
     "A public simulator that turns the evidence-first investigation model into an interactive artifact.",
     "A public trust report that exposes how Ask Ravikanth should behave, refuse, cite, and admit uncertainty.",
     "A thesis radar that maps current market movement around AI observability, AgentOps, AIOps evaluation, OpenTelemetry GenAI semantics, and operational readiness.",
-    "A public resume narrative grounded in production AI agent systems, observability, runtime governance, Kubernetes, and identity modernization."
+    "A public resume narrative grounded in production AI agent systems, observability, runtime governance, container platforms, and identity modernization."
   ],
   "whatToRemember": [
     "Operational Intelligence is the reasoning layer above observability.",

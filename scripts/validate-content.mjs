@@ -1168,7 +1168,8 @@ const requiredCareerStoryStages = [
   "Enterprise Integration",
   "Middleware & API Architecture",
   "Identity & Platform Engineering",
-  "Cloud & Kubernetes",
+  // Renamed 2026-08-31: the stage is named for the capability, not one runtime.
+  "Cloud & container platforms",
   "Observability & AIOps",
   "Production AI Systems",
   "Agentic Operations & Operational Intelligence"

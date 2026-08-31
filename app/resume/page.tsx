@@ -208,13 +208,13 @@ export default function ResumePage() {
                 <div key={`${certification.credential}-${certification.issuer}`} className="rounded border border-white/10 bg-ink px-4 py-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Certification · {certification.status}</p>
-                    {certification.issued ? <p className="font-mono text-xs text-slate-500">Issued {certification.issued}</p> : null}
+                    {certification.issued ? <p className="font-mono text-xs text-slate-400">Issued {certification.issued}</p> : null}
                   </div>
                   <h3 className="mt-2 font-semibold text-white">{certification.credential}</h3>
                   <p className="mt-1 text-sm text-slate-300">{certification.issuer}</p>
                   <p className="mt-3 text-sm leading-6 text-slate-200">{certification.supports}</p>
                   <p className="mt-2 text-xs leading-5 text-slate-400">{certification.doesNotProve}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-500">Source: {certification.sourceClass}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">Source: {certification.sourceClass}</p>
                 </div>
               ))}
             </div>

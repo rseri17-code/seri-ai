@@ -959,7 +959,7 @@
       "result": "Pass"
     },
     {
-      "prompt": "How does Ravikanth's experience connect observability, identity, Kubernetes, and AI agents?",
+      "prompt": "How does Ravikanth's experience connect observability, identity, container platforms, and AI agents?",
       "expected": "Route to resume and background without exposing confidential implementation details.",
       "requiredAnswerIncludes": [
         "Public source",
