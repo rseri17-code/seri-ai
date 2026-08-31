@@ -81,7 +81,7 @@ export default function FrameworkPage() {
         <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.05]">
             <BrainCircuit className="mb-5 text-mint" />
-            <h2 className="text-3xl font-semibold text-white">{operationalIntelligenceFramework.subtitle}</h2>
+            <p className="text-3xl font-semibold text-white">{operationalIntelligenceFramework.subtitle}</p>
             <p className="mt-4 text-lg leading-8 text-slate-300">{operationalIntelligenceFramework.promise}</p>
             <p className="mt-5 rounded border border-white/10 bg-black/20 p-4 text-sm leading-6 text-slate-300">
               {operationalIntelligenceFramework.thesis}
@@ -120,7 +120,7 @@ export default function FrameworkPage() {
 
         <Card className="mt-5 p-4 sm:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">One &mdash; the substrate</p>
-          <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The Enterprise Context Layer</h2>
+          <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The Enterprise Context Layer</h3>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
             Today every engineer, every workflow and every agent reconstructs operational reality independently, each one pulling
             separately from CMDB, observability, identity, ITSM, CI/CD and topology. I call that the Context Acquisition Tax, and it
@@ -138,7 +138,7 @@ export default function FrameworkPage() {
                 src="/diagrams/enterprise-context-layer.jpg"
                 alt="Diagram titled Enterprise Context Layer. On the left, current state: six fragmented sources including CMDB, observability, identity, ServiceNow, CI/CD and topology connect by tangled lines to engineers, workflows, operations and AI agents, labelled the Context Acquisition Tax. In the centre, an Enterprise Context Layer maintains a single representation of operational reality covering ownership, topology, dependencies, changes, transactions, state and history, consumed by humans, workflows, automation and AI agents, and marked governed, secure, auditable and always current. On the right, future-state outcomes: trusted operational context, faster investigations, better decisions, reliable automation, cross-agent continuity and operational intelligence."
                 loading="lazy"
-                className="w-full rounded-lg border border-white/10"
+                className="w-full max-w-3xl rounded-lg border border-white/10"
               />
             </picture>
           </figure>
@@ -149,7 +149,7 @@ export default function FrameworkPage() {
 
         <Card className="mt-4 p-4 sm:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Two &mdash; the loop</p>
-          <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The SRE Agent Harness</h2>
+          <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The SRE Agent Harness</h3>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
             An incident fires and the agent grounds itself in current telemetry, topology and configuration &mdash; that grounding
             step is where it reads the context layer. It reasons toward a probable cause, captures what it observed in what sequence
@@ -168,7 +168,7 @@ export default function FrameworkPage() {
                 src="/diagrams/sre-agent-harness-architecture.jpg"
                 alt="Diagram titled SRE Agent Harness Architecture, subtitled how operational experience becomes operational intelligence. Eight stages run left to right: incident trigger, grounding layer, RCA investigation, evidence capture, pattern intelligence, operational memory, recovery outcome and learning update. Beneath them a long-term operational memory store holds incident history, failure patterns, dependency behaviour, recovery knowledge, outcome intelligence and a pattern index for similarity search. A continuous learning loop feeds back so the next incident starts with accumulated operational experience."
                 loading="lazy"
-                className="w-full rounded-lg border border-white/10"
+                className="w-full max-w-3xl rounded-lg border border-white/10"
               />
             </picture>
           </figure>
@@ -178,15 +178,73 @@ export default function FrameworkPage() {
         </Card>
       </Section>
 
+      <Section eyebrow="How the material is indexed" title="Ten layers, used for filing rather than for arguing.">
+        <p className="max-w-4xl text-base leading-7 text-slate-300">
+          The harness above is the model. These ten layers are the taxonomy underneath it: every published note,
+          pattern and artifact on this site is tagged to one of them, which is how retrieval and related-reading
+          work. They are a filing system, not a competing architecture &mdash; if the two ever disagree, the harness wins.
+        </p>
+        <div className="mt-5">
+          <FrameworkTeacher />
+        </div>
+      </Section>
+
       <Section eyebrow="The argument" title="Why this needs to be a layer rather than a feature.">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-          {argumentsForCategory.map((entry) => (
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {argumentsForCategory.slice(0, 3).map((entry) => (
             <Card key={entry.title} className="h-full p-5">
-              <h2 className="text-lg font-semibold leading-7 text-white sm:text-xl">{entry.title}</h2>
+              <h3 className="text-lg font-semibold leading-7 text-white sm:text-xl">{entry.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-300">{entry.body}</p>
             </Card>
           ))}
         </div>
+        {argumentsForCategory.length > 3 ? (
+          <details className="group mt-4">
+            <summary className="inline-flex min-h-[44px] cursor-pointer list-none items-center text-sm font-semibold text-mint marker:hidden">
+              {argumentsForCategory.length - 3} further reasons
+              <span className="ml-2 font-normal text-slate-400 group-open:hidden">Show</span>
+              <span className="ml-2 hidden font-normal text-slate-400 group-open:inline">Hide</span>
+            </summary>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {argumentsForCategory.slice(3).map((entry) => (
+                <Card key={entry.title} className="h-full p-5">
+                  <h3 className="text-lg font-semibold leading-7 text-white sm:text-xl">{entry.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{entry.body}</p>
+                </Card>
+              ))}
+            </div>
+          </details>
+        ) : null}
+      </Section>
+
+      <Section eyebrow="Design rules" title="How the framework should constrain systems.">
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Card>
+            <CheckCircle2 className="mb-5 text-mint" />
+            <h3 className="text-2xl font-semibold text-white">Design principles</h3>
+            <div className="mt-4 grid gap-2">
+              {operationalIntelligenceFramework.designPrinciples.map((principle) => (
+                <div key={principle} className="rounded border border-white/10 bg-black/20 p-3 text-sm font-semibold text-slate-200">
+                  {principle}
+                </div>
+              ))}
+            </div>
+          </Card>
+          <Card>
+            <ShieldCheck className="mb-5 text-signal" />
+            <h3 className="text-2xl font-semibold text-white">Evaluation criteria</h3>
+            <div className="mt-4 grid gap-2">
+              {operationalIntelligenceFramework.evaluationCriteria.map((criterion) => (
+                <div key={criterion} className="rounded border border-white/10 bg-black/20 p-3 text-sm font-semibold text-slate-200">
+                  {criterion}
+                </div>
+              ))}
+            </div>
+          </Card>
+        </div>
+      </Section>
+      <Section eyebrow="Review path" title="How to challenge the framework.">
+        <TechnicalReviewPath />
       </Section>
 
       <Section eyebrow="Where the market is moving" title="Every claim below is paired with what would prove it wrong.">
@@ -198,6 +256,12 @@ export default function FrameworkPage() {
           Evidence posture. These signals do not prove Operational Intelligence as a finished category. They show the market
           moving toward the same problem.
         </p>
+        <details className="group mt-4">
+          <summary className="inline-flex min-h-[44px] cursor-pointer list-none items-center text-sm font-semibold text-mint marker:hidden">
+            {thesisRadar.proofChain.length} market signals, each paired with its falsifier
+            <span className="ml-2 font-normal text-slate-400 group-open:hidden">Show</span>
+            <span className="ml-2 hidden font-normal text-slate-400 group-open:inline">Hide</span>
+          </summary>
         <Card className="mt-4 p-0">
           <div className="divide-y divide-white/10">
             {thesisRadar.proofChain.map((item) => (
@@ -218,49 +282,9 @@ export default function FrameworkPage() {
             ))}
           </div>
         </Card>
+        </details>
       </Section>
 
-      <Section eyebrow="How the material is indexed" title="Ten layers, used for filing rather than for arguing.">
-        <p className="max-w-4xl text-base leading-7 text-slate-300">
-          The harness above is the model. These ten layers are the taxonomy underneath it: every published note,
-          pattern and artifact on this site is tagged to one of them, which is how retrieval and related-reading
-          work. They are a filing system, not a competing architecture &mdash; if the two ever disagree, the harness wins.
-        </p>
-        <div className="mt-5">
-          <FrameworkTeacher />
-        </div>
-      </Section>
-
-      <Section eyebrow="Review path" title="How to challenge the framework.">
-        <TechnicalReviewPath />
-      </Section>
-
-      <Section eyebrow="Design rules" title="How the framework should constrain systems.">
-        <div className="grid gap-4 lg:grid-cols-2">
-          <Card>
-            <CheckCircle2 className="mb-5 text-mint" />
-            <h2 className="text-2xl font-semibold text-white">Design principles</h2>
-            <div className="mt-4 grid gap-2">
-              {operationalIntelligenceFramework.designPrinciples.map((principle) => (
-                <div key={principle} className="rounded border border-white/10 bg-black/20 p-3 text-sm font-semibold text-slate-200">
-                  {principle}
-                </div>
-              ))}
-            </div>
-          </Card>
-          <Card>
-            <ShieldCheck className="mb-5 text-signal" />
-            <h2 className="text-2xl font-semibold text-white">Evaluation criteria</h2>
-            <div className="mt-4 grid gap-2">
-              {operationalIntelligenceFramework.evaluationCriteria.map((criterion) => (
-                <div key={criterion} className="rounded border border-white/10 bg-black/20 p-3 text-sm font-semibold text-slate-200">
-                  {criterion}
-                </div>
-              ))}
-            </div>
-          </Card>
-        </div>
-      </Section>
     </>
   );
 }

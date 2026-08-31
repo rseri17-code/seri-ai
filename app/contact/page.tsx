@@ -140,6 +140,15 @@ export default function ContactPage() {
           {status === "error" ? <p className="text-sm text-amber">Something went wrong. Please try again.</p> : null}
         </form>
 
+        {/* Practitioner review is a real path and the form works, so it is preserved intact -
+            but it is 230 lines of review apparatus, and it was burying the primary contact
+            action. Behind a disclosure it stays fully reachable and keyboard-operable. */}
+        <details className="group">
+          <summary className="inline-flex min-h-[48px] cursor-pointer list-none items-center text-base font-semibold text-mint marker:hidden">
+            Reviewing the doctrine, architecture, or Operations Room? Open the practitioner review form
+            <span className="ml-2 font-normal text-slate-400 group-open:hidden">Show</span>
+            <span className="ml-2 hidden font-normal text-slate-400 group-open:inline">Hide</span>
+          </summary>
         <form
           className="space-y-4 rounded-lg border border-signal/25 bg-signal/[0.055] p-6"
           onSubmit={async (event) => {
@@ -387,6 +396,7 @@ export default function ContactPage() {
           {reviewStatus === "sent" ? <p className="text-sm text-mint">Review received.</p> : null}
           {reviewStatus === "error" ? <p className="text-sm text-amber">Review could not be sent. Please try again.</p> : null}
         </form>
+        </details>
       </div>
     </Section>
   );
