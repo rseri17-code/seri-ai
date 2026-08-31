@@ -16,7 +16,7 @@ export function Footer() {
           </p>
         </div>
         <p className="flex flex-wrap gap-x-3 gap-y-2">
-          <span className="font-semibold uppercase tracking-[0.16em] text-mint">Public review kit</span>
+          <span className="font-semibold uppercase tracking-[0.16em] text-mint">Elsewhere</span>
           {reviewKit.map(([href, label]) => (
             <Link key={href} href={href} className="inline-flex min-h-[24px] items-center text-slate-300 hover:text-white">{label}</Link>
           ))}

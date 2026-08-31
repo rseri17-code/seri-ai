@@ -13,12 +13,19 @@
  * Repoint the pin, or leave it and say so in CLAUDE_HANDOFF.md. Copy written to satisfy a
  * grep target is how this page ended up with a paragraph that existed only to hold pins.
  *
- * SECTION ORDER IS RULED (2026-08-30 homepage brief). Seven sections, in this order:
- *   1 Hero  2 Signature thesis  3 Flagship proof  4 Selected work
- *   5 Career arc  6 Selected ideas  7 Closing invitation
- * Do not add an eighth section without a documented visitor need.
+ * SECTION ORDER IS RULED. Six sections, in this order:
+ *   1 Hero  2 Signature thesis  3 Flagship proof  4 Selected work (+ career bridge)
+ *   5 Selected ideas  6 Closing invitation
+ * Do not add a seventh section without a documented visitor need.
+ *
+ * The five-stage career arc was REMOVED on 2026-08-30: /background owns that narrative, and
+ * reproducing it here was the page's largest duplication. What remains is a 26-word bridge and one
+ * link. Do not restore the stages.
+ *
+ * TERMINOLOGY, RULED: one container-runtime product name must not appear on this page - copy,
+ * metadata, alt text, hidden text, or any content object read in here. Say "container platforms" or
+ * "enterprise platform modernization". The term and reasoning are in CLAUDE_HANDOFF.md.
  */
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { OperationsRoomPreview } from "@/components/operations-room-preview";
@@ -60,44 +67,12 @@ const selectedWork = [
     problem:
       "Regulated systems fail across ownership boundaries, where no team sees the whole path. That is where agents are being pointed.",
     role:
-      "Fifteen years of it: identity modernization, middleware and B2B integration, Kubernetes, and observability in financial services.",
+      "Fifteen years of it: identity modernization, middleware and B2B integration, container platforms, and observability in financial services.",
     proof: "A zero-downtime OpenID Connect migration across 120+ applications.",
     outcome: "Telemetry volume and operational understanding are not the same thing.",
-    href: "/background",
-    linkLabel: "Where the thesis comes from",
+    // No link: the career bridge directly below this section points at /background with a better
+    // label, and two links to the same page 40 words apart is navigation, not evidence.
     status: "Career record"
-  }
-] as const;
-
-/**
- * Section 5 — progression, not chronology. Each phase carries what it taught and what that made
- * possible, so the arc reads as cause and effect rather than a timeline.
- */
-const careerArc = [
-  {
-    phase: "Enterprise integration",
-    taught: "Systems fail across boundaries. The alert is never the hard part.",
-    enabled: "Chase the path, not the symptom."
-  },
-  {
-    phase: "Identity and platform",
-    taught: "One bad migration step reaches every application at once.",
-    enabled: "Design for blast radius. Know who owns it."
-  },
-  {
-    phase: "Kubernetes and observability",
-    taught: "More telemetry was not more understanding.",
-    enabled: "Build for the decision, not the dashboard."
-  },
-  {
-    phase: "Production AI systems",
-    taught: "What sits beneath an agent decides whether it is safe to run.",
-    enabled: "Ship one, and find the model was the easy part."
-  },
-  {
-    phase: "Operational Intelligence",
-    taught: "The same four answers get rebuilt by hand under pressure, every time.",
-    enabled: "Write the argument down in public instead."
   }
 ] as const;
 
@@ -248,67 +223,31 @@ export default function Home() {
                     <dd className="mt-2 text-sm leading-7 text-slate-300">{item.outcome}</dd>
                   </div>
                 </dl>
-                <Link
-                  href={item.href}
-                  className="mt-6 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
-                >
-                  {item.linkLabel} <ArrowRight size={16} />
-                </Link>
+                {"href" in item ? (
+                  <Link
+                    href={item.href}
+                    className="mt-6 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
+                  >
+                    {item.linkLabel} <ArrowRight size={16} />
+                  </Link>
+                ) : null}
               </div>
             </article>
           ))}
         </div>
-      </Section>
 
-      {/* 5 — CAREER ARC. A staircase, not a list: each phase steps in from the one before it. */}
-      <Section eyebrow="Career arc" title="Each phase is why the next one was possible.">
-        <ol className="max-w-5xl">
-          {careerArc.map((item, i) => (
-            <li
-              key={item.phase}
-              // The staircase is a desktop device only. Applied at every width it ate the text
-              // column on a 390px screen - by phase five the indent was over 5rem. On mobile the
-              // list stays a single flush vertical progression.
-              className="relative border-l border-white/12 pb-10 pl-6 last:border-l-transparent last:pb-0 sm:pl-8 lg:ml-[var(--step)]"
-              style={{ "--step": `${i * 1.35}rem` } as CSSProperties}
-            >
-              <span
-                aria-hidden
-                className="absolute -left-[0.4rem] top-1 grid h-3 w-3 place-items-center rounded-full border border-mint/60 bg-ink"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-mint" />
-              </span>
-              <p className="font-mono text-xs text-slate-500">
-                {String(i + 1).padStart(2, "0")} / 05
-              </p>
-              <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{item.phase}</h3>
-              <p className="mt-2 max-w-xl text-base leading-8 text-slate-300">{item.taught}</p>
-              <p className="mt-2 max-w-xl text-base leading-8 text-mint/85">
-                <span className="sr-only">Which made the next phase possible: </span>
-                <span aria-hidden>&rarr;&nbsp;</span>
-                {item.enabled}
-              </p>
-            </li>
-          ))}
-        </ol>
-        <p className="mt-10 max-w-2xl text-lg leading-9 text-slate-300">
-          Operational Intelligence is what those five add up to: not an idea I went looking for problems to fit,
-          but the shape the problems kept taking.
+        {/* Career bridge. The five-stage arc lives on /background; reproducing it here was this
+            page's largest duplication. One sentence and one link stand in for it. */}
+        <p className="mt-10 max-w-3xl text-lg leading-9 text-slate-300">
+          Fifteen years across enterprise integration, identity, container platforms, observability, and production
+          AI shaped one operating principle: context must be current, attributable, and safe to act on.
         </p>
-        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
-          <Link
-            href="/resume"
-            className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
-          >
-            The interactive resume <ArrowRight size={16} />
-          </Link>
-          <Link
-            href="/background"
-            className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
-          >
-            The longer background <ArrowRight size={16} />
-          </Link>
-        </div>
+        <Link
+          href="/background"
+          className="mt-4 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
+        >
+          See how the judgment formed <ArrowRight size={16} />
+        </Link>
       </Section>
 
       {/* 6 — SELECTED IDEAS. Four, as a reading sequence rather than a blog grid. */}
@@ -334,20 +273,12 @@ export default function Home() {
             </li>
           ))}
         </ol>
-        <div className="mt-9 flex flex-wrap gap-x-8 gap-y-3">
-          <Link
-            href="/library"
-            className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
-          >
-            Everything I have written down <ArrowRight size={16} />
-          </Link>
-          <Link
-            href="/patterns"
-            className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
-          >
-            The ten architecture patterns, in build order <ArrowRight size={16} />
-          </Link>
-        </div>
+        <Link
+          href="/patterns"
+          className="mt-9 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
+        >
+          The ten architecture patterns, in build order <ArrowRight size={16} />
+        </Link>
       </Section>
 
       {/* 7 — CLOSING INVITATION. One primary action. */}
@@ -373,12 +304,7 @@ export default function Home() {
             >
               Start a conversation <ArrowRight size={18} />
             </TrackedLink>
-            <Link
-              href="/ask"
-              className="inline-flex min-h-[48px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
-            >
-              Or ask the public record
-            </Link>
+
           </div>
         </div>
       </section>

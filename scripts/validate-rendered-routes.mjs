@@ -28,7 +28,8 @@ const routeContracts = [
       "Flagship proof",
       "OI-ROOM-001",
       "Three bodies of work.",
-      "Career arc",
+      // Repointed 2026-08-30: the five-stage arc became a one-sentence bridge; /background owns it.
+      "Fifteen years across enterprise integration",
       "Four arguments worth disagreeing with.",
       "Start a conversation",
       "That system is private"
@@ -37,13 +38,13 @@ const routeContracts = [
       // A mobile visitor reaches an action before the page starts explaining itself.
       ["Enter the Operations Room", "The failure I design against"],
       ["Explore the body of work", "The failure I design against"],
-      ["Enter the Operations Room", "Career arc"],
+      ["Enter the Operations Room", "Fifteen years across enterprise integration"],
       // Ruled section order, asserted end to end on the rendered page.
       ["I build evidence-grounded AI systems for enterprise operations.", "The failure I design against"],
       ["The failure I design against", "Flagship proof"],
       ["Flagship proof", "Three bodies of work."],
-      ["Three bodies of work.", "Career arc"],
-      ["Career arc", "Four arguments worth disagreeing with."],
+      ["Three bodies of work.", "Fifteen years across enterprise integration"],
+      ["Fifteen years across enterprise integration", "Four arguments worth disagreeing with."],
       ["Four arguments worth disagreeing with.", "Start a conversation"]
     ]
   },

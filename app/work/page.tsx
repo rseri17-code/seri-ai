@@ -15,7 +15,7 @@
  */
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, BrainCircuit, GitBranch, Linkedin } from "lucide-react";
+import { ArrowRight, BrainCircuit, Linkedin } from "lucide-react";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";

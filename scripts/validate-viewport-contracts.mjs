@@ -165,8 +165,8 @@ expect(
   "/: both homepage CTAs must render before the signature-thesis section so mobile visitors see an action in the first viewport"
 );
 expect(
-  heroPrimaryCta < homePage.indexOf("Career arc"),
-  "/: homepage CTAs must render before the career arc so mobile visitors get an action before deeper explanation"
+  heroPrimaryCta < homePage.indexOf("Fifteen years across enterprise integration"),
+  "/: homepage CTAs must render before the career bridge so mobile visitors get an action before deeper explanation"
 );
 // Section order is ruled. Assert it here so a reordering fails the build rather than shipping.
 const sectionOrder = [
@@ -174,7 +174,8 @@ const sectionOrder = [
   "The failure I design against",
   "Flagship proof",
   "Three bodies of work.",
-  "Each phase is why the next one was possible.",
+  // The five-stage arc became a one-sentence bridge on 2026-08-30; /background owns the narrative.
+  "Fifteen years across enterprise integration",
   "Four arguments worth disagreeing with.",
   "Start a conversation"
 ].map((marker) => [marker, homePage.indexOf(marker)]);

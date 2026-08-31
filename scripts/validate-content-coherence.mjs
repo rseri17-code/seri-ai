@@ -238,14 +238,15 @@ for (const required of [
   "Enterprise platform foundations",
   "Proof",
   "Learned",
-  // Section 5 - career arc as progression.
-  "Career arc",
-  "Each phase is why the next one was possible.",
+  // Section 5 - career bridge. The five-stage arc was removed on 2026-08-30: /background owns that
+  // narrative and repeating it here was the page's largest duplication. Pin the bridge instead, and
+  // forbid the stages below so they cannot drift back.
+  "Fifteen years across enterprise integration, identity, container platforms, observability, and production",
+  "See how the judgment formed",
   // Section 6 - selected ideas.
   "Four arguments worth disagreeing with.",
   // Section 7 - one primary action, plus the public-safety boundary stated once.
   "Start a conversation",
-  "Or ask the public record",
   // The boundary statement was consolidated on 2026-08-30: one complete statement in the hero,
   // where the production claim earns it, and a short site-wide form in the footer. It used to
   // appear a third time in the closing section, which is the repetition that was removed.
@@ -253,7 +254,6 @@ for (const required of [
   // Routes the homepage keeps reachable. /patterns is here because the nav no longer carries it.
   "/investigation-room",
   "/wiki/operational-intelligence-canonical-doctrine",
-  "/library",
   "/patterns",
   "/framework",
   "/resume",
@@ -263,6 +263,19 @@ for (const required of [
   "/background"
 ]) {
   expect(homepageContractSource.includes(required), `/ missing focused homepage contract: ${required}`);
+}
+
+// Ruled 2026-08-30. The homepage must not carry the runtime product name, and must not restore the
+// five-stage career arc that /background owns.
+expect(
+  !/kubernetes/i.test(homePage),
+  "/: app/page.tsx names the container-runtime product banned from this page. Say \"container platforms\" or \"enterprise platform modernization\"."
+);
+for (const forbidden of ["Each phase is why the next one was possible.", "const careerArc"]) {
+  expect(
+    !homePage.includes(forbidden),
+    `/: the five-stage career arc was removed by ruling and belongs on /background: ${forbidden}`
+  );
 }
 
 for (const required of [
@@ -574,7 +587,8 @@ for (const relativePath of sourceFilesUnder("app").concat(sourceFilesUnder("comp
 const footerComponent = fs.readFileSync(path.join(root, "components", "footer.tsx"), "utf8");
 for (const required of [
   "const reviewKit",
-  "Public review kit",
+  // Renamed 2026-08-30: "Public review kit" read as written for evaluators, not visitors.
+  "Elsewhere",
   "GitHub",
   "LinkedIn",
   "RSS",

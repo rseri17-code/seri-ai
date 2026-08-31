@@ -45,6 +45,10 @@ export const metadata: Metadata = {
     description:
       "The roles, the systems, and the recurring failure behind Ravikanth Seri's Operational Intelligence thesis.",
     url: "/background",
+    // Next.js replaces the root openGraph object rather than merging it, so a route that declares
+    // its own block loses the site image unless it restates one. /background was sharing with no
+    // preview image as a result.
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Ravikanth Seri | seri.ai" }],
     type: "website"
   }
 };
@@ -55,31 +59,31 @@ const progression = [
     phase: "Enterprise integration and infrastructure",
     problem: "Integration-heavy systems that failed between teams, where nobody owned the whole path.",
     learned: "Follow the transaction across ownership boundaries. The alert is never the hard part.",
-    enabled: "Which is why I model a journey rather than a service."
+    consequence: "Model the journey, not an isolated service."
   },
   {
     phase: "Identity and platform modernization",
     problem: "Access changes where one wrong step reaches every application at once.",
     learned: "Design for blast radius, backward compatibility, and named ownership before speed.",
-    enabled: "Which is why an agent I build cannot act without an owner and a reversible path."
+    consequence: "No agent acts without a named owner and a reversible path."
   },
   {
     phase: "Container platforms and observability",
     problem: "Workloads moved onto modern platforms and the volume of telemetry rose sharply.",
     learned: "More telemetry was not more understanding. Signal without context is still a guess.",
-    enabled: "Which is why I build the context layer before the reasoning layer."
+    consequence: "Build the context layer before the reasoning layer."
   },
   {
     phase: "Production AI systems",
     problem: "A model asked to explain a live production system it could only see in fragments.",
     learned: "What sits beneath the model decides whether its conclusion is safe to trust.",
-    enabled: "Which is why evaluation and replay come before anyone relies on an answer."
+    consequence: "Evaluation and replay come before anyone relies on an answer."
   },
   {
     phase: "Operational Intelligence",
     problem: "The same four questions rebuilt by hand, under pressure, on every serious incident.",
     learned: "That pattern is an architecture problem, not a staffing problem.",
-    enabled: "So I wrote the architecture down in public, including the parts still unproven."
+    consequence: "Write the architecture down in public, unproven parts included."
   }
 ] as const;
 
@@ -94,28 +98,27 @@ const spine = [
     bullets: [
       "Took an enterprise SRE investigation agent from thesis to production, owning architecture, engineering, enterprise integration, evaluation, and operationalization.",
       "Separated deterministic orchestration, evidence collection, and gate evaluation from model reasoning, so a conclusion stays replayable and bounded.",
-      "Built the evaluation path an operational recommendation has to pass before it is trusted, with a person holding the approval."
+      "Built the evaluation path a recommendation must pass before it is trusted, with a person holding the approval."
     ],
-    carried: "The habit of designing the stopping point before designing the capability."
+    carried: "Design the stopping point before the capability."
   },
   {
     scope: "I led identity modernization and platform reliability across a large regulated application estate.",
     bullets: [
-      "Ran a zero-downtime OpenID Connect migration across 120+ enterprise applications, preserving the contracts the legacy applications depended on.",
+      "Ran a zero-downtime OpenID Connect migration across 120+ enterprise applications, preserving the contracts legacy applications depended on.",
       "Modernized enterprise identity workloads onto container platforms, improving deployment consistency, isolation, and reliability.",
       "Integrated distributed tracing and telemetry correlation across identity services, so failures could be explained rather than only detected."
     ],
-    carried: "A working definition of blast radius, and the discipline of migrating without breaking callers."
+    carried: "A working definition of blast radius, and how to migrate without breaking callers."
   },
   {
-    scope:
-      "I built the foundation: middleware, B2B integration, API gateways, identity, and the infrastructure underneath them.",
+    scope: "I built the foundation: middleware, B2B integration, API gateways, identity, and the infrastructure beneath them.",
     bullets: [
       "Operated and modernized integration and gateway platforms in high-availability regulated environments.",
-      "Built the observability and data-quality practice around them: logs, alerting, latency analysis, capacity signals.",
-      "Ran production support for the same systems I designed, which is where the thesis actually comes from."
+      "Built the observability practice around them: logs, alerting, latency analysis, capacity signals.",
+      "Ran production support for the systems I designed."
     ],
-    carried: "Fifteen years of being the person paged, which is the only reason the rest of this is credible."
+    carried: "Fifteen years of being the person paged."
   }
 ] as const;
 
@@ -265,9 +268,7 @@ export default function BackgroundPage() {
               <p className="mt-2 max-w-2xl text-base leading-8 text-slate-400">{item.problem}</p>
               <p className="mt-2 max-w-2xl text-base leading-8 text-slate-200">{item.learned}</p>
               <p className="mt-2 max-w-2xl text-base leading-8 text-mint/85">
-                <span className="sr-only">What that made possible: </span>
-                <span aria-hidden>&rarr;&nbsp;</span>
-                {item.enabled}
+                <span className="font-semibold">Design consequence:</span> {item.consequence}
               </p>
             </li>
           ))}
