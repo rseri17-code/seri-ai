@@ -908,61 +908,41 @@ for (const required of [
 
 const resumePage = fs.readFileSync(path.join(root, "app", "resume", "page.tsx"), "utf8");
 const resumeContractSource = [resumePage, professionalGraphContent, publicCodeContent].join("\n");
+// Repointed 2026-08-31. /resume dropped eight sections that other routes own: the architectural
+// thesis and judgment ledger (/framework, /work), the career throughline and story map
+// (/background), the published-work index (/library), the public-code path (/work), the capability
+// matrix (duplicated Strengths) and source provenance (meta-language written for evaluators).
+// The resume now keeps only the verifiable record. Note resumeContractSource joins the page WITH
+// professional-graph.json and public-code.json, so pin page-only strings here.
 for (const required of [
-  "professionalGraph.capabilityEvidence",
-  "professionalGraph.careerEvolution",
-  "professionalGraph.careerStory",
-  "professionalGraph.architectThesis",
-  "const impactLedger",
+  // Lead identity: current role first, not "infrastructure architect".
+  "resume.experience[0].role",
+  "15+ years in enterprise engineering",
   "Impact ledger",
-  "15+ years",
-  "120+ apps",
-  "80% ticket reduction",
-  "200 hours / quarter",
-  "evalReport.fixtures.length",
-  "v1.0 doctrine",
-  "stated as numbers rather than adjectives",
-  "Ravikanth Seri's public resume.",
-  "Architecture judgment ledger",
-  "Public code inspection path",
-  "Public repositories are treated as inspectable signal, not as a substitute for private production evidence.",
-  "publicCode.entries.slice(0, 2)",
-  "Inspect public source",
-  "The resume evidence is strongest when it shows which constraints Ravikanth preserves while designing AI-native operational systems.",
-  "professionalGraph.architectureJudgment.slice(0, 3)",
-  "operating complex systems first",
-  "not a chatbot resume",
-  "reviewable control system",
-  "doctrine, reference architecture, simulations, eval fixtures, patterns, and portable artifacts",
-  "Career throughline",
-  "Career story map",
-  "The public resume is organized as accumulated systems context, not a flat title history.",
-  "Enterprise Integration",
-  "Middleware & API Architecture",
-  "Identity & Platform Engineering",
-  "Cloud & Kubernetes",
-  "Observability & AIOps",
-  "Production AI Systems",
-  "Agentic Operations & Operational Intelligence",
-  "Source provenance",
-  "resume.sourceProvenance.map",
-  "approved source classes",
-  "public-safe claims",
-  "Capability evidence matrix",
-  "AI-native operations architecture",
-  "Operational Intelligence doctrine",
-  "Evidence-driven incident systems",
-  "Enterprise platform modernization",
-  "Evaluation and runtime governance",
-  "Public technical leadership",
-  "Inspect proof",
-  "/projects/operational-intelligence-copilot",
-  "/wiki/operational-intelligence-canonical-doctrine",
-  "/investigation-room",
-  "/patterns/topology-aware-reasoning",
-  "/work"
+  "Strengths",
+  "Public proof",
+  "Architecture highlights",
+  "Core skills",
+  "Education and certifications",
+  // The record itself, and the printable path.
+  "resume.experience.map",
+  "Download resume",
+  "/ravi-seri-public-resume.txt"
 ]) {
   expect(resumeContractSource.includes(required), `/resume missing capability evidence contract: ${required}`);
+}
+
+// Ruled: the runtime product name must not render on public narrative pages, and the sections
+// above belong to other routes. Both asserted against the page alone.
+expect(
+  !/kubernetes/i.test(resumePage),
+  "/resume: names the container-runtime product banned from public pages. Use \"container platforms\"; the CKA credential is rendered by its recognized abbreviation."
+);
+for (const forbidden of ["Architectural thesis", "Career story map", "Source provenance", "Capability evidence matrix"]) {
+  expect(
+    !resumePage.includes(forbidden),
+    `/resume renders a section another route owns: ${forbidden}`
+  );
 }
 
 for (const required of [

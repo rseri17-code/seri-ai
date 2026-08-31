@@ -136,18 +136,21 @@ const routeContracts = [
     route: "/resume",
     file: "resume.html",
     maxBytes: 180_000,
+    // Repointed 2026-08-31: /resume dropped eight sections other routes own. It now asserts the
+    // verifiable record and the printable path, plus the lead identity a recruiter reads first.
     required: [
-      "Architecture judgment ledger",
-      "The resume evidence is strongest when it shows which constraints Ravikanth preserves while designing AI-native operational systems.",
-      "Public code inspection path",
-      "Public repositories are treated as inspectable signal, not as a substitute for private production evidence.",
-      "Sentinalai",
-      "Start with operational evidence before model reasoning.",
-      "Make replay and evaluation first-class architecture surfaces.",
+      "Ravikanth Seri",
+      "Senior Technical Lead",
+      "15+ years in enterprise engineering",
       "Impact ledger",
-      "Capability evidence matrix"
-    ],
-    before: [["Architecture judgment ledger", "Strengths"]]
+      "Strengths",
+      "Public proof",
+      "Architecture highlights",
+      "Core skills",
+      "Education and certifications",
+      "Download resume",
+      "120+ enterprise applications"
+    ]
   },
   {
     route: "/now",

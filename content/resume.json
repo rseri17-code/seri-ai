@@ -1,18 +1,18 @@
 {
-  "headline": "Senior infrastructure architect building production AI agent systems for enterprise operations.",
+  "headline": "Senior Technical Lead - AIOps & Observability. I build production AI systems for enterprise operations.",
   "location": "Charlotte, NC",
   "contact": [
     "rseri17@gmail.com",
     "github.com/rseri17-code",
     "linkedin.com/in/ravikanthseri"
   ],
-  "summary": "Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial services. Current work is production AI agent systems for enterprise operations: bounded execution, agent observability, evaluation, and runtime governance. That work rests on a foundation of enterprise integration, identity modernization, Kubernetes platforms, and telemetry correlation, and on a single operating conviction: an operational decision should be able to show the evidence behind it.",
+  "summary": "Senior Technical Lead in AIOps and Observability, with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial services. I build production AI systems for enterprise operations: bounded execution, agent observability, evaluation, and runtime governance. That work rests on enterprise integration, identity modernization, container platforms, and telemetry correlation, and on one operating conviction: an operational decision should be able to show the evidence behind it.",
   "strengths": [
     "Production AI agent systems for enterprise operations",
     "Operational Intelligence, AIOps, and AI-native incident investigation",
     "Agent observability, evaluation, replayability, and behavioral drift analysis",
     "Runtime governance, bounded execution, tool controls, and human-in-the-loop review",
-    "Kubernetes, hybrid cloud infrastructure, identity platforms, and distributed systems",
+    "Container platforms, hybrid cloud infrastructure, identity platforms, and distributed systems",
     "OpenTelemetry, distributed tracing, telemetry correlation, and performance diagnostics",
     "Python automation, enterprise API integration, and workflow orchestration",
     "Architecture enablement for executives, platform teams, and operations stakeholders"
@@ -23,7 +23,7 @@
     "Designed governed tool-calling ecosystems that connect observability, IT service workflows, telemetry systems, and enterprise APIs through schema-bound interfaces.",
     "Built end-to-end agent observability patterns using OpenTelemetry-style instrumentation, evaluator scoring, orchestration introspection, telemetry receipts, and drift analysis.",
     "Implemented runtime governance models including fail-closed execution, freshness validation, tool budget enforcement, policy-aware safeguards, and approval checkpoints.",
-    "Designed telemetry and workload coordination architectures across Kubernetes, cloud platforms, identity platforms, integration gateways, and hybrid enterprise infrastructure."
+    "Designed telemetry and workload coordination architectures across container platforms, cloud, identity platforms, integration gateways, and hybrid enterprise infrastructure."
   ],
   "publicProof": [
     {
@@ -87,9 +87,9 @@
       "period": "May 2022 - May 2025",
       "impact": "Led identity modernization, cloud-native platform reliability, observability integration, and automation initiatives across enterprise application environments.",
       "bullets": [
-        "Led containerization and modernization of enterprise identity workloads on Kubernetes, improving scalability, deployment consistency, isolation, and reliability.",
+        "Led containerization and modernization of enterprise identity workloads onto container platforms, improving scalability, deployment consistency, isolation, and reliability.",
         "Orchestrated zero-downtime OpenID Connect migration across 120+ enterprise applications while preserving legacy application contracts and reducing migration friction.",
-        "Integrated OpenTelemetry-style pipelines across identity services and Kubernetes environments to improve tracing, telemetry correlation, diagnostics, and anomaly detection.",
+        "Integrated OpenTelemetry-style pipelines across identity services and container platform environments to improve tracing, telemetry correlation, diagnostics, and anomaly detection.",
         "Designed observability integration patterns across distributed tracing, runtime telemetry, and monitoring platforms for hybrid enterprise infrastructure.",
         "Automated OAuth onboarding and enterprise API workflows with Python, reducing identity support tickets by 80% and recovering about 200 engineering hours per quarter."
       ],
@@ -144,7 +144,7 @@
     {
       "group": "Cloud-Native and Hybrid Infrastructure",
       "items": [
-        "Kubernetes",
+        "Container platforms",
         "Helm",
         "Terraform",
         "Docker",
@@ -214,11 +214,11 @@
       "doesNotProve": "Expired credential should be treated as historical signal, not current certification status."
     },
     {
-      "credential": "Certified Kubernetes Administrator",
+      "credential": "CKA (Certified Administrator, container orchestration)",
       "issuer": "Cloud Native Computing Foundation / Linux Foundation",
       "status": "earned",
       "sourceClass": "Resume and LinkedIn public profile",
-      "supports": "Kubernetes operating foundation behind platform modernization, reliability, deployment discipline, and cloud-native operations.",
+      "supports": "Container-platform operating foundation behind platform modernization, reliability, deployment discipline, and cloud-native operations.",
       "doesNotProve": "Does not expose private cluster architecture, employer implementation details, or production metrics."
     },
     {

@@ -14,13 +14,13 @@
  * grep target is how this page ended up with a paragraph that existed only to hold pins.
  */
 import Link from "next/link";
-import { Award, BrainCircuit, Download, ExternalLink, GitBranch, MapPin, ShieldCheck } from "lucide-react";
+import { Award, Download, ExternalLink, MapPin, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 import { Card } from "@/components/card";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor } from "@/components/tracked-link";
-import { evalReport, professionalGraph, publicCode, resume } from "@/content/site";
+import { evalReport, professionalGraph, resume } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Resume | Ravikanth Seri — Operational Intelligence and Enterprise AI",
@@ -50,9 +50,13 @@ export default function ResumePage() {
         <div className="space-y-5">
         <Card>
           <div className="mb-4"><Portrait size="lg" /></div>
-          <div className="flex items-center gap-2 text-sm text-slate-400">
+          <p className="mt-4 text-xl font-semibold leading-8 text-white">{resume.experience[0].role}</p>
+          <p className="mt-1 text-sm leading-6 text-slate-400">
+            {resume.experience[0].organization} &middot; {resume.experience[0].period}
+          </p>
+          <div className="mt-3 flex items-center gap-2 text-sm text-slate-400">
             <MapPin size={16} className="text-mint" />
-            <span>{resume.location}</span>
+            <span>{resume.location} &middot; 15+ years in enterprise engineering</span>
           </div>
           <p className="mt-5 text-lg leading-8 text-slate-200">{resume.summary}</p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -61,7 +65,7 @@ export default function ResumePage() {
               <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.person}</p>
             </div>
             <div className="rounded border border-white/10 bg-black/20 p-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">What</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">This site</p>
               <p className="mt-2 text-sm leading-6 text-slate-200">{professionalGraph.identity.siteRole}</p>
             </div>
             <div className="rounded border border-white/10 bg-black/20 p-3">
@@ -107,34 +111,6 @@ export default function ResumePage() {
             ))}
           </div>
         </Card>
-        <Card className="border-signal/25 bg-signal/[0.045]">
-          <div className="flex items-center gap-3">
-            <BrainCircuit className="text-signal" />
-          <h2 className="text-xl font-semibold text-white">Architectural thesis</h2>
-          </div>
-          <div className="mt-5 space-y-3">
-            {professionalGraph.architectThesis.map((statement) => (
-              <p key={statement} className="rounded border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-slate-200">
-                {statement}
-              </p>
-            ))}
-          </div>
-        </Card>
-        <Card className="border-amber/25 bg-amber/[0.04]">
-          <h2 className="text-xl font-semibold text-white">Architecture judgment ledger</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-300">
-            The resume evidence is strongest when it shows which constraints Ravikanth preserves while designing AI-native operational systems.
-          </p>
-          <div className="mt-5 space-y-3">
-            {professionalGraph.architectureJudgment.slice(0, 3).map((item) => (
-              <Link key={item.decision} href={item.inspectHref} className="block rounded border border-white/10 bg-black/20 px-4 py-3 transition hover:border-amber/45">
-                <span className="block font-semibold text-white">{item.decision}</span>
-                <span className="mt-2 block text-sm leading-6 text-slate-300">{item.constraint}</span>
-                <span className="mt-3 block text-xs font-semibold uppercase tracking-[0.14em] text-amber">Inspect evidence</span>
-              </Link>
-            ))}
-          </div>
-        </Card>
         <Card>
           <h2 className="text-xl font-semibold text-white">Strengths</h2>
           <div className="mt-5 space-y-3">
@@ -145,53 +121,6 @@ export default function ResumePage() {
             ))}
           </div>
         </Card>
-        <Card>
-          <div className="flex items-center gap-3">
-            <GitBranch className="text-signal" />
-          <h2 className="text-xl font-semibold text-white">Career throughline</h2>
-          </div>
-          <div className="mt-5 space-y-3">
-            {professionalGraph.careerEvolution.slice(0, 3).map((item) => (
-              <div key={item.period} className="rounded border border-white/10 bg-ink px-4 py-3">
-                <p className="font-mono text-xs text-signal">{item.period}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{item.summary}</p>
-              </div>
-            ))}
-          </div>
-        </Card>
-        <Card>
-          <h2 className="text-xl font-semibold text-white">Career story map</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-300">
-            The public resume is organized as accumulated systems context, not a flat title history.
-          </p>
-          <div className="mt-5 grid gap-2">
-            {professionalGraph.careerStory.map((stage, index) => (
-              <div key={stage.stage} className="rounded border border-white/10 bg-ink px-4 py-3">
-                <p className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</p>
-                <h3 className="mt-2 font-semibold text-white">{stage.stage}</h3>
-                <p className="mt-2 text-xs leading-5 text-slate-400">{stage.connectsTo}</p>
-              </div>
-            ))}
-          </div>
-        </Card>
-          <Card className="border-signal/25 bg-signal/[0.04]">
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="text-signal" />
-          <h2 className="text-xl font-semibold text-white">Source provenance</h2>
-            </div>
-            <p className="mt-3 text-sm leading-6 text-slate-300">
-              Career evidence is synthesized from approved source classes, then converted into public-safe claims that can be challenged without exposing private systems.
-            </p>
-            <div className="mt-5 space-y-3">
-              {resume.sourceProvenance.map((item) => (
-                <div key={item.sourceClass} className="rounded border border-white/10 bg-ink px-4 py-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{item.sourceClass}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-200">{item.supports}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-400">{item.publicUse}</p>
-                </div>
-              ))}
-            </div>
-          </Card>
         <Card>
           <h2 className="text-xl font-semibold text-white">Public proof</h2>
             <div className="mt-5 space-y-3">
@@ -213,58 +142,8 @@ export default function ResumePage() {
             ))}
           </div>
         </Card>
-        <Card className="border-signal/25 bg-signal/[0.045]">
-          <h2 className="text-xl font-semibold text-white">Published work</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-300">
-            The publication trail is what turns the resume into a body of work. It keeps the doctrine, reference architecture, evidence pack, publication pack, and Operations Room inspectable together.
-          </p>
-          <div className="mt-5 space-y-3">
-            {professionalGraph.reviewSpine.map((item) => (
-              <Link key={item.href} href={item.href} className="block rounded border border-white/10 bg-ink px-4 py-3 transition hover:border-signal/40">
-                <span className="block font-semibold text-white">{item.label}</span>
-                <span className="mt-2 block text-sm leading-6 text-slate-300">{item.detail}</span>
-              </Link>
-            ))}
-          </div>
-        </Card>
-        <Card className="border-mint/25 bg-mint/[0.04]">
-          <h2 className="text-xl font-semibold text-white">Public code inspection path</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-300">
-            Public repositories are treated as inspectable signal, not as a substitute for private production evidence.
-          </p>
-          <div className="mt-5 space-y-3">
-            {publicCode.entries.slice(0, 2).map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                className="block rounded border border-white/10 bg-black/20 px-4 py-3 transition hover:border-mint/45"
-              >
-                <span className="block font-semibold text-white">{item.label}</span>
-                <span className="mt-2 block text-sm leading-6 text-slate-300">{item.whatToInspect}</span>
-                <span className="mt-3 block text-xs font-semibold uppercase tracking-[0.14em] text-mint">Inspect public source</span>
-              </a>
-            ))}
-          </div>
-        </Card>
         </div>
         <div className="space-y-4">
-          <Card className="border-mint/25 bg-mint/[0.045]">
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="text-mint" />
-              <h2 className="text-xl font-semibold text-white">Capability evidence matrix</h2>
-            </div>
-            <div className="mt-5 grid gap-3 md:grid-cols-2">
-              {professionalGraph.capabilityEvidence.map(({ capability, proof, href }) => (
-                <Link key={capability} href={href} className="rounded border border-white/10 bg-ink p-4 transition hover:border-mint/40">
-                  <h3 className="font-semibold text-white">{capability}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{proof}</p>
-                  <p className="mt-3 text-xs font-semibold uppercase text-mint">Inspect proof</p>
-                </Link>
-              ))}
-            </div>
-          </Card>
           <Card>
             <div className="flex items-center gap-3">
               <ShieldCheck className="text-mint" />
