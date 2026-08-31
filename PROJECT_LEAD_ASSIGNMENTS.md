@@ -3,7 +3,27 @@
 **Issued by:** Grok (Senior Product Manager / AI Engineer / Project Lead)
 **Authorized by:** Ravikanth Seri
 **Date:** 2026-08-29
-**Status:** ACTIVE — Claude framing still open; Codex structure complete on main
+**Status:** SUPERSEDED for prioritization, 2026-08-31 — see the note directly below.
+
+> **Status note appended by Claude, 2026-08-31. This is a factual correction, not a new assignment —
+> issuing assignments is the Project Lead's call, not an agent's.**
+>
+> This sprint's assignments are from 2026-08-29 and no longer describe the live backlog. `AGENTS.md`
+> has Codex read this file *before* choosing work, so leaving it marked ACTIVE would point a fresh
+> session at the Patterns sprint instead of what is actually outstanding.
+>
+> - **Assignment A (Codex)** — both items are DONE (`bf885ac`, `d2d64bb`) and the build is green on
+>   `main`. The one live item from it is the backlog line: the content-data layer, registry entries
+>   that store label strings instead of prose, which hurts Ask.
+> - **Assignment B (Claude)** — **"Stage framing + How to read this on `/patterns`" was never
+>   delivered.** It is still open. Claude is out of budget on this project, so it needs Ravikanth or
+>   a future Claude session; it is prose, so it is not in Codex's lane. The branch this assignment
+>   names, `claude/patterns-operating-model`, was merged into `main` on 2026-08-30 and no longer
+>   exists as live work.
+>
+> **The current backlog lives in `CLAUDE_HANDOFF.md` → "CODEX: START HERE — Claude is handing the
+> remaining work over, 2026-08-31."** It is split by lane and marks which items are Ravikanth's call.
+> Grok or Ravikanth should re-issue this file when the next sprint is set.
 
 This file is the current work assignment. It does not replace `NORTH_STAR.md`, `AGENTS.md`, or `CLAUDE_HANDOFF.md`. It sits on top of them for prioritization.
 
@@ -49,10 +69,10 @@ Do not rewrite visitor-facing framing copy.
 
 | Item | Status |
 | --- | --- |
-| Stage framing + How to read this on `/patterns` | **OPEN** — structure stable on main |
+| Stage framing + How to read this on `/patterns` | **OPEN — NOT DELIVERED.** Claude out of budget 2026-08-31. Prose, so not Codex's lane. |
 | Hero H1 / lead | **FROZEN** — do not touch |
 
-Branch: `claude/patterns-operating-model` (merge latest `main` first).
+Branch: `claude/patterns-operating-model` — **merged into `main` on 2026-08-30; no longer live work.**
 
 Acceptance: a principal SRE can explain the four stages after one pass.
 
