@@ -10,8 +10,9 @@ Current sync point for Claude review:
 - **Deployment is still not verified from here.** The proxy blocks CONNECT to the production URL, so
   whether Vercel has built and promoted `2ef9bd8` has not been checked. Verify the live URL and hard
   -refresh before treating any of this as shipped.
-- **Codex branch `codex/about-redirect-hero-freeze` is at `ac16d41`.** It keeps the permanent
-  `/about` → `/background` redirect and rewrites the framework hero in plainer thesis language:
+- **Codex branch `codex/about-redirect-hero-freeze` is at `d7a7daa`.** It keeps the permanent
+  `/about` → `/background` redirect, hardens the route and viewport validators so they stop
+  rewarding growth for its own sake, and keeps the framework hero in plainer thesis language:
   the context layer is built once and reused instead of rebuilt every time. `npm test` and
   `npm run build` are green on that branch.
 

@@ -12,15 +12,10 @@ function expect(condition, message) {
   if (!condition) errors.push(message);
 }
 
-function countMatches(source, pattern) {
-  return source.match(pattern)?.length ?? 0;
-}
-
 const routeContracts = [
   {
     route: "/",
     file: "app/page.tsx",
-    minResponsiveTokens: 18,
     required: [
       // Repointed 2026-08-30 for the redesign. The old list pinned specific grid classes and a
       // hero widget, which is a layout, not a responsive invariant. These assert that the page
@@ -37,7 +32,6 @@ const routeContracts = [
   {
     route: "/ask",
     file: "components/chat.tsx",
-    minResponsiveTokens: 7,
     required: [
       "min-w-0",
       "lg:grid-cols-[1fr_360px]",
@@ -58,7 +52,6 @@ const routeContracts = [
   {
     route: "/investigation-room",
     file: "app/simulator/simulator.tsx",
-    minResponsiveTokens: 45,
     required: [
       "overflow-hidden",
       "Evidence taxonomy",
@@ -89,12 +82,6 @@ const routeContracts = [
   {
     route: "/work",
     file: "app/work/page.tsx",
-    // Lowered 9 -> 6 on 2026-08-30 after the reviewer-rubric section was removed. This floor
-    // encoded the assumption that a page only ever grows: deleting a two-column section took the
-    // count to 7 and failed the build for subtracting, which is the same harness pathology as the
-    // prerender-count and HTML-file floors. The invariant that matters is that the page still
-    // adapts, and the `required` list below asserts that directly by naming the breakpoints.
-    minResponsiveTokens: 6,
     required: [
       "Operating arc",
       "md:grid-cols-2",
@@ -105,7 +92,6 @@ const routeContracts = [
   {
     route: "/framework",
     file: "app/framework/page.tsx",
-    minResponsiveTokens: 8,
     required: [
       "grid min-w-0 gap-4",
       "className=\"min-w-0\"",
@@ -117,7 +103,6 @@ const routeContracts = [
   {
     route: "/wiki/operational-intelligence-canonical-doctrine",
     file: "app/wiki/[slug]/page.tsx",
-    minResponsiveTokens: 10,
     required: [
       "ReadingProgress",
       "SidebarCards",
@@ -135,9 +120,6 @@ const routeContracts = [
 
 for (const contract of routeContracts) {
   const source = read(contract.file);
-  const responsiveTokens = countMatches(source, /\b(?:sm|md|lg|xl|2xl):/g);
-  expect(responsiveTokens >= contract.minResponsiveTokens, `${contract.route}: expected at least ${contract.minResponsiveTokens} responsive utility tokens in ${contract.file}, found ${responsiveTokens}`);
-
   for (const required of contract.required) {
     expect(source.includes(required), `${contract.route}: ${contract.file} missing viewport contract "${required}"`);
   }

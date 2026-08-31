@@ -39,6 +39,15 @@ const criticalRoutes = [
   "/sitemap.xml"
 ];
 
+const redirectRoutes = [
+  {
+    route: "/about",
+    file: "app/about/route.ts",
+    target: "/background",
+    redirectContract: ["NextResponse.redirect", "/background", "308"]
+  }
+];
+
 const routePatterns = [
   { prefix: "/ideas/", file: "app/ideas/[slug]/page.tsx" },
   { prefix: "/patterns/", file: "app/patterns/[slug]/page.tsx" },
@@ -49,6 +58,7 @@ const routePatterns = [
 
 function routeToFile(route) {
   if (route === "/") return "app/page.tsx";
+  if (route === "/about") return "app/about/route.ts";
   if (route === "/llms.txt") return "app/llms.txt/route.ts";
   if (route === "/rss.xml") return "app/rss.xml/route.ts";
   if (route === "/robots.txt") return "app/robots.ts";
@@ -87,6 +97,16 @@ for (const route of allRequiredRoutes) {
   if (route.startsWith("http")) continue;
   expectFile(route);
   expectSitemap(route, sitemapPaths);
+}
+
+for (const redirectRoute of redirectRoutes) {
+  expectFile(redirectRoute.route);
+  const source = fs.readFileSync(path.join(root, redirectRoute.file), "utf8");
+  for (const required of redirectRoute.redirectContract) {
+    if (!source.includes(required)) {
+      errors.push(`${redirectRoute.route}: redirect contract missing "${required}" in ${redirectRoute.file}`);
+    }
+  }
 }
 
 for (const route of criticalRoutes) {
