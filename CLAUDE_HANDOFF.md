@@ -235,7 +235,29 @@ not inside an `xl:hidden` block. The rationale is in a comment at the pin site.
    Both are one editorial cut away; neither is a defect.
 3. **`content/resume.json` certifications intentionally keep a banned term.** One certification's
    official credential name contains it. It is a proper noun and it is accurate. Do not "fix" it.
-4. **Essays remain the long-standing gate to 10/10** — 2,973 words across 11 articles.
+4. **Essays remain the long-standing gate to 10/10.** Re-measured on the rendered pages 2026-08-31:
+   **11 essays, 4,029 words of actual prose, mean 366, longest 657.** Per essay, counting only
+   paragraphs over 12 words:
+
+   | Words | Essay |
+   | --- | --- |
+   | 657 | `oi-room-001-control-comparison` |
+   | 490 | `operational-intelligence-is-the-new-control-plane` |
+   | 464 | `agentic-incident-investigation` |
+   | 441 | `evaluating-ai-for-operational-work` |
+   | 423 | `transaction-intelligence-for-complex-enterprises` |
+   | 394 | `agentic-systems-need-operating-models` |
+   | 275 | `the-operational-intelligence-stack` |
+   | 261 | `incident-investigation-as-a-product-experience` |
+   | 221 | `why-dashboards-are-not-intelligence` |
+   | 209 | `ai-evaluation-is-operational-risk-management` |
+   | 194 | `knowledge-graphs-as-operational-memory` |
+
+   Note the ratio, which is the actual problem: `knowledge-graphs-as-operational-memory` is 194
+   words of prose inside a page that renders roughly 2,000 words once nav, footer and related
+   content are counted. **The scaffolding outweighs the argument by about 10 to 1.** A reader who
+   clicks in expecting a position gets a short post in an essay's clothes, and re-rates the rest of
+   the site accordingly. This is prose, so it is not Codex's to write.
 5. **`/ask` (25 H2), `/wiki` (26 H2), `/now` (21 H2)** are still heading soup, and the `Sentinalai`
    naming audit is still unresolved.
 6. **`/work` has 2 tap targets under 24px at every width.** Found while sweeping batch 6. `/work` is
