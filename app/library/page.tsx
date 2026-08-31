@@ -79,7 +79,7 @@ export default function LibraryPage() {
         <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
           <Card className="h-fit">
             <BookOpen className="mb-5 text-mint" />
-            <h2 className="text-2xl font-semibold text-white">Not a blog. A compounding body of work.</h2>
+            <p className="text-2xl font-semibold text-white">Not a blog. A compounding body of work.</p>
             <p className="mt-4 leading-7 text-slate-300">
               Doctrine, reference architecture, evidence packs, and field guides &mdash; written to be cited, argued with, and reused by people building the same thing.
             </p>
@@ -106,7 +106,7 @@ export default function LibraryPage() {
                     <span className="text-mint">{article.theme}</span>
                     <span>{article.readingTime}</span>
                   </div>
-                  <h2 className="mt-4 text-2xl font-semibold text-white">{article.title}</h2>
+                  <h3 className="mt-4 text-2xl font-semibold text-white">{article.title}</h3>
                   <p className="mt-3 leading-7 text-slate-300">{article.dek}</p>
                 </Card>
               </Link>
@@ -119,7 +119,7 @@ export default function LibraryPage() {
         <div className="grid gap-4 lg:grid-cols-[0.7fr_1.3fr]">
           <Card className="h-fit">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Editorial contract</p>
-            <h2 className="mt-3 text-2xl font-semibold text-white">{publicationSpine.title}</h2>
+            <h3 className="mt-3 text-2xl font-semibold text-white">{publicationSpine.title}</h3>
             <p className="mt-4 leading-7 text-slate-300">{publicationSpine.summary}</p>
             <div className="mt-5 rounded border border-white/10 bg-black/20 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Publishing rule</p>
@@ -136,7 +136,7 @@ export default function LibraryPage() {
                   </span>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                      <h2 className="text-xl font-semibold text-white">{stage.name}</h2>
+                      <h3 className="text-xl font-semibold text-white">{stage.name}</h3>
                       <Link href={stage.primaryAsset} className="inline-flex min-h-[24px] items-center text-sm font-semibold text-signal hover:text-amber">
                         Primary asset
                       </Link>
@@ -152,13 +152,20 @@ export default function LibraryPage() {
                         <p className="mt-2 text-sm leading-6 text-slate-300">{stage.proofStandard}</p>
                       </div>
                     </div>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {stage.supportingAssets.map((asset) => (
-                        <Link key={asset} href={asset} className="rounded border border-white/10 px-3 py-2 text-xs text-slate-300 transition hover:border-mint/40 hover:text-white">
-                          {asset}
-                        </Link>
-                      ))}
-                    </div>
+                    <details className="group mt-4">
+                      <summary className="inline-flex min-h-[44px] cursor-pointer list-none items-center text-sm font-semibold text-mint marker:hidden">
+                        {stage.supportingAssets.length} supporting assets
+                        <span className="ml-2 font-normal text-slate-400 group-open:hidden">Show</span>
+                        <span className="ml-2 hidden font-normal text-slate-400 group-open:inline">Hide</span>
+                      </summary>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {stage.supportingAssets.map((asset) => (
+                          <Link key={asset} href={asset} className="inline-flex min-h-[44px] items-center rounded border border-white/10 px-3 py-2 text-xs text-slate-300 transition hover:border-mint/40 hover:text-white">
+                            {asset}
+                          </Link>
+                        ))}
+                      </div>
+                    </details>
                   </div>
                 </div>
               </Card>
@@ -177,7 +184,7 @@ export default function LibraryPage() {
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h2 className="text-xl font-semibold text-white">{title}</h2>
+                    <h3 className="text-xl font-semibold text-white">{title}</h3>
                     <p className="mt-2 text-sm leading-6 text-slate-300">{description}</p>
                   </div>
                 </Card>
@@ -189,7 +196,7 @@ export default function LibraryPage() {
             <Link href="/rss.xml">
               <Card className="transition hover:border-mint/40">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">RSS</p>
-                <h2 className="mt-3 text-xl font-semibold text-white">Follow the publication feed.</h2>
+                <h3 className="mt-3 text-xl font-semibold text-white">Follow the publication feed.</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-300">Every published asset is indexed into RSS, sitemap, search, Ask Ravikanth retrieval, and the monthly export.</p>
               </Card>
             </Link>
@@ -203,7 +210,7 @@ export default function LibraryPage() {
             <Link key={href} href={href}>
               <Card className="h-full transition hover:border-mint/40">
                 <p className="text-xs font-semibold uppercase text-mint">Reference asset</p>
-                <h2 className="mt-3 text-xl font-semibold text-white">{title}</h2>
+                <h3 className="mt-3 text-xl font-semibold text-white">{title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
               </Card>
             </Link>
@@ -211,32 +218,45 @@ export default function LibraryPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Downloadable artifacts" title="Reference objects you can inspect or forward.">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {downloadableArtifacts.map(([href, title, description]) => (
-            <Link key={href} href={href}>
-              <Card className="h-full transition hover:border-mint/40">
-                <p className="text-xs font-semibold uppercase text-mint">{href.endsWith(".pdf") ? "PDF export" : "Markdown artifact"}</p>
-                <h2 className="mt-3 text-xl font-semibold text-white">{title}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Reviewer share packets" title="Send the smallest artifact that matches the question.">
-        <div className="grid gap-4 md:grid-cols-2">
-          {reviewerSharePackets.map(([role, href, note]) => (
-            <Card key={role} className="h-full p-4">
-              <p className="text-xs font-semibold uppercase text-signal">{role}</p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{note}</p>
-              <Link href={href} className="mt-4 inline-flex min-h-[24px] items-center gap-2 text-sm font-semibold text-mint">
-                Open the artifact
-              </Link>
-            </Card>
-          ))}
-        </div>
+      <Section eyebrow="Artifacts" title="Objects you can inspect, download, or forward.">
+        <details className="group rounded-xl border border-white/10 bg-white/[0.02]">
+          <summary className="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-base font-semibold text-white marker:hidden hover:bg-white/[0.03]">
+            <span>
+              Seven downloadable artifacts and four reviewer share packets
+              <span className="ml-2 font-normal text-slate-400 group-open:hidden">Show</span>
+              <span className="ml-2 hidden font-normal text-slate-400 group-open:inline">Hide</span>
+            </span>
+          </summary>
+          <div className="border-t border-white/10 p-5">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-mint">Downloadable artifacts</h3>
+            <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {downloadableArtifacts.map(([href, title, description]) => (
+                <Link key={href} href={href}>
+                  <Card className="h-full transition hover:border-mint/40">
+                    <p className="text-xs font-semibold uppercase text-mint">{href.endsWith(".pdf") ? "PDF export" : "Markdown artifact"}</p>
+                    <h4 className="mt-3 text-lg font-semibold text-white">{title}</h4>
+                    <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+            <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-signal">
+              Reviewer share packets
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-slate-400">Send the smallest artifact that matches the question.</p>
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              {reviewerSharePackets.map(([role, href, note]) => (
+                <Card key={role} className="h-full p-4">
+                  <p className="text-xs font-semibold uppercase text-signal">{role}</p>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{note}</p>
+                  <Link href={href} className="mt-4 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-mint">
+                    Open the artifact
+                  </Link>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </details>
       </Section>
 
       <Section eyebrow="Filters" title="The current library themes.">
