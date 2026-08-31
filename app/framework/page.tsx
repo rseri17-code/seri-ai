@@ -77,7 +77,7 @@ const argumentsForCategory = [
 export default function FrameworkPage() {
   return (
     <>
-      <Section eyebrow="Operational Intelligence" title="The context layer, and the loop that runs on it." level="h1">
+      <Section eyebrow="Operational Intelligence" title="Build the context layer once." level="h1">
         <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.05]">
             <BrainCircuit className="mb-5 text-mint" />

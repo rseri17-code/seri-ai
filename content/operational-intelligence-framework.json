@@ -1,8 +1,8 @@
 {
   "title": "Operational Intelligence Framework",
   "subtitle": "The reasoning layer between enterprise telemetry and human decision.",
-  "promise": "A reference model for building the layer an agent grounds itself in — written so another team could implement it without talking to me.",
-  "thesis": "The gap is not visibility. It is that nobody can assemble what is visible fast enough, or show their working afterwards.",
+  "promise": "A reference model for building the context layer once, so agents, workflows, and developers can reuse it instead of rebuilding context every time.",
+  "thesis": "The gap is not visibility. It is the repeated cost of assembling context and showing how the conclusion was reached.",
   "operatorQuestions": [
     "What changed?",
     "What transaction or journey is affected?",
