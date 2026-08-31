@@ -229,7 +229,9 @@ for (const required of [
   "misfire because they lack intelligence",
   "the Authorized Misfire",
   // Section 3 - flagship proof.
-  "Flagship proof",
+  // Renamed 2026-08-31: "Flagship proof" rated the exhibit instead of naming it. The section
+  // order it guards is unchanged; only the marker moved.
+  "The Operations Room",
   "OperationsRoomPreview",
   // Section 4 - exactly three bodies of work, each with problem, role, proof, outcome.
   "Three bodies of work.",
@@ -250,7 +252,9 @@ for (const required of [
   // The boundary statement was consolidated on 2026-08-30: one complete statement in the hero,
   // where the production claim earns it, and a short site-wide form in the footer. It used to
   // appear a third time in the closing section, which is the repetition that was removed.
-  "That system is private: no employer systems, logs",
+  // Repointed 2026-08-31 with the pin in validate-content.mjs: the hero no longer enumerates what
+  // it withholds, it just states the boundary. See that comment for the reasoning.
+  "That system stays private",
   // Routes the homepage keeps reachable. /patterns is here because the nav no longer carries it.
   "/investigation-room",
   "/wiki/operational-intelligence-canonical-doctrine",

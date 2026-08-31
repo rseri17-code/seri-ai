@@ -14,7 +14,7 @@
  * grep target is how this page ended up with a paragraph that existed only to hold pins.
  *
  * SECTION ORDER IS RULED. Six sections, in this order:
- *   1 Hero  2 Signature thesis  3 Flagship proof  4 Selected work (+ career bridge)
+ *   1 Hero  2 Signature thesis  3 The Operations Room  4 Selected work (+ career bridge)
  *   5 Selected ideas  6 Closing invitation
  * Do not add a seventh section without a documented visitor need.
  *
@@ -100,8 +100,8 @@ export default function Home() {
               <p className="mt-5 max-w-2xl border-l-2 border-mint/60 pl-4 text-base leading-7 text-slate-200 sm:pl-5">
                 Most recently I took an <strong className="font-semibold text-white">enterprise SRE investigation
                 agent from thesis to production</strong>, owning it across architecture, engineering, enterprise
-                integration, evaluation and operationalization. That system is private: no employer systems, logs
-                or architecture appear here. Everything on this site is inspectable without it.
+                integration, evaluation and operationalization. That system stays private. What is on this site
+                stands on its own.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -172,9 +172,9 @@ export default function Home() {
             the point where it was still true.
           </p>
           <p className="mt-7 max-w-2xl text-lg leading-9 text-slate-300">
-            I call that <strong className="font-semibold text-amber">the Authorized Misfire</strong>: an action the
-            system was permitted to take, on context it should not have trusted. No rule was broken. What it knew was
-            older or thinner than the decision resting on it.
+            This is <strong className="font-semibold text-amber">the Authorized Misfire</strong>: an action the
+            system was permitted to take, on context it should not have trusted. No rule was broken. What it knew was older or
+            thinner than the decision resting on it.
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
             Past incidents and runbooks are memory, not current production truth. The layer underneath has to
@@ -191,9 +191,10 @@ export default function Home() {
       </section>
 
       {/* 3 — FLAGSHIP PROOF. The dominant moment on the page. */}
-      <Section eyebrow="Flagship proof" title="Watch an investigation hold itself to account.">
+      <Section eyebrow="The Operations Room" title="Watch an investigation hold itself to account.">
         <p className="mb-8 max-w-3xl text-lg leading-9 text-slate-300">
-          Ten stages of a synthetic case. Step through it and the argument makes itself.
+          Ten stages of a synthetic case. Confidence rises, then falls when a contradiction lands. Check the
+          reasoning at each stage.
         </p>
         <OperationsRoomPreview />
       </Section>

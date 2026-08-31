@@ -172,7 +172,7 @@ expect(
 const sectionOrder = [
   "I build evidence-grounded AI systems for enterprise operations.",
   "The failure I design against",
-  "Flagship proof",
+  "The Operations Room",
   "Three bodies of work.",
   // The five-stage arc became a one-sentence bridge on 2026-08-30; /background owns the narrative.
   "Fifteen years across enterprise integration",
