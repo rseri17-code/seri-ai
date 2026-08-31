@@ -4,18 +4,19 @@ Last updated: 2026-08-31
 
 Current sync point for Claude review:
 
-- **`main` is at `2e8c1e7`.** Everything below has been pushed; there is nothing outstanding on a
+- **`main` is at `d820ea3`.** Everything below has been pushed; there is nothing outstanding on a
   branch. The site-wide 10/10 pass (batches 1–5) landed directly on `main` as five independent
   commits, each one revertable on its own.
-- `npm test`, `tsc`, `eslint` (0 errors / 0 warnings) and `npm run build` are green on `2e8c1e7`.
+- `npm test`, `tsc`, `eslint` (0 errors / 0 warnings) and `npm run build` are green on `d820ea3`.
 - **Deployment is still not verified from here.** The proxy blocks CONNECT to the production URL, so
-  whether Vercel has built and promoted `2e8c1e7` has not been checked. Verify the live URL and hard
+  whether Vercel has built and promoted `d820ea3` has not been checked. Verify the live URL and hard
   -refresh before treating any of this as shipped.
 
 ## SITE-WIDE 10/10 PASS — 2026-08-31 (batches 1–5)
 
 Scope was every public route **except `/` and `/work`**, which Ravikanth ruled protected. Both were
-re-measured after each batch and are unregressed.
+re-measured after each batch and are unregressed (`/` 776 words / 15 links / 5 H2 / 5968px;
+`/work` 1214 / 16 / 24 / 6126px — identical before and after all six batches).
 
 | Commit | Route | What changed |
 | --- | --- | --- |
@@ -23,6 +24,7 @@ re-measured after each batch and are unregressed.
 | `9172bb1` | `/resume` | Eight sections removed (architectural thesis, judgment ledger, throughline, story map, provenance, published work, code inspection path, capability matrix). Page now leads with the current role instead of an essay. |
 | `d1376eb` | `/library` | Heading semantics: card titles h2 → h3, 44 H2 → 6. Downloadable artifacts and reviewer share packets merged into one `<details>`; per-stage supporting assets behind `<details>`. 56 → 28 visible links (all 56 still reachable). |
 | `b84fd74` | site-wide | Terminology rule applied to every remaining route (all now 0 occurrences, `/work` included via shared content). Real contrast fix on `/resume`: certification lines were `text-slate-500` at 4.16:1, below the 4.5:1 AA floor — now `text-slate-400`. |
+| `d820ea3` | `/investigation-room` | Three measured defects fixed. See the section below — this one is worth reading in full. |
 | `2e8c1e7` | `/framework` + `/contact` | `/framework` reordered problem → halves → ten-layer → argument → design rules → review path → falsification; inline h2 → h3 (20 → 8 H2); diagrams capped at `max-w-3xl` (were 1166px wide); market signals and argument tail behind `<details>`. `/contact` stops burying its own form — the practitioner-review form is now the page. |
 
 **Measured at 1363×936, before → after:**
@@ -38,6 +40,61 @@ re-measured after each batch and are unregressed.
 sweep at 320/390/768/1024/1363/1440 — zero horizontal overflow, zero clipped content, zero tap
 targets under 24px.
 
+### Batch 6 in detail — `/investigation-room`
+
+This route had defects that were invisible to every existing check, so they are written out here.
+
+**1. Five controls were unreachable above 1280px.** The room's start button, the expert-mode
+toggle and the entire replay cursor (live/step, Back, Advance) were `xl:hidden` and had **no
+wide-screen counterpart anywhere in the tree**. A reviewer on a 1363px laptop — the common case —
+could not start the investigation, change mode, or step the replay. Measured before and after:
+
+| Width | Visible controls before | After |
+| --- | --- | --- |
+| 390px | 37 | 42 |
+| 1024px | 40 | 42 |
+| 1363px | **35** | 42 |
+| 1440px | **35** | 42 |
+
+The three still width-gated at every width are the responsive twin of the case switch — a mobile
+grid and an `xl` column, exactly one of which renders. That pair is correct.
+
+**2. The hero had four calls to action and none of them started the investigation.** Three of the
+four were `hidden sm:inline-flex`, so a phone visitor's entire first viewport was the H1 and one
+link. The hero is now `Start the replay` (anchored to `#operations-room`) plus `Ask Ravikanth`;
+the review packet, walkthrough PDF and essay moved to a **Take the case with you** row below the
+room, with no width gate.
+
+**3. Two `<main>` landmarks, and 1,499 words under one H2.** `app/simulator/simulator.tsx` opened
+its own `<main>` inside the layout's. Six execution-stage chips were `<h3>` despite being status
+labels in a widget. Outline before: `H1 → H2 → H3×8`. After: `H1 → 5 H2 → 4 H3`, with
+`Live state of the investigation`, `The investigation, step by step`, `Decision packet` and
+`Take the case with you` as real regions.
+
+**Also added:** `Reset this case`, restoring the exact load state without a reload. `chooseScenario`
+now delegates to it.
+
+**Verified on the production build:** axe 0 violations (WCAG 2.0/2.1/2.2 A+AA) at 1363×936 and
+390×844, and **0 best-practice violations where there were 3** (`landmark-no-duplicate-main`,
+`landmark-main-is-top-level`, `landmark-unique`). Replay is deterministic — the same clicks from
+the same fixture give the same score, cursor and panel across runs. Reset restores the load state
+exactly. All five step panels reachable and rendering. Viewports 320/390/768/1024/1363/1440: zero
+overflow, zero sub-24px targets.
+
+**Cost:** 1499 → 1522 words and 9241 → 9424px. The page got slightly longer, which is the opposite
+of every other batch. The growth is four heading bars and the take-away row, and it is what buys
+three formerly desktop-only links their mobile reachability. Worth it, but flagged.
+
+#### Two viewport pins were repointed, not satisfied
+
+`scripts/validate-viewport-contracts.mjs` carried two pins requiring the exact hiding this batch
+removes — a "mobile secondary-link suppression contract" demanding `hidden ... sm:inline-flex` on
+the hero links, and one demanding the room's intro be `hidden md:block`. **A pin that mandates
+hiding content on small screens is not a contract, it is the defect written down.** They are
+replaced with checks on the ruled target instead: no min-width gate on those links, `Start the
+replay` present with its anchor, the three room controls present, and the room's start controls
+not inside an `xl:hidden` block. The rationale is in a comment at the pin site.
+
 ### Open items from this pass — Ravikanth's calls, not an agent's
 
 1. **`/contact` is at 232 words against a 450-word floor in the brief.** The overshoot is real: the
@@ -50,6 +107,8 @@ targets under 24px.
 4. **Essays remain the long-standing gate to 10/10** — 2,973 words across 11 articles.
 5. **`/ask` (25 H2), `/wiki` (26 H2), `/now` (21 H2)** are still heading soup, and the `Sentinalai`
    naming audit is still unresolved.
+6. **`/work` has 2 tap targets under 24px at every width.** Found while sweeping batch 6. `/work` is
+   protected, so it was measured and left alone. It is a real WCAG 2.2 target-size miss.
 
 ### Harness lessons from this pass (worth reading before you touch a validator)
 
