@@ -123,8 +123,8 @@ export default function FrameworkPage() {
           <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The Enterprise Context Layer</h3>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
             Today every engineer, every workflow and every agent reconstructs operational reality independently, each one pulling
-            separately from CMDB, observability, identity, ITSM, CI/CD and topology. I call that the Context Acquisition Tax, and it
-            is paid on every single investigation. Time spent reconstructing context is time not spent solving the problem.
+            separately from CMDB, observability, identity, ITSM, CI/CD and topology. This is the Context Acquisition Tax, and it is
+            paid on every single investigation. Time spent reconstructing context is time not spent solving the problem.
           </p>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
             The alternative is to treat operational reality as shared infrastructure &mdash; one governed, auditable, continuously
@@ -156,7 +156,7 @@ export default function FrameworkPage() {
             and with what confidence, then asks whether this has happened before.
           </p>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
-            The part that matters most is what happens after the incident closes. Operational memory records what actually worked in
+            What happens after the incident closes is what separates this from a faster search. Operational memory records what actually worked in
             production rather than what the runbook claims, every outcome counts as a data point whether it succeeded, failed or
             partly worked, and the harness writes those results back. That write-back is what keeps the context layer current, which
             is why these two diagrams are one system rather than two.
@@ -271,7 +271,7 @@ export default function FrameworkPage() {
                   <p className="mt-3 text-sm leading-6 text-slate-300">{item.marketSignal}</p>
                 </div>
                 <div className="min-w-0 rounded border border-mint/20 bg-mint/[0.045] p-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">OI claim</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">What this layer claims</p>
                   <p className="mt-2 text-sm leading-6 text-slate-200">{item.operationalClaim}</p>
                 </div>
                 <div className="min-w-0 rounded border border-amber/25 bg-amber/[0.045] p-3">

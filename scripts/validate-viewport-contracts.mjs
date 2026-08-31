@@ -109,7 +109,7 @@ const routeContracts = [
     required: [
       "grid min-w-0 gap-4",
       "className=\"min-w-0\"",
-      "OI claim",
+      "What this layer claims",
       "Falsification",
       "Evidence posture"
     ]

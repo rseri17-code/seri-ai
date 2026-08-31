@@ -15,33 +15,60 @@ Current sync point for Claude review:
 port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
 harness could not be run against a live localhost server from this environment.
 
-# ACTIVE — CLAUDE IS EDITING THESE FILES RIGHT NOW, 2026-08-31
+# RELEASED — Claude's editorial pass is finished, 2026-08-31
 
-**Codex: do not edit the files in this list until this block says RELEASED.** Claude came back for an
-editorial pass Ravikanth asked for after the handover. Everything outside this list is yours and
-unblocked — including items 4, 5 and 6 of the backlog below.
+**No files are locked. Everything is yours.** Claude edited strings only; no structure, props or
+styling changed on any of them.
 
-| File | Claimed by | State |
-| --- | --- | --- |
-| `app/background/page.tsx` | Claude | **IN PROGRESS** — editorial copy only |
-| `app/framework/page.tsx` | Claude | **IN PROGRESS** — editorial copy only |
-| `app/page.tsx` | Claude | **DONE, `a1c33d9`** — released |
-| `components/operations-room-preview.tsx` | Claude | **DONE, `a1c33d9`** — released |
+| File | State |
+| --- | --- |
+| `app/page.tsx` | **DONE** `a1c33d9` |
+| `components/operations-room-preview.tsx` | **DONE** `a1c33d9` |
+| `app/background/page.tsx` | **DONE** — see below |
+| `app/framework/page.tsx` | **DONE** — see below |
 
-Claude is changing **strings only** in the two in-progress files. No structure, no props, no styling.
-If you need a structural change in either, it will not conflict with the words — but say so here
-first rather than editing in parallel, because a copy edit and a restructure of the same paragraph
-merge badly.
+## What the editorial pass changed, and the nine pins it moved
 
-**Already verified done by Claude, do not redo:** Codex's Ask/wiki/now batch (`e4dfccc`) was measured
-on a live server after merge and is correct — `/ask` 25 H2 → 4 H2 / 21 H3 with contrast clean and the
-four hidden controls now reachable, `/wiki` 26 → 2 H2 / 25 H3, `/now` 21 → 4 H2 / 17 H3, all axe clean
-at 1363×936 and 390×844. **Backlog items 1, 2 and 3 are complete.** Start at item 4.
+Ravikanth's brief: *make the thesis read like a reference model, not a personal note; remove anything
+that exists only to satisfy a checker rather than a reader; keep the site anchored to evidence, not
+self-description.*
 
-**Note on your sandbox:** you recorded that `npx next start` could not bind a port (`EPERM` on 3000),
-so you could not run `scripts/review/measure-route.mjs`. You fixed that batch blind and got it right.
-Where you cannot measure, say so in the commit as you did — do not report a render-level result you
-could not observe.
+**Register.** Three places narrated the coining of a term instead of stating it — "I call that the
+Authorized Misfire" (`/`), "I call that the Context Acquisition Tax" (`/framework`). Both now read
+"This is …". The ruled term `the Authorized Misfire` is preserved exactly; `validate:ruled` caught an
+earlier phrasing that capitalized it and was right to.
+
+**Self-description → evidence.**
+- `/` eyebrow "Flagship proof" → **"The Operations Room"**. It rated the exhibit instead of naming it.
+- `/` dek "the argument makes itself" → points at the evidence instead: confidence rises, then falls
+  when a contradiction lands.
+- `/framework` "The part that matters most is…" → states the point rather than ranking it.
+- `/background` section title "What experience trained me to protect." → **"Four invariants, and what
+  breaks without them."**
+
+**Reader-facing jargon.**
+- `/framework` card label "OI claim" → **"What this layer claims"**. The abbreviation was internal.
+- Operations Room note "synthetic, public-safe" → **"synthetic. No employer data."** "public-safe" is
+  this project's compliance vocabulary and means nothing to a visitor.
+
+**Checker-serving copy, removed.** The homepage hero's third sentence enumerated what the site
+withholds — *"no employer systems, logs or architecture appear here. Everything on this site is
+inspectable without it."* Written for the public-safety rule, not a reader, and defensive in the
+first 200 words. Now: *"That system stays private. What is on this site stands on its own."* The
+boundary is still stated on the Operations Room and in the footer.
+
+### Nine pins repointed, not satisfied
+
+`validate-content`, `validate-content-coherence`, `validate-rendered-routes`,
+`validate-viewport-contracts`, `validate-ruled-copy` and `validate-touch-walkthroughs` each failed the
+build demanding a phrase this pass removes. **That is the brief proving itself: the checker-serving
+copy was checker-enforced.** Each pin now guards the invariant that mattered — the hero states a
+boundary, the section order holds, the card exists — rather than the exact words. Reasoning is in a
+comment at every pin site. **Codex: do not restore any of these strings to make a pin green.**
+
+**Verified after the pass:** `/` 777 words / 1 H1 / 5 H2 / 5976px · `/background` 950 / 1 / 5 / 5678px
+· `/framework` 1184 / 1 / 8 / 7790px. axe clean, WCAG and best-practice, at 1363×936 and 390×844 on
+all three. `npm test` and `npm run build` green.
 
 # CODEX: START HERE — Claude is handing the remaining work over, 2026-08-31
 

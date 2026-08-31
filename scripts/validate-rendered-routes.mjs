@@ -119,7 +119,7 @@ const routeContracts = [
       "enterprise SRE investigation agent from thesis to production",
       "120+ enterprise applications",
       "What I build now.",
-      "What experience trained me to protect.",
+      "Four invariants, and what breaks without them.",
       "Where to look next.",
       "Ravikanth Seri",
       "Operational Intelligence"
@@ -128,8 +128,8 @@ const routeContracts = [
       ["Where the thesis comes from.", "How the judgment formed."],
       ["How the judgment formed.", "The roles behind it."],
       ["The roles behind it.", "What I build now."],
-      ["What I build now.", "What experience trained me to protect."],
-      ["What experience trained me to protect.", "Where to look next."]
+      ["What I build now.", "Four invariants, and what breaks without them."],
+      ["Four invariants, and what breaks without them.", "Where to look next."]
     ]
   },
   {
