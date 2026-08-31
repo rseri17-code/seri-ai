@@ -189,18 +189,34 @@ for (let i = 1; i < sectionOrder.length; i += 1) {
   );
 }
 
+// Superseded 2026-08-31. The two pins that stood here required the review packet, the walkthrough
+// PDF and the essay to be `hidden ... sm:inline-flex`, and the room's intro to be `hidden md:block`.
+// Measured on the shipped build, that left a phone visitor with one link on the whole hero, and it
+// is the opposite of the ruled target ("zero unreachable interaction states"). The contract is now
+// that those links carry no width gate at all.
 const simulatorPage = read("app/investigation-room/page.tsx");
-for (const required of [
-  "hidden items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white sm:inline-flex",
-  "hidden rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white sm:inline-flex"
-]) {
-  expect(simulatorPage.includes(required), `/investigation-room: app/investigation-room/page.tsx missing mobile secondary-link suppression contract "${required}"`);
-}
-
-const simulator = read("app/simulator/simulator.tsx");
 expect(
-  simulator.includes("mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 md:block"),
-  "/investigation-room: mobile first viewport should prioritize the live investigation graph over explanatory intro copy"
+  !/hidden[^"]*sm:inline-flex/.test(simulatorPage),
+  "/investigation-room: hero and take-away links must not be gated behind a min-width breakpoint"
+);
+expect(
+  simulatorPage.includes('href="#operations-room"') && simulatorPage.includes("Start the replay"),
+  "/investigation-room: the hero must offer Start the replay as its primary action"
+);
+
+// Above 1280px the room's own start, mode and replay-cursor controls were `xl:hidden`, so a desktop
+// visitor could not start the investigation, switch to expert mode, or step the replay.
+const simulator = read("app/simulator/simulator.tsx");
+for (const control of ["Start the replay", "Explore it myself", "Reset this case"]) {
+  expect(simulator.includes(control), `/investigation-room: room control "${control}" is missing`);
+}
+expect(
+  !/xl:hidden[\s\S]{0,3200}Start the replay/.test(simulator),
+  "/investigation-room: the room's start and replay controls must render at every width"
+);
+expect(
+  simulator.includes('id="operations-room"'),
+  "/investigation-room: the room needs the #operations-room anchor the hero links to"
 );
 
 const globalCss = read("app/globals.css");

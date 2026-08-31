@@ -557,14 +557,21 @@ export function IncidentSimulator() {
     return () => window.clearInterval(timer);
   }, [replayMode]);
 
-  function chooseScenario(id: string) {
-    setSelectedScenarioId(id);
+  // Restores the exact state the room loads in, so a visitor can start over without a page reload.
+  function resetRoom() {
     setActive(0);
     setActiveEvidenceIds(defaultEvidenceIds);
     setSelectedHypothesis(hypotheses[0].name);
     setSelectedAction(actions[0].name);
     setReplayMode("step");
     setReplayIndex(2);
+    setGuidedMode(true);
+    guidedCompletionCaptured.current = false;
+  }
+
+  function chooseScenario(id: string) {
+    setSelectedScenarioId(id);
+    resetRoom();
   }
 
   const visibleReplayChapters = replayChapters.slice(0, replayIndex + 1);
@@ -699,7 +706,11 @@ export function IncidentSimulator() {
   ].join("\n");
 
   return (
-    <div className="reasonops-room ops-command-shell overflow-hidden rounded-lg border border-white/10 bg-[#080b12] shadow-2xl shadow-black/50">
+    <div
+      id="operations-room"
+      tabIndex={-1}
+      className="reasonops-room ops-command-shell overflow-hidden rounded-lg border border-white/10 bg-[#080b12] shadow-2xl shadow-black/50"
+    >
       <div className="relative border-b border-white/10 p-4 md:p-5">
         <div className="absolute inset-0 intelligence-field opacity-50" />
         <div className="relative z-10 grid gap-4 xl:grid-cols-[1fr_20rem] xl:items-start">
@@ -709,10 +720,78 @@ export function IncidentSimulator() {
               Operational Intelligence Operations Room
             </div>
             <h2 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight text-white md:text-4xl">Do the investigation before the narrative hardens.</h2>
-            <p className="mt-3 hidden max-w-3xl text-base leading-7 text-slate-300 md:block">
-              This room keeps the system honest: facts stay separate from inference, weak evidence remains visible,
-              confidence moves only when receipts support it, and action waits for a human owner.
+            <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300">
+              Start the replay and work the case in five steps. Nothing here is drawn from a real incident.
             </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setGuidedMode(true);
+                  guidedCompletionCaptured.current = false;
+                  setActive(0);
+                  setReplayIndex(0);
+                  setReplayMode("step");
+                  captureSafeEvent("operations_room_guided_start", { case_id: selectedScenario.caseId });
+                }}
+                className={guidedMode ? "rounded bg-mint px-4 py-2 text-sm font-semibold text-ink" : "rounded border border-mint/35 px-4 py-2 text-sm font-semibold text-mint"}
+              >
+                Start the replay
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setGuidedMode(false);
+                  captureSafeEvent("operations_room_expert_mode", { case_id: selectedScenario.caseId });
+                }}
+                className={!guidedMode ? "rounded bg-signal px-4 py-2 text-sm font-semibold text-ink" : "rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white"}
+              >
+                Explore it myself
+              </button>
+              <button
+                type="button"
+                onClick={resetRoom}
+                className="rounded border border-white/15 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-white/35 hover:text-white"
+              >
+                Reset this case
+              </button>
+            </div>
+            <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3">
+              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase text-slate-500">Replay cursor</p>
+                  <p className="mt-1 text-sm font-semibold text-white">
+                    {currentReplayChapter.id} · {currentReplayChapter.label} · {replayProgress}% complete
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setReplayMode((mode) => (mode === "live" ? "step" : "live"))}
+                    className={replayMode === "live" ? "rounded bg-signal px-3 py-2 text-xs font-semibold text-ink" : "rounded border border-white/15 px-3 py-2 text-xs font-semibold text-white"}
+                  >
+                    {replayMode === "live" ? "Live replay" : "Step replay"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setReplayIndex((value) => Math.max(0, value - 1))}
+                    className="rounded border border-white/15 px-3 py-2 text-xs font-semibold text-white"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setReplayIndex((value) => Math.min(replayChapters.length - 1, value + 1))}
+                    className="rounded border border-mint/35 px-3 py-2 text-xs font-semibold text-mint"
+                  >
+                    Advance
+                  </button>
+                </div>
+              </div>
+              <div className="mt-3 h-1.5 rounded-full bg-white/10">
+                <motion.div className="h-1.5 rounded-full bg-signal" animate={{ width: `${replayProgress}%` }} transition={{ duration: 0.35 }} />
+              </div>
+            </div>
             <div className="mt-4 rounded-lg border border-mint/20 bg-black/25 p-3 shadow-[0_0_40px_rgba(95,242,181,0.08)]">
               <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                 <div>
@@ -773,68 +852,6 @@ export function IncidentSimulator() {
                   </button>
                 );
               })}
-            </div>
-            <div className="mt-4 flex flex-wrap gap-3 xl:hidden">
-              <button
-                type="button"
-                onClick={() => {
-                  setGuidedMode(true);
-                  guidedCompletionCaptured.current = false;
-                  setActive(0);
-                  setReplayIndex(0);
-                  setReplayMode("step");
-                  captureSafeEvent("operations_room_guided_start", { case_id: selectedScenario.caseId });
-                }}
-                className={guidedMode ? "rounded bg-mint px-4 py-2 text-sm font-semibold text-ink" : "rounded border border-mint/35 px-4 py-2 text-sm font-semibold text-mint"}
-              >
-                Walk me through the investigation
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setGuidedMode(false);
-                  captureSafeEvent("operations_room_expert_mode", { case_id: selectedScenario.caseId });
-                }}
-                className={!guidedMode ? "rounded bg-signal px-4 py-2 text-sm font-semibold text-ink" : "rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white"}
-              >
-                Expert exploration
-              </button>
-            </div>
-            <div className="mt-4 rounded-lg border border-white/10 bg-black/25 p-3 xl:hidden">
-              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <p className="text-xs font-semibold uppercase text-slate-500">Replay cursor</p>
-                  <p className="mt-1 text-sm font-semibold text-white">
-                    {currentReplayChapter.id} · {currentReplayChapter.label} · {replayProgress}% complete
-                  </p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setReplayMode((mode) => (mode === "live" ? "step" : "live"))}
-                    className={replayMode === "live" ? "rounded bg-signal px-3 py-2 text-xs font-semibold text-ink" : "rounded border border-white/15 px-3 py-2 text-xs font-semibold text-white"}
-                  >
-                    {replayMode === "live" ? "Live replay" : "Step replay"}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setReplayIndex((value) => Math.max(0, value - 1))}
-                    className="rounded border border-white/15 px-3 py-2 text-xs font-semibold text-white"
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setReplayIndex((value) => Math.min(replayChapters.length - 1, value + 1))}
-                    className="rounded border border-mint/35 px-3 py-2 text-xs font-semibold text-mint"
-                  >
-                    Advance
-                  </button>
-                </div>
-              </div>
-              <div className="mt-3 h-1.5 rounded-full bg-white/10">
-                <motion.div className="h-1.5 rounded-full bg-signal" animate={{ width: `${replayProgress}%` }} transition={{ duration: 0.35 }} />
-              </div>
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3 xl:hidden">
               <ReplaySignalCard
@@ -939,7 +956,14 @@ export function IncidentSimulator() {
         currentReplayChapter={currentReplayChapter}
       />
 
-      <div className="grid grid-cols-5 border-b border-white/10">
+      <h2
+        id="ops-steps"
+        className="border-b border-white/10 bg-black/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 md:px-5"
+      >
+        The investigation, step by step
+      </h2>
+
+      <div role="group" aria-labelledby="ops-steps" className="grid grid-cols-5 border-b border-white/10">
         {steps.map((step, index) => {
           const Icon = step.icon;
           const selected = index === active;
@@ -967,7 +991,7 @@ export function IncidentSimulator() {
 
       <div className="grid gap-0 lg:grid-cols-[15rem_minmax(0,1fr)] 2xl:grid-cols-[16rem_minmax(0,1fr)_18rem]">
         <aside className="border-b border-white/10 p-5 lg:border-b-0 lg:border-r">
-          <p className="text-xs font-semibold uppercase text-slate-500">Framework walkthrough</p>
+          <h3 className="text-xs font-semibold uppercase text-slate-500">Framework walkthrough</h3>
           <div className="mt-4 space-y-2">
             {operationalIntelligenceSystem.layerStates.map((item, index) => {
               const activeLayer = currentStepLayers.includes(item.layer);
@@ -994,7 +1018,7 @@ export function IncidentSimulator() {
             })}
           </div>
           <div className="mt-6 border-t border-white/10 pt-5">
-          <p className="text-xs font-semibold uppercase text-slate-500">Investigation lanes</p>
+          <h3 className="text-xs font-semibold uppercase text-slate-500">Investigation lanes</h3>
           <div className="mt-4 space-y-3">
             {investigationLanes.map((lane, index) => (
               <div key={lane} className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
@@ -1026,7 +1050,7 @@ export function IncidentSimulator() {
           </div>
         </aside>
 
-        <main className="min-h-[34rem] p-5 md:p-6">
+        <div className="min-h-[34rem] p-5 md:p-6">
           <motion.div
             key={active}
             initial={{ opacity: 0, y: 12 }}
@@ -1104,11 +1128,11 @@ export function IncidentSimulator() {
               />
             )}
           </motion.div>
-        </main>
+        </div>
 
         <aside className="border-t border-white/10 p-5 lg:col-span-2 2xl:col-span-1 2xl:border-l 2xl:border-t-0">
           <div className="flex items-center justify-between gap-3">
-            <p className="text-xs font-semibold uppercase text-slate-500">Decision packet</p>
+            <h2 className="text-xs font-semibold uppercase text-slate-500">Decision packet</h2>
             <span className="rounded border border-amber/30 bg-amber/10 px-2 py-1 font-mono text-xs text-amber">No execution</span>
           </div>
           <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.03] p-4">
@@ -1231,7 +1255,10 @@ function ControlPlaneConsole({
   const activeStage = executionStages[Math.min(active + 1, executionStages.length - 1)]?.label ?? "Score";
 
   return (
-    <div className="border-b border-white/10 bg-black/20 p-4 md:p-5">
+    <section aria-labelledby="ops-live-state" className="border-b border-white/10 bg-black/20 p-4 md:p-5">
+      <h2 id="ops-live-state" className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+        Live state of the investigation
+      </h2>
       <div className="grid gap-4 xl:grid-cols-[0.8fr_1.25fr_0.95fr]">
         <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
           <p className="text-xs font-semibold uppercase text-slate-500">Risk and confidence strip</p>
@@ -1263,7 +1290,7 @@ function ControlPlaneConsole({
                 <div key={stage.label} className={`relative min-h-28 rounded-lg border p-3 ${current ? "border-signal/50 bg-signal/[0.09]" : complete ? "border-mint/30 bg-mint/[0.06]" : "border-white/10 bg-white/[0.03]"}`}>
                   <span className={`absolute right-3 top-3 h-2 w-2 rounded-full ${current ? "bg-signal" : complete ? "bg-mint" : "bg-slate-600"}`} />
                   <p className="font-mono text-xs text-slate-500">0{index + 1}</p>
-                  <h3 className="mt-3 text-sm font-semibold text-white">{stage.label}</h3>
+                  <p className="mt-3 text-sm font-semibold text-white">{stage.label}</p>
                   <p className="mt-2 text-xs leading-5 text-slate-400">{stage.detail}</p>
                 </div>
               );
@@ -1274,7 +1301,7 @@ function ControlPlaneConsole({
               const activeReceipt = index <= replayIndex;
               return (
               <div key={id} className={`rounded border p-3 ${activeReceipt ? "border-mint/25 bg-mint/[0.06]" : "border-white/10 bg-black/20 opacity-60"}`}>
-                <div className="flex items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
                   <p className="font-mono text-xs text-signal">{id}</p>
                   <p className={activeReceipt ? "text-xs text-mint" : "text-xs text-slate-500"}>{activeReceipt ? state : "queued"}</p>
                 </div>
@@ -1316,7 +1343,7 @@ function ControlPlaneConsole({
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -1893,7 +1920,7 @@ function ActionGate({
         <div className="rounded-lg border border-mint/30 bg-mint/10 p-5">
           <div className="flex items-center gap-3">
             <CheckCircle2 className="text-mint" />
-            <h3 className="text-xl font-semibold text-white">Reviewable RCA draft</h3>
+            <h4 className="text-xl font-semibold text-white">Reviewable RCA draft</h4>
           </div>
           <p className="mt-4 leading-8 text-slate-200">
             The selected explanation is{" "}
@@ -1973,7 +2000,7 @@ function EvalBoard({
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase text-slate-500">Release verdict</p>
-                <h3 className="mt-2 text-xl font-semibold text-white">{releaseVerdict}</h3>
+                <h4 className="mt-2 text-xl font-semibold text-white">{releaseVerdict}</h4>
               </div>
               <p className="font-mono text-4xl font-semibold text-mint">{score}%</p>
             </div>
@@ -2042,7 +2069,7 @@ function EvalBoard({
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-3">
               <FileText className="text-signal" />
-              <h3 className="text-xl font-semibold text-white">Exportable RCA packet</h3>
+              <h4 className="text-xl font-semibold text-white">Exportable RCA packet</h4>
             </div>
             <a
               href={reportHref}
