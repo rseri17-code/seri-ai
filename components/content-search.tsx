@@ -177,7 +177,7 @@ export function ContentSearch({ sources }: { sources: PublicSource[] }) {
               <span>{source.type}</span>
               <span>{source.category}</span>
             </div>
-            <h2 className="mt-3 text-xl font-semibold text-white">{source.title}</h2>
+            <h3 className="mt-3 text-xl font-semibold text-white">{source.title}</h3>
             <p className="mt-2 text-sm leading-6 text-slate-300">{source.description}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {[source.assetType, ...source.frameworkLayers.slice(0, 2), ...source.tags.slice(0, 2)].filter(Boolean).map((item) => (
@@ -191,7 +191,7 @@ export function ContentSearch({ sources }: { sources: PublicSource[] }) {
       </div>
       {!results.length ? (
         <div className="rounded-lg border border-amber/25 bg-amber/[0.055] p-5">
-          <h2 className="text-xl font-semibold text-white">No matching public asset.</h2>
+          <h3 className="text-xl font-semibold text-white">No matching public asset.</h3>
           <p className="mt-3 text-sm leading-6 text-slate-300">
             Try a canonical term such as Operational Intelligence, Evidence Graph, Replay Seed, Evaluation Gate, OI-ROOM-001, or Publication Pack.
           </p>

@@ -91,7 +91,7 @@ export default async function AskPage({
                 <Card key={label} className="flex items-start gap-3 p-4">
                   <Icon className="mt-1 shrink-0 text-signal" size={19} />
                   <div>
-                    <p className="text-xs font-semibold uppercase text-slate-500">{label}</p>
+                    <p className="text-xs font-semibold uppercase text-slate-400">{label}</p>
                     <p className="mt-1 text-sm font-semibold leading-6 text-white">{value}</p>
                   </div>
                 </Card>
@@ -111,7 +111,7 @@ export default async function AskPage({
                 </div>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{lens.label}</p>
               </div>
-              <h2 className="mt-4 text-xl font-semibold text-white">{lens.title}</h2>
+              <h3 className="mt-4 text-xl font-semibold text-white">{lens.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-300">{lens.body}</p>
               <Link
                 href={`/ask?prompt=${encodeURIComponent(lens.prompt)}`}
@@ -132,11 +132,11 @@ export default async function AskPage({
                 <div className="grid h-10 w-10 place-items-center rounded-lg border border-signal/30 bg-signal/10 text-signal">
                   {href === "/library" ? <BookOpen size={18} /> : href === "/framework" ? <Map size={18} /> : <BrainCircuit size={18} />}
                 </div>
-                <Link href={href} className="inline-flex min-h-[24px] min-w-[24px] items-center justify-center text-slate-500 hover:text-mint" aria-label={`Open ${title}`}>
+                <Link href={href} className="inline-flex min-h-[24px] min-w-[24px] items-center justify-center text-slate-400 hover:text-mint" aria-label={`Open ${title}`}>
                   <ArrowRight size={17} />
                 </Link>
               </div>
-              <h2 className="mt-4 text-xl font-semibold text-white">{title}</h2>
+              <h3 className="mt-4 text-xl font-semibold text-white">{title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-300">{detail}</p>
               <Link
                 href={`/ask?prompt=${encodeURIComponent(prompt)}`}

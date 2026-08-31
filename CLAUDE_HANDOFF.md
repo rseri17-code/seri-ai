@@ -4,17 +4,20 @@ Last updated: 2026-08-31
 
 Current sync point for Claude review:
 
-- **`main` is at `d820ea3`.** Everything below has been pushed; there is nothing outstanding on a
-  branch. The site-wide 10/10 pass (batches 1–5) landed directly on `main` as five independent
-  commits, each one revertable on its own.
-- `npm test`, `tsc`, `eslint` (0 errors / 0 warnings) and `npm run build` are green on `d820ea3`.
+- **`main` is at `2ef9bd8`.** The Ask visibility / heading-hierarchy batch landed directly on
+  `main` as one independent commit and is revertable on its own.
+- `npm test` and `npm run build` are green on `2ef9bd8`.
 - **Deployment is still not verified from here.** The proxy blocks CONNECT to the production URL, so
-  whether Vercel has built and promoted `d820ea3` has not been checked. Verify the live URL and hard
+  whether Vercel has built and promoted `2ef9bd8` has not been checked. Verify the live URL and hard
   -refresh before treating any of this as shipped.
+
+**Local render measurement is still unverified from here.** `npx next start` could not bind a local
+port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
+harness could not be run against a live localhost server from this environment.
 
 # CODEX: START HERE — Claude is handing the remaining work over, 2026-08-31
 
-Claude is out of budget on this project. `main` is at `d820ea3` (plus this commit), green on
+Claude is out of budget on this project. `main` is at `2ef9bd8` (plus this commit), green on
 `npm test`, `tsc`, `eslint` and `npm run build`, and everything Claude did is pushed. Nothing is
 half-finished on a branch. What follows is the whole remaining backlog, split by who can actually
 do it.

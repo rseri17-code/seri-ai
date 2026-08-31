@@ -474,7 +474,7 @@ for (const required of [
 	  "Question the professional graph behind the doctrine, Operations Room, and public work.",
   "Strong first questions",
   "prompts.slice(0, 4)",
-  "lg:hidden",
+  "border-t border-white/10 bg-black/15 p-3",
   "Answer packet",
   "question_category",
   "framework_layers",
@@ -492,6 +492,10 @@ for (const required of [
 ]) {
   expect(chatComponent.includes(required), `Chat missing prompt deep-link auto-submit contract: ${required}`);
 }
+expect(
+  !chatComponent.includes("lg:hidden"),
+  "Chat prompt deep-link auto-submit contract should not hide the strong questions row behind lg:hidden"
+);
 
 const evalRunner = fs.readFileSync(path.join(root, "scripts", "run-evals.mjs"), "utf8");
 expect(evalRunner.includes("generatedAt: `${report.lastRun}T00:00:00.000Z`"), "run-evals must use deterministic generatedAt based on report.lastRun");

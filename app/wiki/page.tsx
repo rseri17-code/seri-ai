@@ -52,13 +52,13 @@ export default function WikiPage() {
         <EmailCapture />
       </div>
       <div className="mb-10 rounded-lg border border-mint/20 bg-mint/[0.045] p-5">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-mint">Reference spine</p>
+        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-mint">Reference spine</h2>
         <p className="mt-3 max-w-3xl leading-7 text-slate-300">Start with the durable doctrine, implementation contracts, shareable artifacts, and evidence standard before reading individual notes.</p>
         <div className="mt-5 grid gap-3 md:grid-cols-2">
           {spineNotes.map((note) => (
             <Link key={note.slug} href={note.url} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-mint/40">
               <p className="text-xs font-semibold uppercase text-signal">{note.category}</p>
-              <h2 className="mt-2 text-xl font-semibold text-white">{note.title}</h2>
+              <h3 className="mt-2 text-xl font-semibold text-white">{note.title}</h3>
               <p className="mt-2 text-sm leading-6 text-slate-300">{note.description}</p>
             </Link>
           ))}
@@ -72,7 +72,7 @@ export default function WikiPage() {
                 <span>{note.category}</span>
                 <span>{note.readingTime}</span>
               </div>
-              <h2 className="mt-3 text-2xl font-semibold text-white">{note.title}</h2>
+              <h3 className="mt-3 text-2xl font-semibold text-white">{note.title}</h3>
               <p className="mt-3 text-slate-300">{note.description}</p>
               <p className="mt-4 text-xs text-slate-500">Updated {note.updatedAt}</p>
             </Card>

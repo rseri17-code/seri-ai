@@ -123,7 +123,7 @@ export default function NowPage() {
                 <div className="grid h-10 w-10 place-items-center rounded-lg border border-signal/30 bg-signal/10 text-signal">
                   <Icon size={18} />
                 </div>
-                <h2 className="text-xl font-semibold text-white">{title as string}</h2>
+                <h3 className="text-xl font-semibold text-white">{title as string}</h3>
               </div>
               <ul className="mt-4 space-y-3 text-slate-300">
                 {(items as string[]).map((item) => (
@@ -141,7 +141,7 @@ export default function NowPage() {
             <Link key={item.question} href={item.href}>
               <Card className="h-full border-white/10 bg-white/[0.035] transition hover:border-signal/40">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Research question</p>
-                <h2 className="mt-3 text-xl font-semibold text-white">{item.question}</h2>
+                <h3 className="mt-3 text-xl font-semibold text-white">{item.question}</h3>
                 <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-mint">Why it matters</p>
                 <p className="mt-2 text-sm leading-6 text-slate-300">{item.whyItMatters}</p>
                 <div className="mt-4 grid gap-3">
@@ -170,7 +170,7 @@ export default function NowPage() {
               <Card className="h-full transition hover:border-mint/40">
                 <ClipboardCheck className="mb-4 text-mint" />
                 <p className="font-mono text-xs text-signal">{String(index + 1).padStart(2, "0")}</p>
-                <h2 className="mt-3 text-xl font-semibold text-white">{title}</h2>
+                <h3 className="mt-3 text-xl font-semibold text-white">{title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
                 <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-mint">
                   Inspect asset <ArrowRight size={15} />
@@ -183,7 +183,7 @@ export default function NowPage() {
 
       <Section eyebrow="Proof loop" title="The next work is evidence, not more slogans.">
         <Card className="border-signal/25 bg-signal/[0.055]">
-          <h2 className="text-3xl font-semibold text-white">The useful question now is: what would convince another experienced engineer that the model works?</h2>
+          <h3 className="text-3xl font-semibold text-white">The useful question now is: what would convince another experienced engineer that the model works?</h3>
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             {proofCheckpoints.map((checkpoint, index) => (
               <div key={checkpoint} className="rounded border border-white/10 bg-black/20 p-4">
