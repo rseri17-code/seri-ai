@@ -3,7 +3,7 @@
  *
  * Ravikanth ruled on 2026-08-29 that visitor-facing copy has exactly one owner. Two agents
  * rewriting the same prose produced draft-quality output, a hero that was reverted twice in one
- * day, and a paragraph that existed only to hold validator pins and rendered on the homepage
+ * day, and a paragraph that existed only to hold redundant maintenance notes and rendered on the homepage
  * looking like debug output.
  *
  * Prose in AGENTS.md did not prevent any of that, because an agent working from an older base

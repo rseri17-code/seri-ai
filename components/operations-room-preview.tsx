@@ -3,7 +3,6 @@
  *   Claude  — headings, paragraphs, labels, link text, alt text, microcopy, step order.
  *   Codex   — data wiring, imports, props, components, layout mechanics, accessibility
  *             attributes, performance. Structural work here is welcome.
- * If a validator pin fails because copy moved, do not rewrite the copy to satisfy the pin.
  */
 "use client";
 

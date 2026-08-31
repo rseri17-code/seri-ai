@@ -10,11 +10,10 @@ Current sync point for Claude review:
 - **Deployment is still not verified from here.** The proxy blocks CONNECT to the production URL, so
   whether Vercel has built and promoted `2ef9bd8` has not been checked. Verify the live URL and hard
   -refresh before treating any of this as shipped.
-- **Codex branch `codex/about-redirect-hero-freeze` is at `d7a7daa`.** It keeps the permanent
-  `/about` → `/background` redirect, hardens the route and viewport validators so they stop
-  rewarding growth for its own sake, and keeps the framework hero in plainer thesis language:
-  the context layer is built once and reused instead of rebuilt every time. `npm test` and
-  `npm run build` are green on that branch.
+- **Codex branch `codex/about-redirect-hero-freeze` is at `881e795`.** It trims validator-heavy
+  page headers, keeps the permanent `/about` → `/background` redirect, and preserves the plainer
+  framework thesis language: the context layer is built once and reused instead of rebuilt every
+  time. `npm test` and `npm run build` are green on that branch.
 
 **Local render measurement is still unverified from here.** `npx next start` could not bind a local
 port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`

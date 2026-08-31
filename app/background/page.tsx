@@ -3,7 +3,6 @@
  *   Claude  — headings, paragraphs, labels, link text, alt text, microcopy, section order.
  *   Codex   — data wiring, imports, props, components, layout mechanics, accessibility
  *             attributes, performance. Structural work here is welcome.
- * If a validator pin fails because copy moved, do not rewrite the copy to satisfy the pin.
  *
  * RULED 2026-08-30 (background brief). Six sections, in this order:
  *   1 Opening  2 Career progression  3 Career spine  4 What I build now
