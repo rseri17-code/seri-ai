@@ -60,10 +60,10 @@ export default async function AskPage({
               <ProfileMark size="sm" />
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Evidence console</p>
-                <p className="mt-1 text-sm text-slate-400">Career evidence, systems judgment, public code, doctrine, and artifacts.</p>
+                <p className="mt-1 text-sm text-slate-300">Career evidence, systems judgment, public code, doctrine, and artifacts.</p>
               </div>
             </div>
-            <h2 className="text-3xl font-semibold leading-tight text-white">A serious technical claim should survive inspection.</h2>
+            <p className="text-3xl font-semibold leading-tight text-white">A serious technical claim should survive inspection.</p>
             <p className="mt-4 leading-7 text-slate-300">
               An AI assistant over Ravikanth&apos;s public writing, architecture, and evidence. It cites what it knows, names what it doesn&apos;t, and won&apos;t discuss non-public work.
             </p>
@@ -88,7 +88,7 @@ export default async function AskPage({
                 <Card key={label} className="flex items-start gap-3 p-4">
                   <Icon className="mt-1 shrink-0 text-signal" size={19} />
                   <div>
-                    <p className="text-xs font-semibold uppercase text-slate-400">{label}</p>
+                    <p className="text-xs font-semibold uppercase text-slate-300">{label}</p>
                     <p className="mt-1 text-sm font-semibold leading-6 text-white">{value}</p>
                   </div>
                 </Card>
@@ -108,7 +108,7 @@ export default async function AskPage({
                 </div>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">{lens.label}</p>
               </div>
-              <h3 className="mt-4 text-xl font-semibold text-white">{lens.title}</h3>
+              <p className="mt-4 text-xl font-semibold text-white">{lens.title}</p>
               <p className="mt-3 text-sm leading-6 text-slate-300">{lens.body}</p>
               <Link
                 href={`/ask?prompt=${encodeURIComponent(lens.prompt)}`}
@@ -133,7 +133,7 @@ export default async function AskPage({
                   <ArrowRight size={17} />
                 </Link>
               </div>
-              <h3 className="mt-4 text-xl font-semibold text-white">{title}</h3>
+              <p className="mt-4 text-xl font-semibold text-white">{title}</p>
               <p className="mt-3 text-sm leading-6 text-slate-300">{detail}</p>
               <Link
                 href={`/ask?prompt=${encodeURIComponent(prompt)}`}

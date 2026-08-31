@@ -4,16 +4,16 @@ Last updated: 2026-08-31
 
 Current sync point for Claude review:
 
-- **`main` is at `2ef9bd8`.** The Ask visibility / heading-hierarchy batch landed directly on
-  `main` as one independent commit and is revertable on its own.
-- `npm test` and `npm run build` are green on `2ef9bd8`.
+- **`origin/main` is at `2103d08`.** The latest upstream editorial pass landed there, and this
+  branch now contains it in merge commit `d952db1`.
+- `npm test` and `npm run build` are green on `d952db1`.
 - **Deployment is still not verified from here.** The proxy blocks CONNECT to the production URL, so
-  whether Vercel has built and promoted `2ef9bd8` has not been checked. Verify the live URL and hard
+  whether Vercel has built and promoted `d952db1` has not been checked. Verify the live URL and hard
   -refresh before treating any of this as shipped.
-- **Codex branch `codex/about-redirect-hero-freeze` is at `881e795`.** It trims validator-heavy
-  page headers, keeps the permanent `/about` → `/background` redirect, and preserves the plainer
-  framework thesis language: the context layer is built once and reused instead of rebuilt every
-  time. `npm test` and `npm run build` are green on that branch.
+- **Codex branch `codex/about-redirect-hero-freeze` is at `d952db1`.** It keeps the permanent
+  `/about` → `/background` redirect, preserves the plainer framework thesis language, and now also
+  trims `/ask` heading noise and lifts the low-contrast labels on that surface. `npm test` and
+  `npm run build` are green on that branch.
 
 **Local render measurement is still unverified from here.** `npx next start` could not bind a local
 port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
@@ -76,10 +76,11 @@ all three. `npm test` and `npm run build` green.
 
 # CODEX: START HERE — Claude is handing the remaining work over, 2026-08-31
 
-Claude is out of budget on this project. `main` is at `2ef9bd8` (plus this commit), green on
-`npm test`, `tsc`, `eslint` and `npm run build`, and everything Claude did is pushed. Nothing is
-half-finished on a branch. What follows is the whole remaining backlog, split by who can actually
-do it.
+Claude is out of budget on this project. `origin/main` is at `2103d08` (plus this merge commit),
+green on
+  `npm test`, `tsc`, `eslint` and `npm run build`, and everything Claude did is pushed. Nothing is
+  half-finished on a branch. What follows is the whole remaining backlog, split by who can actually
+  do it.
 
 ## The one thing to understand before you start
 
@@ -109,7 +110,8 @@ earns its keep — it is what caught `/investigation-room`, and no screenshot wo
 
 **1. Heading soup on `/ask` (25 H2), `/wiki` (26 H2), `/now` (21 H2).** Highest remaining value and
 squarely yours: it is markup, not prose. The method Claude used on `/library` and `/framework`,
-which took 44 H2 → 6 and 20 H2 → 8:
+which took 44 H2 → 6 and 20 H2 → 8. **Resolved for `/ask` in `d952db1`:** the card titles and
+panel titles were demoted to body text there; `/wiki` and `/now` remain open:
 
 - A heading is a *section* heading. A card title inside a `.map()`, a status chip, a stat label and
   a widget caption are not sections — demote them to `<p>` or to the next level down.
@@ -118,9 +120,11 @@ which took 44 H2 → 6 and 20 H2 → 8:
 - **Do not touch the words.** Restructure only.
 
 **2. `/ask` has six serious WCAG contrast failures.** Found 2026-08-31 while measuring for this
-handoff, so it is not in the batch table above. All six are `text-slate-500` (#64748b) on dark
+handoff, so it is not in the batch table above. All six were `text-slate-500` (#64748b) on dark
 panels, measuring **3.79 to 4.10 against the 4.5:1 AA floor** — the same defect class already fixed
-on `/resume`, where `text-slate-500` became `text-slate-400`.
+on `/resume`, where `text-slate-500` became `text-slate-400`. **Resolved in `d952db1`:** the
+labels now use `text-slate-300`, and the visible card titles in `/ask` are demoted to body text so
+the page no longer reads like heading soup.
 
 | Label | Ratio | Background |
 | --- | --- | --- |

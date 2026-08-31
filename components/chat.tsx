@@ -232,14 +232,14 @@ export function Chat({
             <div className="flex items-center gap-3">
               <ProfileMark size="sm" />
               <div>
-                <p className="text-xs font-semibold uppercase text-slate-400">Evidence console</p>
-                <h2 className="text-xl font-semibold text-white">Question the professional graph behind the doctrine, Operations Room, and public work.</h2>
+                <p className="text-xs font-semibold uppercase text-slate-300">Evidence console</p>
+                <p className="text-xl font-semibold text-white">Question the professional graph behind the doctrine, Operations Room, and public work.</p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 xl:w-[34rem]">
               {operatingReceipts.map(([label, value]) => (
                 <div key={label} className="min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2">
-                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-slate-400">{label}</p>
+                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-slate-300">{label}</p>
                   <p className="mt-1 font-mono text-[0.72rem] leading-4 text-mint">{value}</p>
                 </div>
               ))}
@@ -264,13 +264,13 @@ export function Chat({
                 <FileSearch size={16} />
                 Reading the public evidence...
               </div>
-              <p className="mt-2 text-xs leading-5 text-slate-400">The response will cite available sources, separate evidence from inference, and avoid unsupported claims.</p>
+              <p className="mt-2 text-xs leading-5 text-slate-300">The response will cite available sources, separate evidence from inference, and avoid unsupported claims.</p>
             </div>
           ) : null}
         </div>
         {hasAskedQuestion || sessionRestored ? (
           <div className="flex items-center justify-between gap-3 border-t border-white/10 bg-black/15 px-4 py-2">
-            <p className="text-[0.68rem] leading-4 text-slate-400">
+            <p className="text-[0.68rem] leading-4 text-slate-300">
               {sessionRestored ? "Session restored from this browser. Nothing is stored on the server." : "Session saved in this browser only. Nothing is stored on the server."}
             </p>
             <button type="button" onClick={clearSession} className="shrink-0 rounded border border-white/10 px-2 py-1 text-[0.68rem] font-semibold text-slate-300 hover:border-mint/40 hover:text-mint">
@@ -297,7 +297,7 @@ export function Chat({
           </button>
         </form>
         <div className="border-t border-white/10 bg-black/15 p-3">
-          <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Strong first questions</p>
+          <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-300">Strong first questions</p>
           <div className="mt-2 grid gap-2 sm:grid-cols-2">
             {prompts.slice(0, 4).map((prompt) => (
               <button
@@ -315,19 +315,19 @@ export function Chat({
         <div className="rounded-lg border border-signal/20 bg-signal/[0.05] p-5">
           <div className="flex items-center gap-2">
             <Route className="text-signal" size={18} />
-            <h3 className="font-semibold text-white">Answer packet</h3>
+            <p className="font-semibold text-white">Answer packet</p>
           </div>
           <div className="mt-4 grid gap-2">
             {answerPacket.map(([label, value]) => (
               <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
-                <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">{label}</p>
+                <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-300">{label}</p>
                 <p className="mt-1 text-xs font-semibold leading-5 text-slate-200">{value}</p>
               </div>
             ))}
           </div>
           {responseMeta?.related_pages?.length ? (
             <div className="mt-4 space-y-2">
-              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Related artifacts</p>
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-300">Related artifacts</p>
               {responseMeta.related_pages.slice(0, 4).map((href) => (
                 <Link key={href} href={href} className="flex items-center justify-between gap-3 rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold text-slate-200 hover:border-mint/40">
                   <span className="truncate">{href}</span>
@@ -336,13 +336,13 @@ export function Chat({
               ))}
             </div>
           ) : (
-            <p className="mt-4 text-xs leading-5 text-slate-400">Ask a question to generate a reviewable packet with matched scope, layers, boundary, and next artifacts.</p>
+            <p className="mt-4 text-xs leading-5 text-slate-300">Ask a question to generate a reviewable packet with matched scope, layers, boundary, and next artifacts.</p>
           )}
         </div>
         <div className="rounded-lg border border-mint/20 bg-mint/[0.05] p-5">
           <div className="flex items-center gap-2">
             <ShieldCheck className="text-mint" size={18} />
-            <h3 className="font-semibold text-white">Trust contract</h3>
+            <p className="font-semibold text-white">Trust contract</p>
           </div>
           <div className="mt-4 grid gap-2">
             {trustContract.map(([label, value, passed, tone]) => (
@@ -350,8 +350,8 @@ export function Chat({
                 <div className="flex items-start gap-2">
                   <CheckCircle2 className={passed ? (tone === "amber" ? "mt-0.5 text-amber" : tone === "signal" ? "mt-0.5 text-signal" : "mt-0.5 text-mint") : "mt-0.5 text-amber"} size={14} />
                   <div>
-                  <span className="text-xs font-semibold text-slate-200">{label}</span>
-                    <p className="mt-1 text-[0.68rem] leading-4 text-slate-400">{value}</p>
+                    <span className="text-xs font-semibold text-slate-200">{label}</span>
+                    <p className="mt-1 text-[0.68rem] leading-4 text-slate-300">{value}</p>
                   </div>
                 </div>
               </div>
@@ -359,18 +359,18 @@ export function Chat({
           </div>
           {runtimeBudget ? (
             <div className="mt-4 rounded border border-white/10 bg-black/20 p-3">
-              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Runtime budget</p>
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-300">Runtime budget</p>
               <p className="mt-2 text-xs leading-5 text-slate-300">
                 {runtimeBudget.rate_limit ?? 20} questions per minute, {runtimeBudget.returned_source_limit ?? 4} returned sources, {runtimeBudget.synthesis_timeout_ms ?? 12000} ms synthesis guard.
               </p>
             </div>
           ) : null}
-          <p className="mt-4 text-xs leading-5 text-slate-400">
+          <p className="mt-4 text-xs leading-5 text-slate-300">
             Ask Ravikanth works only from approved public materials. It should cite sources, name uncertainty, and stop when the evidence stops.
           </p>
         </div>
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
-          <h3 className="font-semibold text-white">Inspection prompts</h3>
+          <p className="font-semibold text-white">Inspection prompts</p>
           <div className="mt-4 space-y-2">
             {prompts.map((prompt) => (
               <button
@@ -386,7 +386,7 @@ export function Chat({
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
           <div className="flex items-center gap-2">
             <Database className="text-signal" size={18} />
-            <h3 className="font-semibold text-white">Grounding receipts</h3>
+            <p className="font-semibold text-white">Grounding receipts</p>
           </div>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
             {sources.length ? (
@@ -398,7 +398,7 @@ export function Chat({
                   className="block rounded border border-white/10 p-3 hover:border-mint/40"
                 >
                   <span className="block font-medium text-white">{source.title}</span>
-                  <span className="mt-1 block text-xs text-slate-400">{source.url}</span>
+                  <span className="mt-1 block text-xs text-slate-300">{source.url}</span>
                   <span className="mt-2 block text-slate-300">{source.excerpt}</span>
                 </a>
               ))
@@ -408,7 +408,7 @@ export function Chat({
                   <LockKeyhole size={15} className="text-amber" />
                   No answer released yet
                 </div>
-                <p className="mt-2 text-xs leading-5 text-slate-400">Sources appear after retrieval. Unsupported questions should return a clear boundary instead of a guess.</p>
+                <p className="mt-2 text-xs leading-5 text-slate-300">Sources appear after retrieval. Unsupported questions should return a clear boundary instead of a guess.</p>
               </div>
             )}
           </div>
