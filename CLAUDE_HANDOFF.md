@@ -1,14 +1,65 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-08-30
+Last updated: 2026-08-31
 
 Current sync point for Claude review:
 
-- **`main` is at `a929ef2`.** Ravikanth gave the go-ahead on 2026-08-30 and
-  `claude/patterns-operating-model` was fast-forwarded into it. `main` and the branch are the same
-  commit; there is nothing outstanding on the branch.
-- `npm test` and `npm run build` were run **on `main` after the merge**, both green, and all twelve
-  key routes plus `sitemap.xml` and `rss.xml` returned 200 from the production build.
+- **`main` is at `2e8c1e7`.** Everything below has been pushed; there is nothing outstanding on a
+  branch. The site-wide 10/10 pass (batches 1–5) landed directly on `main` as five independent
+  commits, each one revertable on its own.
+- `npm test`, `tsc`, `eslint` (0 errors / 0 warnings) and `npm run build` are green on `2e8c1e7`.
+- **Deployment is still not verified from here.** The proxy blocks CONNECT to the production URL, so
+  whether Vercel has built and promoted `2e8c1e7` has not been checked. Verify the live URL and hard
+  -refresh before treating any of this as shipped.
+
+## SITE-WIDE 10/10 PASS — 2026-08-31 (batches 1–5)
+
+Scope was every public route **except `/` and `/work`**, which Ravikanth ruled protected. Both were
+re-measured after each batch and are unregressed.
+
+| Commit | Route | What changed |
+| --- | --- | --- |
+| `74899eb` | `/` + `/background` | Coherence pass. Duplicated Career Arc removed from Home, platform-first terminology, footer section renamed "Elsewhere". |
+| `9172bb1` | `/resume` | Eight sections removed (architectural thesis, judgment ledger, throughline, story map, provenance, published work, code inspection path, capability matrix). Page now leads with the current role instead of an essay. |
+| `d1376eb` | `/library` | Heading semantics: card titles h2 → h3, 44 H2 → 6. Downloadable artifacts and reviewer share packets merged into one `<details>`; per-stage supporting assets behind `<details>`. 56 → 28 visible links (all 56 still reachable). |
+| `b84fd74` | site-wide | Terminology rule applied to every remaining route (all now 0 occurrences, `/work` included via shared content). Real contrast fix on `/resume`: certification lines were `text-slate-500` at 4.16:1, below the 4.5:1 AA floor — now `text-slate-400`. |
+| `2e8c1e7` | `/framework` + `/contact` | `/framework` reordered problem → halves → ten-layer → argument → design rules → review path → falsification; inline h2 → h3 (20 → 8 H2); diagrams capped at `max-w-3xl` (were 1166px wide); market signals and argument tail behind `<details>`. `/contact` stops burying its own form — the practitioner-review form is now the page. |
+
+**Measured at 1363×936, before → after:**
+
+| Route | Words | H2 | Links | Height |
+| --- | --- | --- | --- | --- |
+| `/framework` | 1528 → 1183 | 20 → 8 | 16 → 16 | 9457 → 7790px |
+| `/contact` | 840 → 232 | 3 → 3 | 16 → 8 visible | 5233 → 1518px |
+| `/` (protected) | 776 | 5 | 15 | 5968px — unchanged |
+| `/work` (protected) | 1214 | 24 | 16 | 6126px — unchanged |
+
+**Verification:** axe-core 0 violations on every touched route at 1363×936 and 390×844. Viewport
+sweep at 320/390/768/1024/1363/1440 — zero horizontal overflow, zero clipped content, zero tap
+targets under 24px.
+
+### Open items from this pass — Ravikanth's calls, not an agent's
+
+1. **`/contact` is at 232 words against a 450-word floor in the brief.** The overshoot is real: the
+   page got shorter than its own contract because the prose around the form was the thing burying
+   it. Padding it back with filler would be worse than the deviation. Raise the floor or accept it.
+2. **`/framework` is at 16 links against a 15 target**, and **`/library` at 28 visible against 24.**
+   Both are one editorial cut away; neither is a defect.
+3. **`content/resume.json` certifications intentionally keep a banned term.** One certification's
+   official credential name contains it. It is a proper noun and it is accurate. Do not "fix" it.
+4. **Essays remain the long-standing gate to 10/10** — 2,973 words across 11 articles.
+5. **`/ask` (25 H2), `/wiki` (26 H2), `/now` (21 H2)** are still heading soup, and the `Sentinalai`
+   naming audit is still unresolved.
+
+### Harness lessons from this pass (worth reading before you touch a validator)
+
+- **Four "bigger is better" floors have now failed the build for *subtracting* content**: prerender
+  count 70, HTML file count 60, `requireJsonArray(..., 15)`, and `minResponsiveTokens: 9` on
+  `/work`. A floor that fires on deletion is measuring effort, not quality.
+- **Some pins match the joined page + content JSON**, so a pin can stay green while nothing renders.
+  Several `/work` and `/resume` pins were in exactly that state.
+- **`git add -A` before `npm test`** — `validate-security-hygiene` throws ENOENT on deleted files
+  that are still untracked as deletions.
 
 ## MERGED TO MAIN — 2026-08-30
 
