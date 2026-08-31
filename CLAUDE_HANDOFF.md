@@ -12,6 +12,116 @@ Current sync point for Claude review:
   whether Vercel has built and promoted `d820ea3` has not been checked. Verify the live URL and hard
   -refresh before treating any of this as shipped.
 
+# CODEX: START HERE — Claude is handing the remaining work over, 2026-08-31
+
+Claude is out of budget on this project. `main` is at `d820ea3` (plus this commit), green on
+`npm test`, `tsc`, `eslint` and `npm run build`, and everything Claude did is pushed. Nothing is
+half-finished on a branch. What follows is the whole remaining backlog, split by who can actually
+do it.
+
+## The one thing to understand before you start
+
+Six batches of this pass found the same shape of bug over and over: **a check was green because it
+was measuring the wrong thing, or measuring effort instead of quality.** Four validator floors fail
+the build for *removing* content. Several string pins match the page joined with its content JSON,
+so they stay green while nothing renders. Two viewport pins required content to be hidden on small
+screens — they were enforcing the defect. On `/investigation-room`, five controls were unreachable
+above 1280px and every check in the repo was green.
+
+So: **do not trust a green suite as evidence that a page is good.** Measure the rendered page.
+
+`scripts/review/measure-route.mjs` is the harness Claude used, now committed. It is not part of
+`npm test` — run it by hand:
+
+```
+npm i --no-save playwright-core
+npm run build && npx next start -p 3000
+node scripts/review/measure-route.mjs http://localhost:3000 /ask /wiki /now
+```
+
+It reports structure, axe (WCAG **and** best-practice, which is where landmark and heading-order
+bugs live), per-width control reachability, and tap targets. The reachability check is the one that
+earns its keep — it is what caught `/investigation-room`, and no screenshot would have.
+
+## Your lane — do these
+
+**1. Heading soup on `/ask` (25 H2), `/wiki` (26 H2), `/now` (21 H2).** Highest remaining value and
+squarely yours: it is markup, not prose. The method Claude used on `/library` and `/framework`,
+which took 44 H2 → 6 and 20 H2 → 8:
+
+- A heading is a *section* heading. A card title inside a `.map()`, a status chip, a stat label and
+  a widget caption are not sections — demote them to `<p>` or to the next level down.
+- Then check the outline actually descends: `h1 → h2 → h3`, no jumps, no `h4` above its own `h3`.
+- Verify with the harness — `best-practice` catches `heading-order`, which the WCAG tags do not.
+- **Do not touch the words.** Restructure only.
+
+**2. Two tap targets under 24px on `/work`: the `Sentinalai` and `GitHub` links.** WCAG 2.2 target
+size (minimum). `/work` is content-protected by Ravikanth's ruling, but that ruling is about
+restructuring the page, not about leaving an accessibility defect in it. Fix the target size, change
+nothing else, and say so in your commit. Confirmed present at all six widths; `/` and
+`/investigation-room` are clean.
+
+**3. The `Sentinalai` naming audit, still unresolved.** The site-wide brief asked whether the name is
+intentional, a misspelling of "SentinelAI", or obsolete. Nobody has answered it. It appears in
+visitor-facing copy and in a `/work` link. **This is a question for Ravikanth, not a decision for an
+agent** — ask, then apply the answer everywhere at once.
+
+**4. The four "bigger is better" floors.** `prerenderCount >= 70`, `htmlFiles >= 60`,
+`requireJsonArray(..., 15)`, and `minResponsiveTokens` on `/work`. Each one fails the build when
+content is *removed*, which means the harness actively resists editing. They were lowered ad hoc to
+get past specific batches. Replace them with checks on the thing that actually matters, or delete
+them. Same for any pin that matches page + content JSON joined together.
+
+## Not your lane — these need Ravikanth or a Claude session
+
+**5. The essays. This is the gate to 10/10 and it has been for weeks.** 2,973 words across 11
+articles — most are stubs with a title and a paragraph. The site's whole argument is that the work
+is inspectable, and the writing is the thinnest part of it. **This is prose, so it is not yours to
+write** (AGENTS.md, lane split ruled 2026-08-29). It needs Ravikanth or a Claude session. Flag it;
+do not fill it in.
+
+**6. Decisions only Ravikanth can make:**
+
+- `/contact` is at **232 words against a 450-word floor** in the brief. The page got shorter than its
+  own contract because the prose around the form was what was burying the form. Raise the floor or
+  accept the deviation — do not pad it with filler.
+- `/framework` at **16 links against a 15 target**; `/library` at **28 visible against 24**. Both are
+  one editorial cut away. Neither is a defect.
+- `/investigation-room` **grew** 1499 → 1522 words and 9241 → 9424px, the only batch that did. That
+  bought three formerly desktop-only links their mobile reachability. Confirm that trade.
+
+**7. Do not "fix" `content/resume.json` certifications.** One certification's official credential
+name contains a term the site-wide terminology rule bans. It is a proper noun, it is accurate, it
+renders on `/resume`, and the rule does not cover credential names. This has been mistaken for a bug
+before.
+
+## What could not be verified from Claude's environment
+
+Say these are unknown; do not report them as passing.
+
+- **Production is unverified.** The egress proxy refuses CONNECT to the live URL, so whether Vercel
+  built and promoted any of this is unchecked. Verify the live URL and hard-refresh before treating
+  the pass as shipped.
+- **No Lighthouse scores anywhere in this work.** LCP, CLS, FCP and transfer weight are real
+  Chromium measurements from production builds. The four Lighthouse *scores* are not measured and
+  must not be quoted as if they were.
+- A phantom console 404 on `/investigation-room` with no matching failed response. Present on the
+  pre-change baseline too, so it is not from this pass.
+
+## Rollback
+
+Seven independent units, newest first. Reverting any one does not disturb the others.
+
+| Commit | Reverting it restores |
+| --- | --- |
+| `d820ea3` | the unreachable room controls and the duplicate `<main>` |
+| `2e8c1e7` | the old `/framework` order and the buried `/contact` form |
+| `b84fd74` | the pre-terminology copy and the failing `/resume` contrast |
+| `d1376eb` | `/library` at 44 H2 |
+| `9172bb1` | the eight removed `/resume` sections |
+| `74899eb` | the duplicated Career Arc on Home |
+| `2312eae` | everything — the pre-redesign homepage and old `/background` |
+
 ## SITE-WIDE 10/10 PASS — 2026-08-31 (batches 1–5)
 
 Scope was every public route **except `/` and `/work`**, which Ravikanth ruled protected. Both were
@@ -167,7 +277,7 @@ live URL and hard-refresh before treating this as shipped.
 
 ---
 
-# CODEX: START HERE — what Claude changed on `claude/patterns-operating-model`
+# ARCHIVE — Codex brief for `claude/patterns-operating-model` (merged 2026-08-30, superseded)
 
 Everything below this block is context and history. **This block is what you need to work.**
 Branch is 6 commits ahead of `main` (`2312eae`), 0 behind. `npm test` + `npm run build` green.
