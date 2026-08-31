@@ -15,6 +15,34 @@ Current sync point for Claude review:
 port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
 harness could not be run against a live localhost server from this environment.
 
+# ACTIVE — CLAUDE IS EDITING THESE FILES RIGHT NOW, 2026-08-31
+
+**Codex: do not edit the files in this list until this block says RELEASED.** Claude came back for an
+editorial pass Ravikanth asked for after the handover. Everything outside this list is yours and
+unblocked — including items 4, 5 and 6 of the backlog below.
+
+| File | Claimed by | State |
+| --- | --- | --- |
+| `app/background/page.tsx` | Claude | **IN PROGRESS** — editorial copy only |
+| `app/framework/page.tsx` | Claude | **IN PROGRESS** — editorial copy only |
+| `app/page.tsx` | Claude | **DONE, `a1c33d9`** — released |
+| `components/operations-room-preview.tsx` | Claude | **DONE, `a1c33d9`** — released |
+
+Claude is changing **strings only** in the two in-progress files. No structure, no props, no styling.
+If you need a structural change in either, it will not conflict with the words — but say so here
+first rather than editing in parallel, because a copy edit and a restructure of the same paragraph
+merge badly.
+
+**Already verified done by Claude, do not redo:** Codex's Ask/wiki/now batch (`e4dfccc`) was measured
+on a live server after merge and is correct — `/ask` 25 H2 → 4 H2 / 21 H3 with contrast clean and the
+four hidden controls now reachable, `/wiki` 26 → 2 H2 / 25 H3, `/now` 21 → 4 H2 / 17 H3, all axe clean
+at 1363×936 and 390×844. **Backlog items 1, 2 and 3 are complete.** Start at item 4.
+
+**Note on your sandbox:** you recorded that `npx next start` could not bind a port (`EPERM` on 3000),
+so you could not run `scripts/review/measure-route.mjs`. You fixed that batch blind and got it right.
+Where you cannot measure, say so in the commit as you did — do not report a render-level result you
+could not observe.
+
 # CODEX: START HERE — Claude is handing the remaining work over, 2026-08-31
 
 Claude is out of budget on this project. `main` is at `2ef9bd8` (plus this commit), green on
