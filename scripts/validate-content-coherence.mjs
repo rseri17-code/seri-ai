@@ -221,6 +221,8 @@ for (const required of [
   // Section 1 - hero: identity, specialty, production proof, exactly two actions.
   "Production AI systems",
   "I build evidence-grounded AI systems for enterprise operations.",
+  `My work connects live operational context, attributable evidence, and machine reasoning &mdash; so
+                every recommended action keeps a clear path back to why.`,
   "enterprise SRE investigation",
   "Enter the Operations Room",
   "Explore the body of work",

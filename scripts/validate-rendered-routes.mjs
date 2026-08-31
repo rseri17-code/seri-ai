@@ -15,6 +15,7 @@ const routeContracts = [
     // ruled sections, checked against the built page rather than the source.
     required: [
       "I build evidence-grounded AI systems for enterprise operations.",
+      "My work connects live operational context, attributable evidence, and machine reasoning — so every recommended action keeps a clear path back to why.",
       "Ravikanth Seri",
       "Production AI systems",
       "enterprise SRE investigation",

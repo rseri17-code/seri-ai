@@ -22,9 +22,11 @@ const rulings = [
     file: "app/page.tsx",
     ruledOn: "2026-08-30",
     decision:
-      "Homepage redesign brief. Ravikanth ruled that identity comes before doctrine: the H1 states what he builds in the first person, the production accomplishment is prominent rather than footer copy, and there are exactly two primary actions. The misfire hook is kept as the signature thesis but moves beneath the identity layer, where it deepens comprehension instead of delaying it. This supersedes the 2026-08-29 hero freeze, which pinned the misfire line as the H1.",
+      "Homepage hero freeze. Ravikanth ruled that the current live hero copy is locked: the H1 says what he builds in the first person, the lead paragraph explains the operating model, and the production accomplishment stays visible without adding a third direction. If this changes, it must be a new ruling, not a silent rewrite.",
     required: [
       "I build evidence-grounded AI systems for enterprise operations.",
+      `My work connects live operational context, attributable evidence, and machine reasoning &mdash; so
+                every recommended action keeps a clear path back to why.`,
       "AI agents don&apos;t misfire because they lack intelligence.",
       "the Authorized Misfire",
       "enterprise SRE investigation\n                agent from thesis to production",
