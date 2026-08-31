@@ -50,7 +50,7 @@ const routeContracts = [
       "Strong first questions",
       "mt-2 grid gap-2 sm:grid-cols-2",
       "min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2",
-      "lg:hidden",
+      "border-t border-white/10 bg-black/15 p-3",
       "aria-label=\"Ask a question about Ravikanth Seri's public work\"",
       "aria-label=\"Send message\""
     ]
@@ -213,6 +213,10 @@ for (const control of ["Start the replay", "Explore it myself", "Reset this case
 expect(
   !/xl:hidden[\s\S]{0,3200}Start the replay/.test(simulator),
   "/investigation-room: the room's start and replay controls must render at every width"
+);
+expect(
+  !read("components/chat.tsx").includes("lg:hidden"),
+  "/ask: strong first questions must render at every width, not hide behind lg:hidden"
 );
 expect(
   simulator.includes('id="operations-room"'),
