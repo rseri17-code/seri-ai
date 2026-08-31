@@ -55,18 +55,39 @@ which took 44 H2 → 6 and 20 H2 → 8:
 - Verify with the harness — `best-practice` catches `heading-order`, which the WCAG tags do not.
 - **Do not touch the words.** Restructure only.
 
-**2. Two tap targets under 24px on `/work`: the `Sentinalai` and `GitHub` links.** WCAG 2.2 target
+**2. `/ask` has six serious WCAG contrast failures.** Found 2026-08-31 while measuring for this
+handoff, so it is not in the batch table above. All six are `text-slate-500` (#64748b) on dark
+panels, measuring **3.79 to 4.10 against the 4.5:1 AA floor** — the same defect class already fixed
+on `/resume`, where `text-slate-500` became `text-slate-400`.
+
+| Label | Ratio | Background |
+| --- | --- | --- |
+| `Evidence console` | 4.10 | #060d13 |
+| `Mode`, `Sources`, `Scope`, `Status` (4 chips) | 3.79 | #10171c |
+| `Strong …` | 4.08 | #060e14 |
+
+Reproduce: `node scripts/review/measure-route.mjs http://localhost:3000 /ask`. `/wiki` and `/now`
+are clean on axe. Fix the token, change nothing else, re-measure.
+
+**3. Four control buttons on `/ask` are unreachable at 1024px and above** — the four suggested
+questions ("What is Ravikanth building with seri.ai?", "What does Ravikanth mean by Context
+Acqu…", "What is the Enterprise Context Layer?", "Why is the harness more important than t…").
+Visible controls drop from 42 to 38 at `lg` and up. This is the same shape of bug as the
+`/investigation-room` one: a block hidden behind a breakpoint with no wide-screen counterpart.
+Confirm whether a counterpart exists before assuming it is a defect.
+
+**4. Two tap targets under 24px on `/work`: the `Sentinalai` and `GitHub` links.** WCAG 2.2 target
 size (minimum). `/work` is content-protected by Ravikanth's ruling, but that ruling is about
 restructuring the page, not about leaving an accessibility defect in it. Fix the target size, change
 nothing else, and say so in your commit. Confirmed present at all six widths; `/` and
 `/investigation-room` are clean.
 
-**3. The `Sentinalai` naming audit, still unresolved.** The site-wide brief asked whether the name is
+**5. The `Sentinalai` naming audit, still unresolved.** The site-wide brief asked whether the name is
 intentional, a misspelling of "SentinelAI", or obsolete. Nobody has answered it. It appears in
 visitor-facing copy and in a `/work` link. **This is a question for Ravikanth, not a decision for an
 agent** — ask, then apply the answer everywhere at once.
 
-**4. The four "bigger is better" floors.** `prerenderCount >= 70`, `htmlFiles >= 60`,
+**6. The four "bigger is better" floors.** `prerenderCount >= 70`, `htmlFiles >= 60`,
 `requireJsonArray(..., 15)`, and `minResponsiveTokens` on `/work`. Each one fails the build when
 content is *removed*, which means the harness actively resists editing. They were lowered ad hoc to
 get past specific batches. Replace them with checks on the thing that actually matters, or delete
@@ -74,13 +95,13 @@ them. Same for any pin that matches page + content JSON joined together.
 
 ## Not your lane — these need Ravikanth or a Claude session
 
-**5. The essays. This is the gate to 10/10 and it has been for weeks.** 2,973 words across 11
+**7. The essays. This is the gate to 10/10 and it has been for weeks.** 2,973 words across 11
 articles — most are stubs with a title and a paragraph. The site's whole argument is that the work
 is inspectable, and the writing is the thinnest part of it. **This is prose, so it is not yours to
 write** (AGENTS.md, lane split ruled 2026-08-29). It needs Ravikanth or a Claude session. Flag it;
 do not fill it in.
 
-**6. Decisions only Ravikanth can make:**
+**8. Decisions only Ravikanth can make:**
 
 - `/contact` is at **232 words against a 450-word floor** in the brief. The page got shorter than its
   own contract because the prose around the form was what was burying the form. Raise the floor or
@@ -90,7 +111,7 @@ do not fill it in.
 - `/investigation-room` **grew** 1499 → 1522 words and 9241 → 9424px, the only batch that did. That
   bought three formerly desktop-only links their mobile reachability. Confirm that trade.
 
-**7. Do not "fix" `content/resume.json` certifications.** One certification's official credential
+**9. Do not "fix" `content/resume.json` certifications.** One certification's official credential
 name contains a term the site-wide terminology rule bans. It is a proper noun, it is accurate, it
 renders on `/resume`, and the rule does not cover credential names. This has been mistaken for a bug
 before.
