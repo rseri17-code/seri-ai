@@ -19,6 +19,61 @@ Current sync point for Claude review:
 port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
 harness could not be run against a live localhost server from this environment.
 
+# RELEASED — Claude's editorial pass is finished, 2026-08-31
+
+**No files are locked. Everything is yours.** Claude edited strings only; no structure, props or
+styling changed on any of them.
+
+| File | State |
+| --- | --- |
+| `app/page.tsx` | **DONE** `a1c33d9` |
+| `components/operations-room-preview.tsx` | **DONE** `a1c33d9` |
+| `app/background/page.tsx` | **DONE** — see below |
+| `app/framework/page.tsx` | **DONE** — see below |
+
+## What the editorial pass changed, and the nine pins it moved
+
+Ravikanth's brief: *make the thesis read like a reference model, not a personal note; remove anything
+that exists only to satisfy a checker rather than a reader; keep the site anchored to evidence, not
+self-description.*
+
+**Register.** Three places narrated the coining of a term instead of stating it — "I call that the
+Authorized Misfire" (`/`), "I call that the Context Acquisition Tax" (`/framework`). Both now read
+"This is …". The ruled term `the Authorized Misfire` is preserved exactly; `validate:ruled` caught an
+earlier phrasing that capitalized it and was right to.
+
+**Self-description → evidence.**
+- `/` eyebrow "Flagship proof" → **"The Operations Room"**. It rated the exhibit instead of naming it.
+- `/` dek "the argument makes itself" → points at the evidence instead: confidence rises, then falls
+  when a contradiction lands.
+- `/framework` "The part that matters most is…" → states the point rather than ranking it.
+- `/background` section title "What experience trained me to protect." → **"Four invariants, and what
+  breaks without them."**
+
+**Reader-facing jargon.**
+- `/framework` card label "OI claim" → **"What this layer claims"**. The abbreviation was internal.
+- Operations Room note "synthetic, public-safe" → **"synthetic. No employer data."** "public-safe" is
+  this project's compliance vocabulary and means nothing to a visitor.
+
+**Checker-serving copy, removed.** The homepage hero's third sentence enumerated what the site
+withholds — *"no employer systems, logs or architecture appear here. Everything on this site is
+inspectable without it."* Written for the public-safety rule, not a reader, and defensive in the
+first 200 words. Now: *"That system stays private. What is on this site stands on its own."* The
+boundary is still stated on the Operations Room and in the footer.
+
+### Nine pins repointed, not satisfied
+
+`validate-content`, `validate-content-coherence`, `validate-rendered-routes`,
+`validate-viewport-contracts`, `validate-ruled-copy` and `validate-touch-walkthroughs` each failed the
+build demanding a phrase this pass removes. **That is the brief proving itself: the checker-serving
+copy was checker-enforced.** Each pin now guards the invariant that mattered — the hero states a
+boundary, the section order holds, the card exists — rather than the exact words. Reasoning is in a
+comment at every pin site. **Codex: do not restore any of these strings to make a pin green.**
+
+**Verified after the pass:** `/` 777 words / 1 H1 / 5 H2 / 5976px · `/background` 950 / 1 / 5 / 5678px
+· `/framework` 1184 / 1 / 8 / 7790px. axe clean, WCAG and best-practice, at 1363×936 and 390×844 on
+all three. `npm test` and `npm run build` green.
+
 # CODEX: START HERE — Claude is handing the remaining work over, 2026-08-31
 
 Claude is out of budget on this project. `main` is at `2ef9bd8` (plus this commit), green on
@@ -242,7 +297,29 @@ not inside an `xl:hidden` block. The rationale is in a comment at the pin site.
    Both are one editorial cut away; neither is a defect.
 3. **`content/resume.json` certifications intentionally keep a banned term.** One certification's
    official credential name contains it. It is a proper noun and it is accurate. Do not "fix" it.
-4. **Essays remain the long-standing gate to 10/10** — 2,973 words across 11 articles.
+4. **Essays remain the long-standing gate to 10/10.** Re-measured on the rendered pages 2026-08-31:
+   **11 essays, 4,029 words of actual prose, mean 366, longest 657.** Per essay, counting only
+   paragraphs over 12 words:
+
+   | Words | Essay |
+   | --- | --- |
+   | 657 | `oi-room-001-control-comparison` |
+   | 490 | `operational-intelligence-is-the-new-control-plane` |
+   | 464 | `agentic-incident-investigation` |
+   | 441 | `evaluating-ai-for-operational-work` |
+   | 423 | `transaction-intelligence-for-complex-enterprises` |
+   | 394 | `agentic-systems-need-operating-models` |
+   | 275 | `the-operational-intelligence-stack` |
+   | 261 | `incident-investigation-as-a-product-experience` |
+   | 221 | `why-dashboards-are-not-intelligence` |
+   | 209 | `ai-evaluation-is-operational-risk-management` |
+   | 194 | `knowledge-graphs-as-operational-memory` |
+
+   Note the ratio, which is the actual problem: `knowledge-graphs-as-operational-memory` is 194
+   words of prose inside a page that renders roughly 2,000 words once nav, footer and related
+   content are counted. **The scaffolding outweighs the argument by about 10 to 1.** A reader who
+   clicks in expecting a position gets a short post in an essay's clothes, and re-rates the rest of
+   the site accordingly. This is prose, so it is not Codex's to write.
 5. **`/ask` (25 H2), `/wiki` (26 H2), `/now` (21 H2)** are still heading soup, and the `Sentinalai`
    naming audit is still unresolved.
 6. **`/work` has 2 tap targets under 24px at every width.** Found while sweeping batch 6. `/work` is

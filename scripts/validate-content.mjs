@@ -374,7 +374,12 @@ for (const required of [
   "show how the findings connect",
   "keep the unknowns visible",
   "leave\n            anything consequential to a person",
-  "inspectable without it"
+  // Repointed 2026-08-31. This pin required the literal phrase "inspectable without it", which sat
+  // in the hero's third sentence as a confidentiality disclaimer — copy written for the
+  // public-safety rule, not for a reader, and defensive in the first 200 words of the site. The
+  // invariant that actually matters is that the hero still states the employer boundary, so that is
+  // what is pinned now. The boundary is also stated on the Operations Room and in the footer.
+  "That system stays private"
 ]) {
   if (!homePageSource.includes(required)) {
     errors.push(`app/page.tsx: homepage first impression missing required positioning phrase: ${required}`);

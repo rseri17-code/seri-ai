@@ -231,7 +231,9 @@ for (const required of [
   "misfire because they lack intelligence",
   "the Authorized Misfire",
   // Section 3 - flagship proof.
-  "Flagship proof",
+  // Renamed 2026-08-31: "Flagship proof" rated the exhibit instead of naming it. The section
+  // order it guards is unchanged; only the marker moved.
+  "The Operations Room",
   "OperationsRoomPreview",
   // Section 4 - exactly three bodies of work, each with problem, role, proof, outcome.
   "Three bodies of work.",
@@ -252,7 +254,9 @@ for (const required of [
   // The boundary statement was consolidated on 2026-08-30: one complete statement in the hero,
   // where the production claim earns it, and a short site-wide form in the footer. It used to
   // appear a third time in the closing section, which is the repetition that was removed.
-  "That system is private: no employer systems, logs",
+  // Repointed 2026-08-31 with the pin in validate-content.mjs: the hero no longer enumerates what
+  // it withholds, it just states the boundary. See that comment for the reasoning.
+  "That system stays private",
   // Routes the homepage keeps reachable. /patterns is here because the nav no longer carries it.
   "/investigation-room",
   "/wiki/operational-intelligence-canonical-doctrine",
@@ -517,7 +521,9 @@ const siteContent = fs.readFileSync(path.join(root, "content", "site.ts"), "utf8
 for (const required of [
   "Evidence posture",
   "These signals do not prove Operational Intelligence as a finished category",
-  "OI claim",
+  // Renamed 2026-08-31: "OI claim" leaked the project's own abbreviation into a visitor-facing
+  // label. The card it guards is unchanged.
+  "What this layer claims",
   "Falsification",
   "Enterprise Context Layer",
   "Context Acquisition Tax",
@@ -991,7 +997,9 @@ for (const required of [
   "The operational context layer",
   "Evaluation and governance",
   // Section 5 - exactly four principles.
-  "What experience trained me to protect.",
+  // Renamed 2026-08-31: the principles section titled itself by what it says about the author.
+  // It now names what the principles are.
+  "Four invariants, and what breaks without them.",
   "Evidence before reasoning",
   "Freshness before confidence",
   "Evaluation and replay before trust",

@@ -46,7 +46,7 @@ const rulings = [
     decision:
       "Homepage is exactly seven sections in a mandated order: hero, signature thesis, flagship proof, selected work, career arc, selected ideas, closing invitation. The falsification matrix, inspection ledger, persona-route grid, five-stop visitor map and contact-reason grid were relocated to their own routes rather than deleted. Do not restore them to the homepage.",
     required: [
-      "1 Hero  2 Signature thesis  3 Flagship proof  4 Selected work",
+      "1 Hero  2 Signature thesis  3 The Operations Room  4 Selected work",
       "Three bodies of work.",
       "Four arguments worth disagreeing with."
     ],

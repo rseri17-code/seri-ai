@@ -332,7 +332,7 @@ export default function BackgroundPage() {
       </Section>
 
       {/* 5 — PRINCIPLES. Exactly four. */}
-      <Section eyebrow="Principles" title="What experience trained me to protect.">
+      <Section eyebrow="Principles" title="Four invariants, and what breaks without them.">
         <ol className="grid max-w-5xl gap-x-10 gap-y-7 sm:grid-cols-2">
           {principles.map((principle, i) => (
             <li key={principle.title}>

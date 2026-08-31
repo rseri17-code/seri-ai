@@ -31,7 +31,7 @@ const steps: Step[] = [
     heading: "What changed, and does it explain what customers are seeing?",
     body: "An investigation opens as a question, not an alert. The question is what the evidence has to answer, and it is what the final decision gets checked against.",
     kind: "observation",
-    note: "Case OI-ROOM-001 — synthetic, public-safe",
+    note: "Case OI-ROOM-001 — synthetic. No employer data.",
     confidence: 0
   },
   {

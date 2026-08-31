@@ -41,7 +41,7 @@ const sourceContracts = {
   },
   "/framework": {
     files: ["app/framework/page.tsx"],
-    required: ["Evidence posture", "OI claim", "Falsification", "min-w-0"]
+    required: ["Evidence posture", "What this layer claims", "Falsification", "min-w-0"]
   },
   "/work": {
     files: ["app/work/page.tsx"],
