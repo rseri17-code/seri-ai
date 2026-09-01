@@ -58,7 +58,7 @@ export default function WikiPage() {
           {spineNotes.map((note) => (
             <Link key={note.slug} href={note.url} className="rounded border border-white/10 bg-black/20 p-4 transition hover:border-mint/40">
               <p className="text-xs font-semibold uppercase text-signal">{note.category}</p>
-              <h3 className="mt-2 text-xl font-semibold text-white">{note.title}</h3>
+              <p className="mt-2 text-xl font-semibold text-white">{note.title}</p>
               <p className="mt-2 text-sm leading-6 text-slate-300">{note.description}</p>
             </Link>
           ))}
@@ -72,7 +72,7 @@ export default function WikiPage() {
                 <span>{note.category}</span>
                 <span>{note.readingTime}</span>
               </div>
-              <h3 className="mt-3 text-2xl font-semibold text-white">{note.title}</h3>
+              <p className="mt-3 text-2xl font-semibold text-white">{note.title}</p>
               <p className="mt-3 text-slate-300">{note.description}</p>
               <p className="mt-4 text-xs text-slate-500">Updated {note.updatedAt}</p>
             </Card>

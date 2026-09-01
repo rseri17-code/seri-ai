@@ -130,7 +130,7 @@ const referenceSources = [
     title: "Operational Intelligence Reference Architecture v1.0 Markdown",
     description: "Versioned Markdown specification for Operational Intelligence contracts, schemas, state machines, governance, evaluation, and conformance.",
     content:
-      "Operational Intelligence Reference Architecture v1.0 Markdown. Implementation contracts, schemas, state machines, governance controls, evaluation gates, approval classes, conformance levels, OI-ROOM-001, and public-safe reference architecture.",
+      "The Operational Intelligence Reference Architecture v1.0 describes how to implement the model without prescribing a vendor or deployment topology. It defines contracts for evidence, hypotheses, replay, evaluation, decisions, and operator approval; it also describes state machines, governance controls, approval classes, conformance levels, and the synthetic OI-ROOM-001 case. The specification is public-safe and implementation-neutral.",
     url: "/operational-intelligence-reference-architecture-v1.md",
     type: "registry" as const,
     category: "Reference Assets",
@@ -142,7 +142,7 @@ const referenceSources = [
     title: "Operational Intelligence Diagram Pack",
     description: "Architecture diagrams, state-machine diagrams, sequence diagrams, evidence graph diagrams, and replay-loop diagrams.",
     content:
-      "Operational Intelligence Diagram Pack. Architecture diagram, state-machine diagram, sequence diagram, evidence graph diagram, replay and learning loop, OI-ROOM-001, ten-layer framework, operator control plane, evaluation gate.",
+      "The Operational Intelligence Diagram Pack shows how evidence moves through the ten-layer framework. Its architecture, state-machine, sequence, evidence-graph, and replay-loop diagrams connect the transaction path to hypotheses, evaluation gates, the operator control plane, and learning. The diagrams use the synthetic OI-ROOM-001 case so a reviewer can follow the model without employer data.",
     url: "/publication-pack/operational-intelligence-diagrams.md",
     type: "registry" as const,
     category: "Reference Assets",
@@ -154,7 +154,7 @@ const referenceSources = [
     title: "Operational Intelligence Comparison Tables",
     description: "Comparison tables for Operational Intelligence, observability, AIOps, AgentOps, ITIL, incident command, SRE, knowledge graphs, and AI evaluation.",
     content:
-      "Operational Intelligence Comparison Tables. Adjacent discipline comparison, claim classification, conformance levels, established practice, derived practice, original synthesis, speculative guidance, unsupported claims.",
+      "The Operational Intelligence Comparison Tables separate the model's scope from adjacent disciplines. They compare observability, AIOps, AgentOps, ITIL, incident command, SRE, knowledge graphs, and AI evaluation, while classifying statements as established practice, derived application, original synthesis, speculative guidance, or unsupported claim. The comparison is intended to clarify overlap and boundaries, not to claim that existing disciplines are replaced.",
     url: "/publication-pack/operational-intelligence-comparison-tables.md",
     type: "registry" as const,
     category: "Reference Assets",
@@ -166,7 +166,7 @@ const referenceSources = [
     title: "Decision Packet Example",
     description: "Public-safe review packet example for evidence-backed recommendations, risk, reversibility, alternatives, approval class, and fallback.",
     content:
-      "Decision Packet Example. Evidence-backed recommendation, rollback review packet, approval class, risk, reversibility, owner, alternatives, contradictory evidence, missing evidence, operator approval, public-safe OI-ROOM-001.",
+      "The Decision Packet Example turns an investigation into a reviewable recommendation. It records the evidence-backed recommendation, risk, reversibility, owner, alternatives, contradictory evidence, missing evidence, approval class, rollback or fallback plan, and the operator decision. It is a public-safe OI-ROOM-001 example rather than a record of an employer incident.",
     url: "/publication-pack/decision-packet-example.md",
     type: "registry" as const,
     category: "Reference Assets",
@@ -178,7 +178,7 @@ const referenceSources = [
     title: "OI-ROOM-001 Printable Walkthrough",
     description: "Printable walkthrough of the synthetic OI-ROOM-001 investigation through evidence, hypotheses, evaluation gates, decision packet, and learning.",
     content:
-      "OI-ROOM-001 Printable Walkthrough. Synthetic incident, transaction timing, evidence table, evidence graph, contradictory evidence, missing evidence, hypothesis lifecycle, evaluation gates, decision packet, human approval, learning record.",
+      "The OI-ROOM-001 Printable Walkthrough follows a synthetic transaction degradation from timing evidence through an evidence table and graph, competing hypotheses, contradictory and missing evidence, evaluation gates, a decision packet, human approval, and a learning record. It is designed for a reviewer to inspect the complete investigation loop without access to private systems or logs.",
     url: "/publication-pack/oi-room-001-printable-walkthrough.md",
     type: "registry" as const,
     category: "Reference Assets",
@@ -190,7 +190,7 @@ const referenceSources = [
     title: "Operational Intelligence Executive Summary",
     description: "One-page executive summary for the Operational Intelligence doctrine, ten layers, operating rule, and category boundary.",
     content:
-      "Operational Intelligence Executive Summary. One-page executive summary. Reasoning layer between enterprise telemetry and human decision, ten layers, operating rule, not a replacement for observability, SRE, incident management, ITSM, or human command.",
+      "The Operational Intelligence Executive Summary defines the model as a reasoning layer between enterprise telemetry and human decision. It gives the ten-layer overview, the operating rule, and the category boundary: Operational Intelligence organizes evidence and accountable judgment, but it does not replace observability, SRE, incident management, ITSM, or human command.",
     url: "/publication-pack/operational-intelligence-executive-summary.md",
     type: "registry" as const,
     category: "Reference Assets",
@@ -202,7 +202,7 @@ const referenceSources = [
     title: "Operational Intelligence Glossary Card",
     description: "Canonical glossary reference for Operational Intelligence terms including Transaction Intelligence, Evidence Graph, Replay Seed, Evaluation Gate, and Operator Control Plane.",
     content:
-      "Operational Intelligence Glossary Card. Operational Intelligence, Transaction Intelligence, Evidence Graph, Observation, Inference, Confirmed Fact, Contradiction, Missing Evidence, Hypothesis Lifecycle, Replay Seed, Evaluation Gate, Decision Packet, Operator Control Plane, Operational Memory.",
+      "The Operational Intelligence Glossary Card defines the canonical terms used across the doctrine and artifacts. It distinguishes an observation from an inference and a confirmed fact, and explains contradiction, missing evidence, hypothesis lifecycle, Transaction Intelligence, Evidence Graph, Replay Seed, Evaluation Gate, Decision Packet, Operator Control Plane, and Operational Memory. The glossary exists to prevent terminology drift across Ask, the framework, and the Operations Room.",
     url: "/publication-pack/operational-intelligence-glossary-card.md",
     type: "registry" as const,
     category: "Reference Assets",
@@ -214,7 +214,7 @@ const referenceSources = [
     title: "Operational Intelligence Evidence Pack Markdown",
     description: "Benchmark rubric, control comparisons, reviewer-run worksheet, practitioner review model, evidence ledger, minimum conformance checklist, and falsification criteria.",
     content:
-      "Operational Intelligence Evidence Pack Markdown. Benchmark rubric, control comparisons, OI-ROOM-001 control comparison protocol, reviewer-run worksheet, practitioner review, evidence ledger, falsification criteria, minimum conformance checklist, observable proof, failure signals, OI-ROOM-001 benchmark, dashboard-only baseline, chatbot-only baseline.",
+      "The Operational Intelligence Evidence Pack defines how to test the model rather than asking readers to accept it. It contains a benchmark rubric, control-comparison protocol, reviewer worksheet, practitioner-review model, evidence ledger, minimum conformance checklist, observable proof requirements, failure signals, and falsification criteria. OI-ROOM-001 can be compared with dashboard-only and chatbot-only baselines using the same public-safe review protocol.",
     url: "/publication-pack/operational-intelligence-evidence-pack.md",
     type: "registry" as const,
     category: "Reference Assets",
@@ -226,7 +226,7 @@ const referenceSources = [
     title: "Operational Intelligence Conformance Profile",
     description: "Implementation-neutral object profiles and pass/fail checks for Evidence Object, Hypothesis State, Replay Seed, Evaluation Gate, and Decision Packet conformance.",
     content:
-      "Operational Intelligence Conformance Profile. Required fields and pass/fail checks for Evidence Object, Hypothesis State, Replay Seed, Evaluation Gate, and Decision Packet. Minimum conformance levels, OI-ROOM-001 conformance example, source provenance, contradiction, missing evidence, approval class, owner, fallback, expiration, practitioner review questions.",
+      "The Operational Intelligence Conformance Profile gives implementation-neutral checks for the objects that make an investigation reviewable. It specifies required fields and pass/fail conditions for Evidence Objects, Hypothesis States, Replay Seeds, Evaluation Gates, and Decision Packets, including provenance, contradiction, missing evidence, approval class, owner, fallback, and expiration. It also provides minimum conformance levels, an OI-ROOM-001 example, and practitioner review questions.",
     url: "/publication-pack/operational-intelligence-conformance-profile.md",
     type: "registry" as const,
     category: "Reference Assets",
