@@ -152,7 +152,8 @@ const pillars = [
 ] as const;
 
 /**
- * Section 5 — agent evaluation and observability, assigned by the Project Lead on 2026-08-31.
+ * Section 5 — agent evaluation and observability. Assigned 2026-08-31, extended the same day when
+ * the board named quality dimensions and LLM-as-judge limits explicitly.
  * Capabilities only. Every item traces to a line already published on the resume: OpenTelemetry-style
  * instrumentation, evaluator scoring, replayability, drift analysis, telemetry receipts, and the
  * runtime governance list. No internal system names, no metrics, no tool not already public.
@@ -175,6 +176,18 @@ const evaluation = [
     capability:
       "Deterministic orchestration, so the same fixture produces the same decision path every time and any run can be replayed after the fact and checked against what it claimed.",
     without: "You cannot tell a fix from a coincidence, and a regression looks identical to bad luck."
+  },
+  {
+    title: "Quality is several questions, not one",
+    capability:
+      "An operational answer is scored on dimensions that move independently: is it grounded in retrieved evidence, does every claim carry attribution, does it handle a contradiction rather than average it away, does it refuse when the evidence is too thin, does it state what it could not see, is its confidence calibrated against how often it is actually right, and is the conclusion something a person can act on.",
+    without: "One score hides the trade. A system can climb on fluency while grounding quietly falls, and a single number will call that an improvement."
+  },
+  {
+    title: "The limits of a model grading a model",
+    capability:
+      "Model-scored evaluation is useful for breadth and unusable on its own. It agrees with itself, prefers longer and more confident answers, drifts when the grading model is updated, and is weakest on the cases that matter most — the ambiguous ones. It gets pinned to fixtures with known answers, checked against human review on a sample, and never allowed to be the only gate.",
+    without: "The evaluator inherits the same blind spots as the system it grades, and both agree the output is fine."
   },
   {
     title: "Drift, which only ever shows up later",

@@ -29,6 +29,21 @@ Both agents serve one mission and one protocol:
 | **Project Lead (Grok)** | Assign, review live, validate agents, keep assignments current |
 | **Principal (Ravikanth)** | Rulings, merges, external reviews, domain, essay final claims |
 
+
+<!-- Restored 2026-08-31 by Claude. The 2026-08-31 AGENTS.md rewrite dropped this section and
+     the Oscillation brake. Both are required by scripts/validate-agent-handoff.mjs, so main went
+     red on npm test and both agents were blocked. Restored verbatim from 0d51c7d rather than
+     repointing the validator: deleting a governance rule is the Project Lead's call, not an
+     agent's. If the removal was deliberate, drop the pin in validate-agent-handoff.mjs instead
+     and delete this block. -->
+
+## Cross-review protocol
+
+1. At session start: `git fetch`, diff `main` since your last recorded sync point, and review the other agent's changes using Keep / Fix / Replace with / Why it matters / Evidence needed / Public-safety risk. Append findings to the Review Ledger in `CLAUDE_HANDOFF.md`.
+2. Findings filed against your lane: address them, or answer why not, within one session.
+3. **Oscillation brake**: if the same copy or decision changes direction twice, freeze it for Ravikanth.
+4. Reviews argue from `NORTH_STAR.md`, never from authorship.
+
 ## SESSION HANDOFF — 2026-08-31 (Project Lead / Grok) — 10/10 board
 
 **Full tables:** `PROJECT_LEAD_ASSIGNMENTS.md` (ACTIVE).

@@ -15,6 +15,21 @@ Current sync point for Claude review:
 port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
 harness could not be run against a live localhost server from this environment.
 
+# ⚠ MAIN WAS RED — `AGENTS.md` lost two governance rules, 2026-08-31
+
+**Codex: read this before your next `npm test`.** `origin/main` at `2495669` fails
+`validate:handoff`, so the sprint gate cannot be met on main as it stands. This is not from the
+essay work — it reproduces on a clean checkout of `origin/main`.
+
+The 2026-08-31 `AGENTS.md` rewrite deleted **`## Cross-review protocol`** and the **Oscillation
+brake**. `scripts/validate-agent-handoff.mjs:26` requires both.
+
+Restored verbatim from `0d51c7d` on `claude/career-eval-observability-essays`, so merging that branch
+fixes main. **Restored rather than repointing the pin on purpose:** deleting a governance rule is the
+Project Lead's call, not an agent's — and the Oscillation brake is the mechanism the standing rulings
+lean on to keep the hero frozen. If the removal was deliberate, drop the pin in
+`validate-agent-handoff.mjs` instead and delete the restored block plus its comment.
+
 # CLAUDE SPRINT 2026-08-31 — items 1 and 2 delivered on `claude/career-eval-observability-essays`
 
 Branch is pushed and not merged. Merging `claude/*` is Ravikanth's call.
@@ -32,10 +47,26 @@ silently. Measured: 1293 words, 1 H1, 6 H2, 6919px, axe clean at 1363×936 and 3
 
 ## Item 2 — essay depth — DONE
 
+Extended 2026-08-31 after the board raised the bar to "several pieces, 1,200-1,800 words".
+
 | Essay | Prose before | After |
 | --- | --- | --- |
 | Operational Intelligence Is the New Control Plane | 400 w / 12 paras | **1266 w / 15 paras** |
-| Agentic Incident Investigation Without Losing Control | 366 w / 13 paras | **1103 w / 13 paras** |
+| Agentic Incident Investigation Without Losing Control | 366 w / 13 paras | **1319 w / 15 paras** |
+| Evaluating AI for Operational Work | 340 w / 13 paras | **1311 w / 14 paras** |
+
+All three are inside the 1,200-1,800 band. Agentic Incident Investigation was 1,103 on first pass,
+below the floor the board set later that day; it gained two paragraphs of argument, not filler — the
+twenty-call budget as a correctness control rather than a cost control, and an explicit narrowing of
+the claim to the first thirty minutes of an incident.
+
+**Item 1 was also extended the same day.** The board named two capabilities the first version did not
+cover: **quality dimensions** and **LLM-as-judge limits**. The chapter is six cards now, not four.
+The added pair say that quality is several independently-moving questions rather than one score, and
+that a model grading a model agrees with itself, prefers length and confidence, drifts when the judge
+is updated, and is weakest on exactly the ambiguous cases that matter — so it is pinned to fixtures,
+sampled against human review, and never the only gate. Measured: `/background` 1487 words, 1 H1,
+6 H2, 25 H3, 7425px, axe clean at both widths.
 
 **These were not short essays; they were two stacked outlines.** Paragraphs 1–6 made the argument,
 then 7–12 made the same argument again wearing template labels inside the paragraph text —
