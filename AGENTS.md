@@ -5,19 +5,19 @@ Two AI agents work on this repository alongside Ravikanth Seri:
 - **Codex** reads this file automatically at session start.
 - **Claude** reads `CLAUDE.md` automatically, which binds to this same guide.
 
-Both agents serve one mission and one protocol:
+Protocol:
 
-1. **`NORTH_STAR.md`** — the authoritative goal, authored by Ravikanth.
-2. **`CLAUDE_HANDOFF.md`** — live protocol, measured defects, handoff checklist. Update after every push.
-3. **`PROJECT_LEAD_ASSIGNMENTS.md`** — ACTIVE sprint board from Project Lead (Grok). Read after NORTH_STAR before choosing work.
+1. **`NORTH_STAR.md`** — authoritative goal.
+2. **`CLAUDE_HANDOFF.md`** — live protocol and measured defects. Update after every push.
+3. **`PROJECT_LEAD_ASSIGNMENTS.md`** — ACTIVE sprint board (Project Lead / Grok). Read before choosing work.
 
-## Coordination rules (both agents)
+## Coordination rules
 
-- Git is the source of truth. `git fetch` first; read remote handoff files, not memory.
-- Branches: Codex `main` or `codex/*`; Claude `claude/*` (merge latest `main` before push).
+- `git fetch` first; trust remote handoff files.
+- Codex: `main` or `codex/*`. Claude: `claude/*` (merge latest `main` before push).
 - Full `npm test` && `npm run build` before every push.
-- Never write copy to satisfy a validator; repoint pins deliberately.
-- Public-safety unclear → flag Ravikanth. Do not auto-publish private systems or unpublished metrics.
+- Never write copy to satisfy a validator.
+- Public-safety unclear → flag Ravikanth.
 - Merging `claude/*` → `main` is Ravikanth's call.
 
 ## Ownership lanes — RULED 2026-08-29
@@ -26,40 +26,40 @@ Both agents serve one mission and one protocol:
 | --- | --- |
 | **Claude** | Every visitor-facing string |
 | **Codex** | Structure, routing, layout, styling, a11y attrs, validators, retrieval/content-data |
-| **Project Lead (Grok)** | Assign, review live, validate agents, keep assignments current |
-| **Principal (Ravikanth)** | Rulings, merges, external reviews, domain, essay final claims |
+| **Project Lead (Grok)** | Assign, review live, validate agents |
+| **Principal (Ravikanth)** | Rulings, merges, external reviews, domain, essay final claims, which essay is the calm-path link |
 
-## SESSION HANDOFF — 2026-08-31 (Project Lead / Grok) — 10/10 board
+## SESSION HANDOFF — 2026-08-31 (Project Lead) — includes About first-screen brief
 
-**Full tables:** `PROJECT_LEAD_ASSIGNMENTS.md` (ACTIVE).
+**Full board:** `PROJECT_LEAD_ASSIGNMENTS.md` (ACTIVE).
 
-### Roles
+### Roles this cycle
 
-- **Codex P0:** `/about`→`/background`; `/ask` headings + contrast + reachability; `/work` tap targets  
-- **Codex P1:** Ask **corpus prose** (content-data) — required for 10/10 Ask quality  
-- **Claude P0:** agent **evaluation & observability** chapter; **essay depth** (primary 10/10 gate)  
-- **Ravikanth:** external practitioner reviews; domain; Sentinalai naming; essay edit; merge `claude/*`  
-- **Lead:** validate production after pushes; do not trust green suite without measurement  
+- **Codex P0:** `/about`→`/background`; Ask a11y/structure; Work tap targets  
+- **Codex P1:** Ask corpus prose  
+- **Claude P0:**  
+  1. **About first screen** — role → problem → proof; fewer systems nouns; calm path **Work / one essay / Contact**  
+  2. Eval & observability chapter  
+  3. Essay depth (primary 10/10 gate)  
+- **Ravikanth:** name the one essay if unset; reviews; domain; Sentinalai; merge `claude/*`  
 
-### Measured facts
+### About first-screen rule (do not ignore)
 
-- Live site shareable; Patterns thesis strong; hero frozen; TIAA intentional  
-- `/about` still 404 without redirect  
-- Writing depth + eval/o11y narrative + Ask corpus = path to 10/10  
+Short About is senior only if writing elsewhere carries weight. Do not strip site thesis—only reduce noun density on About’s first viewport. Do not add competing indexes on About.
 
 ### Sequence
 
-1. Codex P0 → 2. Claude P0 → 3. Codex P1 corpus → 4. Ravikanth reviews/domain  
+1. Codex P0 → 2. Claude P0 → 3. Codex P1 → 4. Ravikanth proof multipliers  
 5. No hero/nav redesign  
 
-### Where to start
+### Start
 
 1. `git fetch`  
 2. `PROJECT_LEAD_ASSIGNMENTS.md`  
 3. This block  
-4. `CLAUDE_HANDOFF.md` top (measured Ask defects)  
+4. `CLAUDE_HANDOFF.md` top  
 5. Your lane only  
 
 ## Ruled copy
 
-`validate:ruled` enforces Ravikanth's decisions. Restore ruled copy on failure; do not repoint without a new ruling + same-commit update to `validate-ruled-copy.mjs` and CLAUDE_HANDOFF.
+`validate:ruled` enforces Ravikanth decisions. Restore on failure; new ruling updates `validate-ruled-copy.mjs` + CLAUDE_HANDOFF same commit.
