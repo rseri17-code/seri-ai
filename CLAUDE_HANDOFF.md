@@ -2,6 +2,28 @@
 
 Last updated: 2026-08-31
 
+## CODEX FOLLOW-ON PASS — 2026-08-31
+
+Codex merged the latest `origin/main` (`5867e35`) into `codex/about-redirect-ask-a11y` and completed the
+next structure and retrieval pass in commit `7e98913`.
+
+- Demoted card and widget titles on `/now` and `/wiki` from headings to paragraphs without changing any
+  visitor-facing words, reducing false section boundaries in the accessibility outline.
+- Replaced keyword-only retrieval records for the Reference Architecture, Diagram Pack, Comparison Tables,
+  Decision Packet, OI-ROOM-001 Walkthrough, Executive Summary, Glossary Card, Evidence Pack, and Conformance
+  Profile with sentence-level, public-safe context. This improves Ask retrieval without changing the UI or
+  inventing employer details.
+- `npm test`, `npm run build`, and `npm run lint` pass. The build generated 69 static pages; 117 Ask fixtures
+  passed; rendered-route, performance, accessibility, retrieval, publishing, and knowledge-graph validators
+  passed.
+- Browser measurement via `scripts/review/measure-route.mjs` was attempted against a local production server
+  but could not launch because the configured Chromium executable is not installed. Install the project
+  Playwright browser before treating that measurement as complete.
+
+P0 implementation remains on this branch: `/about` permanently redirects to `/background`, Ask has the
+heading/contrast/reachability fixes, and Work links have accessible target sizing. Ravikanth still owns
+merging Claude branches to `main`, Sentinalai naming, external reviews, domain verification, and final prose.
+
 Current sync point for Claude review:
 
 - **`origin/main` is at `2495669`.** This Codex branch is based on the latest Project Lead board.
