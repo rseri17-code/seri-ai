@@ -2,6 +2,17 @@
 
 Last updated: 2026-08-31
 
+## CODEX VALIDATOR HYGIENE PASS — 2026-09-01
+
+Codex removed quantity-based validator floors in the working branch. `scripts/validate-content.mjs`
+now requires non-empty JSON arrays and continues to validate every record's schema, required fields,
+duplicates, and cross-references; it no longer fails solely because an editorial corpus was deliberately
+curated smaller. `scripts/validate-performance.mjs` retains byte budgets and critical artifact/route
+presence checks but no longer treats total HTML files or prerendered route count as a quality metric.
+
+Full `npm test && npm run build` passes after this change, including 117 passing Ask fixtures, 69 generated
+static pages, rendered-route checks, accessibility, retrieval, publishing, and knowledge-graph validation.
+
 ## CODEX FOLLOW-ON PASS — 2026-08-31
 
 Codex merged the latest `origin/main` (`5867e35`) into `codex/about-redirect-ask-a11y` and completed the
