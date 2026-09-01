@@ -8,93 +8,126 @@
 This file sets sprint priority on top of `NORTH_STAR.md`, `AGENTS.md`, and `CLAUDE_HANDOFF.md`.
 It does not replace them.
 
+**North star for this board:** close the gaps that keep the site at ~7.5/10 as a professional artifact and ~6/10 as a finished AI-systems body of work. Thesis and Patterns are strong; depth, Ask corpus, and external proof are the remaining gates.
+
 ---
 
 ## Roles and responsibilities (locked)
 
 | Role | Who | Owns |
 | --- | --- | --- |
-| **Principal** | Ravikanth Seri | Rulings, merges of `claude/*`, public-safety exceptions, Sentinalai naming, essay final edit |
-| **Project Lead** | Grok | Assign, sequence, review live site, validate agent work, update this file + AGENTS session handoff |
+| **Principal** | Ravikanth Seri | Rulings, merges of `claude/*`, public-safety exceptions, Sentinalai naming, essay final edit, external reviews, domain |
+| **Project Lead** | Grok | Assign, sequence, review live site, validate agent work, keep this file current |
 | **Claude** | Claude agent | Every visitor-facing string: headings, paragraphs, labels, microcopy, section order, editorial voice, IA |
 | **Codex** | Codex agent | Structure, routing, redirects, layout, styling, a11y attributes, validators, data/retrieval plumbing — **not** prose rewrites |
 
-**Split is by kind of change, not by file.** Both agents may touch the same files; only one owns the words.
+**Split is by kind of change, not by file.**
 
 ### Standing rulings (do not reopen)
 
-- Homepage hero H1 + lead: **FROZEN** (`validate:ruled`) — identity-first H1; misfire line in signature thesis section
-- Nav: **5 items + Ask** (Work, Operational Intelligence, Writing, About→`/background`, Contact)
+- Homepage hero H1 + lead: **FROZEN** (`validate:ruled`)
+- Nav: **5 items + Ask** (About → `/background`)
 - TIAA / real employer names: **intentional and allowed**
-- Internal systems, logs, proprietary architecture, unpublished metrics: **still prohibited**
-- `/patterns`: four-stage operating model; framing **DONE**; do not reorder stages without Ravikanth
-- Patterns sprint (nav fix + stage structure + framing): **CLOSED**
+- Internal systems, logs, proprietary architecture, unpublished metrics: **prohibited**
+- `/patterns`: four-stage operating model; framing **DONE**
+- Patterns sprint (structure + framing + nav break): **CLOSED**
 
 ---
 
-## Sprint board — 2026-08-31 (ACTIVE)
+## Path to 10/10 — gap → owner
 
-### Codex — do first
-
-| # | Item | Status |
+| Gap | Owner | Priority |
 | --- | --- | --- |
-| 1 | Permanent redirect `/about` → `/background` | **OPEN** (live `/about` is 404; nav already correct) |
-| 2 | `/ask`: reduce heading soup (demote non-section H2s); fix `text-slate-500` contrast; fix suggested-question reachability ≥1024px | **OPEN** (measured in CLAUDE_HANDOFF Codex start-here) |
-| 3 | `/work`: Sentinalai + GitHub links min 24px tap targets only — no prose rewrite | **OPEN** |
-| 4 | Optional: replace “bigger is better” validator floors that punish subtraction | Backlog |
-| 5 | Content-data layer (registry prose for Ask) | Backlog — highest long-term Codex value |
-
-**Branch:** `codex/about-redirect-ask-a11y` (merge latest `main` first)
-**Gates:** full `npm test` && `npm run build` green; update top of `CLAUDE_HANDOFF.md` with hash + measurements
-**Do not:** rewrite hero, rewrite Work/About prose, restore Claude-removed strings to feed pins
-
-### Claude — after Codex P0 on main (or parallel if no file collision)
-
-| # | Item | Status |
-| --- | --- | --- |
-| 1 | Agent evaluation & observability chapter on `/background` and/or `/work` (capabilities, not vendor logos) | **OPEN** |
-| 2 | Essay depth: expand 1–2 existing articles toward real length using only on-site public-safe material | **OPEN** — 10/10 gate |
-| 3 | Patterns framing | **DONE** |
-| 4 | Homepage hero | **FROZEN** — do not touch |
-
-**Branch:** `claude/career-eval-observability-essays` (merge latest `main` first)
-**Gates:** full `npm test` && `npm run build` green; pin repoints deliberate + recorded
-**Do not:** invent private production details, invent metrics, name tools not on public resume, pad contact for word floors
-
-### Ravikanth only
-
-- Sentinalai vs SentinelAI naming
-- Essay final edit / new experiential claims
-- Merge `claude/*` to main
-- Optional: licensed employer logos in `public/logos/`
+| `/about` 404 (redirect to `/background`) | Codex | **P0** |
+| `/ask` heading soup, contrast, control reachability | Codex | **P0** |
+| `/work` Sentinalai/GitHub tap targets &lt;24px | Codex | **P0** |
+| Agent evaluation & observability career chapter | Claude | **P0** |
+| Essay depth (real long-form, not stubs) | Claude (+ Ravikanth edit) | **P0** — primary 10/10 gate |
+| Ask corpus: registry/content-data as prose, not label lists | Codex | **P1** |
+| “Bigger is better” validator floors that punish subtraction | Codex | **P1** |
+| External practitioner reviews (quorum path already exists) | Ravikanth | **P1** |
+| Domain / canonical `seri.ai` when ready | Ravikanth | **P2** |
+| Finish route collapse / orphan retirement (`/brief`, etc.) | Codex + Ravikanth call | **P2** |
+| Sentinalai naming | Ravikanth only | **Blocked** |
 
 ---
 
-## Closed sprints (do not redo)
+## Sprint board — ACTIVE
 
-| Sprint | Outcome |
+### Codex
+
+| # | Item | Priority | Status |
+| --- | --- | --- | --- |
+| 1 | Permanent redirect `/about` → `/background` | P0 | **OPEN** |
+| 2 | `/ask`: demote non-section H2s; fix `text-slate-500` contrast; fix suggested-question reachability ≥1024px | P0 | **OPEN** |
+| 3 | `/work`: min 24px tap targets on Sentinalai + GitHub only — no prose rewrite | P0 | **OPEN** |
+| 4 | **Content-data / Ask corpus:** replace concatenated label-string registry entries with real prose for core OI concepts (evidence layer, replay, topology, evaluation, etc.) so Ask returns sentences, not keyword lists | P1 | **OPEN** — required for 10/10 Ask |
+| 5 | Replace or delete validator floors that fail the build when content is *removed* | P1 | Backlog |
+| 6 | Orphan retirement / merge support when Ravikanth authorizes | P2 | Later |
+
+**Branch (P0):** `codex/about-redirect-ask-a11y`  
+**Branch (P1 corpus):** `codex/ask-corpus-prose` (after P0 on main)  
+**Gates:** `npm test` && `npm run build`; measure `/ask` with `scripts/review/measure-route.mjs` when touching Ask; update top of `CLAUDE_HANDOFF.md`
+
+**Do not:** rewrite hero, rewrite Work/About prose, invent private systems, restore Claude-removed strings for pins
+
+### Claude
+
+| # | Item | Priority | Status |
+| --- | --- | --- | --- |
+| 1 | **Agent evaluation & observability** chapter on `/background` and/or `/work` (traces, eval gates, quality dimensions, LLM-as-judge limits, HITL, drift — capabilities not vendor logos) | P0 | **OPEN** |
+| 2 | **Essay depth:** expand existing articles toward real length (target several pieces ≥1,200–1,800 words when material exists on-site only). No new private-production claims. Ravikanth edits. | P0 | **OPEN** — primary 10/10 gate |
+| 3 | Keep public vs private boundary explicit; no unsourced metric inflation | Standing | — |
+| 4 | Patterns framing | — | **DONE** |
+| 5 | Homepage hero | — | **FROZEN** |
+
+**Branch:** `claude/career-eval-observability-essays` (merge latest `main` first; prefer after Codex P0)  
+**Gates:** `npm test` && `npm run build`; deliberate pin repoints only; update `CLAUDE_HANDOFF.md`
+
+**Do not:** touch frozen hero; invent Bedrock/Splunk/DeepEval unless already on public resume; pad `/contact` for word floors
+
+### Ravikanth (Principal)
+
+| # | Item | Priority | Status |
+| --- | --- | --- | --- |
+| 1 | Run / recruit external practitioner reviews (packet + Contact path already exist) | P1 | **OPEN** |
+| 2 | Essay final edit; any new experiential claims | P0 ongoing | — |
+| 3 | Sentinalai vs SentinelAI | Blocked on you | **OPEN** |
+| 4 | Domain / DNS when `seri.ai` is ready (`NEXT_PUBLIC_SITE_URL` with `||`) | P2 | — |
+| 5 | Merge `claude/*` to main | As needed | — |
+
+---
+
+## Closed (do not redo)
+
+| Item | Notes |
 | --- | --- |
-| Patterns structure (Codex) | DONE `d2d64bb` |
-| Nav mid-word break | DONE `bf885ac` |
-| Patterns framing (Claude) | DONE `b84201d` / merged |
-| Homepage identity redesign | DONE; hero locked in `validate:ruled` |
+| Patterns four-stage structure | `d2d64bb` |
+| Nav mid-word break | `bf885ac` |
+| Patterns framing + How to read this | Claude; verified on rendered page |
+| Homepage identity redesign + hero freeze | `validate:ruled` |
 
 ---
 
-## Project Lead review criteria (this sprint)
+## Definition of closer to 10/10
 
-- [ ] `/about` redirects to `/background` on production
-- [ ] `/ask` outline + contrast + control reachability improved (measure-route)
-- [ ] `/work` link targets ≥24px without content rewrite
-- [ ] Eval/o11y chapter legible on About or Work
-- [ ] At least one essay materially longer with honest public-safe depth
-- [ ] `npm test` + `npm run build` green on pushed work
-- [ ] CLAUDE_HANDOFF top block updated by whichever agent pushes
+A senior AI engineer can:
+
+1. Explain who you are and the career arc in two minutes  
+2. State the thesis (context layer first; agent is not the moat) from Patterns or Home  
+3. See **evaluation and agent observability** as a first-class owned practice  
+4. Read **two substantial essays** that demonstrate judgment, not scaffolding  
+5. Ask a question and get **prose-grounded** answers with honest limits  
+6. Find no broken primary paths (`/about` included) and no obvious a11y regressions on Ask/Work  
+
+External reviews and custom domain are proof multipliers, not substitutes for (3)–(5).
 
 ---
 
 ## Sequence
 
-1. Codex: items 1–3 → push → Lead validates live
-2. Claude: eval/o11y chapter → optional essay expand → Lead validates
-3. Stop. No hero/nav redesign cycle.
+1. **Codex P0** (redirect + Ask a11y + Work targets) → Lead validates live  
+2. **Claude P0** (eval/o11y chapter + essay expand) → Lead validates  
+3. **Codex P1** (Ask corpus prose) → Lead validates Ask quality  
+4. **Ravikanth** external reviews + domain when ready  
+5. Stop redesign cycles; hold hero and nav  
