@@ -2,93 +2,99 @@
 
 **Issued by:** Grok (Senior Product Manager / AI Engineer / Project Lead)
 **Authorized by:** Ravikanth Seri
-**Date:** 2026-08-29
-**Status:** SUPERSEDED for prioritization, 2026-08-31 — see the note directly below.
+**Date:** 2026-08-31
+**Status:** ACTIVE — both agents must `git fetch` and read this before choosing work
 
-> **Status note appended by Claude, 2026-08-31. This is a factual correction, not a new assignment —
-> issuing assignments is the Project Lead's call, not an agent's.**
->
-> This sprint's assignments are from 2026-08-29 and no longer describe the live backlog. `AGENTS.md`
-> has Codex read this file *before* choosing work, so leaving it marked ACTIVE would point a fresh
-> session at the Patterns sprint instead of what is actually outstanding.
->
-> - **Assignment A (Codex)** — both items are DONE (`bf885ac`, `d2d64bb`) and the build is green on
->   `main`. The one live item from it is the backlog line: the content-data layer, registry entries
->   that store label strings instead of prose, which hurts Ask.
-> - **Assignment B (Claude)** — **DONE in `b84201d`, 2026-08-30.** "Stage framing + How to read this
->   on `/patterns`" shipped: the four stages carry framing copy, the "How to read this" sequence
->   (Investigation → Structure → Memory → Control) is live, and the page states the thesis directly
->   ("the order is the argument"; "most teams start at stage four and discover the first three were
->   the hard part"). This file was simply never updated to mark it complete.
->   *(Corrected 2026-08-31. An earlier version of this note said it was never delivered — that was
->   wrong, and reading the rendered page is what settled it. Nobody should redo this work.)*
->   The branch this assignment names, `claude/patterns-operating-model`, was merged into `main` on
->   2026-08-30 and no longer exists as live work.
->
-> **The current backlog lives in `CLAUDE_HANDOFF.md` → "CODEX: START HERE — Claude is handing the
-> remaining work over, 2026-08-31."** It is split by lane and marks which items are Ravikanth's call.
-> Grok or Ravikanth should re-issue this file when the next sprint is set.
-
-This file is the current work assignment. It does not replace `NORTH_STAR.md`, `AGENTS.md`, or `CLAUDE_HANDOFF.md`. It sits on top of them for prioritization.
-
-**Session handoff detail lives in `AGENTS.md` → SESSION HANDOFF — 2026-08-29.** Read that first.
-
-Lane split remains RULED 2026-08-29:
-- **Claude** — every string a visitor reads
-- **Codex** — everything that is not a visitor-facing string
+This file sets sprint priority on top of `NORTH_STAR.md`, `AGENTS.md`, and `CLAUDE_HANDOFF.md`.
+It does not replace them.
 
 ---
 
-## Ruling: Patterns are an ordered operating model
+## Roles and responsibilities (locked)
 
-`/patterns` presents the **ten** architecture patterns as a system in four stages.
-
-| Stage | Name | Slugs |
+| Role | Who | Owns |
 | --- | --- | --- |
-| **1** | Investigation Core | `evidence-driven-rca`, `confidence-calibrated-rca`, `transaction-journey-reconstruction`, `change-impact-reasoning` |
-| **2** | Structural Reality | `topology-aware-reasoning` |
-| **3** | Memory & Shared Context | `operational-memory`, `shared-context-for-enterprise-agents` |
-| **4** | Agent Control Plane | `agentic-incident-investigation`, `human-in-the-loop-operational-ai`, `evaluation-and-replay` |
+| **Principal** | Ravikanth Seri | Rulings, merges of `claude/*`, public-safety exceptions, Sentinalai naming, essay final edit |
+| **Project Lead** | Grok | Assign, sequence, review live site, validate agent work, update this file + AGENTS session handoff |
+| **Claude** | Claude agent | Every visitor-facing string: headings, paragraphs, labels, microcopy, section order, editorial voice, IA |
+| **Codex** | Codex agent | Structure, routing, redirects, layout, styling, a11y attributes, validators, data/retrieval plumbing — **not** prose rewrites |
 
-**All 10 patterns are implemented** in `content/patterns.json` and grouped on `/patterns` (`d2d64bb`). Detail routes `/patterns/[slug]` remain the source for full pattern bodies.
+**Split is by kind of change, not by file.** Both agents may touch the same files; only one owns the words.
 
-**System thesis:** These patterns are the operating model of the context layer. Agents consume it; they do not replace it. The agent is not the moat.
+### Standing rulings (do not reopen)
+
+- Homepage hero H1 + lead: **FROZEN** (`validate:ruled`) — identity-first H1; misfire line in signature thesis section
+- Nav: **5 items + Ask** (Work, Operational Intelligence, Writing, About→`/background`, Contact)
+- TIAA / real employer names: **intentional and allowed**
+- Internal systems, logs, proprietary architecture, unpublished metrics: **still prohibited**
+- `/patterns`: four-stage operating model; framing **DONE**; do not reorder stages without Ravikanth
+- Patterns sprint (nav fix + stage structure + framing): **CLOSED**
 
 ---
 
-## Assignment A — Codex
+## Sprint board — 2026-08-31 (ACTIVE)
 
-| Item | Status |
+### Codex — do first
+
+| # | Item | Status |
+| --- | --- | --- |
+| 1 | Permanent redirect `/about` → `/background` | **OPEN** (live `/about` is 404; nav already correct) |
+| 2 | `/ask`: reduce heading soup (demote non-section H2s); fix `text-slate-500` contrast; fix suggested-question reachability ≥1024px | **OPEN** (measured in CLAUDE_HANDOFF Codex start-here) |
+| 3 | `/work`: Sentinalai + GitHub links min 24px tap targets only — no prose rewrite | **OPEN** |
+| 4 | Optional: replace “bigger is better” validator floors that punish subtraction | Backlog |
+| 5 | Content-data layer (registry prose for Ask) | Backlog — highest long-term Codex value |
+
+**Branch:** `codex/about-redirect-ask-a11y` (merge latest `main` first)
+**Gates:** full `npm test` && `npm run build` green; update top of `CLAUDE_HANDOFF.md` with hash + measurements
+**Do not:** rewrite hero, rewrite Work/About prose, restore Claude-removed strings to feed pins
+
+### Claude — after Codex P0 on main (or parallel if no file collision)
+
+| # | Item | Status |
+| --- | --- | --- |
+| 1 | Agent evaluation & observability chapter on `/background` and/or `/work` (capabilities, not vendor logos) | **OPEN** |
+| 2 | Essay depth: expand 1–2 existing articles toward real length using only on-site public-safe material | **OPEN** — 10/10 gate |
+| 3 | Patterns framing | **DONE** |
+| 4 | Homepage hero | **FROZEN** — do not touch |
+
+**Branch:** `claude/career-eval-observability-essays` (merge latest `main` first)
+**Gates:** full `npm test` && `npm run build` green; pin repoints deliberate + recorded
+**Do not:** invent private production details, invent metrics, name tools not on public resume, pad contact for word floors
+
+### Ravikanth only
+
+- Sentinalai vs SentinelAI naming
+- Essay final edit / new experiential claims
+- Merge `claude/*` to main
+- Optional: licensed employer logos in `public/logos/`
+
+---
+
+## Closed sprints (do not redo)
+
+| Sprint | Outcome |
 | --- | --- |
-| Nav mid-word break fix | **DONE** `bf885ac` |
-| `/patterns` four-stage structure (all 10) | **DONE** `d2d64bb` |
-| Validate pins / build after structure | **Do next** if not already green |
-| Content-data layer (registry prose for Ask) | Backlog — highest remaining Codex value |
-
-Do not rewrite visitor-facing framing copy.
+| Patterns structure (Codex) | DONE `d2d64bb` |
+| Nav mid-word break | DONE `bf885ac` |
+| Patterns framing (Claude) | DONE `b84201d` / merged |
+| Homepage identity redesign | DONE; hero locked in `validate:ruled` |
 
 ---
 
-## Assignment B — Claude
+## Project Lead review criteria (this sprint)
 
-| Item | Status |
-| --- | --- |
-| Stage framing + How to read this on `/patterns` | **DONE** `b84201d` — verified on the rendered page 2026-08-31 |
-| Hero H1 / lead | **FROZEN** — do not touch |
-
-Branch: `claude/patterns-operating-model` — **merged into `main` on 2026-08-30; no longer live work.**
-
-Acceptance: a principal SRE can explain the four stages after one pass.
+- [ ] `/about` redirects to `/background` on production
+- [ ] `/ask` outline + contrast + control reachability improved (measure-route)
+- [ ] `/work` link targets ≥24px without content rewrite
+- [ ] Eval/o11y chapter legible on About or Work
+- [ ] At least one essay materially longer with honest public-safe depth
+- [ ] `npm test` + `npm run build` green on pushed work
+- [ ] CLAUDE_HANDOFF top block updated by whichever agent pushes
 
 ---
 
-## Project Lead review criteria
+## Sequence
 
-- [x] Four stages visible; all 10 patterns mapped once
-- [x] No mid-word nav breakage (code fix landed; confirm on deploy)
-- [ ] System thesis legible in framing copy (Claude)
-- [ ] Pattern detail routes still work post-deploy
-- [ ] `npm test` + `npm run build` green
-- [ ] CLAUDE_HANDOFF updated when Claude lands framing
-
-Merging `claude/*` into `main` remains Ravikanth's call (or explicit go-ahead).
+1. Codex: items 1–3 → push → Lead validates live
+2. Claude: eval/o11y chapter → optional essay expand → Lead validates
+3. Stop. No hero/nav redesign cycle.
