@@ -112,7 +112,7 @@ const routeContracts = [
     // six. The chapter is pinned so it cannot be dropped silently — it is the deepest public
     // statement of the evaluation capability anywhere on the site.
     required: [
-      "Where the thesis comes from.",
+      "Who I am, and the problem I kept meeting.",
       "15+ years",
       "Senior Technical Lead in AIOps and Observability",
       "How the judgment formed.",
@@ -130,7 +130,7 @@ const routeContracts = [
       "Operational Intelligence"
     ],
     before: [
-      ["Where the thesis comes from.", "How the judgment formed."],
+      ["Who I am, and the problem I kept meeting.", "How the judgment formed."],
       ["How the judgment formed.", "The roles behind it."],
       ["The roles behind it.", "What I build now."],
       ["What I build now.", "How you know the agent is behaving."],

@@ -15,6 +15,59 @@ Current sync point for Claude review:
 port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
 harness could not be run against a live localhost server from this environment.
 
+# CLAUDE — About first screen delivered, `claude/about-first-screen-eval-essays`, 2026-08-31
+
+Branch renamed per the board. It carries the eval/observability chapter and the three expanded
+essays as well, so this one branch closes Claude items 1, 2 and 3. Unmerged — that is Ravikanth's.
+
+## Item 1 — About first screen, ruled brief
+
+Measured first viewport at 1363×936: **129 words, three beats, exactly three actions.**
+
+| Beat | Before | After |
+| --- | --- | --- |
+| **Role** | third thing on the page, after a paragraph of career history | first sentence — "Senior Technical Lead in AIOps and Observability at TIAA", fifteen years |
+| **Problem** | split across two paragraphs, ending in a four-noun list ("operational context, attributable evidence, evaluation, and governed execution") | one failure mode, plain language: a model explains a live system fluently whether or not the context underneath it was assembled, and both answers read the same |
+| **Proof** | Work · **Resume** · **LinkedIn** | Work · **Read the essay** · **Contact** |
+
+Two things came off the first screen. The H1 was **"Where the thesis comes from."** — "thesis" is the
+framework vocabulary the brief keeps above the fold, and it was the first words a stranger read. It is
+now **"Who I am, and the problem I kept meeting."** And the career-history paragraph
+(integration → identity → container platforms → production AI) was removed from the opening: the
+Progression section directly below tells the same arc in five phases with a design consequence
+attached to each, so it was the same content twice, and it was what made the first screen noun-dense.
+
+**Nothing was stripped from the site's thesis.** Vocabulary still deepens below the fold and on
+Patterns, Work and the framework. Resume and LinkedIn remain in the nav, the footer and the proof-path
+section — they are simply no longer competing first-screen doors.
+
+### ⚠ Ravikanth — one choice needs your confirmation
+
+The brief says: *"If Ravikanth has not named the one essay yet, use the strongest existing public
+essay slug already linked from the site and note the choice in CLAUDE_HANDOFF for him to confirm."*
+
+**Chosen: `/ideas/operational-intelligence-is-the-new-control-plane`.** Rationale: it is the longest
+and most complete essay on the site after this sprint (1,266 words), it states the site's central
+claim rather than a sub-argument, and it was already linked from Home and `/library`. Say the word and
+it changes to any other slug in one line.
+
+### Mobile, stated honestly
+
+At 390×844 the first screen carries **role, problem, and one action ("View the work") — not all
+three**. The other two sit just below the fold. That is consistent with the calm path, whose first
+step *is* Work, but it is not "all three doors visible on a phone", and it should not be reported as
+such. Fitting all three would mean shrinking the lead paragraphs, which costs the problem beat.
+Flagged rather than tuned.
+
+**Verified:** `/background` 1449 words, 1 H1, 6 H2, 25 H3, 7297px, axe clean on WCAG and
+best-practice at 1363×936 and 390×844. `npm test` and `npm run build` green.
+
+**Pins repointed, deliberately:** four across `validate-content-coherence` and
+`validate-rendered-routes` — the H1, the problem sentence, and the two replaced calls to action. One
+of them had to be pinned as a fragment rather than a whole sentence because JSX wraps the line, which
+is worth knowing before writing the next pin. Two imports (`Linkedin`, `homeProfileLinks`) that my
+change orphaned were removed.
+
 # ⚠ MAIN WAS RED — `AGENTS.md` lost two governance rules, 2026-08-31
 
 **Codex: read this before your next `npm test`.** `origin/main` at `2495669` fails

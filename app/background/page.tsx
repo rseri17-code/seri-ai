@@ -28,11 +28,10 @@
  */
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Linkedin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Card } from "@/components/card";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
-import { homeProfileLinks } from "@/content/home";
 import { resume } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -240,23 +239,17 @@ export default function BackgroundPage() {
   return (
     <>
       {/* 1 — OPENING. Identity, origin, two actions. */}
-      <Section eyebrow="Background" title="Where the thesis comes from." level="h1">
+      <Section eyebrow="Background" title="Who I am, and the problem I kept meeting." level="h1">
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div>
             <p className="max-w-2xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">
-              I spent fifteen years being paged when distributed systems failed in ways no single dashboard explained.
-            </p>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300">
-              Enterprise integration and infrastructure came first, then identity and platform modernization. Moving
-              workloads onto container platforms and instrumenting them properly raised the volume of telemetry
-              enormously, and did not by itself produce operational understanding. Then production AI made that gap
-              consequential: a system was now drawing conclusions from context nobody had assembled. Operational
-              Intelligence came out of watching that same pattern repeat.
+              I am a Senior Technical Lead in AIOps and Observability at TIAA. For fifteen years before that I was the
+              person paged when production systems failed in ways no single dashboard explained.
             </p>
             <p className="mt-6 max-w-2xl border-l-2 border-mint/60 pl-5 text-base leading-8 text-slate-200">
-              I am a Senior Technical Lead in AIOps and Observability, building production AI systems for enterprise
-              operations. My work connects operational context, attributable evidence, evaluation, and governed
-              execution, so a recommendation that matters keeps a clear path back to why.
+              Production AI made that failure consequential. A model will explain a live system fluently whether or not
+              anyone assembled the context underneath it, and both answers read exactly the same. I build the part that
+              tells them apart before a person acts on one.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
               <Link
@@ -266,19 +259,17 @@ export default function BackgroundPage() {
                 View the work <ArrowRight size={18} />
               </Link>
               <Link
-                href="/resume"
+                href="/ideas/operational-intelligence-is-the-new-control-plane"
                 className="inline-flex min-h-[48px] items-center gap-2 rounded border border-white/25 px-6 py-3 text-base font-semibold text-white transition hover:border-mint/50 hover:text-mint"
               >
-                View the resume
+                Read the essay
               </Link>
-              <a
-                href={homeProfileLinks.linkedin}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/contact"
                 className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
               >
-                LinkedIn <Linkedin size={17} />
-              </a>
+                Contact
+              </Link>
             </div>
           </div>
 

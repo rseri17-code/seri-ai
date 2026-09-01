@@ -975,11 +975,18 @@ const backgroundContractSource = [backgroundPage, professionalGraphContent].join
 // destinations - what the page must keep, not how it was arranged.
 for (const required of [
   // Section 1 - opening: identity, origin, present-tense positioning, two actions.
-  "Where the thesis comes from.",
-  "being paged when distributed systems failed in ways no single dashboard explained",
+  // Repointed 2026-08-31 for the ruled About first-screen brief: role -> problem -> proof in ~15
+  // seconds. The H1 led with "thesis", which is the framework vocabulary the brief keeps off the
+  // first screen, and the role was the third thing a stranger read. Both pins now assert the beats.
+  "Who I am, and the problem I kept meeting.",
+  "Senior Technical Lead in AIOps and Observability at TIAA",
+  "person paged when production systems failed in ways no single dashboard explained",
   "Senior Technical Lead in AIOps and Observability",
   "View the work",
-  "View the resume",
+  // Calm path is Work -> one essay -> Contact. Resume and LinkedIn stay reachable from nav and
+  // the proof-path section; they are no longer first-screen doors.
+  "Read the essay",
+  "Contact",
   // Section 2 - causal progression, five phases.
   "How the judgment formed.",
   "const progression",
