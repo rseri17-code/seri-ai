@@ -15,6 +15,61 @@ Current sync point for Claude review:
 port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
 harness could not be run against a live localhost server from this environment.
 
+# CLAUDE SPRINT 2026-08-31 — items 1 and 2 delivered on `claude/career-eval-observability-essays`
+
+Branch is pushed and not merged. Merging `claude/*` is Ravikanth's call.
+
+## Item 1 — agent evaluation and observability chapter — DONE `f097a65`
+
+On `/background` only, not `/work`. The assignment says "and/or"; Codex is concurrently on
+`app/work/page.tsx` for tap targets, so putting it there would have collided for no benefit.
+Four capabilities, each with the failure it prevents; closes on the runtime governance the platform
+enforces. Every line traces to the published resume — OpenTelemetry-style instrumentation, evaluator
+scoring, replayability, drift analysis, telemetry receipts, and the governance list. No internal
+system names, no metrics, no non-public tool, no vendor logos. **`/background` is seven sections now,
+not six**, and the new section is pinned in `validate-rendered-routes` so it cannot be dropped
+silently. Measured: 1293 words, 1 H1, 6 H2, 6919px, axe clean at 1363×936 and 390×844.
+
+## Item 2 — essay depth — DONE
+
+| Essay | Prose before | After |
+| --- | --- | --- |
+| Operational Intelligence Is the New Control Plane | 400 w / 12 paras | **1266 w / 15 paras** |
+| Agentic Incident Investigation Without Losing Control | 366 w / 13 paras | **1103 w / 13 paras** |
+
+**These were not short essays; they were two stacked outlines.** Paragraphs 1–6 made the argument,
+then 7–12 made the same argument again wearing template labels inside the paragraph text —
+"Executive summary:", "Core thesis:", "Current industry limitation:", "Proposed model:",
+"Architecture implication:", "What this does not claim:". Nobody had written prose; a form had been
+filled in. So this is the essay the outline was pointing at, not padding around the outline.
+
+Source material is on-site and public-safe throughout: the Context Acquisition Tax and the two
+halves from `/framework`, OI-ROOM-001's confidence movement (62 → 38 when a contradiction landed and
+a gap was named), the four principles from `/background`, the Authorized Misfire, and the failure-mode
+list. No invented metrics, no private production detail, no tool that is not already on the public
+resume. `readingTime` updated to 7 min and 6 min to match.
+
+**The other nine essays are still stubs** — 125 to 522 words. The sprint asked for one or two; this
+is two. The remaining nine are the same shape of problem and the same fix.
+
+### Found while measuring — Codex's lane, not fixed here
+
+**Every table-of-contents link on `/ideas/[slug]` is a sub-24px tap target.** WCAG 2.2 target size
+(minimum). Cause is styling, not content: `app/ideas/[slug]/page.tsx:150` renders each entry as
+`className="block text-sm leading-5 …"` — a 20px line box with no `min-height`, so any single-line
+entry fails. The Ask-prompt links in the same sidebar fail the same way. Counts vary by width because
+longer entries wrap to two lines: 1 at 320px, 3 at 390px, **9 at 768px**, 0 at 1363px.
+
+This is pre-existing and independent of the essay work — the essay commit changes
+`content/articles.json` and nothing else (`git diff HEAD -- app/ideas/` is empty). It is the same
+defect class as sprint item 3 on `/work`. Fix is `min-h-[24px]` plus vertical padding on the anchor.
+
+**Also worth a Codex item, lower priority:** `Article.body` is a flat `string[]` and every entry
+renders as `<p>`, so a 1,266-word essay has no headings and its "Contents" is built by slicing the
+first sentence off each of the first six paragraphs. That was survivable at 400 words. At 1,266 it is
+the weakest thing about the page. Supporting a heading entry in the body schema is a data-and-renderer
+change, which is your lane, not mine — I did not touch it.
+
 # RELEASED — Claude's editorial pass is finished, 2026-08-31
 
 **No files are locked. Everything is yours.** Claude edited strings only; no structure, props or
