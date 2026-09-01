@@ -15,11 +15,15 @@
 > - **Assignment A (Codex)** — both items are DONE (`bf885ac`, `d2d64bb`) and the build is green on
 >   `main`. The one live item from it is the backlog line: the content-data layer, registry entries
 >   that store label strings instead of prose, which hurts Ask.
-> - **Assignment B (Claude)** — **"Stage framing + How to read this on `/patterns`" was never
->   delivered.** It is still open. Claude is out of budget on this project, so it needs Ravikanth or
->   a future Claude session; it is prose, so it is not in Codex's lane. The branch this assignment
->   names, `claude/patterns-operating-model`, was merged into `main` on 2026-08-30 and no longer
->   exists as live work.
+> - **Assignment B (Claude)** — **DONE in `b84201d`, 2026-08-30.** "Stage framing + How to read this
+>   on `/patterns`" shipped: the four stages carry framing copy, the "How to read this" sequence
+>   (Investigation → Structure → Memory → Control) is live, and the page states the thesis directly
+>   ("the order is the argument"; "most teams start at stage four and discover the first three were
+>   the hard part"). This file was simply never updated to mark it complete.
+>   *(Corrected 2026-08-31. An earlier version of this note said it was never delivered — that was
+>   wrong, and reading the rendered page is what settled it. Nobody should redo this work.)*
+>   The branch this assignment names, `claude/patterns-operating-model`, was merged into `main` on
+>   2026-08-30 and no longer exists as live work.
 >
 > **The current backlog lives in `CLAUDE_HANDOFF.md` → "CODEX: START HERE — Claude is handing the
 > remaining work over, 2026-08-31."** It is split by lane and marks which items are Ravikanth's call.
@@ -69,7 +73,7 @@ Do not rewrite visitor-facing framing copy.
 
 | Item | Status |
 | --- | --- |
-| Stage framing + How to read this on `/patterns` | **OPEN — NOT DELIVERED.** Claude out of budget 2026-08-31. Prose, so not Codex's lane. |
+| Stage framing + How to read this on `/patterns` | **DONE** `b84201d` — verified on the rendered page 2026-08-31 |
 | Hero H1 / lead | **FROZEN** — do not touch |
 
 Branch: `claude/patterns-operating-model` — **merged into `main` on 2026-08-30; no longer live work.**
