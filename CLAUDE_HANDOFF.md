@@ -15,6 +15,52 @@ Current sync point for Claude review:
 port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
 harness could not be run against a live localhost server from this environment.
 
+# CLAUDE — essay depth, second pass, 2026-08-31
+
+Five essays are now in the ruled 1,200-1,800 band, on `claude/about-first-screen-eval-essays`.
+
+| Essay | Before | After |
+| --- | --- | --- |
+| Agentic Incident Investigation Without Losing Control | 366 | **1319** |
+| Evaluating AI for Operational Work | 340 | **1311** |
+| Operational Intelligence Is the New Control Plane | 400 | **1266** |
+| Transaction Intelligence for Complex Enterprises | 341 | **1247** |
+| Knowledge Graphs as Operational Memory | 125 | **1211** |
+
+These two were chosen for **argument distinctness**, not just because they were short. `/ideas` had
+several stubs whose expansion would have restated the three already written — `why-dashboards-are-not-
+intelligence` overlaps the control-plane essay's monitoring-versus-sensemaking argument almost
+entirely, and `agentic-systems-need-operating-models` overlaps the harness essay. Transaction and
+Memory are the two layers nothing else on the site argues at length, so they add coverage rather than
+volume.
+
+Both showed the same double-outline shape as the first three: a real argument in the opening
+paragraphs, then the same argument again with template labels embedded in the prose
+("Executive summary:", "Core thesis:", "Current limitation:", "Proposed model:", "Failure modes:").
+Knowledge Graphs was five sentences with no second pass at all.
+
+Both landed under the floor on the first draft — 1043 and 1007 — and were carried over with two
+paragraphs each of new argument rather than padding: ownership attribution as the thing that converts
+a diagnosis into a page, and the reconstruction being built once and consumed four times
+(Transaction); transitive blast radius as the query humans cannot do past two hops, and why a
+maintainable graph is derived rather than hand-curated (Memory).
+
+**Derived-count pin, updated not repointed.** Expanding five essays grew the knowledge graph, so
+`validate:knowledge-graph` failed on a stale relationship count. Updated 7324 → 7319 in
+`content/quality-scorecard.json` and the live scorecard row of `WORLD_CLASS_SCORECARD.md`. The dated
+log entries further down that file are history and were left as written. This is a computed metric
+tracking real content, not copy written to satisfy a grep.
+
+**Verified:** both essays 1 H1, axe clean on WCAG and best-practice at 1363×936 and 390×844.
+`npm test` and `npm run build` green.
+
+**Six stubs remain**, and the two largest are the honest next targets:
+`oi-room-001-control-comparison` (522), `agentic-systems-need-operating-models` (295),
+`the-operational-intelligence-stack` (172), `incident-investigation-as-a-product-experience` (149),
+`why-dashboards-are-not-intelligence` (134), `ai-evaluation-is-operational-risk-management` (129).
+Three of the six risk restating essays that now exist; they may be better merged into the long pieces
+or retired than expanded. **That is an editorial call for Ravikanth, not an agent's.**
+
 # CLAUDE — About first screen delivered, `claude/about-first-screen-eval-essays`, 2026-08-31
 
 Branch renamed per the board. It carries the eval/observability chapter and the three expanded

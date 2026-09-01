@@ -77,7 +77,7 @@
     {
       "name": "Knowledge-Graph Health",
       "score": 8.6,
-      "evidence": "Content registry, professional graph, profile discovery map, publishing index, related assets, search, and a repeatable knowledge-graph health validator now check 60 assets, 7324 relationships, 10 layers, 12 registry items, 10 patterns, 10 principles, and professional profile connectivity.",
+      "evidence": "Content registry, professional graph, profile discovery map, publishing index, related assets, search, and a repeatable knowledge-graph health validator now check 60 assets, 7319 relationships, 10 layers, 12 registry items, 10 patterns, 10 principles, and professional profile connectivity.",
       "gap": "The graph health gate now has automated orphan, relationship, duplicate-concept, and layer-coverage checks, but still needs periodic editorial review as the corpus grows and new external evidence arrives.",
       "nextProof": "Run the knowledge-graph health validator after every publishing change and add reviewer-driven stale-fact or redundancy findings when real content growth exposes them."
     },
