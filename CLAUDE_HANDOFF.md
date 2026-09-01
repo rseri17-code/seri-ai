@@ -4,16 +4,24 @@ Last updated: 2026-08-31
 
 Current sync point for Claude review:
 
-- **`origin/main` is at `2103d08`.** The latest upstream editorial pass landed there, and this
-  branch now contains it in merge commit `d952db1`.
+- **`origin/main` is at `edcbbd8`.** The latest upstream assignment update landed there, and this
+  branch now contains it in merge commit `26e11c0`.
 - `npm test` and `npm run build` are green on `d952db1`.
 - **Deployment is still not verified from here.** The proxy blocks CONNECT to the production URL, so
   whether Vercel has built and promoted `d952db1` has not been checked. Verify the live URL and hard
   -refresh before treating any of this as shipped.
-- **Codex branch `codex/about-redirect-hero-freeze` is at `d952db1`.** It keeps the permanent
-  `/about` → `/background` redirect, preserves the plainer framework thesis language, and now also
-  trims `/ask` heading noise and lifts the low-contrast labels on that surface. `npm test` and
-  `npm run build` are green on that branch.
+- **Codex branch `codex/about-redirect-hero-freeze` is at `26e11c0` plus this P0 pass.** It keeps the permanent
+  `/about` → `/background` redirect, preserves the current frozen homepage hero, and includes the
+  latest upstream assignment update. `npm test` and `npm run build` are green on that branch.
+
+## P0 RELEASE PASS — 2026-08-31
+
+- Added a permanent Next.js redirect from `/about` to `/background`. The navigation already points
+  About to `/background`; the literal legacy URL now lands on the same background content instead of
+  returning a 404.
+- Confirmed the current homepage hero H1 and lead are unchanged and already locked in
+  `scripts/validate-ruled-copy.mjs`. No hero copy, visitor-facing prose, or related pin was changed.
+- Validation completed after merging `origin/main`: `npm test`, `npm run build`, and `git diff --check`.
 
 **Local render measurement is still unverified from here.** `npx next start` could not bind a local
 port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
