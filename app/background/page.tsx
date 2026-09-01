@@ -151,7 +151,40 @@ const pillars = [
   }
 ] as const;
 
-/** Section 5 — exactly four. These are platform safety constraints, not a publishing method. */
+/**
+ * Section 5 — agent evaluation and observability, assigned by the Project Lead on 2026-08-31.
+ * Capabilities only. Every item traces to a line already published on the resume: OpenTelemetry-style
+ * instrumentation, evaluator scoring, replayability, drift analysis, telemetry receipts, and the
+ * runtime governance list. No internal system names, no metrics, no tool not already public.
+ */
+const evaluation = [
+  {
+    title: "Instrumentation that outlives the answer",
+    capability:
+      "OpenTelemetry-style instrumentation across the whole reasoning path: which tools were called and in what order, what each one returned, what the model could see at each step, and a receipt attached to every fact that reached the conclusion.",
+    without: "You can audit the output and nothing that produced it. A wrong answer nobody can reconstruct is a wrong answer nobody can fix."
+  },
+  {
+    title: "Evaluation before trust, not after the incident",
+    capability:
+      "Evaluator scoring against fixtures rather than impressions — grounding and citation tests, contradiction handling, refusal behavior when the evidence is too thin to support a claim, and explicit coverage of what the evidence never reached.",
+    without: "Confidence becomes self-reported. A system asked to grade itself grades generously."
+  },
+  {
+    title: "Replay as the unit of proof",
+    capability:
+      "Deterministic orchestration, so the same fixture produces the same decision path every time and any run can be replayed after the fact and checked against what it claimed.",
+    without: "You cannot tell a fix from a coincidence, and a regression looks identical to bad luck."
+  },
+  {
+    title: "Drift, which only ever shows up later",
+    capability:
+      "Behavioral drift analysis across releases: the same fixtures re-scored as models, prompts, retrieval and the data underneath all change independently of each other.",
+    without: "A system that passed on launch day stops passing quietly, and nothing announces it."
+  }
+] as const;
+
+/** Section 6 — exactly four. These are platform safety constraints, not a publishing method. */
 const principles = [
   {
     title: "Evidence before reasoning",
@@ -171,7 +204,7 @@ const principles = [
   }
 ] as const;
 
-/** Section 6 — four destinations, nothing else. */
+/** Section 7 — four destinations, nothing else. */
 const proofPath = [
   {
     href: "/resume",
@@ -332,7 +365,38 @@ export default function BackgroundPage() {
         </div>
       </Section>
 
-      {/* 5 — PRINCIPLES. Exactly four. */}
+      {/* 5 — EVALUATION AND OBSERVABILITY. The third pillar, at depth. */}
+      <Section eyebrow="Evaluation and observability" title="How you know the agent is behaving.">
+        <p className="max-w-3xl text-base leading-8 text-slate-300">
+          A correct answer and a confident wrong one arrive in the same shape: a paragraph that reads well. Everything
+          here exists to tell them apart before a person acts on either. It is the half of the work with no demo —
+          instrumentation, scoring, replay — and it is the half that decides whether the other half can be trusted.
+        </p>
+        <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 lg:grid-cols-2">
+          {evaluation.map((item) => (
+            <article key={item.title} className="bg-ink p-6 sm:p-7">
+              <h3 className="text-lg font-semibold leading-7 text-white">{item.title}</h3>
+              <p className="mt-3 text-base leading-8 text-slate-200">{item.capability}</p>
+              <p className="mt-4 border-t border-white/10 pt-4 text-sm leading-7 text-slate-400">
+                <span className="font-semibold text-amber">Without it.</span> {item.without}
+              </p>
+            </article>
+          ))}
+        </div>
+        <p className="mt-6 max-w-3xl text-base leading-8 text-slate-300">
+          Around all four sits the runtime governance the platform actually enforces: fail-closed execution, freshness
+          validation before a stale fact is allowed to matter, tool budgets that bound how far an investigation can
+          reach, and an approval checkpoint no agent can route around.
+        </p>
+        <Link
+          href="/investigation-room"
+          className="mt-6 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
+        >
+          Watch every one of these run on a synthetic case <ArrowRight size={16} />
+        </Link>
+      </Section>
+
+      {/* 6 — PRINCIPLES. Exactly four. */}
       <Section eyebrow="Principles" title="Four invariants, and what breaks without them.">
         <ol className="grid max-w-5xl gap-x-10 gap-y-7 sm:grid-cols-2">
           {principles.map((principle, i) => (
@@ -345,7 +409,7 @@ export default function BackgroundPage() {
         </ol>
       </Section>
 
-      {/* 6 — PROOF AND NEXT STEP. Four destinations, then the closing line. */}
+      {/* 7 — PROOF AND NEXT STEP. Four destinations, then the closing line. */}
       <Section eyebrow="Next" title="Where to look next.">
         <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2">
           {proofPath.map((item) => (

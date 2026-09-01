@@ -107,8 +107,10 @@ const routeContracts = [
     route: "/background",
     file: "background.html",
     maxBytes: 150_000,
-    // Repointed 2026-08-30 for the background rebuild: the six ruled sections, the approved scale
-    // signals, and the closing line, asserted against the built page.
+    // Repointed 2026-08-30 for the background rebuild, then again 2026-08-31 when the Project Lead
+    // assigned an agent evaluation and observability chapter to this page. Seven sections now, not
+    // six. The chapter is pinned so it cannot be dropped silently — it is the deepest public
+    // statement of the evaluation capability anywhere on the site.
     required: [
       "Where the thesis comes from.",
       "15+ years",
@@ -119,6 +121,9 @@ const routeContracts = [
       "enterprise SRE investigation agent from thesis to production",
       "120+ enterprise applications",
       "What I build now.",
+      "How you know the agent is behaving.",
+      "Instrumentation that outlives the answer",
+      "Replay as the unit of proof",
       "Four invariants, and what breaks without them.",
       "Where to look next.",
       "Ravikanth Seri",
@@ -128,7 +133,8 @@ const routeContracts = [
       ["Where the thesis comes from.", "How the judgment formed."],
       ["How the judgment formed.", "The roles behind it."],
       ["The roles behind it.", "What I build now."],
-      ["What I build now.", "Four invariants, and what breaks without them."],
+      ["What I build now.", "How you know the agent is behaving."],
+      ["How you know the agent is behaving.", "Four invariants, and what breaks without them."],
       ["Four invariants, and what breaks without them.", "Where to look next."]
     ]
   },
