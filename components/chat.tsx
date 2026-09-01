@@ -315,7 +315,7 @@ export function Chat({
         <div className="rounded-lg border border-signal/20 bg-signal/[0.05] p-5">
           <div className="flex items-center gap-2">
             <Route className="text-signal" size={18} />
-            <h3 className="font-semibold text-white">Answer packet</h3>
+            <p className="font-semibold text-white">Answer packet</p>
           </div>
           <div className="mt-4 grid gap-2">
             {answerPacket.map(([label, value]) => (
@@ -342,7 +342,7 @@ export function Chat({
         <div className="rounded-lg border border-mint/20 bg-mint/[0.05] p-5">
           <div className="flex items-center gap-2">
             <ShieldCheck className="text-mint" size={18} />
-            <h3 className="font-semibold text-white">Trust contract</h3>
+            <p className="font-semibold text-white">Trust contract</p>
           </div>
           <div className="mt-4 grid gap-2">
             {trustContract.map(([label, value, passed, tone]) => (
@@ -370,7 +370,7 @@ export function Chat({
           </p>
         </div>
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
-          <h3 className="font-semibold text-white">Inspection prompts</h3>
+          <p className="font-semibold text-white">Inspection prompts</p>
           <div className="mt-4 space-y-2">
             {prompts.map((prompt) => (
               <button
@@ -386,7 +386,7 @@ export function Chat({
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
           <div className="flex items-center gap-2">
             <Database className="text-signal" size={18} />
-            <h3 className="font-semibold text-white">Grounding receipts</h3>
+            <p className="font-semibold text-white">Grounding receipts</p>
           </div>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
             {sources.length ? (

@@ -4,16 +4,25 @@ Last updated: 2026-08-31
 
 Current sync point for Claude review:
 
-- **`main` is at `2ef9bd8`.** The Ask visibility / heading-hierarchy batch landed directly on
-  `main` as one independent commit and is revertable on its own.
-- `npm test` and `npm run build` are green on `2ef9bd8`.
+- **`origin/main` is at `2495669`.** This Codex branch is based on the latest Project Lead board.
+- The current P0 pass is recorded in commit `af51f90` on `codex/about-redirect-ask-a11y`.
 - **Deployment is still not verified from here.** The proxy blocks CONNECT to the production URL, so
-  whether Vercel has built and promoted `2ef9bd8` has not been checked. Verify the live URL and hard
+  whether Vercel has built and promoted the current branch has not been checked. Verify the live URL and hard
   -refresh before treating any of this as shipped.
 
-**Local render measurement is still unverified from here.** `npx next start` could not bind a local
-port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
-harness could not be run against a live localhost server from this environment.
+**Local render measurement for the current P0 pass is verified.** The production build served locally
+on an alternate port, and the rendered `/ask` and `/work` surfaces were inspected across the required
+responsive widths. Historical visual QA artifacts remain marked stale where the source changed.
+
+## CODEX P0 PASS — 2026-08-31
+
+- Added a permanent `/about` → `/background` redirect in `next.config.ts`.
+- On the rendered production build, `/ask` measured 1 H1, 3 H2 section headings, and 0 H3 card or
+  widget headings. The previous 21 H3 card/widget headings were demoted without changing their words.
+- `/ask` had 42 visible controls at 320, 390, 768, 1024, 1363, and 1440px; no controls were hidden,
+  horizontal overflow was 0px at each width, and no `text-slate-500` tokens remained on the route.
+- `/work` Sentinalai and GitHub links now have a minimum 24px target height. No visitor-facing prose was
+  changed. Full validation was rerun before push.
 
 # RELEASED — Claude's editorial pass is finished, 2026-08-31
 
