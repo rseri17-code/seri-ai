@@ -131,7 +131,8 @@ export default function Home() {
               <figcaption className="mt-5 max-w-xs">
                 <p className="text-lg font-semibold leading-7 text-white">{professionalGraph.identity.person}</p>
                 <p className="mt-1 text-sm leading-6 text-slate-300">{currentRole.role}</p>
-                <p className="mt-1 text-xs leading-5 text-slate-500">
+                <p className="mt-1 text-sm leading-6 text-mint">Production AI systems for enterprise operations</p>
+                <p className="mt-1 text-xs leading-5 text-slate-400">
                   {currentRole.organization} &middot; {resume.location} &middot; 15+ years in enterprise engineering
                 </p>
                 <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">

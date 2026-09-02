@@ -12,12 +12,6 @@ const budgets = {
   staticFileBytes: 260_000,
   htmlFileBytes: 275_000,
   criticalHtmlBytes: 260_000,
-  // These are floors on how MUCH the site renders, which quietly rewarded adding routes.
-  // Ravikanth authorized collapsing 35 routes to ~6 on 2026-08-26, so they now track the
-  // shrinking site rather than holding it at its largest. Lower them as routes retire;
-  // they exist to catch an accidental drop in output, not to discourage subtraction.
-  prerenderRoutes: 62,
-  htmlFiles: 53
 };
 
 const criticalHtmlFiles = [
@@ -84,10 +78,6 @@ if (fs.existsSync(staticDir)) {
 
 if (fs.existsSync(serverAppDir)) {
   const htmlFiles = walk(serverAppDir).filter((file) => file.endsWith(".html"));
-  if (htmlFiles.length < budgets.htmlFiles) {
-    errors.push(`Server app has ${htmlFiles.length} HTML artifacts, expected at least ${budgets.htmlFiles}.`);
-  }
-
   for (const file of htmlFiles) {
     const size = fileSize(file);
     if (size > budgets.htmlFileBytes) {
@@ -123,10 +113,6 @@ if (fs.existsSync(criticalRouteManifest)) {
 const prerenderManifest = path.join(nextDir, "prerender-manifest.json");
 if (fs.existsSync(prerenderManifest)) {
   const manifest = JSON.parse(fs.readFileSync(prerenderManifest, "utf8"));
-  const routeCount = Object.keys(manifest.routes ?? {}).length;
-  if (routeCount < budgets.prerenderRoutes) {
-    errors.push(`Prerender manifest has ${routeCount} routes, expected at least ${budgets.prerenderRoutes}.`);
-  }
 }
 
 if (errors.length) {

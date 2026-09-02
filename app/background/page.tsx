@@ -278,7 +278,8 @@ export default function BackgroundPage() {
             <figcaption className="mt-5 max-w-xs">
               <p className="text-lg font-semibold leading-7 text-white">Ravikanth Seri</p>
               <p className="mt-1 text-sm leading-6 text-slate-300">{current.role}</p>
-              <p className="mt-1 text-xs leading-5 text-slate-500">
+              <p className="mt-1 text-sm leading-6 text-mint">Production AI systems for enterprise operations</p>
+              <p className="mt-1 text-xs leading-5 text-slate-400">
                 {current.organization} &middot; {resume.location} &middot; 15+ years in enterprise engineering
               </p>
             </figcaption>
