@@ -60,12 +60,12 @@ export default function WorkPage() {
           </p>
           <p className="mt-4 max-w-4xl text-base leading-7 text-slate-300">
             The public one is{" "}
-            <a href={publicCode.entries[1].href} target="_blank" rel="noreferrer" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
+            <a href={publicCode.entries[1].href} target="_blank" rel="noreferrer" className="inline-flex min-h-[24px] items-center font-semibold text-mint underline decoration-mint/30 underline-offset-4">
               Sentinalai
             </a>{" "}
             &mdash; an incident-investigation pipeline with deterministic playbooks, policy gates, memory, receipts, and
             model assistance kept optional. Read it, along with the rest of my{" "}
-            <a href={publicCode.entries[0].href} target="_blank" rel="noreferrer" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
+            <a href={publicCode.entries[0].href} target="_blank" rel="noreferrer" className="inline-flex min-h-[24px] items-center font-semibold text-mint underline decoration-mint/30 underline-offset-4">
               GitHub
             </a>
             . It shows you the architecture I argue for. It is not evidence of what runs in production anywhere, and

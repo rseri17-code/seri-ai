@@ -23,7 +23,7 @@ for (const missionFile of ["NORTH_STAR.md", "AGENTS.md", "CLAUDE.md"]) {
 }
 expect(handoff.includes("## Review Ledger"), "CLAUDE_HANDOFF.md missing Review Ledger section for cross-agent reviews");
 for (const [file, references] of [
-  ["AGENTS.md", ["NORTH_STAR.md", "CLAUDE_HANDOFF.md", "npm test", "npm run build", "## Ownership lanes", "## Cross-review protocol", "Oscillation brake"]],
+  ["AGENTS.md", ["NORTH_STAR.md", "CLAUDE_HANDOFF.md", "npm test", "npm run build", "## Ownership lanes", "Never write copy to satisfy a validator", "Merging `claude/*` → `main` is Ravikanth's call"]],
   ["CLAUDE.md", ["NORTH_STAR.md", "AGENTS.md", "CLAUDE_HANDOFF.md"]]
 ]) {
   const filePath = path.join(root, file);

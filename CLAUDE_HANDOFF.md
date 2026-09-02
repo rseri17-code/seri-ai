@@ -2,18 +2,60 @@
 
 Last updated: 2026-08-31
 
+## CODEX VALIDATOR HYGIENE PASS — 2026-09-01
+
+Codex removed quantity-based validator floors in the working branch. `scripts/validate-content.mjs`
+now requires non-empty JSON arrays and continues to validate every record's schema, required fields,
+duplicates, and cross-references; it no longer fails solely because an editorial corpus was deliberately
+curated smaller. `scripts/validate-performance.mjs` retains byte budgets and critical artifact/route
+presence checks but no longer treats total HTML files or prerendered route count as a quality metric.
+
+Full `npm test && npm run build` passes after this change, including 117 passing Ask fixtures, 69 generated
+static pages, rendered-route checks, accessibility, retrieval, publishing, and knowledge-graph validation.
+
+## CODEX FOLLOW-ON PASS — 2026-08-31
+
+Codex merged the latest `origin/main` (`5867e35`) into `codex/about-redirect-ask-a11y` and completed the
+next structure and retrieval pass in commit `7e98913`.
+
+- Demoted card and widget titles on `/now` and `/wiki` from headings to paragraphs without changing any
+  visitor-facing words, reducing false section boundaries in the accessibility outline.
+- Replaced keyword-only retrieval records for the Reference Architecture, Diagram Pack, Comparison Tables,
+  Decision Packet, OI-ROOM-001 Walkthrough, Executive Summary, Glossary Card, Evidence Pack, and Conformance
+  Profile with sentence-level, public-safe context. This improves Ask retrieval without changing the UI or
+  inventing employer details.
+- `npm test`, `npm run build`, and `npm run lint` pass. The build generated 69 static pages; 117 Ask fixtures
+  passed; rendered-route, performance, accessibility, retrieval, publishing, and knowledge-graph validators
+  passed.
+- Browser measurement via `scripts/review/measure-route.mjs` was attempted against a local production server
+  but could not launch because the configured Chromium executable is not installed. Install the project
+  Playwright browser before treating that measurement as complete.
+
+P0 implementation remains on this branch: `/about` permanently redirects to `/background`, Ask has the
+heading/contrast/reachability fixes, and Work links have accessible target sizing. Ravikanth still owns
+merging Claude branches to `main`, Sentinalai naming, external reviews, domain verification, and final prose.
+
 Current sync point for Claude review:
 
-- **`main` is at `2ef9bd8`.** The Ask visibility / heading-hierarchy batch landed directly on
-  `main` as one independent commit and is revertable on its own.
-- `npm test` and `npm run build` are green on `2ef9bd8`.
+- **`origin/main` is at `2495669`.** This Codex branch is based on the latest Project Lead board.
+- The current P0 pass is recorded in commit `af51f90` on `codex/about-redirect-ask-a11y`.
 - **Deployment is still not verified from here.** The proxy blocks CONNECT to the production URL, so
-  whether Vercel has built and promoted `2ef9bd8` has not been checked. Verify the live URL and hard
+  whether Vercel has built and promoted the current branch has not been checked. Verify the live URL and hard
   -refresh before treating any of this as shipped.
 
-**Local render measurement is still unverified from here.** `npx next start` could not bind a local
-port in this sandbox (`EPERM` on 3000 / 127.0.0.1), so the committed `scripts/review/measure-route.mjs`
-harness could not be run against a live localhost server from this environment.
+**Local render measurement for the current P0 pass is verified.** The production build served locally
+on an alternate port, and the rendered `/ask` and `/work` surfaces were inspected across the required
+responsive widths. Historical visual QA artifacts remain marked stale where the source changed.
+
+## CODEX P0 PASS — 2026-08-31
+
+- Added a permanent `/about` → `/background` redirect in `next.config.ts`.
+- On the rendered production build, `/ask` measured 1 H1, 3 H2 section headings, and 0 H3 card or
+  widget headings. The previous 21 H3 card/widget headings were demoted without changing their words.
+- `/ask` had 42 visible controls at 320, 390, 768, 1024, 1363, and 1440px; no controls were hidden,
+  horizontal overflow was 0px at each width, and no `text-slate-500` tokens remained on the route.
+- `/work` Sentinalai and GitHub links now have a minimum 24px target height. No visitor-facing prose was
+  changed. Full validation was rerun before push.
 
 # RELEASED — Claude's editorial pass is finished, 2026-08-31
 
