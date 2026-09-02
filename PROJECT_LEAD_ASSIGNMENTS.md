@@ -1,158 +1,132 @@
 # Project Lead Assignments — seri.ai
 
-**Issued by:** Grok (Senior Product Manager / AI Engineer / Project Lead)
+**Issued by:** Grok (Project Lead)
 **Authorized by:** Ravikanth Seri
-**Date:** 2026-08-31
-**Status:** ACTIVE — both agents must `git fetch` and read this before choosing work
-
-This file sets sprint priority on top of `NORTH_STAR.md`, `AGENTS.md`, and `CLAUDE_HANDOFF.md`.
-It does not replace them.
-
-**North star for this board:** close the gaps that keep the site at ~7.5/10 as a professional artifact and ~6/10 as a finished AI-systems body of work. Thesis and Patterns are strong; depth, Ask corpus, calm About first screen, and external proof are the remaining gates.
+**Date:** 2026-09-01
+**Status:** ACTIVE — `git fetch` before work
 
 ---
 
-## Roles and responsibilities (locked)
+## Closed this cycle (do not redo)
 
-| Role | Who | Owns |
-| --- | --- | --- |
-| **Principal** | Ravikanth Seri | Rulings, merges of `claude/*`, public-safety exceptions, Sentinalai naming, essay final edit, which essay is the “one essay” link, external reviews, domain |
-| **Project Lead** | Grok | Assign, sequence, review live site, validate agent work, keep this file current |
-| **Claude** | Claude agent | Every visitor-facing string: headings, paragraphs, labels, microcopy, section order, editorial voice, IA |
-| **Codex** | Codex agent | Structure, routing, redirects, layout, styling, a11y attributes, validators, data/retrieval plumbing — **not** prose rewrites |
-
-**Split is by kind of change, not by file.**
-
-### Standing rulings (do not reopen)
-
-- Homepage hero H1 + lead: **FROZEN** (`validate:ruled`)
-- Nav: **5 items + Ask** (About → `/background`)
-- TIAA / real employer names: **intentional and allowed**
-- Internal systems, logs, proprietary architecture, unpublished metrics: **prohibited**
-- `/patterns`: four-stage operating model; framing **DONE**
-- Patterns sprint (structure + framing + nav break): **CLOSED**
-- Do **not** thin the site thesis to match lifestyle-exec personal brands; apply sparseness only where specified (About first screen)
-
----
-
-## Path to 10/10 — gap → owner
-
-| Gap | Owner | Priority |
-| --- | --- | --- |
-| `/about` 404 (redirect to `/background`) | Codex | **P0** |
-| `/ask` heading soup, contrast, control reachability | Codex | **P0** |
-| `/work` Sentinalai/GitHub tap targets &lt;24px | Codex | **P0** |
-| **About first screen:** role → problem → proof (fewer systems nouns) | Claude | **P0** |
-| Agent evaluation & observability career chapter | Claude | **P0** |
-| Essay depth (real long-form, not stubs) | Claude (+ Ravikanth edit) | **P0** — primary 10/10 gate |
-| Ask corpus: registry/content-data as prose, not label lists | Codex | **P1** |
-| “Bigger is better” validator floors that punish subtraction | Codex | **P1** |
-| External practitioner reviews | Ravikanth | **P1** |
-| Domain / canonical `seri.ai` when ready | Ravikanth | **P2** |
-| Finish route collapse / orphan retirement | Codex + Ravikanth call | **P2** |
-| Sentinalai naming | Ravikanth only | **Blocked** |
-| Name the single “read this” essay for calm path | Ravikanth | **P0** (one decision) |
-
----
-
-## Sprint board — ACTIVE
-
-### Codex
-
-| # | Item | Priority | Status |
-| --- | --- | --- | --- |
-| 1 | Permanent redirect `/about` → `/background` | P0 | **OPEN** |
-| 2 | `/ask`: demote non-section H2s; fix `text-slate-500` contrast; fix suggested-question reachability ≥1024px | P0 | **OPEN** |
-| 3 | `/work`: min 24px tap targets on Sentinalai + GitHub only — no prose rewrite | P0 | **OPEN** |
-| 4 | **Content-data / Ask corpus:** prose for core OI concepts so Ask returns sentences | P1 | **OPEN** |
-| 5 | Validator floors that punish subtraction | P1 | Backlog |
-| 6 | Orphan retirement when Ravikanth authorizes | P2 | Later |
-
-**Branch (P0):** `codex/about-redirect-ask-a11y`  
-**Branch (P1 corpus):** `codex/ask-corpus-prose` (after P0 on main)  
-**Gates:** `npm test` && `npm run build`; measure `/ask` when touching Ask; update top of `CLAUDE_HANDOFF.md`
-
-**Do not:** rewrite hero, rewrite Work/About prose, invent private systems, restore Claude-removed strings for pins
-
-### Claude
-
-| # | Item | Priority | Status |
-| --- | --- | --- | --- |
-| 1 | **About (`/background`) first screen — role → problem → proof** | P0 | **OPEN** |
-| 2 | **Agent evaluation & observability** chapter on `/background` and/or `/work` | P0 | **OPEN** |
-| 3 | **Essay depth:** expand existing articles (target ≥1,200–1,800 words when material exists on-site). No new private claims. Ravikanth edits. | P0 | **OPEN** — primary 10/10 gate |
-| 4 | Patterns framing | — | **DONE** |
-| 5 | Homepage hero | — | **FROZEN** |
-
-**Branch:** `claude/about-first-screen-eval-essays` (merge latest `main` first)  
-**Gates:** `npm test` && `npm run build`; deliberate pin repoints only; update `CLAUDE_HANDOFF.md`
-
-#### About first screen — ruled brief (2026-08-31)
-
-**Goal:** a stranger answers who / what problem / where’s the proof in ~15 seconds. Short can still be senior **if** essays and Work carry weight elsewhere.
-
-| Beat | Required | Keep off the first screen |
-| --- | --- | --- |
-| **Role** | Senior Technical Lead – AIOps & Observability; TIAA; 15+ years (facts already public) | Pattern names, ten-layer inventories, framework jargon |
-| **Problem** | One failure mode in plain language (e.g. systems failed in ways no single dashboard explained; production AI made missing assembled context consequential) | Comma-lists of signals / topology / memory / evaluation |
-| **Proof** | Calm default path only: **Work** · **one essay** · **Contact** (or Resume/LinkedIn as secondary) | Competing indexes (map, library grid, five equal CTAs, “start here” taxonomies) |
-
-**Do:**
-- Fewer systems nouns above the fold; thesis vocabulary may deepen *below* the fold or on Patterns/Work
-- Keep career arc honesty; do not lifestyle-brand the page
-- If Ravikanth has not named the one essay yet, use the strongest existing public essay slug already linked from the site and note the choice in CLAUDE_HANDOFF for him to confirm
-
-**Do not:**
-- Strip the site-wide thesis—only reduce noun density on About’s first viewport
-- Add another orientation sitemap
-- Touch homepage hero
-- Invent metrics or private systems
-
-#### Calm path (IA voice, not new routes)
-
-Default reader path: **Work → one substantial essay → Contact**. Patterns, Ops Room, Ask remain available from nav/home—not as equal first-screen doors on About.
-
-### Ravikanth (Principal)
-
-| # | Item | Priority | Status |
-| --- | --- | --- | --- |
-| 1 | **Name the single “read this” essay** for About proof link | P0 | **OPEN** |
-| 2 | Essay final edit; new experiential claims | P0 ongoing | — |
-| 3 | External practitioner reviews | P1 | **OPEN** |
-| 4 | Sentinalai vs SentinelAI | Blocked on you | **OPEN** |
-| 5 | Domain when `seri.ai` is ready | P2 | — |
-| 6 | Merge `claude/*` to main | As needed | — |
-
----
-
-## Closed (do not redo)
-
-| Item | Notes |
+| Item | Status |
 | --- | --- |
-| Patterns four-stage structure | `d2d64bb` |
-| Nav mid-word break | `bf885ac` |
-| Patterns framing + How to read this | Claude |
-| Homepage identity redesign + hero freeze | `validate:ruled` |
+| `/about` → `/background` 308 | **DONE** (live production) |
+| About first screen role → problem → proof | **DONE** (live) |
+| Calm path Work / essay / Contact on About | **DONE** (live) |
+| Patterns operating-model framing | **DONE** |
+| Nav mid-word break | **DONE** |
+| Homepage hero H1 | **FROZEN** |
 
 ---
 
-## Definition of closer to 10/10
+## Highest ROI next (ordered)
 
-A senior AI engineer can:
+### 1. Home identity focus line — Claude — **P0 / highest ROI polish**
 
-1. From About’s first screen alone: state role, core problem, and next proof click  
-2. State the thesis (context layer first; agent is not the moat) from Patterns or Home  
-3. See **evaluation and agent observability** as a first-class owned practice  
-4. Read **two substantial essays** that demonstrate judgment  
-5. Ask a question and get **prose-grounded** answers with honest limits  
-6. Find no broken primary paths (`/about` included) and no obvious a11y regressions on Ask/Work  
+**Why:** H1 says production AI systems; portrait still only “Senior Technical Lead – AIOps & Observability.” Undersells the mantle in the first viewport.
+
+**Do:** Under the portrait on `/` (match `/background` identity card if same block):
+
+- Keep: `Senior Technical Lead - AIOps & Observability`
+- Add focus line: `Production AI systems for enterprise operations`
+- Keep: TIAA · Charlotte · 15+ years
+
+**Do not:** replace Senior Technical Lead; invent Architect/Director titles; touch frozen H1.
+
+**Branch:** `claude/identity-focus-line`  
+**Acceptance:** first viewport shows official title + production-AI focus without clutter.
 
 ---
 
-## Sequence
+### 2. Agent evaluation & observability chapter — Claude — **P0 / hiring ROI**
 
-1. **Codex P0** (redirect + Ask a11y + Work targets) → Lead validates live  
-2. **Claude P0** (About first screen + eval/o11y chapter + essay expand) → Lead validates  
-3. **Codex P1** (Ask corpus prose) → Lead validates Ask  
-4. **Ravikanth** names the one essay if not already set; external reviews; domain  
-5. Hold hero and nav; no redesign cycles  
+**Why:** Staff AI eng / recruiter probe gap. Thesis implies gates/traces/HITL; page must say it as owned practice.
+
+**Do:** On `/background` and/or `/work`, public-safe section covering:
+- agent/session traces (tools, steps, failures)
+- eval gates before promote
+- quality dimensions (success, groundedness, refusal, operational usefulness)
+- LLM-as-judge limits
+- HITL when impact is high
+- drift/scorecards only if public-record safe
+
+Capabilities over vendor logos. No private systems or invented metrics.
+
+**Branch:** `claude/career-eval-observability` (or same branch as #1 if sequential)  
+**Acceptance:** recruiter sees eval/o11y as first-class chapter.
+
+---
+
+### 3. Essay depth behind “Read the essay” — Claude (+ Ravikanth edit) — **P0 / 10/10 gate**
+
+**Why:** Calm path now points at an essay; thin essays break the promise.
+
+**Do:** Expand the linked essay (and ideally one more) toward real length using only on-site public-safe material. No new private production claims.
+
+**Ravikanth:** confirm which essay is canonical; final edit.
+
+**Acceptance:** “Read the essay” lands on substance, not a stub in essay clothes.
+
+---
+
+### 4. Finish Codex P0 a11y if not merged — Codex — **P0 hygiene**
+
+**Why:** Redirect shipped; Ask heading/contrast/reachability and Work tap targets may still be open on the same branch or partially landed.
+
+**Do:** Verify on production after merge:
+- `/ask` outline + contrast (`text-slate-500` → adequate) + suggested questions usable ≥1024px
+- `/work` Sentinalai + GitHub targets ≥24px (padding only, no prose rewrite)
+
+If already done on the merged branch, mark DONE in CLAUDE_HANDOFF and stop.
+
+**Branch:** finish/merge remaining `codex/about-redirect-ask-a11y` work or `codex/ask-work-a11y`
+
+---
+
+### 5. Ask corpus prose — Codex — **P1**
+
+**Why:** Ask quality ceiling is content-data, not UI.
+
+**Do:** Replace label-string registry entries for core OI concepts with real prose so answers are sentences.
+
+**Branch:** `codex/ask-corpus-prose`
+
+---
+
+### 6. Ravikanth only — proof multipliers
+
+| Item | Priority |
+| --- | --- |
+| Essay final edit / confirm canonical essay | P0 |
+| External practitioner reviews | P1 |
+| Sentinalai naming | Blocked on you |
+| Domain `seri.ai` when ready | P2 |
+
+---
+
+## Sequence (do in order)
+
+1. **Claude** — identity focus line (fast win)  
+2. **Claude** — eval/o11y chapter  
+3. **Claude** — essay expand (parallel if capacity)  
+4. **Codex** — confirm/finish Ask + Work a11y  
+5. **Codex** — Ask corpus P1  
+6. **Ravikanth** — reviews / domain  
+
+No hero redesign. No nav expansion. No new routes.
+
+---
+
+## Roles (locked)
+
+| Who | Owns |
+| --- | --- |
+| **Claude** | Visitor-facing strings only |
+| **Codex** | Structure, a11y attrs, validators, content-data plumbing |
+| **Grok** | Assign, review live, validate |
+| **Ravikanth** | Rulings, merges of `claude/*`, essay claims |
+
+## Gates
+
+Full `npm test` && `npm run build` before push. Update top of `CLAUDE_HANDOFF.md` with hash + what closed.
