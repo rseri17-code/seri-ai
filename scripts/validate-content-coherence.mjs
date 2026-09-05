@@ -221,6 +221,8 @@ for (const required of [
   // Section 1 - hero: identity, specialty, production proof, exactly two actions.
   "Production AI systems",
   "I build evidence-grounded AI systems for enterprise operations.",
+  "Senior Technical Lead &mdash; AIOps &amp; Observability",
+  "Building evidence-grounded AI systems for enterprise operations.",
   "enterprise SRE investigation",
   "Enter the Operations Room",
   "Explore the body of work",
@@ -260,7 +262,6 @@ for (const required of [
   "/wiki/operational-intelligence-canonical-doctrine",
   "/patterns",
   "/framework",
-  "/resume",
   "/work",
   "/ask",
   "/contact",
@@ -974,12 +975,12 @@ const backgroundContractSource = [backgroundPage, professionalGraphContent].join
 // restructured. These pin the six ruled sections, the approved evidence, and the four outbound
 // destinations - what the page must keep, not how it was arranged.
 for (const required of [
-  // Section 1 - opening: identity, origin, present-tense positioning, two actions.
+  // Section 1 - opening: exact identity, operational problem, production proof, one action.
   "Where the thesis comes from.",
   "being paged when distributed systems failed in ways no single dashboard explained",
-  "Senior Technical Lead in AIOps and Observability",
+  "Senior Technical Lead &mdash; AIOps &amp; Observability",
+  "Building evidence-grounded AI systems for enterprise operations.",
   "View the work",
-  "View the resume",
   // Section 2 - causal progression, five phases.
   "How the judgment formed.",
   "const progression",

@@ -28,11 +28,10 @@
  */
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Linkedin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Card } from "@/components/card";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
-import { homeProfileLinks } from "@/content/home";
 import { resume } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -197,20 +196,22 @@ export default function BackgroundPage() {
       <Section eyebrow="Background" title="Where the thesis comes from." level="h1">
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div>
-            <p className="max-w-2xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">
+            <p className="max-w-2xl text-base font-semibold leading-7 text-mint">
+              Senior Technical Lead &mdash; AIOps &amp; Observability
+            </p>
+            <p className="mt-2 max-w-2xl text-lg leading-8 text-slate-200">
+              Building evidence-grounded AI systems for enterprise operations.
+            </p>
+            <p className="mt-6 max-w-2xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">
               I spent fifteen years being paged when distributed systems failed in ways no single dashboard explained.
             </p>
             <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300">
-              Enterprise integration and infrastructure came first, then identity and platform modernization. Moving
-              workloads onto container platforms and instrumenting them properly raised the volume of telemetry
-              enormously, and did not by itself produce operational understanding. Then production AI made that gap
-              consequential: a system was now drawing conclusions from context nobody had assembled. Operational
-              Intelligence came out of watching that same pattern repeat.
+              Production AI made that recurring gap consequential: a system was drawing conclusions from context
+              nobody had assembled.
             </p>
             <p className="mt-6 max-w-2xl border-l-2 border-mint/60 pl-5 text-base leading-8 text-slate-200">
-              I am a Senior Technical Lead in AIOps and Observability, building production AI systems for enterprise
-              operations. My work connects operational context, attributable evidence, evaluation, and governed
-              execution, so a recommendation that matters keeps a clear path back to why.
+              Most recently, I took an enterprise SRE investigation agent from thesis to production, owning its
+              architecture, engineering, integration, evaluation, and operationalization.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
               <Link
@@ -219,20 +220,6 @@ export default function BackgroundPage() {
               >
                 View the work <ArrowRight size={18} />
               </Link>
-              <Link
-                href="/resume"
-                className="inline-flex min-h-[48px] items-center gap-2 rounded border border-white/25 px-6 py-3 text-base font-semibold text-white transition hover:border-mint/50 hover:text-mint"
-              >
-                View the resume
-              </Link>
-              <a
-                href={homeProfileLinks.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
-              >
-                LinkedIn <Linkedin size={17} />
-              </a>
             </div>
           </div>
 
@@ -240,7 +227,10 @@ export default function BackgroundPage() {
             <Portrait size="xl" />
             <figcaption className="mt-5 max-w-xs">
               <p className="text-lg font-semibold leading-7 text-white">Ravikanth Seri</p>
-              <p className="mt-1 text-sm leading-6 text-slate-300">{current.role}</p>
+              <p className="mt-1 text-sm leading-6 text-slate-300">Senior Technical Lead &mdash; AIOps &amp; Observability</p>
+              <p className="mt-1 text-sm leading-6 text-slate-200">
+                Building evidence-grounded AI systems for enterprise operations.
+              </p>
               <p className="mt-1 text-xs leading-5 text-slate-500">
                 {current.organization} &middot; {resume.location} &middot; 15+ years in enterprise engineering
               </p>
