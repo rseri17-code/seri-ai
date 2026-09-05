@@ -31,8 +31,8 @@ import { ArrowRight } from "lucide-react";
 import { OperationsRoomPreview } from "@/components/operations-room-preview";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
-import { TrackedAnchor, TrackedLink } from "@/components/tracked-link";
-import { homeArticles, homeProfileLinks } from "@/content/home";
+import { TrackedLink } from "@/components/tracked-link";
+import { homeArticles } from "@/content/home";
 import { professionalGraph, resume } from "@/content/site";
 
 /** Section 4 — exactly three bodies of work, each with problem, role, proof and outcome. */
@@ -130,28 +130,19 @@ export default function Home() {
               <Portrait size="xl" />
               <figcaption className="mt-5 max-w-xs">
                 <p className="text-lg font-semibold leading-7 text-white">{professionalGraph.identity.person}</p>
-                <p className="mt-1 text-sm leading-6 text-slate-300">{currentRole.role}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-300">Senior Technical Lead &mdash; AIOps &amp; Observability</p>
+                <p className="mt-1 text-sm leading-6 text-slate-200">
+                  Building evidence-grounded AI systems for enterprise operations.
+                </p>
                 <p className="mt-1 text-xs leading-5 text-slate-500">
                   {currentRole.organization} &middot; {resume.location} &middot; 15+ years in enterprise engineering
                 </p>
-                <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
-                  <Link
-                    href="/resume"
-                    className="inline-flex min-h-[44px] items-center text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
-                  >
-                    Resume
-                  </Link>
-                  <TrackedAnchor
-                    href={homeProfileLinks.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    eventName="profile_link_click"
-                    eventProperties={{ destination: "linkedin", placement: "homepage_hero_identity" }}
-                    className="inline-flex min-h-[44px] items-center text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
-                  >
-                    LinkedIn
-                  </TrackedAnchor>
-                </p>
+                <Link
+                  href="/work"
+                  className="mt-4 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
+                >
+                  View the work <ArrowRight size={16} />
+                </Link>
               </figcaption>
             </figure>
           </div>

@@ -112,7 +112,8 @@ const routeContracts = [
     required: [
       "Where the thesis comes from.",
       "15+ years",
-      "Senior Technical Lead in AIOps and Observability",
+      "Senior Technical Lead — AIOps & Observability",
+      "Building evidence-grounded AI systems for enterprise operations.",
       "How the judgment formed.",
       "Container platforms and observability",
       "The roles behind it.",

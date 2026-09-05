@@ -366,6 +366,8 @@ if (!JSON.stringify(home).includes("public-safe") && !JSON.stringify(home).inclu
 for (const required of [
   "Production AI systems",
   "I build evidence-grounded AI systems for enterprise operations.",
+  "Senior Technical Lead &mdash; AIOps &amp; Observability",
+  "Building evidence-grounded AI systems for enterprise operations.",
   "enterprise SRE investigation",
   "misfire because they lack intelligence",
   // Repointed 2026-08-30 (refinement pass). Same four invariants the thesis section must state:
