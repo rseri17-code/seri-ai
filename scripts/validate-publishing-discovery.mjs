@@ -63,6 +63,11 @@ for (const asset of assets) {
   expect(asset.frameworkLayers.length > 0 || asset.assetType === "principle", `${asset.url}: missing framework-layer relationship`);
 }
 
+for (const asset of assets.filter((item) => item.id.startsWith("registry:"))) {
+  expect(!asset.content.includes(".."), `${asset.url}: registry prose contains duplicate punctuation`);
+  expect(!/Framework layers include|Related (principles|patterns|artifacts|products|library assets)/.test(asset.content), `${asset.url}: registry relationships still use label-list output`);
+}
+
 const rss = buildRssFeed("https://seri-ai.vercel.app");
 const rssItems = extractTags(rss, "item");
 const rssLinks = extractTags(rss, "link").filter((link) => link.startsWith("https://seri-ai.vercel.app/"));

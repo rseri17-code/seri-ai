@@ -13,7 +13,7 @@ import {
   type Principle,
   type Project
 } from "../content/site";
-import { formatNaturalList, getPublishedWikiNotes, proseList, type WikiNote } from "./content";
+import { asSentence, formatNaturalList, getPublishedWikiNotes, proseList, type WikiNote } from "./content";
 
 export type PublishingStatus = "draft" | "review" | "approved" | "published" | "archived" | "planned";
 
@@ -378,16 +378,16 @@ function wikiAsset(note: WikiNote): PublishingAsset {
 
 function registryAsset(item: ContentRegistryItem): PublishingAsset {
   const content = [
-    item.title,
-    item.summary,
+    asSentence(item.title),
+    asSentence(item.summary),
     `This entry is ${item.type === "artifact" ? "an artifact" : `a ${item.type}`}.`,
-    proseList("Framework layers", item.frameworkLayers, "include"),
+    proseList("Framework layers", item.frameworkLayers),
     proseList("Related principles", item.relatedPrinciples),
     proseList("Related patterns", item.relatedPatterns),
     proseList("Related artifacts", item.relatedArtifacts),
     proseList("Related products", item.relatedProducts),
     proseList("Related library assets", item.relatedLibraryAssets)
-  ].join(". ");
+  ].filter(Boolean).join(" ");
   const asset: PublishingAsset = {
     id: `registry:${item.slug}`,
     slug: item.slug,

@@ -1,6 +1,25 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-08-31
+Last updated: 2026-09-04
+
+## CODEX ASK CORPUS PROSE PASS — 2026-09-04
+
+Codex confirmed that the Ask and Work P0 accessibility changes are present on `origin/main` in
+`feb0ba7`: Ask heading semantics, contrast, and suggested-question reachability are merged, and the
+Sentinalai and GitHub links on Work have 24px minimum target height. Production remains unverified
+from this environment because DNS resolution for `raviseri.com` is unavailable; do not treat the
+merge check as a live deployment check.
+
+The P1 Ask corpus serializer now turns registry graph relationships into sentences, omits empty
+relationship boilerplate, and uses the same prose representation in retrieval and publishing. It
+preserves the registry's facts and routes while removing label-string output such as bare framework,
+principle, pattern, artifact, product, and library-asset lists. Sentence normalization preserves
+existing terminal punctuation, separates titles from summaries, and prevents duplicate periods. The
+publishing validator now rejects both duplicate punctuation and a return to label-list output.
+
+`npm test` and `npm run build` pass with `NODE_ENV` unset from the app-managed shell. The build
+generated 69 static pages, all 117 Ask trust fixtures passed, and rendered-route, performance,
+accessibility, retrieval, publishing, and knowledge-graph validation passed.
 
 ## CODEX VALIDATOR HYGIENE PASS — 2026-09-01
 
