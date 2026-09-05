@@ -61,12 +61,26 @@ export function formatNaturalList(items: string[]) {
   return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
 }
 
-export function proseList(label: string, items: string[], verb = "include") {
+export function asSentence(value: string) {
+  return /[.!?]$/.test(value.trim()) ? value.trim() : `${value.trim()}.`;
+}
+
+export function proseList(label: string, items: string[]) {
   if (!items.length) {
-    return `${label} are not listed.`;
+    return "";
   }
 
-  return `${label} ${verb} ${formatNaturalList(items)}.`;
+  const relationships: Record<string, string> = {
+    "Framework layers": "Within the framework, this work connects",
+    "Related principles": "It applies the principles",
+    "Related patterns": "Supporting patterns can be inspected at",
+    "Related artifacts": "The evidence and demonstrations connected to it are",
+    "Related products": "Its product expression is",
+    "Related library assets": "Further published context is available at"
+  };
+  const relationship = relationships[label] ?? label;
+
+  return `${relationship} ${formatNaturalList(items)}.`;
 }
 
 const referenceSources = [
@@ -483,16 +497,16 @@ export function buildPublicSourceIndex(): PublicSource[] {
       title: item.title,
       description: item.summary,
       content: [
-        item.title,
-        item.summary,
+        asSentence(item.title),
+        asSentence(item.summary),
         `This entry is ${item.type === "artifact" ? "an artifact" : `a ${item.type}`}.`,
-        proseList("Framework layers", item.frameworkLayers, "include"),
+        proseList("Framework layers", item.frameworkLayers),
         proseList("Related principles", item.relatedPrinciples),
         proseList("Related patterns", item.relatedPatterns),
         proseList("Related artifacts", item.relatedArtifacts),
         proseList("Related products", item.relatedProducts),
         proseList("Related library assets", item.relatedLibraryAssets)
-      ].join(". "),
+      ].filter(Boolean).join(" "),
       url: item.route,
       type: "registry" as const,
       category: item.type,
