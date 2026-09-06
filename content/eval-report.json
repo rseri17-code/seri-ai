@@ -172,7 +172,8 @@
       "expected": "Explain system of reasoning, evaluation, and human-gated action.",
       "requiredAnswerIncludes": [
         "Direct answer",
-        "Operational Intelligence Framework",
+        "compare observability, AIOps, AgentOps",
+        "/publication-pack/operational-intelligence-comparison-tables.md",
         "Tradeoff or limitation"
       ],
       "result": "Pass"

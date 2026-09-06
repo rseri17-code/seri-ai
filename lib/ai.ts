@@ -341,78 +341,99 @@ const PASSAGE_STOP_WORDS = new Set([
  * heading list, and a question comparing Operational Intelligence to AIOps returned
  * the doctrine's title block rather than its "Adjacent domains" paragraph.
  */
-function selectRelevantPassage(content: string, question: string, limit: number) {
-  const clean = content.replace(/\s+/g, " ").trim();
-  const sentences = clean.split(/(?<=[.!?])\s+/).filter((sentence) => sentence.length > 25);
-  if (sentences.length < 2) {
-    return trimToSentence(clean, limit);
-  }
+function selectRelevantPassage(
+  context: Array<{ title: string; url: string; content: string }>,
+  question: string,
+  limit: number
+) {
+  const documents = context.map((source) => {
+    const clean = source.content.replace(/\s+/g, " ").trim();
+    return {
+      source,
+      clean,
+      sentences: clean.split(/(?<=[.!?])\s+/).filter((sentence) => sentence.length > 25)
+    };
+  });
+  const allSentences = documents.flatMap((document) => document.sentences);
 
   const terms = (question.toLowerCase().match(/[a-z0-9]+/g) ?? []).filter(
     (term) => term.length > 2 && !PASSAGE_STOP_WORDS.has(term)
   );
   if (terms.length === 0) {
-    return trimToSentence(clean, limit);
+    const primary = documents[0];
+    return primary ? { passage: trimToSentence(primary.clean, limit), source: primary.source } : null;
   }
 
-  // Weight each term by how rare it is inside this document. Without this a question
+  // Weight each term by how rare it is across every returned source. Without this a question
   // like "is this just AIOps with a new name?" scores the title block highest, because
   // "operational intelligence" repeats throughout while "aiops" appears once in the
   // paragraph that actually answers it.
-  const lowerSentences = sentences.map((sentence) => sentence.toLowerCase());
+  const lowerSentences = allSentences.map((sentence) => sentence.toLowerCase());
   const weights = new Map(
     terms.map((term) => {
       const hits = lowerSentences.filter((sentence) => sentence.includes(term)).length;
-      return [term, hits === 0 ? 0 : Math.log(1 + sentences.length / hits)];
+      return [term, hits === 0 ? 0 : Math.log(1 + allSentences.length / hits)];
     })
   );
 
-  let bestIndex = -1;
+  let bestDocumentIndex = -1;
+  let bestSentenceIndex = -1;
   let bestScore = 0;
-  lowerSentences.forEach((sentence, index) => {
-    const weighted = terms.reduce((total, term) => total + (sentence.includes(term) ? (weights.get(term) ?? 0) : 0), 0);
-    // Distinguish a keyword list ("Signal Layer, Transaction Layer, ...") from prose that
-    // happens to contain a list ("Operational Intelligence is not a replacement for
-    // observability, incident management, ..."). Comma density cannot tell them apart —
-    // both are comma-dense — but function words can: a bare enumeration has almost none.
-    const words = sentence.split(" ");
-    const functionWords = words.filter((word) => PASSAGE_FUNCTION_WORDS.has(word.replace(/[^a-z]/g, ""))).length;
-    const proseRatio = functionWords / Math.max(words.length, 1);
-    const listPenalty = proseRatio < 0.1 ? 3 : 1;
-    const score = weighted / listPenalty;
-    if (score > bestScore) {
-      bestScore = score;
-      bestIndex = index;
-    }
+  documents.forEach((document, documentIndex) => {
+    document.sentences.forEach((_, sentenceIndex) => {
+      // Score the passage we will actually return, rather than an isolated sentence. A
+      // focused source often states its subject in one sentence and the comparison in the
+      // next; sentence-only scoring favored a large general document that happened to
+      // contain one matching line.
+      const candidate = document.sentences.slice(sentenceIndex, sentenceIndex + 2).join(" ");
+      const lowerCandidate = candidate.toLowerCase();
+      const weighted = terms.reduce((total, term) => total + (lowerCandidate.includes(term) ? (weights.get(term) ?? 0) : 0), 0);
+      // Distinguish a keyword list ("Signal Layer, Transaction Layer, ...") from prose that
+      // happens to contain a list ("Operational Intelligence is not a replacement for
+      // observability, incident management, ..."). Comma density cannot tell them apart —
+      // both are comma-dense — but function words can: a bare enumeration has almost none.
+      const words = candidate.split(" ");
+      const functionWords = words.filter((word) => PASSAGE_FUNCTION_WORDS.has(word.replace(/[^a-z]/g, ""))).length;
+      const proseRatio = functionWords / Math.max(words.length, 1);
+      const listPenalty = proseRatio < 0.1 ? 3 : 1;
+      const score = weighted / listPenalty;
+      if (score > bestScore) {
+        bestScore = score;
+        bestDocumentIndex = documentIndex;
+        bestSentenceIndex = sentenceIndex;
+      }
+    });
   });
 
-  if (bestIndex < 0) {
-    return trimToSentence(clean, limit);
+  if (bestDocumentIndex < 0 || bestSentenceIndex < 0) {
+    const primary = documents[0];
+    return primary ? { passage: trimToSentence(primary.clean, limit), source: primary.source } : null;
   }
 
-  let passage = sentences[bestIndex];
-  for (let index = bestIndex + 1; index < sentences.length && passage.length < limit; index += 1) {
-    passage = `${passage} ${sentences[index]}`;
+  const selectedDocument = documents[bestDocumentIndex];
+  let passage = selectedDocument.sentences[bestSentenceIndex];
+  for (let index = bestSentenceIndex + 1; index < selectedDocument.sentences.length && passage.length < limit; index += 1) {
+    passage = `${passage} ${selectedDocument.sentences[index]}`;
   }
 
   // A passage pulled from the middle of a document can answer the specific question while
   // losing the definition it depends on. Lead with the document's opening sentence when it
   // is a real sentence rather than a heading, so the reader gets "what this is" before
   // "the part you asked about".
-  if (bestIndex > 0) {
+  if (bestSentenceIndex > 0) {
     // Look for a definitional sentence near the top ("X is the ..."). Documents often open
     // with a title and a description line before the definition, so check the first few
     // sentences rather than only the first, and require a copula so a noun-inventory
     // description is not mistaken for a definition.
-    const definition = sentences
-      .slice(0, Math.min(4, bestIndex))
+    const definition = selectedDocument.sentences
+      .slice(0, Math.min(4, bestSentenceIndex))
       .find((sentence) => sentence.length > 60 && / (is|are) /.test(sentence));
     if (definition) {
-      return trimToSentence(`${definition} ${passage}`, limit);
+      return { passage: trimToSentence(`${definition} ${passage}`, limit), source: selectedDocument.source };
     }
   }
 
-  return trimToSentence(passage, limit);
+  return { passage: trimToSentence(passage, limit), source: selectedDocument.source };
 }
 
 function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
@@ -438,12 +459,12 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     /github|linkedin|resume|contact|collaborat|recruiter|founder|credible|credential|certification|education|public proof|portfolio|public code|open.source|reach out|hire|profile|where can i/.test(lower);
   const asksHowTheSystemWorks =
     /oi-room|operations room|investigation|walkthrough|replay|framework|layer|evidence|hypothes|contradict|how does|how do|how would|how should|case model|decision packet|incident|rollback|operator|control plane|human review|human judgment|agent|recommend/.test(lower);
-  const primarySource = context[0];
-  const sourceLine = primarySource ? `${primarySource.title} (${primarySource.url})` : "No matching approved public source";
-  const direct =
-    context.length > 0
-      ? selectRelevantPassage(primarySource.content, question, 420)
-      : "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
+  const selectedPassage = selectRelevantPassage(context, question, 420);
+  const sourceLine = selectedPassage
+    ? `${selectedPassage.source.title} (${selectedPassage.source.url})`
+    : "No matching approved public source";
+  const direct = selectedPassage?.passage
+    ?? "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
   const namesSpecificTopic =
     /evaluation|eval gate|observability|telemetry|replay|evidence graph|hypothesis|operational memory|transaction|topology|doctrine|framework|layer|agentic|incident|rca|root cause|governance|guardrail|retrieval|knowledge graph|operations room|oi-room/.test(lower);
   const asksAboutAskPersona =

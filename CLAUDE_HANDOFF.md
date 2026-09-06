@@ -2,6 +2,23 @@
 
 Last updated: 2026-09-04
 
+## BUILDER ASK CROSS-SOURCE PASSAGE SELECTION — 2026-09-05
+
+The deterministic Ask fallback now scores candidate passages across every returned top-N source,
+rather than selecting only within `context[0]`. Passage scoring considers the adjacent sentence
+that will be returned, allowing a focused comparison asset to outrank a broad doctrine document
+when the subject and comparison are split across consecutive sentences. The `Public source` line
+now cites the source that supplied the selected passage.
+
+The regression fixture for “How is Operational Intelligence different from AIOps?” requires both
+the comparison-table language and `/publication-pack/operational-intelligence-comparison-tables.md`.
+The answer now surfaces that lower-ranked source instead of diverging from retrieval. Confidential
+refusal, invalid-input behavior, grounding, and the deterministic zero-cost fallback remain intact.
+
+`npm test` and `npm run build` pass with `NODE_ENV` unset. All 117 Ask trust fixtures passed, the
+production build generated 69 static pages, and rendered-route, performance, accessibility,
+retrieval, publishing, security, and knowledge-graph validation passed.
+
 ## CODEX ASK CORPUS PROSE PASS — 2026-09-04
 
 Codex confirmed that the Ask and Work P0 accessibility changes are present on `origin/main` in
