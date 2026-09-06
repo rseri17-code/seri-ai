@@ -2,6 +2,20 @@
 
 Last updated: 2026-09-04
 
+## BUILDER ASK HISTORY PUBLIC-SAFETY GATE — 2026-09-05
+
+The Ask API now applies the existing deterministic public-safety policy to every client-supplied
+history turn as well as the current question. If any turn is unsafe, the request returns the existing
+public-safety refusal before retrieval or answer synthesis, with no sources attached.
+
+The API contract validator includes a regression where a public-safe current question carries
+confidential employer-system content in history and requires the blocked refusal response. No hosted
+inference or new visitor-facing copy was introduced.
+
+`npm test` and `npm run build` pass with `NODE_ENV` unset. All 117 Ask trust fixtures passed, the
+production build generated 69 static pages, and rendered-route, performance, accessibility,
+retrieval, publishing, security, and knowledge-graph validation passed.
+
 ## BUILDER ASK CROSS-SOURCE PASSAGE SELECTION — 2026-09-05
 
 The deterministic Ask fallback now scores candidate passages across every returned top-N source,

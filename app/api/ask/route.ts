@@ -41,11 +41,13 @@ export async function POST(request: Request) {
   }
 
   const { question, history } = parsed.data;
+  const isConversationPublicSafe =
+    isPublicSafe(question) && (history?.every((message) => isPublicSafe(message.content)) ?? true);
   const questionCategory = classifyAskQuestion(question);
   const frameworkLayers = inferFrameworkLayers(question);
   const relatedPages = inferRelatedArtifacts(question);
   const runtime = getRuntimeEnvironment();
-  if (!isPublicSafe(question)) {
+  if (!isConversationPublicSafe) {
     return NextResponse.json({
       answer:
         "I can't discuss employer-specific or confidential systems, proprietary projects, private screenshots, logs, dashboards, or internal architecture. I can explain the public architecture patterns behind the question, including evidence-driven investigation, transaction journey reconstruction, replayable reasoning, evaluation gates, operational memory, and human-in-the-loop review.",
