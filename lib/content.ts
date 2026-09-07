@@ -117,14 +117,14 @@ const referenceSources = [
   {
     id: "reference:ask-ravi-live-review-packet",
     title: "Ask Ravikanth Live Review Packet",
-    description: "Public-safe review protocol for reviewer-labeled Ask Ravikanth sessions across local fallback, vector retrieval, and model synthesis.",
+    description: "Public-safe review protocol for reviewer-labeled Ask Ravikanth sessions across deterministic answers, source selection, and answer quality.",
     content:
       `${askLiveReviewPacket.title}. ${askLiveReviewPacket.evidenceLevel} Purpose: ${askLiveReviewPacket.purpose} Review modes: ${formatNaturalList(askLiveReviewPacket.reviewModes
         .map((mode) => mode.mode))}. Required prompt categories: ${formatNaturalList(askLiveReviewPacket.requiredPromptCategories)}. Safe metadata only: ${formatNaturalList(askLiveReviewPacket.safeMetadataOnly)}. Do not capture: ${formatNaturalList(askLiveReviewPacket.doNotCapture)}. No reviewer-labeled live Ask sessions have been published yet. No aggregate quality score is published until multiple reviewer-labeled sessions exist.`,
     url: "/publication-pack/ask-ravi-live-review-packet.md",
     type: "registry" as const,
     category: "Quality Evidence",
-    tags: ["Ask Ravikanth", "reviewer-labeled", "answer quality", "safe metadata", "model synthesis", "vector retrieval"],
+    tags: ["Ask Ravikanth", "reviewer-labeled", "answer quality", "safe metadata", "source selection", "grounded answers"],
     assetType: "artifact"
   },
   {

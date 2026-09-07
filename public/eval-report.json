@@ -4,7 +4,7 @@
   "lastRun": "2026-08-22",
   "version": "visual-qa-evidence-2026-08-22",
   "modelBasedEvaluationUsed": false,
-  "method": "Deterministic fixture validation plus answer-shape checks for local fallback behavior. This is not a live model-quality benchmark.",
+  "method": "Deterministic fixture validation plus answer-shape checks for grounded answer behavior. This is not a live answer-quality benchmark.",
   "generatedBy": "npm run evals",
   "dimensions": [
     {
@@ -665,7 +665,7 @@
       "result": "Pass"
     },
     {
-      "prompt": "Summarize the public production AI agent experience behind this work.",
+      "prompt": "Summarize the public agent-systems experience behind this work.",
       "expected": "Use public resume language without confidential details.",
       "requiredAnswerIncludes": [
         "Direct answer",
@@ -1379,7 +1379,7 @@
       "result": "Pass"
     },
     {
-      "prompt": "How should we compare local fallback vector retrieval and model synthesis for Ask Ravi?",
+      "prompt": "How should we compare grounded answer paths for Ask Ravi?",
       "expected": "Explain the controlled review contract without presenting another retrieval mode as the expected future.",
       "requiredAnswerIncludes": [
         "controlled review",
@@ -1391,10 +1391,10 @@
     }
   ],
   "knownLimits": [
-    "The local fallback search is lexical, so semantic recall is stronger when Supabase pgvector ingestion is configured.",
+    "The deterministic source selection is lexical, so its recall limits should be stated explicitly.",
     "The report is generated from deterministic public-safety and content-coverage fixtures, not from live model calls.",
     "The knowledge base intentionally excludes confidential implementation details, so some questions will be refused or marked uncovered.",
-    "Richer answer scoring should add model-judged qualitative grading once production AI keys are configured."
+    "Richer answer scoring requires reviewer-labeled qualitative grading before broader claims are made."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
   "fixtureCount": 117,

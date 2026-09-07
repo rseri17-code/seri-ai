@@ -14,9 +14,9 @@ Evaluate whether Ask Ravikanth works as a useful interface over Ravikanth Seri's
 
 | Mode | What it tests | Claim allowed |
 | --- | --- | --- |
-| local_fallback | Deterministic routing, refusal behavior, and source visibility when optional services are unavailable. | Pass/fail fixture coverage and reviewer labels for deterministic behavior. |
-| vector_retrieval | Whether semantic retrieval returns the right public artifacts for realistic questions. | Reviewer-labeled retrieval usefulness when pgvector ingestion is configured. |
-| model_synthesis | Whether generated answers remain grounded, restrained, cited, useful, and public-safe. | Qualitative reviewer labels only after cited sources are inspected. |
+| deterministic_grounded | Deterministic routing, refusal behavior, and source visibility. | Pass/fail fixture coverage and reviewer labels for deterministic behavior. |
+| source_selection | Whether source selection returns the right public artifacts for realistic questions. | Reviewer-labeled usefulness of the cited public sources. |
+| grounded_generation | Whether generated answers remain grounded, restrained, cited, useful, and public-safe. | Qualitative reviewer labels only after cited sources are inspected. |
 
 ## Prompt Categories
 

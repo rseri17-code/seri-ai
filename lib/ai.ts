@@ -141,7 +141,7 @@ export function inferRelatedArtifacts(question: string) {
     artifacts.add("/ask");
     artifacts.add("/investigation-room");
   }
-  if (/ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/.test(lower)) {
+  if (/ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|grounded answer paths|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/.test(lower)) {
     artifacts.add("/publication-pack/ask-ravi-live-review-packet.md");
     artifacts.add("/ask");
     artifacts.add("/wiki/operational-intelligence-evidence-pack");
@@ -471,13 +471,13 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
   const asksAboutAskPersona =
     /are you ravikanth|are you him|are you the real|are you a bot|are you an ai|are you human|who are you|pretend|persona|imitat|first person|answer posture|how should ask/.test(lower);
   const ravikanthWorkAnswer =
-    "I have published the Operational Intelligence doctrine and reference architecture, the OI-ROOM-001 Operations Room investigation, the public pattern library, and the evaluation harness that gates the claims on this site. Employer work is not published here; the public work is what can be inspected.";
+    "This site documents the Operational Intelligence doctrine and reference architecture, the OI-ROOM-001 Operations Room investigation, the public pattern library, and the evaluation harness that gates its public claims. Employer work is not published here; the cited public record is what can be inspected. The record does not establish private implementation details, adoption, or outcomes.";
   const ravikanthCareerAnswer =
-    "Ravikanth Seri has spent fifteen-plus years on distributed enterprise systems in regulated financial services: enterprise integration and API architecture, identity and platform engineering, cloud and Kubernetes modernization, observability and telemetry, and now production AI systems and Agentic SRE.";
+    "Ravikanth Seri has spent fifteen-plus years on distributed enterprise systems in regulated financial services: enterprise integration and API architecture, identity and platform engineering, cloud and Kubernetes modernization, observability and telemetry, and now governed agent systems and Agentic SRE.";
   const ravikanthValueAnswer =
     "The case for a technical conversation is inspectable rather than asserted: a published doctrine that states its own falsification conditions, a reference architecture written so another team could implement it, a working investigation artifact, and an evaluation harness that gates every claim made here.";
   const ravikanthIdentityAnswer =
-    "Ravikanth Seri is a senior infrastructure architect working on AI-native enterprise operations. His career runs from enterprise integration and API architecture through identity and platform engineering, cloud and Kubernetes modernization, and observability, into production AI systems, Agentic SRE, and the Operational Intelligence thesis published here.";
+    "Ravikanth Seri is a senior infrastructure architect working on AI-native enterprise operations. His career runs from enterprise integration and API architecture through identity and platform engineering, cloud and Kubernetes modernization, and observability, into governed agent systems, Agentic SRE, and the Operational Intelligence thesis published here.";
   const ravikanthContext = asksAboutAskPersona
     ? "This is a deterministic assistant, not Ravi personally. It answers from approved public work: the Operational Intelligence doctrine, Operations Room, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and the current AI-native operations thesis. It cites evidence, states constraints and tradeoffs, and does not invent a personal response."
     : /what.*(built|build|building|shipped|ship|created|made)|which.*(built|shipped)/.test(lower)
@@ -552,7 +552,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       ? " Keyboard accessibility evidence: /visual-qa/2026-08-22/keyboard-accessibility-walkthroughs.md records source-validated keyboard paths for Ask Ravikanth and Operations Room. It verifies intended skip-link, focus, labelled-control, source-link, evidence-state, reduced-motion, and graph-fallback review paths from source contracts. Limitation: it is not a screen-reader transcript or external reviewer lab run; browser keyboard recording and assistive-technology testing remain open."
       : "";
   const askLiveReviewContext =
-    /ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/.test(lower)
+    /ask live review|reviewer[- ]labeled ask|ask quality|answer quality baseline|grounded answer paths|live answer rubric|model synthesis quality|vector retrieval quality|local fallback.*vector retrieval.*model synthesis|safe metadata|raw prompts|aggregate model-quality|aggregate quality score/.test(lower)
       ? " Ask review packet: /publication-pack/ask-ravi-live-review-packet.md defines a controlled review of grounded answers, citations, refusals, and useful routing. Reviewers should open cited public sources and avoid confidential prompts. No reviewer-labeled live sessions have been published yet, and no aggregate quality score is available."
       : "";
 

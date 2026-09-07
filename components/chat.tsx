@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ProfileMark } from "@/components/profile-mark";
 import type { ChatMessage } from "@/lib/ai";
 import { captureSafeEvent, categorizeQuestion } from "@/lib/analytics-events";
-import { askSessionKey, deserializeAskSession, serializeAskSession } from "@/lib/ask-session";
+import { askSessionKey, deserializeAskSession, legacyAskSessionKeys, serializeAskSession } from "@/lib/ask-session";
 
 type ApiResponse = {
   answer: string;
@@ -65,6 +65,9 @@ export function Chat({
       return;
     }
     try {
+      for (const legacyKey of legacyAskSessionKeys(mode)) {
+        window.localStorage.removeItem(legacyKey);
+      }
       const restored = deserializeAskSession(window.localStorage.getItem(askSessionKey(mode)));
       if (restored) {
         setMessages(restored);
