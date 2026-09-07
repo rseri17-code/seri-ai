@@ -26,6 +26,7 @@ function normalizeQuestionIntent(question: string) {
 export function inferFrameworkLayers(question: string) {
   const lower = normalizeQuestionIntent(question);
   const layers: string[] = [];
+  if (/operational intelligence/.test(lower)) layers.push("Reasoning Layer");
   if (/observability|ops for observability|observability for ai|signal|telemetry|metric|log|trace|alert|dashboard|dynamic operational view/.test(lower)) layers.push("Signal Layer");
   if (/transaction|journey|customer|workflow|latency|context acquisition|enterprise context|operational context/.test(lower)) layers.push("Transaction Layer");
   if (/topology|dependency|service|blast|owner|enterprise context|operational context|dynamic operational view|static graph/.test(lower)) layers.push("Topology Layer");
@@ -555,8 +556,10 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
       ? " Ask live review packet: /publication-pack/ask-ravi-live-review-packet.md defines the controlled review protocol for Ask Ravikanth across local_fallback, vector_retrieval, and model_synthesis. Reviewers should use safe metadata only, open cited public sources, and avoid raw confidential prompts. No reviewer-labeled live Ask sessions have been published yet, and no aggregate quality score is published until multiple reviewer-labeled sessions exist."
       : "";
 
+  const joinAnswerContext = (...parts: string[]) => parts.map((part) => part.trim()).filter(Boolean).join(" ");
+
   return [
-    `Direct answer: ${asksAboutRavikanth && !namesSpecificTopic ? `${ravikanthContext}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}` : `${doctrineDefinitionContext}${implementationBehaviorContext}${direct}${linkedinContext}${credentialContext}${visitorSuccessContext}${visitorReviewContext}${practitionerReviewContext}${architectureJudgmentContext}${publicCodeContext}${projectProofContext}${publicationSpineContext}${productionDeliveryContext}${proofBacklogContext}${identityAssetContext}${portraitIntakeContext}${qualityScorecardContext}${visualQaContext}${keyboardA11yContext}${askLiveReviewContext}`}`,
+    `Direct answer: ${asksAboutRavikanth && !namesSpecificTopic ? joinAnswerContext(ravikanthContext, linkedinContext, credentialContext, visitorSuccessContext, visitorReviewContext, practitionerReviewContext, architectureJudgmentContext, publicCodeContext, projectProofContext, publicationSpineContext, productionDeliveryContext, proofBacklogContext, identityAssetContext, portraitIntakeContext, qualityScorecardContext, visualQaContext, keyboardA11yContext, askLiveReviewContext) : joinAnswerContext(doctrineDefinitionContext, implementationBehaviorContext, direct, linkedinContext, credentialContext, visitorSuccessContext, visitorReviewContext, practitionerReviewContext, architectureJudgmentContext, publicCodeContext, projectProofContext, publicationSpineContext, productionDeliveryContext, proofBacklogContext, identityAssetContext, portraitIntakeContext, qualityScorecardContext, visualQaContext, keyboardA11yContext, askLiveReviewContext)}`,
     `Relevant framework layer${layers.length === 1 ? "" : "s"}: ${layers.length ? layers.join(", ") : "Operational Intelligence Framework"}.`,
     `Public source: ${sourceLine}.`,
     // These blocks used to be emitted on every answer, which meant roughly 150 words of

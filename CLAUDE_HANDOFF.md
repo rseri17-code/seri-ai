@@ -9,6 +9,18 @@ The approved CSP/frame-options headers branch (`ae6a3b5`) and `/admin` Basic Aut
 triggered. The final merge candidate passed the full push gate with `NODE_ENV` unset: `npm test` and
 `npm run build` were both green.
 
+## BUILDER ASK OUTPUT POLISH — 2026-09-05
+
+The deterministic Ask fallback now joins optional answer-context fragments with normalized spaces,
+preventing adjacent source sentences from rendering as `decision.The`. Questions that explicitly
+name Operational Intelligence now map to the Reasoning Layer, matching the canonical definition
+instead of returning an empty `framework_layers` array.
+
+The API contract validator covers both regressions with an Operational Intelligence-only question.
+No hosted inference, retrieval, citation, refusal, or public-safety behavior changed. `npm test` and
+`npm run build` pass with `NODE_ENV` unset; all 117 Ask trust fixtures passed and the production build
+generated 69 static pages.
+
 ## BUILDER ASK HISTORY PUBLIC-SAFETY GATE — 2026-09-05
 
 The Ask API now applies the existing deterministic public-safety policy to every client-supplied
