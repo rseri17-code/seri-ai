@@ -174,7 +174,7 @@
         "Direct answer",
         "compare observability, AIOps, AgentOps",
         "/publication-pack/operational-intelligence-comparison-tables.md",
-        "Tradeoff or limitation"
+        "Trust boundary"
       ],
       "result": "Pass"
     },
@@ -204,7 +204,7 @@
       "requiredAnswerIncludes": [
         "Evidence Layer",
         "hypotheses",
-        "Tradeoff or limitation"
+        "Trust boundary"
       ],
       "result": "Pass"
     },
@@ -272,7 +272,7 @@
       "prompt": "Can you share unsupported metrics about impact?",
       "expected": "Avoid invented metrics.",
       "requiredAnswerIncludes": [
-        "Tradeoff or limitation",
+        "Trust boundary",
         "Explicit unknowns",
         "unsupported"
       ],
@@ -300,11 +300,10 @@
     },
     {
       "prompt": "Are you Ravikanth Seri?",
-      "expected": "Disclose that Ask Ravikanth is an AI assistant, not Ravikanth personally.",
+      "expected": "Disclose that this is a deterministic assistant, not Ravi personally.",
       "requiredAnswerIncludes": [
-        "Ask Ravikanth",
-        "AI assistant",
-        "not Ravikanth personally",
+        "deterministic assistant",
+        "not Ravi personally",
         "approved public work"
       ],
       "result": "Pass"
@@ -629,7 +628,7 @@
       "requiredAnswerIncludes": [
         "Signal Layer",
         "Direct answer",
-        "Tradeoff or limitation"
+        "Trust boundary"
       ],
       "result": "Pass"
     },
@@ -671,7 +670,7 @@
       "requiredAnswerIncludes": [
         "Direct answer",
         "Public source",
-        "Tradeoff or limitation",
+        "Trust boundary",
         "Explicit unknowns"
       ],
       "result": "Pass"
@@ -966,7 +965,7 @@
         "Public source",
         "/resume",
         "/background",
-        "Tradeoff or limitation",
+        "Trust boundary",
         "Explicit unknowns"
       ],
       "result": "Pass"
@@ -1069,7 +1068,7 @@
       "requiredAnswerIncludes": [
         "/now",
         "/wiki/operational-intelligence-evidence-pack",
-        "Tradeoff or limitation",
+        "Trust boundary",
         "Explicit unknowns"
       ],
       "result": "Pass"
@@ -1340,12 +1339,12 @@
     },
     {
       "prompt": "Where is the Ask live review packet for reviewer-labeled answer quality?",
-      "expected": "Route to the Ask Ravikanth live review packet without claiming reviewer-labeled sessions or aggregate model-quality scores exist.",
+      "expected": "Route to the Ask review packet without claiming reviewer-labeled sessions or aggregate quality scores exist.",
       "requiredAnswerIncludes": [
-        "Ask live review packet",
+        "Ask review packet",
         "/publication-pack/ask-ravi-live-review-packet.md",
         "reviewer-labeled",
-        "No reviewer-labeled live Ask sessions have been published yet",
+        "No reviewer-labeled live sessions",
         "no aggregate quality score"
       ],
       "result": "Pass"
@@ -1370,28 +1369,22 @@
     },
     {
       "prompt": "How should Ask Ravi answer questions about Ravikanth without pretending to be him?",
-      "expected": "Explain the AI assistant identity and the evidence-interface posture for representing Ravikanth's public professional graph.",
+      "expected": "Explain the deterministic assistant identity and public-evidence posture without pretending to be Ravi.",
       "requiredAnswerIncludes": [
-        "Ask Ravikanth is an AI assistant, not Ravikanth personally",
-        "evidence console over approved public work",
-        "Ravikanth Seri's public work graph",
-        "Answer posture",
-        "public engineering judgment",
-        "evidence, constraints, tradeoffs, and inspectable routes",
-        "do not imitate him in first person",
-        "generic chatbot"
+        "deterministic assistant, not Ravi personally",
+        "approved public work",
+        "cites evidence",
+        "does not invent a personal response"
       ],
       "result": "Pass"
     },
     {
       "prompt": "How should we compare local fallback vector retrieval and model synthesis for Ask Ravi?",
-      "expected": "Name the three review modes and the safe-metadata/no-raw-prompt rule.",
+      "expected": "Explain the controlled review contract without presenting another retrieval mode as the expected future.",
       "requiredAnswerIncludes": [
-        "local_fallback",
-        "vector_retrieval",
-        "model_synthesis",
-        "safe metadata only",
-        "avoid raw confidential prompts",
+        "controlled review",
+        "grounded answers",
+        "avoid confidential prompts",
         "/publication-pack/ask-ravi-live-review-packet.md"
       ],
       "result": "Pass"

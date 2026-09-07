@@ -91,9 +91,9 @@ for (const required of [
 }
 
 for (const required of [
-  "Answer posture",
-  "public engineering judgment",
-  "do not imitate him in first person",
+  "This is a deterministic assistant, not Ravi personally",
+  "It cites evidence, states constraints and tradeoffs",
+  "does not invent a personal response",
   "not as Ravikanth personally and not as a generic chatbot",
   "inferSuggestedNextQuestion",
   "What should a reviewer inspect in Sentinalai before inferring production proof?",

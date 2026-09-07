@@ -18,7 +18,7 @@ const sourceContracts = {
   "/ask": {
     files: ["components/chat.tsx"],
     required: [
-      "aria-label=\"Ask a question about Ravikanth Seri's public work\"",
+      "aria-label=\"Ask a question about the public work\"",
       "aria-label=\"Send message\"",
       "Related artifacts",
       "Trust contract"

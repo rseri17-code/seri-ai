@@ -2,6 +2,16 @@
 
 Last updated: 2026-09-04
 
+## BUILDER ASK HUMAN VOICE + LAYOUT — 2026-09-07
+
+The Ask surface now presents itself as a deterministic, source-scoped interface to the public record,
+with calmer page metadata, instructions, assistant disclosure, and trust-boundary language. Dense
+receipt and answer-packet values wrap while their short labels remain intact. The deterministic
+fallback and its evaluation fixtures use the same disclosure and boundary contract.
+
+The change was rebased onto `origin/main` at `f8db19e`. `npm test` and `npm run build` pass with
+`NODE_ENV` unset; all 117 Ask trust fixtures pass and the production build generates 69 static pages.
+
 ## BUILDER SECURITY RELEASE — 2026-09-07
 
 The approved CSP/frame-options headers branch (`ae6a3b5`) and `/admin` Basic Auth gate branch
