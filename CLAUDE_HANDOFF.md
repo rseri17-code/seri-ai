@@ -2,6 +2,13 @@
 
 Last updated: 2026-09-04
 
+## BUILDER SECURITY RELEASE — 2026-09-07
+
+The approved CSP/frame-options headers branch (`ae6a3b5`) and `/admin` Basic Auth gate branch
+(`e32919e`) were merged from their independent `b586504` base without conflicts. No deployment was
+triggered. The final merge candidate passed the full push gate with `NODE_ENV` unset: `npm test` and
+`npm run build` were both green.
+
 ## BUILDER ASK HISTORY PUBLIC-SAFETY GATE — 2026-09-05
 
 The Ask API now applies the existing deterministic public-safety policy to every client-supplied
