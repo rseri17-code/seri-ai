@@ -51,7 +51,7 @@ const routeContracts = [
       "mt-2 grid gap-2 sm:grid-cols-2",
       "min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2",
       "border-t border-white/10 bg-black/15 p-3",
-      "aria-label=\"Ask a question about Ravikanth Seri's public work\"",
+      "aria-label=\"Ask a question about the public work\"",
       "aria-label=\"Send message\""
     ]
   },

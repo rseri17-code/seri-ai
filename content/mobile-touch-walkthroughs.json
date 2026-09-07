@@ -17,7 +17,7 @@
       "visitorTask": "Ask a public-safe question, submit it, inspect the answer packet, follow a related source, and recover the public-safe boundary.",
       "startingSignal": "The route opens with Ask Ravikanth as an evidence console over Ravikanth's public professional graph rather than a generic chatbot.",
       "touchTargets": [
-        "Ask input labelled Ask a question about Ravikanth Seri's public work",
+        "Ask input labelled Ask a question about the public work",
         "Send message button labelled Send message",
         "Suggested prompt buttons",
         "Related artifact links",

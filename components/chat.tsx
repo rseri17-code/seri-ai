@@ -45,7 +45,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Start with a real question about Ravikanth Seri's work, Operational Intelligence, or OI-ROOM-001. Answers cite sources, name uncertainty, and stop when the record is thin.";
+      : "Start with a question about the public work, Operational Intelligence, or OI-ROOM-001. Answers cite sources, name uncertainty, and stop when the record is thin.";
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -233,14 +233,14 @@ export function Chat({
               <ProfileMark size="sm" />
               <div>
                 <p className="text-xs font-semibold uppercase text-slate-400">Evidence console</p>
-                <h2 className="text-xl font-semibold text-white">Question the professional graph behind the doctrine, Operations Room, and public work.</h2>
+                <h2 className="text-xl font-semibold text-white">Explore the public work, frameworks, and operating principles behind seri.ai.</h2>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 xl:w-[34rem]">
               {operatingReceipts.map(([label, value]) => (
                 <div key={label} className="min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2">
-                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-slate-400">{label}</p>
-                  <p className="mt-1 font-mono text-[0.72rem] leading-4 text-mint">{value}</p>
+                  <p className="whitespace-nowrap text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-slate-400">{label}</p>
+                  <p className="mt-1 break-words font-mono text-[0.72rem] leading-4 text-mint">{value}</p>
                 </div>
               ))}
             </div>
@@ -289,8 +289,8 @@ export function Chat({
             className="min-w-0 flex-1 rounded border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-mint/60"
             value={input}
             onChange={(event) => setInput(event.target.value)}
-            aria-label="Ask a question about Ravikanth Seri's public work"
-            placeholder="Ask about Ravikanth, his work, Operational Intelligence, projects, or background..."
+            aria-label="Ask a question about the public work"
+            placeholder="Ask about the work, Operational Intelligence, projects, or background..."
           />
           <button className="grid h-12 w-12 place-items-center rounded bg-mint text-ink" type="submit" aria-label="Send message">
             <Send size={18} />
@@ -320,8 +320,8 @@ export function Chat({
           <div className="mt-4 grid gap-2">
             {answerPacket.map(([label, value]) => (
               <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
-                <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">{label}</p>
-                <p className="mt-1 text-xs font-semibold leading-5 text-slate-200">{value}</p>
+                <p className="whitespace-nowrap text-[0.66rem] font-semibold uppercase tracking-[0.1em] text-slate-400">{label}</p>
+                <p className="mt-1 break-words text-xs font-semibold leading-5 text-slate-200">{value}</p>
               </div>
             ))}
           </div>
@@ -366,7 +366,7 @@ export function Chat({
             </div>
           ) : null}
           <p className="mt-4 text-xs leading-5 text-slate-400">
-            Ask Ravikanth works only from approved public materials. It should cite sources, name uncertainty, and stop when the evidence stops.
+            This assistant is intentionally deterministic and source-scoped. It answers only from the public record; unsupported or confidential questions remain out of scope.
           </p>
         </div>
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">

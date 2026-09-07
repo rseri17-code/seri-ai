@@ -24,12 +24,12 @@ import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, Net
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ask Ravikanth | Evidence Console for Ravikanth Seri's Public Work",
-  description: "Ask an AI grounded in Ravikanth Seri's public work on Operational Intelligence. Every answer cites its sources.",
+  title: "Ask the Public Record | seri.ai",
+  description: "Explore the public work, frameworks, and operating principles behind seri.ai. Every answer cites its sources.",
   alternates: { canonical: "/ask" },
   openGraph: {
-    title: "Ask Ravikanth | Evidence Console for Ravikanth Seri's Public Work",
-    description: "An AI assistant over Ravikanth Seri's public work and professional graph. It cites what it knows, names what it doesn't, and won't discuss non-public work.",
+    title: "Ask the Public Record | seri.ai",
+    description: "Explore the public work, frameworks, and operating principles behind seri.ai. Every answer cites its sources.",
     url: "/ask",
     type: "website"
   }
@@ -55,7 +55,7 @@ export default async function AskPage({
 
   return (
     <>
-      <Section eyebrow="Ask Ravikanth" title="Ask the public record." level="h1">
+      <Section eyebrow="Public evidence" title="Ask the public record." level="h1">
         <Chat initialPrompt={initialPrompt} suggestedPrompts={askRaviPrompts} />
         <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1.1fr]">
           <Card className="border-mint/25 bg-mint/[0.055] p-5">
@@ -68,13 +68,12 @@ export default async function AskPage({
             </div>
             <p className="text-3xl font-semibold leading-tight text-white">A serious technical claim should survive inspection.</p>
             <p className="mt-4 leading-7 text-slate-300">
-              An AI assistant over Ravikanth&apos;s public writing, architecture, and evidence. It cites what it knows, names what it doesn&apos;t, and won&apos;t discuss non-public work.
+              Explore the public work, frameworks, and operating principles behind seri.ai. Answers cite what is known, name what is not, and keep non-public work out of scope.
             </p>
             <p className="mt-4 rounded border border-amber/25 bg-amber/[0.05] p-4 text-sm leading-6 text-slate-300">
-              <span className="font-semibold text-amber">How this actually works.</span> There is no model in the loop. Retrieval is
-              lexical and answers are assembled deterministically from approved public sources, so the same question returns the same
-              answer. That limits how fluent it can be, and it is why every answer names its source and its unknowns. Behaviour is held
-              to {" "}{evalFixtureCount} deterministic checks that run on every build.
+              <span className="font-semibold text-amber">How this works.</span> This assistant is intentionally deterministic and
+              source-scoped. It answers only from the public record; unsupported or confidential questions remain out of scope.
+              Behaviour is held to {" "}{evalFixtureCount} deterministic checks that run on every build.
             </p>
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               {["Ground claims", "Expose sources", "Separate inference", "Stop at evidence"].map((step) => (
@@ -101,7 +100,7 @@ export default async function AskPage({
         </div>
       </Section>
 
-      <Section eyebrow="Thesis lenses" title="Start with the questions Ravikanth keeps returning to.">
+      <Section eyebrow="Thesis lenses" title="Start with the questions behind this work.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {askThesisLenses.map((lens) => (
             <Card key={lens.title} className="h-full p-4">
@@ -124,7 +123,7 @@ export default async function AskPage({
         </div>
       </Section>
 
-      <Section eyebrow="Guide paths" title="Use Ask Ravikanth to move from question to evidence.">
+      <Section eyebrow="Guide paths" title="Move from a question to the public evidence.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {askGuidePaths.map(([href, title, detail, prompt]) => (
             <Card key={href} className="h-full p-4">
