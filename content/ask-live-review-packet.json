@@ -8,18 +8,18 @@
   "purpose": "Give external reviewers a controlled, public-safe way to evaluate whether Ask Ravikanth is useful as a professional and technical interface over Ravikanth Seri's approved public body of work.",
   "reviewModes": [
     {
-      "mode": "local_fallback",
-      "purpose": "Validate deterministic routing, refusal behavior, and source visibility when optional AI or database services are unavailable.",
+      "mode": "deterministic_grounded",
+      "purpose": "Validate deterministic routing, refusal behavior, and source visibility.",
       "claimAllowed": "Can report pass/fail fixture coverage and reviewer labels for deterministic behavior."
     },
     {
-      "mode": "vector_retrieval",
-      "purpose": "Validate whether semantic retrieval returns the right public artifacts for realistic professional, architecture, safety, and evidence questions.",
-      "claimAllowed": "Can report reviewer-labeled retrieval usefulness when Supabase pgvector ingestion is configured."
+      "mode": "source_selection",
+      "purpose": "Validate whether source selection returns the right public artifacts for realistic professional, architecture, safety, and evidence questions.",
+      "claimAllowed": "Can report reviewer-labeled usefulness of the cited public sources."
     },
     {
-      "mode": "model_synthesis",
-      "purpose": "Validate whether generated answers remain grounded, restrained, cited, useful, and public-safe when an approved AI provider is configured.",
+      "mode": "grounded_generation",
+      "purpose": "Validate whether generated answers remain grounded, restrained, cited, useful, and public-safe.",
       "claimAllowed": "Can report qualitative reviewer labels only after reviewers inspect cited public sources."
     }
   ],

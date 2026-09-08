@@ -14,7 +14,7 @@
     {
       "name": "Career Clarity",
       "score": 9,
-      "evidence": "The professional graph, Background route, Work path, First-Time Visitor Review Kit, and Practitioner Review Packet show the arc from enterprise integration through cloud, observability, production AI systems, and Operational Intelligence.",
+      "evidence": "The professional graph, Background route, Work path, First-Time Visitor Review Kit, and Practitioner Review Packet show the arc from enterprise integration through cloud, observability, governed agent systems, and Operational Intelligence.",
       "gap": "The career story is strong in structured content but still needs completed reviewer feedback from people who know nothing about Ravikanth.",
       "nextProof": "Run the Practitioner Review Packet with external reviewers and record where they become uncertain."
     },
@@ -35,9 +35,9 @@
     {
       "name": "AI Systems Credibility",
       "score": 8.1,
-      "evidence": "Ask Ravikanth, deterministic trust fixtures, eval gates, local fallback behavior, AI-governance language, and a controlled Ask live review packet are present.",
-      "gap": "Live model synthesis quality, vector retrieval quality, and reviewer-labeled sessions are not yet proven.",
-      "nextProof": "Run the Ask live review packet to compare fallback, vector retrieval, and model synthesis on the same safe prompt set using reviewer labels and safe metadata only."
+      "evidence": "Ask Ravikanth, deterministic trust fixtures, eval gates, grounded answer behavior, AI-governance language, and a controlled Ask live review packet are present.",
+      "gap": "Live answer quality, source-selection quality, and reviewer-labeled sessions are not yet proven.",
+      "nextProof": "Run the Ask live review packet to compare grounded answer paths on the same safe prompt set using reviewer labels and safe metadata only."
     },
     {
       "name": "Architecture Quality",

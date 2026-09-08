@@ -32,7 +32,7 @@ for (const category of rubric.reviewPromptSet.map((entry) => entry.category)) {
   expect(packet.requiredPromptCategories.includes(category), `Packet missing rubric prompt category ${category}.`);
 }
 
-for (const mode of ["local_fallback", "vector_retrieval", "model_synthesis"]) {
+for (const mode of ["deterministic_grounded", "source_selection", "grounded_generation"]) {
   expect(packet.reviewModes.some((entry) => entry.mode === mode), `Packet missing answer mode ${mode}.`);
 }
 
@@ -48,9 +48,9 @@ for (const required of [
   "no reviewer-labeled live sessions have been published yet",
   "Do not publish an aggregate model-quality score",
   "safe metadata only",
-  "local_fallback",
-  "vector_retrieval",
-  "model_synthesis",
+  "deterministic_grounded",
+  "source_selection",
+  "grounded_generation",
   "confidential_boundary",
   "prompt_injection"
 ]) {

@@ -42,7 +42,8 @@ export async function POST(request: Request) {
 
   const { question, history } = parsed.data;
   const isConversationPublicSafe =
-    isPublicSafe(question) && (history?.every((message) => isPublicSafe(message.content)) ?? true);
+    isPublicSafe(question) &&
+    (history?.every((message) => message.role !== "user" || isPublicSafe(message.content)) ?? true);
   const questionCategory = classifyAskQuestion(question);
   const frameworkLayers = inferFrameworkLayers(question);
   const relatedPages = inferRelatedArtifacts(question);

@@ -1,11 +1,16 @@
 import type { ChatMessage } from "@/lib/ai";
 
-export const ASK_SESSION_VERSION = "v1";
+export const ASK_SESSION_VERSION = "v2";
+export const LEGACY_ASK_SESSION_VERSIONS = ["v1"] as const;
 export const ASK_SESSION_MAX_MESSAGES = 20;
 export const ASK_SESSION_MAX_CONTENT_LENGTH = 2000;
 
 export function askSessionKey(mode: "ask" | "interview") {
   return `seri.ai:ask-session:${ASK_SESSION_VERSION}:${mode}`;
+}
+
+export function legacyAskSessionKeys(mode: "ask" | "interview") {
+  return LEGACY_ASK_SESSION_VERSIONS.map((version) => `seri.ai:ask-session:${version}:${mode}`);
 }
 
 function isChatRole(value: unknown): value is ChatMessage["role"] {
