@@ -16,7 +16,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, FileText, ShieldCheck } from "lucide-react";
-import { IncidentSimulator } from "../simulator/simulator";
+import { SreReferenceRun } from "@/components/sre-reference-run";
 import { operationalIntelligenceSystem } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -62,7 +62,7 @@ export default function InvestigationRoomPage() {
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
-        <IncidentSimulator />
+        <SreReferenceRun />
       </section>
       <section aria-labelledby="ops-take-away" className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
         <h2 id="ops-take-away" className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">

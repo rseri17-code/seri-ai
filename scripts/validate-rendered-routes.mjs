@@ -72,15 +72,34 @@ const routeContracts = [
     route: "/investigation-room",
     file: "investigation-room.html",
     maxBytes: 260_000,
+    // The initial HTML includes a complete fixture-backed run summary for accessibility, reduced
+    // motion, and no-JS use. Runtime state guarantees live in validate-sre-reference-run.mjs.
     required: [
       "Operations Room for evidence-backed decisions",
-      "Live investigation graph",
-      "Evidence taxonomy",
-      "Accessible graph summary",
-      "Operator question",
-      "Human approval required"
+      "Synthetic Reference Run",
+      "OI-ROOM-001",
+      "Play",
+      "Step",
+      "Reset",
+      "MCP request · logs",
+      "MCP request · metrics",
+      "MCP request · traces",
+      "MCP request · topology + ownership",
+      "MCP request · recent change",
+      "MCP request · approved similar cases",
+      "Contradiction received",
+      "Evaluation gate blocks recommendation",
+      "Decision packet becomes reviewable",
+      "Operator decision packet",
+      "Operational Memory",
+      "No outcome stored. Review is required before promotion."
     ],
-    before: [["Live investigation graph", "Decision packet"]]
+    before: [
+      ["MCP request · logs", "Evaluation gate blocks recommendation"],
+      ["Evaluation gate blocks recommendation", "Decision packet becomes reviewable"],
+      ["Decision packet becomes reviewable", "Operator decision packet"],
+      ["Operator decision packet", "Operational Memory"]
+    ],
   },
   {
     route: "/work",
