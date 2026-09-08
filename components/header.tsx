@@ -8,7 +8,7 @@ import { site } from "@/content/site";
 
 /**
  * Five destinations, by the 2026-08-30 homepage ruling. The wordmark is the Home link, and
- * Ask Ravikanth sits outside this list as a secondary utility action.
+ * Ask sits outside this list as a secondary utility action.
  *
  * Dropped from the bar but still reachable, so nothing is orphaned: /resume and /background from
  * the homepage career arc and About; /investigation-room from the hero CTA, the flagship preview
@@ -74,9 +74,7 @@ export function Header() {
               href="/ask"
               className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded border border-mint/40 bg-mint/10 px-3 py-2 text-sm font-semibold text-mint hover:bg-mint/15 sm:px-4"
             >
-              {/* The full label pushed the wordmark into an ellipsis at 390px. His name wins. */}
-              <span className="sm:hidden">Ask</span>
-              <span className="hidden sm:inline">Ask Ravikanth</span>
+              <span>Ask</span>
             </Link>
             <button
               type="button"

@@ -351,18 +351,17 @@ for (const required of [
   "Definition discipline",
   "Action discipline",
   "Learning discipline",
-  // Repointed 2026-08-30. The "Public code inspection" section was removed by Ravikanth's ruling:
-  // it published a reviewer rubric ("Review question / Look for / Do not infer") and a six-field
-  // review record schema to visitors, teaching a stranger how to grade the work before showing any
-  // of it. What survived is folded into the hero: both repository links, what the public repo
-  // actually contains, and the boundary as one plain sentence.
+  // Repointed 2026-09-08. The opening repository paragraph was consolidated into the ruled
+  // three-part proof block. Guard the scannable ownership, evidence, and privacy boundaries rather
+  // than restoring prose that the new hierarchy deliberately removes.
   //
   // Note these pins are checked against workContractSource, which joins the page WITH
   // content/public-code.json - so a pin matching only the JSON passes while rendering nothing.
   // That is how several of the old pins stayed green. Pin page-only strings here.
-  "an incident-investigation pipeline with deterministic playbooks, policy gates, memory, receipts",
-  "It shows you the architecture I argue for.",
-  "not evidence of what runs in production anywhere",
+  "What I owned",
+  "What you can inspect",
+  "What stays private",
+  "Employer systems, internal implementation, confidential data, and unpublished metrics remain private by design.",
   "publicCode.entries[0].href",
   "publicCode.entries[1].href",
   "Sentinalai",
@@ -507,13 +506,10 @@ expect(evalRunner.includes("generatedAt: `${report.lastRun}T00:00:00.000Z`"), "r
 expect(!evalRunner.includes("generatedAt: new Date().toISOString()"), "run-evals must not create timestamp-only public eval report churn");
 
 const headerComponent = fs.readFileSync(path.join(root, "components", "header.tsx"), "utf8");
-for (const required of [
-  "Ask Ravikanth",
-  "href=\"/ask\"",
-  "href: \"/framework\""
-]) {
-  expect(headerComponent.includes(required), `Header missing Ask Ravikanth companion CTA contract: ${required}`);
+for (const required of ["href=\"/ask\"", "href: \"/framework\"", "<span>Ask</span>"]) {
+  expect(headerComponent.includes(required), `Header missing Ask companion CTA contract: ${required}`);
 }
+expect(!headerComponent.includes("Ask Ravikanth"), "Header primary navigation must use the ruled visible label Ask");
 
 const radarPage = fs.readFileSync(path.join(root, "app", "framework", "page.tsx"), "utf8");
 const siteContent = fs.readFileSync(path.join(root, "content", "site.ts"), "utf8");

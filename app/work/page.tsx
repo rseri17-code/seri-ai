@@ -45,32 +45,50 @@ export default function WorkPage() {
           <h2 className="text-3xl font-semibold leading-tight text-white">
             I took an enterprise SRE investigation agent from thesis to production, and owned every stage of it.
           </h2>
-          <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">
-            Problem definition, prototyping, architecture, enterprise integration, evaluation, governance, rollout, and running it in
-            production. Not one slice of that path &mdash; all of it, inside a regulated environment.
-          </p>
           <p className="mt-4 max-w-4xl text-base leading-7 text-slate-300">
-            That boundary is where most agentic projects die. Getting across it is less about the model than about everything
-            underneath: whether the context an agent reasons from is current, whether its evidence is attributable, and whether a
-            human can still see how a decision was reached. Fifteen years of running enterprise systems before this is what made
-            those the questions I care about.
+            Getting across that boundary depended on current context, attributable evidence, and keeping the decision path visible
+            to a human. Fifteen years of running enterprise systems made those the questions I care about.
           </p>
           <p className="mt-3 max-w-4xl text-base leading-7 text-slate-400">
             That work is not public. What follows is, and everything below states what it proves and what it does not.
           </p>
-          <p className="mt-4 max-w-4xl text-base leading-7 text-slate-300">
-            The public one is{" "}
-            <a href={publicCode.entries[1].href} target="_blank" rel="noreferrer" className="inline-flex min-h-[24px] items-center font-semibold text-mint underline decoration-mint/30 underline-offset-4">
-              Sentinalai
-            </a>{" "}
-            &mdash; an incident-investigation pipeline with deterministic playbooks, policy gates, memory, receipts, and
-            model assistance kept optional. Read it, along with the rest of my{" "}
-            <a href={publicCode.entries[0].href} target="_blank" rel="noreferrer" className="inline-flex min-h-[24px] items-center font-semibold text-mint underline decoration-mint/30 underline-offset-4">
-              GitHub
-            </a>
-            . It shows you the architecture I argue for. It is not evidence of what runs in production anywhere, and
-            nothing in it should be read back onto a private system.
-          </p>
+          <div className="mt-6 grid gap-4 lg:grid-cols-3">
+            <div className="rounded border border-white/10 bg-black/20 p-5">
+              <h2 className="text-lg font-semibold text-white">What I owned</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                The full path for an enterprise SRE investigation agent: problem definition, prototype, architecture, integration,
+                evaluation, governance, rollout, and production operation.
+              </p>
+            </div>
+            <div className="rounded border border-mint/30 bg-mint/[0.06] p-5">
+              <h2 className="text-lg font-semibold text-white">What you can inspect</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                Start with the Operations Room, then inspect the public doctrine, reference architecture, evaluation harness,
+                projects, patterns, {" "}
+                <a href={publicCode.entries[1].href} target="_blank" rel="noreferrer" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
+                  Sentinalai
+                </a>
+                , and {" "}
+                <a href={publicCode.entries[0].href} target="_blank" rel="noreferrer" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
+                  GitHub
+                </a>
+                .
+              </p>
+              <Link
+                href="/investigation-room"
+                className="mt-5 inline-flex min-h-[44px] items-center gap-2 rounded border border-mint/40 bg-mint/10 px-4 py-2 text-sm font-semibold text-mint hover:bg-mint/15"
+              >
+                Open the Operations Room <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="rounded border border-amber/25 bg-amber/[0.045] p-5">
+              <h2 className="text-lg font-semibold text-white">What stays private</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                Employer systems, internal implementation, confidential data, and unpublished metrics remain private by design.
+                Public artifacts show judgment, not a private production system.
+              </p>
+            </div>
+          </div>
         </Card>
       </Section>
 

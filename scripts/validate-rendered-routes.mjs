@@ -93,11 +93,15 @@ const routeContracts = [
       "Constraints the architecture preserves.",
       "Start with operational evidence before model reasoning.",
       "Treat AI action as governed execution, not autonomous heroics.",
-      // Repointed 2026-08-30: the reviewer-rubric section was removed from /work by ruling. What
-      // it usefully carried survives in the hero, asserted here instead.
-      "an incident-investigation pipeline with deterministic playbooks, policy gates, memory, receipts",
+      // Repointed 2026-09-08: the repeated opening repository paragraph was consolidated into the
+      // ruled three-part proof block. Assert that the ownership, evidence, privacy, and flagship
+      // path actually render instead of pinning deleted prose.
+      "What I owned",
+      "What you can inspect",
+      "What stays private",
+      "Open the Operations Room",
       "Sentinalai",
-      "not evidence of what runs in production anywhere",
+      "Employer systems, internal implementation, confidential data, and unpublished metrics remain private by design.",
       "GitHub",
       "LinkedIn",
       "owned every stage"
