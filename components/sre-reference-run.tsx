@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Check, Pause, Play, RotateCcw, StepForward, X } from "lucide-react";
-import { runSnapshot, sreReferenceRun, type OperatorDecision } from "@/lib/operational-intelligence/sre-reference-run";
+import { dependencyFixture, owlPaperSource, rcaVerdict, runSnapshot, sreReferenceRun, type OperatorDecision } from "@/lib/operational-intelligence/sre-reference-run";
 
 const sourceTone = { logs: "border-signal/40", metrics: "border-mint/40", traces: "border-amber/40", topology: "border-violet-400/40", change: "border-cyan-400/40", memory: "border-fuchsia-400/40" } as const;
 const receiptTone = { Observation: "text-signal", Inference: "text-violet-300", Contradiction: "text-amber", "Missing Evidence": "text-amber", "Confirmed Fact": "text-mint" } as const;
@@ -12,6 +12,7 @@ export function SreReferenceRun() {
   const [playing, setPlaying] = useState(false);
   const [decision, setDecision] = useState<OperatorDecision | null>(null);
   const snapshot = useMemo(() => runSnapshot(index, decision), [index, decision]);
+  const rca = useMemo(() => rcaVerdict(index), [index]);
 
   useEffect(() => {
     if (!playing) return;
@@ -90,6 +91,33 @@ export function SreReferenceRun() {
             <p className="mt-2 text-sm leading-6 text-slate-300">{snapshot.memoryStored ? `Reviewed ${decision} outcome stored as replay seed.` : "No outcome stored. Review is required before promotion."}</p>
           </div>
         </aside>
+      </div>
+      <div className="grid border-t border-white/10 lg:grid-cols-2">
+        <section aria-labelledby="dependency-proof-title" className="border-b border-white/10 p-4 lg:border-b-0 lg:border-r lg:p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Inspectable dependency proof</p>
+          <h3 id="dependency-proof-title" className="mt-2 text-lg font-semibold text-white">Checked-in provenance graph</h3>
+          <ol className="mt-4 space-y-2">
+            {dependencyFixture.edges.map((edge) => {
+              const from = dependencyFixture.nodes.find((node) => node.id === edge.from)!;
+              const to = dependencyFixture.nodes.find((node) => node.id === edge.to)!;
+              return <li key={`${edge.from}-${edge.to}`} className="rounded-lg border border-white/10 bg-black/20 p-3 text-sm text-slate-300"><span className="font-semibold text-white">{from.label} → {to.label}</span><span className="mt-1 block">{edge.evidence} · owners: {from.owner} / {to.owner}</span></li>;
+            })}
+          </ol>
+          <div className={`mt-4 rounded-lg border p-4 ${rca.verdict === "GROUNDED RCA" ? "border-mint/40 bg-mint/5" : "border-amber/40 bg-amber/5"}`} aria-live="polite">
+            <p className={`font-mono text-sm font-semibold ${rca.verdict === "GROUNDED RCA" ? "text-mint" : "text-amber"}`}>{rca.verdict}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">{rca.reason}</p>
+            <p className="mt-2 text-xs text-slate-400">Unresolved: {rca.missing.join(", ")}.</p>
+          </div>
+        </section>
+        <section aria-labelledby="paper-source-title" className="p-4 lg:p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Source ledger</p>
+          <h3 id="paper-source-title" className="mt-2 text-lg font-semibold text-white">Paper-grounded model</h3>
+          <p className="mt-3 text-sm font-semibold leading-6 text-white">{owlPaperSource.title}</p>
+          <p className="mt-1 text-xs leading-5 text-slate-400">{owlPaperSource.authors} · {owlPaperSource.venue}</p>
+          <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">{owlPaperSource.groundedClaims.map((claim) => <li key={claim} className="rounded-lg border border-white/10 bg-black/20 p-3">{claim}</li>)}</ul>
+          <p className="mt-4 text-sm leading-6 text-amber">{owlPaperSource.boundary}</p>
+          <a href={owlPaperSource.doi} target="_blank" rel="noreferrer" className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-mint underline decoration-mint/40 underline-offset-4">Inspect the published paper</a>
+        </section>
       </div>
     </section>
   );
