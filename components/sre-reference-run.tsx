@@ -65,7 +65,7 @@ export function SreReferenceRun() {
                 <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-wide text-slate-400"><time>{event.at}</time><span>·</span><span>{event.stage}</span>{event.source && <><span>·</span><span>{event.source}</span></>}</div>
                 <div className="mt-2 flex flex-wrap items-start justify-between gap-2"><h3 className="font-semibold text-white">{event.title}</h3>{event.receipt && <span className={`rounded-full bg-black/30 px-2 py-1 text-xs font-semibold ${receiptTone[event.receipt]}`}>{event.receipt}</span>}</div>
                 <p className="mt-1 text-sm leading-6 text-slate-300">{event.detail}</p>
-                {event.freshness && <p className="mt-2 font-mono text-[11px] text-slate-500">provenance: checked-in OI-ROOM-001 fixture · freshness: {event.freshness}</p>}
+                {event.freshness && <p className="mt-2 font-mono text-[11px] text-slate-400">provenance: checked-in OI-ROOM-001 fixture · freshness: {event.freshness}</p>}
               </li>
             ))}
           </ol>
