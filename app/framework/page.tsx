@@ -17,6 +17,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, BrainCircuit, CheckCircle2, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
+import { BatchIntelligenceProof } from "@/components/batch-intelligence-proof";
 import { FrameworkTeacher } from "@/components/framework-teacher";
 import { Section } from "@/components/section";
 import { TechnicalReviewPath } from "@/components/technical-review-path";
@@ -146,6 +147,8 @@ export default function FrameworkPage() {
             Reasoning improves with every model. Context improves only when you maintain it.
           </p>
         </Card>
+
+        <BatchIntelligenceProof />
 
         <Card className="mt-4 p-4 sm:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Two &mdash; the loop</p>

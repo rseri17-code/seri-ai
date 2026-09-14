@@ -3,6 +3,8 @@ import fs from "node:fs";
 
 const model = fs.readFileSync("lib/operational-intelligence/sre-reference-run.ts", "utf8");
 const ui = fs.readFileSync("components/sre-reference-run.tsx", "utf8");
+const batchUi = fs.readFileSync("components/batch-intelligence-proof.tsx", "utf8");
+const framework = fs.readFileSync("app/framework/page.tsx", "utf8");
 
 const orderedEvents = ["alert", "incident", "logs", "metrics", "traces", "topology", "change", "memory", "hypothesis", "contradiction", "gate-blocked", "gate-ready", "decision", "memory-reviewed"];
 let previous = -1;
@@ -32,14 +34,16 @@ assert.match(model, /verdict: "EXPLICIT UNKNOWN"/, "incomplete evidence must ret
 assert.match(model, /verdict: "GROUNDED RCA"/, "complete fixture evidence must return GROUNDED RCA");
 assert.match(model, /dependency sequence alone does not establish incident causality/, "the source boundary must reject causal inference from dependency sequence");
 assert.match(model, /localSource: "project_sources\/01-2602\.11988\.pdf"/, "the verified paper must remain the sole local source");
-assert.doesNotMatch(model + ui, /\.mp4|video|frame-by-frame/i, "the proof contract must not depend on video input or frame inspection");
+assert.doesNotMatch(model + ui + batchUi, /\.mp4|video|frame-by-frame/i, "the proof contract must not depend on video input or frame inspection");
 for (const edge of ["catalog\", to: \"journey", "journey\", to: \"score", "score\", to: \"report"]) assert(model.includes(edge), `${edge} dependency edge is required`);
 for (const control of ["Play", "Pause", "Step", "Reset"]) assert(ui.includes(control), `${control} control is required`);
 assert.match(ui, /aria-label="Reference run controls"/, "playback controls require an accessible group label");
 assert.match(ui, /sreReferenceRun\.events\.map/, "the complete deterministic run must have a server-renderable summary");
 assert.match(ui, /setPlaying\(false\); setIndex\(-1\); setDecision\(null\)/, "reset must clear playback and decision state");
 assert.match(ui, /disabled=!\{snapshot\.awaitingDecision\}|disabled=\{!snapshot\.awaitingDecision\}/, "operator outcome must remain gated");
-for (const proofLabel of ["Inspectable dependency proof", "Source ledger", "Paper-grounded model"]) assert(ui.includes(proofLabel), `${proofLabel} must render in the artifact`);
-assert.match(ui, /\{rca\.verdict\}/, "the deterministic GROUNDED RCA or EXPLICIT UNKNOWN verdict must render");
+for (const stage of ["Failed workload", "Predecessor / trigger", "Affected successors", "Blast radius", "Evidence packet", "Human-reviewed recovery"]) assert(batchUi.includes(stage), `${stage} must render in order`);
+assert.match(batchUi, /For services, context is topology and deployments\. For batch, context is the execution graph\./, "the service/batch context contrast must be explicit");
+for (const verdict of ["GROUNDED RCA", "EXPLICIT UNKNOWN"]) assert(batchUi.includes(verdict), `${verdict} must render in the artifact`);
+assert.match(framework, /<BatchIntelligenceProof \/>/, "Batch Intelligence proof must live inside the existing Context Layer narrative");
 
 console.log("Validated deterministic SRE reference run progression, controls, contradiction, gate, and reviewed memory.");

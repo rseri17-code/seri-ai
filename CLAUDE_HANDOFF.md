@@ -4,17 +4,17 @@ Last updated: 2026-09-04
 
 ## BUILDER PAPER-GROUNDED PROOF ARTIFACT — 2026-09-14
 
-The deterministic SRE reference run now includes an inspectable, checked-in synthetic dependency
-graph and a source ledger grounded only in the verified Owl paper
+The existing Enterprise Context Layer narrative now includes an inspectable Batch Intelligence
+section with a checked-in synthetic dependency graph and a source ledger grounded only in the verified Owl paper
 (`project_sources/01-2602.11988.pdf`; SIGMOD ’19, DOI 10.1145/3299869.3320239). The UI separates
 the paper's dependency-model claims from the synthetic OI-ROOM-001 fixture and explicitly states
 that dependency sequence alone does not establish causality.
 
-The verdict remains `EXPLICIT UNKNOWN` until the deterministic evidence-coverage and reviewable-gate
-events are present. It then becomes a bounded `GROUNDED RCA`, while continuing to display the missing
-dependency-boundary trace as an unresolved limitation. The validator rejects any MP4, video, or
-frame-by-frame dependency in this contract. The artifact uses checked-in data and client-side state
-only, with no hosted inference, database, or recurring-cost service.
+The six-step chain runs from failed workload through predecessor, affected successors, blast radius,
+evidence packet, and human-reviewed recovery. Its gate contract permits `GROUNDED RCA` only with
+complete fixture evidence and otherwise requires `EXPLICIT UNKNOWN`, while the unavailable boundary
+trace remains visible. The validator rejects any MP4, video, or frame-by-frame dependency in this
+contract. The artifact uses checked-in data only, with no hosted inference, database, or recurring-cost service.
 
 `npm test` and `npm run build` pass with `NODE_ENV` unset. All 117 Ask trust fixtures pass and the
 production build generates 69 static pages. The source PDF remains a local review input and is not
