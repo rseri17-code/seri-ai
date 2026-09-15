@@ -15,6 +15,36 @@ export type SreRunEvent = {
   gate?: { coverage: boolean; freshness: boolean; policy: boolean; uncertainty: boolean; blocked: boolean };
 };
 
+export type RcaVerdict = "EXPLICIT UNKNOWN" | "GROUNDED RCA";
+
+export const owlPaperSource = {
+  title: "Peering through the Dark: An Owl’s View of Inter-job Dependencies and Jobs’ Impact in Shared Clusters",
+  authors: "Andrew Chung, Carlo Curino, Subru Krishnan, Konstantinos Karanasos, Panagiotis Garefalakis, and Gregory R. Ganger",
+  venue: "SIGMOD ’19",
+  doi: "https://doi.org/10.1145/3299869.3320239",
+  localSource: "project_sources/01-2602.11988.pdf",
+  groundedClaims: [
+    "File provenance can expose job-to-job dependencies by connecting a consuming job to the last job that wrote its input.",
+    "Historical job telemetry and provenance can be combined to inspect recurring dependencies and downstream impact.",
+    "An upstream modification can disrupt otherwise hidden downstream consumers, but dependency sequence alone does not establish incident causality.",
+  ],
+  boundary: "The paper grounds the dependency model only. OI-ROOM-001 is a synthetic deterministic fixture, not a reproduction of Microsoft Cosmos or an Owl benchmark result.",
+} as const;
+
+export const dependencyFixture = {
+  nodes: [
+    { id: "catalog", label: "Catalog extract", owner: "Data products" },
+    { id: "journey", label: "Journey transform", owner: "Experience data" },
+    { id: "score", label: "Completion score", owner: "Reliability analytics" },
+    { id: "report", label: "Operations report", owner: "Service operations" },
+  ],
+  edges: [
+    { from: "catalog", to: "journey", evidence: "journey read catalog output" },
+    { from: "journey", to: "score", evidence: "score read journey output" },
+    { from: "score", to: "report", evidence: "report read score output" },
+  ],
+} as const;
+
 export const sreReferenceRun = {
   id: "OI-ROOM-001",
   label: "Synthetic Reference Run",
@@ -53,5 +83,23 @@ export function runSnapshot(index: number, decision: OperatorDecision | null) {
     gate,
     awaitingDecision,
     memoryStored: Boolean(decision && visible.some((event) => event.id === "memory-reviewed"))
+  };
+}
+
+export function rcaVerdict(index: number): { verdict: RcaVerdict; reason: string; missing: readonly string[] } {
+  const visibleIds = new Set(runSnapshot(index, null).visible.map((event) => event.id));
+  const required = ["logs", "metrics", "topology", "change", "contradiction", "gate-ready"] as const;
+  const missing = required.filter((id) => !visibleIds.has(id));
+  if (missing.length > 0) {
+    return {
+      verdict: "EXPLICIT UNKNOWN",
+      reason: "The checked-in evidence does not yet satisfy the deterministic coverage gate.",
+      missing,
+    };
+  }
+  return {
+    verdict: "GROUNDED RCA",
+    reason: "The fixture supports a bounded configuration-regression conclusion; the unavailable trace remains a named limitation.",
+    missing: ["dependency-boundary trace segment"],
   };
 }

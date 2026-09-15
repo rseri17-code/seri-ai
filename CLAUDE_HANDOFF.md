@@ -2,6 +2,31 @@
 
 Last updated: 2026-09-04
 
+## BUILDER APPROVED INTEGRATION — 2026-09-14
+
+Task `b854bd59` received reviewer approval after the paper-grounded proof artifact passed its
+review, public-safety, and zero-recurring-cost gates. The builder branch was synchronized with
+`origin/main` before integration; there was no overlap to reconcile. The source paper remains only
+in the local, untracked `project_sources/` directory and is not part of the release.
+
+## BUILDER PAPER-GROUNDED PROOF ARTIFACT — 2026-09-14
+
+The existing Enterprise Context Layer narrative now includes an inspectable Batch Intelligence
+section with a checked-in synthetic dependency graph and a source ledger grounded only in the verified Owl paper
+(`project_sources/01-2602.11988.pdf`; SIGMOD ’19, DOI 10.1145/3299869.3320239). The UI separates
+the paper's dependency-model claims from the synthetic OI-ROOM-001 fixture and explicitly states
+that dependency sequence alone does not establish causality.
+
+The six-step chain runs from failed workload through predecessor, affected successors, blast radius,
+evidence packet, and human-reviewed recovery. Its gate contract permits `GROUNDED RCA` only with
+complete fixture evidence and otherwise requires `EXPLICIT UNKNOWN`, while the unavailable boundary
+trace remains visible. The validator rejects any MP4, video, or frame-by-frame dependency in this
+contract. The artifact uses checked-in data only, with no hosted inference, database, or recurring-cost service.
+
+`npm test` and `npm run build` pass with `NODE_ENV` unset. All 117 Ask trust fixtures pass and the
+production build generates 69 static pages. The source PDF remains a local review input and is not
+added to the public repository; the public artifact links to the published DOI.
+
 ## BUILDER ASK HUMAN VOICE + LAYOUT — 2026-09-07
 
 The Ask surface now presents itself as a deterministic, source-scoped interface to the public record,
