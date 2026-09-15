@@ -9,6 +9,10 @@ review, public-safety, and zero-recurring-cost gates. The builder branch was syn
 `origin/main` before integration; there was no overlap to reconcile. The source paper remains only
 in the local, untracked `project_sources/` directory and is not part of the release.
 
+The re-issued release verification fast-forwarded the builder worktree to approved `origin/main`
+merge `17283e9`. The full `npm test` and `npm run build` push gates were rerun from that synchronized
+tree before the final handoff update; the source PDF remained untracked and excluded from the push.
+
 ## BUILDER PAPER-GROUNDED PROOF ARTIFACT — 2026-09-14
 
 The existing Enterprise Context Layer narrative now includes an inspectable Batch Intelligence
