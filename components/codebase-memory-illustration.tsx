@@ -34,7 +34,8 @@ export function CodebaseMemoryIllustration() {
           A fresh agent, a retained lesson, and a source that can move.
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300">
-          Synthetic checkout code only. Nothing here is a live system, a private repository, or a measured result.
+          Public-safe synthetic checkout code only. This is not a live system, and it is not measured production
+          evidence.
           Select a task, inspect the relationships and the lesson, then toggle a supporting-code change. The lesson
           status moves from Source unchanged to Revalidation required. The status is readable without animation.
         </p>

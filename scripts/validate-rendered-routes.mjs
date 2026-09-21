@@ -247,7 +247,7 @@ const routeContracts = [
       "Source freshness is not behavioral correctness",
       "Structural discovery",
       "Task-specific capability guides",
-      "bounded fresh-agent testing",
+      "Bounded fresh-agent testing",
       "does not autonomously repair",
       "does not claim measured token savings"
     ],

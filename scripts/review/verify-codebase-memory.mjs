@@ -111,7 +111,8 @@ await withPage({ width: 1440, height: 900 }, true, async (page) => {
   await page.keyboard.press("Space");
   expect(await page.getByText("Revalidation required").count(), "reduced-motion keyboard toggle failed");
   const animationDuration = await page.evaluate(() => getComputedStyle(document.body).animationDuration);
-  expect(animationDuration === "0.001ms" || animationDuration === "0s" || animationDuration === "0.001s", `reduced-motion animation-duration was ${animationDuration}`);
+  const reduced = /^(0s|0\.00?1m?s|1e-0*6s)$/i.test(animationDuration);
+  expect(reduced, `reduced-motion animation-duration was ${animationDuration}`);
   await screenshot(page, "case-study-reduced-motion.png");
 });
 
@@ -122,8 +123,7 @@ await withPage({ width: 1024, height: 768 }, false, async (page) => {
   const radios = page.getByRole("radio");
   await radios.nth(1).focus();
   await page.keyboard.press("Space");
-  expect(await radios.nth(1).getAttribute("aria-checked"), "second task not selected by keyboard") === "true" ||
-    errors.push("second task not selected by keyboard");
+  expect((await radios.nth(1).getAttribute("aria-checked")) === "true", "second task not selected by keyboard");
   await page.getByRole("switch").focus();
   await page.keyboard.press("Enter");
   expect(await page.getByText("Revalidation required").count(), "keyboard switch did not update status");

@@ -6,7 +6,7 @@ Last updated: 2026-09-21
 
 Added a public-safe engineering case study at `/projects/codebase-memory` in the existing project family. It is listed on `/projects` and `/work` from `content/projects.json`, and the homepage Selected work section carries a compact teaser. No new top-level nav item. The page is a focused editorial case study with a deterministic, client-side illustrative example (synthetic checkout code only). It does not duplicate Operational Intelligence doctrine.
 
-Knowledge graph after this publishing addition: 62 assets, 7814 relationships. Ask deterministic fixtures cover 121 passing cases.
+Local gates: `npm test` and `npm run build` pass. Playwright (`scripts/review/verify-codebase-memory.mjs`) passed desktop and mobile layouts, keyboard task/switch operation, reduced-motion status text, both illustration states, and inbound links from `/`, `/work`, and `/projects`. Knowledge graph after this publishing addition: 62 assets, 7814 relationships. Ask deterministic fixtures cover 121 passing cases. Preview-only; do not merge until publication review.
 
 ## BUILDER ASK RETRIEVAL + BATCH INTELLIGENCE DISCOVERABILITY — 2026-09-21
 
