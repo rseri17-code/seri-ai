@@ -38,7 +38,7 @@ function routeFromHandler(file) {
 
 function routeFromMetadataImage(file) {
   const relative = path.relative(appDir, file).replace(/\\/g, "/");
-  if (!/^(opengraph-image|twitter-image)\.(tsx|ts|jsx|js)$/.test(relative)) return null;
+  if (!/^(opengraph-image|twitter-image|icon|apple-icon)\.(tsx|ts|jsx|js)$/.test(relative)) return null;
   return `/${relative.replace(/\.(tsx|ts|jsx|js)$/, "")}`;
 }
 
