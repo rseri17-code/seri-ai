@@ -222,7 +222,7 @@ for (const required of [
   "Production AI systems",
   "I build evidence-grounded AI systems for enterprise operations.",
   "Senior Technical Lead &mdash; AIOps &amp; Observability",
-  "Building evidence-grounded AI systems for enterprise operations.",
+  "Production AI systems for enterprise operations.",
   "enterprise SRE investigation",
   "Enter the Operations Room",
   "Explore the body of work",

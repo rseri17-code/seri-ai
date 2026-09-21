@@ -66,9 +66,9 @@ const selectedWork = [
     problem:
       "Under pressure, teams rebuild the same four answers by hand: who owns this, what changed, what depends on it, what the transaction did.",
     role:
-      "I design the layer that assembles them once, so agents, workflows and engineers reason from the same reality.",
+      "I design that layer as a maintained data product: assembled once, kept current, consumed by agents, workflows, and engineers.",
     proof: "The written thesis (Doctrine v1.0), the reference architecture, and ten patterns in build order.",
-    outcome: "Build context once, or every consumer rebuilds it privately and late.",
+    outcome: "Build the data product once, or every consumer rebuilds it privately and late.",
     href: "/framework",
     linkLabel: "Read the thesis",
     status: "Public reference architecture"
@@ -80,7 +80,7 @@ const selectedWork = [
     role:
       "Fifteen years of it: identity modernization, middleware and B2B integration, container platforms, and observability in financial services.",
     proof: "A zero-downtime OpenID Connect migration across 120+ applications.",
-    outcome: "Telemetry volume and operational understanding are not the same thing.",
+    outcome: "More metrics and logs are not the same as understanding production.",
     // No link: the career bridge directly below this section points at /background with a better
     // label, and two links to the same page 40 words apart is navigation, not evidence.
     status: "Career record"
@@ -98,20 +98,19 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-mint sm:text-sm">
-                Ravikanth Seri &mdash; Production AI systems &middot; Operational Intelligence
+                Ravikanth Seri &mdash; Production AI systems
               </p>
               <h1 className="mt-4 max-w-3xl text-[2rem] font-semibold leading-[1.08] text-white sm:text-[2.75rem] lg:text-[3.15rem]">
                 I build evidence-grounded AI systems for enterprise operations.
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg sm:leading-8">
-                My work connects what is happening in production, evidence you can trace to a source, and
-                machine reasoning &mdash; so every recommended action still shows why.
+                Evidence-grounded means a recommendation can be traced to a source. This is production AI for
+                enterprise operations &mdash; investigation systems that show their work, not a demo with a disclaimer.
               </p>
 
               <p className="mt-5 max-w-2xl border-l-2 border-mint/60 pl-4 text-base leading-7 text-slate-200 sm:pl-5">
                 Most recently I took an <strong className="font-semibold text-white">enterprise SRE investigation
-                agent from thesis to production</strong>, owning it across architecture, engineering, enterprise
-                integration, evaluation, and making it run in production. That system stays private. What is on this site
+                agent from thesis to production</strong>, and owned it end to end. That system stays private. What is on this site
                 stands on its own.
               </p>
 
@@ -143,7 +142,7 @@ export default function Home() {
                 <p className="text-lg font-semibold leading-7 text-white">{professionalGraph.identity.person}</p>
                 <p className="mt-1 text-sm leading-6 text-slate-300">Senior Technical Lead &mdash; AIOps &amp; Observability</p>
                 <p className="mt-1 text-sm leading-6 text-slate-200">
-                  Building evidence-grounded AI systems for enterprise operations.
+                  Production AI systems for enterprise operations.
                 </p>
                 <p className="mt-1 text-xs leading-5 text-slate-500">
                   {currentRole.organization} &middot; {resume.location} &middot; 15+ years in enterprise engineering

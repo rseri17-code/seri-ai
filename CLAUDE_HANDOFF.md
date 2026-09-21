@@ -2,6 +2,22 @@
 
 Last updated: 2026-09-21
 
+## ACT HOMEPAGE 10/10 + PLAIN LANGUAGE — 2026-09-21
+
+Preview-only. Do not merge. Homepage is the 10/10 surface. Deep `/framework` and `/ask` chrome deferred unless they share homepage components.
+
+**Architect bar (this pass):** first viewport answers what he builds and that the production system is private / the site is public proof. 30-second map separates umbrella vs shared data product vs investigation loop vs Batch execution-graph proof vs ten-layer filing — in separate sentences, not a term stack. Context layer reads as a maintained data product. Work-first; Staff/Principal stays a quiet line.
+
+**Kept (frozen / named with clauses):** H1 `I build evidence-grounded AI systems for enterprise operations.`; CTAs `Enter the Operations Room` / `Explore the body of work`; five-item nav + Ask (`Framework` label from the prior jargon pass); `the Authorized Misfire` + existing clause; Context Acquisition Tax four-answer gloss; `SRE / Agent Harness`; `Batch Intelligence`; Staff / Principal quiet line.
+
+**Homepage first screen:** H1 glossed as “a recommendation can be traced to a source”; production ownership + private/public boundary without a resume stack; portrait keeps `Senior Technical Lead — AIOps & Observability` and adds `Production AI systems for enterprise operations`. Operational Intelligence is taught in the 30s map, not the eyebrow.
+
+**30s map:** one claim per sentence. Enterprise Context Layer = maintained data product (owner, change, dependency, customer journey). Harness = investigation loop that reads it. Batch = public execution-graph proof. Ten layers = filing. Work-plainly no longer restacks the map; evidence ladder prove-lines stay a path through the work.
+
+Validators that pinned the old portrait H1-echo were **repointed in the same commit**. `docs/homepage-10-audit.md` had not landed; this used Verify’s FAIL list + PR #11 jargon audit + the architect bar.
+
+Public-safety: no employer data added. Preview-only.
+
 ## ACT PLAIN-LANGUAGE COPY — 2026-09-21
 
 Preview-only jargon pass. Work-first Operational Intelligence thesis stays. Not a recruiting brochure. Do not merge.
@@ -1601,6 +1617,12 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — ACT: homepage 10/10 (architect bar) after Verify FAIL list
+
+- **Finding**: Verify scored live “no jargon” ~4/10. Scope upgraded: homepage first viewport + 30s map must be architect-grade and jargon-free. `docs/homepage-10-audit.md` had not landed; PR #11 jargon audit + architect bar used.
+- **Acted**: first viewport now states production AI + private/public boundary in ~10s; 30s map separates umbrella / data product / loop / Batch proof / filing in separate sentences; context layer is a maintained data product; Staff/Principal stays quiet. Deep `/framework` and `/ask` chrome deferred.
+- **Follow-up**: VERIFY re-check of homepage first screen. Public-safety risk: none. Flag for Ravikanth: preview-only; do not merge.
 
 ### 2026-09-21 — ACT: jargon pass without OBSERVE audit PR
 

@@ -22,7 +22,7 @@ export const evidenceLadder = [
     n: "02",
     label: "Framework",
     kind: "Full map",
-    proves: "The shared context layer and the investigation loop. Batch Intelligence is a public proof; the ten layers are a filing system.",
+    proves: "Shared data product plus investigation loop. Batch Intelligence is a public proof; the ten layers are a filing system.",
     href: "/framework",
     secondaryHref: "/framework#batch-intelligence",
     secondaryLabel: "Batch proof",
@@ -41,7 +41,7 @@ export const evidenceLadder = [
     n: "04",
     label: "Ask",
     kind: "Public record",
-    proves: "What the public record will answer, cite, or refuse to guess.",
+    proves: "What public pages it will answer from, cite, or decline.",
     href: "/ask",
     cta: "ladder_ask"
   },
@@ -65,7 +65,7 @@ export function EvidenceLadder({ source }: { source: "home" | "work" }) {
     >
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Start here</p>
       <p className="mt-2 text-sm leading-6 text-slate-300">
-        A path through the work. Inspect these artifacts in this order.
+        A path through the work. Inspect these in this order.
       </p>
       <ol className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
         {evidenceLadder.map((step) => {
