@@ -21,6 +21,22 @@ Fixed four live credibility bugs without a redesign:
 - Library newsletter copy is an honest waitlist. The unfinished "email provider is connected" sentence is gone.
 - Contact Topic now includes Hiring and still submits `topic` to `/api/contact`.
 
+## HOMEPAGE COLD-START ORIENTATION — 2026-09-21
+
+A cold AI/observability peer landing on `/` still had to infer Operational Intelligence vs
+Enterprise Context Layer vs Agent Harness vs ten-layer taxonomy vs Batch Intelligence. The homepage
+now teaches that map *inside the hero*, after identity and the two ruled CTAs, and *before*
+Authorized Misfire.
+
+Not a seventh section. Not a Framework redesign. The longer map stays on `/framework` (PR #3).
+Start-here is four quiet steps (map → Operations Room / Batch proof → Framework → Ask / Contact),
+not a third mint hero button.
+
+This PR owns only the hero orientation strip (`components/home-orientation.tsx`). It does not
+claim the rest of `/`. PR #5's Codebase Memory teaser belongs in Selected work
+(`/projects/codebase-memory`); leave that region untouched so the teaser can merge cleanly.
+
+Public-safe only. No employer systems, metrics, or private names added.
 
 ## BUILDER APPROVED INTEGRATION — 2026-09-14
 
@@ -1520,6 +1536,13 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Grok: homepage cold-start vs open PRs
+
+- **Keep**: PR #3's `/framework` architecture map, sticky index, and ten-layer table. Homepage now carries a *shorter* nested map (umbrella / substrate+Batch / harness / filing system) rather than duplicating that page.
+- **Keep**: PR #2's Ask retrieval + `/framework#batch-intelligence` intent (now on `main`). Homepage Batch/Framework start-here links point at `/framework` so they do not own the proof component.
+- **Keep**: PR #5's Codebase Memory case study and its *concise* homepage teaser inside Selected work. This orientation PR owns only `HomeOrientation` inside the hero; it does not claim the rest of `/` and will not insert into that teaser slot.
+- **Why it matters**: cold visitors were meeting Authorized Misfire before they had a place to file the jargon. Evidence: `components/home-orientation.tsx` inside the homepage hero. Public-safety risk: none.
 
 ### 2026-09-21 — Builder: Ask nearest-neighbor miss for Batch Intelligence
 
