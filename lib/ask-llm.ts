@@ -1,3 +1,8 @@
+/**
+ * Server Ask LLM helpers. Keep this module off Client Component import graphs
+ * (`components/chat.tsx` imports `lib/ai.ts` only). Runtime env is read with
+ * bracket access so Vercel Preview secrets are not inlined empty at build.
+ */
 import { isPublicSafe } from "@/lib/compliance";
 
 export const ASK_LLM_PROVIDERS = ["none", "groq", "ollama"] as const;
@@ -45,6 +50,15 @@ type ChatCompletionMessage = {
   content: string;
 };
 
+export function readRuntimeEnv(name: string, env: NodeJS.ProcessEnv = process.env): string {
+  // Bracket access keeps Preview/runtime secrets from being inlined as empty at build.
+  const raw = env[name];
+  if (typeof raw !== "string") {
+    return "";
+  }
+  return raw.trim().replace(/^['"]+|['"]+$/g, "");
+}
+
 function normalizeProvider(value: string | undefined): AskLlmProvider {
   const normalized = (value ?? "none").trim().toLowerCase();
   if (normalized === "groq" || normalized === "ollama") {
@@ -65,28 +79,28 @@ function ollamaCompletionsUrl(baseUrl: string) {
 }
 
 export function resolveAskLlmProvider(env: NodeJS.ProcessEnv = process.env): ResolvedAskLlmProvider {
-  const provider = normalizeProvider(env.ASK_LLM_PROVIDER);
+  const provider = normalizeProvider(readRuntimeEnv("ASK_LLM_PROVIDER", env));
   if (provider === "groq") {
-    const apiKey = env.GROQ_API_KEY?.trim();
+    const apiKey = readRuntimeEnv("GROQ_API_KEY", env);
     if (!apiKey) {
       return { kind: "none", skipReason: "missing_credentials" };
     }
     return {
       kind: "groq",
       apiKey,
-      model: env.GROQ_MODEL?.trim() || DEFAULT_GROQ_MODEL,
+      model: readRuntimeEnv("GROQ_MODEL", env) || DEFAULT_GROQ_MODEL,
       completionsUrl: GROQ_COMPLETIONS_URL
     };
   }
   if (provider === "ollama") {
-    const baseUrl = env.OLLAMA_BASE_URL?.trim();
+    const baseUrl = readRuntimeEnv("OLLAMA_BASE_URL", env);
     if (!baseUrl) {
       return { kind: "none", skipReason: "missing_credentials" };
     }
     return {
       kind: "ollama",
       apiKey: "ollama",
-      model: env.OLLAMA_MODEL?.trim() || DEFAULT_OLLAMA_MODEL,
+      model: readRuntimeEnv("OLLAMA_MODEL", env) || DEFAULT_OLLAMA_MODEL,
       completionsUrl: ollamaCompletionsUrl(baseUrl)
     };
   }
@@ -113,14 +127,32 @@ export function isAskRetrievalSufficient(context: AskLlmContextSource[] | undefi
 }
 
 function siteOrigin(env: NodeJS.ProcessEnv = process.env) {
-  return env.NEXT_PUBLIC_SITE_URL?.trim() || "https://seri-ai.vercel.app";
+  return readRuntimeEnv("NEXT_PUBLIC_SITE_URL", env) || "https://seri-ai.vercel.app";
+}
+
+const PUBLIC_SITE_ORIGINS = [
+  "https://seri-ai.vercel.app",
+  "https://seri.ai",
+  "https://www.seri.ai",
+  "https://raviseri.com",
+  "https://www.raviseri.com"
+];
+
+function knownSiteOrigins(env: NodeJS.ProcessEnv = process.env) {
+  const origins = new Set(PUBLIC_SITE_ORIGINS);
+  origins.add(siteOrigin(env).replace(/\/$/, ""));
+  const canonical = readRuntimeEnv("NEXT_PUBLIC_CANONICAL_DOMAIN", env).replace(/^https?:\/\//, "").replace(/\/$/, "");
+  if (canonical) {
+    origins.add(`https://${canonical}`);
+  }
+  return [...origins];
 }
 
 function stripTrailingPunctuation(value: string) {
   return value.replace(/[).,;:]+$/g, "").replace(/[>'"]+$/g, "");
 }
 
-function urlVariants(raw: string, origin: string) {
+function urlVariants(raw: string, origin: string, env: NodeJS.ProcessEnv = process.env) {
   const variants = new Set<string>();
   const trimmed = raw.trim();
   if (!trimmed) {
@@ -138,6 +170,10 @@ function urlVariants(raw: string, origin: string) {
     variants.add(`${absolute.origin}${absolute.pathname}`);
     variants.add(`${absolute.pathname}${absolute.hash}`);
     variants.add(absolute.pathname);
+    for (const knownOrigin of knownSiteOrigins(env)) {
+      variants.add(`${knownOrigin}${absolute.pathname}${absolute.hash}`);
+      variants.add(`${knownOrigin}${absolute.pathname}`);
+    }
   } catch {
     // Ignore unparseable values; they remain as the raw string only.
   }
@@ -148,8 +184,13 @@ export function allowedAskCitationUrls(context: AskLlmContextSource[], env: Node
   const origin = siteOrigin(env);
   const allowed = new Set<string>();
   for (const source of context) {
-    for (const variant of urlVariants(source.url, origin)) {
+    for (const variant of urlVariants(source.url, origin, env)) {
       allowed.add(variant);
+    }
+    for (const found of extractCitedUrls(source.content ?? "")) {
+      for (const variant of urlVariants(found, origin, env)) {
+        allowed.add(variant);
+      }
     }
   }
   return allowed;
@@ -194,7 +235,7 @@ export function citationsAreSubsetOfRetrieved(
   const allowedUrlSet = allowedAskCitationUrls(context, env);
   const origin = siteOrigin(env);
   const extraPassageIds = extractCitedPassageIds(answer).filter((id) => !allowedIds.has(id));
-  const extraUrls = extractCitedUrls(answer).filter((url) => ![...urlVariants(url, origin)].some((variant) => allowedUrlSet.has(variant)));
+  const extraUrls = extractCitedUrls(answer).filter((url) => ![...urlVariants(url, origin, env)].some((variant) => allowedUrlSet.has(variant)));
   return {
     ok: extraPassageIds.length === 0 && extraUrls.length === 0,
     extraUrls,
@@ -242,7 +283,7 @@ export function validateSynthesizedAnswer(
   const cited = extractAskCitations(answer);
   const origin = siteOrigin(options.env);
   const allowedUrlSet = new Set(subset.allowedUrls);
-  const knownCitedUrls = cited.urls.filter((url) => [...urlVariants(url, origin)].some((variant) => allowedUrlSet.has(variant)));
+  const knownCitedUrls = cited.urls.filter((url) => [...urlVariants(url, origin, options.env)].some((variant) => allowedUrlSet.has(variant)));
   const knownCitedIds = cited.passageIds.filter((id) => subset.allowedPassageIds.includes(id));
   if (context.length > 0 && knownCitedIds.length === 0 && knownCitedUrls.length === 0) {
     return { ok: false, reason: "missing_citation" };
@@ -256,6 +297,7 @@ export function buildAskSynthesisMessages(question: string, context: AskLlmConte
   const contextBlock = passages
     .map((passage) => `[${passage.id}] ${passage.title} (${passage.url})\n${passage.content.replace(/\s+/g, " ").trim()}`)
     .join("\n\n");
+  const allowedCitations = passages.map((passage) => `${passage.id} ${passage.url}`).join("; ");
 
   return [
     {
@@ -264,7 +306,8 @@ export function buildAskSynthesisMessages(question: string, context: AskLlmConte
         "You are a retrieval-bound synthesizer for seri.ai Ask Ravikanth.",
         "Answer ONLY from the CONTEXT passages.",
         "Do not research, browse, search the web, fill gaps, or invent sources, employers, metrics, or URLs.",
-        "Cite passage ids such as [P1] and only the urls provided with those passages.",
+        "Every answer MUST cite at least one passage id in square brackets, such as [P1], and may repeat only the urls listed with those passages.",
+        "End with a Citations line that uses only those passage ids and urls.",
         "If CONTEXT is insufficient, say the topic is not in the public record and the public knowledge base does not cover it yet.",
         "Do not mention internal employer product names, private systems, logs, dashboards, or confidential architecture.",
         "If the question asks for confidential or out-of-scope material, refuse and stay on public architecture patterns.",
@@ -273,7 +316,7 @@ export function buildAskSynthesisMessages(question: string, context: AskLlmConte
     },
     {
       role: "user",
-      content: [`CONTEXT:`, contextBlock, "", `Question: ${question}`].join("\n")
+      content: [`CONTEXT:`, contextBlock, "", `ALLOWED CITATIONS: ${allowedCitations}`, "", `Question: ${question}`].join("\n")
     }
   ];
 }
@@ -307,13 +350,34 @@ async function completeChat(options: {
   }
 
   const payload = (await response.json()) as {
-    choices?: Array<{ message?: { content?: string | null } }>;
+    choices?: Array<{ message?: { content?: unknown } }>;
   };
-  const content = payload.choices?.[0]?.message?.content;
-  if (typeof content !== "string" || !content.trim()) {
+  const content = completionText(payload.choices?.[0]?.message?.content);
+  if (!content) {
     throw new Error("Ask LLM provider returned an empty completion");
   }
-  return content.trim();
+  return content;
+}
+
+function completionText(content: unknown) {
+  if (typeof content === "string") {
+    return content.trim();
+  }
+  if (!Array.isArray(content)) {
+    return "";
+  }
+  return content
+    .map((part) => {
+      if (typeof part === "string") {
+        return part;
+      }
+      if (part && typeof part === "object" && "text" in part && typeof (part as { text?: unknown }).text === "string") {
+        return (part as { text: string }).text;
+      }
+      return "";
+    })
+    .join("")
+    .trim();
 }
 
 export type AskSynthesisAttempt =

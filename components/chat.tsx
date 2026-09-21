@@ -31,6 +31,9 @@ type ApiResponse = {
     related_pages?: string[];
     public_boundary?: string;
     assistant_identity?: string;
+    llm_provider?: string;
+    llm_used?: boolean;
+    llm_skip_reason?: string | null;
     latency_ms?: number;
     budget?: {
       rate_limit?: number;
@@ -49,6 +52,28 @@ function sameUserThread(left: AskSessionMessage[], right: AskSessionMessage[]) {
   return JSON.stringify(userTurns(left)) === JSON.stringify(userTurns(right));
 }
 
+function llmSkipLabel(meta?: AskSessionPacket["meta"] | ApiResponse["meta"]) {
+  if (!meta) {
+    return "awaiting question";
+  }
+  if (meta.llm_used) {
+    return "none";
+  }
+  return meta.llm_skip_reason || "unspecified";
+}
+
+function answerPacketRows(meta?: AskSessionPacket["meta"] | ApiResponse["meta"]): Array<[string, string]> {
+  return [
+    ["Category", meta?.question_category ?? "awaiting question"],
+    ["Layers", meta?.framework_layers?.length ? meta.framework_layers.join(", ") : "matched after retrieval"],
+    ["Boundary", meta?.public_boundary ?? "approved public content only"],
+    ["LLM provider", meta?.llm_provider ?? "awaiting question"],
+    ["LLM used", meta ? String(Boolean(meta.llm_used)) : "awaiting question"],
+    ["LLM skip", llmSkipLabel(meta)],
+    ["Latency", typeof meta?.latency_ms === "number" ? `${meta.latency_ms} ms` : "not measured yet"]
+  ];
+}
+
 function hydrateLatestPacket(thread: AskSessionMessage[]) {
   const last = [...thread].reverse().find((message) => message.role === "assistant" && message.packet);
   return last?.packet;
@@ -63,12 +88,7 @@ function AnswerPacketDetails({
 }) {
   const meta = packet?.meta;
   const sources = packet?.sources ?? [];
-  const answerPacket: Array<[string, string]> = [
-    ["Category", meta?.question_category ?? "awaiting question"],
-    ["Layers", meta?.framework_layers?.length ? meta.framework_layers.join(", ") : "matched after retrieval"],
-    ["Boundary", meta?.public_boundary ?? "approved public content only"],
-    ["Latency", typeof meta?.latency_ms === "number" ? `${meta.latency_ms} ms` : "not measured yet"]
-  ];
+  const answerPacket = answerPacketRows(meta);
 
   return (
     <details className="mt-3 rounded border border-white/10 bg-black/25">
@@ -287,6 +307,9 @@ export function Chat({
         source_count: data.sources?.length ?? 0,
         answer_mode: data.meta?.answer_mode ?? "unknown",
         retrieval_mode: data.meta?.retrieval_mode ?? "unknown",
+        llm_provider: data.meta?.llm_provider ?? "unknown",
+        llm_used: data.meta?.llm_used ?? false,
+        llm_skip_reason: data.meta?.llm_skip_reason ?? null,
         server_category: data.meta?.question_category ?? category,
         public_boundary: data.meta?.public_boundary ?? "unknown",
         server_latency_ms: data.meta?.latency_ms ?? null
@@ -351,7 +374,18 @@ export function Chat({
     ["Mode", responseMeta?.retrieval_mode ?? (sources.length ? "sources" : "local")],
     ["Sources", sources.length ? `${sources.length} cited` : "pending"],
     ["Scope", "public"],
-    ["Status", isLoading ? "evaluating" : responseMeta?.answer_mode ?? "ready"]
+    [
+      "Status",
+      isLoading
+        ? "evaluating"
+        : responseMeta?.answer_mode
+          ? responseMeta.llm_used
+            ? `${responseMeta.answer_mode} · ${responseMeta.llm_provider ?? "llm"}`
+            : responseMeta.llm_skip_reason
+              ? `${responseMeta.answer_mode} · ${responseMeta.llm_skip_reason}`
+              : responseMeta.answer_mode
+          : "ready"
+    ]
   ];
   const hasAskedQuestion = messages.some((message) => message.role === "user");
   const hasSources = sources.length > 0;
@@ -582,12 +616,7 @@ export function Chat({
             <p className="font-semibold text-white">Answer packet</p>
           </div>
           <div className="mt-4 grid gap-2">
-            {[
-              ["Category", responseMeta?.question_category ?? "awaiting question"],
-              ["Layers", responseMeta?.framework_layers?.length ? responseMeta.framework_layers.join(", ") : "matched after retrieval"],
-              ["Boundary", responseMeta?.public_boundary ?? "approved public content only"],
-              ["Latency", typeof responseMeta?.latency_ms === "number" ? `${responseMeta.latency_ms} ms` : "not measured yet"]
-            ].map(([label, value]) => (
+            {[...answerPacketRows(responseMeta)].map(([label, value]) => (
               <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
                 <p className="whitespace-nowrap text-[0.66rem] font-semibold uppercase tracking-[0.1em] text-slate-400">{label}</p>
                 <p className="mt-1 break-words text-xs font-semibold leading-5 text-slate-200">{value}</p>

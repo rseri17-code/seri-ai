@@ -189,8 +189,11 @@ Production should stay on `ASK_LLM_PROVIDER=none`. To try synthesis on a Preview
    - `ASK_LLM_PROVIDER=groq`
    - `GROQ_API_KEY` (server-only; never `NEXT_PUBLIC_`)
    - optional `GROQ_MODEL` (default `llama-3.3-70b-versatile`)
-3. Redeploy the Preview deployment.
-4. Roll back by unsetting the variables or setting `ASK_LLM_PROVIDER=none`.
+3. Redeploy the Preview deployment so the serverless runtime picks up the variables.
+4. On Preview `/ask`, ask a grounded public question such as `What is Batch Intelligence?`
+   - Success: Status shows `ai_synthesis · groq`, the Answer packet shows **LLM used** `true`, **LLM provider** `groq`, **LLM skip** `none`.
+   - If Groq is configured but skipped or errors, Status stays `local_fallback` and **LLM skip** names the reason (`thin_retrieval`, `validation_rejected`, `provider_error`, `missing_credentials`, or `provider_none`). Mode `local` is retrieval, not LLM status.
+5. Roll back by unsetting the variables or setting `ASK_LLM_PROVIDER=none`.
 
 Invent-source and grounded-synthesis evals (no live Groq key required):
 

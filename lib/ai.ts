@@ -1,24 +1,8 @@
-import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
-import {
-  isAskRetrievalSufficient,
-  resolveAskLlmProvider,
-  trySynthesizeAskAnswer,
-  type AskLlmProvider,
-  type AskLlmSkipReason
-} from "@/lib/ask-llm";
-import { publicSafetyInstruction } from "@/lib/compliance";
 
 export type ChatMessage = {
   role: "user" | "assistant";
   content: string;
-};
-
-type GenerateArgs = {
-  question: string;
-  context: Array<{ title: string; url: string; content: string }>;
-  history?: ChatMessage[];
-  fetchImpl?: typeof fetch;
 };
 
 function normalizeQuestionIntent(question: string) {
@@ -527,7 +511,7 @@ function selectRelevantPassage(
   return { passage: trimToSentence(passage, limit), source: selectedDocument.source };
 }
 
-function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
+export function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
   const lower = normalizeQuestionIntent(question);
   const asksAboutRavikanth = /ravikanth|about me|about him|who is|hire|hiring|worth talking|worth a conversation|good fit|right person|what.*building|what.*built|what.*shipped|done professionally|professionally|his career|his experience|why.*trust|why would|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education|technical problems?|speciali[sz]e|work with him|engineering organization/.test(lower);
   const layers = inferFrameworkLayers(question);
@@ -678,132 +662,6 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     .filter((line): line is string => Boolean(line))
     .join("\n\n")
     .replace(/([.!?])\s*\.(?=\s|$)/g, "$1");
-}
-
-export type AskAnswerMode = "ai_synthesis" | "local_fallback" | "timeout_fallback";
-
-export type GenerateRaviAnswerResult = {
-  answer: string;
-  mode: AskAnswerMode;
-  llmProvider: AskLlmProvider;
-  llmUsed: boolean;
-  llmSkipReason?: AskLlmSkipReason;
-};
-
-export async function generateRaviAnswer({
-  question,
-  context,
-  history = [],
-  fetchImpl
-}: GenerateArgs): Promise<GenerateRaviAnswerResult> {
-  const groundedProvider = resolveAskLlmProvider();
-  if (groundedProvider.kind !== "none") {
-    if (!isAskRetrievalSufficient(context)) {
-      return {
-        answer: localFallbackAnswer(question, context),
-        mode: "local_fallback",
-        llmProvider: groundedProvider.kind,
-        llmUsed: false,
-        llmSkipReason: "thin_retrieval"
-      };
-    }
-
-    const synthesized = await trySynthesizeAskAnswer({
-      question,
-      context,
-      provider: groundedProvider,
-      fetchImpl
-    });
-    if (synthesized.ok) {
-      return {
-        answer: synthesized.answer,
-        mode: "ai_synthesis",
-        llmProvider: synthesized.provider,
-        llmUsed: true
-      };
-    }
-    return {
-      answer: localFallbackAnswer(question, context),
-      mode: "local_fallback",
-      llmProvider: groundedProvider.kind,
-      llmUsed: false,
-      llmSkipReason: synthesized.reason
-    };
-  }
-
-  const provider = process.env.AI_PROVIDER ?? "openai";
-  const prompt = [
-    publicSafetyInstruction(),
-    "",
-    "Approved context:",
-    context.length
-      ? context.map((item, index) => `[${index + 1}] ${item.title} (${item.url}): ${item.content}`).join("\n")
-      : "No relevant public context found.",
-    "",
-    `Question: ${question}`,
-    "",
-    [
-      "Answer contract:",
-      "1. Start with a direct answer.",
-      "2. Name the most relevant Operational Intelligence Framework layer when applicable.",
-      "3. Cite the supporting public source title inline when useful.",
-      "4. State one tradeoff, limitation, or missing-context boundary when applicable.",
-      "5. Point to a related page or artifact when helpful.",
-      "6. Explicitly say what is unknown or outside the public-safe knowledge base.",
-      "7. Follow the Ask persona contract in the system instruction: answer as a public evidence interface over Ravikanth's work, not as Ravikanth personally and not as a generic chatbot.",
-      "If the approved context does not cover the question, say the topic is not in the public record and the public knowledge base does not cover it yet. Do not answer from a weakly related nearest-neighbor principle."
-    ].join("\n")
-  ].join("\n");
-
-  if (provider === "anthropic" && process.env.ANTHROPIC_API_KEY) {
-    const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-    const response = await anthropic.messages.create({
-      model: process.env.ANTHROPIC_CHAT_MODEL ?? "claude-3-5-sonnet-latest",
-      max_tokens: 700,
-      system: publicSafetyInstruction(),
-      messages: [
-        ...history.map((message) => ({ role: message.role, content: message.content })),
-        { role: "user", content: prompt }
-      ]
-    });
-
-    return {
-      answer: response.content.map((block) => ("text" in block ? block.text : "")).join(""),
-      mode: "ai_synthesis",
-      llmProvider: "none",
-      llmUsed: false,
-      llmSkipReason: groundedProvider.skipReason
-    };
-  }
-
-  if (process.env.OPENAI_API_KEY) {
-    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    const response = await openai.chat.completions.create({
-      model: process.env.OPENAI_CHAT_MODEL ?? "gpt-4.1-mini",
-      temperature: 0.3,
-      messages: [
-        { role: "system", content: publicSafetyInstruction() },
-        ...history,
-        { role: "user", content: prompt }
-      ]
-    });
-
-    return {
-      answer: response.choices[0]?.message.content ?? "I do not have enough approved public context to answer that.",
-      mode: "ai_synthesis",
-      llmProvider: "none",
-      llmUsed: false,
-      llmSkipReason: groundedProvider.skipReason
-    };
-  }
-
-  return {
-    answer: localFallbackAnswer(question, context),
-    mode: "local_fallback",
-    llmProvider: "none",
-    llmUsed: false,
-    llmSkipReason: groundedProvider.skipReason
-  };
 }
 
 export async function embedText(input: string) {

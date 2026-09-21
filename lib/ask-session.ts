@@ -24,6 +24,9 @@ export type AskSessionPacket = {
     related_pages?: string[];
     public_boundary?: string;
     assistant_identity?: string;
+    llm_provider?: string;
+    llm_used?: boolean;
+    llm_skip_reason?: string | null;
     latency_ms?: number;
     budget?: {
       rate_limit?: number;
@@ -161,6 +164,9 @@ function compactMessagesForHash(messages: AskSessionMessage[], includePackets: b
                       related_pages: message.packet.meta.related_pages?.slice(0, 4),
                       public_boundary: message.packet.meta.public_boundary,
                       assistant_identity: message.packet.meta.assistant_identity,
+                      llm_provider: message.packet.meta.llm_provider,
+                      llm_used: message.packet.meta.llm_used,
+                      llm_skip_reason: message.packet.meta.llm_skip_reason ?? null,
                       latency_ms: message.packet.meta.latency_ms
                     }
                   }

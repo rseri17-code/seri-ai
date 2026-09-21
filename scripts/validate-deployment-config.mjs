@@ -74,6 +74,7 @@ const sourceFiles = [
   "app/sitemap.ts",
   "components/analytics.tsx",
   "lib/ai.ts",
+  "lib/ask-answer.ts",
   "lib/ask-llm.ts",
   "lib/env.ts",
   "lib/llms.ts",
