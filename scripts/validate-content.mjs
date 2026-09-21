@@ -382,7 +382,9 @@ for (const required of [
   // public-safety rule, not for a reader, and defensive in the first 200 words of the site. The
   // invariant that actually matters is that the hero still states the employer boundary, so that is
   // what is pinned now. The boundary is also stated on the Operations Room and in the footer.
-  "That system stays private"
+  "That system stays private",
+  // First-touch gloss for the named failure mode. Keep the sharp term; do not drop the plain-English clause.
+  "permitted to take on context it should not have trusted"
 ]) {
   if (!homePageSource.includes(required)) {
     errors.push(`app/page.tsx: homepage first impression missing required positioning phrase: ${required}`);
@@ -398,7 +400,7 @@ if (homePageSource.indexOf("<HomeOrientation") > homePageSource.indexOf("The fai
   errors.push("app/page.tsx: 30-second map must render before the Authorized Misfire thesis");
 }
 if (
-  homeOrientationSource.indexOf("Start here") > homeOrientationSource.indexOf("What I&apos;m building, and where it is headed.")
+  homeOrientationSource.indexOf("<EvidenceLadder") > homeOrientationSource.indexOf("What I&apos;m building, and where it is headed.")
 ) {
   errors.push("components/home-orientation.tsx: start-here path must appear before the destination essay so mobile visitors see an action first");
 }
@@ -409,12 +411,46 @@ for (const required of [
   "SRE / Agent Harness",
   "Batch Intelligence",
   "Ten layers",
-  "Start here",
+  "The work, plainly",
+  "Staff / Principal conversations",
+  "public-safe proofs.",
+  "Context Acquisition Tax",
   "What I&apos;m building, and where it is headed.",
   "Destination: agents that can sit near production"
 ]) {
   if (!homeOrientationSource.includes(required)) {
     errors.push(`components/home-orientation.tsx: homepage orientation missing "${required}"`);
+  }
+}
+const evidenceLadderPath = path.join(root, "components", "evidence-ladder.tsx");
+const evidenceLadderSource = fs.existsSync(evidenceLadderPath) ? fs.readFileSync(evidenceLadderPath, "utf8") : "";
+const workPageSource = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
+if (!homeOrientationSource.includes("<WorkPlainly") || !homeOrientationSource.includes("<EvidenceLadder")) {
+  errors.push("components/home-orientation.tsx: work-plainly strip and evidence ladder must render inside the hero orientation");
+}
+if (homeOrientationSource.indexOf("<WorkPlainly") > homeOrientationSource.indexOf("<EvidenceLadder")) {
+  errors.push("components/home-orientation.tsx: work-plainly strip must appear before the evidence ladder");
+}
+if (homeOrientationSource.indexOf("id=\"orientation\"") > homeOrientationSource.indexOf("<WorkPlainly")) {
+  errors.push("components/home-orientation.tsx: work-plainly strip must appear under the 30-second map");
+}
+if (!workPageSource.includes("<EvidenceLadder")) {
+  errors.push("app/work/page.tsx: Work must render the shared evidence ladder");
+}
+for (const required of [
+  "Start here",
+  "A path through the work",
+  "Operations Room",
+  "Framework",
+  "Codebase Memory",
+  "Ask",
+  "Writing",
+  "Proves:",
+  "Batch Intelligence is proof",
+  "ten layers are a filing system"
+]) {
+  if (!evidenceLadderSource.includes(required)) {
+    errors.push(`components/evidence-ladder.tsx: evidence ladder missing "${required}"`);
   }
 }
 for (const forbidden of [

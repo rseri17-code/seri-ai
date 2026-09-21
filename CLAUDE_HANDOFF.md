@@ -2,6 +2,16 @@
 
 Last updated: 2026-09-21
 
+## HOMEPAGE CLARITY PASS — 2026-09-21
+
+Work-first 60-second scan, without a seventh homepage section, a hiring-brochure frame, or a redesign.
+
+- **The work, plainly** sits inside the hero orientation, under the 30-second map: what he builds (production AI for enterprise operations — context layer, harness, human gates, public-safe proofs), what shipped (enterprise SRE investigation agent, thesis to production, owned end to end; system private; site stands alone), what to inspect (Operations Room, Framework, Codebase Memory). Staff / Principal conversation is one quiet line with Contact — not the headline.
+- **Evidence ladder** is the existing Start here path through the work: Operations Room → Framework → Codebase Memory → Ask → Writing. Each card has a kind label and one "Proves:" line. Shared on `/` and `/work`. Batch Intelligence remains proof; ten layers remain a filing system.
+- **First-touch glosses**: Authorized Misfire keeps its plain-English clause on `/` and `/framework`. Context Acquisition Tax is glossed on first homepage touch in the 30-second map, and on first `/framework` sentence.
+
+No employer metrics, no new routes, no frozen-H1 change. Preview-only; do not merge.
+
 ## BUILDER CODEBASE MEMORY CASE STUDY — 2026-09-21
 
 Added a public-safe engineering case study at `/projects/codebase-memory` in the existing project family. It is listed on `/projects` and `/work` from `content/projects.json`, and the homepage Selected work section carries a compact teaser. No new top-level nav item. The page is a focused editorial case study with a deterministic, client-side illustrative example (synthetic checkout code only). It does not duplicate Operational Intelligence doctrine.
@@ -1542,6 +1552,13 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Grok: homepage clarity pass (work plainly, evidence ladder, glosses)
+
+- **Keep**: 30-second map, Batch-as-proof vs ten-layers-as-filing-system, Codebase Memory teaser in Selected work, frozen hero H1 and two primary CTAs.
+- **Reframe**: the near-hero strip leads with the work, not a hiring conversation. Staff / Principal / Contact is one quiet line. The ladder is a path through inspectable artifacts.
+- **Why it matters**: a serious visitor still had to assemble what he builds, where the proof is, and what Authorized Misfire / Context Acquisition Tax mean. Evidence: `components/home-orientation.tsx`, `components/evidence-ladder.tsx`, `app/work/page.tsx`, `app/framework/page.tsx`. Public-safety risk: none; no employer metrics or private names added.
+- **Placement**: work-plainly strip and ladder live *inside* the hero via HomeOrientation so they are not a seventh ruled section.
 
 ### 2026-09-21 — Grok: homepage cold-start vs open PRs
 

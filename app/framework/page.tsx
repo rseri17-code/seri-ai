@@ -121,8 +121,8 @@ export default function FrameworkPage() {
       <Section eyebrow="The two halves" title="What has to exist beneath an agent, and what the agent has to do with it.">
         <p className="max-w-4xl text-base leading-7 text-slate-300">
           These are the same argument at two altitudes. The context layer is the substrate: maintained once, consumed by everything.
-          The harness is the loop that runs on top of it. An Authorized Misfire is what happens when the loop grounds itself on a
-          substrate nobody kept current.
+          The harness is the loop that runs on top of it. An Authorized Misfire &mdash; an action the system was permitted to take
+          on context it should not have trusted &mdash; is what happens when the loop grounds itself on a substrate nobody kept current.
         </p>
 
         <Card className="mt-5 p-4 sm:p-6">
@@ -130,9 +130,10 @@ export default function FrameworkPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">One &mdash; the substrate</p>
           <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The Enterprise Context Layer</h3>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
-            Today every engineer, every workflow and every agent reconstructs operational reality independently, each one pulling
-            separately from CMDB, observability, identity, ITSM, CI/CD and topology. This is the Context Acquisition Tax, and it is
-            paid on every single investigation. Time spent reconstructing context is time not spent solving the problem.
+            This is the Context Acquisition Tax &mdash; the cost of reconstructing who owns this, what changed, what depends on it,
+            and what the transaction did, every time, because no shared layer already knows. Today every engineer, every workflow
+            and every agent pays it independently, each one pulling separately from CMDB, observability, identity, ITSM, CI/CD and
+            topology. Time spent reconstructing context is time not spent solving the problem.
           </p>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
             The alternative is to treat operational reality as shared infrastructure &mdash; one governed, auditable, continuously

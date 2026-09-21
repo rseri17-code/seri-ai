@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { EvidenceLadder } from "@/components/evidence-ladder";
 import { TrackedLink } from "@/components/tracked-link";
 
 /**
@@ -7,46 +7,87 @@ import { TrackedLink } from "@/components/tracked-link";
  * ten-layer table live on /framework. This strip only answers: umbrella,
  * substrate, loop, public proof, filing system, destination, first visit.
  *
- * Do not grow this component into a second homepage. Case-study teasers
- * (Codebase Memory → /projects/codebase-memory) belong in Selected work on
- * app/page.tsx, not here.
+ * The work-plainly strip and evidence ladder live here, inside the hero, so they
+ * are not a seventh homepage section. Case-study teasers (Codebase Memory →
+ * /projects/codebase-memory) belong in Selected work on app/page.tsx, not here.
+ *
+ * Do not grow this component into a second homepage. Do not turn this strip into
+ * a hiring brochure: the work leads; conversation is a quiet line.
  */
-const startHere = [
+const inspectLinks = [
   {
-    n: "01",
-    label: "This map",
-    detail: "Umbrella, substrate, loop, proof, filing system.",
-    href: "#orientation",
-    cta: "start_here_map"
-  },
-  {
-    n: "02",
-    label: "Operations Room",
-    detail: "Synthetic investigation that has to account for itself.",
     href: "/investigation-room",
-    secondaryHref: "/framework",
-    secondaryLabel: "Batch proof",
-    cta: "start_here_operations_room",
-    secondaryCta: "start_here_batch_proof"
+    label: "Operations Room",
+    cta: "work_plainly_operations_room"
   },
   {
-    n: "03",
-    label: "Framework",
-    detail: "Full map, context layer, harness, and the ten-layer filing system.",
     href: "/framework",
-    cta: "start_here_framework"
+    label: "Framework",
+    cta: "work_plainly_framework"
   },
   {
-    n: "04",
-    label: "Ask a question",
-    detail: "Against the public record — or start a conversation.",
-    href: "/ask",
-    secondaryHref: "/contact",
-    secondaryLabel: "Contact",
-    cta: "start_here_ask",
-    secondaryCta: "start_here_contact"
+    href: "/projects/codebase-memory",
+    label: "Codebase Memory",
+    cta: "work_plainly_codebase_memory"
   }
 ] as const;
+
+function WorkPlainly() {
+  return (
+    <aside
+      aria-labelledby="work-plainly-title"
+      className="mt-8 rounded-xl border border-mint/25 bg-mint/[0.04] p-4 sm:p-5"
+    >
+      <p id="work-plainly-title" className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">
+        The work, plainly
+      </p>
+      <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <div>
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Builds</p>
+          <p className="mt-1 text-sm leading-6 text-white sm:text-base sm:leading-7">
+            Production AI systems for enterprise operations: a shared context layer, an SRE / agent
+            harness with human gates, and public-safe proofs.
+          </p>
+        </div>
+        <div>
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Shipped</p>
+          <p className="mt-1 text-sm leading-6 text-slate-200 sm:text-base sm:leading-7">
+            An enterprise SRE investigation agent, from thesis to production, owned end to end. That
+            system stays private. This site stands on its own.
+          </p>
+        </div>
+        <div className="sm:col-span-2">
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Inspect</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {inspectLinks.map((item) => (
+              <TrackedLink
+                key={item.href}
+                href={item.href}
+                eventName="homepage_cta_click"
+                eventProperties={{ cta: item.cta }}
+                className="inline-flex min-h-11 items-center rounded-md border border-white/15 bg-black/25 px-3 text-sm font-semibold text-white underline decoration-mint/35 underline-offset-4 hover:border-mint/40 hover:text-mint hover:decoration-mint"
+              >
+                {item.label}
+              </TrackedLink>
+            ))}
+          </div>
+        </div>
+      </div>
+      <p className="mt-4 max-w-3xl text-xs leading-5 text-slate-400 sm:text-sm sm:leading-6">
+        Staff / Principal conversations in AIOps, observability, or AI platform leadership —{" "}
+        <TrackedLink
+          href="/contact"
+          eventName="homepage_cta_click"
+          eventProperties={{ cta: "work_plainly_conversation" }}
+          className="font-semibold text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-mint hover:decoration-mint"
+        >
+          Contact
+        </TrackedLink>
+        .
+      </p>
+    </aside>
+  );
+}
 
 export function HomeOrientation() {
   return (
@@ -59,8 +100,10 @@ export function HomeOrientation() {
           </h2>
           <p id="home-orientation-summary" className="mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
             Operational Intelligence is the umbrella. The Enterprise Context Layer is the shared substrate.
-            The SRE / Agent Harness is the loop on that substrate. Batch Intelligence is public-safe proof of
-            an execution graph, not a taxonomy layer. The ten layers are a filing system.
+            Skip it, and every investigation pays the Context Acquisition Tax &mdash; reconstructing ownership,
+            change, dependency, and transaction by hand. The SRE / Agent Harness is the loop on that substrate.
+            Batch Intelligence is public-safe proof of an execution graph, not a taxonomy layer. The ten layers
+            are a filing system.
           </p>
         </figcaption>
 
@@ -78,7 +121,9 @@ export function HomeOrientation() {
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-signal">Shared substrate</p>
               <p className="mt-2 text-sm font-semibold text-white sm:text-base">Enterprise Context Layer</p>
               <p className="mt-1 text-sm leading-6 text-slate-300">
-                Ownership, change, dependency, transaction — maintained once.
+                Ownership, change, dependency, transaction &mdash; maintained once. Without it, every investigation
+                pays the <strong className="font-semibold text-white">Context Acquisition Tax</strong> &mdash;
+                reconstructing those four answers by hand.
               </p>
               <Link
                 href="/framework"
@@ -129,36 +174,8 @@ export function HomeOrientation() {
         </p>
       </figure>
 
-      <nav aria-label="First visit" className="mt-8 rounded-xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Start here</p>
-        <p className="mt-2 text-sm leading-6 text-slate-300">A first visit, in this order.</p>
-        <ol className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          {startHere.map((step) => (
-            <li key={step.n} className="rounded-lg border border-white/10 bg-black/25 p-3">
-              <p className="font-mono text-xs text-mint">{step.n}</p>
-              <TrackedLink
-                href={step.href}
-                eventName="homepage_cta_click"
-                eventProperties={{ cta: step.cta }}
-                className="mt-1 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-white underline decoration-mint/35 underline-offset-4 hover:text-mint hover:decoration-mint"
-              >
-                {step.label} <ArrowRight size={14} aria-hidden="true" />
-              </TrackedLink>
-              <p className="mt-1 text-xs leading-5 text-slate-400">{step.detail}</p>
-              {"secondaryHref" in step && step.secondaryHref ? (
-                <TrackedLink
-                  href={step.secondaryHref}
-                  eventName="homepage_cta_click"
-                  eventProperties={{ cta: step.secondaryCta }}
-                  className="mt-2 inline-flex min-h-11 items-center text-xs font-semibold text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
-                >
-                  {step.secondaryLabel}
-                </TrackedLink>
-              ) : null}
-            </li>
-          ))}
-        </ol>
-      </nav>
+      <WorkPlainly />
+      <EvidenceLadder source="home" />
 
       <div className="mt-8 max-w-3xl">
         <h3 className="text-lg font-semibold text-white sm:text-xl">What I&apos;m building, and where it is headed.</h3>

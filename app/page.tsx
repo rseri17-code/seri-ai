@@ -18,10 +18,10 @@
  *   5 Selected ideas  6 Closing invitation
  * Do not add a seventh section without a documented visitor need.
  *
- * The 30-second map, start-here path, and destination block live *inside the hero*
- * (after identity, before the signature thesis) so a cold visitor gets the architecture
- * shape before Authorized Misfire jargon. That is not a seventh section. The longer map
- * belongs on /framework.
+ * The 30-second map, work-plainly strip, evidence ladder, start-here path, and destination
+ * block live *inside the hero* (after identity, before the signature thesis) so a
+ * cold visitor gets the architecture shape before Authorized Misfire jargon. That is
+ * not a seventh section. The longer map belongs on /framework.
  *
  * This file is shared. The orientation strip owns only the hero insertion of
  * <HomeOrientation />. A compact public-safe case-study teaser (Codebase Memory,
@@ -176,8 +176,8 @@ export default function Home() {
             the point where it was still true.
           </p>
           <p className="mt-7 max-w-2xl text-lg leading-9 text-slate-300">
-            This is <strong className="font-semibold text-amber">the Authorized Misfire</strong>: an action the
-            system was permitted to take, on context it should not have trusted. No rule was broken. What it knew was older or
+            This is <strong className="font-semibold text-amber">the Authorized Misfire</strong> &mdash; an action the
+            system was permitted to take on context it should not have trusted. No rule was broken. What it knew was older or
             thinner than the decision resting on it.
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">

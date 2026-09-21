@@ -35,6 +35,26 @@ const routeContracts = [
     ]
   },
   {
+    route: "/",
+    file: "components/home-orientation.tsx",
+    minResponsiveTokens: 18,
+    required: [
+      "sm:grid-cols-2",
+      "The work, plainly"
+    ]
+  },
+  {
+    route: "/",
+    file: "components/evidence-ladder.tsx",
+    minResponsiveTokens: 2,
+    required: [
+      "lg:grid-cols-5",
+      "sm:grid-cols-2",
+      "min-h-11",
+      "A path through the work"
+    ]
+  },
+  {
     route: "/ask",
     file: "components/chat.tsx",
     minResponsiveTokens: 7,
