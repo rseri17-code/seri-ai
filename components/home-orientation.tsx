@@ -7,10 +7,11 @@ import { TrackedLink } from "@/components/tracked-link";
  * ten-layer table live on /framework. This strip only answers: store, loop,
  * public demo, filing system, destination, first visit.
  *
- * One map. One destination line. One path (the evidence ladder). Do not restore
- * a work-plainly restatement or a "what I'm building" essay — those were the
- * four hero stacks. Case-study teasers (Codebase Memory) belong in Selected
- * work on app/page.tsx, not in a first-inspect chip row.
+ * One map. One destination line. One path (the evidence ladder). The summary
+ * under the map title is one store + loop sentence. House names stay on the
+ * cards. Do not restore a work-plainly restatement or a "what I'm building"
+ * essay — those were the four hero stacks. Case-study teasers (Codebase Memory)
+ * belong in Selected work on app/page.tsx, not in a first-inspect chip row.
  *
  * Do not grow this component into a second homepage. Do not turn this strip into
  * a hiring brochure: the work leads; conversation is a quiet line under the path.
@@ -26,16 +27,8 @@ export function HomeOrientation() {
           </h2>
           <div id="home-orientation-summary" className="mt-3 max-w-2xl space-y-3 text-sm leading-7 text-slate-300 sm:text-base">
             <p>
-              Operational Intelligence is the overall idea: reason from live production signals to a
-              decision a person can own. The Enterprise Context Layer is the shared store — four current
-              records, each with a source and a time: who owns the failing thing, what changed, what
-              depends on it, and which customer or business journey is hurt. Skip the store, and every
-              investigation rebuilds those four by hand (the{" "}
-              <strong className="font-semibold text-white">Context Acquisition Tax</strong>
-              ). The SRE / Agent Harness is the investigation loop that reads that store and writes
-              outcomes back. Batch Intelligence is a public demo of the store for batch jobs — which jobs
-              ran, in what order, what they read and wrote. The ten layers are how this site files notes.
-              They are not the runtime design.
+              A shared store of current production context, and an investigation loop that reads that store
+              and writes what happened back.
             </p>
           </div>
         </figcaption>
@@ -69,7 +62,7 @@ export function HomeOrientation() {
                 <p className="mt-1 text-xs leading-5 text-slate-300">
                   For request-path services, the store&apos;s dependency record is topology and deploys. For
                   batch, it is which jobs ran, in what order, and what they read and wrote. This is a
-                  shareable demo of that batch record (no employer data). It is not one of the ten filing labels.
+                  shareable demo of that batch record (no employer data).
                 </p>
               </Link>
             </div>
@@ -99,7 +92,7 @@ export function HomeOrientation() {
               href="/framework#taxonomy"
               className="block min-h-11 rounded-lg border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/25"
             >
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-slate-400">Filing system (not the runtime)</p>
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-slate-400">How this site tags notes</p>
               <p className="mt-1 text-sm font-semibold text-white sm:text-base">Ten layers</p>
               <p className="mt-1 text-sm leading-6 text-slate-300">
                 How this site tags notes, patterns, and artifacts so they can be found. Ten demo stages in

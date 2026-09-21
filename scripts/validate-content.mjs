@@ -385,11 +385,15 @@ for (const required of [
   "That system stays private",
   // First-touch gloss for the named failure mode. Keep the sharp term; do not drop the plain-English clause.
   "permitted to take on context it should not have trusted",
-  // Repointed 2026-09-21 (homepage-10 Rank 4 / Rank 5 / Rank 8): 10-second sentence is store + loop;
-  // SRE is spelled on first screen; closer must not open on hiring.
-  "shared, current picture of owner, change, dependency",
-  "investigation loop that can recommend",
-  "investigates production reliability",
+  // Repointed 2026-09-21 (hero lead lock): plain store + agent sentence. Same invariants —
+  // owner, change, dependency, journey, source and time, a step a person can refuse, evidence shown.
+  // The production-outage accomplishment stays in the hero. Closer must not open on hiring.
+  "who owns the failing thing, what changed, what depends on it, and which customer journey is hurt",
+  "each with a source and a time",
+  "recommends a next step a person can refuse",
+  "has to show its evidence",
+  "investigates production outages that way",
+  "separate work you can inspect",
   "A second opinion before putting an agent",
   "they are not what this page is for"
 ]) {
@@ -417,14 +421,17 @@ if (
 }
 for (const required of [
   "30-second map",
-  "Operational Intelligence is the overall idea",
+  // Repointed 2026-09-21 (homepage 10/10 summary): the name-stack paragraph left the summary.
+  // House names stay on the cards. Do not pin the old summary sentences.
+  "Operational Intelligence",
+  "Enterprise Context Layer",
   // Repointed 2026-09-21 (homepage-10 Rank 2): four answers are records with source and time,
   // not a "shared foundation" metaphor or a four-noun slogan.
-  "Enterprise Context Layer is the shared store",
   "source and an as-of time",
   "SRE / Agent Harness",
   "Batch Intelligence",
   "Ten layers",
+  "How this site tags notes",
   "Staff or Principal conversations",
   "Context Acquisition Tax",
   "Destination: agents that can sit near production",
@@ -433,6 +440,36 @@ for (const required of [
 ]) {
   if (!homeOrientationSource.includes(required)) {
     errors.push(`components/home-orientation.tsx: homepage orientation missing "${required}"`);
+  }
+}
+// The summary is one store + loop sentence. Cards carry OI, ECL, CAT, Harness, and Batch.
+const summaryRegion = homeOrientationSource.match(/id="home-orientation-summary"[\s\S]*?<\/div>/)?.[0] ?? "";
+if (!summaryRegion) {
+  errors.push("components/home-orientation.tsx: missing #home-orientation-summary");
+} else {
+  const summaryText = summaryRegion.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  const sentenceCount = summaryText.split(/[.!?]/).filter((part) => part.trim().length > 0).length;
+  if (!summaryText.includes("shared store") || !summaryText.includes("investigation loop") || sentenceCount !== 1) {
+    errors.push("components/home-orientation.tsx: 30-second map summary must be exactly one store + loop sentence");
+  }
+  for (const banned of ["Operational Intelligence", "Enterprise Context Layer", "Context Acquisition Tax", "Harness", "Batch", "They are not the runtime design"]) {
+    if (summaryRegion.includes(banned)) {
+      errors.push(`components/home-orientation.tsx: 30-second map summary must not include "${banned}"`);
+    }
+  }
+  for (const acronym of ["OI", "ECL", "CAT"]) {
+    if (new RegExp(`\\b${acronym}\\b`).test(summaryText)) {
+      errors.push(`components/home-orientation.tsx: 30-second map summary must not include "${acronym}"`);
+    }
+  }
+}
+for (const banned of [
+  "It is not one of the ten filing labels",
+  "Filing system (not the runtime)",
+  "They are not the runtime design"
+]) {
+  if (homeOrientationSource.includes(banned)) {
+    errors.push(`components/home-orientation.tsx: teaching-by-negation must stay removed: "${banned}"`);
   }
 }
 if (homeOrientationSource.includes("The work, plainly") || homeOrientationSource.includes("What I&apos;m building, and where it is headed.")) {
