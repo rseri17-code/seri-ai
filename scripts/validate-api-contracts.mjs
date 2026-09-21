@@ -9,7 +9,7 @@ const jiti = jitiFactory(fileURLToPath(import.meta.url), {
 
 const errors = [];
 
-const envKeys = ["OPENAI_API_KEY", "ANTHROPIC_API_KEY", "SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "AI_PROVIDER"];
+const envKeys = ["OPENAI_API_KEY", "ANTHROPIC_API_KEY", "SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "AI_PROVIDER", "ASK_LLM_PROVIDER", "GROQ_API_KEY", "GROQ_MODEL", "OLLAMA_BASE_URL", "OLLAMA_MODEL"];
 const originalEnv = Object.fromEntries(envKeys.map((key) => [key, process.env[key]]));
 for (const key of envKeys) {
   delete process.env[key];

@@ -62,6 +62,8 @@ export async function POST(request: Request) {
         related_pages: relatedPages,
         public_boundary: "public-safe refusal",
         assistant_identity: "AI assistant over approved public work",
+        llm_provider: "none",
+        llm_used: false,
         latency_ms: Date.now() - startedAt,
         budget: {
           rate_limit: ASK_RATE_LIMIT,
@@ -120,12 +122,21 @@ export async function POST(request: Request) {
 
   let answer: string;
   let answerMode: AskAnswerMode = "ai_synthesis";
+  let llmProvider: "none" | "groq" | "ollama" = "none";
+  let llmUsed = false;
+  let llmSkipReason: string | undefined;
   try {
     const generated = await withTimeout(generateRaviAnswer({ question, context, history }), ASK_SYNTHESIS_TIMEOUT_MS, "Ask Ravi");
     answer = generated.answer;
     answerMode = generated.mode;
+    llmProvider = generated.llmProvider;
+    llmUsed = generated.llmUsed;
+    llmSkipReason = generated.llmSkipReason;
   } catch {
     answerMode = "timeout_fallback";
+    llmProvider = "none";
+    llmUsed = false;
+    llmSkipReason = "provider_error";
     answer = [
       "Direct answer: The public knowledge system is available, but the AI synthesis path did not complete in time. The safest beta behavior is to fall back to the approved public sources instead of guessing.",
       "Relevant framework layers: Evidence Layer, Evaluation Layer, Operator Layer.",
@@ -154,6 +165,9 @@ export async function POST(request: Request) {
       related_pages: relatedPages,
       public_boundary: "approved public content only",
       assistant_identity: "AI assistant over approved public work",
+      llm_provider: llmProvider,
+      llm_used: llmUsed,
+      ...(llmSkipReason ? { llm_skip_reason: llmSkipReason } : {}),
       latency_ms: Date.now() - startedAt,
       budget: {
         rate_limit: ASK_RATE_LIMIT,

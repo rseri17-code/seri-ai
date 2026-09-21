@@ -11,6 +11,10 @@ export function getRuntimeEnvironment() {
     siteUrl,
     canonicalDomain,
     aiProvider,
+    askLlmProvider: process.env.ASK_LLM_PROVIDER === "groq" || process.env.ASK_LLM_PROVIDER === "ollama" ? process.env.ASK_LLM_PROVIDER : "none",
+    askLlmConfigured:
+      (process.env.ASK_LLM_PROVIDER === "groq" && Boolean(process.env.GROQ_API_KEY)) ||
+      (process.env.ASK_LLM_PROVIDER === "ollama" && Boolean(process.env.OLLAMA_BASE_URL)),
     aiConfigured: aiProvider === "anthropic" ? anthropicConfigured : openAiConfigured,
     vectorSearchConfigured: supabaseConfigured && openAiConfigured,
     contactPersistenceConfigured: supabaseConfigured,
