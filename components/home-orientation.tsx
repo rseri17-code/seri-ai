@@ -125,50 +125,48 @@ export function HomeOrientation() {
         </p>
       </figure>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-        <div>
-          <h3 className="text-lg font-semibold text-white sm:text-xl">What I&apos;m building, and where it is headed.</h3>
-          <p className="mt-3 max-w-xl text-sm leading-7 text-slate-300 sm:text-base sm:leading-7">
-            I&apos;m building Operational Intelligence: a reasoning layer between enterprise telemetry and a human
-            decision. The shared piece is the Enterprise Context Layer — ownership, change, dependency, and
-            transaction truth, maintained once instead of reconstructed by every agent. An SRE / Agent Harness
-            runs on that layer: evidence, hypothesis, eval gate, then learning, with a person still owning
-            anything consequential. Batch Intelligence is the public-safe proof of that idea on an execution
-            graph; it is not a taxonomy layer. The destination is agents that can sit near production because
-            context, evaluation, and human authority are first-class.
-          </p>
-        </div>
-
-        <nav aria-label="First visit" className="rounded-xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Start here</p>
-          <p className="mt-2 text-sm leading-6 text-slate-300">A first visit, in this order.</p>
-          <ol className="mt-4 grid gap-2 sm:grid-cols-2">
-            {startHere.map((step) => (
-              <li key={step.n} className="rounded-lg border border-white/10 bg-black/25 p-3">
-                <p className="font-mono text-xs text-mint">{step.n}</p>
+      <nav aria-label="First visit" className="mt-8 rounded-xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Start here</p>
+        <p className="mt-2 text-sm leading-6 text-slate-300">A first visit, in this order.</p>
+        <ol className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          {startHere.map((step) => (
+            <li key={step.n} className="rounded-lg border border-white/10 bg-black/25 p-3">
+              <p className="font-mono text-xs text-mint">{step.n}</p>
+              <TrackedLink
+                href={step.href}
+                eventName="homepage_cta_click"
+                eventProperties={{ cta: step.cta }}
+                className="mt-1 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-white underline decoration-mint/35 underline-offset-4 hover:text-mint hover:decoration-mint"
+              >
+                {step.label} <ArrowRight size={14} aria-hidden="true" />
+              </TrackedLink>
+              <p className="mt-1 text-xs leading-5 text-slate-400">{step.detail}</p>
+              {"secondaryHref" in step && step.secondaryHref ? (
                 <TrackedLink
-                  href={step.href}
+                  href={step.secondaryHref}
                   eventName="homepage_cta_click"
-                  eventProperties={{ cta: step.cta }}
-                  className="mt-1 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-white underline decoration-mint/35 underline-offset-4 hover:text-mint hover:decoration-mint"
+                  eventProperties={{ cta: step.secondaryCta }}
+                  className="mt-2 inline-flex min-h-11 items-center text-xs font-semibold text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
                 >
-                  {step.label} <ArrowRight size={14} aria-hidden="true" />
+                  {step.secondaryLabel}
                 </TrackedLink>
-                <p className="mt-1 text-xs leading-5 text-slate-400">{step.detail}</p>
-                {"secondaryHref" in step && step.secondaryHref ? (
-                  <TrackedLink
-                    href={step.secondaryHref}
-                    eventName="homepage_cta_click"
-                    eventProperties={{ cta: step.secondaryCta }}
-                    className="mt-2 inline-flex min-h-11 items-center text-xs font-semibold text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
-                  >
-                    {step.secondaryLabel}
-                  </TrackedLink>
-                ) : null}
-              </li>
-            ))}
-          </ol>
-        </nav>
+              ) : null}
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <div className="mt-8 max-w-3xl">
+        <h3 className="text-lg font-semibold text-white sm:text-xl">What I&apos;m building, and where it is headed.</h3>
+        <p className="mt-3 text-sm leading-7 text-slate-300 sm:text-base sm:leading-7">
+          I&apos;m building Operational Intelligence: a reasoning layer between enterprise telemetry and a human
+          decision. The shared piece is the Enterprise Context Layer — ownership, change, dependency, and
+          transaction truth, maintained once instead of reconstructed by every agent. An SRE / Agent Harness
+          runs on that layer: evidence, hypothesis, eval gate, then learning, with a person still owning
+          anything consequential. Batch Intelligence is the public-safe proof of that idea on an execution
+          graph; it is not a taxonomy layer. The destination is agents that can sit near production because
+          context, evaluation, and human authority are first-class.
+        </p>
       </div>
     </div>
   );

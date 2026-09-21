@@ -397,6 +397,11 @@ if (!homePageSource.includes("<HomeOrientation")) {
 if (homePageSource.indexOf("<HomeOrientation") > homePageSource.indexOf("The failure I design against")) {
   errors.push("app/page.tsx: 30-second map must render before the Authorized Misfire thesis");
 }
+if (
+  homeOrientationSource.indexOf("Start here") > homeOrientationSource.indexOf("What I&apos;m building, and where it is headed.")
+) {
+  errors.push("components/home-orientation.tsx: start-here path must appear before the destination essay so mobile visitors see an action first");
+}
 for (const required of [
   "30-second map",
   "Operational Intelligence is the umbrella",
