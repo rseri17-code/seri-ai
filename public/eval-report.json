@@ -1388,6 +1388,57 @@
         "/publication-pack/ask-ravi-live-review-packet.md"
       ],
       "result": "Pass"
+    },
+    {
+      "prompt": "What is Batch Intelligence?",
+      "expected": "Retrieve the Framework batch thesis, not the agent-boundaries principle.",
+      "requiredAnswerIncludes": [
+        "execution graph",
+        "Batch Intelligence",
+        "/framework#batch-intelligence",
+        "Direct answer",
+        "Public source"
+      ],
+      "requiredAnswerExcludes": [
+        "Trustworthy agents need boundaries"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "What is the batch context layer?",
+      "expected": "Route batch context-layer wording to the Framework batch thesis.",
+      "requiredAnswerIncludes": [
+        "execution graph",
+        "/framework#batch-intelligence"
+      ],
+      "requiredAnswerExcludes": [
+        "Trustworthy agents need boundaries"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Where is the batch execution graph described?",
+      "expected": "Route batch execution-graph wording to the Framework batch section.",
+      "requiredAnswerIncludes": [
+        "/framework#batch-intelligence"
+      ],
+      "requiredAnswerExcludes": [
+        "Trustworthy agents need boundaries"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "What is a Quantum Flux Capacitor?",
+      "expected": "Named topics missing from the public index should degrade to a thin-record response.",
+      "requiredAnswerIncludes": [
+        "not in the public record",
+        "does not cover",
+        "Explicit unknowns"
+      ],
+      "requiredAnswerExcludes": [
+        "Trustworthy agents need boundaries"
+      ],
+      "result": "Pass"
     }
   ],
   "knownLimits": [
@@ -1397,6 +1448,6 @@
     "Richer answer scoring requires reviewer-labeled qualitative grading before broader claims are made."
   ],
   "generatedAt": "2026-08-22T00:00:00.000Z",
-  "fixtureCount": 117,
-  "passingFixtures": 117
+  "fixtureCount": 121,
+  "passingFixtures": 121
 }

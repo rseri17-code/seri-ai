@@ -77,21 +77,21 @@
     {
       "name": "Knowledge-Graph Health",
       "score": 8.6,
-      "evidence": "Content registry, professional graph, profile discovery map, publishing index, related assets, search, and a repeatable knowledge-graph health validator now check 60 assets, 7324 relationships, 10 layers, 12 registry items, 10 patterns, 10 principles, and professional profile connectivity.",
+      "evidence": "Content registry, professional graph, profile discovery map, publishing index, related assets, search, and a repeatable knowledge-graph health validator now check 61 assets, 7566 relationships, 10 layers, 12 registry items, 10 patterns, 10 principles, and professional profile connectivity.",
       "gap": "The graph health gate now has automated orphan, relationship, duplicate-concept, and layer-coverage checks, but still needs periodic editorial review as the corpus grows and new external evidence arrives.",
       "nextProof": "Run the knowledge-graph health validator after every publishing change and add reviewer-driven stale-fact or redundancy findings when real content growth exposes them."
     },
     {
       "name": "Ask Ravikanth",
       "score": 8.3,
-      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, a versioned persona contract, intent-aware follow-up questions, project-proof routing, public-code rubric routing, visitor-review routing, first-impression evidence routing, practitioner-review routing, review-quorum routing, visual-QA routing, credential-evidence routing, identity-asset and portrait-intake routing, mobile-touch evidence routing, keyboard-accessibility evidence routing, Ask live review packet routing, and 117 passing fixtures.",
+      "evidence": "Ask has public-safety refusal, citations, related routes, deterministic fallback, answer metadata, a versioned persona contract, intent-aware follow-up questions, project-proof routing, public-code rubric routing, visitor-review routing, first-impression evidence routing, practitioner-review routing, review-quorum routing, visual-QA routing, credential-evidence routing, identity-asset and portrait-intake routing, mobile-touch evidence routing, keyboard-accessibility evidence routing, Ask live review packet routing, and 121 passing fixtures.",
       "gap": "A controlled Ask live review packet exists, but no live reviewer-labeled answer quality baseline has been published across realistic professional, architecture, safety, and routing questions.",
       "nextProof": "Run the Ask live review packet and publish qualitative labels without raw prompts or aggregate model-quality scores."
     },
     {
       "name": "Search / Discoverability",
       "score": 8.5,
-      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, resume credential evidence, public-code review rubric, public-code review record fields, project proof, proof backlog, visitor review, first-impression evidence capture, practitioner review, visual QA, identity asset, portrait intake, mobile touch walkthroughs, keyboard accessibility walkthroughs, Ask live review packet, and 71 canonical retrieval checks.",
+      "evidence": "Search covers registry, wiki, articles, patterns, projects, reference assets, resume credential evidence, public-code review rubric, public-code review record fields, project proof, proof backlog, visitor review, first-impression evidence capture, practitioner review, visual QA, identity asset, portrait intake, mobile touch walkthroughs, keyboard accessibility walkthroughs, Ask live review packet, and 74 canonical retrieval checks.",
       "gap": "Live search-console evidence and real query behavior are not yet available.",
       "nextProof": "After beta deployment, review crawler visibility and query impressions for doctrine, framework, and Operations Room pages."
     },

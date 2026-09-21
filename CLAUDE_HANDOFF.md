@@ -1,6 +1,26 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-09-04
+Last updated: 2026-09-21
+
+## BUILDER ASK RETRIEVAL + BATCH INTELLIGENCE DISCOVERABILITY — 2026-09-21
+
+Ask now refuses to answer a short named-topic question from a weakly related nearest-neighbor principle when that topic is not in the public index. `What is Batch Intelligence?` retrieves the Framework batch thesis at `/framework#batch-intelligence` (and the Ideas stub at `/ideas/batch-intelligence`) instead of the unrelated `Trustworthy agents need boundaries` principle. Close variants `batch context layer` and `batch execution graph` use the same canonical deep link. Unknown named topics degrade to an honest `not in the public record` thin-record response. Public-safety refusals are unchanged.
+
+The Batch Intelligence proof section now has a stable `id="batch-intelligence"` deep link. The public source index and site search title that section **Batch Intelligence**. The Ideas stub summarizes the already-published public-safe thesis in one screen and points to `/framework#batch-intelligence` as the canonical inspectable artifact. No employer-confidential content was added.
+
+Related reading on Ideas pages no longer links to raw `.md` / `.pdf` artifacts, which 404 or dump markdown under App Router client navigation. That removes the Decision Packet Example related-link failure on the Transaction Intelligence essay without overlapping PR #1's `AppLink` work.
+
+Deterministic Ask fixtures: 121 passing cases. Search retrieval covers 74 canonical queries. Knowledge graph: 61 assets, 7566 relationships.
+
+## CREDIBILITY BUGFIX — 2026-09-21
+
+Fixed four live credibility bugs without a redesign:
+
+- Static publication-pack and download files already existed under `public/`. Practitioner-review and Library CTAs used Next.js `Link`, so client navigation/prefetch 404ed even though a hard load served the files. Those mixed route/file links now go through `AppLink`.
+- Added `/favicon.ico`, `/favicon.svg`, `app/icon.tsx`, and `app/apple-icon.tsx` so the tab icon matches the dark/mint identity mark.
+- Library newsletter copy is an honest waitlist. The unfinished "email provider is connected" sentence is gone.
+- Contact Topic now includes Hiring and still submits `topic` to `/api/contact`.
+
 
 ## BUILDER APPROVED INTEGRATION — 2026-09-14
 
@@ -1340,7 +1360,7 @@ Recent improvements:
 - Search retrieval covers 69 canonical queries.
 - Retrieval now applies a small length penalty in the public search scorer so broad documents stop crowding out narrower matches; Ask remains anchored on the canonical doctrine and reference-architecture phrases for definition and governance prompts.
 - Ask evals were revalidated after the retrieval adjustment and returned 117/117 passing fixtures.
-- Ask deterministic fixtures cover 117 passing cases.
+- Ask deterministic fixtures cover 121 passing cases.
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.
 - Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.
@@ -1355,7 +1375,7 @@ Recent improvements:
 - Scorecard graph-health and search-discoverability evidence counts are now checked against live `buildPublishingIndex`, `buildKnowledgeGraph`, and retrieval fixtures, so asset, relationship, framework-layer, registry, pattern, principle, and retrieval-query counts cannot drift silently.
 - Public-code evidence now avoids counted Sentinalai repository inventory claims; the public-code ledger tells reviewers what to inspect and `validate:content` rejects unvalidated repository inventory counts as proof.
 - Public-code/project proof is now a first-class proof-backlog gap. The Evidence Pack, Markdown export, Ask fallback, eval fixture, scorecard, and validators now state that GitHub/Sentinalai/Work/Projects proof requires reviewer walkthroughs and must not infer repository metrics, production adoption, private deployments, private integrations, or live incident outcomes.
-- The Work page now renders a compact project-code review-record checklist, and the public-code ledger defines the evidence fields reviewers should capture: repository surface inspected, visible engineering behavior, verdict, reasoning loss or ambiguity, boundary respected, and next proof. Search retrieval covers 71 canonical queries. It includes public-code review-record intent routed to `/work`.
+- The Work page now renders a compact project-code review-record checklist, and the public-code ledger defines the evidence fields reviewers should capture: repository surface inspected, visible engineering behavior, verdict, reasoning loss or ambiguity, boundary respected, and next proof. Search retrieval covers 74 canonical queries. It includes public-code review-record intent routed to `/work`.
 - Proof-backlog search intent now stays anchored to the Evidence Pack even when the query mentions public-code/project proof; separate project-code inspection and review-record queries still route to `/work`.
 - The First-Time Visitor Review Kit now explicitly asks reviewers what Ravikanth's GitHub and Sentinalai public work show without inferring private production proof, and lists Work/Public Code Proof as a review asset. Validators now guard this path in both content validation and practitioner-review validation.
 - The Contact practitioner-review form now captures first-impression evidence as bounded categories: first-impression verdict, person-work fit, thesis clarity, proof-route fit, artifact recall, and demo feeling. Supabase views expose those fields and quorum logic treats weak first impressions as skeptical signal; no external first-impression verdicts are claimed yet.
@@ -1500,6 +1520,14 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Builder: Ask nearest-neighbor miss for Batch Intelligence
+
+- **Resolved**: Asking `What is Batch Intelligence?` previously answered from the short `Trustworthy agents need boundaries, not just intelligence` principle because `intelligence` is a common token. Retrieval now indexes the Framework batch thesis under the name Batch Intelligence, boosts `batch context layer` / `batch execution graph`, and degrades short unknown named topics to `not in the public record` instead of a confident wrong principle. Evidence: `lib/search.ts`, `lib/content.ts`, `content/articles.json`, `components/batch-intelligence-proof.tsx`, `content/eval-report.json`. Public-safety risk: none; the stub restates already-published public-safe Framework copy and the Owl-paper boundary.
+
+### 2026-09-21 — Credibility bugfix: static file 404s, favicon, newsletter copy, Hiring topic
+
+- **Resolved**: Practitioner-review kit links to `/publication-pack/ravikanth-seri-practitioner-review-packet.md` and `/downloads/operational-intelligence-evidence-pack.pdf` were real public files, but Next.js `Link` client-routed them to 404. `AppLink` now uses native navigation for static assets. Favicon files were missing at `/favicon.ico`. Newsletter copy no longer mentions connecting an email provider. Contact Topic includes Hiring. Why it matters: dead downloads, a missing tab icon, unfinished-implementation copy, and a hiring CTA that could not be selected as a contact topic all undermine the professional home. Evidence: `components/app-link.tsx`, `public/favicon.ico`, `components/email-capture.tsx`, `app/contact/page.tsx`. Public-safety risk: none; no employer data was added.
 
 ### 2026-08-26 — Codex: production deploy verification blocked by parked canonical domain
 

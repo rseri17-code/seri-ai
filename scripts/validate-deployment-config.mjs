@@ -197,6 +197,10 @@ for (const cacheName of ["publishingIndexCache", "knowledgeGraphCache"]) {
   expect(publishingSource.includes(cacheName), `lib/publishing.ts missing build-time publishing cache ${cacheName}`);
 }
 
+expect(fs.existsSync(path.join(root, "public", "favicon.ico")), "public/favicon.ico missing");
+expect(fs.existsSync(path.join(root, "app", "icon.tsx")), "app/icon.tsx missing");
+expect(fs.existsSync(path.join(root, "app", "apple-icon.tsx")), "app/apple-icon.tsx missing");
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

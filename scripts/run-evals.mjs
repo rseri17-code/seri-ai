@@ -105,6 +105,11 @@ try {
         errors.push(`Fixture answer check failed for "${fixture.prompt}": missing "${required}".`);
       }
     }
+    for (const excluded of fixture.requiredAnswerExcludes ?? []) {
+      if (answer.toLowerCase().includes(String(excluded).toLowerCase())) {
+        errors.push(`Fixture answer check failed for "${fixture.prompt}": should not include "${excluded}".`);
+      }
+    }
   }
 } finally {
   for (const [key, value] of Object.entries(originalEnv)) {

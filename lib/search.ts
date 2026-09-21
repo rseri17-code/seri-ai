@@ -26,10 +26,46 @@ const nowUrl = "/now";
 const resumeUrl = "/resume";
 const backgroundUrl = "/background";
 const radarUrl = "/framework";
+const batchIntelligenceUrl = "/framework#batch-intelligence";
 const controlComparisonUrl = "/ideas/oi-room-001-control-comparison";
+export const BATCH_INTELLIGENCE_URL = batchIntelligenceUrl;
+const BATCH_INTELLIGENCE_PATTERN = /batch intelligence|batch context layer|batch execution graph|batch[- ]context\b/;
+const KNOWN_TOPIC_ALIASES: Record<string, string[]> = {
+  "batch intelligence": ["batch intelligence", "batch context layer", "batch execution graph", "batch context"],
+  "batch context layer": ["batch intelligence", "batch context layer", "batch execution graph", "batch context"],
+  "batch execution graph": ["batch intelligence", "batch context layer", "batch execution graph", "batch context"],
+  "batch context": ["batch intelligence", "batch context layer", "batch execution graph", "batch context"]
+};
+const GENERIC_DEFINITION_TERMS = new Set([
+  ...["ravikanth", "seri", "his", "him", "does", "think", "about", "what", "how", "the", "and", "for"],
+  "intelligence",
+  "operational",
+  "operations",
+  "layer",
+  "layers",
+  "agent",
+  "agents",
+  "system",
+  "systems",
+  "public",
+  "record",
+  "knowledge",
+  "framework",
+  "evidence",
+  "model",
+  "ai",
+  "new",
+  "control",
+  "plane",
+  "work",
+  "site",
+  "this",
+  "that"
+]);
 const directReferenceBoosts: Array<[RegExp, string]> = [
   [/diagram|diagrams|state machine diagram|sequence diagram|evidence graph diagram|replay loop/, "/publication-pack/operational-intelligence-diagrams.md"],
   [/comparison table|adjacent discipline|claim classification|observability versus|aiops versus|agentops/, "/publication-pack/operational-intelligence-comparison-tables.md"],
+  [BATCH_INTELLIGENCE_PATTERN, batchIntelligenceUrl],
   [/decision packet|approval class|rollback review|review packet/, "/publication-pack/decision-packet-example.md"],
   [/printable walkthrough|oi-room-001 walkthrough|walkthrough pdf|transaction timing/, "/publication-pack/oi-room-001-printable-walkthrough.md"],
   [/executive summary|one-page summary|one page summary/, "/publication-pack/operational-intelligence-executive-summary.md"],
@@ -233,8 +269,93 @@ function normalizeSearchScore(baseScore: number, haystack: string) {
 // should retrieve on "evaluation", not on the name that appears in almost every document.
 const PERSON_TOKENS = new Set(["ravikanth", "seri", "his", "him", "does", "think", "about", "what", "how", "the", "and", "for"]);
 
+type RetrievableSource = {
+  title: string;
+  url: string;
+  content: string;
+  description?: string;
+  tags?: string[];
+};
+
+export type AskContextSource = {
+  title: string;
+  url: string;
+  content: string;
+};
+
+function sourceHaystack(source: RetrievableSource) {
+  return [source.title, source.description ?? "", source.content, (source.tags ?? []).join(" "), source.url]
+    .join(" ")
+    .toLowerCase()
+    .replace(/[-_]/g, " ");
+}
+
+export function extractDefinitionalTopic(query: string): string | null {
+  const normalized = normalizeQueryIntent(query)
+    .replace(/[?.!]+$/g, "")
+    .trim();
+  if (/\bravikanth\b|\bseri\b/.test(normalized)) {
+    return null;
+  }
+  const match = normalized.match(/^(?:what is|what's|whats|define|explain|tell me about)\s+(?:the\s+|an\s+|a\s+)?(.+)$/i);
+  if (!match) {
+    return null;
+  }
+  const topic = match[1].replace(/\s+/g, " ").trim();
+  return topic.length >= 3 ? topic : null;
+}
+
+function phrasesForTopic(topic: string): string[] {
+  const lower = topic
+    .toLowerCase()
+    .replace(/[-_]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return [...new Set([lower, ...(KNOWN_TOPIC_ALIASES[lower] ?? [])])];
+}
+
+function distinctiveTopicTerms(topic: string): string[] {
+  return topic
+    .toLowerCase()
+    .split(/\W+/)
+    .filter((term) => term.length > 2 && !GENERIC_DEFINITION_TERMS.has(term) && !PERSON_TOKENS.has(term));
+}
+
+export function sourceCoversPhrases(source: RetrievableSource, phrases: string[]): boolean {
+  const haystack = sourceHaystack(source);
+  return phrases.some((phrase) => haystack.includes(phrase));
+}
+
+function namedTopicPlan(query: string) {
+  const topic = extractDefinitionalTopic(query);
+  const words = topic?.split(/\s+/) ?? [];
+  const shortDefinitional = Boolean(topic && words.length > 0 && words.length <= 6);
+  const phrases = topic ? phrasesForTopic(topic) : [];
+  const distinctiveTerms = topic ? distinctiveTopicTerms(topic) : [];
+  const index = shortDefinitional ? buildPublicSourceIndex() : [];
+  const coveringByPhrase = index.filter((source) => sourceCoversPhrases(source, phrases));
+  const coveringByTerms =
+    coveringByPhrase.length || distinctiveTerms.length === 0
+      ? []
+      : index.filter((source) => {
+          const haystack = sourceHaystack(source);
+          return distinctiveTerms.every((term) => haystack.includes(term));
+        });
+  const coveringSources = coveringByPhrase.length ? coveringByPhrase : coveringByTerms;
+  return {
+    phrases,
+    coveringUrls: new Set(coveringSources.map((source) => source.url)),
+    requireCoverage: shortDefinitional && coveringSources.length > 0,
+    thinRecord: shortDefinitional && coveringSources.length === 0 && distinctiveTerms.length > 0
+  };
+}
+
 export function localSearch(query: string, limit = 5): SearchHit[] {
   const lowerQuery = normalizeQueryIntent(query);
+  const plan = namedTopicPlan(query);
+  if (plan.thinRecord) {
+    return [];
+  }
   const allTerms = lowerQuery
     .split(/\W+/)
     .filter((term) => term.length > 2);
@@ -389,8 +510,12 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
           ? 16
           : 0;
       const directReferenceBoost = directReferenceBoosts.some(([pattern, url]) => source.url === url && !(asksForProofBacklog && url === workUrl) && pattern.test(lowerQuery)) ? 40 : 0;
+      const namedTopicBoost = plan.coveringUrls.has(source.url) ? 90 : 0;
+      const batchIntelligenceBoost = source.url === batchIntelligenceUrl && BATCH_INTELLIGENCE_PATTERN.test(lowerQuery) ? 90 : 0;
       const score =
         normalizedBaseScore +
+        namedTopicBoost +
+        batchIntelligenceBoost +
         canonicalDefinitionBoost +
         doctrineBoost +
         referenceArchitectureBoost +
@@ -429,6 +554,51 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       return { source, content: source.content, score };
     })
     .filter((hit) => hit.score > 0)
+    .filter((hit) => !plan.requireCoverage || plan.coveringUrls.has(hit.source.url))
     .sort((a, b) => b.score - a.score)
     .slice(0, limit);
+}
+
+export function resolveAskContext(question: string, retrieved: AskContextSource[]): AskContextSource[] {
+  const localHits = localSearch(question, 6).map((hit) => ({
+    title: hit.source.title,
+    url: hit.source.url,
+    content: hit.content
+  }));
+  const plan = namedTopicPlan(question);
+
+  if (plan.thinRecord) {
+    return [];
+  }
+
+  if (plan.requireCoverage && plan.coveringUrls.size) {
+    const localCovering = localHits.filter((source) => plan.coveringUrls.has(source.url));
+    const retrievedCovering = retrieved.filter(
+      (source) => plan.coveringUrls.has(source.url) || sourceCoversPhrases(source, plan.phrases)
+    );
+    const merged = [...localCovering];
+    for (const source of retrievedCovering) {
+      if (!merged.some((item) => item.url === source.url)) {
+        merged.push(source);
+      }
+    }
+    return merged.slice(0, 6);
+  }
+
+  if (BATCH_INTELLIGENCE_PATTERN.test(normalizeQueryIntent(question))) {
+    const localBatch = localHits.filter(
+      (source) => source.url === batchIntelligenceUrl || /batch intelligence/i.test(source.title)
+    );
+    if (localBatch.length) {
+      const merged = [...localBatch];
+      for (const source of [...retrieved, ...localHits]) {
+        if (!merged.some((item) => item.url === source.url)) {
+          merged.push(source);
+        }
+      }
+      return merged.slice(0, 6);
+    }
+  }
+
+  return retrieved;
 }

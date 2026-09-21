@@ -29,6 +29,7 @@ export function inferFrameworkLayers(question: string) {
   if (/operational intelligence/.test(lower)) layers.push("Reasoning Layer");
   if (/observability|ops for observability|observability for ai|signal|telemetry|metric|log|trace|alert|dashboard|dynamic operational view/.test(lower)) layers.push("Signal Layer");
   if (/transaction|journey|customer|workflow|latency|context acquisition|enterprise context|operational context/.test(lower)) layers.push("Transaction Layer");
+  if (/batch intelligence|batch context|batch execution graph/.test(lower)) layers.push("Topology Layer", "Evidence Layer", "Reasoning Layer");
   if (/topology|dependency|service|blast|owner|enterprise context|operational context|dynamic operational view|static graph/.test(lower)) layers.push("Topology Layer");
   if (/evidence|receipt|fact|source|provenance|citation|context acquisition|enterprise context|harness|dynamic operational view|observability for ai|ai observability|learning|researching|advancing|research ledger|next proof|trying to prove|trying to gather/.test(lower)) layers.push("Evidence Layer");
   if (/hypothesis|reason|root cause|rca|causal/.test(lower)) layers.push("Reasoning Layer");
@@ -68,6 +69,10 @@ export function inferRelatedArtifacts(question: string) {
   }
   if (/contact|reach out|collaboration|collaborate|conversation/.test(lower)) {
     artifacts.add("/contact");
+  }
+  if (/batch intelligence|batch context|batch execution graph/.test(lower)) {
+    artifacts.add("/framework#batch-intelligence");
+    artifacts.add("/ideas/batch-intelligence");
   }
   if (/doctrine|definition|define|canonical|boundary|boundaries|glossary|what is operational intelligence/.test(lower)) {
     artifacts.add("/wiki/operational-intelligence-canonical-doctrine");
@@ -259,6 +264,7 @@ export function classifyAskQuestion(question: string) {
   if (/oi-room-001|operations room|investigation|incident|rca|hypothesis|root cause/.test(lower)) return "operations_room";
   if (/evidence|citation|source|graph|provenance|receipt|contradict/.test(lower)) return "evidence_reasoning";
   if (/eval|evaluation|gate|trust|benchmark|quality|falsif/.test(lower)) return "evaluation";
+  if (/batch intelligence|batch context|batch execution graph/.test(lower)) return "doctrine_architecture";
   if (/transaction|journey|workflow|latency/.test(lower)) return "transaction_intelligence";
   if (/observability|ops for observability|observability for ai|telemetry|metric|trace|alert|signal|aiops|agentops/.test(lower)) return "adjacent_domain";
   if (/doctrine|definition|framework|layer|architecture|schema|contract|conformance/.test(lower)) return "doctrine_architecture";
@@ -267,6 +273,9 @@ export function classifyAskQuestion(question: string) {
 
 function inferSuggestedNextQuestion(question: string) {
   const lower = normalizeQuestionIntent(question);
+  if (/batch intelligence|batch context|batch execution graph/.test(lower)) {
+    return "How does batch context differ from service topology in the Enterprise Context Layer?";
+  }
   if (/github|open source|open-source|public code|repository|repositories|sentinalai/.test(lower)) {
     return "What should a reviewer inspect in Sentinalai before inferring production proof?";
   }
@@ -465,7 +474,7 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
     ? `${selectedPassage.source.title} (${selectedPassage.source.url})`
     : "No matching approved public source";
   const direct = selectedPassage?.passage
-    ?? "The public knowledge base does not cover that yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
+    ?? "That named topic is not in the public record. The public knowledge base does not cover it yet. seri.ai can answer from published material on Operational Intelligence, Agentic SRE, transaction intelligence, evidence-driven investigation, replay, evaluation, and human review.";
   const namesSpecificTopic =
     /evaluation|eval gate|observability|telemetry|replay|evidence graph|hypothesis|operational memory|transaction|topology|doctrine|framework|layer|agentic|incident|rca|root cause|governance|guardrail|retrieval|knowledge graph|operations room|oi-room/.test(lower);
   const asksAboutAskPersona =
@@ -613,7 +622,7 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
       "5. Point to a related page or artifact when helpful.",
       "6. Explicitly say what is unknown or outside the public-safe knowledge base.",
       "7. Follow the Ask persona contract in the system instruction: answer as a public evidence interface over Ravikanth's work, not as Ravikanth personally and not as a generic chatbot.",
-      "If the approved context does not cover the question, say the public knowledge base does not cover it yet."
+      "If the approved context does not cover the question, say the topic is not in the public record and the public knowledge base does not cover it yet. Do not answer from a weakly related nearest-neighbor principle."
     ].join("\n")
   ].join("\n");
 

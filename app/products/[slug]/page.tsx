@@ -13,7 +13,7 @@
  * Repoint the pin, or leave it and say so in CLAUDE_HANDOFF.md. Copy written to satisfy a
  * grep target is how this page ended up with a paragraph that existed only to hold pins.
  */
-import Link from "next/link";
+import { AppLink as Link } from "@/components/app-link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowRight, Boxes, GitBranch, Network, Radar, Route, ShieldCheck } from "lucide-react";
