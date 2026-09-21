@@ -131,7 +131,12 @@ expectIncludes(contactPagePath, [contactPage, contactReview, visitorReviewKit].j
   "/investigation-room",
   "/downloads/operational-intelligence-evidence-pack.pdf",
   "Ground feedback in evidence",
-  "Do not include confidential logs"
+  "Do not include confidential logs",
+  "<option>Hiring</option>"
+]);
+expectIncludes(contactPagePath, contactPage, [
+  "AppLink",
+  "<option>Hiring</option>"
 ]);
 
 const conformanceTerms = [

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { AppLink as Link } from "@/components/app-link";
 import { useMemo, useState } from "react";
 import type { PublicSource } from "@/lib/content";
 

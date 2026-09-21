@@ -38,7 +38,7 @@ function routeFromHandler(file) {
 
 function routeFromMetadataImage(file) {
   const relative = path.relative(appDir, file).replace(/\\/g, "/");
-  if (!/^(opengraph-image|twitter-image)\.(tsx|ts|jsx|js)$/.test(relative)) return null;
+  if (!/^(opengraph-image|twitter-image|icon|apple-icon)\.(tsx|ts|jsx|js)$/.test(relative)) return null;
   return `/${relative.replace(/\.(tsx|ts|jsx|js)$/, "")}`;
 }
 
@@ -95,6 +95,16 @@ for (const file of files) {
       continue;
     }
     if (!routes.has(route)) errors.push(`${path.relative(root, file)} links to missing route ${raw}`);
+  }
+}
+
+const nextLinkFileHref = /<Link\b[^>]*href=(["'`])(\/[^"'`]+?\.(?:md|pdf|txt|svg|json))\1/;
+for (const file of files.filter((item) => item.endsWith(".tsx"))) {
+  const text = fs.readFileSync(file, "utf8");
+  if (!/import Link from ["']next\/link["']/.test(text)) continue;
+  const match = text.match(nextLinkFileHref);
+  if (match) {
+    errors.push(`${path.relative(root, file)} uses Next.js Link for static file ${match[2]}; use AppLink or a native <a> so the file is not client-routed to a 404`);
   }
 }
 
