@@ -50,5 +50,18 @@
       "feedback loops"
     ],
     "detail": "A structured evaluation approach that tests groundedness, safety, usefulness, and escalation quality before an assistant is trusted in production workflows."
+  },
+  {
+    "slug": "codebase-memory",
+    "name": "Codebase Memory",
+    "status": "Prototype",
+    "summary": "Context that survives the next session: locate implementations, retrieve evidence-backed lessons, check source freshness, and verify behavior before a fresh coding agent reuses prior work.",
+    "capabilities": [
+      "code graph",
+      "engineering memory",
+      "freshness checks",
+      "knowledge graphs"
+    ],
+    "detail": "Each new coding agent rediscovers implementations, past decisions, and lessons earlier work already established. The pattern combines structural discovery of a code graph, task-specific capability guides, evidence-linked lessons with reuse and invalidation conditions, source-freshness checks, and bounded fresh-agent testing. Memory and lesson retrieval depend on evidence; a dependency change flags revalidation. Source freshness is not behavioral correctness: tests and runtime evaluation establish whether the remembered behavior still holds."
   }
 ]

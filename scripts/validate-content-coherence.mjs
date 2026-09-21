@@ -265,7 +265,10 @@ for (const required of [
   "/work",
   "/ask",
   "/contact",
-  "/background"
+  "/background",
+  "/projects/codebase-memory",
+  "Codebase Memory",
+  "Context that survives the next session."
 ]) {
   expect(homepageContractSource.includes(required), `/ missing focused homepage contract: ${required}`);
 }

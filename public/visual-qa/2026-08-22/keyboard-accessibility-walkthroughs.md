@@ -59,3 +59,28 @@ Remaining risks:
 - A browser keyboard recording should confirm the exact tab sequence and focus visibility through every Operations Room section.
 - A screen-reader pass should verify graph fallback comprehension and section heading order.
 - External reviewers should report where the dense investigation surface becomes tiring.
+
+## Codebase Memory
+
+Visitor task: Open the engineering case study, reach the illustrative example, select a coding task, toggle a supporting-code change, and confirm the lesson status without relying on animation.
+
+Keyboard path:
+
+- Use skip link to reach main content.
+- Tab through the editorial sections to the Illustrative example.
+- Tab to the coding-task radio group and use Space or Enter to select a task.
+- Tab to the supporting-code-change switch and toggle it.
+- Confirm the lesson status remains readable as text under reduced motion.
+
+Source evidence:
+
+- `app/projects/codebase-memory/page.tsx` renders the editorial case study and mounts the illustration.
+- `components/codebase-memory-illustration.tsx` exposes a labelled radiogroup, switch, and aria-live lesson status.
+- `scripts/validate-accessibility.mjs` verifies named buttons/links, focus-visible styling, and reduced-motion support.
+- `scripts/validate-codebase-memory.mjs` checks both illustration states and public-safety bounds.
+
+Remaining risks:
+
+- A screen-reader pass must verify announcement order for task changes and lesson status.
+- A browser keyboard recording should confirm visible focus through the illustration.
+- External reviewers should confirm the synthetic example remains understandable without prior context.

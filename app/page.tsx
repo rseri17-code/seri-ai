@@ -243,6 +243,22 @@ export default function Home() {
           ))}
         </div>
 
+        {/* Compact teaser inside Selected work — not a seventh homepage section. */}
+        <Link
+          href="/projects/codebase-memory"
+          className="mt-8 block rounded-xl border border-white/10 bg-white/[0.035] p-5 transition hover:border-mint/40 sm:p-6"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Engineering case study</p>
+          <h3 className="mt-3 text-xl font-semibold text-white sm:text-2xl">Codebase Memory</h3>
+          <p className="mt-2 max-w-2xl text-base leading-7 text-slate-300">
+            Context that survives the next session. How a fresh coding agent locates relevant code, reuses a validated
+            lesson, and notices when that lesson needs revalidation.
+          </p>
+          <span className="mt-4 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint">
+            Read the case study <ArrowRight size={16} />
+          </span>
+        </Link>
+
         {/* Career bridge. The five-stage arc lives on /background; reproducing it here was this
             page's largest duplication. One sentence and one link stand in for it. */}
         <p className="mt-10 max-w-3xl text-lg leading-9 text-slate-300">

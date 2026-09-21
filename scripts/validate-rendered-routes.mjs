@@ -32,7 +32,10 @@ const routeContracts = [
       "Fifteen years across enterprise integration",
       "Four arguments worth disagreeing with.",
       "Start a conversation",
-      "That system stays private"
+      "That system stays private",
+      "Codebase Memory",
+      "Context that survives the next session.",
+      "Read the case study"
     ],
     before: [
       // A mobile visitor reaches an action before the page starts explaining itself.
@@ -43,7 +46,8 @@ const routeContracts = [
       ["I build evidence-grounded AI systems for enterprise operations.", "The failure I design against"],
       ["The failure I design against", "The Operations Room"],
       ["The Operations Room", "Three bodies of work."],
-      ["Three bodies of work.", "Fifteen years across enterprise integration"],
+      ["Three bodies of work.", "Codebase Memory"],
+      ["Codebase Memory", "Fifteen years across enterprise integration"],
       ["Fifteen years across enterprise integration", "Four arguments worth disagreeing with."],
       ["Four arguments worth disagreeing with.", "Start a conversation"]
     ]
@@ -123,7 +127,8 @@ const routeContracts = [
       "Employer systems, internal implementation, confidential data, and unpublished metrics remain private by design.",
       "GitHub",
       "LinkedIn",
-      "owned every stage"
+      "owned every stage",
+      "Codebase Memory"
     ]
   },
   {
@@ -223,6 +228,37 @@ const routeContracts = [
       "Ticket-only"
     ],
     before: [["Reviewer worksheet", "Version history"]]
+  },
+  {
+    route: "/projects/codebase-memory",
+    file: "projects/codebase-memory.html",
+    maxBytes: 220_000,
+    required: [
+      "Codebase Memory",
+      "Context that survives the next session.",
+      "Each new coding agent rediscovers",
+      "Code graph",
+      "Engineering memory",
+      "Freshness checks",
+      "Verification",
+      "Illustrative example",
+      "Source unchanged",
+      "Revalidation required",
+      "Source freshness is not behavioral correctness",
+      "Structural discovery",
+      "Task-specific capability guides",
+      "bounded fresh-agent testing",
+      "does not autonomously repair",
+      "does not claim measured token savings"
+    ],
+    before: [
+      ["Context that survives the next session.", "Four connected ideas"],
+      ["Code graph", "Engineering memory"],
+      ["Engineering memory", "Freshness checks"],
+      ["Freshness checks", "Verification"],
+      ["Illustrative example", "Source freshness is not behavioral correctness"],
+      ["Source freshness is not behavioral correctness", "What this does not claim"]
+    ]
   }
 ];
 
