@@ -167,7 +167,9 @@ function compactMessagesForHash(messages: AskSessionMessage[], includePackets: b
               ...(message.packet.followUps?.length ? { followUps: message.packet.followUps } : {})
             }
           }
-        : {})
+        : message.packet?.followUps?.length
+          ? { packet: { sources: [], followUps: message.packet.followUps } }
+          : {})
     }));
 }
 

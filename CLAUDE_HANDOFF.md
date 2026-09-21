@@ -10,7 +10,7 @@ Deterministic multi-turn chat shell on `/ask`. Preview-only; do not merge.
 - Follow-up chips: 2–4 public-record next questions after each answer (`inferFollowUpChips` + API `follow_ups`). Clicking a chip sends the next user turn. Empty state still shows Strong first questions.
 - Persistence: versioned `localStorage` session now stores per-turn packets; shareable `#ask=` hash restores the thread across refresh. Clear session / New conversation wipes both.
 - Backend: existing `/api/ask` retrieval and refusal contract reused. Each turn retrieves independently from the new question. History is public-safety (and optional synthesis) only — not concatenated into retrieval. No LLM, no Groq, no floating dock.
-- Tests: API contracts cover follow-up chips, packet session + hash, thin-record refusal, confidential refusal, and an independent Batch Intelligence follow-up turn. Optional browser script: `scripts/review/verify-ask-chat.mjs`.
+- Tests: API contracts cover follow-up chips, packet session + hash, thin-record refusal, confidential refusal, and an independent Batch Intelligence follow-up turn. Playwright (`scripts/review/verify-ask-chat.mjs`) passed desktop multi-turn + restore and mobile thin-record refusal.
 
 Ask deterministic fixtures cover 121 passing cases. Preview-only; do not merge until Ravikanth reviews the chat UX.
 

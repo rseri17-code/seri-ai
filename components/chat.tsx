@@ -44,6 +44,11 @@ type ApiResponse = {
   };
 };
 
+function sameUserThread(left: AskSessionMessage[], right: AskSessionMessage[]) {
+  const userTurns = (messages: AskSessionMessage[]) => messages.filter((message) => message.role === "user").map((message) => message.content);
+  return JSON.stringify(userTurns(left)) === JSON.stringify(userTurns(right));
+}
+
 function hydrateLatestPacket(thread: AskSessionMessage[]) {
   const last = [...thread].reverse().find((message) => message.role === "assistant" && message.packet);
   return last?.packet;
@@ -51,11 +56,9 @@ function hydrateLatestPacket(thread: AskSessionMessage[]) {
 
 function AnswerPacketDetails({
   packet,
-  open,
   emptyHint
 }: {
   packet?: AskSessionPacket;
-  open?: boolean;
   emptyHint?: boolean;
 }) {
   const meta = packet?.meta;
@@ -68,7 +71,7 @@ function AnswerPacketDetails({
   ];
 
   return (
-    <details open={open} className="mt-3 rounded border border-white/10 bg-black/25">
+    <details className="mt-3 rounded border border-white/10 bg-black/25">
       <summary className="cursor-pointer px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-300">
         Answer packet
       </summary>
@@ -145,6 +148,7 @@ export function Chat({
   const [sessionRestored, setSessionRestored] = useState(false);
   const initialPromptRef = useRef(initialPrompt);
   const autoSubmittedRef = useRef(false);
+  const transcriptRef = useRef<HTMLDivElement | null>(null);
   const transcriptEndRef = useRef<HTMLDivElement | null>(null);
 
   function applyPacket(packet: AskSessionPacket | undefined) {
@@ -160,7 +164,15 @@ export function Chat({
       for (const legacyKey of legacyAskSessionKeys(mode)) {
         window.localStorage.removeItem(legacyKey);
       }
+      const stored = deserializeAskSession(window.localStorage.getItem(askSessionKey(mode)));
       const fromHash = decodeAskThreadHash(window.location.hash);
+      if (fromHash && stored && sameUserThread(fromHash, stored)) {
+        setMessages(stored);
+        setSessionRestored(true);
+        applyPacket(hydrateLatestPacket(stored));
+        autoSubmittedRef.current = true;
+        return;
+      }
       if (fromHash) {
         setMessages(fromHash);
         setSessionRestored(true);
@@ -171,11 +183,10 @@ export function Chat({
       if (initialPromptRef.current.trim()) {
         return;
       }
-      const restored = deserializeAskSession(window.localStorage.getItem(askSessionKey(mode)));
-      if (restored) {
-        setMessages(restored);
+      if (stored) {
+        setMessages(stored);
         setSessionRestored(true);
-        applyPacket(hydrateLatestPacket(restored));
+        applyPacket(hydrateLatestPacket(stored));
       }
     } catch {
       // Storage unavailable (private mode, blocked): start fresh.
@@ -204,7 +215,12 @@ export function Chat({
   }, [messages, mode]);
 
   useEffect(() => {
-    transcriptEndRef.current?.scrollIntoView({ block: "end" });
+    const scroller = transcriptRef.current;
+    const target = transcriptEndRef.current;
+    if (!scroller || !target) {
+      return;
+    }
+    scroller.scrollTop = Math.max(0, target.offsetTop - 8);
   }, [messages, isLoading]);
 
   function clearSession() {
@@ -383,11 +399,17 @@ export function Chat({
           aria-relevant="additions"
           aria-busy={isLoading}
           data-ask-transcript="true"
+          ref={transcriptRef}
         >
           {messages.map((message, index) => {
             const isLatestAssistant = message.role === "assistant" && index === latestAssistantIndex;
+            const isLatestUser = message.role === "user" && !messages.slice(index + 1).some((item) => item.role === "user");
             return (
-              <div key={`${message.role}-${index}`} className={message.role === "user" ? "flex justify-end" : "flex justify-start"}>
+              <div
+                key={`${message.role}-${index}`}
+                ref={isLatestUser ? transcriptEndRef : undefined}
+                className={message.role === "user" ? "flex justify-end" : "flex justify-start"}
+              >
                 <div className={`max-w-[82%] ${message.role === "user" ? "" : "w-full"}`}>
                   <div
                     className={`rounded-lg px-4 py-3 text-sm leading-6 ${
@@ -396,7 +418,7 @@ export function Chat({
                   >
                     {message.content}
                     {message.role === "assistant" && message.packet ? (
-                      <AnswerPacketDetails packet={message.packet} open={isLatestAssistant} emptyHint={false} />
+                      <AnswerPacketDetails packet={message.packet} emptyHint={false} />
                     ) : null}
                   </div>
                   {!isLoading && isLatestAssistant && latestFollowUps.length ? (
@@ -426,7 +448,6 @@ export function Chat({
               <p className="mt-2 text-xs leading-5 text-slate-400">The response will cite available sources, separate evidence from inference, and avoid unsupported claims.</p>
             </div>
           ) : null}
-          <div ref={transcriptEndRef} />
         </div>
         {hasAskedQuestion || sessionRestored ? (
           <div className="flex items-center justify-between gap-3 border-t border-white/10 bg-black/15 px-4 py-2">

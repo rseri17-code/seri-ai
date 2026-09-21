@@ -57,17 +57,23 @@ await withPage({ width: 1440, height: 900 }, async (page) => {
   await page.getByRole("button", { name: "What is Ravikanth building with seri.ai?" }).first().click();
   await page.getByText("Direct answer:", { timeout: 20000 }).waitFor();
   expect(await page.getByText("Answer packet").count(), "answer packet missing after first turn");
-  expect(await page.getByRole("group", { name: "Follow-up questions" }).count() + (await page.getByLabel("Follow-up questions").count()), "follow-up chips missing after first turn");
+  expect(await page.getByRole("group", { name: "Follow-up questions" }).count(), "follow-up chips missing after first turn");
   await screenshot(page, "ask-first-turn-desktop.png");
 
-  const chip = page.getByLabel("Follow-up questions").locator("button").first();
+  const answersBefore = await page.getByText("Direct answer:").count();
+  const chip = page.getByRole("group", { name: "Follow-up questions" }).locator("button").first();
   const chipLabel = (await chip.textContent())?.trim();
   expect(Boolean(chipLabel), "follow-up chip has no label");
   await chip.click();
-  await page.getByText(chipLabel ?? "", { timeout: 20000 }).nth(0).waitFor();
+  await page.waitForFunction((before) => (document.body.innerText.match(/Direct answer:/g) || []).length > before, answersBefore, { timeout: 20000 });
   const userBubbles = await page.locator("[data-ask-transcript] .bg-mint").count();
   expect(userBubbles >= 2, `multi-turn transcript should keep both user questions, found ${userBubbles}`);
   await screenshot(page, "ask-follow-up-desktop.png");
+
+  await page.reload({ waitUntil: "networkidle" });
+  await page.getByText(chipLabel ?? "", { exact: true }).waitFor({ timeout: 10000 });
+  await page.getByRole("group", { name: "Follow-up questions" }).waitFor({ timeout: 10000 });
+  await screenshot(page, "ask-restored-desktop.png");
 
   await page.getByRole("button", { name: "New conversation" }).click();
   expect(await page.getByText("Strong first questions").count(), "clearing the thread should restore Strong first questions");
