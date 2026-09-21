@@ -248,6 +248,18 @@ const referenceSources = [
     assetType: "artifact"
   },
   {
+    id: "reference:batch-intelligence",
+    title: "Batch Intelligence",
+    description: "Public-safe thesis: for services, context is topology and deployments; for batch, context is the execution graph.",
+    content:
+      "Batch Intelligence is the public-safe thesis that for services, context is topology and deployments, while for batch, context is the execution graph. Batch context layer. Batch execution graph. A failed workload is only the visible endpoint. Dependency-aware context connects what ran before it, what consumes its output, and what evidence is still absent. The inspectable six-step chain runs from failed workload through predecessor, affected successors, blast radius, evidence packet, and human-reviewed recovery. GROUNDED RCA is allowed only when the checked-in evidence covers the trigger, dependency path, affected successors, and review gate. EXPLICIT UNKNOWN is required when any causal link is unsupported. The published Owl paper grounds the dependency model only. OI-ROOM-001 is a synthetic deterministic fixture, not a reproduction of an employer system. Canonical deep dive: /framework#batch-intelligence.",
+    url: "/framework#batch-intelligence",
+    type: "registry" as const,
+    category: "Reference Assets",
+    tags: ["Batch Intelligence", "batch context layer", "batch execution graph", "Enterprise Context Layer", "Topology Layer", "Evidence Layer"],
+    assetType: "artifact"
+  },
+  {
     id: "download:operational-intelligence-publication-pack",
     title: "Operational Intelligence Publication Pack PDF",
     description: "Shareable PDF export containing the Operational Intelligence diagrams, comparison tables, decision packet, walkthrough, executive summary, and glossary.",

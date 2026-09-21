@@ -57,7 +57,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   }
   const assets = buildPublishingIndex();
   const asset = assets.find((item) => item.url === `/ideas/${article.slug}`);
-  const related = asset ? getRelatedAssets(asset, 4) : [];
+  const related = (asset ? getRelatedAssets(asset, 4) : []).filter((item) => {
+    const pathOnly = item.url.split("#")[0] ?? item.url;
+    return !/\.[a-z0-9]+$/i.test(pathOnly);
+  });
   const articleAssets = assets.filter((item) => item.assetType === "article");
   const currentIndex = articleAssets.findIndex((item) => item.url === `/ideas/${article.slug}`);
   const previous = currentIndex > 0 ? articleAssets[currentIndex - 1] : null;

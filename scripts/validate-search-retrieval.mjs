@@ -297,6 +297,18 @@ const cases = [
   {
     query: "Where are the keyboard accessibility walkthrough notes for Ask and Operations Room?",
     expectedFirstUrl: "/visual-qa/2026-08-22/keyboard-accessibility-walkthroughs.md"
+  },
+  {
+    query: "What is Batch Intelligence?",
+    expectedFirstUrl: "/framework#batch-intelligence"
+  },
+  {
+    query: "Where is the batch context layer?",
+    expectedFirstUrl: "/framework#batch-intelligence"
+  },
+  {
+    query: "Where is the batch execution graph described?",
+    expectedFirstUrl: "/framework#batch-intelligence"
   }
 ];
 

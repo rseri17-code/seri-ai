@@ -23,6 +23,11 @@
  * shape before Authorized Misfire jargon. That is not a seventh section. The longer map
  * belongs on /framework.
  *
+ * This file is shared. The orientation strip owns only the hero insertion of
+ * <HomeOrientation />. A compact public-safe case-study teaser (Codebase Memory,
+ * /projects/codebase-memory) may land inside Selected work — do not treat that region
+ * as exclusive to this orientation pass.
+ *
  * The five-stage career arc was REMOVED on 2026-08-30: /background owns that narrative, and
  * reproducing it here was the page's largest duplication. What remains is a 26-word bridge and one
  * link. Do not restore the stages.
@@ -198,7 +203,9 @@ export default function Home() {
         <OperationsRoomPreview />
       </Section>
 
-      {/* 4 — SELECTED WORK. Exactly three bodies of work, editorial rather than a card wall. */}
+      {/* 4 — SELECTED WORK. Exactly three bodies of work, editorial rather than a card wall.
+          A compact public-safe case-study teaser (Codebase Memory → /projects/codebase-memory)
+          may follow those three cards. This orientation pass does not own that slot. */}
       <Section eyebrow="Selected work" title="Three bodies of work.">
         <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10">
           {selectedWork.map((item, i) => (

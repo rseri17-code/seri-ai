@@ -4,7 +4,7 @@ import { classifyAskQuestion, generateRaviAnswer, inferFrameworkLayers, inferRel
 import { isPublicSafe } from "@/lib/compliance";
 import { getRuntimeEnvironment } from "@/lib/env";
 import { clientKey, rateLimit, rateLimitedResponse, withTimeout } from "@/lib/production-guards";
-import { localSearch } from "@/lib/search";
+import { localSearch, resolveAskContext } from "@/lib/search";
 import { getSupabaseAdmin } from "@/lib/supabase";
 
 const ASK_RATE_LIMIT = 20;
@@ -115,6 +115,8 @@ export async function POST(request: Request) {
       }));
     }
   }
+
+  context = resolveAskContext(question, context);
 
   let answer: string;
   let answerMode: AskAnswerMode = "ai_synthesis";

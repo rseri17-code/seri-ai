@@ -6,6 +6,10 @@ import { TrackedLink } from "@/components/tracked-link";
  * Compact homepage orientation. The longer architecture map, sticky index, and
  * ten-layer table live on /framework. This strip only answers: umbrella,
  * substrate, loop, public proof, filing system, destination, first visit.
+ *
+ * Do not grow this component into a second homepage. Case-study teasers
+ * (Codebase Memory → /projects/codebase-memory) belong in Selected work on
+ * app/page.tsx, not here.
  */
 const startHere = [
   {
