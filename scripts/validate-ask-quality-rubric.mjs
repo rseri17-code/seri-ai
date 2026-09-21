@@ -9,6 +9,7 @@ const scorecardPath = path.join(root, "WORLD_CLASS_SCORECARD.md");
 const qualityScorecardPath = path.join(root, "content", "quality-scorecard.json");
 const compliancePath = path.join(root, "lib", "compliance.ts");
 const aiPath = path.join(root, "lib", "ai.ts");
+const askAnswerPath = path.join(root, "lib", "ask-answer.ts");
 const errors = [];
 
 function expect(condition, message) {
@@ -22,6 +23,7 @@ const scorecard = fs.readFileSync(scorecardPath, "utf8");
 const qualityScorecard = JSON.parse(fs.readFileSync(qualityScorecardPath, "utf8"));
 const compliance = fs.readFileSync(compliancePath, "utf8");
 const ai = fs.readFileSync(aiPath, "utf8");
+const askAnswer = fs.readFileSync(askAnswerPath, "utf8");
 const askDimension = qualityScorecard.dimensions?.find((dimension) => dimension.name === "Ask Ravikanth");
 const evalFixtureCount = evalReport.fixtures?.length ?? 0;
 
@@ -94,7 +96,6 @@ for (const required of [
   "This is a deterministic assistant, not Ravi personally",
   "It cites evidence, states constraints and tradeoffs",
   "does not invent a personal response",
-  "not as Ravikanth personally and not as a generic chatbot",
   "inferSuggestedNextQuestion",
   "What should a reviewer inspect in Sentinalai before inferring production proof?",
   "Which public evidence best shows Ravikanth's career arc and architecture judgment?",
@@ -102,6 +103,13 @@ for (const required of [
   "Which boundary separates Operational Intelligence from observability and AIOps?"
 ]) {
   expect(ai.includes(required), `lib/ai.ts missing Ask persona fallback or prompt contract: ${required}`);
+}
+
+for (const required of [
+  "not as Ravikanth personally and not as a generic chatbot",
+  "Ask persona contract"
+]) {
+  expect(askAnswer.includes(required), `lib/ask-answer.ts missing Ask persona synthesis contract: ${required}`);
 }
 
 for (const label of ["Exceptional", "Pass", "Needs revision", "Fail"]) {
