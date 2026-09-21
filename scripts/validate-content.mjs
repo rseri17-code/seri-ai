@@ -413,7 +413,7 @@ for (const required of [
   "Ten layers",
   "The work, plainly",
   "Staff / Principal conversations",
-  "public-safe proofs you can inspect",
+  "public-safe proofs.",
   "Context Acquisition Tax",
   "What I&apos;m building, and where it is headed.",
   "Destination: agents that can sit near production"

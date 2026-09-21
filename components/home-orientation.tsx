@@ -46,7 +46,7 @@ function WorkPlainly() {
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Builds</p>
           <p className="mt-1 text-sm leading-6 text-white sm:text-base sm:leading-7">
             Production AI systems for enterprise operations: a shared context layer, an SRE / agent
-            harness with human gates, and public-safe proofs you can inspect.
+            harness with human gates, and public-safe proofs.
           </p>
         </div>
         <div>
