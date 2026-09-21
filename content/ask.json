@@ -10,6 +10,43 @@
     "How does Ravikanth think about Operational Intelligence?",
     "Where can I review Ravikanth's GitHub, LinkedIn, resume, and public artifacts?"
   ],
+  "askDockRoutes": ["/", "/framework", "/work", "/investigation-room", "/projects"],
+  "askChallengeChips": {
+    "default": [
+      "Where is the Operational Intelligence thesis weakest?",
+      "What would falsify the harness-over-model claim?",
+      "What do Operations Room and Batch Intelligence prove, and what do they not prove?",
+      "What is Authorized Misfire in one scene?",
+      "What is the wrong answer to Context Acquisition Tax?"
+    ],
+    "routes": {
+      "/framework": [
+        "What would falsify the Agent Harness claim?",
+        "What is the Enterprise Context Layer, and where is it weakest?",
+        "What does Batch Intelligence prove and not prove?",
+        "What is the wrong answer to Context Acquisition Tax?",
+        "How should a reviewer challenge the ten-layer taxonomy?"
+      ],
+      "/investigation-room": [
+        "What does Operations Room prove, and what does it not prove?",
+        "What is OI-ROOM-001 allowed to claim from a synthetic case?",
+        "Where is the Operational Intelligence thesis weakest?",
+        "What would falsify the harness-over-model claim?"
+      ],
+      "/work": [
+        "What public evidence actually supports the work claims?",
+        "What would falsify the harness-over-model claim?",
+        "What do Operations Room and Batch Intelligence prove, and what do they not prove?",
+        "Where is the Operational Intelligence thesis weakest?"
+      ],
+      "/projects": [
+        "What public evidence actually supports the work claims?",
+        "What does Batch Intelligence prove and not prove?",
+        "What would falsify the harness-over-model claim?",
+        "Where is the Operational Intelligence thesis weakest?"
+      ]
+    }
+  },
   "guidePaths": [
     [
       "/wiki/operational-intelligence-canonical-doctrine",

@@ -1,4 +1,6 @@
 import { fileURLToPath } from "node:url";
+import fs from "node:fs";
+import path from "node:path";
 import jitiFactory from "jiti";
 
 const root = process.cwd();
@@ -250,7 +252,7 @@ try {
   expect(practitionerReviewFallbackBody.ok === true, "/api/contact practitioner review fallback missing ok:true");
   expect(practitionerReviewFallbackBody.stored === false, "/api/contact practitioner review fallback should report stored:false without Supabase");
 
-  const { askSessionKey, legacyAskSessionKeys, serializeAskSession, deserializeAskSession, encodeAskThreadHash, decodeAskThreadHash, toChatHistory, ASK_SESSION_VERSION, ASK_SESSION_MAX_MESSAGES, ASK_SESSION_MAX_CONTENT_LENGTH } = jiti("../lib/ask-session.ts");
+  const { askSessionKey, legacyAskSessionKeys, serializeAskSession, deserializeAskSession, encodeAskThreadHash, decodeAskThreadHash, toChatHistory, fullAskHref, ASK_SESSION_VERSION, ASK_SESSION_MAX_MESSAGES, ASK_SESSION_MAX_CONTENT_LENGTH } = jiti("../lib/ask-session.ts");
   expect(askSessionKey("ask") !== askSessionKey("interview"), "ask-session keys must be mode-scoped");
   expect(ASK_SESSION_VERSION === "v2", "ask-session schema must invalidate legacy answer history");
   expect(legacyAskSessionKeys("ask").includes("seri.ai:ask-session:v1:ask"), "ask-session must identify the prior key for cleanup");
@@ -313,6 +315,26 @@ try {
     toChatHistory(packetMessages, 6).every((message) => Object.keys(message).join(",") === "role,content"),
     "toChatHistory must send role/content only to the Ask API"
   );
+  expect(askSessionKey("ask") === "seri.ai:ask-session:v2:ask", "Ask dock and /ask must share seri.ai:ask-session:v2:ask");
+  expect(fullAskHref(packetMessages).startsWith("/ask#ask="), "fullAskHref must deep-link the current thread to /ask");
+  expect(fullAskHref([{ role: "assistant", content: "Greeting only." }]) === "/ask", "fullAskHref without a user turn must stay on /ask");
+
+  const { shouldShowAskDock, challengeChipsForPath } = jiti("../content/ask.ts");
+  expect(shouldShowAskDock("/") && shouldShowAskDock("/framework"), "Ask dock must appear on / and /framework");
+  expect(shouldShowAskDock("/work") && shouldShowAskDock("/investigation-room") && shouldShowAskDock("/projects/codebase-memory"), "Ask dock should appear on Work, Operations Room, and projects");
+  expect(!shouldShowAskDock("/ask") && !shouldShowAskDock("/admin"), "Ask dock must not mount on /ask or /admin");
+  const homeChips = challengeChipsForPath("/");
+  const frameworkChips = challengeChipsForPath("/framework");
+  expect(homeChips.some((chip) => /Authorized Misfire/i.test(chip)), "homepage challenge chips must include Authorized Misfire");
+  expect(frameworkChips.some((chip) => /Batch Intelligence/i.test(chip) && /prove/i.test(chip)), "framework challenge chips must invite Batch proof boundaries");
+  expect(JSON.stringify(homeChips) !== JSON.stringify(frameworkChips), "homepage and /framework must use page-aware challenge chips");
+
+  const chatSource = fs.readFileSync(path.join(root, "components", "chat.tsx"), "utf8");
+  expect(chatSource.includes('variant === "dock"') && chatSource.includes("shouldPersistUrlHash"), "Chat must support a dock variant that can disable URL hash persistence");
+  expect(chatSource.includes('fetch("/api/ask"'), "dock and /ask must reuse the same /api/ask path");
+  const dockSource = fs.readFileSync(path.join(root, "components", "ask-dock.tsx"), "utf8");
+  expect(dockSource.includes("persistUrlHash={false}") && dockSource.includes("readUrlHash={false}"), "Ask dock must not write or read #ask= on content pages");
+  expect(fs.readFileSync(path.join(root, "app", "layout.tsx"), "utf8").includes("<AskDock />"), "root layout must mount the Ask dock");
   const followUpChips = inferFollowUpChips("What is Operational Intelligence?", ["/framework"]);
   expect(
     Array.isArray(followUpChips) && followUpChips.length >= 2 && followUpChips.length <= 4,

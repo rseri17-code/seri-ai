@@ -43,6 +43,7 @@ export type AskSessionMessage = ChatMessage & {
 };
 
 export function askSessionKey(mode: "ask" | "interview") {
+  // Shared by /ask and the site-wide Ask dock so a thread continues across those surfaces.
   return `seri.ai:ask-session:${ASK_SESSION_VERSION}:${mode}`;
 }
 
@@ -209,4 +210,9 @@ export function toChatHistory(messages: AskSessionMessage[], limit = 6): ChatMes
     .filter((message) => isChatRole(message.role) && message.content.trim().length > 0)
     .slice(-limit)
     .map((message) => ({ role: message.role, content: message.content }));
+}
+
+export function fullAskHref(messages: AskSessionMessage[]): string {
+  const hashBody = encodeAskThreadHash(messages);
+  return hashBody ? `/ask#${hashBody}` : "/ask";
 }

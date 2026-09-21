@@ -125,12 +125,21 @@ function AnswerPacketDetails({
 export function Chat({
   mode = "ask",
   initialPrompt = "",
-  suggestedPrompts
+  suggestedPrompts,
+  variant = "page",
+  persistUrlHash,
+  readUrlHash
 }: {
   mode?: "ask" | "interview";
   initialPrompt?: string;
   suggestedPrompts?: string[];
+  variant?: "page" | "dock";
+  persistUrlHash?: boolean;
+  readUrlHash?: boolean;
 }) {
+  const isDock = variant === "dock";
+  const shouldPersistUrlHash = persistUrlHash ?? !isDock;
+  const shouldReadUrlHash = readUrlHash ?? !isDock;
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
@@ -165,7 +174,7 @@ export function Chat({
         window.localStorage.removeItem(legacyKey);
       }
       const stored = deserializeAskSession(window.localStorage.getItem(askSessionKey(mode)));
-      const fromHash = decodeAskThreadHash(window.location.hash);
+      const fromHash = shouldReadUrlHash ? decodeAskThreadHash(window.location.hash) : null;
       if (fromHash && stored && sameUserThread(fromHash, stored)) {
         setMessages(stored);
         setSessionRestored(true);
@@ -191,13 +200,16 @@ export function Chat({
     } catch {
       // Storage unavailable (private mode, blocked): start fresh.
     }
-  }, [mode]);
+  }, [mode, shouldReadUrlHash]);
 
   useEffect(() => {
     try {
       const serialized = serializeAskSession(messages);
       if (serialized) {
         window.localStorage.setItem(askSessionKey(mode), serialized);
+        if (!shouldPersistUrlHash) {
+          return;
+        }
         const url = new URL(window.location.href);
         if (url.searchParams.has("prompt")) {
           url.searchParams.delete("prompt");
@@ -212,7 +224,7 @@ export function Chat({
     } catch {
       // Storage unavailable: session continuity is best-effort only.
     }
-  }, [messages, mode]);
+  }, [messages, mode, shouldPersistUrlHash]);
 
   useEffect(() => {
     const scroller = transcriptRef.current;
@@ -226,9 +238,11 @@ export function Chat({
   function clearSession() {
     try {
       window.localStorage.removeItem(askSessionKey(mode));
-      const url = new URL(window.location.href);
-      url.searchParams.delete("prompt");
-      window.history.replaceState(null, "", `${url.pathname}${url.search}`);
+      if (shouldPersistUrlHash) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("prompt");
+        window.history.replaceState(null, "", `${url.pathname}${url.search}`);
+      }
     } catch {
       // Storage unavailable: nothing persisted to clear.
     }
@@ -370,28 +384,7 @@ export function Chat({
     ]
   ];
 
-  return (
-    <div className="grid gap-5 lg:grid-cols-[1fr_360px]">
-      <div className="flex min-h-[28rem] flex-col overflow-hidden rounded-lg border border-white/10 bg-[#071018] md:min-h-[36rem] md:h-[min(72vh,46rem)]">
-        <div className="border-b border-white/10 bg-black/20 p-4">
-          <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-            <div className="flex items-center gap-3">
-              <ProfileMark size="sm" />
-              <div>
-                <p className="text-xs font-semibold uppercase text-slate-400">Evidence console</p>
-                <h2 className="text-xl font-semibold text-white">Explore the public work, frameworks, and operating principles behind seri.ai.</h2>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 xl:w-[34rem]">
-              {operatingReceipts.map(([label, value]) => (
-                <div key={label} className="min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2">
-                  <p className="whitespace-nowrap text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-slate-400">{label}</p>
-                  <p className="mt-1 break-words font-mono text-[0.72rem] leading-4 text-mint">{value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+  const transcript = (
         <div
           className="min-h-0 flex-1 space-y-4 overflow-y-auto p-4"
           role="log"
@@ -402,6 +395,9 @@ export function Chat({
           ref={transcriptRef}
         >
           {messages.map((message, index) => {
+            if (isDock && message.content === initialAssistantMessage && !message.packet) {
+              return null;
+            }
             const isLatestAssistant = message.role === "assistant" && index === latestAssistantIndex;
             const isLatestUser = message.role === "user" && !messages.slice(index + 1).some((item) => item.role === "user");
             return (
@@ -449,7 +445,10 @@ export function Chat({
             </div>
           ) : null}
         </div>
-        {hasAskedQuestion || sessionRestored ? (
+  );
+
+  const sessionBar =
+    hasAskedQuestion || sessionRestored ? (
           <div className="flex items-center justify-between gap-3 border-t border-white/10 bg-black/15 px-4 py-2">
             <p className="text-[0.68rem] leading-4 text-slate-400">
               {sessionRestored ? "Session restored from this browser. Nothing is stored on the server." : "Session saved in this browser only. Nothing is stored on the server."}
@@ -463,7 +462,9 @@ export function Chat({
               Clear session
             </button>
           </div>
-        ) : null}
+    ) : null;
+
+  const composer = (
         <form
           className="sticky bottom-0 flex gap-2 border-t border-white/10 bg-[#071018] p-3"
           onSubmit={(event) => {
@@ -472,7 +473,7 @@ export function Chat({
           }}
         >
           <input
-            className="min-w-0 flex-1 rounded border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-mint/60"
+            className="min-h-11 min-w-0 flex-1 rounded border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-mint/60"
             value={input}
             onChange={(event) => setInput(event.target.value)}
             onKeyDown={(event) => {
@@ -490,6 +491,73 @@ export function Chat({
             <Send size={18} />
           </button>
         </form>
+  );
+
+  if (isDock) {
+    return (
+      <div className="flex h-full min-h-0 flex-col overflow-hidden bg-[#071018]" data-ask-variant="dock">
+        {hasAskedQuestion || sessionRestored ? (
+          <>
+            {transcript}
+            {sessionBar}
+          </>
+        ) : null}
+        {!hasAskedQuestion ? (
+          <div className="min-h-0 flex-1 overflow-y-auto border-t border-white/10 bg-black/15 p-3">
+            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Challenge the record</p>
+            <div className="mt-2 grid gap-2">
+              {prompts.slice(0, 5).map((prompt) => (
+                <button
+                  key={prompt}
+                  type="button"
+                  data-ask-challenge-chip="true"
+                  className="min-h-11 min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2 text-left text-xs font-semibold leading-5 text-slate-200 hover:border-mint/40"
+                  onClick={() => void sendMessage(prompt)}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+        {composer}
+        <div className="border-t border-white/10 bg-black/20 px-3 py-2">
+          <p className="text-[0.68rem] leading-4 text-slate-400">
+            Public record only. Cite or refuse. No open-web research, and no private or employer data.
+          </p>
+          <p className="mt-1 text-[0.68rem] leading-4 text-slate-500">
+            {responseMeta?.public_boundary ?? "approved public content only"} · {responseMeta?.assistant_identity ?? "AI assistant over approved public work"}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid gap-5 lg:grid-cols-[1fr_360px]">
+      <div className="flex min-h-[28rem] flex-col overflow-hidden rounded-lg border border-white/10 bg-[#071018] md:min-h-[36rem] md:h-[min(72vh,46rem)]">
+        <div className="border-b border-white/10 bg-black/20 p-4">
+          <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+            <div className="flex items-center gap-3">
+              <ProfileMark size="sm" />
+              <div>
+                <p className="text-xs font-semibold uppercase text-slate-400">Evidence console</p>
+                <h2 className="text-xl font-semibold text-white">Explore the public work, frameworks, and operating principles behind seri.ai.</h2>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 xl:w-[34rem]">
+              {operatingReceipts.map(([label, value]) => (
+                <div key={label} className="min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2">
+                  <p className="whitespace-nowrap text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-slate-400">{label}</p>
+                  <p className="mt-1 break-words font-mono text-[0.72rem] leading-4 text-mint">{value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {transcript}
+        {sessionBar}
+        {composer}
         {!hasAskedQuestion ? (
           <div className="border-t border-white/10 bg-black/15 p-3">
             <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Strong first questions</p>

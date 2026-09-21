@@ -535,7 +535,15 @@ for (const required of [
 	  "encodeAskThreadHash",
 	  "decodeAskThreadHash",
 	  "toChatHistory",
-	  "inferFollowUpChips"
+	  "inferFollowUpChips",
+	  "variant === \"dock\"",
+	  "persistUrlHash",
+	  "readUrlHash",
+	  "shouldPersistUrlHash",
+	  "Challenge the record",
+	  "Public record only. Cite or refuse.",
+	  "data-ask-challenge-chip",
+	  "/api/ask"
 ]) {
   expect(chatComponent.includes(required), `Chat missing prompt deep-link auto-submit contract: ${required}`);
 }
@@ -553,6 +561,26 @@ for (const required of ["href=\"/ask\"", "href: \"/framework\"", "<span>Ask</spa
   expect(headerComponent.includes(required), `Header missing Ask companion CTA contract: ${required}`);
 }
 expect(!headerComponent.includes("Ask Ravikanth"), "Header primary navigation must use the ruled visible label Ask");
+
+const askDockComponent = fs.readFileSync(path.join(root, "components", "ask-dock.tsx"), "utf8");
+for (const required of [
+  "Ask the record",
+  "shouldShowAskDock",
+  "challengeChipsForPath",
+  "variant=\"dock\"",
+  "persistUrlHash={false}",
+  "readUrlHash={false}",
+  "role=\"complementary\"",
+  "aria-expanded",
+  "data-ask-dock-trigger",
+  "ask_dock_toggle",
+  "Open full Ask",
+  "href=\"/ask\""
+]) {
+  expect(askDockComponent.includes(required), `AskDock missing Phase C contract: ${required}`);
+}
+expect(fs.readFileSync(path.join(root, "app", "layout.tsx"), "utf8").includes("<AskDock />"), "Root layout must mount AskDock");
+expect(fs.readFileSync(path.join(root, "content", "ask.ts"), "utf8").includes("export function shouldShowAskDock"), "Ask dock route helper must live next to Ask content");
 
 const radarPage = fs.readFileSync(path.join(root, "app", "framework", "page.tsx"), "utf8");
 const siteContent = fs.readFileSync(path.join(root, "content", "site.ts"), "utf8");

@@ -2,6 +2,19 @@
 
 Last updated: 2026-09-21
 
+## ASK UX PHASE C — 2026-09-21
+
+Site-wide Ask dock + challenge mode. Preview-only; do not merge.
+
+- Floating **Ask the record** dock on `/`, `/framework`, `/work`, `/investigation-room`, and `/projects` (including project pages). Hidden on `/ask` so it cannot fight the Phase A console.
+- Compact panel reuses `components/chat.tsx` (`variant="dock"`) and the same `/api/ask` retrieval, packet accordion, follow-up chips, and cite-or-refuse path. No Groq, no streaming, no new synthesis.
+- **Session key decision:** shared `seri.ai:ask-session:v2:ask` with `/ask`. The dock writes localStorage only. It does **not** write `#ask=` on content pages, because `/framework` already uses section hashes (`#batch-intelligence`, `#harness`). Open full Ask goes to `/ask` (with `#ask=` when the thread encodes) so the page console can restore the same thread.
+- Challenge chips are page-aware: homepage biases to thesis + Inspect proofs (Authorized Misfire, Operations Room / Batch, weakest / falsify); `/framework` biases to harness, Context Layer, Batch, taxonomy. Not FAQ fluff.
+- Public-scope / boundary disclosure stays visible in the dock: cite or refuse, no open-web research, no private/employer data.
+- Tests: API/content/viewport/coherence contracts for dock routes, shared session, hash isolation, and challenge chips. Playwright: `scripts/review/verify-ask-dock.mjs` (open, chip send, thin refusal, shared session, framework hash preserved).
+
+Ask deterministic fixtures cover 121 passing cases. Preview-only; do not merge.
+
 ## ASK UX PHASE A — 2026-09-21
 
 Deterministic multi-turn chat shell on `/ask`. Preview-only; do not merge.
@@ -1564,6 +1577,13 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Grok: Ask UX Phase C (site-wide dock + challenge mode)
+
+- **Keep**: Phase A multi-turn `/ask` shell, retrieval-bound answers, citations, public-safety / thin-record refusal, Trust contract, Strong first questions empty state, `local_fallback`, existing `/api/ask` question/history/mode contract. Shared session key `seri.ai:ask-session:v2:ask`.
+- **Changed**: a floating Ask dock on key pages (`/`, `/framework`, plus Work / Operations Room / projects) reuses `Chat` in `variant="dock"`. Challenge chips replace FAQ starters. Dock does not persist `#ask=` on content pages so `/framework` section hashes stay intact; Open full Ask continues the thread on `/ask`.
+- **Why it matters**: Ask should let a visitor pressure-test the public record from the pages that make the claims, not only from `/ask`. Evidence: `components/ask-dock.tsx`, `components/chat.tsx`, `content/ask.ts`, `lib/ask-session.ts` (`fullAskHref`). Public-safety risk: none intended; dock uses the same cite-or-refuse path. Flag for Ravikanth: publication-review of dock placement and challenge-chip wording before merging. Phase B streaming remains out of scope.
+- **Lane**: structure/wiring/a11y (Codex) plus dock/chip visitor-facing strings required by the Phase C brief.
 
 ### 2026-09-21 — Grok: Ask UX Phase A (deterministic chat shell)
 

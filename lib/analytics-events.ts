@@ -20,6 +20,7 @@ export const safeAnalyticsEvents = [
   "profile_link_click",
   "resume_download",
   "source_link_click",
+  "ask_dock_toggle",
   "work_page_visit"
 ] as const;
 
