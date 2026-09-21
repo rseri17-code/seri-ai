@@ -12,7 +12,7 @@ const chain = [
 
 export function BatchIntelligenceProof() {
   return (
-    <section aria-labelledby="batch-intelligence-title" className="mt-4 overflow-hidden rounded-xl border border-signal/25 bg-signal/[0.035]">
+    <section id="batch-intelligence" aria-labelledby="batch-intelligence-title" className="mt-4 scroll-mt-[8.5rem] overflow-hidden rounded-xl border border-signal/25 bg-signal/[0.035]">
       <header className="border-b border-white/10 p-4 sm:p-6">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Batch Intelligence · synthetic public-safe proof</p>
         <h3 id="batch-intelligence-title" className="mt-3 text-2xl font-semibold text-white sm:text-3xl">For services, context is topology and deployments. For batch, context is the execution graph.</h3>

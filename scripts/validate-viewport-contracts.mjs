@@ -111,7 +111,10 @@ const routeContracts = [
       "className=\"min-w-0\"",
       "What this layer claims",
       "Falsification",
-      "Evidence posture"
+      "Evidence posture",
+      "FrameworkArchitectureMap",
+      "FrameworkSectionNav",
+      "FrameworkLayerOverview"
     ]
   },
   {

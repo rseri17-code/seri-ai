@@ -18,6 +18,9 @@ import type { Metadata } from "next";
 import { ArrowRight, BrainCircuit, CheckCircle2, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
 import { BatchIntelligenceProof } from "@/components/batch-intelligence-proof";
+import { FrameworkArchitectureMap } from "@/components/framework-architecture-map";
+import { FrameworkLayerOverview } from "@/components/framework-layer-overview";
+import { FrameworkSectionNav } from "@/components/framework-section-nav";
 import { FrameworkTeacher } from "@/components/framework-teacher";
 import { Section } from "@/components/section";
 import { TechnicalReviewPath } from "@/components/technical-review-path";
@@ -97,7 +100,7 @@ export default function FrameworkPage() {
             </div>
           </Card>
           <Card>
-            <p className="text-xs font-semibold uppercase text-slate-500">Operator questions</p>
+            <p className="text-xs font-semibold uppercase text-slate-400">Operator questions</p>
             <div className="mt-4 grid gap-3">
               {operationalIntelligenceFramework.operatorQuestions.map((question, index) => (
                 <Link key={question} href={`/ask?prompt=${encodeURIComponent(question)}`} className="flex items-start gap-3 rounded border border-white/10 bg-black/20 p-3 transition hover:border-signal/40">
@@ -112,6 +115,9 @@ export default function FrameworkPage() {
         </div>
       </Section>
 
+      <FrameworkArchitectureMap />
+      <FrameworkSectionNav />
+
       <Section eyebrow="The two halves" title="What has to exist beneath an agent, and what the agent has to do with it.">
         <p className="max-w-4xl text-base leading-7 text-slate-300">
           These are the same argument at two altitudes. The context layer is the substrate: maintained once, consumed by everything.
@@ -120,7 +126,8 @@ export default function FrameworkPage() {
         </p>
 
         <Card className="mt-5 p-4 sm:p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">One &mdash; the substrate</p>
+          <div id="context-layer" className="scroll-mt-[8.5rem]">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">One &mdash; the substrate</p>
           <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The Enterprise Context Layer</h3>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
             Today every engineer, every workflow and every agent reconstructs operational reality independently, each one pulling
@@ -146,12 +153,16 @@ export default function FrameworkPage() {
           <p className="mt-4 max-w-3xl border-l-2 border-signal/50 pl-4 text-base italic leading-7 text-slate-200">
             Reasoning improves with every model. Context improves only when you maintain it.
           </p>
+          </div>
         </Card>
 
-        <BatchIntelligenceProof />
+        <div id="batch" className="scroll-mt-[8.5rem]">
+          <BatchIntelligenceProof />
+        </div>
 
         <Card className="mt-4 p-4 sm:p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Two &mdash; the loop</p>
+          <div id="harness" className="scroll-mt-[8.5rem]">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Two &mdash; the loop</p>
           <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The SRE Agent Harness</h3>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
             An incident fires and the agent grounds itself in current telemetry, topology and configuration &mdash; that grounding
@@ -178,15 +189,19 @@ export default function FrameworkPage() {
           <p className="mt-4 max-w-3xl border-l-2 border-mint/50 pl-4 text-base italic leading-7 text-slate-200">
             Reasoning solves the current incident. Learning improves the next one.
           </p>
+          </div>
         </Card>
       </Section>
 
-      <Section eyebrow="How the material is indexed" title="Ten layers, used for filing rather than for arguing.">
+      <Section id="taxonomy" eyebrow="How the material is indexed" title="Ten layers, used for filing rather than for arguing.">
         <p className="max-w-4xl text-base leading-7 text-slate-300">
           The harness above is the model. These ten layers are the taxonomy underneath it: every published note,
           pattern and artifact on this site is tagged to one of them, which is how retrieval and related-reading
           work. They are a filing system, not a competing architecture &mdash; if the two ever disagree, the harness wins.
         </p>
+        <div className="mt-5">
+          <FrameworkLayerOverview />
+        </div>
         <div className="mt-5">
           <FrameworkTeacher />
         </div>
@@ -220,7 +235,7 @@ export default function FrameworkPage() {
         ) : null}
       </Section>
 
-      <Section eyebrow="Design rules" title="How the framework should constrain systems.">
+      <Section id="evaluation" eyebrow="Design rules" title="How the framework should constrain systems.">
         <div className="grid gap-4 lg:grid-cols-2">
           <Card>
             <CheckCircle2 className="mb-5 text-mint" />
@@ -250,7 +265,7 @@ export default function FrameworkPage() {
         <TechnicalReviewPath />
       </Section>
 
-      <Section eyebrow="Where the market is moving" title="Every claim below is paired with what would prove it wrong.">
+      <Section id="falsifiers" eyebrow="Where the market is moving" title="Every claim below is paired with what would prove it wrong.">
         <p className="max-w-4xl text-sm leading-6 text-slate-300 md:text-base md:leading-7">
           A market moving the same direction is a signal, not a confirmation. The last column is the one that matters &mdash; what
           would have to show up for the claim to be wrong. Updated {thesisRadar.updatedAt}.

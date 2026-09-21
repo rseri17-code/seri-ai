@@ -17,7 +17,7 @@ export function FrameworkTeacher() {
   return (
     <div className="grid gap-5 xl:grid-cols-[22rem_1fr]">
       <Card className="h-fit p-4">
-        <p className="text-xs font-semibold uppercase text-slate-500">Teaching sequence</p>
+        <p className="text-xs font-semibold uppercase text-slate-400">Teaching sequence</p>
         <div className="mt-4 grid gap-2">
           {operationalIntelligenceFramework.layers.map((layer, index) => {
             const selected = index === activeIndex;
@@ -38,7 +38,7 @@ export function FrameworkTeacher() {
                 }`}
               >
                 <div className="flex items-center justify-between gap-3">
-                  <span className={selected ? "font-mono text-xs text-mint" : "font-mono text-xs text-slate-500"}>{String(index + 1).padStart(2, "0")}</span>
+                  <span className={selected ? "font-mono text-xs text-mint" : "font-mono text-xs text-slate-400"}>{String(index + 1).padStart(2, "0")}</span>
                   <span className="rounded border border-white/10 px-2 py-1 text-[0.65rem] uppercase text-slate-400">{layer.operationsStage}</span>
                 </div>
                 <p className="mt-2 text-sm font-semibold text-white">{layer.name}</p>
@@ -60,7 +60,7 @@ export function FrameworkTeacher() {
               <p className="mt-3 text-lg leading-8 text-slate-200">{activeLayer.definition}</p>
             </div>
             <div className="rounded-lg border border-white/10 bg-black/25 p-4 lg:w-72">
-              <p className="text-xs font-semibold uppercase text-slate-500">Shared case</p>
+              <p className="text-xs font-semibold uppercase text-slate-400">Shared case</p>
               <p className="mt-2 font-mono text-sm text-signal">{operationalIntelligenceSystem.caseId}</p>
               <p className="mt-1 text-sm font-semibold text-white">{operationalIntelligenceSystem.caseTitle}</p>
             </div>
@@ -79,7 +79,7 @@ export function FrameworkTeacher() {
                 ["What can go wrong", activeLayer.failureMode]
               ].map(([label, value]) => (
                 <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
-                  <p className="text-xs font-semibold uppercase text-slate-500">{label}</p>
+                  <p className="text-xs font-semibold uppercase text-slate-400">{label}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{value}</p>
                 </div>
               ))}
@@ -91,7 +91,7 @@ export function FrameworkTeacher() {
             <h3 className="text-2xl font-semibold text-white">How it appears in OI-ROOM-001</h3>
             <p className="mt-4 text-sm leading-7 text-slate-300">{activeLayer.caseExample}</p>
             <div className="mt-4 rounded border border-signal/25 bg-signal/[0.07] p-3">
-              <p className="text-xs font-semibold uppercase text-slate-500">Operations Room stage</p>
+              <p className="text-xs font-semibold uppercase text-slate-400">Operations Room stage</p>
               <p className="mt-2 font-semibold text-white">{activeLayer.operationsStage}</p>
             </div>
             <Link href={`/investigation-room?stage=${encodeURIComponent(activeLayer.operationsStage)}`} className="mt-4 inline-flex items-center gap-2 rounded border border-mint/35 px-4 py-2 text-sm font-semibold text-mint">
@@ -102,7 +102,7 @@ export function FrameworkTeacher() {
 
         <div className="grid gap-4 lg:grid-cols-3">
           <Card className="p-4">
-            <p className="text-xs font-semibold uppercase text-slate-500">Inputs</p>
+            <p className="text-xs font-semibold uppercase text-slate-400">Inputs</p>
             <p className="mt-3 text-sm leading-6 text-slate-300">{activeLayer.input}</p>
           </Card>
           <Card className="p-4">
@@ -120,7 +120,7 @@ export function FrameworkTeacher() {
           <h3 className="text-2xl font-semibold text-white">Follow the dependency path</h3>
           <div className="mt-4 grid gap-3 md:grid-cols-3">
             <div className="rounded border border-white/10 bg-black/20 p-3">
-              <p className="text-xs font-semibold uppercase text-slate-500">Upstream</p>
+              <p className="text-xs font-semibold uppercase text-slate-400">Upstream</p>
               <p className="mt-2 text-sm font-semibold text-white">{upstream?.name ?? "Case intake"}</p>
             </div>
             <div className="rounded border border-mint/30 bg-mint/[0.08] p-3">
@@ -128,7 +128,7 @@ export function FrameworkTeacher() {
               <p className="mt-2 text-sm font-semibold text-white">{activeLayer.name}</p>
             </div>
             <div className="rounded border border-white/10 bg-black/20 p-3">
-              <p className="text-xs font-semibold uppercase text-slate-500">Downstream</p>
+              <p className="text-xs font-semibold uppercase text-slate-400">Downstream</p>
               <p className="mt-2 text-sm font-semibold text-white">{downstream?.name ?? "Human-owned outcome"}</p>
             </div>
           </div>
