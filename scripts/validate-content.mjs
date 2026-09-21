@@ -411,9 +411,9 @@ for (const required of [
   "SRE / Agent Harness",
   "Batch Intelligence",
   "Ten layers",
-  "Hiring conversations",
+  "The work, plainly",
   "Staff / Principal conversations",
-  "Contact / Hiring",
+  "public-safe proofs you can inspect",
   "Context Acquisition Tax",
   "What I&apos;m building, and where it is headed.",
   "Destination: agents that can sit near production"
@@ -425,21 +425,21 @@ for (const required of [
 const evidenceLadderPath = path.join(root, "components", "evidence-ladder.tsx");
 const evidenceLadderSource = fs.existsSync(evidenceLadderPath) ? fs.readFileSync(evidenceLadderPath, "utf8") : "";
 const workPageSource = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
-if (!homeOrientationSource.includes("<HireStrip") || !homeOrientationSource.includes("<EvidenceLadder")) {
-  errors.push("components/home-orientation.tsx: hire strip and evidence ladder must render inside the hero orientation");
+if (!homeOrientationSource.includes("<WorkPlainly") || !homeOrientationSource.includes("<EvidenceLadder")) {
+  errors.push("components/home-orientation.tsx: work-plainly strip and evidence ladder must render inside the hero orientation");
 }
-if (homeOrientationSource.indexOf("<HireStrip") > homeOrientationSource.indexOf("<EvidenceLadder")) {
-  errors.push("components/home-orientation.tsx: hire strip must appear before the evidence ladder");
+if (homeOrientationSource.indexOf("<WorkPlainly") > homeOrientationSource.indexOf("<EvidenceLadder")) {
+  errors.push("components/home-orientation.tsx: work-plainly strip must appear before the evidence ladder");
 }
-if (homeOrientationSource.indexOf("id=\"orientation\"") > homeOrientationSource.indexOf("<HireStrip")) {
-  errors.push("components/home-orientation.tsx: hire strip must appear under the 30-second map");
+if (homeOrientationSource.indexOf("id=\"orientation\"") > homeOrientationSource.indexOf("<WorkPlainly")) {
+  errors.push("components/home-orientation.tsx: work-plainly strip must appear under the 30-second map");
 }
 if (!workPageSource.includes("<EvidenceLadder")) {
   errors.push("app/work/page.tsx: Work must render the shared evidence ladder");
 }
 for (const required of [
   "Start here",
-  "Evidence by strength",
+  "A path through the work",
   "Operations Room",
   "Framework",
   "Codebase Memory",

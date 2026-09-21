@@ -3,10 +3,11 @@ import { ArrowRight } from "lucide-react";
 import { TrackedLink } from "@/components/tracked-link";
 
 /**
- * Ordered public proofs, strongest first. Homepage Start here and Work share
- * this list so a hiring manager and an engineer get the same path.
+ * Ordered public artifacts, strongest first. Homepage Start here and Work share
+ * this list so a visitor gets the same path through the work.
  *
  * Do not turn these cards into essays. One kind label + one proof line.
+ * This is a path through the work, not a recruiter brochure.
  */
 export const evidenceLadder = [
   {
@@ -59,12 +60,12 @@ export function EvidenceLadder({ source }: { source: "home" | "work" }) {
 
   return (
     <nav
-      aria-label={source === "home" ? "First visit" : "Evidence by strength"}
+      aria-label={source === "home" ? "First visit" : "Path through the work"}
       className="mt-8 rounded-xl border border-white/10 bg-white/[0.03] p-4 sm:p-5"
     >
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Start here</p>
       <p className="mt-2 text-sm leading-6 text-slate-300">
-        Evidence by strength. A first visit, in this order.
+        A path through the work. Inspect these artifacts in this order.
       </p>
       <ol className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
         {evidenceLadder.map((step) => {

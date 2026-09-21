@@ -36,9 +36,8 @@ const routeContracts = [
       "Codebase Memory",
       "Context that survives the next session.",
       "Read the case study",
-      "Hiring conversations",
-      "Contact / Hiring",
-      "Evidence by strength",
+      "The work, plainly",
+      "A path through the work",
       "Context Acquisition Tax",
       "permitted to take on context it should not have trusted"
     ],
@@ -49,8 +48,8 @@ const routeContracts = [
       ["Enter the Operations Room", "Fifteen years across enterprise integration"],
       // Ruled section order, asserted end to end on the rendered page.
       ["I build evidence-grounded AI systems for enterprise operations.", "The failure I design against"],
-      ["30-second map", "Hiring conversations"],
-      ["Hiring conversations", "Start here"],
+      ["30-second map", "The work, plainly"],
+      ["The work, plainly", "Start here"],
       ["Start here", "The failure I design against"],
       ["The failure I design against", "The Operations Room"],
       ["The Operations Room", "Three bodies of work."],
@@ -144,7 +143,7 @@ const routeContracts = [
       "LinkedIn",
       "owned every stage",
       "Codebase Memory",
-      "Evidence by strength",
+      "A path through the work",
       "Proves:"
     ]
   },

@@ -39,10 +39,8 @@ const routeContracts = [
     file: "components/home-orientation.tsx",
     minResponsiveTokens: 18,
     required: [
-      "lg:grid-cols-[1fr_1fr_auto]",
       "sm:grid-cols-2",
-      "Hiring conversations",
-      "Contact / Hiring"
+      "The work, plainly"
     ]
   },
   {
@@ -53,7 +51,7 @@ const routeContracts = [
       "lg:grid-cols-5",
       "sm:grid-cols-2",
       "min-h-11",
-      "Evidence by strength"
+      "A path through the work"
     ]
   },
   {

@@ -18,7 +18,7 @@
  *   5 Selected ideas  6 Closing invitation
  * Do not add a seventh section without a documented visitor need.
  *
- * The 30-second map, hire strip, evidence ladder, start-here path, and destination
+ * The 30-second map, work-plainly strip, evidence ladder, start-here path, and destination
  * block live *inside the hero* (after identity, before the signature thesis) so a
  * cold visitor gets the architecture shape before Authorized Misfire jargon. That is
  * not a seventh section. The longer map belongs on /framework.
