@@ -14,7 +14,7 @@ export function FrameworkSectionNav() {
   const [activeId, setActiveId] = useState<(typeof sections)[number]["id"]>(sections[0].id);
 
   useEffect(() => {
-    const offset = 176;
+    const offset = 220;
 
     function syncActive() {
       let current: (typeof sections)[number]["id"] = sections[0].id;
