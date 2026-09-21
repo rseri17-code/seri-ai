@@ -88,7 +88,7 @@ export function HomeOrientation() {
               </Link>
             </div>
 
-            <div className="flex items-center justify-center px-1 py-1 text-center lg:flex-col lg:px-0" aria-hidden="true">
+            <div className="flex items-center justify-center px-1 py-2 text-center lg:min-w-[5.5rem] lg:flex-col lg:px-2" aria-hidden="true">
               <span className="text-signal lg:hidden">↓</span>
               <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">grounds</span>
               <span className="hidden text-signal lg:block">↔</span>
