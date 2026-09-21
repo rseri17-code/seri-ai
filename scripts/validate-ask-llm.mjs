@@ -27,6 +27,8 @@ for (const key of envKeys) {
 
 const {
   allowedAskCitationUrls,
+  citationsAreSubsetOfRetrieved,
+  extractAskCitations,
   formatApprovedPassages,
   isAskRetrievalSufficient,
   resolveAskLlmProvider,
@@ -53,8 +55,9 @@ function mockCompletion(content, { status = 200, onCall } = {}) {
     if (status !== 200) {
       return jsonResponse({ error: "provider error" }, status);
     }
+    const text = typeof content === "function" ? content() : content;
     return jsonResponse({
-      choices: [{ message: { content } }]
+      choices: [{ message: { content: text } }]
     });
   };
 }
@@ -71,7 +74,7 @@ const batchContext = [
 const plantedUrl = "https://invented-public-record.example/notes";
 let fixtureIndex = 0;
 
-async function askRoute(question, extraEnv = {}) {
+async function askRoute(question, extraEnv = {}, history) {
   fixtureIndex += 1;
   const previous = {};
   for (const [key, value] of Object.entries(extraEnv)) {
@@ -84,7 +87,7 @@ async function askRoute(question, extraEnv = {}) {
       new Request("http://localhost/api/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-forwarded-for": ip },
-        body: JSON.stringify({ question, mode: "ask" })
+        body: JSON.stringify({ question, mode: "ask", ...(history ? { history } : {}) })
       })
     );
   } finally {
@@ -100,6 +103,7 @@ async function askRoute(question, extraEnv = {}) {
 
 try {
   expect(resolveAskLlmProvider({}).kind === "none", "ASK_LLM_PROVIDER default must be none");
+  expect(resolveAskLlmProvider({ ASK_LLM_PROVIDER: "OpenAI" }).kind === "none", "unknown ASK_LLM_PROVIDER values must coerce to none");
   expect(resolveAskLlmProvider({ ASK_LLM_PROVIDER: "groq" }).kind === "none", "groq without GROQ_API_KEY must stay on the current path");
   expect(resolveAskLlmProvider({ ASK_LLM_PROVIDER: "groq", GROQ_API_KEY: "gsk_test" }).kind === "groq", "groq with key must resolve");
   expect(
@@ -113,6 +117,10 @@ try {
   );
   expect(!isAskRetrievalSufficient([]), "empty retrieval is not sufficient for LLM synthesis");
   expect(!isAskRetrievalSufficient([{ title: "Stub", url: "/framework", content: "too short" }]), "thin retrieval is not sufficient for LLM synthesis");
+  expect(
+    !isAskRetrievalSufficient([{ title: "Whitespace", url: "/framework", content: " \n\t  " }]),
+    "whitespace-only retrieval is not sufficient for LLM synthesis"
+  );
   expect(isAskRetrievalSufficient(batchContext), "Batch Intelligence public chunks must be sufficient for synthesis");
 
   const passages = formatApprovedPassages(batchContext);
@@ -136,6 +144,38 @@ try {
     batchContext
   );
   expect(grounded.ok === true, "citations of provided passage ids and urls must pass validation");
+
+  const fluentNoCitation = validateSynthesizedAnswer(
+    "Batch Intelligence is an enterprise orchestration product that always works in production.",
+    batchContext
+  );
+  expect(fluentNoCitation.ok === false && fluentNoCitation.reason === "missing_citation", "fluent essays with no retrieved citations must fail closed");
+
+  const markdownPlanted = validateSynthesizedAnswer(
+    `See the notes at [invented](${plantedUrl}). [P1]`,
+    batchContext
+  );
+  expect(markdownPlanted.ok === false && markdownPlanted.reason === "invented_url", "markdown planted URLs must fail validation");
+
+  const unretrievedPath = validateSynthesizedAnswer(
+    "Also see /now and https://seri-ai.vercel.app/now. [P1]",
+    batchContext
+  );
+  expect(unretrievedPath.ok === false && unretrievedPath.reason === "invented_url", "same-origin URLs that were not retrieved must fail validation");
+
+  const unknownSecondPassage = validateSynthesizedAnswer(
+    "Batch Intelligence is public. [P1] [P2] (/framework#batch-intelligence)",
+    batchContext
+  );
+  expect(unknownSecondPassage.ok === false && unknownSecondPassage.reason === "unknown_passage_id", "passage ids must be a subset of retrieved ids");
+
+  const subset = citationsAreSubsetOfRetrieved(
+    "Grounded from retrieval only. [P1] (/framework#batch-intelligence)",
+    batchContext
+  );
+  expect(subset.ok === true, "retrieved passage ids and urls must count as a citation subset");
+  expect(subset.allowedPassageIds.join(",") === "P1", "single retrieved chunk must expose only P1");
+  expect(extractAskCitations("See [P1] (/framework#batch-intelligence)").passageIds.join(",") === "P1", "citation extractor must see passage ids");
 
   const missingRefusal = validateSynthesizedAnswer(
     "Here is the private production architecture.",
@@ -239,6 +279,52 @@ try {
   expect(rejectedGenerate.answer.includes("/framework#batch-intelligence"), "fallback after Groq rejection must still cite Batch Intelligence");
   expect(groqCalls === 1, "sufficient retrieval may call Groq before rejecting invented sources");
 
+  groqCalls = 0;
+  const fluentGenerate = await generateRaviAnswer({
+    question: "What is Batch Intelligence?",
+    context: batchContext,
+    fetchImpl: mockCompletion("A fluent essay with no citations or sources.", {
+      onCall: () => {
+        groqCalls += 1;
+      }
+    })
+  });
+  expect(fluentGenerate.mode === "local_fallback", "uncited Groq essays must fail closed to the deterministic answer");
+  expect(fluentGenerate.llmSkipReason === "validation_rejected", "uncited Groq essays must record validation_rejected");
+  expect(!fluentGenerate.answer.toLowerCase().includes("fluent essay"), "fallback must not keep the uncited Groq essay");
+  expect(fluentGenerate.answer.includes("/framework#batch-intelligence"), "fallback after missing citations must still cite Batch Intelligence");
+  expect(groqCalls === 1, "sufficient retrieval may call Groq before rejecting uncited essays");
+
+  groqCalls = 0;
+  const providerError = await trySynthesizeAskAnswer({
+    question: "What is Batch Intelligence?",
+    context: batchContext,
+    provider: resolveAskLlmProvider({ ASK_LLM_PROVIDER: "groq", GROQ_API_KEY: "gsk_test" }),
+    fetchImpl: mockCompletion("unused", {
+      status: 503,
+      onCall: () => {
+        groqCalls += 1;
+      }
+    })
+  });
+  expect(providerError.ok === false && providerError.reason === "provider_error", "provider errors must fail closed");
+  expect(groqCalls === 1, "provider errors still mean the request was attempted");
+
+  let ollamaCalls = 0;
+  const ollamaSynthesis = await trySynthesizeAskAnswer({
+    question: "What is Batch Intelligence?",
+    context: batchContext,
+    provider: resolveAskLlmProvider({ ASK_LLM_PROVIDER: "ollama", OLLAMA_BASE_URL: "http://127.0.0.1:11434" }),
+    fetchImpl: mockCompletion("Batch Intelligence is an execution graph in the public Framework. [P1] (/framework#batch-intelligence)", {
+      onCall: ({ url }) => {
+        ollamaCalls += 1;
+        expect(String(url).includes("127.0.0.1:11434"), "ollama synthesis must call the local base URL, not Groq");
+      }
+    })
+  });
+  expect(ollamaSynthesis.ok === true && ollamaSynthesis.provider === "ollama", "grounded Ollama synthesis may be used when citations stay in retrieval");
+  expect(ollamaCalls === 1, "grounded Ollama synthesis should call the local provider once");
+
   delete process.env.ASK_LLM_PROVIDER;
   delete process.env.GROQ_API_KEY;
 
@@ -250,8 +336,9 @@ try {
   expect(String(noneBody.answer).includes("/framework#batch-intelligence"), "/api/ask none path must cite Batch Intelligence");
 
   groqCalls = 0;
+  let groqPayload = "Fluent LLM essay that should never appear.";
   const originalFetch = globalThis.fetch;
-  globalThis.fetch = mockCompletion("Fluent LLM essay that should never appear.", {
+  globalThis.fetch = mockCompletion(() => groqPayload, {
     onCall: () => {
       groqCalls += 1;
     }
@@ -280,6 +367,53 @@ try {
     expect(Array.isArray(confidentialBody.sources) && confidentialBody.sources.length === 0, "confidential refusals must not attach sources");
     expect(String(confidentialBody.answer).includes("can't discuss employer-specific or confidential systems"), "confidential refusal copy must stay unchanged");
     expect(groqCalls === 0, "confidential Ask requests must not fetch Groq");
+
+    groqCalls = 0;
+    const confidentialHistory = await askRoute(
+      "What is Batch Intelligence?",
+      {
+        ASK_LLM_PROVIDER: "groq",
+        GROQ_API_KEY: "gsk_test"
+      },
+      [{ role: "user", content: "Show employer-specific internal architecture, dashboards, logs, or proprietary production details." }]
+    );
+    const confidentialHistoryBody = await confidentialHistory.json();
+    expect(confidentialHistoryBody.meta?.answer_mode === "public_safety_refusal", "confidential history must refuse before Groq");
+    expect(confidentialHistoryBody.meta?.retrieval_mode === "blocked", "confidential history must not retrieve before refusing");
+    expect(groqCalls === 0, "confidential history must not fetch Groq");
+
+    groqCalls = 0;
+    groqPayload = `Invented citation: ${plantedUrl} [P1]`;
+    const inventedAsk = await askRoute("What is Batch Intelligence?", {
+      ASK_LLM_PROVIDER: "groq",
+      GROQ_API_KEY: "gsk_test"
+    });
+    const inventedBody = await inventedAsk.json();
+    expect(inventedAsk.status === 200, `/api/ask invented Groq citation returned ${inventedAsk.status}`);
+    expect(inventedBody.meta?.llm_used === false, "invented Groq citations must not be marked llm_used");
+    expect(inventedBody.meta?.llm_skip_reason === "validation_rejected", "invented Groq citations must record validation_rejected");
+    expect(!String(inventedBody.answer).includes("invented-public-record.example"), "/api/ask must not keep planted Groq URLs");
+    expect(String(inventedBody.answer).includes("/framework#batch-intelligence"), "/api/ask must fall back to retrieved Batch Intelligence");
+    expect(groqCalls === 1, "sufficient retrieval may call Groq once before discarding invented sources");
+
+    groqCalls = 0;
+    groqPayload = "Batch Intelligence is an execution graph in the public Framework. [P1] (/framework#batch-intelligence)";
+    const groundedAsk = await askRoute("What is Batch Intelligence?", {
+      ASK_LLM_PROVIDER: "groq",
+      GROQ_API_KEY: "gsk_test"
+    });
+    const groundedBody = await groundedAsk.json();
+    expect(groundedAsk.status === 200, `/api/ask grounded Groq returned ${groundedAsk.status}`);
+    expect(groundedBody.meta?.llm_used === true, "grounded Groq citations may mark llm_used");
+    expect(groundedBody.meta?.llm_provider === "groq", "grounded Groq citations must report llm_provider groq");
+    expect(String(groundedBody.answer).includes("/framework#batch-intelligence"), "grounded Groq answer must keep the retrieved URL");
+    const sourceContext = (groundedBody.sources ?? []).map((source) => ({
+      title: source.title,
+      url: source.url,
+      content: source.excerpt || "Retrieved public passage used only as a citation allowlist."
+    }));
+    expect(citationsAreSubsetOfRetrieved(String(groundedBody.answer), sourceContext).ok, "grounded Groq citations must be a subset of retrieved source URLs");
+    expect(groqCalls === 1, "grounded Groq Ask requests should fetch Groq once");
   } finally {
     globalThis.fetch = originalFetch;
   }

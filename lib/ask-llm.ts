@@ -168,9 +168,45 @@ function extractCitedPassageIds(text: string) {
   return [...new Set([...text.matchAll(/\[P(\d+)\]|\bP(\d+)\b/gi)].map((match) => `P${match[1] ?? match[2]}`))];
 }
 
+export function extractAskCitations(text: string) {
+  return {
+    urls: extractCitedUrls(text),
+    passageIds: extractCitedPassageIds(text)
+  };
+}
+
+export type AskCitationSubset = {
+  ok: boolean;
+  extraUrls: string[];
+  extraPassageIds: string[];
+  allowedUrls: string[];
+  allowedPassageIds: string[];
+};
+
+export function citationsAreSubsetOfRetrieved(
+  answer: string,
+  context: AskLlmContextSource[],
+  env: NodeJS.ProcessEnv = process.env
+): AskCitationSubset {
+  const passages = formatApprovedPassages(context);
+  const allowedPassageIds = passages.map((passage) => passage.id);
+  const allowedIds = new Set(allowedPassageIds);
+  const allowedUrlSet = allowedAskCitationUrls(context, env);
+  const origin = siteOrigin(env);
+  const extraPassageIds = extractCitedPassageIds(answer).filter((id) => !allowedIds.has(id));
+  const extraUrls = extractCitedUrls(answer).filter((url) => ![...urlVariants(url, origin)].some((variant) => allowedUrlSet.has(variant)));
+  return {
+    ok: extraPassageIds.length === 0 && extraUrls.length === 0,
+    extraUrls,
+    extraPassageIds,
+    allowedUrls: [...allowedUrlSet],
+    allowedPassageIds
+  };
+}
+
 export type AskSynthesisValidation = {
   ok: boolean;
-  reason?: "invented_url" | "unknown_passage_id" | "missing_refusal" | "empty_answer";
+  reason?: "invented_url" | "unknown_passage_id" | "missing_refusal" | "empty_answer" | "missing_citation";
   inventedUrls?: string[];
   unknownPassageIds?: string[];
 };
@@ -195,20 +231,21 @@ export function validateSynthesizedAnswer(
     }
   }
 
-  const passages = formatApprovedPassages(context);
-  const allowedIds = new Set(passages.map((passage) => passage.id));
-  const unknownPassageIds = extractCitedPassageIds(answer).filter((id) => !allowedIds.has(id));
-  if (unknownPassageIds.length) {
-    return { ok: false, reason: "unknown_passage_id", unknownPassageIds };
+  const subset = citationsAreSubsetOfRetrieved(answer, context, options.env);
+  if (subset.extraPassageIds.length) {
+    return { ok: false, reason: "unknown_passage_id", unknownPassageIds: subset.extraPassageIds };
+  }
+  if (subset.extraUrls.length) {
+    return { ok: false, reason: "invented_url", inventedUrls: subset.extraUrls };
   }
 
-  const allowedUrls = allowedAskCitationUrls(context, options.env);
-  const inventedUrls = extractCitedUrls(answer).filter((url) => {
-    const origin = siteOrigin(options.env);
-    return ![...urlVariants(url, origin)].some((variant) => allowedUrls.has(variant));
-  });
-  if (inventedUrls.length) {
-    return { ok: false, reason: "invented_url", inventedUrls };
+  const cited = extractAskCitations(answer);
+  const origin = siteOrigin(options.env);
+  const allowedUrlSet = new Set(subset.allowedUrls);
+  const knownCitedUrls = cited.urls.filter((url) => [...urlVariants(url, origin)].some((variant) => allowedUrlSet.has(variant)));
+  const knownCitedIds = cited.passageIds.filter((id) => subset.allowedPassageIds.includes(id));
+  if (context.length > 0 && knownCitedIds.length === 0 && knownCitedUrls.length === 0) {
+    return { ok: false, reason: "missing_citation" };
   }
 
   return { ok: true };
@@ -241,6 +278,8 @@ export function buildAskSynthesisMessages(question: string, context: AskLlmConte
   ];
 }
 
+// Completions are buffered and post-validated before any client sees them.
+// Token SSE is deferred: invented URLs cannot be rejected until the answer is complete.
 async function completeChat(options: {
   completionsUrl: string;
   apiKey: string;

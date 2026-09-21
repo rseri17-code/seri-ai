@@ -73,6 +73,8 @@ try {
   expect(typeof askPublicBody.meta?.latency_ms === "number", "/api/ask public fallback missing latency_ms metadata");
   expect(askPublicBody.meta?.budget?.synthesis_timeout_ms === 12000, "/api/ask public fallback missing synthesis timeout budget");
   expect(askPublicBody.meta?.budget?.returned_source_limit === 4, "/api/ask public fallback missing returned source budget");
+  expect(askPublicBody.meta?.llm_provider === "none", "/api/ask default must report llm_provider none");
+  expect(askPublicBody.meta?.llm_used === false, "/api/ask default must not use a preview synthesizer");
   expect(!JSON.stringify(askPublicBody.meta).toLowerCase().includes("define operational intelligence"), "/api/ask metadata must not include raw prompt text");
   expect(!askPublicBody.answer.includes("OPENAI_API_KEY"), "/api/ask leaked environment naming in answer");
   expect(
