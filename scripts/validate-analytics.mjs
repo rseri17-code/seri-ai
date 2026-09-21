@@ -13,6 +13,7 @@ const expectedEvents = [
   "ask_response_success",
   "ask_response_failure",
   "source_link_click",
+  "ask_dock_toggle",
   "work_page_visit",
   "background_page_visit",
   "resume_download",

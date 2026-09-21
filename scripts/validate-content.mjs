@@ -44,7 +44,7 @@ const requiredHomeFields = ["profileLinks", "harnessThesis", "linkedInSignals", 
 const requiredHomeSignalFields = ["name", "description"];
 const requiredHomeArticleFields = ["slug", "title", "dek", "theme"];
 const requiredHomePatternFields = ["slug", "title", "description"];
-const requiredAskFields = ["askRaviPrompts", "guidePaths", "askContextCards", "thesisLenses"];
+const requiredAskFields = ["askRaviPrompts", "guidePaths", "askContextCards", "thesisLenses", "askDockRoutes", "askChallengeChips"];
 const requiredFields = ["title", "description", "category", "tags", "status", "createdAt", "updatedAt"];
 const requiredArticleFields = ["slug", "title", "dek", "theme", "date", "readingTime", "body"];
 const requiredPrincipleFields = ["slug", "statement", "explanation", "example", "whyItMatters", "prevents", "tags", "related"];
@@ -532,6 +532,40 @@ if (!Array.isArray(ask.thesisLenses) || ask.thesisLenses.length < 6) {
     if (String(lens.body ?? "").length < 80) {
       errors.push(`content/ask.json:${lens.title ?? "unknown"}: body must be meaningful`);
     }
+  }
+}
+
+if (!Array.isArray(ask.askDockRoutes) || !ask.askDockRoutes.includes("/") || !ask.askDockRoutes.includes("/framework")) {
+  errors.push("content/ask.json: askDockRoutes must include / and /framework");
+}
+
+function assertChallengeChipList(owner, chips) {
+  if (!Array.isArray(chips) || chips.length < 4 || chips.some((chip) => !String(chip).includes("?"))) {
+    errors.push(`${owner} must include at least four challenge questions`);
+    return;
+  }
+  const blob = chips.join(" ").toLowerCase();
+  for (const required of ["falsif", "weakest", "prove"]) {
+    if (!blob.includes(required)) {
+      errors.push(`${owner} missing challenge keyword "${required}"`);
+    }
+  }
+}
+
+const challengeChips = ask.askChallengeChips ?? {};
+assertChallengeChipList("content/ask.json: askChallengeChips.default", challengeChips.default);
+const defaultBlob = JSON.stringify(challengeChips.default ?? []).toLowerCase();
+for (const required of ["authorized misfire", "context acquisition tax", "batch intelligence", "operations room"]) {
+  if (!defaultBlob.includes(required)) {
+    errors.push(`content/ask.json: default challenge chips missing ${required}`);
+  }
+}
+const frameworkChips = challengeChips.routes?.["/framework"];
+assertChallengeChipList("content/ask.json: askChallengeChips.routes./framework", frameworkChips);
+const frameworkBlob = JSON.stringify(frameworkChips ?? []).toLowerCase();
+for (const required of ["harness", "batch intelligence", "context acquisition tax", "enterprise context layer"]) {
+  if (!frameworkBlob.includes(required)) {
+    errors.push(`content/ask.json: framework challenge chips missing ${required}`);
   }
 }
 

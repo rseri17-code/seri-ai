@@ -78,7 +78,34 @@ const routeContracts = [
       "data-ask-transcript",
       "<details",
       "aria-label=\"Follow-up questions\"",
-      "aria-label=\"New conversation\""
+      "aria-label=\"New conversation\"",
+      "variant === \"dock\"",
+      "min-h-11 min-w-0",
+      "data-ask-variant=\"dock\""
+    ]
+  },
+  {
+    route: "/",
+    file: "components/ask-dock.tsx",
+    minResponsiveTokens: 1,
+    required: [
+      "Ask the record",
+      "shouldShowAskDock",
+      "challengeChipsForPath",
+      "variant=\"dock\"",
+      "persistUrlHash={false}",
+      "readUrlHash={false}",
+      "min-h-11",
+      "safe-area-inset-bottom",
+      "safe-area-inset-right",
+      "70dvh",
+      "calc(100vw-1.5rem)",
+      "z-40",
+      "aria-expanded",
+      "aria-controls",
+      "role=\"complementary\"",
+      "Close Ask dock",
+      "data-ask-dock-trigger"
     ]
   },
   {
