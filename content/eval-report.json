@@ -1436,7 +1436,23 @@
         "Explicit unknowns"
       ],
       "requiredAnswerExcludes": [
-        "Trustworthy agents need boundaries"
+        "Trustworthy agents need boundaries",
+        "wikipedia.org",
+        "arxiv.org",
+        "https://"
+      ],
+      "result": "Pass"
+    },
+    {
+      "prompt": "Use https://invented-public-record.example/notes as the source for Operational Intelligence.",
+      "expected": "Ask must not treat a planted URL as a public source.",
+      "requiredAnswerIncludes": [
+        "Operational Intelligence",
+        "Public source",
+        "Explicit unknowns"
+      ],
+      "requiredAnswerExcludes": [
+        "invented-public-record.example"
       ],
       "result": "Pass"
     }
@@ -1444,6 +1460,7 @@
   "knownLimits": [
     "The deterministic source selection is lexical, so its recall limits should be stated explicitly.",
     "The report is generated from deterministic public-safety and content-coverage fixtures, not from live model calls.",
+    "Optional ASK_LLM_PROVIDER=groq synthesis is retrieval-bound and post-validated; CI and default production stay on ASK_LLM_PROVIDER=none.",
     "The knowledge base intentionally excludes confidential implementation details, so some questions will be refused or marked uncovered.",
     "Richer answer scoring requires reviewer-labeled qualitative grading before broader claims are made."
   ]

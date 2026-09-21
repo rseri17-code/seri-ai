@@ -17,6 +17,11 @@ const requiredEnvKeys = [
   "OPENAI_API_KEY",
   "ANTHROPIC_API_KEY",
   "AI_PROVIDER",
+  "ASK_LLM_PROVIDER",
+  "GROQ_API_KEY",
+  "GROQ_MODEL",
+  "OLLAMA_BASE_URL",
+  "OLLAMA_MODEL",
   "OPENAI_CHAT_MODEL",
   "OPENAI_EMBEDDING_MODEL",
   "ANTHROPIC_CHAT_MODEL",
@@ -69,6 +74,7 @@ const sourceFiles = [
   "app/sitemap.ts",
   "components/analytics.tsx",
   "lib/ai.ts",
+  "lib/ask-llm.ts",
   "lib/env.ts",
   "lib/llms.ts",
   "lib/publishing.ts",
@@ -106,7 +112,7 @@ for (const required of [
 }
 
 const readme = read("README.md");
-for (const key of ["NEXT_PUBLIC_SITE_URL", "NEXT_PUBLIC_POSTHOG_KEY", "SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "OPENAI_API_KEY", "ANTHROPIC_API_KEY", "ADMIN_TOKEN"]) {
+for (const key of ["NEXT_PUBLIC_SITE_URL", "NEXT_PUBLIC_POSTHOG_KEY", "SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "OPENAI_API_KEY", "ANTHROPIC_API_KEY", "ADMIN_TOKEN", "ASK_LLM_PROVIDER", "GROQ_API_KEY", "GROQ_MODEL", "OLLAMA_BASE_URL"]) {
   expect(readme.includes(key), `README.md missing environment variable ${key}`);
 }
 expect(readme.includes("Without model or database keys, `/ask` runs with the local approved-content fallback"), "README.md missing optional-service fallback note");

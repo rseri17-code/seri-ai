@@ -2,6 +2,12 @@
 
 Last updated: 2026-09-21
 
+## BUILDER ASK LLM SYNTHESIZER PREVIEW — 2026-09-21
+
+Ask now has an optional retrieval-bound synthesizer behind `ASK_LLM_PROVIDER`. The default remains `none`, so production Ask is unchanged: local retrieval, public-safety refusal before any model call, and the existing deterministic fallback. When `ASK_LLM_PROVIDER=groq` and `GROQ_API_KEY` are set, Groq may only summarize retrieved public passages. Empty or thin retrieval never calls the model. Responses that cite unknown passage ids or invented URLs are discarded. Ollama is optional behind `OLLAMA_BASE_URL`. The Groq key stays server-side.
+
+Deterministic Ask fixtures: 122 passing cases. Search retrieval covers 74 canonical queries. Knowledge graph: 61 assets, 7566 relationships.
+
 ## BUILDER ASK RETRIEVAL + BATCH INTELLIGENCE DISCOVERABILITY — 2026-09-21
 
 Ask now refuses to answer a short named-topic question from a weakly related nearest-neighbor principle when that topic is not in the public index. `What is Batch Intelligence?` retrieves the Framework batch thesis at `/framework#batch-intelligence` (and the Ideas stub at `/ideas/batch-intelligence`) instead of the unrelated `Trustworthy agents need boundaries` principle. Close variants `batch context layer` and `batch execution graph` use the same canonical deep link. Unknown named topics degrade to an honest `not in the public record` thin-record response. Public-safety refusals are unchanged.
@@ -1360,7 +1366,7 @@ Recent improvements:
 - Search retrieval covers 69 canonical queries.
 - Retrieval now applies a small length penalty in the public search scorer so broad documents stop crowding out narrower matches; Ask remains anchored on the canonical doctrine and reference-architecture phrases for definition and governance prompts.
 - Ask evals were revalidated after the retrieval adjustment and returned 117/117 passing fixtures.
-- Ask deterministic fixtures cover 121 passing cases.
+- Ask deterministic fixtures cover 122 passing cases.
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.
 - Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.
@@ -1520,6 +1526,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Builder: preview-only retrieval-bound Ask synthesizer
+
+- **Resolved**: Ask gained an optional Groq/Ollama synthesizer that can only summarize retrieved public chunks. `ASK_LLM_PROVIDER=none` is the default and keeps the current retrieval, refusal, and local-fallback path. Groq is skipped on empty/thin retrieval, confidential questions stay pre-LLM, and invented passage ids or URLs are rejected. Evidence: `lib/ask-llm.ts`, `lib/ai.ts`, `app/api/ask/route.ts`, `scripts/validate-ask-llm.mjs`, `content/eval-report.json`. Public-safety risk: none; employer/confidential prompts never reach the model and fixtures contain no private data.
 
 ### 2026-09-21 — Builder: Ask nearest-neighbor miss for Batch Intelligence
 
