@@ -72,7 +72,13 @@ const routeContracts = [
       "min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2",
       "border-t border-white/10 bg-black/15 p-3",
       "aria-label=\"Ask a question about the public work\"",
-      "aria-label=\"Send message\""
+      "aria-label=\"Send message\"",
+      "sticky bottom-0",
+      "role=\"log\"",
+      "data-ask-transcript",
+      "<details",
+      "aria-label=\"Follow-up questions\"",
+      "aria-label=\"New conversation\""
     ]
   },
   {

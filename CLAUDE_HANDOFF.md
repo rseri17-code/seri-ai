@@ -2,6 +2,18 @@
 
 Last updated: 2026-09-21
 
+## ASK UX PHASE A — 2026-09-21
+
+Deterministic multi-turn chat shell on `/ask`. Preview-only; do not merge.
+
+- Threaded transcript: user and assistant bubbles in a scrollable log. Each assistant turn keeps the same reviewable packet (answer, citations, category/layers/boundary) in a `<details>` accordion under the reply.
+- Follow-up chips: 2–4 public-record next questions after each answer (`inferFollowUpChips` + API `follow_ups`). Clicking a chip sends the next user turn. Empty state still shows Strong first questions.
+- Persistence: versioned `localStorage` session now stores per-turn packets; shareable `#ask=` hash restores the thread across refresh. Clear session / New conversation wipes both.
+- Backend: existing `/api/ask` retrieval and refusal contract reused. Each turn retrieves independently from the new question. History is public-safety (and optional synthesis) only — not concatenated into retrieval. No LLM, no Groq, no floating dock.
+- Tests: API contracts cover follow-up chips, packet session + hash, thin-record refusal, confidential refusal, and an independent Batch Intelligence follow-up turn. Optional browser script: `scripts/review/verify-ask-chat.mjs`.
+
+Ask deterministic fixtures cover 121 passing cases. Preview-only; do not merge until Ravikanth reviews the chat UX.
+
 ## HOMEPAGE CLARITY PASS — 2026-09-21
 
 Work-first 60-second scan, without a seventh homepage section, a hiring-brochure frame, or a redesign.
@@ -1552,6 +1564,13 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Grok: Ask UX Phase A (deterministic chat shell)
+
+- **Keep**: retrieval-bound answers, citations, public-safety refusal, Trust contract / AI disclosure / boundary banners, Strong first questions empty state, `local_fallback` as the default path, existing Ask API question/history/mode contract.
+- **Changed**: `/ask` is a multi-turn chat timeline instead of a short log plus a packet panel that only described the last turn. Packets travel with each assistant bubble; follow-up chips continue the thread; session restore now includes sources/meta.
+- **Why it matters**: Ask is supposed to demonstrate the platform as an inspectable public-record interface, not a one-shot Q&A form. Evidence: `components/chat.tsx`, `lib/ask-session.ts`, `lib/ai.ts` (`inferFollowUpChips`), `app/api/ask/route.ts`. Public-safety risk: none intended; thin/confidential refusals still return no invented sources. Flag for Ravikanth: publication-review of the chat UX before merging; Phase B streaming and Phase C floating dock remain out of scope.
+- **Lane**: structure/wiring/a11y (Codex). Visitor-facing strings reused from the existing Ask console; follow-up chips are existing public-record questions.
 
 ### 2026-09-21 — Grok: homepage clarity pass (work plainly, evidence ladder, glosses)
 
