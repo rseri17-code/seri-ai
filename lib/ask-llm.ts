@@ -279,7 +279,7 @@ async function completeChat(options: {
 
 export type AskSynthesisAttempt =
   | { ok: true; answer: string; provider: Exclude<AskLlmProvider, "none"> }
-  | { ok: false; reason: Exclude<AskLlmSkipReason, "provider_none"> };
+  | { ok: false; reason: AskLlmSkipReason };
 
 export async function trySynthesizeAskAnswer(args: {
   question: string;
