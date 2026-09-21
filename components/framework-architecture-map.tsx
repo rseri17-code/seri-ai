@@ -87,6 +87,32 @@ export function FrameworkArchitectureMap() {
             </a>
           </div>
         </div>
+
+        <dl className="mt-3 grid gap-2 sm:grid-cols-3">
+          <div className="rounded-lg border border-white/10 bg-black/20 p-3">
+            <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">Building now</dt>
+            <dd className="mt-1 text-sm leading-6 text-slate-300">
+              <a href="#context-layer" className="underline-offset-4 hover:underline">The Enterprise Context Layer</a>
+              {" "}as shared substrate, and{" "}
+              <a href="#harness" className="underline-offset-4 hover:underline">the SRE Agent Harness</a>
+              {" "}that runs on it.
+            </dd>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-black/20 p-3">
+            <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">Public-safe proof</dt>
+            <dd className="mt-1 text-sm leading-6 text-slate-300">
+              <a href="#batch-intelligence" className="underline-offset-4 hover:underline">Batch Intelligence</a>
+              : for batch, context is the execution graph. Not a taxonomy layer.
+            </dd>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-black/20 p-3">
+            <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-amber">Where this is headed</dt>
+            <dd className="mt-1 text-sm leading-6 text-slate-300">
+              <a href="#evaluation" className="underline-offset-4 hover:underline">Eval gates and falsifiers</a>
+              {" "}before trust — then human-reviewed action, not a bigger alert console.
+            </dd>
+          </div>
+        </dl>
       </figure>
     </div>
   );

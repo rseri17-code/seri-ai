@@ -63,6 +63,8 @@ const routeContracts = [
       "Humans remain accountable",
       "Falsification",
       "Architecture map",
+      "Building now",
+      "Where this is headed",
       "Ten-layer taxonomy at a glance",
       "On this page"
     ],
