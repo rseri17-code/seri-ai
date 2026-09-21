@@ -318,6 +318,35 @@ for (const required of [
   expect(frameworkPage.includes(required), `/framework missing executable framework contract: ${required}`);
 }
 
+const batchProof = fs.readFileSync(path.join(root, "components", "batch-intelligence-proof.tsx"), "utf8");
+const frameworkMap = fs.readFileSync(path.join(root, "components", "framework-architecture-map.tsx"), "utf8");
+const frameworkNav = fs.readFileSync(path.join(root, "components", "framework-section-nav.tsx"), "utf8");
+const frameworkLayerOverview = fs.readFileSync(path.join(root, "components", "framework-layer-overview.tsx"), "utf8");
+for (const required of [
+  "FrameworkArchitectureMap",
+  "FrameworkSectionNav",
+  "FrameworkLayerOverview",
+  "id=\"context-layer\"",
+  "id=\"batch\"",
+  "id=\"harness\"",
+  "id=\"taxonomy\"",
+  "id=\"evaluation\""
+]) {
+  expect(frameworkPage.includes(required), `/framework missing architecture-map navigation contract: ${required}`);
+}
+expect(batchProof.includes("id=\"batch-intelligence\""), "Batch Intelligence proof must expose a stable #batch-intelligence hash");
+expect(frameworkMap.includes("Operational Intelligence is the umbrella"), "Architecture map must name Operational Intelligence as the umbrella");
+expect(frameworkMap.includes("shared substrate"), "Architecture map must name the Context Layer as the shared substrate");
+expect(frameworkMap.includes("not a competing architecture"), "Architecture map must distinguish the ten-layer taxonomy from architecture");
+expect(frameworkMap.includes("not one of those ten layers") || frameworkMap.includes("Not one of the ten taxonomy layers"), "Architecture map must keep Batch Intelligence out of the ten-layer taxonomy");
+expect(frameworkMap.includes("Building now"), "Architecture map must state what is being built");
+expect(frameworkMap.includes("Where this is headed"), "Architecture map must state the destination, not only the parts");
+expect(frameworkNav.includes("aria-label=\"On this page\""), "Framework section nav must be labelled for in-page jumps");
+for (const id of ["context-layer", "batch-intelligence", "harness", "taxonomy", "evaluation"]) {
+  expect(frameworkNav.includes(`href={\`#\${section.id}\`}`) || frameworkNav.includes(`"${id}"`), `Framework section nav missing ${id}`);
+}
+expect(frameworkLayerOverview.includes("Ten-layer taxonomy at a glance"), "Layer overview must remain visible without opening explorer panels");
+
 const workPage = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
 const workContractSource = [workPage, professionalGraphContent, publicCodeContent].join("\n");
 for (const required of [

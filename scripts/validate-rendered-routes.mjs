@@ -65,7 +65,12 @@ const routeContracts = [
       "Why this needs to be a layer rather than a feature.",
       "Telemetry is not enough",
       "Humans remain accountable",
-      "Falsification"
+      "Falsification",
+      "Architecture map",
+      "Building now",
+      "Where this is headed",
+      "Ten-layer taxonomy at a glance",
+      "On this page"
     ],
     before: [
       ["Why this needs to be a layer rather than a feature.", "Evidence posture"],
