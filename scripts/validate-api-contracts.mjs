@@ -344,6 +344,7 @@ try {
   expect(chatSource.includes('variant === "dock"') && chatSource.includes("shouldPersistUrlHash"), "Chat must support a dock variant that can disable URL hash persistence");
   expect(chatSource.includes('fetch("/api/ask"'), "dock and /ask must reuse the same /api/ask path");
   expect(chatSource.includes("llm_provider") && chatSource.includes("llm_used") && chatSource.includes("llm_skip_reason"), "Ask UI packet must surface llm_provider, llm_used, and llm_skip_reason");
+  expect(chatSource.includes("llm_error_code"), "Ask UI must keep Groq HTTP error codes in the packet");
   expect(chatSource.includes("LLM provider") && chatSource.includes("LLM skip"), "Ask UI packet must label LLM provider and skip reason");
   const dockSource = fs.readFileSync(path.join(root, "components", "ask-dock.tsx"), "utf8");
   expect(dockSource.includes("persistUrlHash={false}") && dockSource.includes("readUrlHash={false}"), "Ask dock must not write or read #ask= on content pages");

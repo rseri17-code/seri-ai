@@ -172,7 +172,7 @@ Optional preview-only Ask synthesizer (server-side only; never expose these to t
 
 - `ASK_LLM_PROVIDER` — `none` (default), `groq`, or `ollama`
 - `GROQ_API_KEY` — required when `ASK_LLM_PROVIDER=groq`
-- `GROQ_MODEL` — optional; defaults to `llama-3.3-70b-versatile`
+- `GROQ_MODEL` — optional; defaults to `openai/gpt-oss-120b`. The retired `llama-3.3-70b-versatile` id is aliased to that replacement.
 - `OLLAMA_BASE_URL` — required when `ASK_LLM_PROVIDER=ollama` (example: `http://127.0.0.1:11434`)
 - `OLLAMA_MODEL` — optional; defaults to `llama3.1`
 
@@ -188,11 +188,11 @@ Production should stay on `ASK_LLM_PROVIDER=none`. To try synthesis on a Preview
 2. Scope the variables to **Preview** (not Production):
    - `ASK_LLM_PROVIDER=groq`
    - `GROQ_API_KEY` (server-only; never `NEXT_PUBLIC_`)
-   - optional `GROQ_MODEL` (default `llama-3.3-70b-versatile`)
+   - optional `GROQ_MODEL` (default `openai/gpt-oss-120b`; `llama-3.3-70b-versatile` is aliased)
 3. Redeploy the Preview deployment so the serverless runtime picks up the variables.
 4. On Preview `/ask`, ask a grounded public question such as `What is Batch Intelligence?`
    - Success: Status shows `ai_synthesis · groq`, the Answer packet shows **LLM used** `true`, **LLM provider** `groq`, **LLM skip** `none`.
-   - If Groq is configured but skipped or errors, Status stays `local_fallback` and **LLM skip** names the reason (`thin_retrieval`, `validation_rejected`, `provider_error`, `missing_credentials`, or `provider_none`). Mode `local` is retrieval, not LLM status.
+   - If Groq is configured but skipped or errors, Status stays `local_fallback` and **LLM skip** names the reason (`thin_retrieval`, `validation_rejected`, `provider_error`, `missing_credentials`, or `provider_none`). For `provider_error`, the packet also shows a safe `llm_error_code` such as `http_404` (retired model) or `http_401` (bad key). Mode `local` is retrieval, not LLM status.
 5. Roll back by unsetting the variables or setting `ASK_LLM_PROVIDER=none`.
 
 Invent-source and grounded-synthesis evals (no live Groq key required):

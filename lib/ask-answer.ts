@@ -23,6 +23,7 @@ export type GenerateRaviAnswerResult = {
   llmProvider: AskLlmProvider;
   llmUsed: boolean;
   llmSkipReason?: AskLlmSkipReason;
+  llmErrorCode?: string;
 };
 
 type GenerateArgs = {
@@ -72,7 +73,8 @@ export async function generateRaviAnswer({
       mode: "local_fallback",
       llmProvider: groundedProvider.kind,
       llmUsed: false,
-      llmSkipReason: synthesized.reason
+      llmSkipReason: synthesized.reason,
+      ...(synthesized.errorCode ? { llmErrorCode: synthesized.errorCode } : {})
     };
   }
 

@@ -528,6 +528,7 @@ for (const required of [
   "llm_provider",
   "llm_used",
   "llm_skip_reason",
+  "llm_error_code",
   "LLM provider",
   "LLM skip",
 	  "ProfileMark size=\"sm\"",

@@ -39,11 +39,20 @@ export type ResolvedAskLlmProvider =
       completionsUrl: string;
     };
 
-const DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile";
+export const DEFAULT_GROQ_MODEL = "openai/gpt-oss-120b";
 const DEFAULT_OLLAMA_MODEL = "llama3.1";
-const GROQ_COMPLETIONS_URL = "https://api.groq.com/openai/v1/chat/completions";
+export const GROQ_COMPLETIONS_URL = "https://api.groq.com/openai/v1/chat/completions";
 const MIN_RETRIEVAL_CHARS = 80;
 const MIN_PASSAGE_CHARS = 40;
+const GROQ_MODEL_ALIASES: Record<string, string> = {
+  "llama-3.3-70b-versatile": "openai/gpt-oss-120b",
+  "llama-3.1-8b-instant": "openai/gpt-oss-20b"
+};
+
+export function resolveGroqModel(requested: string) {
+  const normalized = requested.trim();
+  return GROQ_MODEL_ALIASES[normalized] || normalized || DEFAULT_GROQ_MODEL;
+}
 
 type ChatCompletionMessage = {
   role: "system" | "user" | "assistant";
@@ -88,7 +97,7 @@ export function resolveAskLlmProvider(env: NodeJS.ProcessEnv = process.env): Res
     return {
       kind: "groq",
       apiKey,
-      model: readRuntimeEnv("GROQ_MODEL", env) || DEFAULT_GROQ_MODEL,
+      model: resolveGroqModel(readRuntimeEnv("GROQ_MODEL", env) || DEFAULT_GROQ_MODEL),
       completionsUrl: GROQ_COMPLETIONS_URL
     };
   }
@@ -321,6 +330,40 @@ export function buildAskSynthesisMessages(question: string, context: AskLlmConte
   ];
 }
 
+class AskLlmProviderError extends Error {
+  code: string;
+  constructor(code: string, message: string) {
+    super(message);
+    this.name = "AskLlmProviderError";
+    this.code = code;
+  }
+}
+
+function groqCompletionBody(model: string, messages: ChatCompletionMessage[]) {
+  const body: Record<string, unknown> = {
+    model,
+    messages,
+    temperature: 0,
+    max_completion_tokens: 700,
+    stream: false
+  };
+  if (/gpt-oss/i.test(model)) {
+    body.reasoning_effort = "low";
+  }
+  return body;
+}
+
+function safeHttpErrorCode(status: number) {
+  if (status >= 500) {
+    return "http_5xx";
+  }
+  return `http_${status}`;
+}
+
+function logProviderError(code: string, status?: number) {
+  console.warn("[ask-llm]", status ? { code, status } : { code });
+}
+
 // Completions are buffered and post-validated before any client sees them.
 // Token SSE is deferred: invented URLs cannot be rejected until the answer is complete.
 async function completeChat(options: {
@@ -331,30 +374,35 @@ async function completeChat(options: {
   fetchImpl?: typeof fetch;
 }) {
   const fetchImpl = options.fetchImpl ?? fetch;
-  const response = await fetchImpl(options.completionsUrl, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${options.apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: options.model,
-      temperature: 0,
-      max_tokens: 700,
-      messages: options.messages
-    })
-  });
-
-  if (!response.ok) {
-    throw new Error(`Ask LLM provider returned ${response.status}`);
+  let response: Response;
+  try {
+    response = await fetchImpl(options.completionsUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${options.apiKey}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(groqCompletionBody(options.model, options.messages))
+    });
+  } catch {
+    throw new AskLlmProviderError("network_error", "Ask LLM provider request failed");
   }
 
-  const payload = (await response.json()) as {
-    choices?: Array<{ message?: { content?: unknown } }>;
-  };
+  if (!response.ok) {
+    await response.text().catch(() => "");
+    throw new AskLlmProviderError(safeHttpErrorCode(response.status), `Ask LLM provider returned ${response.status}`);
+  }
+
+  let payload: { choices?: Array<{ message?: { content?: unknown } }> };
+  try {
+    payload = (await response.json()) as { choices?: Array<{ message?: { content?: unknown } }> };
+  } catch {
+    throw new AskLlmProviderError("invalid_json", "Ask LLM provider returned invalid JSON");
+  }
   const content = completionText(payload.choices?.[0]?.message?.content);
   if (!content) {
-    throw new Error("Ask LLM provider returned an empty completion");
+    throw new AskLlmProviderError("empty_completion", "Ask LLM provider returned an empty completion");
   }
   return content;
 }
@@ -382,7 +430,7 @@ function completionText(content: unknown) {
 
 export type AskSynthesisAttempt =
   | { ok: true; answer: string; provider: Exclude<AskLlmProvider, "none"> }
-  | { ok: false; reason: AskLlmSkipReason };
+  | { ok: false; reason: AskLlmSkipReason; errorCode?: string };
 
 export async function trySynthesizeAskAnswer(args: {
   question: string;
@@ -415,7 +463,9 @@ export async function trySynthesizeAskAnswer(args: {
       return { ok: false, reason: "validation_rejected" };
     }
     return { ok: true, answer, provider: provider.kind };
-  } catch {
-    return { ok: false, reason: "provider_error" };
+  } catch (error) {
+    const errorCode = error instanceof AskLlmProviderError ? error.code : "network_error";
+    logProviderError(errorCode);
+    return { ok: false, reason: "provider_error", errorCode };
   }
 }

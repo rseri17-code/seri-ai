@@ -27,6 +27,7 @@ export type AskSessionPacket = {
     llm_provider?: string;
     llm_used?: boolean;
     llm_skip_reason?: string | null;
+    llm_error_code?: string | null;
     latency_ms?: number;
     budget?: {
       rate_limit?: number;
@@ -167,6 +168,7 @@ function compactMessagesForHash(messages: AskSessionMessage[], includePackets: b
                       llm_provider: message.packet.meta.llm_provider,
                       llm_used: message.packet.meta.llm_used,
                       llm_skip_reason: message.packet.meta.llm_skip_reason ?? null,
+                      llm_error_code: message.packet.meta.llm_error_code ?? null,
                       latency_ms: message.packet.meta.latency_ms
                     }
                   }

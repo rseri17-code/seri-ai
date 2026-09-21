@@ -8,7 +8,7 @@ Ask now has an optional retrieval-bound synthesizer behind `ASK_LLM_PROVIDER`. T
 
 This branch is rebased onto Ask UX Phase A (chat shell) and Phase C (site dock). Dock and `/ask` still share one `sendMessage` → `POST /api/ask` path. Token streaming is deferred: post-validation needs the complete completion, and unvalidated tokens would violate cite-or-refuse.
 
-**Preview Groq wiring (2026-09-21 follow-up):** Preview stayed on `local_fallback` even with `ASK_LLM_PROVIDER=groq` because (1) `generateRaviAnswer` / Groq env reads lived in `lib/ai.ts`, which the client Chat component imports, so Next.js could compile that graph without runtime Preview secrets; (2) the Ask UI labeled Mode as `retrieval_mode` and Status as `answer_mode`, so Groq skip reasons were invisible; (3) `/api/ask` timeouts overwrote `llm_provider` to `none`. Fix: server-only `lib/ask-answer.ts` + runtime bracket env reads; always return `llm_provider` / `llm_used` / `llm_skip_reason` in API meta (keep `groq` on failed synth); surface those fields in the Answer packet. Thin retrieval still never calls Groq. Invented sources still fail closed.
+**Preview Groq provider_error (2026-09-21):** Live Preview `/api/ask` for Batch Intelligence returned `llm_provider=groq`, `llm_used=false`, `llm_skip_reason=provider_error`, `latency_ms=90`. Retrieval was sufficient. Groq shut down `llama-3.3-70b-versatile` on 2026-08-16 (HTTP 404). The request now aliases that id to `openai/gpt-oss-120b`, posts `max_completion_tokens` to `https://api.groq.com/openai/v1/chat/completions`, and records a secret-free `llm_error_code` (`http_404`, `http_401`, `network_error`) in API meta and the Ask packet.
 
 Ask deterministic fixtures cover 124 passing cases. Search retrieval covers 74 canonical queries. Knowledge graph: 62 assets, 7814 relationships. Preview-only; do not merge. Do not enable Production.
 
@@ -1587,6 +1587,12 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Builder: Groq provider_error on Preview
+
+- **Finding**: After env wiring, live Preview still returned `llm_skip_reason=provider_error` in 90ms for a grounded Batch Intelligence question (`llm_provider=groq`, `source_count=2`).
+- **Cause**: Groq shut down `llama-3.3-70b-versatile` on 2026-08-16; Preview `GROQ_MODEL` (and our default) still used that id, so Groq returned a fast 404. Completions also sent deprecated `max_tokens`.
+- **Fix**: Alias the retired id to `openai/gpt-oss-120b`, send `max_completion_tokens` to `https://api.groq.com/openai/v1/chat/completions`, and surface secret-free `llm_error_code` (`http_404`, `http_400`, …) next to `llm_skip_reason`. Preview-only; do not merge; do not enable Production.
 
 ### 2026-09-21 — Builder: Preview Groq stayed on local_fallback
 

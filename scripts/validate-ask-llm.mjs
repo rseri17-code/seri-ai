@@ -111,8 +111,21 @@ try {
     "quoted or padded Preview env values must still resolve groq"
   );
   expect(
-    resolveAskLlmProvider({ ASK_LLM_PROVIDER: "groq", GROQ_API_KEY: "gsk_test" }).model === "llama-3.3-70b-versatile",
-    "groq must default to Llama 3.3 70B on Groq"
+    resolveAskLlmProvider({ ASK_LLM_PROVIDER: "groq", GROQ_API_KEY: "gsk_test" }).model === "openai/gpt-oss-120b",
+    "groq must default to openai/gpt-oss-120b after Llama 3.3 shutdown"
+  );
+  expect(
+    resolveAskLlmProvider({
+      ASK_LLM_PROVIDER: "groq",
+      GROQ_API_KEY: "gsk_test",
+      GROQ_MODEL: "llama-3.3-70b-versatile"
+    }).model === "openai/gpt-oss-120b",
+    "decommissioned llama-3.3-70b-versatile must alias to openai/gpt-oss-120b"
+  );
+  expect(
+    resolveAskLlmProvider({ ASK_LLM_PROVIDER: "groq", GROQ_API_KEY: "gsk_test" }).completionsUrl ===
+      "https://api.groq.com/openai/v1/chat/completions",
+    "groq must call the OpenAI-compatible completions URL"
   );
   expect(resolveAskLlmProvider({ ASK_LLM_PROVIDER: "ollama" }).kind === "none", "ollama without base URL must stay on the current path");
   expect(
@@ -243,9 +256,14 @@ try {
       onCall: ({ url, init }) => {
         groqCalls += 1;
         const body = JSON.parse(String(init.body));
-        expect(String(url).includes("api.groq.com"), "groq synthesis must call Groq, not the client");
+        expect(String(url) === "https://api.groq.com/openai/v1/chat/completions", "groq synthesis must call Groq, not the client");
         expect(init.headers.Authorization === "Bearer gsk_test", "Groq Authorization must stay on the server request");
-        expect(body.model === "llama-3.3-70b-versatile", "Groq should use Llama 3.3 70B by default");
+        expect(init.headers["Content-Type"] === "application/json", "Groq request must send JSON");
+        expect(init.headers.Accept === "application/json", "Groq request must accept JSON");
+        expect(body.model === "openai/gpt-oss-120b", "Groq should use openai/gpt-oss-120b by default");
+        expect(body.max_completion_tokens === 700, "Groq request must use max_completion_tokens");
+        expect(body.max_tokens === undefined, "Groq request must not send deprecated max_tokens");
+        expect(body.stream === false, "Groq request must stay non-streaming");
         expect(JSON.stringify(body).includes("[P1]"), "Groq prompt must include passage ids");
         expect(JSON.stringify(body).includes("ALLOWED CITATIONS"), "Groq prompt must list allowed citations");
         expect(!JSON.stringify(body).toLowerCase().includes("employer-specific internal"), "Groq prompt must not include confidential employer fixtures");
@@ -373,7 +391,27 @@ try {
     })
   });
   expect(providerError.ok === false && providerError.reason === "provider_error", "provider errors must fail closed");
+  expect(providerError.errorCode === "http_5xx", "503 Groq responses must record http_5xx");
   expect(groqCalls === 1, "provider errors still mean the request was attempted");
+
+  groqCalls = 0;
+  const http404Generate = await generateRaviAnswer({
+    question: "What is Batch Intelligence?",
+    context: batchContext,
+    fetchImpl: mockCompletion("The model does not exist or you do not have access to it.", {
+      status: 404,
+      onCall: () => {
+        groqCalls += 1;
+      }
+    })
+  });
+  expect(http404Generate.mode === "local_fallback", "non-2xx Groq responses must fall back locally");
+  expect(http404Generate.llmUsed === false, "non-2xx Groq responses must not mark llm_used");
+  expect(http404Generate.llmProvider === "groq", "non-2xx Groq responses must still report llm_provider groq");
+  expect(http404Generate.llmSkipReason === "provider_error", "non-2xx Groq responses must record provider_error");
+  expect(http404Generate.llmErrorCode === "http_404", "404 Groq responses must record http_404");
+  expect(http404Generate.answer.includes("/framework#batch-intelligence"), "non-2xx Groq fallback must still cite Batch Intelligence");
+  expect(groqCalls === 1, "non-2xx Groq responses still mean the request was attempted");
 
   let ollamaCalls = 0;
   const ollamaSynthesis = await trySynthesizeAskAnswer({
@@ -465,7 +503,33 @@ try {
     expect(groqCalls === 1, "sufficient retrieval may call Groq once before discarding invented sources");
 
     groqCalls = 0;
+    globalThis.fetch = mockCompletion("The model does not exist or you do not have access to it.", {
+      status: 400,
+      onCall: () => {
+        groqCalls += 1;
+      }
+    });
+    const httpErrorAsk = await askRoute("What is Batch Intelligence?", {
+      ASK_LLM_PROVIDER: "groq",
+      GROQ_API_KEY: "gsk_test"
+    });
+    const httpErrorBody = await httpErrorAsk.json();
+    expect(httpErrorAsk.status === 200, `/api/ask Groq HTTP error returned ${httpErrorAsk.status}`);
+    expect(httpErrorBody.meta?.answer_mode === "local_fallback", "non-2xx Groq /api/ask must stay on local_fallback");
+    expect(httpErrorBody.meta?.llm_used === false, "non-2xx Groq /api/ask must not mark llm_used");
+    expect(httpErrorBody.meta?.llm_provider === "groq", "non-2xx Groq /api/ask must still report llm_provider groq");
+    expect(httpErrorBody.meta?.llm_skip_reason === "provider_error", "non-2xx Groq /api/ask must record provider_error");
+    expect(httpErrorBody.meta?.llm_error_code === "http_400", "400 Groq /api/ask must record http_400");
+    expect(String(httpErrorBody.answer).includes("/framework#batch-intelligence"), "non-2xx Groq /api/ask must fall back to retrieved Batch Intelligence");
+    expect(groqCalls === 1, "non-2xx Groq /api/ask still means the request was attempted");
+
+    groqCalls = 0;
     groqPayload = "Batch Intelligence is an execution graph in the public Framework. [P1] (/framework#batch-intelligence)";
+    globalThis.fetch = mockCompletion(() => groqPayload, {
+      onCall: () => {
+        groqCalls += 1;
+      }
+    });
     const groundedAsk = await askRoute("What is Batch Intelligence?", {
       ASK_LLM_PROVIDER: "groq",
       GROQ_API_KEY: "gsk_test"

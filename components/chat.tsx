@@ -34,6 +34,7 @@ type ApiResponse = {
     llm_provider?: string;
     llm_used?: boolean;
     llm_skip_reason?: string | null;
+    llm_error_code?: string | null;
     latency_ms?: number;
     budget?: {
       rate_limit?: number;
@@ -59,7 +60,8 @@ function llmSkipLabel(meta?: AskSessionPacket["meta"] | ApiResponse["meta"]) {
   if (meta.llm_used) {
     return "none";
   }
-  return meta.llm_skip_reason || "unspecified";
+  const reason = meta.llm_skip_reason || "unspecified";
+  return meta.llm_error_code ? `${reason} (${meta.llm_error_code})` : reason;
 }
 
 function answerPacketRows(meta?: AskSessionPacket["meta"] | ApiResponse["meta"]): Array<[string, string]> {
@@ -310,6 +312,7 @@ export function Chat({
         llm_provider: data.meta?.llm_provider ?? "unknown",
         llm_used: data.meta?.llm_used ?? false,
         llm_skip_reason: data.meta?.llm_skip_reason ?? null,
+        llm_error_code: data.meta?.llm_error_code ?? null,
         server_category: data.meta?.question_category ?? category,
         public_boundary: data.meta?.public_boundary ?? "unknown",
         server_latency_ms: data.meta?.latency_ms ?? null
@@ -381,8 +384,10 @@ export function Chat({
         : responseMeta?.answer_mode
           ? responseMeta.llm_used
             ? `${responseMeta.answer_mode} · ${responseMeta.llm_provider ?? "llm"}`
-            : responseMeta.llm_skip_reason
-              ? `${responseMeta.answer_mode} · ${responseMeta.llm_skip_reason}`
+          : responseMeta.llm_skip_reason
+            ? `${responseMeta.answer_mode} · ${responseMeta.llm_skip_reason}${
+                responseMeta.llm_error_code ? ` · ${responseMeta.llm_error_code}` : ""
+              }`
               : responseMeta.answer_mode
           : "ready"
     ]
