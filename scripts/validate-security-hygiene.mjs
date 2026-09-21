@@ -32,7 +32,7 @@ for (const line of envExample.split("\n")) {
   const [key, ...valueParts] = trimmed.split("=");
   const value = valueParts.join("=").trim();
   const isPublic = key.startsWith("NEXT_PUBLIC_");
-  const allowedPlaceholder = value === "" || ["openai", "change-me"].includes(value) || /^https?:\/\//.test(value) || /^gpt-|^text-embedding-|^claude-/.test(value);
+  const allowedPlaceholder = value === "" || ["openai", "change-me", "none", "groq", "ollama"].includes(value) || /^https?:\/\//.test(value) || /^gpt-|^text-embedding-|^claude-|^llama-/.test(value);
   expect(isPublic || allowedPlaceholder, `.env.example should not contain a real-looking value for ${key}`);
 }
 
@@ -40,6 +40,7 @@ const textFiles = trackedFiles.filter((file) => /\.(?:ts|tsx|js|mjs|json|md|mdx|
 const secretPatterns = [
   ["OpenAI API key", /\bsk-(?:proj-)?[A-Za-z0-9_-]{24,}\b/],
   ["Anthropic API key", /\bsk-ant-[A-Za-z0-9_-]{24,}\b/],
+  ["Groq API key", /\bgsk_[A-Za-z0-9]{20,}\b/],
   ["PostHog project key", /\bphc_[A-Za-z0-9]{20,}\b/],
   ["Private key block", /-----BEGIN (?:RSA |EC |OPENSSH |)?PRIVATE KEY-----/],
   ["Supabase JWT", /\beyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\b/],

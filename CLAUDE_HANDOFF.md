@@ -2,6 +2,14 @@
 
 Last updated: 2026-09-21
 
+## BUILDER ASK LLM SYNTHESIZER PREVIEW — 2026-09-21
+
+Ask now has an optional retrieval-bound synthesizer behind `ASK_LLM_PROVIDER`. The default remains `none`, so production Ask is unchanged: local retrieval, public-safety refusal before any model call, and the existing deterministic fallback. When `ASK_LLM_PROVIDER=groq` and `GROQ_API_KEY` are set, Groq may only summarize retrieved public passages. Empty or thin retrieval never calls the model. Responses that cite unknown passage ids or invented URLs are discarded. Ollama is optional behind `OLLAMA_BASE_URL`. The Groq key stays server-side.
+
+This branch is rebased onto Ask UX Phase A (chat shell) and Phase C (site dock). Dock and `/ask` still share one `sendMessage` → `POST /api/ask` path. Token streaming is deferred: post-validation needs the complete completion, and unvalidated tokens would violate cite-or-refuse.
+
+Ask deterministic fixtures cover 122 passing cases. Search retrieval covers 74 canonical queries. Knowledge graph: 62 assets, 7814 relationships. Preview-only; do not merge. Do not enable Production.
+
 ## ASK UX PHASE C — 2026-09-21
 
 Site-wide Ask dock + challenge mode. Preview-only; do not merge.
@@ -1417,7 +1425,7 @@ Recent improvements:
 - Search retrieval covers 69 canonical queries.
 - Retrieval now applies a small length penalty in the public search scorer so broad documents stop crowding out narrower matches; Ask remains anchored on the canonical doctrine and reference-architecture phrases for definition and governance prompts.
 - Ask evals were revalidated after the retrieval adjustment and returned 117/117 passing fixtures.
-- Ask deterministic fixtures cover 121 passing cases.
+- Ask deterministic fixtures cover 122 passing cases.
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.
 - Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.
@@ -1577,6 +1585,11 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Builder: preview-only retrieval-bound Ask synthesizer
+
+- **Open for review**: Ask gained an optional Groq/Ollama synthesizer that can only summarize retrieved public chunks. `ASK_LLM_PROVIDER=none` is the default and keeps the current retrieval, refusal, and local-fallback path. Groq is skipped on empty/thin retrieval, confidential questions stay pre-LLM, and invented passage ids or URLs are rejected. Rebased onto Phase A chat shell and Phase C dock; both still share `/api/ask`. Evidence: `lib/ask-llm.ts`, `lib/ai.ts`, `app/api/ask/route.ts`, `scripts/validate-ask-llm.mjs`, `content/eval-report.json`. Public-safety risk: none; employer/confidential prompts never reach the model and fixtures contain no private data. Flag for Ravikanth: Preview-only; do not enable Production; do not merge until invent-source evals and Preview verification land.
+- **Streaming**: not in this pass. Grounded token SSE needs the same post-validation, so the client would have to buffer or replace unvalidated text. Follow-up only if it stays on the shared send path.
 
 ### 2026-09-21 — Grok: Ask UX Phase C (site-wide dock + challenge mode)
 

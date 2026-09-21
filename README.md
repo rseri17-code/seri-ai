@@ -168,6 +168,18 @@ Required for full production behavior:
 - `ADMIN_TOKEN`
 - `NEXT_PUBLIC_POSTHOG_KEY`
 
+Optional preview-only Ask synthesizer (server-side only; never expose these to the client):
+
+- `ASK_LLM_PROVIDER` — `none` (default), `groq`, or `ollama`
+- `GROQ_API_KEY` — required when `ASK_LLM_PROVIDER=groq`
+- `GROQ_MODEL` — optional; defaults to `llama-3.3-70b-versatile`
+- `OLLAMA_BASE_URL` — required when `ASK_LLM_PROVIDER=ollama` (example: `http://127.0.0.1:11434`)
+- `OLLAMA_MODEL` — optional; defaults to `llama3.1`
+
+When `ASK_LLM_PROVIDER` is `none` or the Groq key / Ollama base URL is missing, `/ask` is unchanged: retrieval plus the current local fallback or OpenAI/Anthropic path.
+
+When `groq` is enabled, Ask still retrieves approved public chunks first. Empty or thin retrieval never calls Groq; confidential and employer questions are refused before any LLM call. Groq may only summarize those retrieved passages and is discarded if it cites unknown passage ids or URLs.
+
 Without model or database keys, `/ask` runs with the local approved-content fallback so the app remains locally inspectable.
 
 Static generation is tuned for content-heavy reference routes. `next.config.ts` keeps prerender concurrency conservative and extends the static generation timeout so release builds do not depend on retry behavior when the wiki, RSS, sitemap, and image routes grow.

@@ -8,7 +8,7 @@ This runbook covers public-safe operation of seri.ai, including static routes, A
 
 - Public site: Next.js App Router on Vercel.
 - Dynamic APIs: `/api/ask`, `/api/contact`, `/api/ingest`, `/api/subscribe`.
-- Optional services: OpenAI or Anthropic for synthesis, Supabase Postgres/pgvector for persistence and vector search, PostHog for analytics.
+- Optional services: OpenAI or Anthropic for synthesis, optional preview Groq/Ollama Ask synthesizer behind `ASK_LLM_PROVIDER`, Supabase Postgres/pgvector for persistence and vector search, PostHog for analytics.
 - Required public-safety boundary: never publish or log confidential employer systems, proprietary project names, private screenshots, logs, dashboards, credentials, customer data, or private architecture.
 
 ## Beta SLO Targets

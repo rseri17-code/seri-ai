@@ -1,0 +1,318 @@
+import { isPublicSafe } from "@/lib/compliance";
+
+export const ASK_LLM_PROVIDERS = ["none", "groq", "ollama"] as const;
+export type AskLlmProvider = (typeof ASK_LLM_PROVIDERS)[number];
+export type AskLlmSkipReason =
+  | "provider_none"
+  | "missing_credentials"
+  | "thin_retrieval"
+  | "validation_rejected"
+  | "provider_error";
+
+export type AskLlmContextSource = {
+  title: string;
+  url: string;
+  content: string;
+};
+
+export type AskLlmPassage = AskLlmContextSource & {
+  id: string;
+};
+
+export type ResolvedAskLlmProvider =
+  | { kind: "none"; skipReason: "provider_none" | "missing_credentials" }
+  | {
+      kind: "groq";
+      model: string;
+      apiKey: string;
+      completionsUrl: string;
+    }
+  | {
+      kind: "ollama";
+      model: string;
+      apiKey: string;
+      completionsUrl: string;
+    };
+
+const DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile";
+const DEFAULT_OLLAMA_MODEL = "llama3.1";
+const GROQ_COMPLETIONS_URL = "https://api.groq.com/openai/v1/chat/completions";
+const MIN_RETRIEVAL_CHARS = 80;
+const MIN_PASSAGE_CHARS = 40;
+
+type ChatCompletionMessage = {
+  role: "system" | "user" | "assistant";
+  content: string;
+};
+
+function normalizeProvider(value: string | undefined): AskLlmProvider {
+  const normalized = (value ?? "none").trim().toLowerCase();
+  if (normalized === "groq" || normalized === "ollama") {
+    return normalized;
+  }
+  return "none";
+}
+
+function ollamaCompletionsUrl(baseUrl: string) {
+  const trimmed = baseUrl.trim().replace(/\/$/, "");
+  if (trimmed.endsWith("/chat/completions")) {
+    return trimmed;
+  }
+  if (trimmed.endsWith("/v1")) {
+    return `${trimmed}/chat/completions`;
+  }
+  return `${trimmed}/v1/chat/completions`;
+}
+
+export function resolveAskLlmProvider(env: NodeJS.ProcessEnv = process.env): ResolvedAskLlmProvider {
+  const provider = normalizeProvider(env.ASK_LLM_PROVIDER);
+  if (provider === "groq") {
+    const apiKey = env.GROQ_API_KEY?.trim();
+    if (!apiKey) {
+      return { kind: "none", skipReason: "missing_credentials" };
+    }
+    return {
+      kind: "groq",
+      apiKey,
+      model: env.GROQ_MODEL?.trim() || DEFAULT_GROQ_MODEL,
+      completionsUrl: GROQ_COMPLETIONS_URL
+    };
+  }
+  if (provider === "ollama") {
+    const baseUrl = env.OLLAMA_BASE_URL?.trim();
+    if (!baseUrl) {
+      return { kind: "none", skipReason: "missing_credentials" };
+    }
+    return {
+      kind: "ollama",
+      apiKey: "ollama",
+      model: env.OLLAMA_MODEL?.trim() || DEFAULT_OLLAMA_MODEL,
+      completionsUrl: ollamaCompletionsUrl(baseUrl)
+    };
+  }
+  return { kind: "none", skipReason: "provider_none" };
+}
+
+export function formatApprovedPassages(context: AskLlmContextSource[]): AskLlmPassage[] {
+  return context.map((source, index) => ({
+    ...source,
+    id: `P${index + 1}`
+  }));
+}
+
+export function isAskRetrievalSufficient(context: AskLlmContextSource[] | undefined | null) {
+  if (!Array.isArray(context) || context.length === 0) {
+    return false;
+  }
+  const usable = context.filter((source) => (source.content ?? "").replace(/\s+/g, " ").trim().length >= MIN_PASSAGE_CHARS);
+  if (usable.length === 0) {
+    return false;
+  }
+  const total = usable.reduce((sum, source) => sum + source.content.replace(/\s+/g, " ").trim().length, 0);
+  return total >= MIN_RETRIEVAL_CHARS;
+}
+
+function siteOrigin(env: NodeJS.ProcessEnv = process.env) {
+  return env.NEXT_PUBLIC_SITE_URL?.trim() || "https://seri-ai.vercel.app";
+}
+
+function stripTrailingPunctuation(value: string) {
+  return value.replace(/[).,;:]+$/g, "").replace(/[>'"]+$/g, "");
+}
+
+function urlVariants(raw: string, origin: string) {
+  const variants = new Set<string>();
+  const trimmed = raw.trim();
+  if (!trimmed) {
+    return variants;
+  }
+  variants.add(trimmed);
+  const withoutHash = trimmed.split("#")[0];
+  const withoutQuery = withoutHash.split("?")[0];
+  variants.add(withoutHash);
+  variants.add(withoutQuery);
+  try {
+    const absolute = trimmed.startsWith("/") ? new URL(trimmed, origin) : new URL(trimmed);
+    variants.add(absolute.href);
+    variants.add(`${absolute.origin}${absolute.pathname}${absolute.hash}`);
+    variants.add(`${absolute.origin}${absolute.pathname}`);
+    variants.add(`${absolute.pathname}${absolute.hash}`);
+    variants.add(absolute.pathname);
+  } catch {
+    // Ignore unparseable values; they remain as the raw string only.
+  }
+  return variants;
+}
+
+export function allowedAskCitationUrls(context: AskLlmContextSource[], env: NodeJS.ProcessEnv = process.env) {
+  const origin = siteOrigin(env);
+  const allowed = new Set<string>();
+  for (const source of context) {
+    for (const variant of urlVariants(source.url, origin)) {
+      allowed.add(variant);
+    }
+  }
+  return allowed;
+}
+
+function extractCitedUrls(text: string) {
+  const matches = [
+    ...text.matchAll(/https?:\/\/[^\s)\]>'"]+/gi),
+    ...text.matchAll(/\[[^\]]+\]\((https?:\/\/[^)\s]+)\)/gi),
+    ...text.matchAll(/(?:^|[\s(])(\/[a-z0-9][a-z0-9#?=&_./-]*)/gi)
+  ];
+  return [...new Set(matches.map((match) => stripTrailingPunctuation((match[1] ?? match[0]).trim())))].filter(Boolean);
+}
+
+function extractCitedPassageIds(text: string) {
+  return [...new Set([...text.matchAll(/\[P(\d+)\]|\bP(\d+)\b/gi)].map((match) => `P${match[1] ?? match[2]}`))];
+}
+
+export type AskSynthesisValidation = {
+  ok: boolean;
+  reason?: "invented_url" | "unknown_passage_id" | "missing_refusal" | "empty_answer";
+  inventedUrls?: string[];
+  unknownPassageIds?: string[];
+};
+
+export function validateSynthesizedAnswer(
+  answer: string,
+  context: AskLlmContextSource[],
+  options: { question?: string; env?: NodeJS.ProcessEnv } = {}
+): AskSynthesisValidation {
+  const trimmed = answer.replace(/\s+/g, " ").trim();
+  if (!trimmed) {
+    return { ok: false, reason: "empty_answer" };
+  }
+
+  const question = options.question ?? "";
+  if (question && !isPublicSafe(question)) {
+    const refused = /can't discuss employer-specific or confidential|public knowledge base does not contain|outside the public-safe boundary|not in the public record/i.test(
+      trimmed
+    );
+    if (!refused) {
+      return { ok: false, reason: "missing_refusal" };
+    }
+  }
+
+  const passages = formatApprovedPassages(context);
+  const allowedIds = new Set(passages.map((passage) => passage.id));
+  const unknownPassageIds = extractCitedPassageIds(answer).filter((id) => !allowedIds.has(id));
+  if (unknownPassageIds.length) {
+    return { ok: false, reason: "unknown_passage_id", unknownPassageIds };
+  }
+
+  const allowedUrls = allowedAskCitationUrls(context, options.env);
+  const inventedUrls = extractCitedUrls(answer).filter((url) => {
+    const origin = siteOrigin(options.env);
+    return ![...urlVariants(url, origin)].some((variant) => allowedUrls.has(variant));
+  });
+  if (inventedUrls.length) {
+    return { ok: false, reason: "invented_url", inventedUrls };
+  }
+
+  return { ok: true };
+}
+
+export function buildAskSynthesisMessages(question: string, context: AskLlmContextSource[]): ChatCompletionMessage[] {
+  const passages = formatApprovedPassages(context);
+  const contextBlock = passages
+    .map((passage) => `[${passage.id}] ${passage.title} (${passage.url})\n${passage.content.replace(/\s+/g, " ").trim()}`)
+    .join("\n\n");
+
+  return [
+    {
+      role: "system",
+      content: [
+        "You are a retrieval-bound synthesizer for seri.ai Ask Ravikanth.",
+        "Answer ONLY from the CONTEXT passages.",
+        "Do not research, browse, search the web, fill gaps, or invent sources, employers, metrics, or URLs.",
+        "Cite passage ids such as [P1] and only the urls provided with those passages.",
+        "If CONTEXT is insufficient, say the topic is not in the public record and the public knowledge base does not cover it yet.",
+        "Do not mention internal employer product names, private systems, logs, dashboards, or confidential architecture.",
+        "If the question asks for confidential or out-of-scope material, refuse and stay on public architecture patterns.",
+        "Do not write as Ravikanth in the first person. Do not become a generic chatbot."
+      ].join(" ")
+    },
+    {
+      role: "user",
+      content: [`CONTEXT:`, contextBlock, "", `Question: ${question}`].join("\n")
+    }
+  ];
+}
+
+async function completeChat(options: {
+  completionsUrl: string;
+  apiKey: string;
+  model: string;
+  messages: ChatCompletionMessage[];
+  fetchImpl?: typeof fetch;
+}) {
+  const fetchImpl = options.fetchImpl ?? fetch;
+  const response = await fetchImpl(options.completionsUrl, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${options.apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: options.model,
+      temperature: 0,
+      max_tokens: 700,
+      messages: options.messages
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Ask LLM provider returned ${response.status}`);
+  }
+
+  const payload = (await response.json()) as {
+    choices?: Array<{ message?: { content?: string | null } }>;
+  };
+  const content = payload.choices?.[0]?.message?.content;
+  if (typeof content !== "string" || !content.trim()) {
+    throw new Error("Ask LLM provider returned an empty completion");
+  }
+  return content.trim();
+}
+
+export type AskSynthesisAttempt =
+  | { ok: true; answer: string; provider: Exclude<AskLlmProvider, "none"> }
+  | { ok: false; reason: Exclude<AskLlmSkipReason, "provider_none"> };
+
+export async function trySynthesizeAskAnswer(args: {
+  question: string;
+  context: AskLlmContextSource[];
+  provider?: ResolvedAskLlmProvider;
+  env?: NodeJS.ProcessEnv;
+  fetchImpl?: typeof fetch;
+}): Promise<AskSynthesisAttempt> {
+  const provider = args.provider ?? resolveAskLlmProvider(args.env);
+  if (provider.kind === "none") {
+    return { ok: false, reason: provider.skipReason };
+  }
+  if (!isAskRetrievalSufficient(args.context)) {
+    return { ok: false, reason: "thin_retrieval" };
+  }
+
+  try {
+    const answer = await completeChat({
+      completionsUrl: provider.completionsUrl,
+      apiKey: provider.apiKey,
+      model: provider.model,
+      messages: buildAskSynthesisMessages(args.question, args.context),
+      fetchImpl: args.fetchImpl
+    });
+    const validation = validateSynthesizedAnswer(answer, args.context, {
+      question: args.question,
+      env: args.env
+    });
+    if (!validation.ok) {
+      return { ok: false, reason: "validation_rejected" };
+    }
+    return { ok: true, answer, provider: provider.kind };
+  } catch {
+    return { ok: false, reason: "provider_error" };
+  }
+}

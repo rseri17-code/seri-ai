@@ -1,5 +1,12 @@
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
+import {
+  isAskRetrievalSufficient,
+  resolveAskLlmProvider,
+  trySynthesizeAskAnswer,
+  type AskLlmProvider,
+  type AskLlmSkipReason
+} from "@/lib/ask-llm";
 import { publicSafetyInstruction } from "@/lib/compliance";
 
 export type ChatMessage = {
@@ -11,6 +18,7 @@ type GenerateArgs = {
   question: string;
   context: Array<{ title: string; url: string; content: string }>;
   history?: ChatMessage[];
+  fetchImpl?: typeof fetch;
 };
 
 function normalizeQuestionIntent(question: string) {
@@ -674,7 +682,55 @@ function localFallbackAnswer(question: string, context: Array<{ title: string; u
 
 export type AskAnswerMode = "ai_synthesis" | "local_fallback" | "timeout_fallback";
 
-export async function generateRaviAnswer({ question, context, history = [] }: GenerateArgs): Promise<{ answer: string; mode: AskAnswerMode }> {
+export type GenerateRaviAnswerResult = {
+  answer: string;
+  mode: AskAnswerMode;
+  llmProvider: AskLlmProvider;
+  llmUsed: boolean;
+  llmSkipReason?: AskLlmSkipReason;
+};
+
+export async function generateRaviAnswer({
+  question,
+  context,
+  history = [],
+  fetchImpl
+}: GenerateArgs): Promise<GenerateRaviAnswerResult> {
+  const groundedProvider = resolveAskLlmProvider();
+  if (groundedProvider.kind !== "none") {
+    if (!isAskRetrievalSufficient(context)) {
+      return {
+        answer: localFallbackAnswer(question, context),
+        mode: "local_fallback",
+        llmProvider: groundedProvider.kind,
+        llmUsed: false,
+        llmSkipReason: "thin_retrieval"
+      };
+    }
+
+    const synthesized = await trySynthesizeAskAnswer({
+      question,
+      context,
+      provider: groundedProvider,
+      fetchImpl
+    });
+    if (synthesized.ok) {
+      return {
+        answer: synthesized.answer,
+        mode: "ai_synthesis",
+        llmProvider: synthesized.provider,
+        llmUsed: true
+      };
+    }
+    return {
+      answer: localFallbackAnswer(question, context),
+      mode: "local_fallback",
+      llmProvider: groundedProvider.kind,
+      llmUsed: false,
+      llmSkipReason: synthesized.reason
+    };
+  }
+
   const provider = process.env.AI_PROVIDER ?? "openai";
   const prompt = [
     publicSafetyInstruction(),
@@ -711,7 +767,13 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
       ]
     });
 
-    return { answer: response.content.map((block) => ("text" in block ? block.text : "")).join(""), mode: "ai_synthesis" };
+    return {
+      answer: response.content.map((block) => ("text" in block ? block.text : "")).join(""),
+      mode: "ai_synthesis",
+      llmProvider: "none",
+      llmUsed: false,
+      llmSkipReason: groundedProvider.skipReason
+    };
   }
 
   if (process.env.OPENAI_API_KEY) {
@@ -726,10 +788,22 @@ export async function generateRaviAnswer({ question, context, history = [] }: Ge
       ]
     });
 
-    return { answer: response.choices[0]?.message.content ?? "I do not have enough approved public context to answer that.", mode: "ai_synthesis" };
+    return {
+      answer: response.choices[0]?.message.content ?? "I do not have enough approved public context to answer that.",
+      mode: "ai_synthesis",
+      llmProvider: "none",
+      llmUsed: false,
+      llmSkipReason: groundedProvider.skipReason
+    };
   }
 
-  return { answer: localFallbackAnswer(question, context), mode: "local_fallback" };
+  return {
+    answer: localFallbackAnswer(question, context),
+    mode: "local_fallback",
+    llmProvider: "none",
+    llmUsed: false,
+    llmSkipReason: groundedProvider.skipReason
+  };
 }
 
 export async function embedText(input: string) {
