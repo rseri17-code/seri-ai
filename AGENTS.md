@@ -99,6 +99,15 @@ Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.
 - OBSERVE audit PR was not available; this pass is structured for an audit-driven refine.
 - Pins that encoded old jargon were repointed, not fed copy.
 
+## SESSION HANDOFF — 2026-09-21 (ACT: map summary)
+
+Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.
+
+- Homepage 30-second map summary is one store + loop sentence. House names stay on the cards.
+- Teaching-by-negation removed from the homepage Batch card and the filing eyebrow.
+- Frozen hero H1, two primary CTAs, and five-item nav + Ask untouched.
+- Pins that quoted the old summary were repointed, not fed copy.
+
 ## Ruled copy is machine-enforced
 
 `npm run validate:ruled` fails the build if ruled copy is reverted. Restore the ruled copy — do not repoint the check — unless Ravikanth issues a new ruling and you update `scripts/validate-ruled-copy.mjs` and CLAUDE_HANDOFF.md in the same commit.

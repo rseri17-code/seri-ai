@@ -2,6 +2,20 @@
 
 Last updated: 2026-09-21
 
+## ACT HOMEPAGE 10/10 — MAP SUMMARY — 2026-09-21
+
+Preview-only. Do not merge. Follow-up after ranks 1–8 (squash `9566064`).
+
+**Summary:** `#home-orientation-summary` is one store + loop sentence. It does not name Operational Intelligence, the Enterprise Context Layer, the Context Acquisition Tax, the SRE / Agent Harness, or Batch Intelligence. Those names stay on the cards.
+
+**Negation removed from the homepage map:** `They are not the runtime design.`; Batch card `It is not one of the ten filing labels.`; filing eyebrow `Filing system (not the runtime)` replaced with `How this site tags notes`.
+
+**Kept:** frozen H1, two hero CTAs, five-item nav + Ask, `That system stays private`, work-first closer, Codebase Memory out of the first inspect row.
+
+Pins that quoted the name-stack summary were repointed to card names plus a summary-region guard. Copy was not written to satisfy a grep.
+
+Public-safety: no employer data added.
+
 ## ACT HOMEPAGE 10/10 AUDIT (PR #13 ranks 1–8) — 2026-09-21
 
 Preview-only. Do not merge. Canonical bar: `docs/homepage-10-audit.md` on PR #13. Verify FAIL on c5b7d07 was jargon lift only (overall 6.8). This pass implements ranks 1–8 on `/`.
