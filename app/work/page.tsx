@@ -17,6 +17,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, BrainCircuit, Linkedin } from "lucide-react";
 import { Card } from "@/components/card";
+import { EvidenceLadder } from "@/components/evidence-ladder";
 import { Section } from "@/components/section";
 import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";
 import { evalReport, professionalGraph, projects, publicCode } from "@/content/site";
@@ -90,6 +91,7 @@ export default function WorkPage() {
             </div>
           </div>
         </Card>
+        <EvidenceLadder source="work" />
       </Section>
 
       <Section eyebrow="Operating arc" title="How I got here, and what each stretch taught me.">

@@ -268,7 +268,8 @@ for (const required of [
   "/background",
   "/projects/codebase-memory",
   "Codebase Memory",
-  "Context that survives the next session."
+  "Context that survives the next session.",
+  "<HomeOrientation"
 ]) {
   expect(homepageContractSource.includes(required), `/ missing focused homepage contract: ${required}`);
 }

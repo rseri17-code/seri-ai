@@ -35,7 +35,12 @@ const routeContracts = [
       "That system stays private",
       "Codebase Memory",
       "Context that survives the next session.",
-      "Read the case study"
+      "Read the case study",
+      "Hiring conversations",
+      "Contact / Hiring",
+      "Evidence by strength",
+      "Context Acquisition Tax",
+      "permitted to take on context it should not have trusted"
     ],
     before: [
       // A mobile visitor reaches an action before the page starts explaining itself.
@@ -44,10 +49,13 @@ const routeContracts = [
       ["Enter the Operations Room", "Fifteen years across enterprise integration"],
       // Ruled section order, asserted end to end on the rendered page.
       ["I build evidence-grounded AI systems for enterprise operations.", "The failure I design against"],
+      ["30-second map", "Hiring conversations"],
+      ["Hiring conversations", "Start here"],
+      ["Start here", "The failure I design against"],
       ["The failure I design against", "The Operations Room"],
       ["The Operations Room", "Three bodies of work."],
-      ["Three bodies of work.", "Codebase Memory"],
-      ["Codebase Memory", "Fifteen years across enterprise integration"],
+      ["Three bodies of work.", "Read the case study"],
+      ["Read the case study", "Fifteen years across enterprise integration"],
       ["Fifteen years across enterprise integration", "Four arguments worth disagreeing with."],
       ["Four arguments worth disagreeing with.", "Start a conversation"]
     ]
@@ -70,7 +78,9 @@ const routeContracts = [
       "Building now",
       "Where this is headed",
       "Ten-layer taxonomy at a glance",
-      "On this page"
+      "On this page",
+      "the cost of reconstructing who owns this",
+      "an action the system was permitted to take"
     ],
     before: [
       ["Why this needs to be a layer rather than a feature.", "Evidence posture"],
@@ -133,7 +143,9 @@ const routeContracts = [
       "GitHub",
       "LinkedIn",
       "owned every stage",
-      "Codebase Memory"
+      "Codebase Memory",
+      "Evidence by strength",
+      "Proves:"
     ]
   },
   {

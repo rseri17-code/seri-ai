@@ -35,6 +35,28 @@ const routeContracts = [
     ]
   },
   {
+    route: "/",
+    file: "components/home-orientation.tsx",
+    minResponsiveTokens: 18,
+    required: [
+      "lg:grid-cols-[1fr_1fr_auto]",
+      "sm:grid-cols-2",
+      "Hiring conversations",
+      "Contact / Hiring"
+    ]
+  },
+  {
+    route: "/",
+    file: "components/evidence-ladder.tsx",
+    minResponsiveTokens: 2,
+    required: [
+      "lg:grid-cols-5",
+      "sm:grid-cols-2",
+      "min-h-11",
+      "Evidence by strength"
+    ]
+  },
+  {
     route: "/ask",
     file: "components/chat.tsx",
     minResponsiveTokens: 7,
