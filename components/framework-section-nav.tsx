@@ -49,25 +49,28 @@ export function FrameworkSectionNav() {
 
   return (
     <div className="sticky top-[4.75rem] z-40 border-b border-white/10 bg-ink/92 backdrop-blur-xl">
-      <nav aria-label="On this page" className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
-        {sections.map((section) => {
-          const active = section.id === activeId;
-          return (
-            <a
-              key={section.id}
-              href={`#${section.id}`}
-              aria-current={active ? "location" : undefined}
-              onClick={(event) => jumpTo(event, section.id)}
-              className={`inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded border px-3 text-sm font-semibold transition ${
-                active
-                  ? "border-mint/40 bg-mint/10 text-mint"
-                  : "border-white/10 bg-black/20 text-slate-200 hover:border-white/25 hover:text-white"
-              }`}
-            >
-              {section.label}
-            </a>
-          );
-        })}
+      <nav aria-label="On this page" className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2 sm:px-6 lg:px-8">
+        <p className="shrink-0 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">On this page</p>
+        <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto">
+          {sections.map((section) => {
+            const active = section.id === activeId;
+            return (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                aria-current={active ? "location" : undefined}
+                onClick={(event) => jumpTo(event, section.id)}
+                className={`inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded border px-3 text-sm font-semibold transition ${
+                  active
+                    ? "border-mint/40 bg-mint/10 text-mint"
+                    : "border-white/10 bg-black/20 text-slate-200 hover:border-white/25 hover:text-white"
+                }`}
+              >
+                {section.label}
+              </a>
+            );
+          })}
+        </div>
       </nav>
     </div>
   );
