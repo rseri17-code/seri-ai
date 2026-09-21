@@ -337,7 +337,9 @@ for (const required of [
 }
 expect(batchProof.includes("id=\"batch-intelligence\""), "Batch Intelligence proof must expose a stable #batch-intelligence hash");
 expect(frameworkMap.includes("Operational Intelligence is the umbrella"), "Architecture map must name Operational Intelligence as the umbrella");
-expect(frameworkMap.includes("shared substrate"), "Architecture map must name the Context Layer as the shared substrate");
+// Repointed 2026-09-21: "shared substrate" was internal jargon. The invariant is that the
+// Context Layer is named as the shared foundation, not a competing architecture.
+expect(frameworkMap.includes("shared foundation"), "Architecture map must name the Context Layer as the shared foundation");
 expect(frameworkMap.includes("not a competing architecture"), "Architecture map must distinguish the ten-layer taxonomy from architecture");
 expect(frameworkMap.includes("not one of those ten layers") || frameworkMap.includes("Not one of the ten taxonomy layers"), "Architecture map must keep Batch Intelligence out of the ten-layer taxonomy");
 expect(frameworkMap.includes("Building now"), "Architecture map must state what is being built");
@@ -346,7 +348,7 @@ expect(frameworkNav.includes("aria-label=\"On this page\""), "Framework section 
 for (const id of ["context-layer", "batch-intelligence", "harness", "taxonomy", "evaluation"]) {
   expect(frameworkNav.includes(`href={\`#\${section.id}\`}`) || frameworkNav.includes(`"${id}"`), `Framework section nav missing ${id}`);
 }
-expect(frameworkLayerOverview.includes("Ten-layer taxonomy at a glance"), "Layer overview must remain visible without opening explorer panels");
+expect(frameworkLayerOverview.includes("Ten-layer filing system at a glance"), "Layer overview must remain visible without opening explorer panels");
 
 const workPage = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
 const workContractSource = [workPage, professionalGraphContent, publicCodeContent].join("\n");
@@ -512,7 +514,7 @@ for (const required of [
   "Strong first questions",
   "prompts.slice(0, 4)",
   "border-t border-white/10 bg-black/15 p-3",
-  "Answer packet",
+  "Answer details",
   "question_category",
   "framework_layers",
   "related_pages",
@@ -520,7 +522,7 @@ for (const required of [
   "Related artifacts",
   "reviewable packet with matched scope, layers, boundary, and next artifacts",
   "AI disclosure",
-  "Trust contract",
+  "What this assistant will do",
   "Source coverage",
   "Related route",
   "Latency budget",
@@ -546,8 +548,8 @@ for (const required of [
 	  "persistUrlHash",
 	  "readUrlHash",
 	  "shouldPersistUrlHash",
-	  "Challenge the record",
-	  "Public record only. Cite or refuse.",
+	  "Hard questions",
+	  "Public record only. It cites a source, or it stops.",
 	  "data-ask-challenge-chip",
 	  "/api/ask"
 ]) {
@@ -570,7 +572,7 @@ expect(!headerComponent.includes("Ask Ravikanth"), "Header primary navigation mu
 
 const askDockComponent = fs.readFileSync(path.join(root, "components", "ask-dock.tsx"), "utf8");
 for (const required of [
-  "Ask the record",
+  "Ask the public record",
   "shouldShowAskDock",
   "challengeChipsForPath",
   "variant=\"dock\"",
@@ -637,7 +639,7 @@ for (const required of [
 	  "Ask the public record.",
 	  "A serious technical claim should survive inspection.",
 	  "public evidence only; uncertainty stays visible",
-	  "Evidence console",
+	  "Public-record console",
 	  "Expose sources",
 	  "Separate inference",
 	  "Stop at evidence",
@@ -650,9 +652,9 @@ for (const required of [
 	  "What public evidence shows Ravikanth's architecture judgment?",
 	  "How does Ravikanth think about Operational Intelligence?",
   "Where can I review Ravikanth's GitHub, LinkedIn, resume, and public artifacts?",
-  "Thesis lenses",
+  "Starting questions",
 	  "Start with the questions behind this work.",
-  "Ask this lens",
+  "Ask this question",
   "Dynamic operational view",
   "Ops for observability",
   "Observability for AI",

@@ -14,35 +14,35 @@
   "askChallengeChips": {
     "default": [
       "Where is the Operational Intelligence thesis weakest?",
-      "What would falsify the harness-over-model claim?",
+      "What would prove the harness-over-model claim wrong?",
       "What do Operations Room and Batch Intelligence prove, and what do they not prove?",
       "What is Authorized Misfire in one scene?",
       "What is the wrong answer to Context Acquisition Tax?"
     ],
     "routes": {
       "/framework": [
-        "What would falsify the Agent Harness claim?",
+        "What would prove the Agent Harness claim wrong?",
         "What is the Enterprise Context Layer, and where is it weakest?",
         "What does Batch Intelligence prove and not prove?",
         "What is the wrong answer to Context Acquisition Tax?",
-        "How should a reviewer challenge the ten-layer taxonomy?"
+        "How should a reviewer challenge the ten-layer filing system?"
       ],
       "/investigation-room": [
         "What does Operations Room prove, and what does it not prove?",
         "What is OI-ROOM-001 allowed to claim from a synthetic case?",
         "Where is the Operational Intelligence thesis weakest?",
-        "What would falsify the harness-over-model claim?"
+        "What would prove the harness-over-model claim wrong?"
       ],
       "/work": [
         "What public evidence actually supports the work claims?",
-        "What would falsify the harness-over-model claim?",
+        "What would prove the harness-over-model claim wrong?",
         "What do Operations Room and Batch Intelligence prove, and what do they not prove?",
         "Where is the Operational Intelligence thesis weakest?"
       ],
       "/projects": [
         "What public evidence actually supports the work claims?",
         "What does Batch Intelligence prove and not prove?",
-        "What would falsify the harness-over-model claim?",
+        "What would prove the harness-over-model claim wrong?",
         "Where is the Operational Intelligence thesis weakest?"
       ]
     }
@@ -50,9 +50,9 @@
   "guidePaths": [
     [
       "/wiki/operational-intelligence-canonical-doctrine",
-      "Review doctrine",
+      "Review the argument",
       "Start with the canonical definition, boundaries, ten layers, glossary, and OI-ROOM-001 framing.",
-      "Where should a technical reviewer start if they want the doctrine?"
+      "Where should a technical reviewer start if they want the written thesis?"
     ],
     [
       "/wiki/operational-intelligence-reference-architecture",
@@ -118,7 +118,7 @@
   "askContextCards": [
     {
       "label": "Sources",
-      "value": "doctrine, architecture, projects, resume, GitHub, LinkedIn",
+      "value": "the written thesis, architecture, projects, resume, GitHub, LinkedIn",
       "icon": "GitBranch"
     },
     {
@@ -138,35 +138,35 @@
       "title": "Enterprise Context Layer",
       "prompt": "What is the Enterprise Context Layer and why does it matter for operational AI?",
       "signalName": "Enterprise Context Layer",
-      "body": "Operational context is an enterprise asset: ownership, change, dependency, transaction, current state, and policy must be maintained outside any single prompt."
+      "body": "Operational context is an enterprise asset: who owns it, what changed, what depends on it, which customer journey is affected, current state, and policy must be maintained outside any single prompt."
     },
     {
       "label": "Cost",
       "title": "Context Acquisition Tax",
       "prompt": "What does Ravikanth mean by Context Acquisition Tax?",
       "signalName": "Context Acquisition Tax",
-      "body": "Every engineer, workflow, and agent pays the tax repeatedly when the system cannot answer who owns it, what changed, what depends on it, and which transaction is affected."
+      "body": "Every engineer, workflow, and agent pays the tax repeatedly when the system cannot answer who owns it, what changed, what depends on it, and which customer journey is affected."
     },
     {
       "label": "Systems",
       "title": "Harness over model",
       "prompt": "Why is the harness more important than the model for SRE agents?",
       "signalName": "Harness over model",
-      "body": "The durable product is the harness that captures evidence, replay, outcomes, approvals, and operational memory across incidents."
+      "body": "The durable product is the harness — the operating loop around the model — that captures evidence, replay, outcomes, approvals, and operational memory across incidents."
     },
     {
       "label": "Operations",
       "title": "Dynamic operational view",
       "prompt": "Why is a dynamic operational view different from a static graph?",
       "signalName": "Dynamic operational view",
-      "body": "Static topology is not enough. Agents need a current operational view that admits uncertainty, stale knowledge, contradictions, and missing evidence."
+      "body": "A static system map is not enough. Agents need a current operational view that admits uncertainty, stale knowledge, contradictions, and missing evidence."
     },
     {
       "label": "Telemetry",
       "title": "Ops for observability",
       "prompt": "What does ops for observability mean?",
       "signalName": "Ops for observability",
-      "body": "Observability is becoming an operated product: source quality, retention, taxonomy, cost, governance, and feedback loops matter when humans and agents both consume telemetry."
+      "body": "Observability is becoming an operated product: source quality, retention, labels, cost, governance, and feedback loops matter when humans and agents both consume live operations data."
     },
     {
       "label": "AI systems",

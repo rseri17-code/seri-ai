@@ -1,15 +1,15 @@
 {
   "title": "Operational Intelligence Framework",
-  "subtitle": "The reasoning layer between enterprise telemetry and human decision.",
-  "promise": "A reference model for building the layer an agent grounds itself in — written so another team could implement it without talking to me.",
+  "subtitle": "The reasoning layer between live operations data and a human decision.",
+  "promise": "A reference model for building the layer an agent reads before it acts — written so another team could implement it without talking to me.",
   "thesis": "The gap is not visibility. It is that nobody can assemble what is visible fast enough, or show their working afterwards.",
   "operatorQuestions": [
     "What changed?",
-    "What transaction or journey is affected?",
-    "Which topology path explains the blast radius?",
-    "What evidence supports or weakens each hypothesis?",
-    "What should a human review before action?",
-    "What should the system remember after resolution?"
+    "What customer journey is affected?",
+    "Which dependency path explains what else could break?",
+    "What evidence supports or weakens each explanation?",
+    "What should a person review before action?",
+    "What should the system remember after the incident closes?"
   ],
   "layers": [
     {

@@ -16,7 +16,7 @@ import { site } from "@/content/site";
  */
 const primaryNav = [
   { href: "/work", label: "Work" },
-  { href: "/framework", label: "Operational Intelligence" },
+  { href: "/framework", label: "Framework" },
   { href: "/library", label: "Writing" },
   { href: "/background", label: "About" },
   { href: "/contact", label: "Contact" }

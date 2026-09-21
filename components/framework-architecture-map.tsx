@@ -12,10 +12,11 @@ export function FrameworkArchitectureMap() {
             What sits under what.
           </h2>
           <p id={summaryId} className="mt-3 text-base leading-7 text-slate-300">
-            Operational Intelligence is the umbrella. The Enterprise Context Layer is the shared substrate.
-            The SRE Agent Harness is the loop that runs on that substrate. The ten layers are a filing
-            taxonomy, not a competing architecture. Batch Intelligence is a context-layer capability — an
-            execution-graph proof — not one of those ten layers.
+            Operational Intelligence is the umbrella: the reasoning layer between live operations data and a
+            human decision. The Enterprise Context Layer is the shared foundation. The SRE Agent Harness is the
+            loop that runs on that foundation. The ten layers are a filing system, not a competing architecture.
+            Batch Intelligence is a context-layer capability — a public proof of how jobs depend on one
+            another — not one of those ten layers.
           </p>
         </figcaption>
 
@@ -29,9 +30,9 @@ export function FrameworkArchitectureMap() {
           <div className="grid gap-3 p-3 sm:p-4 lg:grid-cols-[1.15fr_auto_0.95fr] lg:items-stretch">
             <div className="min-w-0 rounded-lg border border-signal/30 bg-signal/[0.07] p-4">
               <a href="#context-layer" className="block min-h-11 rounded-md transition hover:text-white">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Shared substrate</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Shared foundation</p>
                 <p className="mt-2 text-base font-semibold text-white">Enterprise Context Layer</p>
-                <p className="mt-1 text-sm leading-6 text-slate-300">Maintained once. Consumed by humans, workflows, and agents.</p>
+                <p className="mt-1 text-sm leading-6 text-slate-300">Maintained once. Used by humans, workflows, and agents.</p>
               </a>
               <a
                 href="#batch-intelligence"
@@ -40,13 +41,13 @@ export function FrameworkArchitectureMap() {
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">Context-layer capability</p>
                 <p className="mt-1 text-sm font-semibold text-white">Batch Intelligence</p>
                 <p className="mt-1 text-xs leading-5 text-slate-300">
-                  Synthetic public-safe proof of the execution graph. Not one of the ten taxonomy layers.
+                  Synthetic public proof of how jobs depend on one another. No employer data. Not one of the ten filing labels.
                 </p>
               </a>
             </div>
 
             <div className="flex items-center justify-center px-1 py-1 text-center lg:flex-col lg:px-0" aria-hidden="true">
-              <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">grounds</span>
+              <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">reads</span>
               <span className="text-signal lg:hidden">↓</span>
               <span className="hidden text-signal lg:block">↔</span>
               <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">writes back</span>
@@ -57,10 +58,10 @@ export function FrameworkArchitectureMap() {
               href="#harness"
               className="block min-h-11 min-w-0 rounded-lg border border-mint/30 bg-mint/[0.07] p-4 transition hover:border-mint/55"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Loop on the substrate</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Loop on that foundation</p>
               <p className="mt-2 text-base font-semibold text-white">SRE Agent Harness</p>
               <p className="mt-1 text-sm leading-6 text-slate-300">
-                Grounds in the context layer, investigates, records outcomes, and writes learning back.
+                Reads the context layer, investigates, records outcomes, and writes learning back.
               </p>
             </a>
           </div>
@@ -69,7 +70,7 @@ export function FrameworkArchitectureMap() {
             <a href="#taxonomy" className="block min-h-11 rounded-lg border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/25">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Filing / taxonomy</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Filing system</p>
                   <p className="mt-1 text-base font-semibold text-white">Ten layers</p>
                 </div>
                 <p className="text-sm text-slate-300">Indexes notes, patterns, and artifacts. If this disagrees with the harness, the harness wins.</p>
@@ -93,23 +94,23 @@ export function FrameworkArchitectureMap() {
             <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">Building now</dt>
             <dd className="mt-1 text-sm leading-6 text-slate-300">
               <a href="#context-layer" className="underline-offset-4 hover:underline">The Enterprise Context Layer</a>
-              {" "}as shared substrate, and{" "}
+              {" "}as shared foundation, and{" "}
               <a href="#harness" className="underline-offset-4 hover:underline">the SRE Agent Harness</a>
               {" "}that runs on it.
             </dd>
           </div>
           <div className="rounded-lg border border-white/10 bg-black/20 p-3">
-            <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">Public-safe proof</dt>
+            <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">Public proof</dt>
             <dd className="mt-1 text-sm leading-6 text-slate-300">
               <a href="#batch-intelligence" className="underline-offset-4 hover:underline">Batch Intelligence</a>
-              : for batch, context is the execution graph. Not a taxonomy layer.
+              : for batch work, context is the map of which jobs depend on which. Not a filing label.
             </dd>
           </div>
           <div className="rounded-lg border border-white/10 bg-black/20 p-3">
             <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-amber">Where this is headed</dt>
             <dd className="mt-1 text-sm leading-6 text-slate-300">
-              <a href="#evaluation" className="underline-offset-4 hover:underline">Eval gates and falsifiers</a>
-              {" "}before trust — then human-reviewed action, not a bigger alert console.
+              <a href="#evaluation" className="underline-offset-4 hover:underline">Quality checks and what would prove it wrong</a>
+              {" "}before trust — then a person reviews the action, not a bigger alert console.
             </dd>
           </div>
         </dl>

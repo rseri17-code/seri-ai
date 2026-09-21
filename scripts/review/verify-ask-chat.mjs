@@ -50,13 +50,13 @@ await withPage({ width: 1440, height: 900 }, async (page) => {
   await page.goto(`${base}/ask`, { waitUntil: "networkidle" });
   expect(await page.getByRole("heading", { level: 1, name: "Ask the public record." }).count(), "/ask missing H1");
   expect(await page.getByText("Strong first questions").count(), "empty state missing Strong first questions");
-  expect(await page.getByText("Trust contract").count(), "Trust contract banner missing");
+  expect(await page.getByText("What this assistant will do").count(), "What this assistant will do banner missing");
   expect(await page.locator("[data-ask-transcript]").count(), "chat transcript missing");
   await screenshot(page, "ask-empty-desktop.png");
 
   await page.getByRole("button", { name: "What is Ravikanth building with seri.ai?" }).first().click();
   await page.getByText("Direct answer:", { timeout: 20000 }).waitFor();
-  expect(await page.getByText("Answer packet").count(), "answer packet missing after first turn");
+  expect(await page.getByText("Answer details").count(), "answer packet missing after first turn");
   expect(await page.getByRole("group", { name: "Follow-up questions" }).count(), "follow-up chips missing after first turn");
   await screenshot(page, "ask-first-turn-desktop.png");
 
@@ -92,7 +92,7 @@ await withPage({ width: 390, height: 844 }, async (page) => {
   await input.fill("What is a Quantum Flux Capacitor?");
   await input.press("Enter");
   await page.getByText("not in the public record", { timeout: 20000 }).waitFor();
-  expect(await page.getByText("Trust contract").count(), "mobile trust contract missing after refusal");
+  expect(await page.getByText("What this assistant will do").count(), "mobile trust contract missing after refusal");
   await screenshot(page, "ask-thin-refusal-mobile.png");
 });
 

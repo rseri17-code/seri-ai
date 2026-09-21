@@ -123,8 +123,8 @@ const kindLabel: Record<Kind, string> = {
   contradiction: "Contradiction",
   unknown: "Unknown",
   confirmed: "Confirmed fact",
-  gate: "Evaluation gate",
-  decision: "Bounded decision"
+  gate: "Quality check",
+  decision: "A person decides"
 };
 
 export function OperationsRoomPreview() {

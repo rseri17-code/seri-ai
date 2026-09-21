@@ -407,13 +407,17 @@ if (
 for (const required of [
   "30-second map",
   "Operational Intelligence is the umbrella",
-  "Enterprise Context Layer is the shared substrate",
+  // Repointed 2026-09-21: "shared substrate" was internal jargon. The invariant is that the
+  // Context Layer is named as the shared foundation kept current once.
+  "Enterprise Context Layer is the shared foundation",
   "SRE / Agent Harness",
   "Batch Intelligence",
   "Ten layers",
   "The work, plainly",
   "Staff / Principal conversations",
-  "public-safe proofs.",
+  // Repointed 2026-09-21: "public-safe proofs" was compliance vocabulary. The invariant is that
+  // the proofs are inspectable without employer data.
+  "proofs anyone can inspect — no employer data",
   "Context Acquisition Tax",
   "What I&apos;m building, and where it is headed.",
   "Destination: agents that can sit near production"
@@ -446,7 +450,9 @@ for (const required of [
   "Ask",
   "Writing",
   "Proves:",
-  "Batch Intelligence is proof",
+  // Repointed 2026-09-21: the proof-vs-filing distinction remains; wording dropped "harness" jargon
+  // from the card line and named Batch Intelligence as a public proof.
+  "Batch Intelligence is a public proof",
   "ten layers are a filing system"
 ]) {
   if (!evidenceLadderSource.includes(required)) {
@@ -545,7 +551,7 @@ function assertChallengeChipList(owner, chips) {
     return;
   }
   const blob = chips.join(" ").toLowerCase();
-  for (const required of ["falsif", "weakest", "prove"]) {
+  for (const required of ["wrong", "weakest", "prove"]) {
     if (!blob.includes(required)) {
       errors.push(`${owner} missing challenge keyword "${required}"`);
     }

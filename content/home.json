@@ -20,23 +20,23 @@
   "linkedInSignals": [
     {
       "name": "Enterprise Context Layer",
-      "description": "Operational context is an enterprise asset: ownership, change, dependency, transaction, current state, and policy must be maintained outside any single prompt."
+      "description": "Operational context is an enterprise asset: who owns it, what changed, what depends on it, which customer journey is affected, current state, and policy must be maintained outside any single prompt."
     },
     {
       "name": "Context Acquisition Tax",
-      "description": "Every engineer, workflow, and agent pays the tax repeatedly when the system cannot answer who owns it, what changed, what depends on it, and which transaction is affected."
+      "description": "Every engineer, workflow, and agent pays the tax repeatedly when the system cannot answer who owns it, what changed, what depends on it, and which customer journey is affected."
     },
     {
       "name": "Harness over model",
-      "description": "The durable product is the harness that captures evidence, replay, outcomes, approvals, and operational memory across incidents."
+      "description": "The durable product is the harness — the operating loop around the model — that captures evidence, replay, outcomes, approvals, and operational memory across incidents."
     },
     {
       "name": "Dynamic operational view",
-      "description": "Static topology is not enough. Agents need a current operational view that admits uncertainty, stale knowledge, contradictions, and missing evidence."
+      "description": "A static system map is not enough. Agents need a current operational view that admits uncertainty, stale knowledge, contradictions, and missing evidence."
     },
     {
       "name": "Ops for observability",
-      "description": "Observability is becoming an operated product: source quality, retention, taxonomy, cost, governance, and feedback loops matter when humans and agents both consume telemetry."
+      "description": "Observability is becoming an operated product: source quality, retention, labels, cost, governance, and feedback loops matter when humans and agents both consume live operations data."
     },
     {
       "name": "Observability for AI",
@@ -85,13 +85,13 @@
     {
       "slug": "agentic-incident-investigation",
       "title": "Agentic Incident Investigation Without Losing Control",
-      "dek": "How AI agents can accelerate enterprise investigations while keeping evidence, provenance, and accountability intact.",
+      "dek": "How AI agents can speed up enterprise investigations while keeping evidence, where it came from, and who is accountable intact.",
       "theme": "Agentic Systems"
     },
     {
       "slug": "transaction-intelligence-for-complex-enterprises",
       "title": "Transaction Intelligence for Complex Enterprises",
-      "dek": "Moving from isolated telemetry to transaction-aware explanations of customer and business impact.",
+      "dek": "Moving from isolated live operations data to explanations of customer and business impact along the actual journey.",
       "theme": "Transaction Intelligence"
     }
   ],

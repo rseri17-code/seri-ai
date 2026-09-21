@@ -45,8 +45,9 @@ function WorkPlainly() {
         <div>
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Builds</p>
           <p className="mt-1 text-sm leading-6 text-white sm:text-base sm:leading-7">
-            Production AI systems for enterprise operations: a shared context layer, an SRE / agent
-            harness with human gates, and public-safe proofs.
+            Production AI systems for enterprise operations: a shared context layer (who owns it, what
+            changed, what depends on it), an SRE / agent harness with human gates (the investigation
+            loop around the model), and proofs anyone can inspect — no employer data.
           </p>
         </div>
         <div>
@@ -99,11 +100,13 @@ export function HomeOrientation() {
             The shape of the work.
           </h2>
           <p id="home-orientation-summary" className="mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-            Operational Intelligence is the umbrella. The Enterprise Context Layer is the shared substrate.
-            Skip it, and every investigation pays the Context Acquisition Tax &mdash; reconstructing ownership,
-            change, dependency, and transaction by hand. The SRE / Agent Harness is the loop on that substrate.
-            Batch Intelligence is public-safe proof of an execution graph, not a taxonomy layer. The ten layers
-            are a filing system.
+            Operational Intelligence is the umbrella: the reasoning layer between live operations data and a
+            human decision. The Enterprise Context Layer is the shared foundation &mdash; who owns it, what
+            changed, what depends on it, which customer journey is affected &mdash; kept current once. Skip it,
+            and every investigation pays the Context Acquisition Tax: reconstructing those four answers by hand.
+            The SRE / Agent Harness is the loop on that foundation. Batch Intelligence is a public proof of how a
+            failed job ripples through the jobs that depend on it, not a filing label. The ten layers are a
+            filing system.
           </p>
         </figcaption>
 
@@ -112,44 +115,44 @@ export function HomeOrientation() {
             <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-mint">Umbrella</p>
             <p className="mt-1 text-base font-semibold text-white sm:text-lg">Operational Intelligence</p>
             <p className="mt-1 text-sm leading-6 text-slate-300">
-              The reasoning layer between enterprise telemetry and a human decision.
+              The reasoning layer between live operations data (telemetry) and a human decision.
             </p>
           </div>
 
           <div className="grid gap-3 p-3 sm:p-4 lg:grid-cols-[1.15fr_auto_0.95fr] lg:items-stretch">
             <div className="min-w-0 rounded-lg border border-signal/30 bg-signal/[0.07] p-4">
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-signal">Shared substrate</p>
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-signal">Shared foundation</p>
               <p className="mt-2 text-sm font-semibold text-white sm:text-base">Enterprise Context Layer</p>
               <p className="mt-1 text-sm leading-6 text-slate-300">
-                Ownership, change, dependency, transaction &mdash; maintained once. Without it, every investigation
-                pays the <strong className="font-semibold text-white">Context Acquisition Tax</strong> &mdash;
-                reconstructing those four answers by hand.
+                Ownership, change, dependency, and the customer journey &mdash; maintained once. Without it, every
+                investigation pays the <strong className="font-semibold text-white">Context Acquisition Tax</strong>
+                &mdash; reconstructing those four answers by hand.
               </p>
               <Link
                 href="/framework"
                 className="mt-3 block min-h-11 rounded-md border border-signal/25 bg-black/25 p-3 transition hover:border-signal/50"
               >
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Public-safe proof</p>
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Public proof</p>
                 <p className="mt-1 text-sm font-semibold text-white">Batch Intelligence</p>
                 <p className="mt-1 text-xs leading-5 text-slate-300">
-                  Execution-graph proof on the context layer. Not one of the ten taxonomy layers.
+                  How a failed job ripples through the jobs that depend on it. Not one of the ten filing labels.
                 </p>
               </Link>
             </div>
 
             <div className="flex items-center justify-center px-1 py-2 text-center lg:min-w-[5.5rem] lg:flex-col lg:px-2" aria-hidden="true">
               <span className="text-signal lg:hidden">↓</span>
-              <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">grounds</span>
+              <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">reads</span>
               <span className="hidden text-signal lg:block">↔</span>
               <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">writes back</span>
               <span className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:hidden">runs on / writes back</span>
             </div>
 
             <div className="min-w-0 rounded-lg border border-mint/30 bg-mint/[0.07] p-4">
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-mint">Loop on the substrate</p>
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-mint">Loop on that foundation</p>
               <p className="mt-2 text-sm font-semibold text-white sm:text-base">SRE / Agent Harness</p>
               <p className="mt-1 text-sm leading-6 text-slate-300">
-                Evidence → hypothesis → eval gate → learn. A person still owns anything consequential.
+                Evidence → hypothesis → quality check → learn. A person still owns anything consequential.
               </p>
             </div>
           </div>
@@ -169,8 +172,8 @@ export function HomeOrientation() {
         </div>
 
         <p className="mt-4 max-w-3xl border-l-2 border-mint/50 pl-4 text-sm leading-7 text-slate-200 sm:text-base">
-          Destination: agents that can sit near production because context, evaluation, and human authority
-          are first-class — not a model with a disclaimer attached.
+          Destination: agents that can sit near production because shared context, quality checks, and human
+          authority are built in — not a model with a disclaimer attached.
         </p>
       </figure>
 
@@ -180,13 +183,13 @@ export function HomeOrientation() {
       <div className="mt-8 max-w-3xl">
         <h3 className="text-lg font-semibold text-white sm:text-xl">What I&apos;m building, and where it is headed.</h3>
         <p className="mt-3 text-sm leading-7 text-slate-300 sm:text-base sm:leading-7">
-          I&apos;m building Operational Intelligence: a reasoning layer between enterprise telemetry and a human
-          decision. The shared piece is the Enterprise Context Layer — ownership, change, dependency, and
-          transaction truth, maintained once instead of reconstructed by every agent. An SRE / Agent Harness
-          runs on that layer: evidence, hypothesis, eval gate, then learning, with a person still owning
-          anything consequential. Batch Intelligence is the public-safe proof of that idea on an execution
-          graph; it is not a taxonomy layer. The destination is agents that can sit near production because
-          context, evaluation, and human authority are first-class.
+          I&apos;m building Operational Intelligence: a reasoning layer between live operations data and a human
+          decision. The shared piece is the Enterprise Context Layer — who owns it, what changed, what depends
+          on it, and which customer journey is affected, maintained once instead of reconstructed by every
+          agent. An SRE / Agent Harness runs on that layer: evidence, hypothesis, quality check, then learning,
+          with a person still owning anything consequential. Batch Intelligence is the public proof of that idea
+          on a map of which jobs depend on which; it is not a filing label. The destination is agents that can
+          sit near production because context, checks, and human authority are built in.
         </p>
       </div>
     </div>

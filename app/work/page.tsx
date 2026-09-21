@@ -47,7 +47,7 @@ export default function WorkPage() {
             I took an enterprise SRE investigation agent from thesis to production, and owned every stage of it.
           </h2>
           <p className="mt-4 max-w-4xl text-base leading-7 text-slate-300">
-            Getting across that boundary depended on current context, attributable evidence, and keeping the decision path visible
+            Getting across that boundary depended on current context, evidence you can trace to a source, and keeping the decision path visible
             to a human. Fifteen years of running enterprise systems made those the questions I care about.
           </p>
           <p className="mt-3 max-w-4xl text-base leading-7 text-slate-400">
@@ -58,13 +58,13 @@ export default function WorkPage() {
               <h2 className="text-lg font-semibold text-white">What I owned</h2>
               <p className="mt-3 text-sm leading-6 text-slate-300">
                 The full path for an enterprise SRE investigation agent: problem definition, prototype, architecture, integration,
-                evaluation, governance, rollout, and production operation.
+                evaluation, governance, rollout, and running it in production.
               </p>
             </div>
             <div className="rounded border border-mint/30 bg-mint/[0.06] p-5">
               <h2 className="text-lg font-semibold text-white">What you can inspect</h2>
               <p className="mt-3 text-sm leading-6 text-slate-300">
-                Start with the Operations Room, then inspect the public doctrine, reference architecture, evaluation harness,
+                Start with the Operations Room, then inspect the public thesis, reference architecture, evaluation harness,
                 projects, patterns, {" "}
                 <a href={publicCode.entries[1].href} target="_blank" rel="noreferrer" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">
                   Sentinalai

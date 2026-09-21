@@ -6,8 +6,8 @@ const sections = [
   { id: "context-layer", label: "Context Layer" },
   { id: "batch-intelligence", label: "Batch proof" },
   { id: "harness", label: "Harness" },
-  { id: "taxonomy", label: "Taxonomy" },
-  { id: "evaluation", label: "Eval / falsifiers" }
+  { id: "taxonomy", label: "Filing" },
+  { id: "evaluation", label: "Quality checks" }
 ] as const;
 
 export function FrameworkSectionNav() {

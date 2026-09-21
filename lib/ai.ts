@@ -520,7 +520,7 @@ export function localFallbackAnswer(question: string, context: Array<{ title: st
   const suggestedNextQuestion = inferSuggestedNextQuestion(question);
   const doctrineDefinitionContext =
     /how should operational intelligence be defined|how is operational intelligence different from observability|what is operational intelligence|define operational intelligence|canonical definition/.test(lower)
-      ? " Operational Intelligence is the reasoning layer between enterprise telemetry and human decision."
+      ? " Operational Intelligence is the reasoning layer between enterprise telemetry and human decision. Telemetry here means live operations data: logs, metrics, traces, and related signals."
       : "";
   const implementationBehaviorContext =
     /implementation behavior|governance/.test(lower)

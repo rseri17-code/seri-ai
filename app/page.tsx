@@ -51,10 +51,10 @@ const selectedWork = [
   {
     title: "Production agent systems",
     problem:
-      "Acting on production takes more than a good model: bounded execution, attributable findings, evaluation before trust, a point where a person decides.",
+      "Acting on production takes more than a good model: limits on what it can do, findings you can trace, a check before trust, and a point where a person decides.",
     role:
-      "I took an enterprise SRE investigation agent from thesis to production, and owned it end to end: architecture, engineering, integration, evaluation, operationalization.",
-    proof: "Reference architecture, evaluation gates, and the governed tool-call model.",
+      "I took an enterprise SRE investigation agent from thesis to production, and owned it end to end: architecture, engineering, integration, evaluation, and making it run in production.",
+    proof: "Reference architecture, quality checks before trust, and a reviewable model of tool use.",
     outcome:
       "The model was the easy part. Keeping its context current and its actions answerable was the work.",
     href: "/work",
@@ -67,7 +67,7 @@ const selectedWork = [
       "Under pressure, teams rebuild the same four answers by hand: who owns this, what changed, what depends on it, what the transaction did.",
     role:
       "I design the layer that assembles them once, so agents, workflows and engineers reason from the same reality.",
-    proof: "Doctrine v1.0, the reference architecture, ten patterns in build order.",
+    proof: "The written thesis (Doctrine v1.0), the reference architecture, and ten patterns in build order.",
     outcome: "Build context once, or every consumer rebuilds it privately and late.",
     href: "/framework",
     linkLabel: "Read the thesis",
@@ -104,14 +104,14 @@ export default function Home() {
                 I build evidence-grounded AI systems for enterprise operations.
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg sm:leading-8">
-                My work connects live operational context, attributable evidence, and machine reasoning &mdash; so
-                every recommended action keeps a clear path back to why.
+                My work connects what is happening in production, evidence you can trace to a source, and
+                machine reasoning &mdash; so every recommended action still shows why.
               </p>
 
               <p className="mt-5 max-w-2xl border-l-2 border-mint/60 pl-4 text-base leading-7 text-slate-200 sm:pl-5">
                 Most recently I took an <strong className="font-semibold text-white">enterprise SRE investigation
                 agent from thesis to production</strong>, owning it across architecture, engineering, enterprise
-                integration, evaluation and operationalization. That system stays private. What is on this site
+                integration, evaluation, and making it run in production. That system stays private. What is on this site
                 stands on its own.
               </p>
 
@@ -189,7 +189,7 @@ export default function Home() {
             href="/wiki/operational-intelligence-canonical-doctrine"
             className="mt-8 inline-flex min-h-[44px] items-center gap-2 text-base font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
           >
-            Read the doctrine, and what would prove it wrong <ArrowRight size={17} />
+            Read the argument, and what would prove it wrong <ArrowRight size={17} />
           </Link>
         </div>
       </section>
@@ -263,7 +263,7 @@ export default function Home() {
             page's largest duplication. One sentence and one link stand in for it. */}
         <p className="mt-10 max-w-3xl text-lg leading-9 text-slate-300">
           Fifteen years across enterprise integration, identity, container platforms, observability, and production
-          AI shaped one operating principle: context must be current, attributable, and safe to act on.
+          AI shaped one operating principle: context must be current, traceable to a source, and safe to act on.
         </p>
         <Link
           href="/background"
@@ -316,7 +316,7 @@ export default function Home() {
             an agent somewhere that matters.
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
-            Telling me where the doctrine is wrong is the most useful thing you can do with it.
+            Telling me where the argument is wrong is the most useful thing you can do with it.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-5">
             <TrackedLink

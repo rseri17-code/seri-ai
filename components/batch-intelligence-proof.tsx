@@ -14,9 +14,9 @@ export function BatchIntelligenceProof() {
   return (
     <section id="batch-intelligence" aria-labelledby="batch-intelligence-title" className="mt-4 scroll-mt-40 overflow-hidden rounded-xl border border-signal/25 bg-signal/[0.035]">
       <header className="border-b border-white/10 p-4 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Batch Intelligence · synthetic public-safe proof</p>
-        <h3 id="batch-intelligence-title" className="mt-3 text-2xl font-semibold text-white sm:text-3xl">For services, context is topology and deployments. For batch, context is the execution graph.</h3>
-        <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-300">A failed workload is only the visible endpoint. Dependency-aware context connects what ran before it, what consumes its output, and what evidence is still absent.</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Batch Intelligence · synthetic public proof</p>
+        <h3 id="batch-intelligence-title" className="mt-3 text-2xl font-semibold text-white sm:text-3xl">For services, context is the system map and deployments. For batch, context is the execution graph: which jobs depend on which.</h3>
+        <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-300">A failed job is only the visible endpoint. Dependency-aware context connects what ran before it, what consumes its output, and what evidence is still missing. No employer data.</p>
       </header>
 
       <ol className="grid gap-px bg-white/10 sm:grid-cols-2 xl:grid-cols-6">

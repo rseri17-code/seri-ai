@@ -2,6 +2,20 @@
 
 Last updated: 2026-09-21
 
+## ACT PLAIN-LANGUAGE COPY — 2026-09-21
+
+Preview-only jargon pass. Work-first Operational Intelligence thesis stays. Not a recruiting brochure. Do not merge.
+
+The sibling OBSERVE jargon-audit PRs were still running and had not landed a hit list, so this pass used a live+repo scan. Commits and pins are structured so an audit-driven follow-up can refine without rewriting the thesis.
+
+**Kept (defined in the same breath, or frozen):** Operational Intelligence (canonical definition + telemetry gloss), Authorized Misfire, Context Acquisition Tax, Enterprise Context Layer, SRE / Agent Harness, Batch Intelligence / execution graph, frozen hero H1, two primary hero CTAs, `the Authorized Misfire`, production SRE-agent claim, Staff / Principal quiet line.
+
+**Replaced on first-read surfaces:** public-safe → no employer data / inspectable; substrate → shared foundation; taxonomy → filing system; eval gate / falsify → quality check / prove wrong; attributable / provenance → trace to a source; doctrine (chrome) → the argument / written thesis; Grounding receipts → Cited sources; Ask the record → Ask the public record; Evidence console → Public-record console; Trust contract → What this assistant will do; Answer packet → Answer details. Nav label `/framework`: Operational Intelligence → Framework (still 5 items + Ask).
+
+Validators that pinned the old wording were **repointed in the same commit**, not fed copy. Ask corpus: canonical-definition support glosses telemetry; Batch Intelligence retrieval text keeps `execution graph` as a named alias and defines it.
+
+Public-safety: no employer data added. Preview-only.
+
 ## BUILDER ASK LLM SYNTHESIZER PREVIEW — 2026-09-21
 
 Ask now has an optional retrieval-bound synthesizer behind `ASK_LLM_PROVIDER`. The default remains `none`, so production Ask is unchanged: local retrieval, public-safety refusal before any model call, and the existing deterministic fallback. When `ASK_LLM_PROVIDER=groq` and `GROQ_API_KEY` are set, Groq may only summarize retrieved public passages. Empty or thin retrieval never calls the model. Responses that cite unknown passage ids or invented URLs are discarded. Ollama is optional behind `OLLAMA_BASE_URL`. The Groq key stays server-side.
@@ -1587,6 +1601,12 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — ACT: jargon pass without OBSERVE audit PR
+
+- **Finding**: No open jargon-audit / plain-language OBSERVE PR or branch was available (`jargon-audit`, `plain-language`, `observe` search). Four sibling audit agents were still running.
+- **Acted**: implemented a first-read pass from a live+repo scan; kept thesis names with inline definitions; did not turn Home into a hiring brochure.
+- **Follow-up**: VERIFY should re-check against the OBSERVE hit list when it lands. Public-safety risk: none. Flag for Ravikanth: preview-only; do not merge.
 
 ### 2026-09-21 — Builder: Groq provider_error on Preview
 

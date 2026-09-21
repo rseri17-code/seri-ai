@@ -70,13 +70,13 @@ const routeContracts = [
       "Shared operational reasoning",
       "Evidence posture",
       "Why this needs to be a layer rather than a feature.",
-      "Telemetry is not enough",
+      "More data is not more understanding",
       "Humans remain accountable",
       "Falsification",
       "Architecture map",
       "Building now",
       "Where this is headed",
-      "Ten-layer taxonomy at a glance",
+      "Ten-layer filing system at a glance",
       "On this page",
       "the cost of reconstructing who owns this",
       "an action the system was permitted to take"
@@ -93,7 +93,7 @@ const routeContracts = [
     // The initial HTML includes a complete fixture-backed run summary for accessibility, reduced
     // motion, and no-JS use. Runtime state guarantees live in validate-sre-reference-run.mjs.
     required: [
-      "Operations Room for evidence-backed decisions",
+      "Operations Room for decisions you can inspect",
       "Synthetic Reference Run",
       "OI-ROOM-001",
       "Play",

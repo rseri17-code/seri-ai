@@ -28,14 +28,14 @@ export function SreReferenceRun() {
       <header className="border-b border-white/10 bg-gradient-to-r from-signal/10 via-transparent to-mint/10 p-4 sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-mint">{sreReferenceRun.label} · public-safe fixture</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-mint">{sreReferenceRun.label} · synthetic fixture · no employer data</p>
             <h2 id="reference-run-title" className="mt-2 text-2xl font-semibold text-white">{sreReferenceRun.scenario}</h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">{sreReferenceRun.policy}</p>
           </div>
           <div className="rounded-lg border border-white/10 bg-black/20 px-3 py-2 font-mono text-xs text-slate-300">{sreReferenceRun.id} · event {Math.max(index + 1, 0)}/{sreReferenceRun.events.length}</div>
         </div>
         <details className="mt-4 rounded-lg border border-white/10 bg-black/20 p-3 text-sm text-slate-300">
-          <summary className="cursor-pointer font-semibold text-white">Deterministic event stream</summary>
+          <summary className="cursor-pointer font-semibold text-white">Step-by-step event stream</summary>
           <ol className="mt-3 grid gap-2 sm:grid-cols-2">
             {sreReferenceRun.events.map((event) => (
               <li key={`summary-${event.id}`} className="leading-5">
@@ -55,7 +55,7 @@ export function SreReferenceRun() {
       <div className="grid lg:grid-cols-[minmax(0,1.45fr)_minmax(280px,.55fr)]">
         <div className="border-b border-white/10 p-4 lg:border-b-0 lg:border-r lg:p-6">
           <div className="mb-4 flex items-center justify-between gap-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Deterministic event stream</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Step-by-step event stream</p>
             <p aria-live="polite" className="font-mono text-xs text-slate-400">{playing ? "RUNNING" : index < 0 ? "READY" : "PAUSED"}</p>
           </div>
           <ol className="space-y-3" aria-live="polite">
@@ -65,7 +65,7 @@ export function SreReferenceRun() {
                 <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-wide text-slate-400"><time>{event.at}</time><span>·</span><span>{event.stage}</span>{event.source && <><span>·</span><span>{event.source}</span></>}</div>
                 <div className="mt-2 flex flex-wrap items-start justify-between gap-2"><h3 className="font-semibold text-white">{event.title}</h3>{event.receipt && <span className={`rounded-full bg-black/30 px-2 py-1 text-xs font-semibold ${receiptTone[event.receipt]}`}>{event.receipt}</span>}</div>
                 <p className="mt-1 text-sm leading-6 text-slate-300">{event.detail}</p>
-                {event.freshness && <p className="mt-2 font-mono text-[11px] text-slate-400">provenance: checked-in OI-ROOM-001 fixture · freshness: {event.freshness}</p>}
+                {event.freshness && <p className="mt-2 font-mono text-[11px] text-slate-400">source: checked-in OI-ROOM-001 fixture · freshness: {event.freshness}</p>}
               </li>
             ))}
           </ol>

@@ -22,7 +22,7 @@ export const evidenceLadder = [
     n: "02",
     label: "Framework",
     kind: "Full map",
-    proves: "Context layer and harness. Batch Intelligence is proof; the ten layers are a filing system.",
+    proves: "The shared context layer and the investigation loop. Batch Intelligence is a public proof; the ten layers are a filing system.",
     href: "/framework",
     secondaryHref: "/framework#batch-intelligence",
     secondaryLabel: "Batch proof",
@@ -41,7 +41,7 @@ export const evidenceLadder = [
     n: "04",
     label: "Ask",
     kind: "Public record",
-    proves: "What the public corpus will answer, cite, and refuse.",
+    proves: "What the public record will answer, cite, or refuse to guess.",
     href: "/ask",
     cta: "ladder_ask"
   },
