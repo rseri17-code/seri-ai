@@ -388,6 +388,30 @@ for (const required of [
     errors.push(`app/page.tsx: homepage first impression missing required positioning phrase: ${required}`);
   }
 }
+
+const homeOrientationPath = path.join(root, "components", "home-orientation.tsx");
+const homeOrientationSource = fs.existsSync(homeOrientationPath) ? fs.readFileSync(homeOrientationPath, "utf8") : "";
+if (!homePageSource.includes("<HomeOrientation")) {
+  errors.push("app/page.tsx: homepage hero must render HomeOrientation before the signature thesis");
+}
+if (homePageSource.indexOf("<HomeOrientation") > homePageSource.indexOf("The failure I design against")) {
+  errors.push("app/page.tsx: 30-second map must render before the Authorized Misfire thesis");
+}
+for (const required of [
+  "30-second map",
+  "Operational Intelligence is the umbrella",
+  "Enterprise Context Layer is the shared substrate",
+  "SRE / Agent Harness",
+  "Batch Intelligence",
+  "Ten layers",
+  "Start here",
+  "What I&apos;m building, and where it is headed.",
+  "Destination: agents that can sit near production"
+]) {
+  if (!homeOrientationSource.includes(required)) {
+    errors.push(`components/home-orientation.tsx: homepage orientation missing "${required}"`);
+  }
+}
 for (const forbidden of [
   "seri.ai publishes the doctrine",
   "public home for thinking",

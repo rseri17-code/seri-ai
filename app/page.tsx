@@ -18,6 +18,11 @@
  *   5 Selected ideas  6 Closing invitation
  * Do not add a seventh section without a documented visitor need.
  *
+ * The 30-second map, start-here path, and destination block live *inside the hero*
+ * (after identity, before the signature thesis) so a cold visitor gets the architecture
+ * shape before Authorized Misfire jargon. That is not a seventh section. The longer map
+ * belongs on /framework.
+ *
  * The five-stage career arc was REMOVED on 2026-08-30: /background owns that narrative, and
  * reproducing it here was the page's largest duplication. What remains is a 26-word bridge and one
  * link. Do not restore the stages.
@@ -28,6 +33,7 @@
  */
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { HomeOrientation } from "@/components/home-orientation";
 import { OperationsRoomPreview } from "@/components/operations-room-preview";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
@@ -146,6 +152,8 @@ export default function Home() {
               </figcaption>
             </figure>
           </div>
+
+          <HomeOrientation />
         </div>
       </section>
 
