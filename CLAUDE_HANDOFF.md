@@ -2,6 +2,14 @@
 
 Last updated: 2026-09-21
 
+## HOMEPAGE 10/10 OBSERVE — 2026-09-21
+
+Observe-only. **No visitor-facing copy was changed.** Artifact: `docs/homepage-10-audit.md`.
+
+Live `/` scored overall **6.3/10** against a dual bar (enterprise AI/data architect **and** smart non-specialist), work-first. Peers 7.0 · architects 6.2 · non-specialist 5.4. Not 10 because the first viewport teaches identity plus a claim, the four-way split (store / loop / public demo / filing) is named rather than contracted, the hero restates the map four times before Authorized Misfire, and the closer opens on hiring.
+
+Act must implement the ranked list in that file (homepage files + shared header/ladder only). Do not treat PR #11 jargon swaps or PR #12 `substrate` → `foundation` as this 10. Frozen H1, two hero CTAs, five-item nav + Ask, work-first thesis: non-negotiable. Preview-only; do not merge.
+
 ## BUILDER ASK LLM SYNTHESIZER PREVIEW — 2026-09-21
 
 Ask now has an optional retrieval-bound synthesizer behind `ASK_LLM_PROVIDER`. The default remains `none`, so production Ask is unchanged: local retrieval, public-safety refusal before any model call, and the existing deterministic fallback. When `ASK_LLM_PROVIDER=groq` and `GROQ_API_KEY` are set, Groq may only summarize retrieved public passages. Empty or thin retrieval never calls the model. Responses that cite unknown passage ids or invented URLs are discarded. Ollama is optional behind `OLLAMA_BASE_URL`. The Groq key stays server-side.
@@ -1587,6 +1595,14 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Grok: homepage 10/10 Observe (architect + non-specialist)
+
+- **Finding**: Live `/` is work-first and names the right split (context layer / harness / Batch as proof / ten layers as filing), but it is not a 10 for a serious enterprise AI/data architect or a smart non-specialist. Overall **6.3**. The four answers are a slogan; Batch is taught by negation; the hero stacks four maps; closing is hiring-first; Codebase Memory sits in the first inspect row.
+- **Keep**: Frozen H1, two hero CTAs, five-item nav + Ask, Authorized Misfire name + clause, private-system boundary, ten layers as filing, Operations Room as flagship proof, no seventh section.
+- **Fix (Act, not this PR)**: Ranked exact-string list in `docs/homepage-10-audit.md`. Collapse restatements; state owner/change/dependency/transaction as records; lift services-vs-batch from `/framework` onto the homepage Batch card; rewrite lead/closing; repoint validator pins — never write copy to satisfy a grep.
+- **Why it matters**: Clarity of the work, not hiring-manager emotion. PR #11 is jargon inventory; this is the 10/10 IA + contract gate.
+- **Evidence needed**: Act implements the list; Verify uses §6 checklist. Public-safety risk: none in Observe (docs only). Flag for Ravikanth: essay retitles and H1 remain his call.
 
 ### 2026-09-21 — Builder: Groq provider_error on Preview
 
