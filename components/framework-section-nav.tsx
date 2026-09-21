@@ -14,7 +14,7 @@ export function FrameworkSectionNav() {
   const [activeId, setActiveId] = useState<(typeof sections)[number]["id"]>(sections[0].id);
 
   useEffect(() => {
-    const offset = 160;
+    const offset = 176;
 
     function syncActive() {
       let current: (typeof sections)[number]["id"] = sections[0].id;
@@ -42,7 +42,8 @@ export function FrameworkSectionNav() {
     const target = document.getElementById(id);
     if (!target) return;
     event.preventDefault();
-    target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    const top = window.scrollY + target.getBoundingClientRect().top - 176;
+    window.scrollTo({ top: Math.max(0, top), behavior: prefersReducedMotion ? "auto" : "smooth" });
     history.replaceState(null, "", `#${id}`);
     setActiveId(id as (typeof sections)[number]["id"]);
   }
@@ -50,7 +51,7 @@ export function FrameworkSectionNav() {
   return (
     <div className="sticky top-[4.75rem] z-40 border-b border-white/10 bg-ink/92 backdrop-blur-xl">
       <nav aria-label="On this page" className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2 sm:px-6 lg:px-8">
-        <p className="shrink-0 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">On this page</p>
+        <p className="hidden shrink-0 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400 sm:block">On this page</p>
         <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto">
           {sections.map((section) => {
             const active = section.id === activeId;

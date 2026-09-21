@@ -126,7 +126,7 @@ export default function FrameworkPage() {
         </p>
 
         <Card className="mt-5 p-4 sm:p-6">
-          <div id="context-layer" className="scroll-mt-[8.5rem]">
+          <div id="context-layer" className="scroll-mt-40">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">One &mdash; the substrate</p>
           <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The Enterprise Context Layer</h3>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
@@ -156,12 +156,12 @@ export default function FrameworkPage() {
           </div>
         </Card>
 
-        <div id="batch" className="scroll-mt-[8.5rem]">
+        <div id="batch" className="scroll-mt-40">
           <BatchIntelligenceProof />
         </div>
 
         <Card className="mt-4 p-4 sm:p-6">
-          <div id="harness" className="scroll-mt-[8.5rem]">
+          <div id="harness" className="scroll-mt-40">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Two &mdash; the loop</p>
           <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The SRE Agent Harness</h3>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
