@@ -98,7 +98,7 @@ const routeContracts = [
       "min-h-11",
       "safe-area-inset-bottom",
       "safe-area-inset-right",
-      "70dvh",
+      "78dvh",
       "calc(100vw-1.5rem)",
       "z-40",
       "aria-expanded",

@@ -11,7 +11,6 @@ import {
   decodeAskThreadHash,
   deserializeAskSession,
   encodeAskThreadHash,
-  fullAskHref,
   legacyAskSessionKeys,
   serializeAskSession,
   toChatHistory,
@@ -396,6 +395,9 @@ export function Chat({
           ref={transcriptRef}
         >
           {messages.map((message, index) => {
+            if (isDock && message.content === initialAssistantMessage && !message.packet) {
+              return null;
+            }
             const isLatestAssistant = message.role === "assistant" && index === latestAssistantIndex;
             const isLatestUser = message.role === "user" && !messages.slice(index + 1).some((item) => item.role === "user");
             return (
@@ -492,14 +494,16 @@ export function Chat({
   );
 
   if (isDock) {
-    const openFullAskHref = fullAskHref(messages);
     return (
       <div className="flex h-full min-h-0 flex-col overflow-hidden bg-[#071018]" data-ask-variant="dock">
-        {transcript}
-        {sessionBar}
-        {composer}
+        {hasAskedQuestion || sessionRestored ? (
+          <>
+            {transcript}
+            {sessionBar}
+          </>
+        ) : null}
         {!hasAskedQuestion ? (
-          <div className="border-t border-white/10 bg-black/15 p-3">
+          <div className="min-h-0 flex-1 overflow-y-auto border-t border-white/10 bg-black/15 p-3">
             <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Challenge the record</p>
             <div className="mt-2 grid gap-2">
               {prompts.slice(0, 5).map((prompt) => (
@@ -516,6 +520,7 @@ export function Chat({
             </div>
           </div>
         ) : null}
+        {composer}
         <div className="border-t border-white/10 bg-black/20 px-3 py-2">
           <p className="text-[0.68rem] leading-4 text-slate-400">
             Public record only. Cite or refuse. No open-web research, and no private or employer data.
@@ -523,14 +528,6 @@ export function Chat({
           <p className="mt-1 text-[0.68rem] leading-4 text-slate-500">
             {responseMeta?.public_boundary ?? "approved public content only"} · {responseMeta?.assistant_identity ?? "AI assistant over approved public work"}
           </p>
-          <Link
-            href={openFullAskHref}
-            className="mt-2 inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-mint hover:text-white"
-            data-ask-open-full="true"
-          >
-            Open full Ask
-            <ArrowRight size={14} aria-hidden="true" />
-          </Link>
         </div>
       </div>
     );

@@ -540,10 +540,8 @@ for (const required of [
 	  "persistUrlHash",
 	  "readUrlHash",
 	  "shouldPersistUrlHash",
-	  "fullAskHref",
 	  "Challenge the record",
 	  "Public record only. Cite or refuse.",
-	  "Open full Ask",
 	  "data-ask-challenge-chip",
 	  "/api/ask"
 ]) {
@@ -575,7 +573,9 @@ for (const required of [
   "role=\"complementary\"",
   "aria-expanded",
   "data-ask-dock-trigger",
-  "ask_dock_toggle"
+  "ask_dock_toggle",
+  "Open full Ask",
+  "href=\"/ask\""
 ]) {
   expect(askDockComponent.includes(required), `AskDock missing Phase C contract: ${required}`);
 }
