@@ -36,10 +36,12 @@ const routeContracts = [
       "Codebase Memory",
       "Context that survives the next session.",
       "Read the case study",
-      "The work, plainly",
+      "30-second map",
       "A path through the work",
       "Context Acquisition Tax",
-      "permitted to take on context it should not have trusted"
+      "permitted to take on context it should not have trusted",
+      "shared store",
+      "Staff or Principal conversations"
     ],
     before: [
       // A mobile visitor reaches an action before the page starts explaining itself.
@@ -48,8 +50,7 @@ const routeContracts = [
       ["Enter the Operations Room", "Fifteen years across enterprise integration"],
       // Ruled section order, asserted end to end on the rendered page.
       ["I build evidence-grounded AI systems for enterprise operations.", "The failure I design against"],
-      ["30-second map", "The work, plainly"],
-      ["The work, plainly", "Start here"],
+      ["30-second map", "Start here"],
       ["Start here", "The failure I design against"],
       ["The failure I design against", "The Operations Room"],
       ["The Operations Room", "Three bodies of work."],
@@ -70,13 +71,13 @@ const routeContracts = [
       "Shared operational reasoning",
       "Evidence posture",
       "Why this needs to be a layer rather than a feature.",
-      "Telemetry is not enough",
+      "More data is not more understanding",
       "Humans remain accountable",
       "Falsification",
       "Architecture map",
       "Building now",
       "Where this is headed",
-      "Ten-layer taxonomy at a glance",
+      "Ten-layer filing system at a glance",
       "On this page",
       "the cost of reconstructing who owns this",
       "an action the system was permitted to take"
@@ -93,7 +94,7 @@ const routeContracts = [
     // The initial HTML includes a complete fixture-backed run summary for accessibility, reduced
     // motion, and no-JS use. Runtime state guarantees live in validate-sre-reference-run.mjs.
     required: [
-      "Operations Room for evidence-backed decisions",
+      "Operations Room for decisions you can inspect",
       "Synthetic Reference Run",
       "OI-ROOM-001",
       "Play",

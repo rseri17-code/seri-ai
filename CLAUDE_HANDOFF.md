@@ -2,6 +2,62 @@
 
 Last updated: 2026-09-21
 
+## ACT HOMEPAGE 10/10 AUDIT (PR #13 ranks 1–8) — 2026-09-21
+
+Preview-only. Do not merge. Canonical bar: `docs/homepage-10-audit.md` on PR #13. Verify FAIL on c5b7d07 was jargon lift only (overall 6.8). This pass implements ranks 1–8 on `/`.
+
+**Rank 1:** Deleted `The work, plainly` and `What I'm building, and where it is headed.` One 30-second map, one destination line, one evidence-ladder path. Codebase Memory removed from any first inspect chip row (stays in Selected work + ladder). Staff/Principal is one quiet line under the ladder.
+
+**Rank 2:** Owner / change / dependency / journey stated as records with source and as-of time. Stale/thin rule on the ECL card. Authorized Misfire joined to those four records. Connector is `reads from` / `writes back`. Shared store, not substrate/foundation.
+
+**Rank 3:** Homepage Batch card states services-vs-batch (topology/deploys vs job order/read-write). Ten layers = filing, not runtime; Room's ten stages named as a different ten.
+
+**Rank 4:** Hero lead is store + loop + sources. Frozen H1 unchanged.
+
+**Rank 5 / item 6:** Pinned `enterprise SRE investigation agent from thesis to production` kept; first-screen gloss: investigates production reliability issues.
+
+**Rank 6:** Nav stays five items + Ask (`Framework`). Eyebrow no longer uses Operational Intelligence without a clause.
+
+**Rank 7:** Selected work card 1 noun stack replaced. Career bridge: traceable to sources.
+
+**Rank 8:** Closer H2 kept work-first. Body no longer opens on hiring.
+
+Pins that required the four restatements were **repointed to invariants** in the same commit. Copy was not written to satisfy grep.
+
+**Kept:** frozen H1; CTAs `Enter the Operations Room` / `Explore the body of work`; five-item nav + Ask; `the Authorized Misfire` + permitted-on-untrusted-context clause; `That system stays private`.
+
+Public-safety: no employer data added. Preview-only.
+
+## ACT HOMEPAGE 10/10 + PLAIN LANGUAGE — 2026-09-21
+
+Preview-only. Do not merge. Homepage is the 10/10 surface. Deep `/framework` and `/ask` chrome deferred unless they share homepage components.
+
+**Architect bar (this pass):** first viewport answers what he builds and that the production system is private / the site is public proof. 30-second map separates umbrella vs shared data product vs investigation loop vs Batch execution-graph proof vs ten-layer filing — in separate sentences, not a term stack. Context layer reads as a maintained data product. Work-first; Staff/Principal stays a quiet line.
+
+**Kept (frozen / named with clauses):** H1 `I build evidence-grounded AI systems for enterprise operations.`; CTAs `Enter the Operations Room` / `Explore the body of work`; five-item nav + Ask (`Framework` label from the prior jargon pass); `the Authorized Misfire` + existing clause; Context Acquisition Tax four-answer gloss; `SRE / Agent Harness`; `Batch Intelligence`; Staff / Principal quiet line.
+
+**Homepage first screen:** H1 glossed as “a recommendation can be traced to a source”; production ownership + private/public boundary without a resume stack; portrait keeps `Senior Technical Lead — AIOps & Observability` and adds `Production AI systems for enterprise operations`. Operational Intelligence is taught in the 30s map, not the eyebrow.
+
+**30s map:** one claim per sentence. Enterprise Context Layer = maintained data product (owner, change, dependency, customer journey). Harness = investigation loop that reads it. Batch = public execution-graph proof. Ten layers = filing. Work-plainly no longer restacks the map; evidence ladder prove-lines stay a path through the work.
+
+Validators that pinned the old portrait H1-echo were **repointed in the same commit**. `docs/homepage-10-audit.md` had not landed; this used Verify’s FAIL list + PR #11 jargon audit + the architect bar.
+
+Public-safety: no employer data added. Preview-only.
+
+## ACT PLAIN-LANGUAGE COPY — 2026-09-21
+
+Preview-only jargon pass. Work-first Operational Intelligence thesis stays. Not a recruiting brochure. Do not merge.
+
+The sibling OBSERVE jargon-audit PRs were still running and had not landed a hit list, so this pass used a live+repo scan. Commits and pins are structured so an audit-driven follow-up can refine without rewriting the thesis.
+
+**Kept (defined in the same breath, or frozen):** Operational Intelligence (canonical definition + telemetry gloss), Authorized Misfire, Context Acquisition Tax, Enterprise Context Layer, SRE / Agent Harness, Batch Intelligence / execution graph, frozen hero H1, two primary hero CTAs, `the Authorized Misfire`, production SRE-agent claim, Staff / Principal quiet line.
+
+**Replaced on first-read surfaces:** public-safe → no employer data / inspectable; substrate → shared foundation; taxonomy → filing system; eval gate / falsify → quality check / prove wrong; attributable / provenance → trace to a source; doctrine (chrome) → the argument / written thesis; Grounding receipts → Cited sources; Ask the record → Ask the public record; Evidence console → Public-record console; Trust contract → What this assistant will do; Answer packet → Answer details. Nav label `/framework`: Operational Intelligence → Framework (still 5 items + Ask).
+
+Validators that pinned the old wording were **repointed in the same commit**, not fed copy. Ask corpus: canonical-definition support glosses telemetry; Batch Intelligence retrieval text keeps `execution graph` as a named alias and defines it.
+
+Public-safety: no employer data added. Preview-only.
+
 ## BUILDER ASK LLM SYNTHESIZER PREVIEW — 2026-09-21
 
 Ask now has an optional retrieval-bound synthesizer behind `ASK_LLM_PROVIDER`. The default remains `none`, so production Ask is unchanged: local retrieval, public-safety refusal before any model call, and the existing deterministic fallback. When `ASK_LLM_PROVIDER=groq` and `GROQ_API_KEY` are set, Groq may only summarize retrieved public passages. Empty or thin retrieval never calls the model. Responses that cite unknown passage ids or invented URLs are discarded. Ollama is optional behind `OLLAMA_BASE_URL`. The Groq key stays server-side.
@@ -1587,6 +1643,24 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — ACT: homepage-10-audit.md ranks 1–8 (PR #13 canonical)
+
+- **Finding**: Verify FAIL on PR #12 at overall 6.8 (peers 7.5 / architects 6.8 / plain 6.4). c5b7d07 was jargon lift, not the 10. PR #13 DoD: collapse four hero stacks; records with source+time; Batch services-vs-batch; Rank 4 lead; Rank 8 closer not hiring-first; gloss SRE; drop Codebase Memory from first inspect chips; repoint pins.
+- **Acted**: implemented ranks 1–8 on `/` (plus Rank 9–13 chrome in the same homepage files). Deleted work-plainly and destination essay. Four answers are records. Batch card is the services-vs-batch sentence. Closer opens on a second opinion, not hiring. Validators repointed to invariants.
+- **Follow-up**: VERIFY re-score of public preview `/` against PR #13 §6. Public-safety risk: none. Flag for Ravikanth: preview-only; do not merge.
+
+### 2026-09-21 — ACT: homepage 10/10 (architect bar) after Verify FAIL list
+
+- **Finding**: Verify scored live “no jargon” ~4/10. Scope upgraded: homepage first viewport + 30s map must be architect-grade and jargon-free. `docs/homepage-10-audit.md` had not landed; PR #11 jargon audit + architect bar used.
+- **Acted**: first viewport now states production AI + private/public boundary in ~10s; 30s map separates umbrella / data product / loop / Batch proof / filing in separate sentences; context layer is a maintained data product; Staff/Principal stays quiet. Deep `/framework` and `/ask` chrome deferred.
+- **Follow-up**: VERIFY re-check of homepage first screen. Public-safety risk: none. Flag for Ravikanth: preview-only; do not merge.
+
+### 2026-09-21 — ACT: jargon pass without OBSERVE audit PR
+
+- **Finding**: No open jargon-audit / plain-language OBSERVE PR or branch was available (`jargon-audit`, `plain-language`, `observe` search). Four sibling audit agents were still running.
+- **Acted**: implemented a first-read pass from a live+repo scan; kept thesis names with inline definitions; did not turn Home into a hiring brochure.
+- **Follow-up**: VERIFY should re-check against the OBSERVE hit list when it lands. Public-safety risk: none. Flag for Ravikanth: preview-only; do not merge.
 
 ### 2026-09-21 — Builder: Groq provider_error on Preview
 

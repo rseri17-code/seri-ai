@@ -29,7 +29,7 @@ import { operationalIntelligenceFramework, thesisRadar } from "@/content/site";
 export const metadata: Metadata = {
   title: "Operational Intelligence Framework | Ravikanth Seri",
   description:
-    "Ravikanth Seri's ten-layer Operational Intelligence Framework for evidence-backed Agentic SRE, replayable investigations, eval-gated agents, and human-reviewed action.",
+    "Ravikanth Seri's ten-layer Operational Intelligence Framework for evidence-backed Agentic SRE, investigations you can replay, quality-checked agents, and human-reviewed action.",
   alternates: { canonical: "/framework" },
   openGraph: {
     title: "Operational Intelligence Framework | Ravikanth Seri",
@@ -42,17 +42,17 @@ export const metadata: Metadata = {
 
 const argumentsForCategory = [
   {
-    title: "Telemetry is not enough",
+    title: "More data is not more understanding",
     body:
-      "Modern enterprises do not lack data. They lack shared reasoning over distributed data. Logs, metrics, traces, changes, topology, tickets, and transaction signals only become useful when they are connected to evidence, impact, confidence, and review."
+      "Modern enterprises do not lack data. They lack a shared way to reason over it. Logs, metrics, traces, changes, system maps, tickets, and customer-journey signals only become useful when they connect to evidence, impact, confidence, and review."
   },
   {
-    title: "AIOps plateaued at correlation",
+    title: "Alert correlation is not a decision",
     body:
-      "Correlation helps reduce noise, but enterprise operators need provenance, timeline reconstruction, hypothesis comparison, and a reviewable path to action. The useful layer is explanation, not another alert summary."
+      "Grouping related alerts reduces noise, but operators still need a trail of where the claim came from, a reconstructed timeline, competing explanations, and a reviewable path to action. The useful layer is explanation, not another alert summary."
   },
   {
-    title: "Transactions are under-modeled",
+    title: "Customer journeys are under-modeled",
     body:
       "Enterprise customers experience journeys, not services. Operational Intelligence treats the transaction path as the unit of reasoning so impact can be explained across gateways, APIs, applications, dependencies, and external systems."
   },
@@ -62,14 +62,14 @@ const argumentsForCategory = [
       "Incident investigations repeat when operational learning disappears after the ticket closes. A durable system should remember approved patterns, mitigations, ownership, failure modes, and decisions without leaking confidential implementation detail."
   },
   {
-    title: "Evaluation is the control system",
+    title: "Quality checks are the control system",
     body:
-      "Enterprise AI quality cannot be based on vibes. Replay, grounding, evidence coverage, refusal behavior, confidence calibration, and escalation judgment are the release gates for trustworthy operational AI."
+      "Enterprise AI quality cannot be based on vibes. Replay, source coverage, refusal behavior, confidence that can fall, and knowing when to escalate are the checks before anything is trusted in operations."
   },
   {
     title: "Evidence must become infrastructure",
     body:
-      "The future system is not a transcript plus a model answer. It is an evidence graph, hypothesis lifecycle, decision trace, replay seed, outcome memory, and learning loop that operators can inspect."
+      "The future system is not a transcript plus a model answer. It is a record of what was seen, what was inferred, what is missing, how to re-run the same case, and what a person approved — so operators can inspect it."
   },
   {
     title: "Humans remain accountable",
@@ -120,20 +120,20 @@ export default function FrameworkPage() {
 
       <Section eyebrow="The two halves" title="What has to exist beneath an agent, and what the agent has to do with it.">
         <p className="max-w-4xl text-base leading-7 text-slate-300">
-          These are the same argument at two altitudes. The context layer is the substrate: maintained once, consumed by everything.
+          These are the same argument at two altitudes. The context layer is the shared foundation: maintained once, used by everything.
           The harness is the loop that runs on top of it. An Authorized Misfire &mdash; an action the system was permitted to take
-          on context it should not have trusted &mdash; is what happens when the loop grounds itself on a substrate nobody kept current.
+          on context it should not have trusted &mdash; is what happens when the loop reads a foundation nobody kept current.
         </p>
 
         <Card className="mt-5 p-4 sm:p-6">
           <div id="context-layer" className="scroll-mt-40">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">One &mdash; the substrate</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">One &mdash; the shared foundation</p>
           <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The Enterprise Context Layer</h3>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
             This is the Context Acquisition Tax &mdash; the cost of reconstructing who owns this, what changed, what depends on it,
             and what the transaction did, every time, because no shared layer already knows. Today every engineer, every workflow
-            and every agent pays it independently, each one pulling separately from CMDB, observability, identity, ITSM, CI/CD and
-            topology. Time spent reconstructing context is time not spent solving the problem.
+            and every agent pays it independently, each one pulling separately from asset inventory, observability, identity, ticketing, deployment pipelines, and
+            the system map. Time spent reconstructing context is time not spent solving the problem.
           </p>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
             The alternative is to treat operational reality as shared infrastructure &mdash; one governed, auditable, continuously
@@ -166,7 +166,7 @@ export default function FrameworkPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Two &mdash; the loop</p>
           <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">The SRE Agent Harness</h3>
           <p className="mt-4 max-w-3xl leading-7 text-slate-300">
-            An incident fires and the agent grounds itself in current telemetry, topology and configuration &mdash; that grounding
+            An incident fires and the agent reads the current operations data, the system map, and the configuration &mdash; that
             step is where it reads the context layer. It reasons toward a probable cause, captures what it observed in what sequence
             and with what confidence, then asks whether this has happened before.
           </p>
@@ -196,8 +196,8 @@ export default function FrameworkPage() {
 
       <Section id="taxonomy" eyebrow="How the material is indexed" title="Ten layers, used for filing rather than for arguing.">
         <p className="max-w-4xl text-base leading-7 text-slate-300">
-          The harness above is the model. These ten layers are the taxonomy underneath it: every published note,
-          pattern and artifact on this site is tagged to one of them, which is how retrieval and related-reading
+          The harness above is the model. These ten layers are the filing system underneath it: every published note,
+          pattern and artifact on this site is tagged to one of them, which is how search and related-reading
           work. They are a filing system, not a competing architecture &mdash; if the two ever disagree, the harness wins.
         </p>
         <div className="mt-5">

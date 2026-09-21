@@ -4,7 +4,7 @@ export function FrameworkLayerOverview() {
   return (
     <div className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.04]">
       <div className="border-b border-white/10 px-4 py-3 sm:px-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Ten-layer taxonomy at a glance</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Ten-layer filing system at a glance</p>
         <p className="mt-1 text-sm leading-6 text-slate-300">
           Filing labels for retrieval. Open a row in the explorer below only when you need the case walkthrough.
         </p>

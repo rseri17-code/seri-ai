@@ -48,20 +48,20 @@ async function withPage(viewport, fn) {
 
 await withPage({ width: 1440, height: 900 }, async (page) => {
   await page.goto(`${base}/`, { waitUntil: "networkidle" });
-  const trigger = page.getByRole("button", { name: "Ask the record" });
+  const trigger = page.getByRole("button", { name: "Ask the public record" });
   expect(await trigger.count(), "homepage missing Ask dock trigger");
   await screenshot(page, "home-dock-closed-desktop.png");
 
   await trigger.click();
-  await page.getByRole("complementary", { name: "Ask the record" }).waitFor();
-  expect(await page.getByText("Challenge the record").count(), "homepage dock missing challenge chips");
-  expect(await page.getByText("Public record only. Cite or refuse.").count(), "homepage dock missing boundary disclosure");
+  await page.getByRole("complementary", { name: "Ask the public record" }).waitFor();
+  expect(await page.getByText("Hard questions").count(), "homepage dock missing challenge chips");
+  expect(await page.getByText("Public record only. It cites a source, or it stops.").count(), "homepage dock missing boundary disclosure");
   expect(await page.getByText("Authorized Misfire", { exact: false }).count(), "homepage dock missing Authorized Misfire chip");
   await screenshot(page, "home-dock-open-desktop.png");
 
   await page.getByRole("button", { name: "Where is the Operational Intelligence thesis weakest?" }).click();
   await page.getByText("Direct answer:", { timeout: 20000 }).waitFor();
-  expect(await page.getByText("Answer packet").count(), "homepage dock missing answer packet after chip send");
+  expect(await page.getByText("Answer details").count(), "homepage dock missing answer packet after chip send");
   await screenshot(page, "home-dock-chip-send-desktop.png");
 
   const openFull = page.getByRole("link", { name: "Open full Ask" });
@@ -77,8 +77,8 @@ await withPage({ width: 1440, height: 900 }, async (page) => {
 await withPage({ width: 1440, height: 900 }, async (page) => {
   await page.goto(`${base}/framework#batch-intelligence`, { waitUntil: "networkidle" });
   const hashBefore = await page.evaluate(() => window.location.hash);
-  await page.getByRole("button", { name: "Ask the record" }).click();
-  await page.getByRole("complementary", { name: "Ask the record" }).waitFor();
+  await page.getByRole("button", { name: "Ask the public record" }).click();
+  await page.getByRole("complementary", { name: "Ask the public record" }).waitFor();
   expect(await page.getByText("What does Batch Intelligence prove and not prove?").count(), "framework dock missing Batch challenge chip");
   await page.getByRole("button", { name: "What does Batch Intelligence prove and not prove?" }).click();
   await page.getByText("Direct answer:", { timeout: 20000 }).waitFor();
@@ -92,20 +92,20 @@ await withPage({ width: 390, height: 844 }, async (page) => {
   await page.goto(`${base}/`, { waitUntil: "networkidle" });
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow <= 1, `homepage mobile horizontal overflow ${overflow}px`);
-  const trigger = page.getByRole("button", { name: "Ask the record" });
+  const trigger = page.getByRole("button", { name: "Ask the public record" });
   const box = await trigger.boundingBox();
   expect(box && box.height >= 24, `mobile dock trigger too small: ${box?.height}`);
   await trigger.click();
-  await page.getByRole("complementary", { name: "Ask the record" }).waitFor();
+  await page.getByRole("complementary", { name: "Ask the public record" }).waitFor();
   const input = page.getByLabel("Ask a question about the public work");
   await input.fill("What is a Quantum Flux Capacitor?");
   await input.press("Enter");
   await page.getByText("not in the public record", { timeout: 20000 }).waitFor();
-  expect(await page.getByText("Public record only. Cite or refuse.").count(), "mobile dock missing boundary disclosure after thin refusal");
+  expect(await page.getByText("Public record only. It cites a source, or it stops.").count(), "mobile dock missing boundary disclosure after thin refusal");
   await screenshot(page, "home-dock-thin-refusal-mobile.png");
 
   await page.keyboard.press("Escape");
-  await page.getByRole("complementary", { name: "Ask the record" }).waitFor({ state: "hidden" });
+  await page.getByRole("complementary", { name: "Ask the public record" }).waitFor({ state: "hidden" });
 });
 
 await browser.close();

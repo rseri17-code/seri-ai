@@ -805,8 +805,8 @@ export function IncidentSimulator() {
               <MiniReplayGraph activeEvidenceIds={activeEvidenceIds} />
               <div className="mt-3 border-t border-white/10 pt-3">
                 <div className="mb-2 flex items-center justify-between gap-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Evidence taxonomy</p>
-                  <p className="font-mono text-xs text-slate-500">public-safe labels</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-signal">Evidence types</p>
+                  <p className="font-mono text-xs text-slate-500">synthetic labels · no employer data</p>
                 </div>
                 <p className="sr-only">The room is useful only if it refuses to collapse facts, interpretations, gaps, and contradictions into one fluent RCA.</p>
                 <div className="flex flex-wrap gap-2">

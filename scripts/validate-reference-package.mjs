@@ -278,7 +278,7 @@ const operationsRoomWorkbench = read("app/simulator/simulator.tsx");
 assertIncludes("app/simulator/simulator.tsx", operationsRoomWorkbench, [
   "const decisionPacketRows",
   "const evidenceTaxonomy",
-  "Evidence taxonomy",
+  "Evidence types",
   "Observation",
   "Inference",
   "Contradiction",

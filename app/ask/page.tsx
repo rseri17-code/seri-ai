@@ -62,8 +62,8 @@ export default async function AskPage({
             <div className="mb-5 flex items-center gap-4">
               <ProfileMark size="sm" />
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Evidence console</p>
-                <p className="mt-1 text-sm text-slate-400">Career evidence, systems judgment, public code, doctrine, and artifacts.</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Public-record console</p>
+                <p className="mt-1 text-sm text-slate-400">Career evidence, systems judgment, public code, the written thesis, and artifacts.</p>
               </div>
             </div>
             <p className="text-3xl font-semibold leading-tight text-white">A serious technical claim should survive inspection.</p>
@@ -100,7 +100,7 @@ export default async function AskPage({
         </div>
       </Section>
 
-      <Section eyebrow="Thesis lenses" title="Start with the questions behind this work.">
+      <Section eyebrow="Starting questions" title="Start with the questions behind this work.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {askThesisLenses.map((lens) => (
             <Card key={lens.title} className="h-full p-4">
@@ -116,7 +116,7 @@ export default async function AskPage({
                 href={`/ask?prompt=${encodeURIComponent(lens.prompt)}`}
                 className="mt-4 inline-flex items-center gap-2 rounded border border-mint/35 px-3 py-2 text-xs font-semibold text-mint"
               >
-                Ask this lens <ArrowRight size={14} />
+                Ask this question <ArrowRight size={14} />
               </Link>
             </Card>
           ))}

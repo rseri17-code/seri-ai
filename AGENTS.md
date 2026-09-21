@@ -90,6 +90,15 @@ Ravikanth authorized collapsing toward roughly six primary destinations. Sanctio
 4. `CLAUDE_HANDOFF.md` top
 5. Your lane only
 
+## SESSION HANDOFF — 2026-09-21 (ACT: plain-language copy)
+
+Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.
+
+- Jargon pass on homepage + nav chrome, `/framework` intros, work/ops first screens, Ask + dock UI.
+- Frozen hero H1 and primary CTAs untouched. Nav still 5 items + Ask; `/framework` label is now **Framework**.
+- OBSERVE audit PR was not available; this pass is structured for an audit-driven refine.
+- Pins that encoded old jargon were repointed, not fed copy.
+
 ## Ruled copy is machine-enforced
 
 `npm run validate:ruled` fails the build if ruled copy is reverted. Restore the ruled copy — do not repoint the check — unless Ravikanth issues a new ruling and you update `scripts/validate-ruled-copy.mjs` and CLAUDE_HANDOFF.md in the same commit.

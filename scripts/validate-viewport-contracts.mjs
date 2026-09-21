@@ -40,7 +40,8 @@ const routeContracts = [
     minResponsiveTokens: 18,
     required: [
       "sm:grid-cols-2",
-      "The work, plainly"
+      "30-second map",
+      "Shared store"
     ]
   },
   {
@@ -61,9 +62,9 @@ const routeContracts = [
     required: [
       "min-w-0",
       "lg:grid-cols-[1fr_360px]",
-      "Answer packet",
+      "Answer details",
       "Related artifacts",
-      "Trust contract",
+      "What this assistant will do",
       "Source coverage",
       "Related route",
       "Latency budget",
@@ -89,7 +90,7 @@ const routeContracts = [
     file: "components/ask-dock.tsx",
     minResponsiveTokens: 1,
     required: [
-      "Ask the record",
+      "Ask the public record",
       "shouldShowAskDock",
       "challengeChipsForPath",
       "variant=\"dock\"",
@@ -114,7 +115,7 @@ const routeContracts = [
     minResponsiveTokens: 45,
     required: [
       "overflow-hidden",
-      "Evidence taxonomy",
+      "Evidence types",
       "Live investigation graph",
       "const stepContracts",
       "reviewStateRows",

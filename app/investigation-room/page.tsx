@@ -21,7 +21,7 @@ import { operationalIntelligenceSystem } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Operations Room | seri.ai",
-  description: "Watch an investigation hold itself accountable: a synthetic production incident where every conclusion shows its evidence, contradictions stay visible, and nothing ships without a named human approving it.",
+    description: "Watch an investigation hold itself accountable: a synthetic production incident where every conclusion shows its evidence, contradictions stay visible, and nothing ships without a named person approving it.",
   alternates: { canonical: "/investigation-room" },
   openGraph: {
     title: "Operations Room | seri.ai",
@@ -44,10 +44,10 @@ export default function InvestigationRoomPage() {
                 <ShieldCheck size={16} />
                 Signature artifact
               </div>
-              <h1 className="text-balance text-3xl font-semibold text-white md:text-5xl">Operations Room for evidence-backed decisions</h1>
+              <h1 className="text-balance text-3xl font-semibold text-white md:text-5xl">Operations Room for decisions you can inspect</h1>
               <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300">
-                Work {operationalIntelligenceSystem.caseId} the way you would a real incident. Evidence arrives out of order, the
-                contradiction refuses to resolve itself, and the recommendation stops short of acting until a human signs it off.
+                Work this synthetic case ({operationalIntelligenceSystem.caseId}) the way you would a real incident. Evidence arrives out of order, the
+                contradiction refuses to resolve itself, and the recommendation stops short of acting until a person signs it off.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -55,7 +55,7 @@ export default function InvestigationRoomPage() {
                 Start the replay <ArrowRight size={18} />
               </a>
               <Link href={`/ask?prompt=${encodeURIComponent(caseAskPrompt)}`} className="inline-flex min-h-[44px] items-center gap-2 rounded border border-white/15 px-4 py-2 text-sm font-semibold text-white">
-                Ask Ravikanth
+                Ask the public record
               </Link>
             </div>
           </div>

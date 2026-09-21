@@ -76,10 +76,10 @@ export function AskDock() {
           <div className="flex items-start justify-between gap-3 border-b border-white/10 bg-black/25 px-3 py-2">
             <div className="min-w-0">
               <p id={titleId} className="text-sm font-semibold text-white">
-                Ask the record
+                Ask the public record
               </p>
               <p className="mt-1 text-[0.68rem] leading-4 text-slate-400">
-                Pressure-test the public record without leaving this page.
+                Check a claim against the public record without leaving this page.
               </p>
             </div>
             <div className="flex shrink-0 items-center gap-1">
@@ -116,7 +116,7 @@ export function AskDock() {
         data-ask-dock-trigger="true"
       >
         <MessageSquareText size={16} aria-hidden="true" />
-        Ask the record
+        Ask the public record
       </button>
     </div>
   );

@@ -21,14 +21,14 @@ const sourceContracts = {
       "aria-label=\"Ask a question about the public work\"",
       "aria-label=\"Send message\"",
       "Related artifacts",
-      "Trust contract"
+      "What this assistant will do"
     ]
   },
   "/investigation-room": {
     files: ["app/investigation-room/page.tsx", "app/simulator/simulator.tsx"],
     required: [
       "Live investigation graph",
-      "Evidence taxonomy",
+      "Evidence types",
       "Contradiction",
       "Missing evidence",
       "Approval gate",

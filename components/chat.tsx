@@ -95,7 +95,7 @@ function AnswerPacketDetails({
   return (
     <details className="mt-3 rounded border border-white/10 bg-black/25">
       <summary className="cursor-pointer px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-300">
-        Answer packet
+        Answer details
       </summary>
       <div className="space-y-3 border-t border-white/10 p-3">
         <div className="grid gap-2">
@@ -117,13 +117,13 @@ function AnswerPacketDetails({
             ))}
           </div>
         ) : emptyHint ? (
-          <p className="text-xs leading-5 text-slate-400">Ask a question to generate a reviewable packet with matched scope, layers, boundary, and next artifacts.</p>
+          <p className="text-xs leading-5 text-slate-400">Ask a question to generate a reviewable answer with matched scope, layers, boundary, and next artifacts.</p>
         ) : null}
         {sources.length ? (
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <Database className="text-signal" size={14} />
-              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Grounding receipts</p>
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Cited sources</p>
             </div>
             {sources.map((source) => (
               <a
@@ -165,7 +165,7 @@ export function Chat({
   const initialAssistantMessage =
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
-      : "Start with a question about the public work, Operational Intelligence, or OI-ROOM-001. Answers cite sources, name uncertainty, and stop when the record is thin.";
+      : "Start with a question about the public work, Operational Intelligence, or the synthetic Operations Room case (OI-ROOM-001). Answers cite sources, name uncertainty, and stop when the public record is thin.";
   const [messages, setMessages] = useState<AskSessionMessage[]>([
     {
       role: "assistant",
@@ -543,7 +543,7 @@ export function Chat({
         ) : null}
         {!hasAskedQuestion ? (
           <div className="min-h-0 flex-1 overflow-y-auto border-t border-white/10 bg-black/15 p-3">
-            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Challenge the record</p>
+            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Hard questions</p>
             <div className="mt-2 grid gap-2">
               {prompts.slice(0, 5).map((prompt) => (
                 <button
@@ -562,7 +562,7 @@ export function Chat({
         {composer}
         <div className="border-t border-white/10 bg-black/20 px-3 py-2">
           <p className="text-[0.68rem] leading-4 text-slate-400">
-            Public record only. Cite or refuse. No open-web research, and no private or employer data.
+            Public record only. It cites a source, or it stops. No open-web research, and no private or employer data.
           </p>
           <p className="mt-1 text-[0.68rem] leading-4 text-slate-500">
             {responseMeta?.public_boundary ?? "approved public content only"} · {responseMeta?.assistant_identity ?? "AI assistant over approved public work"}
@@ -580,7 +580,7 @@ export function Chat({
             <div className="flex items-center gap-3">
               <ProfileMark size="sm" />
               <div>
-                <p className="text-xs font-semibold uppercase text-slate-400">Evidence console</p>
+                <p className="text-xs font-semibold uppercase text-slate-400">Public-record console</p>
                 <h2 className="text-xl font-semibold text-white">Explore the public work, frameworks, and operating principles behind seri.ai.</h2>
               </div>
             </div>
@@ -618,7 +618,7 @@ export function Chat({
         <div className="rounded-lg border border-signal/20 bg-signal/[0.05] p-5">
           <div className="flex items-center gap-2">
             <Route className="text-signal" size={18} />
-            <p className="font-semibold text-white">Answer packet</p>
+            <p className="font-semibold text-white">Answer details</p>
           </div>
           <div className="mt-4 grid gap-2">
             {[...answerPacketRows(responseMeta)].map(([label, value]) => (
@@ -639,13 +639,13 @@ export function Chat({
               ))}
             </div>
           ) : (
-            <p className="mt-4 text-xs leading-5 text-slate-400">Ask a question to generate a reviewable packet with matched scope, layers, boundary, and next artifacts.</p>
+            <p className="mt-4 text-xs leading-5 text-slate-400">Ask a question to generate a reviewable answer with matched scope, layers, boundary, and next artifacts.</p>
           )}
         </div>
         <div className="rounded-lg border border-mint/20 bg-mint/[0.05] p-5">
           <div className="flex items-center gap-2">
             <ShieldCheck className="text-mint" size={18} />
-            <p className="font-semibold text-white">Trust contract</p>
+            <p className="font-semibold text-white">What this assistant will do</p>
           </div>
           <div className="mt-4 grid gap-2">
             {trustContract.map(([label, value, passed, tone]) => (
@@ -674,7 +674,7 @@ export function Chat({
         </div>
         {!hasAskedQuestion ? (
           <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
-            <p className="font-semibold text-white">Inspection prompts</p>
+            <p className="font-semibold text-white">Questions to start with</p>
             <div className="mt-4 space-y-2">
               {prompts.map((prompt) => (
                 <button
@@ -691,7 +691,7 @@ export function Chat({
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
           <div className="flex items-center gap-2">
             <Database className="text-signal" size={18} />
-            <p className="font-semibold text-white">Grounding receipts</p>
+            <p className="font-semibold text-white">Cited sources</p>
           </div>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
             {sources.length ? (
