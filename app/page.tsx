@@ -18,6 +18,16 @@
  *   5 Selected ideas  6 Closing invitation
  * Do not add a seventh section without a documented visitor need.
  *
+ * The 30-second map, start-here path, and destination block live *inside the hero*
+ * (after identity, before the signature thesis) so a cold visitor gets the architecture
+ * shape before Authorized Misfire jargon. That is not a seventh section. The longer map
+ * belongs on /framework.
+ *
+ * This file is shared. The orientation strip owns only the hero insertion of
+ * <HomeOrientation />. A compact public-safe case-study teaser (Codebase Memory,
+ * /projects/codebase-memory) may land inside Selected work — do not treat that region
+ * as exclusive to this orientation pass.
+ *
  * The five-stage career arc was REMOVED on 2026-08-30: /background owns that narrative, and
  * reproducing it here was the page's largest duplication. What remains is a 26-word bridge and one
  * link. Do not restore the stages.
@@ -28,6 +38,7 @@
  */
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { HomeOrientation } from "@/components/home-orientation";
 import { OperationsRoomPreview } from "@/components/operations-room-preview";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
@@ -146,6 +157,8 @@ export default function Home() {
               </figcaption>
             </figure>
           </div>
+
+          <HomeOrientation />
         </div>
       </section>
 
@@ -190,7 +203,9 @@ export default function Home() {
         <OperationsRoomPreview />
       </Section>
 
-      {/* 4 — SELECTED WORK. Exactly three bodies of work, editorial rather than a card wall. */}
+      {/* 4 — SELECTED WORK. Exactly three bodies of work, editorial rather than a card wall.
+          A compact public-safe case-study teaser (Codebase Memory → /projects/codebase-memory)
+          may follow those three cards. This orientation pass does not own that slot. */}
       <Section eyebrow="Selected work" title="Three bodies of work.">
         <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10">
           {selectedWork.map((item, i) => (
@@ -227,6 +242,22 @@ export default function Home() {
             </article>
           ))}
         </div>
+
+        {/* Compact teaser inside Selected work — not a seventh homepage section. */}
+        <Link
+          href="/projects/codebase-memory"
+          className="mt-8 block rounded-xl border border-white/10 bg-white/[0.035] p-5 transition hover:border-mint/40 sm:p-6"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Engineering case study</p>
+          <h3 className="mt-3 text-xl font-semibold text-white sm:text-2xl">Codebase Memory</h3>
+          <p className="mt-2 max-w-2xl text-base leading-7 text-slate-300">
+            Context that survives the next session. How a fresh coding agent locates relevant code, reuses a validated
+            lesson, and notices when that lesson needs revalidation.
+          </p>
+          <span className="mt-4 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint">
+            Read the case study <ArrowRight size={16} />
+          </span>
+        </Link>
 
         {/* Career bridge. The five-stage arc lives on /background; reproducing it here was this
             page's largest duplication. One sentence and one link stand in for it. */}

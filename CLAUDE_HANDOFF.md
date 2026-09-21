@@ -2,6 +2,12 @@
 
 Last updated: 2026-09-21
 
+## BUILDER CODEBASE MEMORY CASE STUDY — 2026-09-21
+
+Added a public-safe engineering case study at `/projects/codebase-memory` in the existing project family. It is listed on `/projects` and `/work` from `content/projects.json`, and the homepage Selected work section carries a compact teaser. No new top-level nav item. The page is a focused editorial case study with a deterministic, client-side illustrative example (synthetic checkout code only). It does not duplicate Operational Intelligence doctrine.
+
+Local gates: `npm test` and `npm run build` pass. Playwright (`scripts/review/verify-codebase-memory.mjs`) passed desktop and mobile layouts, keyboard task/switch operation, reduced-motion status text, both illustration states, and inbound links from `/`, `/work`, and `/projects`. Knowledge graph after this publishing addition: 62 assets, 7814 relationships. Ask deterministic fixtures cover 121 passing cases. Preview-only; do not merge until publication review.
+
 ## BUILDER ASK RETRIEVAL + BATCH INTELLIGENCE DISCOVERABILITY — 2026-09-21
 
 Ask now refuses to answer a short named-topic question from a weakly related nearest-neighbor principle when that topic is not in the public index. `What is Batch Intelligence?` retrieves the Framework batch thesis at `/framework#batch-intelligence` (and the Ideas stub at `/ideas/batch-intelligence`) instead of the unrelated `Trustworthy agents need boundaries` principle. Close variants `batch context layer` and `batch execution graph` use the same canonical deep link. Unknown named topics degrade to an honest `not in the public record` thin-record response. Public-safety refusals are unchanged.
@@ -21,6 +27,22 @@ Fixed four live credibility bugs without a redesign:
 - Library newsletter copy is an honest waitlist. The unfinished "email provider is connected" sentence is gone.
 - Contact Topic now includes Hiring and still submits `topic` to `/api/contact`.
 
+## HOMEPAGE COLD-START ORIENTATION — 2026-09-21
+
+A cold AI/observability peer landing on `/` still had to infer Operational Intelligence vs
+Enterprise Context Layer vs Agent Harness vs ten-layer taxonomy vs Batch Intelligence. The homepage
+now teaches that map *inside the hero*, after identity and the two ruled CTAs, and *before*
+Authorized Misfire.
+
+Not a seventh section. Not a Framework redesign. The longer map stays on `/framework` (PR #3).
+Start-here is four quiet steps (map → Operations Room / Batch proof → Framework → Ask / Contact),
+not a third mint hero button.
+
+This PR owns only the hero orientation strip (`components/home-orientation.tsx`). It does not
+claim the rest of `/`. PR #5's Codebase Memory teaser belongs in Selected work
+(`/projects/codebase-memory`); leave that region untouched so the teaser can merge cleanly.
+
+Public-safe only. No employer systems, metrics, or private names added.
 
 ## BUILDER APPROVED INTEGRATION — 2026-09-14
 
@@ -1520,6 +1542,17 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Grok: homepage cold-start vs open PRs
+
+- **Keep**: PR #3's `/framework` architecture map, sticky index, and ten-layer table. Homepage now carries a *shorter* nested map (umbrella / substrate+Batch / harness / filing system) rather than duplicating that page.
+- **Keep**: PR #2's Ask retrieval + `/framework#batch-intelligence` intent (now on `main`). Homepage Batch/Framework start-here links point at `/framework` so they do not own the proof component.
+- **Keep**: PR #5's Codebase Memory case study and its *concise* homepage teaser inside Selected work. This orientation PR owns only `HomeOrientation` inside the hero; it does not claim the rest of `/` and will not insert into that teaser slot.
+- **Why it matters**: cold visitors were meeting Authorized Misfire before they had a place to file the jargon. Evidence: `components/home-orientation.tsx` inside the homepage hero. Public-safety risk: none.
+
+### 2026-09-21 — Builder: Codebase Memory engineering case study
+
+- **Open for review**: `/projects/codebase-memory` is a public-safe engineering-memory case study (code graph, engineering memory, freshness checks, verification) with a synthetic illustrative example. Homepage teaser lives inside Selected work, not as a seventh section or a new nav item. Why it matters: a hiring/engineering visitor can inspect how a fresh coding agent locates code, reuses a lesson, and notices when supporting source change requires revalidation — without employer identifiers or overclaims. Evidence: `app/projects/codebase-memory/page.tsx`, `components/codebase-memory-illustration.tsx`, `lib/codebase-memory.ts`, `content/projects.json`, `content/project-proof.json`. Public-safety risk: low if the publication review confirms no private identifiers leaked; the page explicitly refuses autonomous repair, automatic enforcement, universal coverage, and measured token savings. Flag for Ravikanth: publication-review of the case-study claims before merging.
 
 ### 2026-09-21 — Builder: Ask nearest-neighbor miss for Batch Intelligence
 

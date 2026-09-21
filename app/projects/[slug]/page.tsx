@@ -22,7 +22,7 @@ import { evalReport, operationalIntelligenceFramework, projectProof, projects } 
 import { buildPublishingIndex } from "@/lib/publishing";
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return projects.filter((project) => project.slug !== "codebase-memory").map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

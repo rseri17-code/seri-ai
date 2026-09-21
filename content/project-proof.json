@@ -85,6 +85,27 @@
         "/patterns/human-in-the-loop-operational-ai",
         "/wiki/operational-intelligence-reference-architecture"
       ]
+    },
+    {
+      "slug": "codebase-memory",
+      "claim": "Codebase Memory is a public-safe engineering-memory case study: a fresh coding agent can locate relevant code, retrieve an evidence-linked lesson, and recognize when supporting source change requires revalidation.",
+      "visibleArtifact": "/projects/codebase-memory",
+      "inspectionPath": [
+        "/projects/codebase-memory",
+        "/work",
+        "/projects",
+        "/patterns/operational-memory"
+      ],
+      "evidence": "The case study page states the problem, the four-idea chain, the implemented pattern, and the freshness-versus-correctness boundary. The illustrative example is deterministic, client-side, and synthetic: task selection reveals labeled code relationships and a retained lesson; toggling a supporting-code change flips Source unchanged to Revalidation required.",
+      "limitation": "This proves conceptual clarity and an inspectable interaction pattern; it does not prove production coverage, autonomous repair, fully automatic enforcement, universal repository support, or measured token savings.",
+      "nextProof": "Run a bounded fresh-agent review against the synthetic fixture only: can a reviewer explain locate, reuse, freshness flag, and why tests still have to establish behavior?",
+      "reviewQuestion": "Can a reviewer distinguish source freshness from behavioral correctness, and see why a changed supporting file requires revalidation rather than automatic reuse?",
+      "related": [
+        "/patterns/operational-memory",
+        "/work",
+        "/library",
+        "/projects"
+      ]
     }
   ]
 }
