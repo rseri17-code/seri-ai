@@ -520,7 +520,7 @@ for (const required of [
   "related_pages",
   "public_boundary",
   "Related artifacts",
-  "reviewable packet with matched scope, layers, boundary, and next artifacts",
+  "reviewable answer with matched scope, layers, boundary, and next artifacts",
   "AI disclosure",
   "What this assistant will do",
   "Source coverage",
@@ -659,7 +659,7 @@ for (const required of [
   "Ops for observability",
   "Observability for AI",
   "suggestedPrompts={askRaviPrompts}",
-  "doctrine, architecture, projects, resume, GitHub, LinkedIn",
+  "the written thesis, architecture, projects, resume, GitHub, LinkedIn",
   "ProfileMark"
 ]) {
   expect(askContractSource.includes(required), `/ask missing Ask Ravikanth public companion contract: ${required}`);
