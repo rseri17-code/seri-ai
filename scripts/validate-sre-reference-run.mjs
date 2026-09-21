@@ -42,6 +42,7 @@ assert.match(ui, /sreReferenceRun\.events\.map/, "the complete deterministic run
 assert.match(ui, /setPlaying\(false\); setIndex\(-1\); setDecision\(null\)/, "reset must clear playback and decision state");
 assert.match(ui, /disabled=!\{snapshot\.awaitingDecision\}|disabled=\{!snapshot\.awaitingDecision\}/, "operator outcome must remain gated");
 for (const stage of ["Failed workload", "Predecessor / trigger", "Affected successors", "Blast radius", "Evidence packet", "Human-reviewed recovery"]) assert(batchUi.includes(stage), `${stage} must render in order`);
+assert.match(batchUi, /id="batch-intelligence"/, "the Batch Intelligence section must expose a stable deep-link id");
 assert.match(batchUi, /For services, context is topology and deployments\. For batch, context is the execution graph\./, "the service/batch context contrast must be explicit");
 for (const verdict of ["GROUNDED RCA", "EXPLICIT UNKNOWN"]) assert(batchUi.includes(verdict), `${verdict} must render in the artifact`);
 assert.match(framework, /<BatchIntelligenceProof \/>/, "Batch Intelligence proof must live inside the existing Context Layer narrative");
