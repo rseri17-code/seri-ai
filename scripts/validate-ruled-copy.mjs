@@ -22,12 +22,20 @@ const rulings = [
     file: "app/page.tsx",
     ruledOn: "2026-08-30",
     decision:
-      "Homepage redesign brief. Ravikanth ruled that identity comes before doctrine: the H1 states what he builds in the first person, the production accomplishment is prominent rather than footer copy, and there are exactly two primary actions. The misfire hook is kept as the signature thesis but moves beneath the identity layer, where it deepens comprehension instead of delaying it. This supersedes the 2026-08-29 hero freeze, which pinned the misfire line as the H1.",
+      "Homepage redesign brief. Ravikanth ruled that identity comes before doctrine: the H1 states what he builds in the first person, the production accomplishment is prominent rather than footer copy, and there are exactly two primary actions. The misfire hook is kept as the signature thesis but moves beneath the identity layer, where it deepens comprehension instead of delaying it. This supersedes the 2026-08-29 hero freeze, which pinned the misfire line as the H1. On 2026-09-21 he locked the hero lead and recent paragraph in plain speech and repointed the hero accomplishment pin off the thesis-to-production stack. H1 and both CTAs stay.",
     required: [
       "I build evidence-grounded AI systems for enterprise operations.",
       "AI agents don&apos;t misfire because they lack intelligence.",
       "the Authorized Misfire",
-      "enterprise SRE investigation\n                agent from thesis to production",
+      // 2026-09-21: Ravikanth locked the hero lead and recent paragraph in plain speech.
+      // The production accomplishment stays in the hero. This replaces the hero pin
+      // "enterprise SRE investigation agent from thesis to production" (that phrase
+      // remains on the selected-work card, /work, and /background).
+      "who owns the failing thing, what changed, what depends on it, and which customer journey is hurt",
+      "each with a source and a time",
+      "recommends a next step a person can refuse, and has to show its evidence",
+      "investigates production outages that way",
+      "separate work you can inspect",
       "Enter the Operations Room",
       "Explore the body of work"
     ],

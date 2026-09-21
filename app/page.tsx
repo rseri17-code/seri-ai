@@ -105,16 +105,11 @@ export default function Home() {
                 I build evidence-grounded AI systems for enterprise operations.
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg sm:leading-8">
-                I build the shared, current picture of owner, change, dependency, and customer journey &mdash; then an
-                investigation loop that can recommend an action a person can still refuse. Every recommendation has to
-                show its sources.
+                I maintain a shared store of what&apos;s true in production right now &mdash; who owns the failing thing, what changed, what depends on it, and which customer journey is hurt &mdash; each with a source and a time. An investigation agent reads that store, recommends a next step a person can refuse, and has to show its evidence.
               </p>
 
               <p className="mt-5 max-w-2xl border-l-2 border-mint/60 pl-4 text-base leading-7 text-slate-200 sm:pl-5">
-                Most recently I took an <strong className="font-semibold text-white">enterprise SRE investigation
-                agent from thesis to production</strong> &mdash; an agent that investigates production reliability
-                issues &mdash; owning it across architecture, engineering, integration, evaluation, and day-to-day
-                production use. That system stays private. What is on this site stands on its own.
+                I designed and ran an agent that investigates production outages that way &mdash; from first build through daily use. That system stays private. What&apos;s on this site is separate work you can inspect.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">

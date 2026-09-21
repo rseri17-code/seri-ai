@@ -99,6 +99,14 @@ Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.
 - OBSERVE audit PR was not available; this pass is structured for an audit-driven refine.
 - Pins that encoded old jargon were repointed, not fed copy.
 
+## SESSION HANDOFF — 2026-09-21 (ACT: hero lead lock)
+
+Preview PR #14 only. Do not merge. Work-first Operational Intelligence thesis stays.
+
+- Homepage hero lead and recent paragraph locked in plain speech (principal + dual-hat review).
+- Frozen hero H1, both primary CTAs, five-item nav + Ask, map summary, and private boundary untouched.
+- Ruled hero pin repointed in the same commit as `CLAUDE_HANDOFF.md`. The thesis-to-production phrase remains off the hero, on the selected-work card, `/work`, and `/background`.
+
 ## SESSION HANDOFF — 2026-09-21 (ACT: map summary)
 
 Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.

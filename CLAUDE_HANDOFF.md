@@ -2,6 +2,20 @@
 
 Last updated: 2026-09-21
 
+## ACT HERO LEAD LOCK — 2026-09-21
+
+Preview-only. Do not merge. Lands on PR #14 with the map-summary polish.
+
+**Ruling:** Ravikanth locked the homepage hero lead and recent paragraph after dual-hat review. Frozen H1, both CTAs, five-item nav + Ask, the one-sentence map summary, and `That system stays private` stay.
+
+**Lead:** a shared store of what is true in production right now — who owns the failing thing, what changed, what depends on it, and which customer journey is hurt — each with a source and a time. An investigation agent reads that store, recommends a next step a person can refuse, and has to show its evidence.
+
+**Recent:** designed and ran an agent that investigates production outages that way, from first build through daily use. That system stays private. What is on this site is separate work you can inspect.
+
+The ruled hero pin `enterprise SRE investigation agent from thesis to production` was repointed off the hero in `scripts/validate-ruled-copy.mjs` in this commit. That phrase remains on the selected-work card, `/work`, and `/background`. Copy was not written to feed a grep.
+
+Public-safety: no employer data added.
+
 ## ACT HOMEPAGE 10/10 — MAP SUMMARY — 2026-09-21
 
 Preview-only. Do not merge. Follow-up after ranks 1–8 (squash `9566064`).
@@ -1657,6 +1671,12 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — ACT: locked hero lead and recent paragraph (PR #14)
+
+- **Finding**: Hero body under the frozen H1 read as an architect contract (shared picture / investigation loop, then thesis-to-production plus an architecture-engineering-integration stack). Dual-hat review locked a plain replacement.
+- **Acted**: Replaced only those two paragraphs. Repointed the ruled hero pin and the content pins that quoted them. Map summary, H1, both CTAs, five-nav + Ask, and the private boundary stayed.
+- **Follow-up**: VERIFY re-read of the hero body on the PR #14 preview. Public-safety risk: none. Flag for Ravikanth: preview-only; do not merge.
 
 ### 2026-09-21 — ACT: homepage-10-audit.md ranks 1–8 (PR #13 canonical)
 

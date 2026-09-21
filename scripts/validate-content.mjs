@@ -385,11 +385,15 @@ for (const required of [
   "That system stays private",
   // First-touch gloss for the named failure mode. Keep the sharp term; do not drop the plain-English clause.
   "permitted to take on context it should not have trusted",
-  // Repointed 2026-09-21 (homepage-10 Rank 4 / Rank 5 / Rank 8): 10-second sentence is store + loop;
-  // SRE is spelled on first screen; closer must not open on hiring.
-  "shared, current picture of owner, change, dependency",
-  "investigation loop that can recommend",
-  "investigates production reliability",
+  // Repointed 2026-09-21 (hero lead lock): plain store + agent sentence. Same invariants —
+  // owner, change, dependency, journey, source and time, a step a person can refuse, evidence shown.
+  // The production-outage accomplishment stays in the hero. Closer must not open on hiring.
+  "who owns the failing thing, what changed, what depends on it, and which customer journey is hurt",
+  "each with a source and a time",
+  "recommends a next step a person can refuse",
+  "has to show its evidence",
+  "investigates production outages that way",
+  "separate work you can inspect",
   "A second opinion before putting an agent",
   "they are not what this page is for"
 ]) {
