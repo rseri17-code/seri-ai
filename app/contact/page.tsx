@@ -15,7 +15,7 @@
  */
 "use client";
 
-import Link from "next/link";
+import { AppLink as Link } from "@/components/app-link";
 import { useState } from "react";
 import { Section } from "@/components/section";
 import { contactReviewAssets, contactReviewChannels, contactReviewMinimumEvidenceQuorum, contactReviewPublicSafetyBoundary, contactReviewRunProtocol, firstImpressionSelects } from "@/content/contact-review";
@@ -119,6 +119,7 @@ export default function ContactPage() {
           <input id="contact-email" name="email" required type="email" className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white" placeholder="Email" />
           <label className="sr-only" htmlFor="contact-topic">Topic</label>
           <select id="contact-topic" name="topic" className="w-full rounded border border-white/10 bg-ink px-4 py-3 text-white">
+            <option>Hiring</option>
             <option>Speaking</option>
             <option>Advisory</option>
             <option>Collaboration</option>

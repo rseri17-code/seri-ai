@@ -98,6 +98,16 @@ for (const file of files) {
   }
 }
 
+const nextLinkFileHref = /<Link\b[^>]*href=(["'`])(\/[^"'`]+?\.(?:md|pdf|txt|svg|json))\1/;
+for (const file of files.filter((item) => item.endsWith(".tsx"))) {
+  const text = fs.readFileSync(file, "utf8");
+  if (!/import Link from ["']next\/link["']/.test(text)) continue;
+  const match = text.match(nextLinkFileHref);
+  if (match) {
+    errors.push(`${path.relative(root, file)} uses Next.js Link for static file ${match[2]}; use AppLink or a native <a> so the file is not client-routed to a 404`);
+  }
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

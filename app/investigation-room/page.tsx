@@ -14,7 +14,7 @@
  * grep target is how this page ended up with a paragraph that existed only to hold pins.
  */
 import type { Metadata } from "next";
-import Link from "next/link";
+import { AppLink as Link } from "@/components/app-link";
 import { ArrowRight, FileText, ShieldCheck } from "lucide-react";
 import { SreReferenceRun } from "@/components/sre-reference-run";
 import { operationalIntelligenceSystem } from "@/content/site";

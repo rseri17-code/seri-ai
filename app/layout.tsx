@@ -31,6 +31,13 @@ export const metadata: Metadata = {
     title: "Ravikanth Seri | seri.ai",
     description: "Evidence, hypotheses, replay, eval gates, and human-reviewed action for enterprise operations.",
     images: [{ url: "/twitter-image", alt: "Ravikanth Seri | seri.ai" }]
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.svg", type: "image/svg+xml" }
+    ],
+    apple: [{ url: "/apple-icon", sizes: "180x180" }]
   }
 };
 

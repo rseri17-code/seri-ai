@@ -148,6 +148,12 @@ for (const required of [
   expect(libraryPage.includes(required), `/library missing publication corpus contract: ${required}`);
 }
 
+const emailCapture = fs.readFileSync(path.join(root, "components", "email-capture.tsx"), "utf8");
+expect(libraryPage.includes("AppLink"), "/library must use AppLink so publication-pack and download files are not client-routed 404s");
+expect(!/email provider is connected/i.test(emailCapture), "Newsletter copy must not expose unfinished email-provider implementation");
+expect(!/Unsubscribe support can be added/i.test(emailCapture), "Newsletter copy must not expose unfinished unsubscribe TODO");
+expect(/waitlist/i.test(emailCapture), "Newsletter capture must use honest waitlist language");
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

@@ -1,6 +1,16 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-09-04
+Last updated: 2026-09-21
+
+## CREDIBILITY BUGFIX — 2026-09-21
+
+Fixed four live credibility bugs without a redesign:
+
+- Static publication-pack and download files already existed under `public/`. Practitioner-review and Library CTAs used Next.js `Link`, so client navigation/prefetch 404ed even though a hard load served the files. Those mixed route/file links now go through `AppLink`.
+- Added `/favicon.ico`, `/favicon.svg`, `app/icon.tsx`, and `app/apple-icon.tsx` so the tab icon matches the dark/mint identity mark.
+- Library newsletter copy is an honest waitlist. The unfinished "email provider is connected" sentence is gone.
+- Contact Topic now includes Hiring and still submits `topic` to `/api/contact`.
+
 
 ## BUILDER APPROVED INTEGRATION — 2026-09-14
 
@@ -1500,6 +1510,10 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Credibility bugfix: static file 404s, favicon, newsletter copy, Hiring topic
+
+- **Resolved**: Practitioner-review kit links to `/publication-pack/ravikanth-seri-practitioner-review-packet.md` and `/downloads/operational-intelligence-evidence-pack.pdf` were real public files, but Next.js `Link` client-routed them to 404. `AppLink` now uses native navigation for static assets. Favicon files were missing at `/favicon.ico`. Newsletter copy no longer mentions connecting an email provider. Contact Topic includes Hiring. Why it matters: dead downloads, a missing tab icon, unfinished-implementation copy, and a hiring CTA that could not be selected as a contact topic all undermine the professional home. Evidence: `components/app-link.tsx`, `public/favicon.ico`, `components/email-capture.tsx`, `app/contact/page.tsx`. Public-safety risk: none; no employer data was added.
 
 ### 2026-08-26 — Codex: production deploy verification blocked by parked canonical domain
 

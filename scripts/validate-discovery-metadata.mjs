@@ -123,8 +123,16 @@ expectIncludes("app/layout.tsx", layout, [
   "type: \"website\"",
   "url: \"/opengraph-image\"",
   "card: \"summary_large_image\"",
-  "url: \"/twitter-image\""
+  "url: \"/twitter-image\"",
+  "/favicon.ico",
+  "/favicon.svg"
 ]);
+if (!fs.existsSync(path.join(root, "public", "favicon.ico"))) {
+  errors.push("public/favicon.ico missing: browsers request /favicon.ico by default");
+}
+if (!fs.existsSync(path.join(root, "public", "favicon.svg"))) {
+  errors.push("public/favicon.svg missing");
+}
 
 for (const contract of routeMetadataContracts) {
   const content = read(contract.file);
