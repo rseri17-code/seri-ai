@@ -79,19 +79,19 @@
     {
       "slug": "operational-intelligence-is-the-new-control-plane",
       "title": "Operational Intelligence Is the New Control Plane",
-      "dek": "Why enterprises need systems that reason across signals, workflows, people, and outcomes.",
+      "dek": "Why enterprises need a reasoning layer across signals, workflows, people, and outcomes — not another dashboard. “Control plane” here is the argument, not a product name.",
       "theme": "Operational Intelligence"
     },
     {
       "slug": "agentic-incident-investigation",
       "title": "Agentic Incident Investigation Without Losing Control",
-      "dek": "How AI agents can speed up enterprise investigations while keeping evidence, where it came from, and who is accountable intact.",
+      "dek": "How AI agents can speed enterprise investigations while keeping evidence, sources, and accountability intact.",
       "theme": "Agentic Systems"
     },
     {
       "slug": "transaction-intelligence-for-complex-enterprises",
       "title": "Transaction Intelligence for Complex Enterprises",
-      "dek": "Moving from isolated live operations data to explanations of customer and business impact along the actual journey.",
+      "dek": "Following a customer or business journey across systems, instead of explaining a single service metric.",
       "theme": "Transaction Intelligence"
     }
   ],

@@ -36,10 +36,12 @@ const routeContracts = [
       "Codebase Memory",
       "Context that survives the next session.",
       "Read the case study",
-      "The work, plainly",
+      "30-second map",
       "A path through the work",
       "Context Acquisition Tax",
-      "permitted to take on context it should not have trusted"
+      "permitted to take on context it should not have trusted",
+      "shared store",
+      "Staff or Principal conversations"
     ],
     before: [
       // A mobile visitor reaches an action before the page starts explaining itself.
@@ -48,8 +50,7 @@ const routeContracts = [
       ["Enter the Operations Room", "Fifteen years across enterprise integration"],
       // Ruled section order, asserted end to end on the rendered page.
       ["I build evidence-grounded AI systems for enterprise operations.", "The failure I design against"],
-      ["30-second map", "The work, plainly"],
-      ["The work, plainly", "Start here"],
+      ["30-second map", "Start here"],
       ["Start here", "The failure I design against"],
       ["The failure I design against", "The Operations Room"],
       ["The Operations Room", "Three bodies of work."],

@@ -2,6 +2,32 @@
 
 Last updated: 2026-09-21
 
+## ACT HOMEPAGE 10/10 AUDIT (PR #13 ranks 1–8) — 2026-09-21
+
+Preview-only. Do not merge. Canonical bar: `docs/homepage-10-audit.md` on PR #13. Verify FAIL on c5b7d07 was jargon lift only (overall 6.8). This pass implements ranks 1–8 on `/`.
+
+**Rank 1:** Deleted `The work, plainly` and `What I'm building, and where it is headed.` One 30-second map, one destination line, one evidence-ladder path. Codebase Memory removed from any first inspect chip row (stays in Selected work + ladder). Staff/Principal is one quiet line under the ladder.
+
+**Rank 2:** Owner / change / dependency / journey stated as records with source and as-of time. Stale/thin rule on the ECL card. Authorized Misfire joined to those four records. Connector is `reads from` / `writes back`. Shared store, not substrate/foundation.
+
+**Rank 3:** Homepage Batch card states services-vs-batch (topology/deploys vs job order/read-write). Ten layers = filing, not runtime; Room's ten stages named as a different ten.
+
+**Rank 4:** Hero lead is store + loop + sources. Frozen H1 unchanged.
+
+**Rank 5 / item 6:** Pinned `enterprise SRE investigation agent from thesis to production` kept; first-screen gloss: investigates production reliability issues.
+
+**Rank 6:** Nav stays five items + Ask (`Framework`). Eyebrow no longer uses Operational Intelligence without a clause.
+
+**Rank 7:** Selected work card 1 noun stack replaced. Career bridge: traceable to sources.
+
+**Rank 8:** Closer H2 kept work-first. Body no longer opens on hiring.
+
+Pins that required the four restatements were **repointed to invariants** in the same commit. Copy was not written to satisfy grep.
+
+**Kept:** frozen H1; CTAs `Enter the Operations Room` / `Explore the body of work`; five-item nav + Ask; `the Authorized Misfire` + permitted-on-untrusted-context clause; `That system stays private`.
+
+Public-safety: no employer data added. Preview-only.
+
 ## ACT HOMEPAGE 10/10 + PLAIN LANGUAGE — 2026-09-21
 
 Preview-only. Do not merge. Homepage is the 10/10 surface. Deep `/framework` and `/ask` chrome deferred unless they share homepage components.
@@ -1617,6 +1643,12 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — ACT: homepage-10-audit.md ranks 1–8 (PR #13 canonical)
+
+- **Finding**: Verify FAIL on PR #12 at overall 6.8 (peers 7.5 / architects 6.8 / plain 6.4). c5b7d07 was jargon lift, not the 10. PR #13 DoD: collapse four hero stacks; records with source+time; Batch services-vs-batch; Rank 4 lead; Rank 8 closer not hiring-first; gloss SRE; drop Codebase Memory from first inspect chips; repoint pins.
+- **Acted**: implemented ranks 1–8 on `/` (plus Rank 9–13 chrome in the same homepage files). Deleted work-plainly and destination essay. Four answers are records. Batch card is the services-vs-batch sentence. Closer opens on a second opinion, not hiring. Validators repointed to invariants.
+- **Follow-up**: VERIFY re-score of public preview `/` against PR #13 §6. Public-safety risk: none. Flag for Ravikanth: preview-only; do not merge.
 
 ### 2026-09-21 — ACT: homepage 10/10 (architect bar) after Verify FAIL list
 

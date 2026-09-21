@@ -94,9 +94,9 @@ const steps: Step[] = [
   {
     label: "Gates",
     heading: "Nothing is released until the checks pass.",
-    body: "Evidence coverage, deterministic replay, budget discipline, stated uncertainty, confidentiality, human review, and whether the conclusion is actionable at all. A failed gate stops the packet.",
+    body: "In this demo, a recommendation is withheld unless evidence coverage, a replay of the same steps, call/time limits, named unknowns, confidentiality, and human review all pass. A failed check stops the recommendation.",
     kind: "gate",
-    note: "20-call budget · policy gate · hash-checked replay",
+    note: "Demo stop conditions: 20 tool calls · policy check · replay of the same evidence",
     confidence: 38
   },
   {
@@ -123,7 +123,7 @@ const kindLabel: Record<Kind, string> = {
   contradiction: "Contradiction",
   unknown: "Unknown",
   confirmed: "Confirmed fact",
-  gate: "Quality check",
+  gate: "Check before recommend",
   decision: "A person decides"
 };
 
@@ -251,7 +251,7 @@ export function OperationsRoomPreview() {
             </p>
           </div>
           <p className="text-sm leading-7 text-slate-400">
-            A decision is not trusted until its evidence can be replayed.
+            A decision is not trusted until someone can walk the same evidence again.
           </p>
         </div>
       </div>

@@ -40,7 +40,8 @@ const routeContracts = [
     minResponsiveTokens: 18,
     required: [
       "sm:grid-cols-2",
-      "The work, plainly"
+      "30-second map",
+      "Shared store"
     ]
   },
   {

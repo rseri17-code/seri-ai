@@ -18,10 +18,11 @@
  *   5 Selected ideas  6 Closing invitation
  * Do not add a seventh section without a documented visitor need.
  *
- * The 30-second map, work-plainly strip, evidence ladder, start-here path, and destination
- * block live *inside the hero* (after identity, before the signature thesis) so a
- * cold visitor gets the architecture shape before Authorized Misfire jargon. That is
- * not a seventh section. The longer map belongs on /framework.
+ * The 30-second map, evidence ladder, and destination line live *inside the hero*
+ * (after identity, before the signature thesis) so a cold visitor gets store vs loop
+ * vs public demo vs filing before Authorized Misfire jargon. That is not a seventh
+ * section. Do not restore a work-plainly restatement or a "what I'm building" essay.
+ * The longer map belongs on /framework.
  *
  * This file is shared. The orientation strip owns only the hero insertion of
  * <HomeOrientation />. A compact public-safe case-study teaser (Codebase Memory,
@@ -51,10 +52,10 @@ const selectedWork = [
   {
     title: "Production agent systems",
     problem:
-      "Acting on production takes more than a good model: limits on what it can do, findings you can trace, a check before trust, and a point where a person decides.",
+      "Acting on production takes more than a good model: limits on what the agent may do, findings you can trace to a source and a time, checks before a recommendation, and a point where a person decides.",
     role:
-      "I took an enterprise SRE investigation agent from thesis to production, and owned it end to end: architecture, engineering, integration, evaluation, and making it run in production.",
-    proof: "Reference architecture, quality checks before trust, and a reviewable model of tool use.",
+      "I took an enterprise SRE investigation agent from thesis to production, and owned it end to end: architecture, engineering, integration, evaluation, and running it in daily production.",
+    proof: "Reference architecture, checks before a recommendation is trusted, and rules plus a log for which tools the agent may call.",
     outcome:
       "The model was the easy part. Keeping its context current and its actions answerable was the work.",
     href: "/work",
@@ -67,7 +68,7 @@ const selectedWork = [
       "Under pressure, teams rebuild the same four answers by hand: who owns this, what changed, what depends on it, what the transaction did.",
     role:
       "I design that layer as a maintained data product: assembled once, kept current, consumed by agents, workflows, and engineers.",
-    proof: "The written thesis (Doctrine v1.0), the reference architecture, and ten patterns in build order.",
+    proof: "Written model v1.0, the reference architecture, ten patterns in build order.",
     outcome: "Build the data product once, or every consumer rebuilds it privately and late.",
     href: "/framework",
     linkLabel: "Read the thesis",
@@ -98,20 +99,22 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-mint sm:text-sm">
-                Ravikanth Seri &mdash; Production AI systems
+                Ravikanth Seri &mdash; Production AI systems for enterprise operations
               </p>
               <h1 className="mt-4 max-w-3xl text-[2rem] font-semibold leading-[1.08] text-white sm:text-[2.75rem] lg:text-[3.15rem]">
                 I build evidence-grounded AI systems for enterprise operations.
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg sm:leading-8">
-                Evidence-grounded means a recommendation can be traced to a source. This is production AI for
-                enterprise operations &mdash; investigation systems that show their work, not a demo with a disclaimer.
+                I build the shared, current picture of owner, change, dependency, and customer journey &mdash; then an
+                investigation loop that can recommend an action a person can still refuse. Every recommendation has to
+                show its sources.
               </p>
 
               <p className="mt-5 max-w-2xl border-l-2 border-mint/60 pl-4 text-base leading-7 text-slate-200 sm:pl-5">
                 Most recently I took an <strong className="font-semibold text-white">enterprise SRE investigation
-                agent from thesis to production</strong>, and owned it end to end. That system stays private. What is on this site
-                stands on its own.
+                agent from thesis to production</strong> &mdash; an agent that investigates production reliability
+                issues &mdash; owning it across architecture, engineering, integration, evaluation, and day-to-day
+                production use. That system stays private. What is on this site stands on its own.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -177,7 +180,8 @@ export default function Home() {
           <p className="mt-7 max-w-2xl text-lg leading-9 text-slate-300">
             This is <strong className="font-semibold text-amber">the Authorized Misfire</strong> &mdash; an action the
             system was permitted to take on context it should not have trusted. No rule was broken. What it knew was older or
-            thinner than the decision resting on it.
+            thinner than the decision resting on it. That is what happens when any of the four records &mdash; owner,
+            change, dependency, or journey &mdash; is missing, older than the decision, or contradicted.
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
             Past incidents and runbooks are memory, not current production truth. The layer underneath has to
@@ -188,7 +192,7 @@ export default function Home() {
             href="/wiki/operational-intelligence-canonical-doctrine"
             className="mt-8 inline-flex min-h-[44px] items-center gap-2 text-base font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
           >
-            Read the argument, and what would prove it wrong <ArrowRight size={17} />
+            Read the written model, and what would prove it wrong <ArrowRight size={17} />
           </Link>
         </div>
       </section>
@@ -262,7 +266,7 @@ export default function Home() {
             page's largest duplication. One sentence and one link stand in for it. */}
         <p className="mt-10 max-w-3xl text-lg leading-9 text-slate-300">
           Fifteen years across enterprise integration, identity, container platforms, observability, and production
-          AI shaped one operating principle: context must be current, traceable to a source, and safe to act on.
+          AI shaped one operating principle: context must be current, traceable to sources, and safe to act on.
         </p>
         <Link
           href="/background"
@@ -310,12 +314,11 @@ export default function Home() {
             If you are putting agents near production, I would like to hear how it is going.
           </h2>
           <p className="mt-6 max-w-2xl text-lg leading-9 text-slate-300">
-            Hiring for Staff, Principal, architecture, AI systems or observability leadership. Building production
-            agent systems. Organizing a conference or engineering forum. Or wanting a second opinion before putting
-            an agent somewhere that matters.
+            A second opinion before putting an agent somewhere that matters. Building a production investigation
+            loop. A conference or engineering forum. Hiring conversations happen too &mdash; they are not what this page is for.
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
-            Telling me where the argument is wrong is the most useful thing you can do with it.
+            Telling me where the written model is wrong is the most useful thing you can do with it.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-5">
             <TrackedLink

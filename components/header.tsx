@@ -72,6 +72,7 @@ export function Header() {
           <div className="flex shrink-0 items-center gap-2">
             <Link
               href="/ask"
+              aria-label="Ask the public pages on this site"
               className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded border border-mint/40 bg-mint/10 px-3 py-2 text-sm font-semibold text-mint hover:bg-mint/15 sm:px-4"
             >
               <span>Ask</span>

@@ -22,7 +22,7 @@ export const evidenceLadder = [
     n: "02",
     label: "Framework",
     kind: "Full map",
-    proves: "Shared data product plus investigation loop. Batch Intelligence is a public proof; the ten layers are a filing system.",
+    proves: "The shared store and the investigation loop. Batch Intelligence is a public demo of batch context; the ten layers file the writing.",
     href: "/framework",
     secondaryHref: "/framework#batch-intelligence",
     secondaryLabel: "Batch proof",
@@ -41,7 +41,7 @@ export const evidenceLadder = [
     n: "04",
     label: "Ask",
     kind: "Public record",
-    proves: "What public pages it will answer from, cite, or decline.",
+    proves: "What public pages on this site it will answer from, cite, or decline.",
     href: "/ask",
     cta: "ladder_ask"
   },

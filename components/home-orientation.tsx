@@ -4,77 +4,121 @@ import { TrackedLink } from "@/components/tracked-link";
 
 /**
  * Compact homepage orientation. The longer architecture map, sticky index, and
- * ten-layer table live on /framework. This strip only answers: umbrella,
- * shared data product, loop, public proof, filing system, destination, first visit.
+ * ten-layer table live on /framework. This strip only answers: store, loop,
+ * public demo, filing system, destination, first visit.
  *
- * The work-plainly strip and evidence ladder live here, inside the hero, so they
- * are not a seventh homepage section. Case-study teasers (Codebase Memory →
- * /projects/codebase-memory) belong in Selected work on app/page.tsx, not here.
+ * One map. One destination line. One path (the evidence ladder). Do not restore
+ * a work-plainly restatement or a "what I'm building" essay — those were the
+ * four hero stacks. Case-study teasers (Codebase Memory) belong in Selected
+ * work on app/page.tsx, not in a first-inspect chip row.
  *
  * Do not grow this component into a second homepage. Do not turn this strip into
- * a hiring brochure: the work leads; conversation is a quiet line.
+ * a hiring brochure: the work leads; conversation is a quiet line under the path.
  */
-const inspectLinks = [
-  {
-    href: "/investigation-room",
-    label: "Operations Room",
-    cta: "work_plainly_operations_room"
-  },
-  {
-    href: "/framework",
-    label: "Framework",
-    cta: "work_plainly_framework"
-  },
-  {
-    href: "/projects/codebase-memory",
-    label: "Codebase Memory",
-    cta: "work_plainly_codebase_memory"
-  }
-] as const;
-
-function WorkPlainly() {
+export function HomeOrientation() {
   return (
-    <aside
-      aria-labelledby="work-plainly-title"
-      className="mt-8 rounded-xl border border-mint/25 bg-mint/[0.04] p-4 sm:p-5"
-    >
-      <p id="work-plainly-title" className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">
-        The work, plainly
-      </p>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        <div>
-          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Builds</p>
-          <p className="mt-1 text-sm leading-6 text-white sm:text-base sm:leading-7">
-            A maintained context data product, an investigation loop with human sign-off, and
-            proofs anyone can inspect — no employer data.
-          </p>
-        </div>
-        <div>
-          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Shipped</p>
-          <p className="mt-1 text-sm leading-6 text-slate-200 sm:text-base sm:leading-7">
-            An enterprise SRE investigation agent, from thesis to production, owned end to end. That
-            system stays private. This site stands on its own.
-          </p>
-        </div>
-        <div className="sm:col-span-2">
-          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Inspect</p>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {inspectLinks.map((item) => (
-              <TrackedLink
-                key={item.href}
-                href={item.href}
-                eventName="homepage_cta_click"
-                eventProperties={{ cta: item.cta }}
-                className="inline-flex min-h-11 items-center rounded-md border border-white/15 bg-black/25 px-3 text-sm font-semibold text-white underline decoration-mint/35 underline-offset-4 hover:border-mint/40 hover:text-mint hover:decoration-mint"
+    <div id="orientation" className="mt-6 border-t border-white/10 pt-6 sm:mt-8 sm:pt-8">
+      <figure aria-labelledby="home-orientation-title" aria-describedby="home-orientation-summary">
+        <figcaption className="max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">30-second map</p>
+          <h2 id="home-orientation-title" className="mt-2 text-xl font-semibold leading-tight text-white sm:text-2xl">
+            Store, loop, public demo, filing.
+          </h2>
+          <div id="home-orientation-summary" className="mt-3 max-w-2xl space-y-3 text-sm leading-7 text-slate-300 sm:text-base">
+            <p>
+              Operational Intelligence is the overall idea: reason from live production signals to a
+              decision a person can own. The Enterprise Context Layer is the shared store — four current
+              records, each with a source and a time: who owns the failing thing, what changed, what
+              depends on it, and which customer or business journey is hurt. Skip the store, and every
+              investigation rebuilds those four by hand (the{" "}
+              <strong className="font-semibold text-white">Context Acquisition Tax</strong>
+              ). The SRE / Agent Harness is the investigation loop that reads that store and writes
+              outcomes back. Batch Intelligence is a public demo of the store for batch jobs — which jobs
+              ran, in what order, what they read and wrote. The ten layers are how this site files notes.
+              They are not the runtime design.
+            </p>
+          </div>
+        </figcaption>
+
+        <div className="mt-5 overflow-hidden rounded-xl border border-mint/25 bg-mint/[0.04]">
+          <div className="border-b border-white/10 bg-black/20 px-4 py-3 sm:px-5">
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-mint">Umbrella</p>
+            <p className="mt-1 text-base font-semibold text-white sm:text-lg">Operational Intelligence</p>
+            <p className="mt-1 text-sm leading-6 text-slate-300">
+              The reasoning layer between live production signals (metrics, logs, traces, changes) and a human decision.
+            </p>
+          </div>
+
+          <div className="grid gap-3 p-3 sm:grid-cols-2 sm:p-4 lg:grid-cols-[1.15fr_auto_0.95fr] lg:items-stretch">
+            <div className="min-w-0 rounded-lg border border-signal/30 bg-signal/[0.07] p-4">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-signal">Shared store</p>
+              <p className="mt-2 text-sm font-semibold text-white sm:text-base">Enterprise Context Layer</p>
+              <p className="mt-1 text-sm leading-6 text-slate-300">
+                Four reusable records, maintained once for humans, workflows, and agents: owner, change in
+                the symptom window, dependency (service path or job graph), and affected journey. Each
+                record carries a source and an as-of time. If any of the four is missing, older than the
+                decision, or contradicted, the loop must not treat it as safe to act on. Without this store,
+                every investigation reconstructs the same four by hand — the Context Acquisition Tax.
+              </p>
+              <Link
+                href="/framework#batch-intelligence"
+                className="mt-3 block min-h-11 rounded-md border border-signal/25 bg-black/25 p-3 transition hover:border-signal/50"
               >
-                {item.label}
-              </TrackedLink>
-            ))}
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Public demo of the store</p>
+                <p className="mt-1 text-sm font-semibold text-white">Batch Intelligence</p>
+                <p className="mt-1 text-xs leading-5 text-slate-300">
+                  For request-path services, the store&apos;s dependency record is topology and deploys. For
+                  batch, it is which jobs ran, in what order, and what they read and wrote. This is a
+                  shareable demo of that batch record (no employer data). It is not one of the ten filing labels.
+                </p>
+              </Link>
+            </div>
+
+            <div className="flex items-center justify-center px-1 py-2 text-center sm:col-span-2 lg:col-span-1 lg:min-w-[5.5rem] lg:flex-col lg:px-2" aria-hidden="true">
+              <span className="text-signal lg:hidden">↓</span>
+              <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">reads from</span>
+              <span className="hidden text-signal lg:block">↔</span>
+              <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">writes back</span>
+              <span className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:hidden">reads from / writes back</span>
+            </div>
+
+            <div className="min-w-0 rounded-lg border border-mint/30 bg-mint/[0.07] p-4">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-mint">Investigation loop</p>
+              <p className="mt-2 text-sm font-semibold text-white sm:text-base">SRE / Agent Harness</p>
+              <p className="mt-1 text-sm leading-6 text-slate-300">
+                The investigation loop that reads those records, investigates production reliability, then
+                stops for a person. Evidence → working theory → checks before a recommendation is offered →
+                write what happened back. Humans and agents consume the same store; the loop is not allowed
+                to keep a private copy. A person still owns anything consequential.
+              </p>
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 bg-black/20 p-3 sm:p-4">
+            <Link
+              href="/framework#taxonomy"
+              className="block min-h-11 rounded-lg border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/25"
+            >
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-slate-400">Filing system (not the runtime)</p>
+              <p className="mt-1 text-sm font-semibold text-white sm:text-base">Ten layers</p>
+              <p className="mt-1 text-sm leading-6 text-slate-300">
+                How this site tags notes, patterns, and artifacts so they can be found. Ten demo stages in
+                the Operations Room are a different ten. The runtime model is the store + the loop. The
+                longer map is on Framework.
+              </p>
+            </Link>
           </div>
         </div>
-      </div>
+
+        <p className="mt-4 max-w-3xl border-l-2 border-mint/50 pl-4 text-sm leading-7 text-slate-200 sm:text-base">
+          Destination: agents that can sit near production because the shared context is current, the checks are visible, and a person still owns the action — not a model with a disclaimer attached.
+        </p>
+      </figure>
+
+      <EvidenceLadder source="home" />
+
       <p className="mt-4 max-w-3xl text-xs leading-5 text-slate-400 sm:text-sm sm:leading-6">
-        Staff / Principal conversations in AIOps, observability, or AI platform leadership —{" "}
+        Staff or Principal conversations about this work —{" "}
         <TrackedLink
           href="/contact"
           eventName="homepage_cta_click"
@@ -85,117 +129,6 @@ function WorkPlainly() {
         </TrackedLink>
         .
       </p>
-    </aside>
-  );
-}
-
-export function HomeOrientation() {
-  return (
-    <div id="orientation" className="mt-10 border-t border-white/10 pt-8 sm:mt-12 sm:pt-10">
-      <figure aria-labelledby="home-orientation-title" aria-describedby="home-orientation-summary">
-        <figcaption className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">30-second map</p>
-          <h2 id="home-orientation-title" className="mt-2 text-xl font-semibold leading-tight text-white sm:text-2xl">
-            The shape of the work.
-          </h2>
-          <div id="home-orientation-summary" className="mt-3 max-w-2xl space-y-3 text-sm leading-7 text-slate-300 sm:text-base">
-            <p>
-              Operational Intelligence is the umbrella: from live operations data — metrics, logs, and traces —
-              to a decision a person can stand behind. The cards below are not synonyms.
-            </p>
-            <p>
-              The Enterprise Context Layer is the shared foundation: a maintained data product of who owns this,
-              what changed, what depends on it, and which customer journey is affected.
-            </p>
-            <p>
-              The SRE / Agent Harness is the investigation loop on that foundation. Batch Intelligence is a
-              public proof of the execution graph — which jobs ran, in what order, and what they read and wrote —
-              not a filing label. The ten layers are a filing system.
-            </p>
-          </div>
-        </figcaption>
-
-        <div className="mt-5 overflow-hidden rounded-xl border border-mint/25 bg-mint/[0.04]">
-          <div className="border-b border-white/10 bg-black/20 px-4 py-3 sm:px-5">
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-mint">Umbrella</p>
-            <p className="mt-1 text-base font-semibold text-white sm:text-lg">Operational Intelligence</p>
-            <p className="mt-1 text-sm leading-6 text-slate-300">
-              The reasoning layer between live operations data (metrics, logs, and traces) and a human decision.
-            </p>
-          </div>
-
-          <div className="grid gap-3 p-3 sm:p-4 lg:grid-cols-[1.15fr_auto_0.95fr] lg:items-stretch">
-            <div className="min-w-0 rounded-lg border border-signal/30 bg-signal/[0.07] p-4">
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-signal">Shared data product</p>
-              <p className="mt-2 text-sm font-semibold text-white sm:text-base">Enterprise Context Layer</p>
-              <p className="mt-1 text-sm leading-6 text-slate-300">
-                Who owns this, what changed, what depends on it, which customer journey is affected. Kept current
-                once. Used by people, workflows, and agents. Skip it, and every investigation pays the{" "}
-                <strong className="font-semibold text-white">Context Acquisition Tax</strong>
-                &mdash; reconstructing those four answers by hand.
-              </p>
-              <Link
-                href="/framework"
-                className="mt-3 block min-h-11 rounded-md border border-signal/25 bg-black/25 p-3 transition hover:border-signal/50"
-              >
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Public proof</p>
-                <p className="mt-1 text-sm font-semibold text-white">Batch Intelligence</p>
-                <p className="mt-1 text-xs leading-5 text-slate-300">
-                  Execution graph: which jobs ran, in what order, and what they read and wrote. Not one of the ten filing labels.
-                </p>
-              </Link>
-            </div>
-
-            <div className="flex items-center justify-center px-1 py-2 text-center lg:min-w-[5.5rem] lg:flex-col lg:px-2" aria-hidden="true">
-              <span className="text-signal lg:hidden">↓</span>
-              <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">reads</span>
-              <span className="hidden text-signal lg:block">↔</span>
-              <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:block">writes back</span>
-              <span className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:hidden">runs on / writes back</span>
-            </div>
-
-            <div className="min-w-0 rounded-lg border border-mint/30 bg-mint/[0.07] p-4">
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-mint">Investigation loop</p>
-              <p className="mt-2 text-sm font-semibold text-white sm:text-base">SRE / Agent Harness</p>
-              <p className="mt-1 text-sm leading-6 text-slate-300">
-                Reads that data product, then: evidence → working theory → checks before trust → learn. A person still
-                owns anything consequential.
-              </p>
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 bg-black/20 p-3 sm:p-4">
-            <Link
-              href="/framework"
-              className="block min-h-11 rounded-lg border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/25"
-            >
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-slate-400">Filing system</p>
-              <p className="mt-1 text-sm font-semibold text-white sm:text-base">Ten layers</p>
-              <p className="mt-1 text-sm leading-6 text-slate-300">
-                Indexes notes, patterns, and artifacts. Not a competing architecture. The longer map lives on Framework.
-              </p>
-            </Link>
-          </div>
-        </div>
-
-        <p className="mt-4 max-w-3xl border-l-2 border-mint/50 pl-4 text-sm leading-7 text-slate-200 sm:text-base">
-          Destination: agents that can sit near production because shared context, quality checks, and human
-          authority are built in — not a model with a disclaimer attached.
-        </p>
-      </figure>
-
-      <WorkPlainly />
-      <EvidenceLadder source="home" />
-
-      <div className="mt-8 max-w-3xl">
-        <h3 className="text-lg font-semibold text-white sm:text-xl">What I&apos;m building, and where it is headed.</h3>
-        <p className="mt-3 text-sm leading-7 text-slate-300 sm:text-base sm:leading-7">
-          The private production system is not on this site. The public work is the data product, the investigation
-          loop, and proofs a reviewer can run without employer access. An SRE / Agent Harness still names the loop;
-          Batch Intelligence still names the public execution-graph proof. The destination is agents that can sit near
-          production because context, checks, and human authority are built in.
-        </p>
-      </div>
     </div>
   );
 }

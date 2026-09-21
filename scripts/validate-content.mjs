@@ -384,7 +384,14 @@ for (const required of [
   // what is pinned now. The boundary is also stated on the Operations Room and in the footer.
   "That system stays private",
   // First-touch gloss for the named failure mode. Keep the sharp term; do not drop the plain-English clause.
-  "permitted to take on context it should not have trusted"
+  "permitted to take on context it should not have trusted",
+  // Repointed 2026-09-21 (homepage-10 Rank 4 / Rank 5 / Rank 8): 10-second sentence is store + loop;
+  // SRE is spelled on first screen; closer must not open on hiring.
+  "shared, current picture of owner, change, dependency",
+  "investigation loop that can recommend",
+  "investigates production reliability",
+  "A second opinion before putting an agent",
+  "they are not what this page is for"
 ]) {
   if (!homePageSource.includes(required)) {
     errors.push(`app/page.tsx: homepage first impression missing required positioning phrase: ${required}`);
@@ -399,44 +406,49 @@ if (!homePageSource.includes("<HomeOrientation")) {
 if (homePageSource.indexOf("<HomeOrientation") > homePageSource.indexOf("The failure I design against")) {
   errors.push("app/page.tsx: 30-second map must render before the Authorized Misfire thesis");
 }
+// Repointed 2026-09-21 (homepage-10 audit Rank 1): do not require a work-plainly restatement
+// or a "what I'm building" essay. The invariant is one map, one destination line, one path.
 if (
-  homeOrientationSource.indexOf("<EvidenceLadder") > homeOrientationSource.indexOf("What I&apos;m building, and where it is headed.")
+  homeOrientationSource.indexOf("<EvidenceLadder") > -1 &&
+  homeOrientationSource.indexOf("Destination: agents that can sit near production") > -1 &&
+  homeOrientationSource.indexOf("<EvidenceLadder") < homeOrientationSource.indexOf("Destination: agents that can sit near production")
 ) {
-  errors.push("components/home-orientation.tsx: start-here path must appear before the destination essay so mobile visitors see an action first");
+  errors.push("components/home-orientation.tsx: destination line must close the map before the start-here path");
 }
 for (const required of [
   "30-second map",
-  "Operational Intelligence is the umbrella",
-  // Repointed 2026-09-21: "shared substrate" was internal jargon. The invariant is that the
-  // Context Layer is named as the shared foundation kept current once.
-  "Enterprise Context Layer is the shared foundation",
+  "Operational Intelligence is the overall idea",
+  // Repointed 2026-09-21 (homepage-10 Rank 2): four answers are records with source and time,
+  // not a "shared foundation" metaphor or a four-noun slogan.
+  "Enterprise Context Layer is the shared store",
+  "source and an as-of time",
   "SRE / Agent Harness",
   "Batch Intelligence",
   "Ten layers",
-  "The work, plainly",
-  "Staff / Principal conversations",
-  // Repointed 2026-09-21: "public-safe proofs" was compliance vocabulary. The invariant is that
-  // the proofs are inspectable without employer data.
-  "proofs anyone can inspect — no employer data",
+  "Staff or Principal conversations",
   "Context Acquisition Tax",
-  "What I&apos;m building, and where it is headed.",
-  "Destination: agents that can sit near production"
+  "Destination: agents that can sit near production",
+  "For request-path services",
+  "which jobs ran, in what order"
 ]) {
   if (!homeOrientationSource.includes(required)) {
     errors.push(`components/home-orientation.tsx: homepage orientation missing "${required}"`);
   }
 }
+if (homeOrientationSource.includes("The work, plainly") || homeOrientationSource.includes("What I&apos;m building, and where it is headed.")) {
+  errors.push("components/home-orientation.tsx: do not restore a hero restatement of the map (work-plainly or destination essay)");
+}
+if (homeOrientationSource.includes("href: \"/projects/codebase-memory\"") || homeOrientationSource.includes('label: "Codebase Memory"')) {
+  errors.push("components/home-orientation.tsx: Codebase Memory must not sit in the first inspect chip row; keep it in Selected work / ladder");
+}
 const evidenceLadderPath = path.join(root, "components", "evidence-ladder.tsx");
 const evidenceLadderSource = fs.existsSync(evidenceLadderPath) ? fs.readFileSync(evidenceLadderPath, "utf8") : "";
 const workPageSource = fs.readFileSync(path.join(root, "app", "work", "page.tsx"), "utf8");
-if (!homeOrientationSource.includes("<WorkPlainly") || !homeOrientationSource.includes("<EvidenceLadder")) {
-  errors.push("components/home-orientation.tsx: work-plainly strip and evidence ladder must render inside the hero orientation");
+if (!homeOrientationSource.includes("<EvidenceLadder")) {
+  errors.push("components/home-orientation.tsx: evidence ladder must render inside the hero orientation");
 }
-if (homeOrientationSource.indexOf("<WorkPlainly") > homeOrientationSource.indexOf("<EvidenceLadder")) {
-  errors.push("components/home-orientation.tsx: work-plainly strip must appear before the evidence ladder");
-}
-if (homeOrientationSource.indexOf("id=\"orientation\"") > homeOrientationSource.indexOf("<WorkPlainly")) {
-  errors.push("components/home-orientation.tsx: work-plainly strip must appear under the 30-second map");
+if (homeOrientationSource.indexOf("id=\"orientation\"") > homeOrientationSource.indexOf("<EvidenceLadder")) {
+  errors.push("components/home-orientation.tsx: 30-second map must appear before the evidence ladder");
 }
 if (!workPageSource.includes("<EvidenceLadder")) {
   errors.push("app/work/page.tsx: Work must render the shared evidence ladder");
@@ -452,8 +464,10 @@ for (const required of [
   "Proves:",
   // Repointed 2026-09-21: the proof-vs-filing distinction remains; wording dropped "harness" jargon
   // from the card line and named Batch Intelligence as a public proof.
-  "Batch Intelligence is a public proof",
-  "ten layers are a filing system"
+  // Repointed 2026-09-21 (homepage-10 Rank 3): Batch is a public demo of batch context;
+  // ten layers file writing. Do not pin "not a taxonomy layer" negation.
+  "public demo of batch context",
+  "ten layers file the writing"
 ]) {
   if (!evidenceLadderSource.includes(required)) {
     errors.push(`components/evidence-ladder.tsx: evidence ladder missing "${required}"`);
@@ -467,7 +481,8 @@ for (const forbidden of [
   "world-class engineer",
   "thought leader",
   "visionary",
-  "pioneer"
+  "pioneer",
+  "Hiring for Staff, Principal"
 ]) {
   if (homePageSource.toLowerCase().includes(forbidden.toLowerCase())) {
     errors.push(`app/page.tsx: homepage first impression contains weak or inflated phrase: ${forbidden}`);
