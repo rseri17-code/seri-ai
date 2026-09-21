@@ -1,42 +1,59 @@
-# Jargon audit — observe only
+# Jargon audit — observe only (aligned to Verify)
 
 **Status:** OBSERVE. No site copy was changed in this PR.  
-**Live audited:** https://seri-ai.vercel.app (matches `origin/main` at audit time)  
+**Repo (confirmed `git remote`):** `https://github.com/rseri17-code/seri-ai`  
+**Live audited:** https://seri-ai.vercel.app (production; matches `origin/main` at audit time)  
 **Date:** 2026-09-21  
-**Goal for Act:** A smart non-specialist can read homepage + framework intro + Ask chrome without decoding buzzwords. Keep the Operational Intelligence thesis and public proofs. Do not turn the site into a recruiting brochure.
+**Verify baseline:** cloud agent [Verify: jargon-clarity check](https://cursor.com/agents/bc-16308666-c5f8-5b07-af52-6956a66317b3) published a live FAIL list. That list is the **source of truth** for what already fails. This file does not contradict it. Glosses from merged PR #7 are **not** a pass.
 
-This file is the handoff to an Act agent. Change only the quoted visitor-facing strings (and any validator pins that currently require those strings). Do not invent extra hits.
+**Verify scores (live, not Act):** peers 6/10 · hiring managers 4/10 · overall vs “no jargon” 4/10. Live site **fails** the user ask until Act ships.
 
 ---
 
 ## How to use this inventory
 
-1. Work **P0 first** (homepage 30-second map, nav, framework intro map, Ask chrome, dock chips, meta). Then P1. P2 is secondary pages / deep labels.
-2. Prefer **shared components** so a term is not rewritten three ways (`home-orientation.tsx` and `framework-architecture-map.tsx` share the same map language).
-3. Named thesis terms may stay (**Operational Intelligence**, **Batch Intelligence**, **Ask**, **Authorized Misfire**, **Context Acquisition Tax**, **Enterprise Context Layer**) **if defined in the same breath on first appearance on that page**. Do not dump a glossary.
-4. Do **not** dumb down the idea. Replace the word; keep the claim.
-5. After copy moves, **repoint validator pins** in the same commit. Do not write copy to feed a grep. Pins that currently *require* jargon are listed below.
+1. Treat **§ Verify FAIL list** as mandatory. Act must make each item make sense, or leave it as a named term **with a plain clause on first touch**. A nearby gloss that still leaves the label dominating the first screen is still FAIL.
+2. Then do **§ Extra jargon Verify missed** (evidence-backed; live quotes). These are additive, not a rival FAIL list.
+3. Prefer **shared components** (`home-orientation.tsx` and `framework-architecture-map.tsx` share map language).
+4. Do **not** dumb down the idea. Replace the word; keep the claim. Work-first, not a hiring brochure.
+5. After copy moves, **repoint validator pins** in the same commit. Do not write copy to feed a grep.
 
 ---
 
-## Frozen / do not change
+## Observe v1 corrections (do not reuse)
 
-| String | Where | Why |
+Earlier Observe draft contradicted Verify without evidence. **Withdrawn:**
+
+| Observe v1 claim | Verify baseline | Alignment |
 | --- | --- | --- |
-| `I build evidence-grounded AI systems for enterprise operations.` | Homepage H1 | Ruled copy (`scripts/validate-ruled-copy.mjs`). “Evidence-grounded” stays. |
-| `Enter the Operations Room` | Homepage primary CTA | Ruled. |
-| `Explore the body of work` | Homepage secondary CTA | Ruled. |
-| `Senior Technical Lead — AIOps & Observability` (and `AIOps &amp; Observability`) | Portrait caption / identity | Keep title. AIOps is allowed **only** here. |
-| `the Authorized Misfire` as the named concept | Homepage thesis | Keep the name. Homepage already defines it in the next clause — **do not redo that gloss**. |
-| Hash ids `#harness`, `#taxonomy`, `#context-layer`, `#batch-intelligence`, `#evaluation` | `/framework` | Routes. **Labels** next to them may change. |
-| Ask retrieval corpora, golden strings, invent-source fixtures | Ask backend | If a **source passage** used by Ask changes wording, update fixtures. UI labels/chips are fair game. |
-| Trust contract meaning | Ask | Still: cite a public source or refuse; no invented sources; no private/employer data. Plain the **labels**. |
+| Authorized Misfire “already OK / do not redo” | Still FAIL. “Gloss is decent” but coined label remains. Keep the **name**; clause is **required**. | FAIL. Do not treat the existing clause as a pass. Do not drop the clause. |
+| Context Acquisition Tax “partially glossed” as if nearly done | “Gloss helps, label still opaque.” | FAIL. Keep or improve the four-answer clause; label still needs first-touch sense. |
+| Frozen H1 omitted from FAIL | **evidence-grounded AI systems** is FAIL for opacity; Act **must not rewrite** H1 — gloss nearby. | Opacity FAIL + rewrite freeze. |
+| AIOps job title omitted from FAIL | **AIOps & Observability** is FAIL (acronym soup); **title is ruled keep**. | Opacity FAIL + rewrite freeze. |
+| Staff/Principal line as P0 rewrite into hiring-safe copy | “Hiring-brochure register. Quiet line is OK; must not become the headline.” | Do not promote it. Quiet line may stay. Extra: `AIOps` in that line is **not** the ruled identity title. |
+| PR #7 glosses as progress toward pass | “Glosses exist. Coined labels still dominate the first screen. That is the baseline, not a pass.” | Agree. |
 
-Homepage already glosses Authorized Misfire well:
+---
+
+## Frozen / ruled (Verify + validators)
+
+These can still be **opacity FAILs**. Act must not rewrite the frozen string itself.
+
+| String | Where | Opacity | Act |
+| --- | --- | --- | --- |
+| `I build evidence-grounded AI systems for enterprise operations.` | Homepage H1 | FAIL (Verify H2) | Do not rewrite. Gloss nearby. |
+| `Enter the Operations Room` / `Explore the body of work` | Hero CTAs | — | Ruled stay. |
+| `Senior Technical Lead — AIOps & Observability` | Identity card | FAIL (Verify H5) | Keep title. |
+| `the Authorized Misfire` | Homepage + `/framework` | FAIL (Verify H12) | Keep name. Keep/strengthen the plain clause. |
+| Five-item nav + Ask | Header | Nav label `Operational Intelligence` is FAIL (Verify H1) | Count frozen; label may get a plain hint if it still fits. |
+| Hash ids `#harness`, `#taxonomy`, `#context-layer`, `#batch-intelligence`, `#evaluation` | `/framework` | Labels FAIL | Do not rename hashes. |
+| Ask cite-or-refuse contract | Ask | Labels FAIL | Keep the rule; plain the words. |
+
+Keep the existing Authorized Misfire clause (validator-pinned):
 
 > an action the system was permitted to take on context it should not have trusted
 
-Keep that clause (`validate-content.mjs` pins it).
+That clause is **required**, not a pass.
 
 ---
 
@@ -59,45 +76,142 @@ Act **must** update these in the same commit as copy, or the build fails. Do not
 
 ---
 
-## Counts by page / surface
+## Verify FAIL list (canonical live baseline)
 
-Counts are **unique visitor-facing items** in the tables below (not every repeated echo of the same word). Frozen strings are excluded.
+Copied from Verify’s published table. File paths are current `main`. IDs (`H1`…) are Observe’s, for Act tracing.
 
-| Surface | P0 | P1 | P2 | Total |
-| --- | --- | --- | --- | --- |
-| Homepage + 30s map + Start here (`app/page.tsx`, `home-orientation.tsx`, `evidence-ladder.tsx`, `operations-room-preview.tsx`, `content/home.json` deks) | 14 | 18 | 8 | **40** |
-| Nav / chrome (`header.tsx`, `footer.tsx`, `app/layout.tsx` meta) | 2 | 2 | 3 | **7** |
-| `/framework` intro + map + nav + Batch + taxonomy labels | 16 | 22 | 8 | **46** |
-| `/work` | 3 | 14 | 2 | **19** |
-| `/investigation-room` + replay UI | 2 | 10 | 2 | **14** |
-| `/ask` chrome + dock + chips | 12 | 16 | 6 | **34** |
-| `/projects` + Codebase Memory | 2 | 10 | 3 | **15** |
-| **Total** | **51** | **92** | **32** | **175** |
+**Verify’s instruction to Act:** make these make sense, or leave as named terms with a plain clause on first touch.
 
-Homepage and `/framework` share several phrases (`substrate`, `harness`, `taxonomy`, `eval gate`). Fix the shared map language once, then match.
+### Homepage — `app/page.tsx`, `components/home-orientation.tsx`, `components/header.tsx`, `components/evidence-ladder.tsx`
+
+Live: https://seri-ai.vercel.app/
+
+| ID | Opaque phrase (Verify) | Why it fails a non-specialist | Notes (Verify) |
+| --- | --- | --- | --- |
+| H1 | Nav: **Operational Intelligence** | Invented product name as a menu item | `components/header.tsx` |
+| H2 | **evidence-grounded AI systems** | Frozen H1 — Act must not rewrite | Ruled; gloss nearby instead |
+| H3 | **attributable evidence** | Sounds like a paper, not a product | Hero lead |
+| H4 | **operationalization** | Internal process word | Hero |
+| H5 | **AIOps & Observability** | Acronym soup | Identity card; title is ruled keep |
+| H6 | **Operational Intelligence** / **enterprise telemetry** | “Telemetry” is still shop talk even with the reasoning-layer gloss | 30s map |
+| H7 | **Enterprise Context Layer** / **shared substrate** | Architecture-speak | Map |
+| H8 | **Context Acquisition Tax** | Coined; gloss helps, label still opaque | Map |
+| H9 | **SRE / Agent Harness** | Two specialist terms stacked | Map + Builds |
+| H10 | **Batch Intelligence** / **execution-graph proof** / **taxonomy layers** | Three coined ideas in one sentence | Map + ladder |
+| H11 | **eval gate** | Insider eval slang | Harness loop |
+| H12 | **the Authorized Misfire** | Ruled term; gloss is decent | Keep name; clause is required |
+| H13 | **bounded execution, attributable findings, governed tool-call model** | Stack of opaque nouns | Selected work |
+| H14 | **Staff / Principal … AIOps** | Hiring-brochure register | Quiet line is OK; must not become the headline |
+
+### `/framework` — `app/framework/page.tsx`, `components/framework-architecture-map.tsx`, `components/batch-intelligence-proof.tsx`
+
+Live: https://seri-ai.vercel.app/framework
+
+| ID | Opaque phrase (Verify) | Why it fails |
+| --- | --- | --- |
+| F1 | **blast radius**, **topology path** | Incident jargon without a one-line meaning |
+| F2 | **GROUNDED RCA** / **EXPLICIT UNKNOWN** | All-caps lab labels |
+| F3 | **CMDB, ITSM, CI/CD** | Tool alphabet in the Context Acquisition Tax paragraph |
+| F4 | **evidence graph, hypothesis lifecycle, decision trace, replay seed** | Six coined objects in one sentence |
+| F5 | **AgentOps**, **data plane**, **Operator Control Plane** | Vendor/category jargon |
+| F6 | **conformance**, **falsification**, **falsifier** | Reviewer dialect on first scroll |
+| F7 | Meta: **Agentic SRE**, **eval-gated agents** | First thing Google/social shows |
+
+Live re-check (do not contradict): F5 `AgentOps` and `operational data plane` appear in the thesis-radar block on `/framework` (`content/thesis-radar.json`). `Operator Control Plane` is a ten-layer “Room stage” label. F6 `falsifier` is in the radar summary (“each paired with its falsifier”) and sticky destination “Eval gates and falsifiers”.
+
+### `/ask` chrome — `components/chat.tsx`, `components/ask-dock.tsx`
+
+Live: https://seri-ai.vercel.app/ask
+
+| ID | Opaque phrase (Verify) | Why it fails |
+| --- | --- | --- |
+| A1 | **Mode / local · Sources / pending · Layers · Boundary · LLM provider · LLM used** | Debugger chrome, not visitor chrome |
+| A2 | **Answer packet** | Internal review object as UI title |
+| A3 | **intentionally deterministic and source-scoped** | Engineer dialect |
+| A4 | Dock: **Ask the record** | Clearer than Ask Ravikanth; still unexplained on first open |
+
+### `/work` + ops + projects — `app/work/page.tsx`, `app/investigation-room/page.tsx`, `content/projects.json`
+
+Live: https://seri-ai.vercel.app/work · `/investigation-room` · `/projects`
+
+| ID | Opaque phrase (Verify) | Why it fails |
+| --- | --- | --- |
+| W1 | **agentic operations**, **evaluation harness**, **Replay Seed**, **conformance profile** | Specialist inventory |
+| W2 | **OI-ROOM-001**, **MCP request · logs/metrics/traces/topology** | Lab + protocol names on the proof artifact |
+| W3 | **Evaluation gate**, **Decision packet**, **exportable RCA packet**, **RAG**, **golden datasets** | Ops/projects cards assume the reader already lives in this stack |
+| W4 | **Sentinalai** (if still linked) | Unexplained product name |
+
+**W4 confirmed live:** `/work` still links the word `Sentinalai` (`app/work/page.tsx`) to `https://github.com/rseri17-code/Sentinalai.git` (`content/public-code.json`). Naming is flagged for Ravikanth in `PROJECT_LEAD_ASSIGNMENTS.md`; Act should define it in-breath (“public GitHub repo Sentinalai”) and must not invent a rename.
+
+### What Verify said already works (do not regress)
+
+Not a jargon pass. Do not undo:
+
+- Work-first, not a recruiting brochure: private system, inspectable public proofs, Contact as a quiet line.
+- Authorized Misfire and Context Acquisition Tax **have** first-touch clauses (still FAIL as labels).
+- Evidence ladder is a path through work, not a CV.
+- Frozen H1 and five-item nav + Ask.
 
 ---
 
-## Top 10 worst offenders
+## Extra jargon Verify missed
 
-These are the first-read blockers. A non-specialist hitting `/` then `/framework` then Ask dock hits most of them in under a minute.
+Additive only. Live quotes checked on production and `main`. These are not a reason to drop any Verify row.
 
-| # | Phrase (live) | Why it fails first read | Proposed plain replacement | Path |
-| --- | --- | --- | --- | --- |
-| 1 | `The Enterprise Context Layer is the shared substrate.` | “Substrate” is materials/CS metaphor. Nothing in everyday English. | `The Enterprise Context Layer is the shared picture of what’s happening now — who owns it, what changed, what depends on it, what the transaction did — maintained once.` | `components/home-orientation.tsx`, `components/framework-architecture-map.tsx` |
-| 2 | `Loop on the substrate` / `SRE / Agent Harness` | Two undefined terms stacked. “SRE” never spelled. “Harness” is internal product slang. | Label: `Agent investigation loop`. Body: `Site reliability work (keeping production healthy): gather evidence, test a theory, pass checks, learn — a person still owns risky actions.` | same map components |
-| 3 | `Evidence → hypothesis → eval gate → learn` | “Eval gate” is release-engineering slang. | `Evidence → working theory → checks before trust → learn from what happened` | `components/home-orientation.tsx` |
-| 4 | `Eval gates and falsifiers before trust` | Compressed philosophy + CI jargon in the framework destination line. | `Checks before trust, and what would prove the claim wrong` | `components/framework-architecture-map.tsx` sticky destination + nav |
-| 5 | `GROUNDED RCA` | All-caps verdict. RCA = root-cause analysis, never expanded. | `Root cause, backed by evidence` (keep the rule: only when trigger, path, successors, and review are covered) | `components/batch-intelligence-proof.tsx` |
-| 6 | `This assistant is intentionally deterministic and source-scoped.` | Correct policy, opaque words. | `It only answers from public pages on this site. Same question, same sources. It does not invent pages.` | `app/ask/page.tsx`, `components/chat.tsx` |
-| 7 | `Grounding receipts` | RAG/ML term for “the pages we used.” | `Sources used` | `components/chat.tsx` |
-| 8 | `enterprise SRE investigation agent` (hero, unexpanded) | First production proof uses an unexplained acronym. | `enterprise site-reliability (production incident) investigation agent` on first use; `investigation agent` after | `app/page.tsx` hero (not the frozen H1) |
-| 9 | `What would falsify the harness-over-model claim?` | Dock chip assumes two thesis names. “Falsify” is philosophy-of-science. | `What would prove wrong the idea that the operating loop matters more than the model?` | `content/ask.json` `askChallengeChips` |
-| 10 | Sticky nav: `Harness` · `Taxonomy` · `Eval / falsifiers` | Three insider labels for the whole `/framework` tour. | `Agent loop` · `Ten layers` · `Checks / disproof` | `components/framework-section-nav.tsx` (keep hash ids) |
+| ID | Phrase (quote exact) | Why opaque | Proposed plain replacement | Path | Why it is extra |
+| --- | --- | --- | --- | --- | --- |
+| X1 | `Grounding receipts` | RAG/ML for “pages we used” | `Sources used` | `components/chat.tsx` | Ask sidebar title; not in A1–A4 |
+| X2 | `What would falsify the harness-over-model claim?` | “Falsify” + coined claim in a dock chip | `What would prove the “loop matters more than the model” idea wrong?` | `content/ask.json` `askChallengeChips` | Verify audited Ask chrome, not chip copy. Related to F6/H9, but this string is site-wide dock. |
+| X3 | `What would falsify the Agent Harness claim?` / `How should a reviewer challenge the ten-layer taxonomy?` / `What is Authorized Misfire in one scene?` / `What is the wrong answer to Context Acquisition Tax?` | Coined names with no in-chip clause | Define in the chip, or use the plain clause in the same breath | `content/ask.json` route chips | Same |
+| X4 | Sticky nav: `Harness` · `Taxonomy` · `Eval / falsifiers` | First-scroll `/framework` chrome | `Agent loop` · `Ten layers` · `Checks / what would prove it wrong` | `components/framework-section-nav.tsx` | Verify named page/map/batch, not sticky labels. Hashes stay. |
+| X5 | Map arrows `grounds` / copy `Grounds in the context layer` / `the agent grounds itself` | Retrieval verb | `reads from` / `starts from the shared context` | `home-orientation.tsx`, `framework-architecture-map.tsx`, `app/framework/page.tsx` | Adjacent to H7/H9; word itself not listed |
+| X6 | `Read the doctrine, and what would prove it wrong` / `Doctrine v1.0` / `public doctrine` | Internal canon | `written model` | `app/page.tsx`, `app/work/page.tsx`, `app/ask/page.tsx` | Not on Verify tables |
+| X7 | `provenance` / `source provenance` / `provenance: checked-in OI-ROOM-001 fixture` | Archival/legal | `where the evidence came from` / `source: demo data file` | home.json dek; `sre-reference-run.tsx`; professional-graph | W2 covers MCP/OI-ROOM; not provenance |
+| X8 | Meta: `Agentic SRE, ReasonOps` | Unexplained brands in `/work` SERP | Spell or drop `ReasonOps` unless defined on-page | `app/work/page.tsx` `metadata.description` | Verify F7 is `/framework` meta only |
+| X9 | `eval gates` / `evaluation gates` in site OG/Twitter | Same slang as H11, off-page | `checks before a conclusion is trusted` | `app/layout.tsx` | Site-wide social preview |
+| X10 | Packet values `matched after retrieval`, `provider_none`, `thin_retrieval`, `ms synthesis guard` | Debugger values inside A1/A2 | Human labels; do not change API enums | `components/chat.tsx` | A1 named the **row labels**; these are the raw **values** |
+| X11 | `public-safe proofs` / `public-safe fixture` | House dialect | `shareable examples (no private systems)` / `public demo data` | `home-orientation.tsx`, `sre-reference-run.tsx` | Footer already has a plain second sentence |
+| X12 | `Ten-layer taxonomy at a glance` | Taxonomy as UI heading | `Ten filing labels at a glance` | `components/framework-layer-overview.tsx` | H10/F mentioned taxonomy; this is the table title (also validator-pinned) |
+| X13 | `enterprise SRE investigation agent` (hero, unexpanded) | SRE acronym on first production proof | Spell site reliability on first use | `app/page.tsx` | Verify flagged SRE inside **SRE / Agent Harness** (H9), not this hero sentence |
+| X14 | `machine reasoning` | Abstract | `automated analysis that still shows its work` | `app/page.tsx` hero lead | Next to H3 |
+| X15 | `What the public corpus will answer, cite, and refuse.` | Corpus | `What public pages it will answer from, cite, or decline` | `components/evidence-ladder.tsx` | Ask ladder card |
 
 ---
 
-## Inventory
+## Counts
+
+| Source | Rows |
+| --- | --- |
+| Verify FAIL rows (H1–H14, F1–F7, A1–A4, W1–W4) | **29** (several rows are phrase clusters) |
+| Extra items Verify missed (X1–X15) | **15** |
+| Detailed Act inventory below (unique visitor strings, including repeats of Verify terms with replacements) | Homepage 40 · nav/meta 7 · framework 46 · work 19 · ops-room 14 · Ask/dock 34 · projects 15 · **175** |
+
+The 175 is an Act worklist (every quoted string). The **29 Verify rows are the gate**. Extras are additional first-read holes, especially Ask chips and sticky nav.
+
+---
+
+## Top 10 (Verify-first, then extras)
+
+Order matches Verify’s first-screen emphasis, then the worst extras.
+
+| # | Phrase (live) | Source | Proposed plain replacement | Path |
+| --- | --- | --- | --- | --- |
+| 1 | Nav **Operational Intelligence** | Verify H1 | Keep name **or** `Framework`; destination must define it in the first breath | `components/header.tsx` |
+| 2 | **Enterprise Context Layer** / **shared substrate** | Verify H7 | Shared picture of what’s happening now (owner, change, dependency, transaction), maintained once | `home-orientation.tsx`, `framework-architecture-map.tsx` |
+| 3 | **SRE / Agent Harness** | Verify H9 | Spell site reliability; `investigation loop` + human sign-off | same |
+| 4 | **eval gate** | Verify H11 | `checks before trust` | `home-orientation.tsx` |
+| 5 | **Batch Intelligence** / **execution-graph proof** / **taxonomy layers** | Verify H10 | Public demo of job-order/dependencies; not one of the ten filing labels | map + ladder |
+| 6 | **GROUNDED RCA** / **EXPLICIT UNKNOWN** | Verify F2 | `Root cause, backed by evidence` / `Cause not yet known` | `batch-intelligence-proof.tsx` |
+| 7 | Ask **Mode / local · LLM provider · LLM used** + **Answer packet** | Verify A1–A2 | Visitor labels; hide or translate debug values (X10) | `chat.tsx` |
+| 8 | **intentionally deterministic and source-scoped** | Verify A3 | Only public pages on this site. Same question, same sources. No invented pages. | `chat.tsx`, `app/ask/page.tsx` |
+| 9 | **MCP request · logs/metrics/traces/topology** + **Sentinalai** | Verify W2, W4 | `Read-only request · logs`; `Sentinalai` (public GitHub repo) | ops-room events; `app/work/page.tsx` |
+| 10 | Dock chips **falsify the harness-over-model claim** + sticky **Eval / falsifiers** | Extra X2–X4 | Prove-wrong wording; `Checks / what would prove it wrong` | `content/ask.json`, `framework-section-nav.tsx` |
+
+---
+
+## Inventory (Act worklist)
+
+Supports Verify + extras. **If this table ever disagrees with § Verify FAIL list, Verify wins.** Severity is sequencing, not a pass/fail override.
 
 Severity: **P0** first-read chrome · **P1** same-page secondary · **P2** deep / meta / preview UI.
 
@@ -119,7 +233,7 @@ Severity: **P0** first-read chrome · **P1** same-page secondary · **P2** deep 
 | `Loop on the substrate` | Same as #2 | `Investigation loop` | `components/home-orientation.tsx` | Map card eyebrow | P0 | |
 | `Evidence → hypothesis → eval gate → learn` | Eval gate | `Evidence → working theory → checks before trust → learn` | `components/home-orientation.tsx` | Loop card | P0 | |
 | `an SRE / agent harness with human gates` | Harness + gates | `an investigation loop with human sign-off on consequential steps` | `components/home-orientation.tsx` | “The work, plainly” Builds | P0 | This strip is supposed to be plain and isn’t |
-| `Staff / Principal conversations in AIOps` | AIOps only allowed in frozen job title | `Staff / Principal conversations in AI for operations and observability` | `components/home-orientation.tsx` | Work-plainly footer | P1 | Do not touch portrait job title |
+| `Staff / Principal conversations in AIOps` | Verify H14: hiring-brochure register | Quiet line may stay; must not become the headline. Extra: `AIOps` here is not the ruled identity title | `components/home-orientation.tsx` | Work-plainly footer | P1 | Verify: do not promote |
 | `Execution-graph proof on the context layer.` | Execution graph | `Proof using the map of which jobs ran before and after which` | `components/home-orientation.tsx` | Batch card | P1 | |
 | `grounds` / `writes back` (map arrows) | “Grounds” is retrieval jargon | `reads from` / `writes back` | `components/home-orientation.tsx` | Map connector | P1 | Same on framework map |
 | `What the public corpus will answer, cite, and refuse.` | Corpus | `What public pages it will answer from, cite, or decline` | `components/evidence-ladder.tsx` | Ask card | P1 | |
@@ -144,7 +258,7 @@ Severity: **P0** first-read chrome · **P1** same-page secondary · **P2** deep 
 | `A decision is not trusted until its evidence can be replayed.` | Replay = eval harness | `…until someone can walk the same evidence again` | `components/operations-room-preview.tsx` | Sidebar | P2 | Idea is good |
 | `OI-ROOM-001` badge | Internal ticket vibe | `OI-ROOM-001 · synthetic demo case` (synthetic already adjacent — OK) | `components/operations-room-preview.tsx` | Header | P2 | Low priority if “synthetic case” stays next to it |
 
-**Already OK on homepage (do not “fix”):** Authorized Misfire paragraph; four-answer reconstruct for context layer in selected work 2; “ten layers are a filing system” in the map (the *word* taxonomy nearby is the problem, not filing system).
+**Do not treat as pass:** Authorized Misfire **name** is still Verify H12 (keep name + clause). Four-answer reconstruct for the context layer is the right *kind* of clause (H7/H8 still FAIL as labels). “Filing system” is the right plain words; nearby **taxonomy** is still H10.
 
 ### B. Nav, footer, site meta
 
@@ -209,7 +323,7 @@ Severity: **P0** first-read chrome · **P1** same-page secondary · **P2** deep 
 | `public doctrine, reference architecture, evaluation harness` | Doctrine + harness | `public written model, reference design, and automated checks` | `app/work/page.tsx` | What you can inspect | P0 | |
 | Evidence ladder Framework line | Same as home | Same replacement | `components/evidence-ladder.tsx` | | P1 | One edit, two pages |
 | `Enterprise Context Layer` (card title only) | Name without the four answers in the title | Keep name; description is already fairly plain | `content/home.json` | linkedInSignals | P1 | Description is OK |
-| `Context Acquisition Tax` (title) | | Keep; description already defines the four answers — **OK if description stays first visually** | `content/home.json` | | P1 | |
+| `Context Acquisition Tax` (title) | Verify H8: gloss helps, label still opaque | Keep name; four-answer clause must lead, not trail | `content/home.json` | | P1 | Not a pass |
 | `Harness over model` + `the harness that captures evidence, replay…` | Harness | `The operating loop around the model: evidence, reruns, outcomes, approvals, lessons` | `content/home.json` | | P1 | |
 | `Ops for observability` | Inverted coinage | `Running observability as an operated product` (then keep quality/cost/governance) | `content/home.json` | | P1 | |
 | `taxonomy, cost, governance` (in observability card) | Taxonomy | `consistent categories for signals, cost, and access rules` | `content/home.json` | | P1 | |
@@ -321,22 +435,19 @@ Preserve: cite or refuse; public pages only; no employer data; no invented sourc
 - Wiki/MDX doctrine body, publication-pack PDFs, reference-architecture markdown. Those are deep documents; first-read chrome is the failure.
 - Renaming routes (`/ask`, `/framework`, `/investigation-room`).
 - Frozen H1 / CTAs / job title.
-- Turning closing “Staff / Principal” into a hiring brochure. The work-plainly Contact line can drop **AIOps**; don’t expand it into a pitch.
+- Promoting the Staff/Principal line into a headline (Verify H14: quiet line is OK). Do not expand it into a pitch. `AIOps` in that line is not the ruled identity title (extra vs H5).
 - Inventing new glossary pages.
 
 ---
 
 ## Suggested Act sequence
 
-1. Rewrite 30-second map + framework architecture map + sticky nav labels together (shared language).
-2. Homepage hero supporting paragraph (SRE, attributable, operationalization) — not H1.
-3. Ask chrome + dock label + challenge chips; map API enums to plain display strings.
-4. Batch `GROUNDED RCA` + execution-graph H3.
-5. Ops Room event titles (`MCP request`, provenance/fixture).
-6. Work inspect sentence + linkedInSignals titles that are still opaque.
-7. Projects.json RCA/RAG chips.
-8. Meta descriptions (`app/layout.tsx`, `/framework`, `/work`, `/ask`).
-9. Repoint validators and Playwright dock name; run `npm test` && `npm run build`.
-10. If Ask source sentences or chip prompts used as fixtures changed, update eval/retrieval goldens.
+1. **Verify H1–H14** homepage/nav/map (shared language with framework map). H2/H5: gloss only, do not rewrite frozen strings. H12: keep name + clause. H14: do not headline.
+2. **Verify F1–F7** framework intro, Batch labels, meta, radar (`AgentOps` / `data plane` / `falsifier`).
+3. **Verify A1–A4** Ask debugger chrome, Answer packet, deterministic/source-scoped, dock label.
+4. **Verify W1–W4** work inventory, MCP events, project chips, Sentinalai in-breath (no rename).
+5. **Extras X1–X15** especially dock chips (X2–X3), sticky nav (X4), grounding receipts (X1), doctrine (X6), ReasonOps meta (X8).
+6. Repoint validators and Playwright dock name; run `npm test` && `npm run build`.
+7. If Ask source sentences or chip prompts used as fixtures changed, update eval/retrieval goldens.
 
-Preview-only. Do not merge.
+Preview-only. Do not merge. Verify’s gate: PASS only if a smart non-specialist can read the first screens without decoding buzzwords **and** the thesis stays work-first. Frozen H1 and ruled CTAs stay. **Do not merge until Ravikanth approves.**
