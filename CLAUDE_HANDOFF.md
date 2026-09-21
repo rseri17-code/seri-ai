@@ -2,6 +2,16 @@
 
 Last updated: 2026-09-21
 
+## BUILDER ASK LLM SYNTHESIZER PREVIEW — 2026-09-21
+
+Ask now has an optional retrieval-bound synthesizer behind `ASK_LLM_PROVIDER`. The default remains `none`, so production Ask is unchanged: local retrieval, public-safety refusal before any model call, and the existing deterministic fallback. When `ASK_LLM_PROVIDER=groq` and `GROQ_API_KEY` are set, Groq may only summarize retrieved public passages. Empty or thin retrieval never calls the model. Responses that cite unknown passage ids or invented URLs are discarded. Ollama is optional behind `OLLAMA_BASE_URL`. The Groq key stays server-side.
+
+This branch is rebased onto Ask UX Phase A (chat shell) and Phase C (site dock). Dock and `/ask` still share one `sendMessage` → `POST /api/ask` path. Token streaming is deferred: post-validation needs the complete completion, and unvalidated tokens would violate cite-or-refuse.
+
+**Preview Groq provider_error (2026-09-21):** Live Preview `/api/ask` for Batch Intelligence returned `llm_provider=groq`, `llm_used=false`, `llm_skip_reason=provider_error`, `latency_ms=90`. Retrieval was sufficient. Groq shut down `llama-3.3-70b-versatile` on 2026-08-16 (HTTP 404). The request now aliases that id to `openai/gpt-oss-120b`, posts `max_completion_tokens` to `https://api.groq.com/openai/v1/chat/completions`, and records a secret-free `llm_error_code` (`http_404`, `http_401`, `network_error`) in API meta and the Ask packet.
+
+Ask deterministic fixtures cover 124 passing cases. Search retrieval covers 74 canonical queries. Knowledge graph: 62 assets, 7814 relationships. Preview-only; do not merge. Do not enable Production.
+
 ## ASK UX PHASE C — 2026-09-21
 
 Site-wide Ask dock + challenge mode. Preview-only; do not merge.
@@ -1417,7 +1427,7 @@ Recent improvements:
 - Search retrieval covers 69 canonical queries.
 - Retrieval now applies a small length penalty in the public search scorer so broad documents stop crowding out narrower matches; Ask remains anchored on the canonical doctrine and reference-architecture phrases for definition and governance prompts.
 - Ask evals were revalidated after the retrieval adjustment and returned 117/117 passing fixtures.
-- Ask deterministic fixtures cover 121 passing cases.
+- Ask deterministic fixtures cover 124 passing cases.
 - Start Here now includes a 10-minute proof route that moves from operator to work to thesis to artifact to evidence.
 - The approved portrait is integrated on home, background, and resume through the portrait intake contract.
 - Claude's latest editorial-lane passes resolved the aphorism budget, public-safe-once wording, and doctrine title softening.
@@ -1577,6 +1587,23 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-21 — Builder: Groq provider_error on Preview
+
+- **Finding**: After env wiring, live Preview still returned `llm_skip_reason=provider_error` in 90ms for a grounded Batch Intelligence question (`llm_provider=groq`, `source_count=2`).
+- **Cause**: Groq shut down `llama-3.3-70b-versatile` on 2026-08-16; Preview `GROQ_MODEL` (and our default) still used that id, so Groq returned a fast 404. Completions also sent deprecated `max_tokens`.
+- **Fix**: Alias the retired id to `openai/gpt-oss-120b`, send `max_completion_tokens` to `https://api.groq.com/openai/v1/chat/completions`, and surface secret-free `llm_error_code` (`http_404`, `http_400`, …) next to `llm_skip_reason`. Preview-only; do not merge; do not enable Production.
+
+### 2026-09-21 — Builder: Preview Groq stayed on local_fallback
+
+- **Finding**: Preview with `ASK_LLM_PROVIDER=groq` still returned `answer_mode=local_fallback` and Groq did not appear active. Mode in the console is `retrieval_mode` (often `local`), not LLM status.
+- **Cause**: Groq resolution lived in `lib/ai.ts`, which Client Chat imports, so Preview secrets could compile away; skip reasons were not shown in the Answer packet; timeouts reset `llm_provider` to `none`.
+- **Fix**: server-only `lib/ask-answer.ts`, runtime env reads, always-on `llm_provider` / `llm_used` / `llm_skip_reason` in `/api/ask` meta and the Ask packet. Invent-source still fail-closed. Preview-only; do not merge; do not enable Production.
+
+### 2026-09-21 — Builder: preview-only retrieval-bound Ask synthesizer
+
+- **Open for review**: Ask gained an optional Groq/Ollama synthesizer that can only summarize retrieved public chunks. `ASK_LLM_PROVIDER=none` is the default and keeps the current retrieval, refusal, and local-fallback path. Groq is skipped on empty/thin retrieval, confidential questions stay pre-LLM, and invented passage ids or URLs are rejected. Rebased onto Phase A chat shell and Phase C dock; both still share `/api/ask`. Invent-source evals cover planted URLs, unknown topics, citation subset, and mocked Groq fail-closed fallback. Evidence: `lib/ask-llm.ts`, `lib/ai.ts`, `app/api/ask/route.ts`, `scripts/validate-ask-llm.mjs`, `content/eval-report.json`. Public-safety risk: none; employer/confidential prompts never reach the model and fixtures contain no private data. Flag for Ravikanth: Preview-only; do not enable Production; do not merge until Preview verification lands.
+- **Streaming**: not in this pass. Grounded token SSE needs the same post-validation, so the client would have to buffer or replace unvalidated text. Follow-up only if it stays on the shared send path.
 
 ### 2026-09-21 — Grok: Ask UX Phase C (site-wide dock + challenge mode)
 

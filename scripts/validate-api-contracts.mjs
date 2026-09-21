@@ -11,7 +11,7 @@ const jiti = jitiFactory(fileURLToPath(import.meta.url), {
 
 const errors = [];
 
-const envKeys = ["OPENAI_API_KEY", "ANTHROPIC_API_KEY", "SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "AI_PROVIDER"];
+const envKeys = ["OPENAI_API_KEY", "ANTHROPIC_API_KEY", "SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "AI_PROVIDER", "ASK_LLM_PROVIDER", "GROQ_API_KEY", "GROQ_MODEL", "OLLAMA_BASE_URL", "OLLAMA_MODEL"];
 const originalEnv = Object.fromEntries(envKeys.map((key) => [key, process.env[key]]));
 for (const key of envKeys) {
   delete process.env[key];
@@ -73,6 +73,9 @@ try {
   expect(typeof askPublicBody.meta?.latency_ms === "number", "/api/ask public fallback missing latency_ms metadata");
   expect(askPublicBody.meta?.budget?.synthesis_timeout_ms === 12000, "/api/ask public fallback missing synthesis timeout budget");
   expect(askPublicBody.meta?.budget?.returned_source_limit === 4, "/api/ask public fallback missing returned source budget");
+  expect(askPublicBody.meta?.llm_provider === "none", "/api/ask default must report llm_provider none");
+  expect(askPublicBody.meta?.llm_used === false, "/api/ask default must not use a preview synthesizer");
+  expect(askPublicBody.meta?.llm_skip_reason === "provider_none", "/api/ask default must record provider_none");
   expect(!JSON.stringify(askPublicBody.meta).toLowerCase().includes("define operational intelligence"), "/api/ask metadata must not include raw prompt text");
   expect(!askPublicBody.answer.includes("OPENAI_API_KEY"), "/api/ask leaked environment naming in answer");
   expect(
@@ -295,7 +298,13 @@ try {
       content: "A cited answer.",
       packet: {
         sources: [{ title: "Doctrine", url: "/wiki/operational-intelligence-canonical-doctrine", excerpt: "Operational Intelligence is the reasoning layer." }],
-        meta: { question_category: "doctrine_architecture", related_pages: ["/framework"] },
+        meta: {
+          question_category: "doctrine_architecture",
+          related_pages: ["/framework"],
+          llm_provider: "groq",
+          llm_used: true,
+          llm_skip_reason: null
+        },
         followUps: ["What is Batch Intelligence?", "Walk me through the ten-layer framework."]
       }
     }
@@ -310,6 +319,8 @@ try {
   expect(typeof hashBody === "string" && hashBody.startsWith("ask="), "ask-session hash encoding must produce an ask= payload");
   const fromHash = decodeAskThreadHash(`#${hashBody}`);
   expect(fromHash?.[1]?.content === packetMessages[1].content, "ask-session hash round trip must restore user turns");
+  expect(fromHash?.[2]?.packet?.meta?.llm_provider === "groq", "ask-session hash must preserve llm_provider");
+  expect(fromHash?.[2]?.packet?.meta?.llm_used === true, "ask-session hash must preserve llm_used");
   expect(decodeAskThreadHash("") == null && decodeAskThreadHash("#other=1") == null, "ask-session hash decoder must reject empty or unrelated hashes");
   expect(
     toChatHistory(packetMessages, 6).every((message) => Object.keys(message).join(",") === "role,content"),
@@ -332,6 +343,9 @@ try {
   const chatSource = fs.readFileSync(path.join(root, "components", "chat.tsx"), "utf8");
   expect(chatSource.includes('variant === "dock"') && chatSource.includes("shouldPersistUrlHash"), "Chat must support a dock variant that can disable URL hash persistence");
   expect(chatSource.includes('fetch("/api/ask"'), "dock and /ask must reuse the same /api/ask path");
+  expect(chatSource.includes("llm_provider") && chatSource.includes("llm_used") && chatSource.includes("llm_skip_reason"), "Ask UI packet must surface llm_provider, llm_used, and llm_skip_reason");
+  expect(chatSource.includes("llm_error_code"), "Ask UI must keep Groq HTTP error codes in the packet");
+  expect(chatSource.includes("LLM provider") && chatSource.includes("LLM skip"), "Ask UI packet must label LLM provider and skip reason");
   const dockSource = fs.readFileSync(path.join(root, "components", "ask-dock.tsx"), "utf8");
   expect(dockSource.includes("persistUrlHash={false}") && dockSource.includes("readUrlHash={false}"), "Ask dock must not write or read #ask= on content pages");
   expect(fs.readFileSync(path.join(root, "app", "layout.tsx"), "utf8").includes("<AskDock />"), "root layout must mount the Ask dock");

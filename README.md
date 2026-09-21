@@ -168,6 +168,42 @@ Required for full production behavior:
 - `ADMIN_TOKEN`
 - `NEXT_PUBLIC_POSTHOG_KEY`
 
+Optional preview-only Ask synthesizer (server-side only; never expose these to the client):
+
+- `ASK_LLM_PROVIDER` — `none` (default), `groq`, or `ollama`
+- `GROQ_API_KEY` — required when `ASK_LLM_PROVIDER=groq`
+- `GROQ_MODEL` — optional; defaults to `openai/gpt-oss-120b`. The retired `llama-3.3-70b-versatile` id is aliased to that replacement.
+- `OLLAMA_BASE_URL` — required when `ASK_LLM_PROVIDER=ollama` (example: `http://127.0.0.1:11434`)
+- `OLLAMA_MODEL` — optional; defaults to `llama3.1`
+
+When `ASK_LLM_PROVIDER` is `none` or the Groq key / Ollama base URL is missing, `/ask` is unchanged: retrieval plus the current local fallback or OpenAI/Anthropic path.
+
+When `groq` is enabled, Ask still retrieves approved public chunks first. Empty or thin retrieval never calls Groq; confidential and employer questions are refused before any LLM call. Groq may only summarize those retrieved passages and is discarded if it cites unknown passage ids or URLs, or if it writes a fluent answer with no retrieved citations.
+
+### Enable Groq on Vercel Preview only
+
+Production should stay on `ASK_LLM_PROVIDER=none`. To try synthesis on a Preview deployment:
+
+1. Vercel project → Settings → Environment Variables.
+2. Scope the variables to **Preview** (not Production):
+   - `ASK_LLM_PROVIDER=groq`
+   - `GROQ_API_KEY` (server-only; never `NEXT_PUBLIC_`)
+   - optional `GROQ_MODEL` (default `openai/gpt-oss-120b`; `llama-3.3-70b-versatile` is aliased)
+3. Redeploy the Preview deployment so the serverless runtime picks up the variables.
+4. On Preview `/ask`, ask a grounded public question such as `What is Batch Intelligence?`
+   - Success: Status shows `ai_synthesis · groq`, the Answer packet shows **LLM used** `true`, **LLM provider** `groq`, **LLM skip** `none`.
+   - If Groq is configured but skipped or errors, Status stays `local_fallback` and **LLM skip** names the reason (`thin_retrieval`, `validation_rejected`, `provider_error`, `missing_credentials`, or `provider_none`). For `provider_error`, the packet also shows a safe `llm_error_code` such as `http_404` (retired model) or `http_401` (bad key). Mode `local` is retrieval, not LLM status.
+5. Roll back by unsetting the variables or setting `ASK_LLM_PROVIDER=none`.
+
+Invent-source and grounded-synthesis evals (no live Groq key required):
+
+```bash
+npm run validate:ask-llm
+npm run evals
+```
+
+`validate:ask-llm` mocks Groq/Ollama. `evals` grades the shipped `/api/ask` route on `ASK_LLM_PROVIDER=none`, including planted URLs and unknown topics.
+
 Without model or database keys, `/ask` runs with the local approved-content fallback so the app remains locally inspectable.
 
 Static generation is tuned for content-heavy reference routes. `next.config.ts` keeps prerender concurrency conservative and extends the static generation timeout so release builds do not depend on retry behavior when the wiki, RSS, sitemap, and image routes grow.
@@ -265,6 +301,7 @@ npm run validate:publishing
 npm run validate:discovery
 npm run validate:analytics
 npm run validate:api
+npm run validate:ask-llm
 npm run evals
 npm run typecheck
 npm run lint
@@ -388,6 +425,7 @@ npm run validate:publishing
 npm run validate:discovery
 npm run validate:analytics
 npm run validate:api
+npm run validate:ask-llm
 npm run evals
 npm run typecheck
 npm run validate:performance
