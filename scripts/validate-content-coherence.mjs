@@ -525,7 +525,17 @@ for (const required of [
   "Related route",
   "Latency budget",
   "Runtime budget",
-  "ProfileMark size=\"sm\""
+	  "ProfileMark size=\"sm\"",
+	  "data-ask-transcript",
+	  "role=\"log\"",
+	  "sticky bottom-0",
+	  "aria-label=\"Follow-up questions\"",
+	  "aria-label=\"New conversation\"",
+	  "<details",
+	  "encodeAskThreadHash",
+	  "decodeAskThreadHash",
+	  "toChatHistory",
+	  "inferFollowUpChips"
 ]) {
   expect(chatComponent.includes(required), `Chat missing prompt deep-link auto-submit contract: ${required}`);
 }

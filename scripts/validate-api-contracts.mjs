@@ -73,6 +73,14 @@ try {
   expect(askPublicBody.meta?.budget?.returned_source_limit === 4, "/api/ask public fallback missing returned source budget");
   expect(!JSON.stringify(askPublicBody.meta).toLowerCase().includes("define operational intelligence"), "/api/ask metadata must not include raw prompt text");
   expect(!askPublicBody.answer.includes("OPENAI_API_KEY"), "/api/ask leaked environment naming in answer");
+  expect(
+    Array.isArray(askPublicBody.follow_ups) && askPublicBody.follow_ups.length >= 2 && askPublicBody.follow_ups.length <= 4,
+    "/api/ask public fallback missing 2-4 follow_ups chips"
+  );
+  expect(
+    new Set(askPublicBody.follow_ups).size === askPublicBody.follow_ups.length,
+    "/api/ask follow_ups must be unique"
+  );
 
   const askSafeBuilding = await askPost(
     request("http://localhost/api/ask", {
@@ -118,6 +126,14 @@ try {
   expect(askConfidentialBody.meta?.retrieval_mode === "blocked", "/api/ask confidential boundary missing blocked retrieval metadata");
   expect(askConfidentialBody.meta?.question_category === "public_safety_boundary", "/api/ask confidential boundary missing safe category metadata");
   expect(askConfidentialBody.meta?.public_boundary === "public-safe refusal", "/api/ask confidential boundary missing public-safe boundary metadata");
+  expect(
+    Array.isArray(askConfidentialBody.follow_ups) && askConfidentialBody.follow_ups.length >= 2,
+    "/api/ask confidential refusal must still offer public follow-up chips"
+  );
+  expect(
+    !JSON.stringify(askConfidentialBody.follow_ups).toLowerCase().includes("employer-specific"),
+    "/api/ask confidential follow_ups must stay on public-safe questions"
+  );
 
   const askUnsafeHistory = await askPost(
     request("http://localhost/api/ask", {
@@ -139,6 +155,39 @@ try {
 
   const askInvalid = await askPost(request("http://localhost/api/ask", { question: "", mode: "ask" }));
   expect(askInvalid.status === 400, `/api/ask invalid payload returned ${askInvalid.status}`);
+
+  const askThin = await askPost(
+    request("http://localhost/api/ask", {
+      question: "What is a Quantum Flux Capacitor?",
+      mode: "ask"
+    })
+  );
+  const askThinBody = await json(askThin);
+  expect(askThin.status === 200, `/api/ask thin-record question returned ${askThin.status}`);
+  expect(askThinBody.answer.includes("not in the public record"), "/api/ask thin-record question must refuse instead of nearest-neighbor invention");
+  expect(Array.isArray(askThinBody.follow_ups) && askThinBody.follow_ups.length >= 2, "/api/ask thin-record response missing follow_ups");
+
+  const askFollowUpTurn = await askPost(
+    request("http://localhost/api/ask", {
+      question: "What is Batch Intelligence?",
+      history: [
+        { role: "user", content: "What is Operational Intelligence?" },
+        { role: "assistant", content: askOperationalIntelligenceBody.answer.slice(0, 2000) }
+      ],
+      mode: "ask"
+    })
+  );
+  const askFollowUpTurnBody = await json(askFollowUpTurn);
+  expect(askFollowUpTurn.status === 200, `/api/ask independent follow-up turn returned ${askFollowUpTurn.status}`);
+  expect(askFollowUpTurnBody.meta?.answer_mode !== "public_safety_refusal", "/api/ask independent follow-up turn must not inherit a refusal");
+  expect(
+    JSON.stringify(askFollowUpTurnBody.sources ?? []).includes("batch-intelligence"),
+    "/api/ask independent follow-up turn must retrieve Batch Intelligence from the current question, not prior-turn continuity"
+  );
+  expect(
+    Array.isArray(askFollowUpTurnBody.follow_ups) && askFollowUpTurnBody.follow_ups.length >= 2 && askFollowUpTurnBody.follow_ups.length <= 4,
+    "/api/ask independent follow-up turn missing follow_ups chips"
+  );
 
   const contactFallback = await contactPost(
     request("http://localhost/api/contact", {
@@ -201,7 +250,7 @@ try {
   expect(practitionerReviewFallbackBody.ok === true, "/api/contact practitioner review fallback missing ok:true");
   expect(practitionerReviewFallbackBody.stored === false, "/api/contact practitioner review fallback should report stored:false without Supabase");
 
-  const { askSessionKey, legacyAskSessionKeys, serializeAskSession, deserializeAskSession, ASK_SESSION_VERSION, ASK_SESSION_MAX_MESSAGES, ASK_SESSION_MAX_CONTENT_LENGTH } = jiti("../lib/ask-session.ts");
+  const { askSessionKey, legacyAskSessionKeys, serializeAskSession, deserializeAskSession, encodeAskThreadHash, decodeAskThreadHash, toChatHistory, ASK_SESSION_VERSION, ASK_SESSION_MAX_MESSAGES, ASK_SESSION_MAX_CONTENT_LENGTH } = jiti("../lib/ask-session.ts");
   expect(askSessionKey("ask") !== askSessionKey("interview"), "ask-session keys must be mode-scoped");
   expect(ASK_SESSION_VERSION === "v2", "ask-session schema must invalidate legacy answer history");
   expect(legacyAskSessionKeys("ask").includes("seri.ai:ask-session:v1:ask"), "ask-session must identify the prior key for cleanup");
@@ -233,6 +282,46 @@ try {
   expect(
     oversizedSession?.length === ASK_SESSION_MAX_MESSAGES && oversizedSession.every((message) => message.content.length <= ASK_SESSION_MAX_CONTENT_LENGTH),
     "ask-session must cap message count and content length"
+  );
+
+  const { inferFollowUpChips } = jiti("../lib/ai.ts");
+  const packetMessages = [
+    { role: "assistant", content: "Greeting." },
+    { role: "user", content: "What is Operational Intelligence?" },
+    {
+      role: "assistant",
+      content: "A cited answer.",
+      packet: {
+        sources: [{ title: "Doctrine", url: "/wiki/operational-intelligence-canonical-doctrine", excerpt: "Operational Intelligence is the reasoning layer." }],
+        meta: { question_category: "doctrine_architecture", related_pages: ["/framework"] },
+        followUps: ["What is Batch Intelligence?", "Walk me through the ten-layer framework."]
+      }
+    }
+  ];
+  const packetRoundTrip = deserializeAskSession(serializeAskSession(packetMessages));
+  expect(
+    packetRoundTrip?.[2]?.packet?.sources?.[0]?.url === "/wiki/operational-intelligence-canonical-doctrine" &&
+      packetRoundTrip?.[2]?.packet?.followUps?.length === 2,
+    "ask-session round trip must preserve per-turn packets"
+  );
+  const hashBody = encodeAskThreadHash(packetMessages);
+  expect(typeof hashBody === "string" && hashBody.startsWith("ask="), "ask-session hash encoding must produce an ask= payload");
+  const fromHash = decodeAskThreadHash(`#${hashBody}`);
+  expect(fromHash?.[1]?.content === packetMessages[1].content, "ask-session hash round trip must restore user turns");
+  expect(decodeAskThreadHash("") == null && decodeAskThreadHash("#other=1") == null, "ask-session hash decoder must reject empty or unrelated hashes");
+  expect(
+    toChatHistory(packetMessages, 6).every((message) => Object.keys(message).join(",") === "role,content"),
+    "toChatHistory must send role/content only to the Ask API"
+  );
+  const followUpChips = inferFollowUpChips("What is Operational Intelligence?", ["/framework"]);
+  expect(
+    Array.isArray(followUpChips) && followUpChips.length >= 2 && followUpChips.length <= 4,
+    "inferFollowUpChips must return 2-4 questions"
+  );
+  expect(new Set(followUpChips).size === followUpChips.length, "inferFollowUpChips must not duplicate chips");
+  expect(
+    followUpChips.includes("What is Batch Intelligence?"),
+    "inferFollowUpChips should offer Batch Intelligence as a narrowing follow-up from Operational Intelligence"
   );
 
   const contactInvalid = await contactPost(request("http://localhost/api/contact", { kind: "contact", name: "", topic: "Contact", message: "" }));

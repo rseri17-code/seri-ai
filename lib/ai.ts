@@ -315,6 +315,79 @@ function inferSuggestedNextQuestion(question: string) {
   return "Show how the shared case moves through the ten-layer framework.";
 }
 
+function normalizeFollowUpChip(text: string) {
+  return text.replace(/\s+/g, " ").trim();
+}
+
+function isSameFollowUpQuestion(left: string, right: string) {
+  return normalizeFollowUpChip(left).replace(/[?!.]$/, "").toLowerCase() === normalizeFollowUpChip(right).replace(/[?!.]$/, "").toLowerCase();
+}
+
+/**
+ * Phase A follow-up chips: 2–4 public, inspectable next questions.
+ * These are existing public-record prompts, not free-form generated dialogue.
+ */
+export function inferFollowUpChips(question: string, relatedPages: string[] = []): string[] {
+  const lower = normalizeQuestionIntent(question);
+  const related = relatedPages.join(" ");
+  const candidates: string[] = [inferSuggestedNextQuestion(question)];
+
+  if (!/batch intelligence|batch context|batch execution graph/.test(lower)) {
+    if (
+      /operational intelligence|framework|enterprise context|context layer|ten-layer|ten layer/.test(lower) ||
+      related.includes("/framework")
+    ) {
+      candidates.push("What is Batch Intelligence?");
+    }
+  }
+
+  if (/proof|evidence|falsif|skeptic|scorecard|backlog|credible/.test(lower) || related.includes("evidence-pack")) {
+    candidates.push("What evidence would convince a skeptical engineer that this model is useful?");
+    candidates.push("What evidence would change the current scorecard or proof backlog?");
+  } else {
+    candidates.push("What evidence would convince a skeptical engineer that this model is useful?");
+  }
+
+  if (related.includes("/investigation-room") || /oi-room|operations room|investigation/.test(lower)) {
+    candidates.push("Which evidence in OI-ROOM-001 supports, weakens, or contradicts the leading hypothesis?");
+  } else if (related.includes("/framework") || /framework|layer/.test(lower)) {
+    candidates.push("Walk me through the ten-layer framework.");
+  } else {
+    candidates.push("Show how the shared case moves through the ten-layer framework.");
+  }
+
+  if (/observability|aiops|boundary|definition/.test(lower)) {
+    candidates.push("Which boundary separates Operational Intelligence from observability and AIOps?");
+  }
+
+  if (/ravikanth|career|hire|background|resume/.test(lower)) {
+    candidates.push("Which public evidence best shows Ravikanth's career arc and architecture judgment?");
+  }
+
+  const unique: string[] = [];
+  for (const chip of candidates) {
+    const trimmed = normalizeFollowUpChip(chip);
+    if (!trimmed || isSameFollowUpQuestion(trimmed, question)) continue;
+    if (unique.some((item) => isSameFollowUpQuestion(item, trimmed))) continue;
+    unique.push(trimmed);
+    if (unique.length === 4) break;
+  }
+
+  const fallback = [
+    "How does Ravikanth think about Operational Intelligence?",
+    "What public evidence shows Ravikanth's architecture judgment?",
+    "Walk me through the ten-layer framework.",
+    "What is Batch Intelligence?"
+  ];
+  for (const chip of fallback) {
+    if (unique.length >= 2) break;
+    if (isSameFollowUpQuestion(chip, question) || unique.some((item) => isSameFollowUpQuestion(item, chip))) continue;
+    unique.push(chip);
+  }
+
+  return unique.slice(0, 4);
+}
+
 function trimToSentence(text: string, limit: number) {
   const clean = text.replace(/\s+/g, " ").trim();
   if (clean.length <= limit) {

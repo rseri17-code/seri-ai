@@ -4,13 +4,24 @@ import { AppLink as Link } from "@/components/app-link";
 import { ArrowRight, CheckCircle2, Database, FileSearch, LockKeyhole, Route, Send, ShieldCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ProfileMark } from "@/components/profile-mark";
-import type { ChatMessage } from "@/lib/ai";
+import { inferFollowUpChips } from "@/lib/ai";
 import { captureSafeEvent, categorizeQuestion } from "@/lib/analytics-events";
-import { askSessionKey, deserializeAskSession, legacyAskSessionKeys, serializeAskSession } from "@/lib/ask-session";
+import {
+  askSessionKey,
+  decodeAskThreadHash,
+  deserializeAskSession,
+  encodeAskThreadHash,
+  legacyAskSessionKeys,
+  serializeAskSession,
+  toChatHistory,
+  type AskSessionMessage,
+  type AskSessionPacket
+} from "@/lib/ask-session";
 
 type ApiResponse = {
   answer: string;
   sources: Array<{ title: string; url: string; excerpt: string }>;
+  follow_ups?: string[];
   meta?: {
     answer_mode?: string;
     retrieval_mode?: string;
@@ -33,6 +44,84 @@ type ApiResponse = {
   };
 };
 
+function sameUserThread(left: AskSessionMessage[], right: AskSessionMessage[]) {
+  const userTurns = (messages: AskSessionMessage[]) => messages.filter((message) => message.role === "user").map((message) => message.content);
+  return JSON.stringify(userTurns(left)) === JSON.stringify(userTurns(right));
+}
+
+function hydrateLatestPacket(thread: AskSessionMessage[]) {
+  const last = [...thread].reverse().find((message) => message.role === "assistant" && message.packet);
+  return last?.packet;
+}
+
+function AnswerPacketDetails({
+  packet,
+  emptyHint
+}: {
+  packet?: AskSessionPacket;
+  emptyHint?: boolean;
+}) {
+  const meta = packet?.meta;
+  const sources = packet?.sources ?? [];
+  const answerPacket: Array<[string, string]> = [
+    ["Category", meta?.question_category ?? "awaiting question"],
+    ["Layers", meta?.framework_layers?.length ? meta.framework_layers.join(", ") : "matched after retrieval"],
+    ["Boundary", meta?.public_boundary ?? "approved public content only"],
+    ["Latency", typeof meta?.latency_ms === "number" ? `${meta.latency_ms} ms` : "not measured yet"]
+  ];
+
+  return (
+    <details className="mt-3 rounded border border-white/10 bg-black/25">
+      <summary className="cursor-pointer px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-300">
+        Answer packet
+      </summary>
+      <div className="space-y-3 border-t border-white/10 p-3">
+        <div className="grid gap-2">
+          {answerPacket.map(([label, value]) => (
+            <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
+              <p className="whitespace-nowrap text-[0.66rem] font-semibold uppercase tracking-[0.1em] text-slate-400">{label}</p>
+              <p className="mt-1 break-words text-xs font-semibold leading-5 text-slate-200">{value}</p>
+            </div>
+          ))}
+        </div>
+        {packet?.meta?.related_pages?.length ? (
+          <div className="space-y-2">
+            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Related artifacts</p>
+            {packet.meta.related_pages.slice(0, 4).map((href) => (
+              <Link key={href} href={href} className="flex items-center justify-between gap-3 rounded border border-white/10 bg-black/20 px-3 py-2 text-xs font-semibold text-slate-200 hover:border-mint/40">
+                <span className="truncate">{href}</span>
+                <ArrowRight size={14} className="shrink-0 text-mint" />
+              </Link>
+            ))}
+          </div>
+        ) : emptyHint ? (
+          <p className="text-xs leading-5 text-slate-400">Ask a question to generate a reviewable packet with matched scope, layers, boundary, and next artifacts.</p>
+        ) : null}
+        {sources.length ? (
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <Database className="text-signal" size={14} />
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Grounding receipts</p>
+            </div>
+            {sources.map((source) => (
+              <a
+                key={`${source.title}-${source.url}`}
+                href={source.url}
+                onClick={() => captureSafeEvent("source_link_click", { source_url: source.url, source_title: source.title })}
+                className="block rounded border border-white/10 p-3 hover:border-mint/40"
+              >
+                <span className="block font-medium text-white">{source.title}</span>
+                <span className="mt-1 block text-xs text-slate-400">{source.url}</span>
+                <span className="mt-2 block text-xs leading-5 text-slate-300">{source.excerpt}</span>
+              </a>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </details>
+  );
+}
+
 export function Chat({
   mode = "ask",
   initialPrompt = "",
@@ -46,7 +135,7 @@ export function Chat({
     mode === "interview"
       ? "Interview mode is grounded in approved public evidence: Operational Intelligence, AI-native incident investigation, transaction intelligence, evaluation, architecture, and leadership patterns."
       : "Start with a question about the public work, Operational Intelligence, or OI-ROOM-001. Answers cite sources, name uncertainty, and stop when the record is thin.";
-  const [messages, setMessages] = useState<ChatMessage[]>([
+  const [messages, setMessages] = useState<AskSessionMessage[]>([
     {
       role: "assistant",
       content: initialAssistantMessage
@@ -59,19 +148,45 @@ export function Chat({
   const [sessionRestored, setSessionRestored] = useState(false);
   const initialPromptRef = useRef(initialPrompt);
   const autoSubmittedRef = useRef(false);
+  const transcriptRef = useRef<HTMLDivElement | null>(null);
+  const transcriptEndRef = useRef<HTMLDivElement | null>(null);
+
+  function applyPacket(packet: AskSessionPacket | undefined) {
+    setSources(packet?.sources ?? []);
+    setResponseMeta(packet?.meta);
+  }
 
   useEffect(() => {
-    if (initialPromptRef.current.trim()) {
+    if (autoSubmittedRef.current) {
       return;
     }
     try {
       for (const legacyKey of legacyAskSessionKeys(mode)) {
         window.localStorage.removeItem(legacyKey);
       }
-      const restored = deserializeAskSession(window.localStorage.getItem(askSessionKey(mode)));
-      if (restored) {
-        setMessages(restored);
+      const stored = deserializeAskSession(window.localStorage.getItem(askSessionKey(mode)));
+      const fromHash = decodeAskThreadHash(window.location.hash);
+      if (fromHash && stored && sameUserThread(fromHash, stored)) {
+        setMessages(stored);
         setSessionRestored(true);
+        applyPacket(hydrateLatestPacket(stored));
+        autoSubmittedRef.current = true;
+        return;
+      }
+      if (fromHash) {
+        setMessages(fromHash);
+        setSessionRestored(true);
+        applyPacket(hydrateLatestPacket(fromHash));
+        autoSubmittedRef.current = true;
+        return;
+      }
+      if (initialPromptRef.current.trim()) {
+        return;
+      }
+      if (stored) {
+        setMessages(stored);
+        setSessionRestored(true);
+        applyPacket(hydrateLatestPacket(stored));
       }
     } catch {
       // Storage unavailable (private mode, blocked): start fresh.
@@ -83,15 +198,37 @@ export function Chat({
       const serialized = serializeAskSession(messages);
       if (serialized) {
         window.localStorage.setItem(askSessionKey(mode), serialized);
+        const url = new URL(window.location.href);
+        if (url.searchParams.has("prompt")) {
+          url.searchParams.delete("prompt");
+        }
+        const hashBody = encodeAskThreadHash(messages);
+        const next = `${url.pathname}${url.search}${hashBody ? `#${hashBody}` : ""}`;
+        const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (next !== current) {
+          window.history.replaceState(null, "", next);
+        }
       }
     } catch {
       // Storage unavailable: session continuity is best-effort only.
     }
   }, [messages, mode]);
 
+  useEffect(() => {
+    const scroller = transcriptRef.current;
+    const target = transcriptEndRef.current;
+    if (!scroller || !target) {
+      return;
+    }
+    scroller.scrollTop = Math.max(0, target.offsetTop - 8);
+  }, [messages, isLoading]);
+
   function clearSession() {
     try {
       window.localStorage.removeItem(askSessionKey(mode));
+      const url = new URL(window.location.href);
+      url.searchParams.delete("prompt");
+      window.history.replaceState(null, "", `${url.pathname}${url.search}`);
     } catch {
       // Storage unavailable: nothing persisted to clear.
     }
@@ -106,7 +243,7 @@ export function Chat({
       return;
     }
 
-    const nextMessages: ChatMessage[] = [...messages, { role: "user", content: question }];
+    const nextMessages: AskSessionMessage[] = [...messages, { role: "user", content: question }];
     setMessages(nextMessages);
     setInput("");
     setIsLoading(true);
@@ -116,10 +253,12 @@ export function Chat({
     captureSafeEvent("ask_question_submit", { category, mode, route: window.location.pathname });
 
     try {
+      // Each turn posts the new question independently. History is for public-safety
+      // scanning (and optional synthesis providers), not retrieval continuity.
       const response = await fetch("/api/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question, history: messages.slice(-6), mode })
+        body: JSON.stringify({ question, history: toChatHistory(messages), mode })
       });
       const data = (await response.json()) as ApiResponse;
 
@@ -138,9 +277,17 @@ export function Chat({
         public_boundary: data.meta?.public_boundary ?? "unknown",
         server_latency_ms: data.meta?.latency_ms ?? null
       });
-      setMessages([...nextMessages, { role: "assistant", content: data.answer }]);
-      setSources(data.sources ?? []);
-      setResponseMeta(data.meta);
+      const followUps =
+        Array.isArray(data.follow_ups) && data.follow_ups.length
+          ? data.follow_ups.slice(0, 4)
+          : inferFollowUpChips(question, data.meta?.related_pages ?? []);
+      const packet: AskSessionPacket = {
+        sources: data.sources ?? [],
+        meta: data.meta,
+        followUps
+      };
+      setMessages([...nextMessages, { role: "assistant", content: data.answer, packet }]);
+      applyPacket(packet);
     } catch {
       captureSafeEvent("ask_response_failure", {
         category,
@@ -192,18 +339,14 @@ export function Chat({
     ["Scope", "public"],
     ["Status", isLoading ? "evaluating" : responseMeta?.answer_mode ?? "ready"]
   ];
-  const answerPacket: Array<[string, string]> = [
-    ["Category", responseMeta?.question_category ?? "awaiting question"],
-    ["Layers", responseMeta?.framework_layers?.length ? responseMeta.framework_layers.join(", ") : "matched after retrieval"],
-    ["Boundary", responseMeta?.public_boundary ?? "approved public content only"],
-    ["Latency", typeof responseMeta?.latency_ms === "number" ? `${responseMeta.latency_ms} ms` : "not measured yet"]
-  ];
   const hasAskedQuestion = messages.some((message) => message.role === "user");
   const hasSources = sources.length > 0;
   const hasRelatedPages = Boolean(responseMeta?.related_pages?.length);
   const isRefusal = responseMeta?.answer_mode === "public_safety_refusal" || responseMeta?.retrieval_mode === "blocked";
   const latencyKnown = typeof responseMeta?.latency_ms === "number";
   const runtimeBudget = responseMeta?.budget;
+  const latestAssistantIndex = messages.reduce((latest, message, index) => (message.role === "assistant" ? index : latest), -1);
+  const latestFollowUps = messages[latestAssistantIndex]?.packet?.followUps ?? [];
   const trustContract: Array<[string, string, boolean, "mint" | "signal" | "amber"]> = [
     ["AI disclosure", responseMeta?.assistant_identity ?? "AI assistant over approved public work", true, "mint"],
     [
@@ -229,7 +372,7 @@ export function Chat({
 
   return (
     <div className="grid gap-5 lg:grid-cols-[1fr_360px]">
-      <div className="overflow-hidden rounded-lg border border-white/10 bg-[#071018]">
+      <div className="flex min-h-[28rem] flex-col overflow-hidden rounded-lg border border-white/10 bg-[#071018] md:min-h-[36rem] md:h-[min(72vh,46rem)]">
         <div className="border-b border-white/10 bg-black/20 p-4">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex items-center gap-3">
@@ -249,18 +392,53 @@ export function Chat({
             </div>
           </div>
         </div>
-        <div className="h-[210px] space-y-4 overflow-y-auto p-4 md:h-[320px]">
-          {messages.map((message, index) => (
-            <div key={`${message.role}-${index}`} className={message.role === "user" ? "flex justify-end" : "flex justify-start"}>
+        <div
+          className="min-h-0 flex-1 space-y-4 overflow-y-auto p-4"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+          aria-busy={isLoading}
+          data-ask-transcript="true"
+          ref={transcriptRef}
+        >
+          {messages.map((message, index) => {
+            const isLatestAssistant = message.role === "assistant" && index === latestAssistantIndex;
+            const isLatestUser = message.role === "user" && !messages.slice(index + 1).some((item) => item.role === "user");
+            return (
               <div
-                className={`max-w-[82%] rounded-lg px-4 py-3 text-sm leading-6 ${
-                  message.role === "user" ? "bg-mint text-ink" : "whitespace-pre-line border border-white/10 bg-black/30 text-slate-100"
-                }`}
+                key={`${message.role}-${index}`}
+                ref={isLatestUser ? transcriptEndRef : undefined}
+                className={message.role === "user" ? "flex justify-end" : "flex justify-start"}
               >
-                {message.content}
+                <div className={`max-w-[82%] ${message.role === "user" ? "" : "w-full"}`}>
+                  <div
+                    className={`rounded-lg px-4 py-3 text-sm leading-6 ${
+                      message.role === "user" ? "bg-mint text-ink" : "whitespace-pre-line border border-white/10 bg-black/30 text-slate-100"
+                    }`}
+                  >
+                    {message.content}
+                    {message.role === "assistant" && message.packet ? (
+                      <AnswerPacketDetails packet={message.packet} emptyHint={false} />
+                    ) : null}
+                  </div>
+                  {!isLoading && isLatestAssistant && latestFollowUps.length ? (
+                    <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Follow-up questions">
+                      {latestFollowUps.map((prompt) => (
+                        <button
+                          key={prompt}
+                          type="button"
+                          className="min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2 text-left text-xs font-semibold leading-5 text-slate-200 hover:border-mint/40"
+                          onClick={() => void sendMessage(prompt)}
+                        >
+                          {prompt}
+                        </button>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
           {isLoading ? (
             <div className="rounded-lg border border-signal/25 bg-signal/[0.07] p-4 text-sm text-slate-300">
               <div className="flex items-center gap-2 font-semibold text-signal">
@@ -276,13 +454,18 @@ export function Chat({
             <p className="text-[0.68rem] leading-4 text-slate-400">
               {sessionRestored ? "Session restored from this browser. Nothing is stored on the server." : "Session saved in this browser only. Nothing is stored on the server."}
             </p>
-            <button type="button" onClick={clearSession} className="shrink-0 rounded border border-white/10 px-2 py-1 text-[0.68rem] font-semibold text-slate-300 hover:border-mint/40 hover:text-mint">
+            <button
+              type="button"
+              onClick={clearSession}
+              aria-label="New conversation"
+              className="shrink-0 rounded border border-white/10 px-2 py-1 text-[0.68rem] font-semibold text-slate-300 hover:border-mint/40 hover:text-mint"
+            >
               Clear session
             </button>
           </div>
         ) : null}
         <form
-          className="flex gap-2 border-t border-white/10 p-3"
+          className="sticky bottom-0 flex gap-2 border-t border-white/10 bg-[#071018] p-3"
           onSubmit={(event) => {
             event.preventDefault();
             void sendMessage();
@@ -292,27 +475,37 @@ export function Chat({
             className="min-w-0 flex-1 rounded border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-mint/60"
             value={input}
             onChange={(event) => setInput(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault();
+                void sendMessage();
+              }
+            }}
             aria-label="Ask a question about the public work"
             placeholder="Ask about the work, Operational Intelligence, projects, or background..."
+            autoComplete="off"
+            disabled={isLoading}
           />
-          <button className="grid h-12 w-12 place-items-center rounded bg-mint text-ink" type="submit" aria-label="Send message">
+          <button className="grid h-12 w-12 place-items-center rounded bg-mint text-ink disabled:opacity-50" type="submit" aria-label="Send message" disabled={isLoading}>
             <Send size={18} />
           </button>
         </form>
-        <div className="border-t border-white/10 bg-black/15 p-3">
-          <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Strong first questions</p>
-          <div className="mt-2 grid gap-2 sm:grid-cols-2">
-            {prompts.slice(0, 4).map((prompt) => (
-              <button
-                key={prompt}
-                className="min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2 text-left text-xs font-semibold leading-5 text-slate-200 hover:border-mint/40"
-                onClick={() => void sendMessage(prompt)}
-              >
-                {prompt}
-              </button>
-            ))}
+        {!hasAskedQuestion ? (
+          <div className="border-t border-white/10 bg-black/15 p-3">
+            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-slate-400">Strong first questions</p>
+            <div className="mt-2 grid gap-2 sm:grid-cols-2">
+              {prompts.slice(0, 4).map((prompt) => (
+                <button
+                  key={prompt}
+                  className="min-w-0 rounded border border-white/10 bg-white/[0.04] px-3 py-2 text-left text-xs font-semibold leading-5 text-slate-200 hover:border-mint/40"
+                  onClick={() => void sendMessage(prompt)}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
       <aside className="space-y-4">
         <div className="rounded-lg border border-signal/20 bg-signal/[0.05] p-5">
@@ -321,7 +514,12 @@ export function Chat({
             <p className="font-semibold text-white">Answer packet</p>
           </div>
           <div className="mt-4 grid gap-2">
-            {answerPacket.map(([label, value]) => (
+            {[
+              ["Category", responseMeta?.question_category ?? "awaiting question"],
+              ["Layers", responseMeta?.framework_layers?.length ? responseMeta.framework_layers.join(", ") : "matched after retrieval"],
+              ["Boundary", responseMeta?.public_boundary ?? "approved public content only"],
+              ["Latency", typeof responseMeta?.latency_ms === "number" ? `${responseMeta.latency_ms} ms` : "not measured yet"]
+            ].map(([label, value]) => (
               <div key={label} className="rounded border border-white/10 bg-black/20 p-3">
                 <p className="whitespace-nowrap text-[0.66rem] font-semibold uppercase tracking-[0.1em] text-slate-400">{label}</p>
                 <p className="mt-1 break-words text-xs font-semibold leading-5 text-slate-200">{value}</p>
@@ -372,20 +570,22 @@ export function Chat({
             This assistant is intentionally deterministic and source-scoped. It answers only from the public record; unsupported or confidential questions remain out of scope.
           </p>
         </div>
-        <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
-          <p className="font-semibold text-white">Inspection prompts</p>
-          <div className="mt-4 space-y-2">
-            {prompts.map((prompt) => (
-              <button
-                key={prompt}
-                className="w-full rounded border border-white/10 px-3 py-2 text-left text-sm text-slate-200 hover:border-mint/40"
-                onClick={() => void sendMessage(prompt)}
-              >
-                {prompt}
-              </button>
-            ))}
+        {!hasAskedQuestion ? (
+          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
+            <p className="font-semibold text-white">Inspection prompts</p>
+            <div className="mt-4 space-y-2">
+              {prompts.map((prompt) => (
+                <button
+                  key={prompt}
+                  className="w-full rounded border border-white/10 px-3 py-2 text-left text-sm text-slate-200 hover:border-mint/40"
+                  onClick={() => void sendMessage(prompt)}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
         <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
           <div className="flex items-center gap-2">
             <Database className="text-signal" size={18} />

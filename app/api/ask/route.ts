@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { classifyAskQuestion, generateRaviAnswer, inferFrameworkLayers, inferRelatedArtifacts, type AskAnswerMode } from "@/lib/ai";
+import { classifyAskQuestion, generateRaviAnswer, inferFollowUpChips, inferFrameworkLayers, inferRelatedArtifacts, type AskAnswerMode } from "@/lib/ai";
 import { isPublicSafe } from "@/lib/compliance";
 import { getRuntimeEnvironment } from "@/lib/env";
 import { clientKey, rateLimit, rateLimitedResponse, withTimeout } from "@/lib/production-guards";
@@ -41,18 +41,23 @@ export async function POST(request: Request) {
   }
 
   const { question, history } = parsed.data;
+  // Phase A: each turn retrieves independently from `question`.
+  // `history` is scanned for public-safety only (and optional synthesis providers).
+  // It is not concatenated into the retrieval query, so follow-ups cannot invent continuity.
   const isConversationPublicSafe =
     isPublicSafe(question) &&
     (history?.every((message) => message.role !== "user" || isPublicSafe(message.content)) ?? true);
   const questionCategory = classifyAskQuestion(question);
   const frameworkLayers = inferFrameworkLayers(question);
   const relatedPages = inferRelatedArtifacts(question);
+  const followUps = inferFollowUpChips(question, relatedPages);
   const runtime = getRuntimeEnvironment();
   if (!isConversationPublicSafe) {
     return NextResponse.json({
       answer:
         "I can't discuss employer-specific or confidential systems, proprietary projects, private screenshots, logs, dashboards, or internal architecture. I can explain the public architecture patterns behind the question, including evidence-driven investigation, transaction journey reconstruction, replayable reasoning, evaluation gates, operational memory, and human-in-the-loop review.",
       sources: [],
+      follow_ups: followUps,
       meta: {
         answer_mode: "public_safety_refusal",
         retrieval_mode: "blocked",
@@ -145,6 +150,7 @@ export async function POST(request: Request) {
       url: source.url,
       excerpt: source.content.slice(0, 220)
     })),
+    follow_ups: followUps,
     meta: {
       answer_mode: answerMode,
       retrieval_mode: retrievalMode,
