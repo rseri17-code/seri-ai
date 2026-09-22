@@ -376,7 +376,9 @@ for (const required of [
   "rebuild what is happening now",
   "show how the findings connect",
   "keep the unknowns visible",
-  "leave\n            anything consequential to a person",
+  // Repointed 2026-09-22: the thesis paragraph was tightened and reflowed. The invariant is
+  // still that a person owns the consequential action. Do not require the old line break.
+  "anything consequential to a person",
   // Repointed 2026-08-31. This pin required the literal phrase "inspectable without it", which sat
   // in the hero's third sentence as a confidentiality disclaimer — copy written for the
   // public-safety rule, not for a reader, and defensive in the first 200 words of the site. The

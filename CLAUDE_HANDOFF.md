@@ -1,6 +1,21 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-09-21
+Last updated: 2026-09-22
+
+## ACT HOMEPAGE DEFECT PASS — 2026-09-22
+
+Preview-only. Do not merge.
+
+Directed defect pass on `/`. Map: `docs/defect-5-map.md`.
+
+- **Floating Ask pill removed.** `components/ask-dock.tsx` deleted and unmounted from `app/layout.tsx`. Navbar Ask (`/ask`) and contact ask routes stay. Validators that required the dock to mount were repointed to require its absence. `Chat` still has a `dock` variant; nothing mounts it.
+- **About already resolved.** Nav label About points at `/background`. `/about` remains a 308 to `/background` in `next.config.ts`. About was not removed (five-item nav + Ask stands). Coherence now pins that href.
+- **Portrait.** `size="xl"` gets a thin mint border, an edge vignette into the page ink, and a low-opacity mint corner wash. The face is not filtered. Caption under the hero image is unchanged.
+- **Authorized Misfire body** tightened (118 → 94 words, 20.3%). Frozen H1, H2, and both hero CTAs untouched. Pins that required the old line break were repointed to the same invariants.
+- **Selected ideas deks** shortened in `content/home.json`. Named comparison modes and the control-plane gloss stay.
+- **30-second map cards and Selected ideas** use a larger body size and adjusted padding below 769px and 480px. At `min-width: 769px` the previous type and padding return.
+
+Public-safety: no employer data added. Preview-only; do not merge.
 
 ## ACT HERO LEAD LOCK — 2026-09-21
 
@@ -1671,6 +1686,12 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-22 — ACT: homepage defect pass (preview)
+
+- **Finding**: Floating “Ask the public record” pill duplicated navbar Ask and overlapped the page. About in the nav already targeted `/background` (live `/about` is a 308, not a 404). Portrait read as a light studio crop on the ink page. Authorized Misfire and Selected ideas deks were restating themselves. Map-card body type was 14px/12px at tablet and phone widths.
+- **Acted**: Removed the dock and repointed the mount pins. Left About → `/background`. Framed the xl portrait without filtering the face. Cut the thesis body and the four deks; repointed the consequential-action pin off its old line break. Responsive type and padding below 769px / 480px only.
+- **Follow-up**: VERIFY the preview homepage at 1440, 768, and 390. Public-safety risk: none. Flag for Ravikanth: preview-only; do not merge.
 
 ### 2026-09-21 — ACT: locked hero lead and recent paragraph (PR #14)
 

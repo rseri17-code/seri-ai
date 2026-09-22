@@ -73,25 +73,25 @@
     {
       "slug": "oi-room-001-control-comparison",
       "title": "OI-ROOM-001 Control Comparison",
-      "dek": "How to test the Operations Room against dashboard-only, chatbot-only, and ticket-only investigation modes.",
+      "dek": "Test the Operations Room against dashboard-only, chatbot-only, and ticket-only modes.",
       "theme": "Evidence"
     },
     {
       "slug": "operational-intelligence-is-the-new-control-plane",
       "title": "Operational Intelligence Is the New Control Plane",
-      "dek": "Why enterprises need a reasoning layer across signals, workflows, people, and outcomes — not another dashboard. “Control plane” here is the argument, not a product name.",
+      "dek": "Reasoning layer across signals, workflows, people, and outcomes — not another dashboard. “Control plane” is the argument, not a product.",
       "theme": "Operational Intelligence"
     },
     {
       "slug": "agentic-incident-investigation",
       "title": "Agentic Incident Investigation Without Losing Control",
-      "dek": "How AI agents can speed enterprise investigations while keeping evidence, sources, and accountability intact.",
+      "dek": "AI agents speed enterprise investigations; evidence, sources, and accountability stay intact.",
       "theme": "Agentic Systems"
     },
     {
       "slug": "transaction-intelligence-for-complex-enterprises",
       "title": "Transaction Intelligence for Complex Enterprises",
-      "dek": "Following a customer or business journey across systems, instead of explaining a single service metric.",
+      "dek": "Customer or business journey across systems, instead of one service metric.",
       "theme": "Transaction Intelligence"
     }
   ],

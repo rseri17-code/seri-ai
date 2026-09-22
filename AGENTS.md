@@ -116,6 +116,14 @@ Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.
 - Frozen hero H1, two primary CTAs, and five-item nav + Ask untouched.
 - Pins that quoted the old summary were repointed, not fed copy.
 
+## SESSION HANDOFF — 2026-09-22 (ACT: homepage defect pass)
+
+Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.
+
+- Floating Ask pill removed. Navbar Ask and contact ask routes stay. Five-item nav + Ask stays; About remains `/background`.
+- Portrait frame, tightened Authorized Misfire and Selected ideas, and responsive map/idea type below 769px. Frozen hero H1 and both primary CTAs untouched.
+- Dock-mount pins were repointed because the pill was deleted, not because copy was written for a grep.
+
 ## Ruled copy is machine-enforced
 
 `npm run validate:ruled` fails the build if ruled copy is reverted. Restore the ruled copy — do not repoint the check — unless Ravikanth issues a new ruling and you update `scripts/validate-ruled-copy.mjs` and CLAUDE_HANDOFF.md in the same commit.

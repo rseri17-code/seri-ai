@@ -132,8 +132,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Editorial portrait: no card, no border box. The image carries the presence and the
-                caption sits under it like a byline, so the hero reads as authored rather than filed. */}
+            {/* Editorial portrait. The frame, mint edge, and quiet vignette live on Portrait size="xl".
+                The caption under the image is the byline. */}
             <figure className="m-0 lg:justify-self-end">
               <Portrait size="xl" />
               <figcaption className="mt-5 max-w-xs">
@@ -169,17 +169,15 @@ export default function Home() {
             AI agents don&apos;t misfire because they lack intelligence.
           </h2>
           <p className="mt-6 max-w-2xl text-xl leading-9 text-slate-200 sm:text-2xl sm:leading-10">
-            They misfire when the operational context beneath them is fragmented, stale, incomplete, or trusted past
-            the point where it was still true.
+            They misfire when operational context is fragmented, stale, incomplete, or trusted after it&apos;s no longer true.
           </p>
           <p className="mt-7 max-w-2xl text-lg leading-9 text-slate-300">
             This is <strong className="font-semibold text-amber">the Authorized Misfire</strong> &mdash; an action the
-            system was permitted to take on context it should not have trusted. No rule was broken. What it knew was older or
-            thinner than the decision resting on it. That is what happens when any of the four records &mdash; owner,
-            change, dependency, or journey &mdash; is missing, older than the decision, or contradicted.
+            system was permitted to take on context it should not have trusted. No rule was broken. When any of the four
+            records &mdash; owner, change, dependency, or journey &mdash; is missing, older or thinner than the decision, or contradicted.
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
-            Past incidents and runbooks are memory, not current production truth. The layer underneath has to
+            Incidents and runbooks are memory, not current production truth. The layer must
             rebuild what is happening now, show how the findings connect, keep the unknowns visible, and leave
             anything consequential to a person.
           </p>
@@ -278,7 +276,7 @@ export default function Home() {
             <li key={article.slug}>
               <Link
                 href={`/ideas/${article.slug}`}
-                className="group grid gap-3 py-7 transition sm:grid-cols-[auto_1fr] sm:gap-7"
+                className="group grid gap-4 py-8 transition max-[480px]:gap-3.5 max-[480px]:py-7 sm:grid-cols-[auto_1fr] sm:gap-6 min-[769px]:gap-3 min-[769px]:py-7 sm:min-[769px]:gap-7"
               >
                 <span className="font-mono text-sm text-slate-500 sm:pt-1.5">{String(i + 1).padStart(2, "0")}</span>
                 <span>
@@ -288,7 +286,9 @@ export default function Home() {
                   <span className="mt-3 block text-xl font-semibold leading-tight text-white group-hover:text-mint sm:text-2xl">
                     {article.title}
                   </span>
-                  <span className="mt-3 block max-w-2xl text-base leading-8 text-slate-400">{article.dek}</span>
+                  <span className="mt-3 block max-w-2xl text-[clamp(1.0625rem,0.98rem+0.4vw,1.125rem)] leading-8 text-slate-400 min-[769px]:text-base">
+                    {article.dek}
+                  </span>
                 </span>
               </Link>
             </li>
