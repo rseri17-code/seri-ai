@@ -330,10 +330,7 @@ try {
   expect(fullAskHref(packetMessages).startsWith("/ask#ask="), "fullAskHref must deep-link the current thread to /ask");
   expect(fullAskHref([{ role: "assistant", content: "Greeting only." }]) === "/ask", "fullAskHref without a user turn must stay on /ask");
 
-  const { shouldShowAskDock, challengeChipsForPath } = jiti("../content/ask.ts");
-  expect(shouldShowAskDock("/") && shouldShowAskDock("/framework"), "Ask dock must appear on / and /framework");
-  expect(shouldShowAskDock("/work") && shouldShowAskDock("/investigation-room") && shouldShowAskDock("/projects/codebase-memory"), "Ask dock should appear on Work, Operations Room, and projects");
-  expect(!shouldShowAskDock("/ask") && !shouldShowAskDock("/admin"), "Ask dock must not mount on /ask or /admin");
+  const { challengeChipsForPath } = jiti("../content/ask.ts");
   const homeChips = challengeChipsForPath("/");
   const frameworkChips = challengeChipsForPath("/framework");
   expect(homeChips.some((chip) => /Authorized Misfire/i.test(chip)), "homepage challenge chips must include Authorized Misfire");
@@ -346,9 +343,9 @@ try {
   expect(chatSource.includes("llm_provider") && chatSource.includes("llm_used") && chatSource.includes("llm_skip_reason"), "Ask UI packet must surface llm_provider, llm_used, and llm_skip_reason");
   expect(chatSource.includes("llm_error_code"), "Ask UI must keep Groq HTTP error codes in the packet");
   expect(chatSource.includes("LLM provider") && chatSource.includes("LLM skip"), "Ask UI packet must label LLM provider and skip reason");
-  const dockSource = fs.readFileSync(path.join(root, "components", "ask-dock.tsx"), "utf8");
-  expect(dockSource.includes("persistUrlHash={false}") && dockSource.includes("readUrlHash={false}"), "Ask dock must not write or read #ask= on content pages");
-  expect(fs.readFileSync(path.join(root, "app", "layout.tsx"), "utf8").includes("<AskDock />"), "root layout must mount the Ask dock");
+  const layoutSource = fs.readFileSync(path.join(root, "app", "layout.tsx"), "utf8");
+  expect(!fs.existsSync(path.join(root, "components", "ask-dock.tsx")), "floating Ask dock component must stay removed");
+  expect(!layoutSource.includes("AskDock") && !layoutSource.includes("ask-dock"), "root layout must not mount a floating Ask dock");
   const followUpChips = inferFollowUpChips("What is Operational Intelligence?", ["/framework"]);
   expect(
     Array.isArray(followUpChips) && followUpChips.length >= 2 && followUpChips.length <= 4,

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { AskDock } from "@/components/ask-dock";
 import { Analytics } from "@/components/analytics";
 import { BetaFeedback } from "@/components/beta-feedback";
 import { Footer } from "@/components/footer";
@@ -60,7 +59,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main id="main-content" tabIndex={-1} className="min-h-[calc(100vh-4.75rem)]">
           {children}
         </main>
-        <AskDock />
         <BetaFeedback />
         <Footer />
       </body>

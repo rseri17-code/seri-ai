@@ -37,16 +37,16 @@ export function HomeOrientation() {
           <div className="border-b border-white/10 bg-black/20 px-4 py-3 sm:px-5">
             <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-mint">Umbrella</p>
             <p className="mt-1 text-base font-semibold text-white sm:text-lg">Operational Intelligence</p>
-            <p className="mt-1 text-sm leading-6 text-slate-300">
+            <p className="mt-1 text-sm leading-6 text-slate-300 max-[768px]:text-[clamp(1rem,0.92rem+0.35vw,1.0625rem)] max-[768px]:leading-7">
               The reasoning layer between live production signals (metrics, logs, traces, changes) and a human decision.
             </p>
           </div>
 
-          <div className="grid gap-3 p-3 sm:grid-cols-2 sm:p-4 lg:grid-cols-[1.15fr_auto_0.95fr] lg:items-stretch">
-            <div className="min-w-0 rounded-lg border border-signal/30 bg-signal/[0.07] p-4">
+          <div className="grid gap-3 p-3 max-[768px]:gap-4 max-[768px]:p-4 max-[480px]:gap-3.5 max-[480px]:p-3.5 sm:grid-cols-2 sm:p-4 lg:grid-cols-[1.15fr_auto_0.95fr] lg:items-stretch">
+            <div className="min-w-0 rounded-lg border border-signal/30 bg-signal/[0.07] p-4 max-[768px]:p-5 max-[480px]:p-4">
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-signal">Shared store</p>
               <p className="mt-2 text-sm font-semibold text-white sm:text-base">Enterprise Context Layer</p>
-              <p className="mt-1 text-sm leading-6 text-slate-300">
+              <p className="mt-1 text-sm leading-6 text-slate-300 max-[768px]:text-[clamp(1rem,0.92rem+0.35vw,1.0625rem)] max-[768px]:leading-7">
                 Four reusable records, maintained once for humans, workflows, and agents: owner, change in
                 the symptom window, dependency (service path or job graph), and affected journey. Each
                 record carries a source and an as-of time. If any of the four is missing, older than the
@@ -55,11 +55,11 @@ export function HomeOrientation() {
               </p>
               <Link
                 href="/framework#batch-intelligence"
-                className="mt-3 block min-h-11 rounded-md border border-signal/25 bg-black/25 p-3 transition hover:border-signal/50"
+                className="mt-3 block min-h-11 rounded-md border border-signal/25 bg-black/25 p-3 transition hover:border-signal/50 max-[768px]:p-4 max-[480px]:p-3.5"
               >
                 <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">Public demo of the store</p>
                 <p className="mt-1 text-sm font-semibold text-white">Batch Intelligence</p>
-                <p className="mt-1 text-xs leading-5 text-slate-300">
+                <p className="mt-1 text-xs leading-5 text-slate-300 max-[768px]:text-[clamp(0.875rem,0.8rem+0.4vw,1rem)] max-[768px]:leading-6">
                   For request-path services, the store&apos;s dependency record is topology and deploys. For
                   batch, it is which jobs ran, in what order, and what they read and wrote. This is a
                   shareable demo of that batch record (no employer data).
@@ -75,10 +75,10 @@ export function HomeOrientation() {
               <span className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-400 lg:hidden">reads from / writes back</span>
             </div>
 
-            <div className="min-w-0 rounded-lg border border-mint/30 bg-mint/[0.07] p-4">
+            <div className="min-w-0 rounded-lg border border-mint/30 bg-mint/[0.07] p-4 max-[768px]:p-5 max-[480px]:p-4">
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-mint">Investigation loop</p>
               <p className="mt-2 text-sm font-semibold text-white sm:text-base">SRE / Agent Harness</p>
-              <p className="mt-1 text-sm leading-6 text-slate-300">
+              <p className="mt-1 text-sm leading-6 text-slate-300 max-[768px]:text-[clamp(1rem,0.92rem+0.35vw,1.0625rem)] max-[768px]:leading-7">
                 The investigation loop that reads those records, investigates production reliability, then
                 stops for a person. Evidence → working theory → checks before a recommendation is offered →
                 write what happened back. Humans and agents consume the same store; the loop is not allowed
@@ -87,14 +87,14 @@ export function HomeOrientation() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 bg-black/20 p-3 sm:p-4">
+          <div className="border-t border-white/10 bg-black/20 p-3 max-[768px]:p-4 max-[480px]:p-3.5 sm:p-4">
             <Link
               href="/framework#taxonomy"
-              className="block min-h-11 rounded-lg border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/25"
+              className="block min-h-11 rounded-lg border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/25 max-[768px]:p-5 max-[480px]:p-4"
             >
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-slate-400">How this site tags notes</p>
               <p className="mt-1 text-sm font-semibold text-white sm:text-base">Ten layers</p>
-              <p className="mt-1 text-sm leading-6 text-slate-300">
+              <p className="mt-1 text-sm leading-6 text-slate-300 max-[768px]:text-[clamp(1rem,0.92rem+0.35vw,1.0625rem)] max-[768px]:leading-7">
                 How this site tags notes, patterns, and artifacts so they can be found. Ten demo stages in
                 the Operations Room are a different ten. The runtime model is the store + the loop. The
                 longer map is on Framework.

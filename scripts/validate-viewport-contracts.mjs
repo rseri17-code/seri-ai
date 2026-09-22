@@ -86,30 +86,6 @@ const routeContracts = [
     ]
   },
   {
-    route: "/",
-    file: "components/ask-dock.tsx",
-    minResponsiveTokens: 1,
-    required: [
-      "Ask the public record",
-      "shouldShowAskDock",
-      "challengeChipsForPath",
-      "variant=\"dock\"",
-      "persistUrlHash={false}",
-      "readUrlHash={false}",
-      "min-h-11",
-      "safe-area-inset-bottom",
-      "safe-area-inset-right",
-      "78dvh",
-      "calc(100vw-1.5rem)",
-      "z-40",
-      "aria-expanded",
-      "aria-controls",
-      "role=\"complementary\"",
-      "Close Ask dock",
-      "data-ask-dock-trigger"
-    ]
-  },
-  {
     route: "/investigation-room",
     file: "app/simulator/simulator.tsx",
     minResponsiveTokens: 45,
