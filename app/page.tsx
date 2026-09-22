@@ -276,7 +276,7 @@ export default function Home() {
             <li key={article.slug}>
               <Link
                 href={`/ideas/${article.slug}`}
-                className="group grid gap-4 py-8 transition max-[480px]:gap-3.5 max-[480px]:py-7 sm:grid-cols-[auto_1fr] sm:gap-6 min-[769px]:gap-3 min-[769px]:py-7 sm:min-[769px]:gap-7"
+                className="group grid gap-3 py-7 transition max-[768px]:gap-6 max-[768px]:py-8 max-[639px]:gap-4 max-[480px]:gap-3.5 max-[480px]:py-7 sm:grid-cols-[auto_1fr] min-[769px]:gap-7"
               >
                 <span className="font-mono text-sm text-slate-500 sm:pt-1.5">{String(i + 1).padStart(2, "0")}</span>
                 <span>
@@ -286,7 +286,7 @@ export default function Home() {
                   <span className="mt-3 block text-xl font-semibold leading-tight text-white group-hover:text-mint sm:text-2xl">
                     {article.title}
                   </span>
-                  <span className="mt-3 block max-w-2xl text-[clamp(1.0625rem,0.98rem+0.4vw,1.125rem)] leading-8 text-slate-400 min-[769px]:text-base">
+                  <span className="mt-3 block max-w-2xl text-base leading-8 text-slate-400 max-[768px]:text-[clamp(1.0625rem,0.98rem+0.4vw,1.125rem)] max-[768px]:leading-8">
                     {article.dek}
                   </span>
                 </span>

@@ -13,7 +13,7 @@ Directed defect pass on `/`. Map: `docs/defect-5-map.md`.
 - **Portrait.** `size="xl"` gets a thin mint border, an edge vignette into the page ink, and a low-opacity mint corner wash. The face is not filtered. Caption under the hero image is unchanged.
 - **Authorized Misfire body** tightened (118 → 94 words, 20.3%). Frozen H1, H2, and both hero CTAs untouched. Pins that required the old line break were repointed to the same invariants.
 - **Selected ideas deks** shortened in `content/home.json`. Named comparison modes and the control-plane gloss stay.
-- **30-second map cards and Selected ideas** use a larger body size and adjusted padding below 769px and 480px. At `min-width: 769px` the previous type and padding return.
+- **30-second map cards and Selected ideas** use a larger body size and adjusted padding only at `max-width: 768px` (and a tighter step at 480px). At 769px and above, type, padding, gap, and line-height stay on the previous utilities (`text-sm` / `text-xs` / `text-base` + `leading-8`, `sm:p-4`, `gap-7`). No `min-[769px]` padding or font-size rule is allowed to override those.
 
 Public-safety: no employer data added. Preview-only; do not merge.
 
