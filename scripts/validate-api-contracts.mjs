@@ -161,6 +161,21 @@ try {
   const askInvalid = await askPost(request("http://localhost/api/ask", { question: "", mode: "ask" }));
   expect(askInvalid.status === 400, `/api/ask invalid payload returned ${askInvalid.status}`);
 
+  const askTooLong = await askPost(request("http://localhost/api/ask", { question: "a".repeat(1201), mode: "ask" }));
+  expect(askTooLong.status === 400, `/api/ask oversized question returned ${askTooLong.status}`);
+
+  const askHistory = await askPost(
+    request("http://localhost/api/ask", {
+      question: "What is Operational Intelligence?",
+      history: Array.from({ length: 7 }, (_, index) => ({
+        role: index % 2 === 0 ? "user" : "assistant",
+        content: "Public framework context only."
+      })),
+      mode: "ask"
+    })
+  );
+  expect(askHistory.status === 400, `/api/ask history above six turns returned ${askHistory.status}`);
+
   const askThin = await askPost(
     request("http://localhost/api/ask", {
       question: "What is a Quantum Flux Capacitor?",
@@ -340,6 +355,8 @@ try {
   const chatSource = fs.readFileSync(path.join(root, "components", "chat.tsx"), "utf8");
   expect(chatSource.includes('variant === "dock"') && chatSource.includes("shouldPersistUrlHash"), "Chat must support a dock variant that can disable URL hash persistence");
   expect(chatSource.includes('fetch("/api/ask"'), "dock and /ask must reuse the same /api/ask path");
+  expect(chatSource.includes("AbortController"), "Ask UI must abort a slow /api/ask request");
+  expect(chatSource.includes("The public record is slow right now, try again."), "Ask UI must show the slow-record timeout");
   expect(chatSource.includes("llm_provider") && chatSource.includes("llm_used") && chatSource.includes("llm_skip_reason"), "Ask UI packet must surface llm_provider, llm_used, and llm_skip_reason");
   expect(chatSource.includes("llm_error_code"), "Ask UI must keep Groq HTTP error codes in the packet");
   expect(chatSource.includes("LLM provider") && chatSource.includes("LLM skip"), "Ask UI packet must label LLM provider and skip reason");
@@ -367,6 +384,22 @@ try {
   }
   expect(rateLimitedResponse?.status === 429, `/api/contact rate limit returned ${rateLimitedResponse?.status}`);
   expect(rateLimitedResponse?.headers.get("Retry-After"), "/api/contact rate limit missing Retry-After header");
+
+  const askRateIp = "203.0.113.77";
+  let askRateResponse;
+  for (let index = 0; index < 21; index += 1) {
+    askRateResponse = await askPost(
+      fixedIpRequest("http://localhost/api/ask", { question: "What is Operational Intelligence?", mode: "ask" }, askRateIp)
+    );
+  }
+  expect(askRateResponse?.status === 429, `/api/ask rate limit returned ${askRateResponse?.status}`);
+  expect(askRateResponse?.headers.get("Retry-After"), "/api/ask rate limit missing Retry-After header");
+
+  const askRouteSource = fs.readFileSync(path.join(root, "app/api/ask/route.ts"), "utf8");
+  expect(askRouteSource.includes("export const maxDuration = 15"), "/api/ask must cap the platform duration");
+  expect(askRouteSource.includes("ASK_HISTORY_TURN_LIMIT = 6"), "/api/ask must cap history turns");
+  expect(askRouteSource.includes("event: \"ask_latency\""), "/api/ask must log latency for p99");
+  expect(askRouteSource.includes("AbortSignal.timeout"), "/api/ask vector search must abort");
 } finally {
   for (const [key, value] of Object.entries(originalEnv)) {
     if (value === undefined) {

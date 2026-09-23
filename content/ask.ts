@@ -12,28 +12,12 @@ export const askDockRoutes = askData.askDockRoutes;
 
 export const askChallengeChips = askData.askChallengeChips;
 
-const ASK_DOCK_EXCLUDED_PREFIXES = ["/ask", "/admin"];
-
 function normalizePathname(pathname: string) {
   if (!pathname) {
     return "/";
   }
   const trimmed = pathname.replace(/\/+$/, "");
   return trimmed.length ? trimmed : "/";
-}
-
-export function shouldShowAskDock(pathname: string) {
-  const path = normalizePathname(pathname);
-  if (ASK_DOCK_EXCLUDED_PREFIXES.some((prefix) => path === prefix || path.startsWith(`${prefix}/`))) {
-    return false;
-  }
-  return askDockRoutes.some((route) => {
-    const normalized = normalizePathname(route);
-    if (normalized === "/") {
-      return path === "/";
-    }
-    return path === normalized || path.startsWith(`${normalized}/`);
-  });
 }
 
 export function challengeChipsForPath(pathname: string) {

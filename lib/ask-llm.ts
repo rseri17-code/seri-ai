@@ -372,6 +372,7 @@ async function completeChat(options: {
   model: string;
   messages: ChatCompletionMessage[];
   fetchImpl?: typeof fetch;
+  timeoutMs?: number;
 }) {
   const fetchImpl = options.fetchImpl ?? fetch;
   let response: Response;
@@ -383,7 +384,8 @@ async function completeChat(options: {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify(groqCompletionBody(options.model, options.messages))
+      body: JSON.stringify(groqCompletionBody(options.model, options.messages)),
+      signal: AbortSignal.timeout(Math.max(1, options.timeoutMs ?? 10_000))
     });
   } catch {
     throw new AskLlmProviderError("network_error", "Ask LLM provider request failed");
@@ -438,6 +440,7 @@ export async function trySynthesizeAskAnswer(args: {
   provider?: ResolvedAskLlmProvider;
   env?: NodeJS.ProcessEnv;
   fetchImpl?: typeof fetch;
+  timeoutMs?: number;
 }): Promise<AskSynthesisAttempt> {
   const provider = args.provider ?? resolveAskLlmProvider(args.env);
   if (provider.kind === "none") {
@@ -453,7 +456,8 @@ export async function trySynthesizeAskAnswer(args: {
       apiKey: provider.apiKey,
       model: provider.model,
       messages: buildAskSynthesisMessages(args.question, args.context),
-      fetchImpl: args.fetchImpl
+      fetchImpl: args.fetchImpl,
+      timeoutMs: args.timeoutMs
     });
     const validation = validateSynthesizedAnswer(answer, args.context, {
       question: args.question,

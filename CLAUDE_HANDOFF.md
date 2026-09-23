@@ -1,6 +1,19 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-09-22
+Last updated: 2026-09-23
+
+## ACT SITE QUALITY PASS — 2026-09-23
+
+Preview-only. Do not merge.
+
+- **Floating Ask pill.** Already absent on `main` after the 2026-09-22 defect pass (`components/ask-dock.tsx` deleted, not mounted from `app/layout.tsx`). Live homepage HTML and initial JS chunks have no `data-ask-dock`. It survived earlier deletes because Ask UX Phase C reintroduced the dock, and the 2026-09-22 pass removed the mount but left `shouldShowAskDock` plus the `Chat` `dock` variant. The unused helper is removed. The `dock` variant stays because viewport and coherence validators require that branch, and nothing mounts it. Navbar Ask and contact ask routes stay.
+- **Portrait.** `size="xl"` keeps the frame, caption, and mint border. A low-opacity mint color grade and edge vignette sit on the photo in CSS (`.portrait-photo`, `.portrait-duotone`, `.portrait-vignette`). No scale or crop change.
+- **`/api/ask`.** Question is a required trimmed string, max 1200. History is capped at 6 turns. Body capped at 16KB. Provider calls abort (`AbortSignal.timeout`, SDK `timeout` + `maxRetries: 0`). Overall budget 12s. Platform `maxDuration` 15. Client aborts at 15s with “The public record is slow right now, try again.” Each request logs `ask_latency` with an in-isolate `sample_p99_ms`. Durable rate limit uses Vercel KV or Upstash REST when `KV_REST_API_*` or `UPSTASH_REDIS_REST_*` is set; otherwise the per-instance memory window (20/minute) remains, because those credentials are not in the repo.
+- **JSON-LD.** `jobTitle` is `AIOps Lead Architect`. Empty `NEXT_PUBLIC_SITE_URL` falls back to `https://seri-ai.vercel.app` so `url` is not blank.
+- **Homepage HTML.** Repeated server class strings and nav link classes moved into `app/globals.css`. Visible copy and JSON-LD entity coverage stay.
+- **robots.** `Disallow: /admin` removed so the file does not advertise admin. `Disallow: /api` stays because those routes are POST machines, not documents. Sitemap lines stay.
+
+Public-safety: no employer data added. Preview-only; do not merge.
 
 ## ACT HOMEPAGE DEFECT PASS — 2026-09-22
 
@@ -1686,6 +1699,12 @@ Merging `claude/site-build` into `main` is Ravikanth's call; both agents should 
 ## Review Ledger
 
 Cross-review findings under the protocol in `AGENTS.md`. Newest first. Address or answer findings against your lane within one session.
+
+### 2026-09-23 — ACT: site quality pass (preview)
+
+- **Finding**: Live homepage was ~112KB. JSON-LD `jobTitle` was the long resume headline and `url` was empty because `NEXT_PUBLIC_SITE_URL` is blank (`??` does not replace `""`). Direct `/api/ask` could outlive the JS race and sit until the platform limit, and the client had no abort. `robots.txt` advertised `/admin`. The floating pill was already gone from the document.
+- **Acted**: See the 2026-09-23 session block at the top. Pins for robots and JSON-LD were repointed with the copy/schema change. Homepage class strings moved to CSS; visible sentences were not rewritten to satisfy a grep.
+- **Follow-up**: VERIFY preview at desktop: no pill, treated portrait, design system unchanged. Public-safety risk: none. Flag for Ravikanth: preview-only; do not merge. Set KV or Upstash REST env on Vercel if the Ask limit should hold across isolates.
 
 ### 2026-09-22 — ACT: homepage defect pass (preview)
 

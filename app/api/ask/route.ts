@@ -5,23 +5,31 @@ import { generateRaviAnswer, type AskAnswerMode } from "@/lib/ask-answer";
 import { resolveAskLlmProvider } from "@/lib/ask-llm";
 import { isPublicSafe } from "@/lib/compliance";
 import { getRuntimeEnvironment } from "@/lib/env";
-import { clientKey, rateLimit, rateLimitedResponse, withTimeout } from "@/lib/production-guards";
+import { rateLimitAsk, rateLimitedResponse, withTimeout } from "@/lib/production-guards";
 import { localSearch, resolveAskContext } from "@/lib/search";
 import { getSupabaseAdmin } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 15;
 
 const ASK_RATE_LIMIT = 20;
 const ASK_RATE_WINDOW_MS = 60_000;
 const ASK_EMBEDDING_TIMEOUT_MS = 4_500;
 const ASK_VECTOR_TIMEOUT_MS = 4_500;
 const ASK_SYNTHESIS_TIMEOUT_MS = 12_000;
+const ASK_OVERALL_BUDGET_MS = 12_000;
+const ASK_HISTORY_TURN_LIMIT = 6;
+const ASK_QUESTION_MAX = 1200;
+const ASK_BODY_MAX_BYTES = 16_000;
 const ASK_VECTOR_MATCH_COUNT = 6;
 const ASK_RETURNED_SOURCE_COUNT = 4;
 
+const latencySamples: number[] = [];
+const LATENCY_SAMPLE_LIMIT = 200;
+
 const AskSchema = z.object({
-  question: z.string().min(1).max(1200),
+  question: z.string().trim().min(1).max(ASK_QUESTION_MAX),
   history: z
     .array(
       z.object({
@@ -29,20 +37,74 @@ const AskSchema = z.object({
         content: z.string().max(2000)
       })
     )
+    .max(ASK_HISTORY_TURN_LIMIT)
     .optional(),
   mode: z.enum(["ask", "interview"]).optional()
 });
 
+function logAskLatency(entry: { latency_ms: number; status: number; answer_mode: string; retrieval_mode: string }) {
+  latencySamples.push(entry.latency_ms);
+  if (latencySamples.length > LATENCY_SAMPLE_LIMIT) {
+    latencySamples.shift();
+  }
+  const sorted = [...latencySamples].sort((left, right) => left - right);
+  const index = Math.min(sorted.length - 1, Math.max(0, Math.ceil(sorted.length * 0.99) - 1));
+  console.info(
+    JSON.stringify({
+      event: "ask_latency",
+      ...entry,
+      sample_n: sorted.length,
+      sample_p99_ms: sorted[index]
+    })
+  );
+}
+
 export async function POST(request: Request) {
   const startedAt = Date.now();
-  const limit = rateLimit(`ask:${clientKey(request)}`, ASK_RATE_LIMIT, ASK_RATE_WINDOW_MS);
+  const remaining = () => Math.max(1, ASK_OVERALL_BUDGET_MS - (Date.now() - startedAt));
+  let status = 200;
+  let answerModeForLog = "rejected";
+  let retrievalModeForLog = "none";
+
+  const finish = (response: NextResponse, answerMode: string, retrievalMode: string, httpStatus = response.status) => {
+    status = httpStatus;
+    answerModeForLog = answerMode;
+    retrievalModeForLog = retrievalMode;
+    return response;
+  };
+
+  try {
+  const limit = await rateLimitAsk(request, ASK_RATE_LIMIT, ASK_RATE_WINDOW_MS);
   if (!limit.allowed) {
-    return rateLimitedResponse(limit.retryAfterSeconds);
+    return finish(rateLimitedResponse(limit.retryAfterSeconds), "rate_limited", "blocked", 429);
   }
 
-  const parsed = AskSchema.safeParse(await request.json().catch(() => null));
+  const declaredLength = Number(request.headers.get("content-length") || 0);
+  if (Number.isFinite(declaredLength) && declaredLength > ASK_BODY_MAX_BYTES) {
+    return finish(NextResponse.json({ error: "Invalid request" }, { status: 413 }), "rejected", "none", 413);
+  }
+
+  let raw = "";
+  try {
+    raw = await withTimeout(request.text(), Math.min(2_000, remaining()), "Body");
+  } catch {
+    return finish(NextResponse.json({ error: "Invalid request" }, { status: 400 }), "rejected", "none", 400);
+  }
+  if (raw.length > ASK_BODY_MAX_BYTES) {
+    return finish(NextResponse.json({ error: "Invalid request" }, { status: 413 }), "rejected", "none", 413);
+  }
+
+  let payload: unknown = null;
+  if (raw) {
+    try {
+      payload = JSON.parse(raw);
+    } catch {
+      payload = null;
+    }
+  }
+  const parsed = AskSchema.safeParse(payload);
   if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    return finish(NextResponse.json({ error: "Invalid request" }, { status: 400 }), "rejected", "none", 400);
   }
 
   const { question, history } = parsed.data;
@@ -58,7 +120,7 @@ export async function POST(request: Request) {
   const followUps = inferFollowUpChips(question, relatedPages);
   const runtime = getRuntimeEnvironment();
   if (!isConversationPublicSafe) {
-    return NextResponse.json({
+    return finish(NextResponse.json({
       answer:
         "I can't discuss employer-specific or confidential systems, proprietary projects, private screenshots, logs, dashboards, or internal architecture. I can explain the public architecture patterns behind the question, including evidence-driven investigation, transaction journey reconstruction, replayable reasoning, evaluation gates, operational memory, and human-in-the-loop review.",
       sources: [],
@@ -84,7 +146,7 @@ export async function POST(request: Request) {
           returned_source_limit: ASK_RETURNED_SOURCE_COUNT
         }
       }
-    });
+    }), "public_safety_refusal", "blocked", 200);
   }
 
   const supabase = getSupabaseAdmin();
@@ -98,17 +160,20 @@ export async function POST(request: Request) {
   if (supabase && runtime.vectorSearchConfigured) {
     try {
       const { embedText } = await import("@/lib/ai");
-      const embedding = await withTimeout(embedText(question), ASK_EMBEDDING_TIMEOUT_MS, "Embedding");
+      const embeddingBudget = Math.min(ASK_EMBEDDING_TIMEOUT_MS, remaining());
+      const embedding = await withTimeout(embedText(question, embeddingBudget), embeddingBudget, "Embedding");
       if (embedding) {
+        const vectorBudget = Math.min(ASK_VECTOR_TIMEOUT_MS, remaining());
+        const vectorSignal = AbortSignal.timeout(vectorBudget);
         const { data } = await withTimeout(
           Promise.resolve(
             supabase.rpc("match_documents", {
             query_embedding: embedding,
             match_count: ASK_VECTOR_MATCH_COUNT,
             filter: { public_safe: true }
-            })
+            }).abortSignal(vectorSignal)
           ),
-          ASK_VECTOR_TIMEOUT_MS,
+          vectorBudget,
           "Vector search"
         );
         if (Array.isArray(data) && data.length) {
@@ -140,9 +205,10 @@ export async function POST(request: Request) {
   let llmSkipReason: string | null = configuredProvider.kind === "none" ? configuredProvider.skipReason : null;
   let llmErrorCode: string | null = null;
   try {
+    const synthesisBudget = Math.min(ASK_SYNTHESIS_TIMEOUT_MS, remaining());
     const generated = await withTimeout(
-      generateRaviAnswer({ question, context, history, env: process.env }),
-      ASK_SYNTHESIS_TIMEOUT_MS,
+      generateRaviAnswer({ question, context, history, env: process.env, timeoutMs: synthesisBudget }),
+      synthesisBudget,
       "Ask Ravi"
     );
     answer = generated.answer;
@@ -169,7 +235,7 @@ export async function POST(request: Request) {
     ].join("\n\n");
   }
 
-  return NextResponse.json({
+  return finish(NextResponse.json({
     answer,
     sources: context.slice(0, ASK_RETURNED_SOURCE_COUNT).map((source) => ({
       title: source.title,
@@ -201,5 +267,17 @@ export async function POST(request: Request) {
         returned_source_limit: ASK_RETURNED_SOURCE_COUNT
       }
     }
-  });
+  }), answerMode, retrievalMode, 200);
+  } catch (error) {
+    status = 500;
+    answerModeForLog = "error";
+    throw error;
+  } finally {
+    logAskLatency({
+      latency_ms: Date.now() - startedAt,
+      status,
+      answer_mode: answerModeForLog,
+      retrieval_mode: retrievalModeForLog
+    });
+  }
 }

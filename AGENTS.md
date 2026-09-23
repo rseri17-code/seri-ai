@@ -124,6 +124,16 @@ Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.
 - Portrait frame, tightened Authorized Misfire and Selected ideas, and responsive map/idea type below 769px. Frozen hero H1 and both primary CTAs untouched.
 - Dock-mount pins were repointed because the pill was deleted, not because copy was written for a grep.
 
+## SESSION HANDOFF — 2026-09-23 (ACT: site quality pass)
+
+Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.
+
+- Floating Ask pill was already unmounted; unused `shouldShowAskDock` removed. Navbar Ask and contact ask routes stay. `Chat` dock variant stays because validators require the unmounted branch.
+- Portrait xl gets a CSS mint grade. Frozen hero H1 and both primary CTAs untouched.
+- `/api/ask` validates, caps history, aborts slow providers, logs `ask_latency`, and rate-limits. Durable KV/Upstash is optional; memory window is the fallback.
+- JSON-LD jobTitle is AIOps Lead Architect. Blank site URL falls back to the canonical Vercel origin.
+- Homepage class strings shortened in CSS. robots no longer lists `/admin`; `/api` stays disallowed. Sitemap refs stay.
+
 ## Ruled copy is machine-enforced
 
 `npm run validate:ruled` fails the build if ruled copy is reverted. Restore the ruled copy — do not repoint the check — unless Ravikanth issues a new ruling and you update `scripts/validate-ruled-copy.mjs` and CLAUDE_HANDOFF.md in the same commit.

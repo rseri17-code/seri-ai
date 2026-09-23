@@ -10,7 +10,7 @@ const routeContracts = [
   {
     route: "/",
     file: "index.html",
-    maxBytes: 210_000,
+    maxBytes: 110_000,
     // Repointed 2026-08-30 for the homepage redesign. Rendered-HTML assertions for the seven
     // ruled sections, checked against the built page rather than the source.
     required: [
@@ -328,6 +328,12 @@ if (!fs.existsSync(serverAppDir)) {
 
     for (const required of contract.required) {
       expect(text.includes(required), `${contract.route}: rendered HTML missing "${required}"`);
+    }
+
+    if (contract.route === "/") {
+      expect(raw.includes("AIOps Lead Architect"), "/: JSON-LD jobTitle must be AIOps Lead Architect");
+      expect(!raw.includes('"url":""'), "/: JSON-LD must not emit an empty url");
+      expect(!raw.includes("data-ask-dock"), "/: homepage must not mount the floating Ask pill");
     }
 
     for (const [first, second] of contract.before ?? []) {

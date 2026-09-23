@@ -336,6 +336,87 @@ a {
   }
 }
 
+.portrait-frame {
+  border: 1px solid rgba(95, 242, 181, 0.5);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.portrait-photo {
+  filter: grayscale(0.18) contrast(1.03) saturate(0.82);
+}
+
+.portrait-duotone {
+  background: rgba(95, 242, 181, 0.22);
+  mix-blend-mode: soft-light;
+}
+
+.portrait-vignette {
+  background: radial-gradient(circle at 50% 38%, transparent 46%, rgba(8, 10, 15, 0.55) 100%);
+}
+
+.nav-link {
+  @apply inline-flex min-h-[44px] shrink-0 items-center whitespace-nowrap rounded px-3 py-2 text-sm transition;
+}
+
+.nav-link-active {
+  @apply bg-white/10 text-white;
+}
+
+.nav-link-idle {
+  @apply text-slate-300 hover:bg-white/5 hover:text-white;
+}
+
+.ladder-title {
+  @apply mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-white underline decoration-mint/35 underline-offset-4 hover:text-mint hover:decoration-mint;
+}
+
+.ladder-kind {
+  @apply mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal;
+}
+
+.ladder-proves {
+  @apply mt-1 text-xs leading-5 text-slate-400;
+}
+
+.ladder-secondary {
+  @apply mt-2 inline-flex items-center text-xs font-semibold text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint;
+}
+
+.map-copy {
+  @apply mt-1 text-sm leading-6 text-slate-300 max-[768px]:text-[clamp(1rem,0.92rem+0.35vw,1.0625rem)] max-[768px]:leading-7;
+}
+
+.idea-row {
+  @apply grid gap-3 py-7 transition max-[768px]:gap-6 max-[768px]:py-8 max-[639px]:gap-4 max-[480px]:gap-3.5 max-[480px]:py-7 min-[769px]:gap-7;
+}
+
+.idea-title {
+  @apply mt-3 block text-xl font-semibold leading-tight text-white group-hover:text-mint;
+}
+
+.idea-dek {
+  @apply mt-3 block max-w-2xl text-base leading-8 text-slate-400 max-[768px]:text-[clamp(1.0625rem,0.98rem+0.4vw,1.125rem)] max-[768px]:leading-8;
+}
+
+.work-status {
+  margin-top: 1rem;
+  display: inline-block;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #94a3b8;
+}
+
+.arrow-icon {
+  display: inline-block;
+  flex: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
