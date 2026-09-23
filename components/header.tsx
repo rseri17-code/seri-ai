@@ -31,12 +31,7 @@ export function Header() {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  const navLinkClass = (href: string) =>
-    `inline-flex min-h-[44px] shrink-0 items-center whitespace-nowrap rounded px-3 py-2 text-sm transition ${
-      isActive(href)
-        ? "bg-white/10 text-white"
-        : "text-slate-300 hover:bg-white/5 hover:text-white"
-    }`;
+  const navLinkClass = (href: string) => `nav-link ${isActive(href) ? "nav-link-active" : "nav-link-idle"}`;
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/88 backdrop-blur-xl">

@@ -27,9 +27,7 @@ export function Portrait({ size = "md" }: { size?: "sm" | "md" | "lg" | "xl" }) 
 
   if (size === "xl") {
     return (
-      <span
-        className={`relative block shrink-0 overflow-hidden rounded-2xl border border-mint/50 shadow-[0_24px_80px_rgba(0,0,0,0.45)] ${frameSize}`}
-      >
+      <span className={`portrait-frame relative block shrink-0 overflow-hidden rounded-2xl ${frameSize}`}>
         <picture className="block h-full w-full">
           <source srcSet={PORTRAIT_WEBP} type="image/webp" />
           <img
@@ -37,15 +35,12 @@ export function Portrait({ size = "md" }: { size?: "sm" | "md" | "lg" | "xl" }) 
             alt={PORTRAIT_ALT}
             width={pixelSize}
             height={pixelSize}
-            className="h-full w-full object-cover"
+            className="portrait-photo h-full w-full object-cover"
           />
         </picture>
-        {/* Edge vignette pulls the light studio ground into the page. The face stays uncovered.
-            The mint wash is a corner grade only — not a duotone on the person. */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,transparent_48%,rgba(8,10,15,0.55)_100%),linear-gradient(160deg,rgba(95,242,181,0.18),transparent_46%)]"
-        />
+        {/* Soft mint color grade plus an edge vignette. The frame and caption stay. */}
+        <span aria-hidden="true" className="portrait-duotone pointer-events-none absolute inset-0" />
+        <span aria-hidden="true" className="portrait-vignette pointer-events-none absolute inset-0" />
       </span>
     );
   }

@@ -288,19 +288,24 @@ export function Chat({
     const category = categorizeQuestion(question);
     captureSafeEvent("ask_question_submit", { category, mode, route: window.location.pathname });
 
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), 15_000);
     try {
       // Each turn posts the new question independently. History is for public-safety
       // scanning (and optional synthesis providers), not retrieval continuity.
       const response = await fetch("/api/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question, history: toChatHistory(messages), mode })
+        body: JSON.stringify({ question, history: toChatHistory(messages), mode }),
+        signal: controller.signal
       });
-      const data = (await response.json()) as ApiResponse;
-
+      if (response.status === 429) {
+        throw new Error("Too many requests. Please wait briefly before trying again.");
+      }
       if (!response.ok) {
         throw new Error("Ask request failed");
       }
+      const data = (await response.json()) as ApiResponse;
 
       captureSafeEvent("ask_response_success", {
         category,
@@ -328,23 +333,29 @@ export function Chat({
       };
       setMessages([...nextMessages, { role: "assistant", content: data.answer, packet }]);
       applyPacket(packet);
-    } catch {
+    } catch (error) {
       captureSafeEvent("ask_response_failure", {
         category,
         mode,
         latency_ms: Math.round(performance.now() - startedAt)
       });
+      const timedOut = error instanceof Error && error.name === "AbortError";
+      const rateLimited = error instanceof Error && error.message.startsWith("Too many requests");
       setMessages([
         ...nextMessages,
         {
           role: "assistant",
-          content:
-            "Direct answer: The public Ask surface could not complete this request. The safe beta fallback is to use the Framework, Operations Room, Work, or Background pages rather than inventing an answer."
+          content: timedOut
+            ? "The public record is slow right now, try again."
+            : rateLimited
+              ? "Too many requests. Please wait briefly before trying again."
+              : "Direct answer: The public Ask surface could not complete this request. The safe beta fallback is to use the Framework, Operations Room, Work, or Background pages rather than inventing an answer."
         }
       ]);
       setSources([]);
       setResponseMeta(undefined);
     } finally {
+      window.clearTimeout(timer);
       setIsLoading(false);
     }
   }

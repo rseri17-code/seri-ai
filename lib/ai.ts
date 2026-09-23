@@ -664,12 +664,15 @@ export function localFallbackAnswer(question: string, context: Array<{ title: st
     .replace(/([.!?])\s*\.(?=\s|$)/g, "$1");
 }
 
-export async function embedText(input: string) {
+export async function embedText(input: string, timeoutMs?: number) {
   if (!process.env.OPENAI_API_KEY) {
     return null;
   }
 
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    ...(timeoutMs ? { timeout: timeoutMs, maxRetries: 0 } : {})
+  });
   const response = await openai.embeddings.create({
     model: process.env.OPENAI_EMBEDDING_MODEL ?? "text-embedding-3-small",
     input

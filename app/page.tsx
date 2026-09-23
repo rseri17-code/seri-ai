@@ -38,7 +38,7 @@
  * "enterprise platform modernization". The term and reasoning are in CLAUDE_HANDOFF.md.
  */
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowIcon } from "@/components/arrow-icon";
 import { HomeOrientation } from "@/components/home-orientation";
 import { OperationsRoomPreview } from "@/components/operations-room-preview";
 import { Portrait } from "@/components/portrait";
@@ -119,7 +119,7 @@ export default function Home() {
                   eventProperties={{ cta: "enter_operations_room" }}
                   className="inline-flex min-h-[48px] items-center gap-2 rounded bg-mint px-6 py-3 text-base font-semibold text-ink"
                 >
-                  Enter the Operations Room <ArrowRight size={18} />
+                  Enter the Operations Room <ArrowIcon size={18} />
                 </TrackedLink>
                 <TrackedLink
                   href="/work"
@@ -149,7 +149,7 @@ export default function Home() {
                   href="/work"
                   className="mt-4 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
                 >
-                  View the work <ArrowRight size={16} />
+                  View the work <ArrowIcon size={16} />
                 </Link>
               </figcaption>
             </figure>
@@ -185,7 +185,7 @@ export default function Home() {
             href="/wiki/operational-intelligence-canonical-doctrine"
             className="mt-8 inline-flex min-h-[44px] items-center gap-2 text-base font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
           >
-            Read the written model, and what would prove it wrong <ArrowRight size={17} />
+            Read the written model, and what would prove it wrong <ArrowIcon size={17} />
           </Link>
         </div>
       </section>
@@ -209,7 +209,7 @@ export default function Home() {
               <div>
                 <p className="font-mono text-sm text-mint">{String(i + 1).padStart(2, "0")}</p>
                 <h3 className="mt-4 text-2xl font-semibold leading-tight text-white sm:text-3xl">{item.title}</h3>
-                <p className="mt-4 inline-block rounded border border-white/12 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+                <p className="work-status">
                   {item.status}
                 </p>
                 <p className="mt-6 text-base leading-8 text-slate-400">{item.problem}</p>
@@ -231,7 +231,7 @@ export default function Home() {
                     href={item.href}
                     className="mt-6 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
                   >
-                    {item.linkLabel} <ArrowRight size={16} />
+                    {item.linkLabel} <ArrowIcon size={16} />
                   </Link>
                 ) : null}
               </div>
@@ -251,7 +251,7 @@ export default function Home() {
             lesson, and notices when that lesson needs revalidation.
           </p>
           <span className="mt-4 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint">
-            Read the case study <ArrowRight size={16} />
+            Read the case study <ArrowIcon size={16} />
           </span>
         </Link>
 
@@ -265,7 +265,7 @@ export default function Home() {
           href="/background"
           className="mt-4 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
         >
-          See how the judgment formed <ArrowRight size={16} />
+          See how the judgment formed <ArrowIcon size={16} />
         </Link>
       </Section>
 
@@ -276,17 +276,17 @@ export default function Home() {
             <li key={article.slug}>
               <Link
                 href={`/ideas/${article.slug}`}
-                className="group grid gap-3 py-7 transition max-[768px]:gap-6 max-[768px]:py-8 max-[639px]:gap-4 max-[480px]:gap-3.5 max-[480px]:py-7 sm:grid-cols-[auto_1fr] min-[769px]:gap-7"
+                className="idea-row group sm:grid-cols-[auto_1fr]"
               >
                 <span className="font-mono text-sm text-slate-500 sm:pt-1.5">{String(i + 1).padStart(2, "0")}</span>
                 <span>
                   <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-mint">
                     {article.theme}
                   </span>
-                  <span className="mt-3 block text-xl font-semibold leading-tight text-white group-hover:text-mint sm:text-2xl">
+                  <span className="idea-title sm:text-2xl">
                     {article.title}
                   </span>
-                  <span className="mt-3 block max-w-2xl text-base leading-8 text-slate-400 max-[768px]:text-[clamp(1.0625rem,0.98rem+0.4vw,1.125rem)] max-[768px]:leading-8">
+                  <span className="idea-dek">
                     {article.dek}
                   </span>
                 </span>
@@ -298,7 +298,7 @@ export default function Home() {
           href="/patterns"
           className="mt-9 inline-flex min-h-[44px] items-center gap-2 font-semibold text-mint underline decoration-mint/35 underline-offset-4 hover:decoration-mint"
         >
-          The ten architecture patterns, in build order <ArrowRight size={16} />
+          The ten architecture patterns, in build order <ArrowIcon size={16} />
         </Link>
       </Section>
 
@@ -322,7 +322,7 @@ export default function Home() {
               eventProperties={{ cta: "start_a_conversation" }}
               className="inline-flex min-h-[48px] items-center gap-2 rounded bg-mint px-6 py-3 text-base font-semibold text-ink"
             >
-              Start a conversation <ArrowRight size={18} />
+              Start a conversation <ArrowIcon size={18} />
             </TrackedLink>
 
           </div>

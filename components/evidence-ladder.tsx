@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowIcon } from "@/components/arrow-icon";
 import { TrackedLink } from "@/components/tracked-link";
 
 /**
@@ -71,7 +71,7 @@ export function EvidenceLadder({ source }: { source: "home" | "work" }) {
         {evidenceLadder.map((step) => {
           const title = (
             <>
-              {step.label} <ArrowRight size={14} aria-hidden="true" />
+              {step.label} <ArrowIcon size={14} />
             </>
           );
 
@@ -83,20 +83,20 @@ export function EvidenceLadder({ source }: { source: "home" | "work" }) {
                   href={step.href}
                   eventName="homepage_cta_click"
                   eventProperties={{ cta: step.cta }}
-                  className="mt-1 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-white underline decoration-mint/35 underline-offset-4 hover:text-mint hover:decoration-mint"
+                  className="ladder-title min-h-11"
                 >
                   {title}
                 </TrackedLink>
               ) : (
                 <Link
                   href={step.href}
-                  className="mt-1 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-white underline decoration-mint/35 underline-offset-4 hover:text-mint hover:decoration-mint"
+                  className="ladder-title min-h-11"
                 >
                   {title}
                 </Link>
               )}
-              <p className="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-signal">{step.kind}</p>
-              <p className="mt-1 text-xs leading-5 text-slate-400">
+              <p className="ladder-kind">{step.kind}</p>
+              <p className="ladder-proves">
                 <span className="font-semibold text-slate-300">Proves: </span>
                 {step.proves}
               </p>
@@ -106,14 +106,14 @@ export function EvidenceLadder({ source }: { source: "home" | "work" }) {
                     href={step.secondaryHref}
                     eventName="homepage_cta_click"
                     eventProperties={{ cta: step.secondaryCta }}
-                    className="mt-2 inline-flex min-h-11 items-center text-xs font-semibold text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
+                    className="ladder-secondary min-h-11"
                   >
                     {step.secondaryLabel}
                   </TrackedLink>
                 ) : (
                   <Link
                     href={step.secondaryHref}
-                    className="mt-2 inline-flex min-h-11 items-center text-xs font-semibold text-mint underline decoration-mint/30 underline-offset-4 hover:decoration-mint"
+                    className="ladder-secondary min-h-11"
                   >
                     {step.secondaryLabel}
                   </Link>

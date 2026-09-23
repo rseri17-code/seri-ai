@@ -178,12 +178,15 @@ expectIncludes("components/structured-data.tsx", structuredData, [
   "operational-intelligence-canonical-doctrine",
   "operational-intelligence-reference-architecture",
   "operational-intelligence-publication-pack",
-  "operational-intelligence-evidence-pack"
+  "operational-intelligence-evidence-pack",
+  "AIOps Lead Architect",
+  "CANONICAL_SITE_URL",
+  "configuredSiteUrl || CANONICAL_SITE_URL"
 ]);
 
 const robotsConfig = robots();
 expect(robotsConfig.rules?.allow === "/", "robots must allow /");
-expect(Array.isArray(robotsConfig.rules?.disallow) && robotsConfig.rules.disallow.includes("/admin") && robotsConfig.rules.disallow.includes("/api"), "robots must disallow /admin and /api");
+expect(Array.isArray(robotsConfig.rules?.disallow) && robotsConfig.rules.disallow.includes("/api") && !robotsConfig.rules.disallow.includes("/admin"), "robots must disallow /api and must not advertise /admin");
 expect(Array.isArray(robotsConfig.sitemap) && robotsConfig.sitemap.includes(`${siteUrl}/sitemap.xml`), "robots must advertise sitemap.xml");
 expect(Array.isArray(robotsConfig.sitemap) && robotsConfig.sitemap.includes(`${siteUrl}/llms.txt`), "robots must advertise llms.txt for AI readers");
 

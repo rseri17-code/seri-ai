@@ -32,6 +32,7 @@ type GenerateArgs = {
   history?: ChatMessage[];
   fetchImpl?: typeof fetch;
   env?: NodeJS.ProcessEnv;
+  timeoutMs?: number;
 };
 
 export async function generateRaviAnswer({
@@ -39,7 +40,8 @@ export async function generateRaviAnswer({
   context,
   history = [],
   fetchImpl,
-  env = process.env
+  env = process.env,
+  timeoutMs = 10_000
 }: GenerateArgs): Promise<GenerateRaviAnswerResult> {
   const groundedProvider = resolveAskLlmProvider(env);
   if (groundedProvider.kind !== "none") {
@@ -58,7 +60,8 @@ export async function generateRaviAnswer({
       context,
       provider: groundedProvider,
       env,
-      fetchImpl
+      fetchImpl,
+      timeoutMs
     });
     if (synthesized.ok) {
       return {
@@ -104,7 +107,7 @@ export async function generateRaviAnswer({
 
   const anthropicKey = readRuntimeEnv("ANTHROPIC_API_KEY", env);
   if (provider === "anthropic" && anthropicKey) {
-    const anthropic = new Anthropic({ apiKey: anthropicKey });
+    const anthropic = new Anthropic({ apiKey: anthropicKey, timeout: timeoutMs, maxRetries: 0 });
     const response = await anthropic.messages.create({
       model: readRuntimeEnv("ANTHROPIC_CHAT_MODEL", env) || "claude-3-5-sonnet-latest",
       max_tokens: 700,
@@ -126,7 +129,7 @@ export async function generateRaviAnswer({
 
   const openAiKey = readRuntimeEnv("OPENAI_API_KEY", env);
   if (openAiKey) {
-    const openai = new OpenAI({ apiKey: openAiKey });
+    const openai = new OpenAI({ apiKey: openAiKey, timeout: timeoutMs, maxRetries: 0 });
     const response = await openai.chat.completions.create({
       model: readRuntimeEnv("OPENAI_CHAT_MODEL", env) || "gpt-4.1-mini",
       temperature: 0.3,

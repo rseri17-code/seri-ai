@@ -1,6 +1,9 @@
-import { canonicalDefinition, contentRegistry, operationalIntelligenceFramework, resume, site } from "@/content/site";
+import { canonicalDefinition, contentRegistry, operationalIntelligenceFramework, site } from "@/content/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://seri-ai.vercel.app";
+const CANONICAL_SITE_URL = "https://seri-ai.vercel.app";
+const PERSON_JOB_TITLE = "AIOps Lead Architect";
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+const siteUrl = configuredSiteUrl || CANONICAL_SITE_URL;
 
 function absoluteUrl(path: string) {
   if (path.startsWith("http")) return path;
@@ -51,7 +54,7 @@ export function StructuredData() {
         "@id": `${siteUrl}/#ravikanth-seri`,
         "name": site.owner,
         "url": siteUrl,
-        "jobTitle": resume.headline,
+        "jobTitle": PERSON_JOB_TITLE,
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Charlotte",
