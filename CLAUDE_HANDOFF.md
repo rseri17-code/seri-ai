@@ -1,6 +1,19 @@
 # Claude Handoff for seri.ai
 
-Last updated: 2026-09-23
+Last updated: 2026-09-27
+
+## NEXT.JS 16.3.6 UPGRADE — 2026-09-27
+
+Preview-only. Do not merge.
+
+- Framework upgrade from Next.js 15.5.23 to 16.3.6 (latest stable 16.x; patched for CVE-2026-94545 / GHSA-vcvr-r3jv-pc5j). React and react-dom 19.3.0. `@types/react` and `@types/react-dom` 19.3.0. `eslint-config-next` 16.3.6. ESLint stays on 9.39.5 because ESLint 10 crashes `eslint-plugin-react` 7.37.5 shipped by that config.
+- `middleware.ts` renamed to `proxy.ts` (Node.js runtime). Admin basic-auth matcher is unchanged.
+- Async `params` / `searchParams` were already awaited. No `next/image` usage, so image default changes do not apply. Cache Components and `instant` were not adopted. Visitor copy, design system, Operations Room logic, security headers in `vercel.json`, JSON-LD job title, robots, and sitemap behaviour were not edited.
+- Lint: new `react-hooks/set-state-in-effect` error from react-hooks 7 is turned off so Ask session restore, the nav menu, and Operations Room playback stay as they are.
+
+Public-safety: no employer data added. Preview-only; do not merge.
+
+## ACT SITE QUALITY PASS — 2026-09-23
 
 ## ACT SITE QUALITY PASS — 2026-09-23
 
