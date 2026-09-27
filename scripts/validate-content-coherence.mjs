@@ -221,7 +221,7 @@ for (const required of [
   // Section 1 - hero: identity, specialty, production proof, exactly two actions.
   "Production AI systems",
   "I build evidence-grounded AI systems for enterprise operations.",
-  "Senior Technical Lead &mdash; AIOps &amp; Observability",
+  "AIOps Lead Architect",
   "Production AI systems for enterprise operations.",
   "enterprise SRE investigation",
   "Enter the Operations Room",
@@ -891,10 +891,10 @@ for (const required of [
 const projectPage = fs.readFileSync(path.join(root, "app", "projects", "[slug]", "page.tsx"), "utf8");
 for (const required of [
   "projectProof",
-  "evalReport",
+  "askEvalFixtureCount",
   "const projectContracts",
   "formatProofText",
-  "evalReport.fixtures.length",
+  "askEvalFixtureCount",
   "Project proof ledger",
   "Public proof claim",
   "Inspectable evidence",
@@ -1039,7 +1039,7 @@ for (const required of [
   // Section 1 - opening: exact identity, operational problem, production proof, one action.
   "Where the thesis comes from.",
   "being paged when distributed systems failed in ways no single dashboard explained",
-  "Senior Technical Lead &mdash; AIOps &amp; Observability",
+  "AIOps Lead Architect",
   "Building evidence-grounded AI systems for enterprise operations.",
   "View the work",
   // Section 2 - causal progression, five phases.

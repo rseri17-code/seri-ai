@@ -366,7 +366,7 @@ if (!JSON.stringify(home).includes("public-safe") && !JSON.stringify(home).inclu
 for (const required of [
   "Production AI systems",
   "I build evidence-grounded AI systems for enterprise operations.",
-  "Senior Technical Lead &mdash; AIOps &amp; Observability",
+  "AIOps Lead Architect",
   "Production AI systems for enterprise operations.",
   "enterprise SRE investigation",
   "misfire because they lack intelligence",
@@ -1287,6 +1287,16 @@ if (!Array.isArray(resume.experience) || resume.experience.length < 3) {
     if (/(internal|private|confidential|proprietary)\s+(product|project|platform|screenshot|architecture|dashboard|dashboards|log|logs)|screenshot/i.test([item.organization, item.impact, ...(item.bullets ?? [])].join(" "))) {
       errors.push(`${owner}: public resume text must avoid internal/confidential implementation language`);
     }
+  }
+  const currentRole = resume.experience.find((item) => /present/i.test(item.period ?? ""));
+  if (currentRole?.role !== "AIOps Lead Architect") {
+    errors.push("content/resume.json: current Present role must be AIOps Lead Architect (owner ruling 2026-09-27). Do not invent other titles.");
+  }
+  if (!String(resume.headline ?? "").startsWith("AIOps Lead Architect")) {
+    errors.push("content/resume.json: headline must lead with AIOps Lead Architect");
+  }
+  if (!resume.experience.some((item) => item.role === "Technical Lead - Identity & Infrastructure")) {
+    errors.push("content/resume.json: past roles must stay unchanged");
   }
 }
 if (!Array.isArray(resume.skills) || resume.skills.length < 5) {

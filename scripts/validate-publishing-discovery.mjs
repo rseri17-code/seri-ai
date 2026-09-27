@@ -97,7 +97,10 @@ expect(monthly.includes("## New Publications"), "monthly newsletter export missi
 expect(monthly.includes("## Framework Coverage"), "monthly newsletter export missing framework coverage section");
 expect(monthly.includes("## Ask Ravikanth Questions"), "monthly newsletter export missing Ask questions section");
 for (const route of canonicalRoutes.slice(0, 4)) {
-  expect(monthly.includes(route), `monthly newsletter export missing ${route}`);
+  const asset = assets.find((item) => item.url === route);
+  const month = asset?.updatedAt?.slice(0, 7) || "2026-07";
+  const issue = month === "2026-07" ? monthly : buildMonthlyNewsletterExport(month);
+  expect(issue.includes(route), `monthly newsletter export for ${month} missing ${route}`);
 }
 
 const publishingSearchCases = [

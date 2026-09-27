@@ -412,7 +412,7 @@
   "visitorSuccessQuestions": [
     {
       "question": "Who is Ravikanth Seri?",
-      "answerLens": "Senior infrastructure architect building production AI-assisted operations systems and publishing the Operational Intelligence body of work.",
+      "answerLens": "AIOps Lead Architect building production AI-assisted operations systems and publishing the Operational Intelligence body of work.",
       "primaryHref": "/background",
       "evidenceHref": "/resume",
       "askPrompt": "Who is Ravikanth Seri based only on public evidence?"
