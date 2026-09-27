@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api"]
     },
-    sitemap: [`${baseUrl}/sitemap.xml`, `${baseUrl}/llms.txt`]
+    sitemap: `${baseUrl}/sitemap.xml`
   };
 }

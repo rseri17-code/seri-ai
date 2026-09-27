@@ -223,6 +223,10 @@ expectIncludes(llmsBuilderPath, llmsBuilder, [
   "Public-Safe Boundary",
   "Operational Intelligence is the reasoning layer",
   "Current deterministic trust fixtures",
+  "askEvalFixtureCount",
+  "Updated: 2026-09-27",
+  "Ask the public record",
+  "Deterministic retrieval; optional LLM synthesis, disclosed on each answer.",
   "/wiki/operational-intelligence-canonical-doctrine",
   "/wiki/operational-intelligence-reference-architecture",
   "/wiki/operational-intelligence-publication-pack",
@@ -230,8 +234,10 @@ expectIncludes(llmsBuilderPath, llmsBuilder, [
   "site.links.linkedin",
   "site.links.github"
 ]);
-expectIncludes(sitemapPath, sitemap, ["/llms.txt"]);
-expectIncludes(robotsPath, robots, ["/llms.txt"]);
+expectIncludes(sitemapPath, sitemap, ["contentRegistry", "defaultDate", "updatedAt", "thesisRadar"]);
+if (sitemap.includes('"/llms.txt"')) errors.push(`${sitemapPath}: must not list /llms.txt`);
+if (robots.includes("llms.txt")) errors.push(`${robotsPath}: sitemap must not list llms.txt`);
+expectIncludes(robotsPath, robots, ["/sitemap.xml", '"/api"']);
 expectIncludes(openGraphImagePath, openGraphImage, [
   "ImageResponse",
   "Operational Intelligence",

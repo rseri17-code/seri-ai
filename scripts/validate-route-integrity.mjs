@@ -86,7 +86,10 @@ const allRequiredRoutes = [...new Set([...criticalRoutes, ...publishedRegistryRo
 for (const route of allRequiredRoutes) {
   if (route.startsWith("http")) continue;
   expectFile(route);
-  expectSitemap(route, sitemapPaths);
+  if (route !== "/llms.txt") expectSitemap(route, sitemapPaths);
+}
+if (sitemapPaths.has("/llms.txt")) {
+  errors.push("/llms.txt: must not be listed in the sitemap");
 }
 
 for (const route of criticalRoutes) {

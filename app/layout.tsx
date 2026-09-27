@@ -10,7 +10,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Ravikanth Seri | seri.ai",
   description:
-    "Ravikanth Seri's public professional home for Operational Intelligence, AI-native operations, investigations you can replay, evaluation, and human-reviewed action.",
+    "Ravikanth Seri's public professional home for Operational Intelligence, AI-native operations, investigations you can replay, evaluation, and human-reviewed action. Current role: AIOps Lead Architect.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://seri-ai.vercel.app"),
   alternates: {
     canonical: "/",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Ravikanth Seri | seri.ai",
-    description: "Ravikanth Seri's public professional home for evidence-backed operational reasoning, investigations you can replay, quality checks, and accountable human decision.",
+    description: "Ravikanth Seri's public professional home for evidence-backed operational reasoning, investigations you can replay, quality checks, and accountable human decision. Current role: AIOps Lead Architect.",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Ravikanth Seri | seri.ai" }],
     url: "/",
     siteName: "seri.ai",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ravikanth Seri | seri.ai",
-    description: "Evidence, hypotheses, replay, quality checks, and human-reviewed action for enterprise operations.",
+    description: "Evidence, hypotheses, replay, quality checks, and human-reviewed action for enterprise operations. Current role: AIOps Lead Architect.",
     images: [{ url: "/twitter-image", alt: "Ravikanth Seri | seri.ai" }]
   },
   icons: {

@@ -47,7 +47,7 @@ for (const viewport of [
       `${viewport.width}: floating Ask pill still present`
     );
     expect((await page.locator("[data-ask-dock-trigger]").count()) === 0, `${viewport.width}: ask dock trigger still present`);
-    const ask = page.getByRole("link", { name: "Ask the public pages on this site" });
+    const ask = page.getByRole("link", { name: "Ask the public record" });
     expect((await ask.count()) === 1, `${viewport.width}: navbar Ask missing`);
     const href = await ask.getAttribute("href");
     expect(href === "/ask", `${viewport.width}: navbar Ask href was ${href}`);

@@ -20,7 +20,8 @@ import { Card } from "@/components/card";
 import { EvidenceLadder } from "@/components/evidence-ladder";
 import { Section } from "@/components/section";
 import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";
-import { evalReport, professionalGraph, projects, publicCode } from "@/content/site";
+import { professionalGraph, projects, publicCode } from "@/content/site";
+import { askEvalFixtureCount } from "@/lib/ask-eval-count";
 
 export const metadata: Metadata = {
   title: "Work | Ravikanth Seri",
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   }
 };
 
-const formatFixtureText = (text: string) => text.replace("{fixtureCount}", String(evalReport.fixtures.length));
+const formatFixtureText = (text: string) => text.replace("{fixtureCount}", String(askEvalFixtureCount));
 
 export default function WorkPage() {
   return (

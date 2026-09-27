@@ -138,7 +138,7 @@ export default function Home() {
               <Portrait size="xl" />
               <figcaption className="mt-5 max-w-xs">
                 <p className="text-lg font-semibold leading-7 text-white">{professionalGraph.identity.person}</p>
-                <p className="mt-1 text-sm leading-6 text-slate-300">Senior Technical Lead &mdash; AIOps &amp; Observability</p>
+                <p className="mt-1 text-sm leading-6 text-slate-300">AIOps Lead Architect</p>
                 <p className="mt-1 text-sm leading-6 text-slate-200">
                   Production AI systems for enterprise operations.
                 </p>

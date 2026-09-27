@@ -49,7 +49,7 @@ export type PublishingRelationship = {
 };
 
 const author = "Ravikanth Seri";
-const defaultDate = "2026-07-16";
+export const defaultDate = "2026-07-16";
 const referenceDate = "2026-07-25";
 const frameworkLayerNames = operationalIntelligenceFramework.layers.map((layer) => layer.name);
 let publishingIndexCache: PublishingAsset[] | null = null;

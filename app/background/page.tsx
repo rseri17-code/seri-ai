@@ -197,7 +197,7 @@ export default function BackgroundPage() {
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div>
             <p className="max-w-2xl text-base font-semibold leading-7 text-mint">
-              Senior Technical Lead &mdash; AIOps &amp; Observability
+              AIOps Lead Architect
             </p>
             <p className="mt-2 max-w-2xl text-lg leading-8 text-slate-200">
               Building evidence-grounded AI systems for enterprise operations.
@@ -227,7 +227,7 @@ export default function BackgroundPage() {
             <Portrait size="xl" />
             <figcaption className="mt-5 max-w-xs">
               <p className="text-lg font-semibold leading-7 text-white">Ravikanth Seri</p>
-              <p className="mt-1 text-sm leading-6 text-slate-300">Senior Technical Lead &mdash; AIOps &amp; Observability</p>
+              <p className="mt-1 text-sm leading-6 text-slate-300">AIOps Lead Architect</p>
               <p className="mt-1 text-sm leading-6 text-slate-200">
                 Building evidence-grounded AI systems for enterprise operations.
               </p>

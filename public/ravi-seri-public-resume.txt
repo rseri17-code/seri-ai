@@ -1,12 +1,12 @@
 Ravikanth Seri
 
-Senior Infrastructure Architect | Production AI Agent Systems | Enterprise Operations
+AIOps Lead Architect | Production AI Agent Systems | Enterprise Operations
 
 Charlotte, NC
 rseri17@gmail.com | github.com/rseri17-code | linkedin.com/in/ravikanthseri
 
 Professional summary:
-Senior infrastructure architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial-services environments. Ravikanth's work sits at the intersection of AI-native operations, observability, identity modernization, Kubernetes platforms, runtime governance, and incident investigation. He builds practical systems that turn telemetry, transactions, topology, and operational memory into evidence-backed decisions.
+AIOps Lead Architect with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial-services environments. Ravikanth's work sits at the intersection of AI-native operations, observability, identity modernization, Kubernetes platforms, runtime governance, and incident investigation. He builds practical systems that turn telemetry, transactions, topology, and operational memory into evidence-backed decisions.
 
 Core strengths:
 - Production AI agent systems for enterprise operations

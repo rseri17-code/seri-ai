@@ -20,7 +20,8 @@ import { Card } from "@/components/card";
 import { Portrait } from "@/components/portrait";
 import { Section } from "@/components/section";
 import { TrackedAnchor } from "@/components/tracked-link";
-import { evalReport, professionalGraph, resume } from "@/content/site";
+import { professionalGraph, resume } from "@/content/site";
+import { askEvalFixtureCount, askEvalPassingRecord } from "@/lib/ask-eval-count";
 
 export const metadata: Metadata = {
   title: "Resume | Ravikanth Seri — Operational Intelligence and Enterprise AI",
@@ -39,7 +40,7 @@ const impactLedger = [
   ["120+ apps", "Zero-downtime identity migration across enterprise applications while preserving existing contracts."],
   ["80% ticket reduction", "Python automation and API integration that reduced recurring identity support load."],
   ["200 hours / quarter", "Recovered engineering time through repeatable onboarding and operational automation."],
-  [`${evalReport.fixtures.length}/${evalReport.fixtures.length} evals`, "Public deterministic trust fixtures for Ask Ravikanth's grounding, refusal, citation, and routing behavior."],
+  [`${askEvalPassingRecord(askEvalFixtureCount)} evals`, "Public deterministic trust fixtures for Ask Ravikanth's grounding, refusal, citation, and routing behavior."],
   ["v1.0 doctrine", "Versioned Operational Intelligence doctrine, reference architecture, publication pack, and evidence pack."]
 ] as const;
 
