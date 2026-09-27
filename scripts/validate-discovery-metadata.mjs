@@ -187,13 +187,23 @@ expectIncludes("components/structured-data.tsx", structuredData, [
 const robotsConfig = robots();
 expect(robotsConfig.rules?.allow === "/", "robots must allow /");
 expect(Array.isArray(robotsConfig.rules?.disallow) && robotsConfig.rules.disallow.includes("/api") && !robotsConfig.rules.disallow.includes("/admin"), "robots must disallow /api and must not advertise /admin");
-expect(Array.isArray(robotsConfig.sitemap) && robotsConfig.sitemap.includes(`${siteUrl}/sitemap.xml`), "robots must advertise sitemap.xml");
-expect(Array.isArray(robotsConfig.sitemap) && robotsConfig.sitemap.includes(`${siteUrl}/llms.txt`), "robots must advertise llms.txt for AI readers");
+const sitemapField = robotsConfig.sitemap;
+const sitemapList = Array.isArray(sitemapField) ? sitemapField : [sitemapField];
+expect(sitemapList.length === 1 && sitemapList[0] === `${siteUrl}/sitemap.xml`, "robots must list only /sitemap.xml");
+expect(!sitemapList.some((item) => String(item).includes("llms.txt")), "robots must not list llms.txt");
 
-const sitemapPaths = new Set(sitemap().map((entry) => new URL(entry.url).pathname));
-for (const route of [...canonicalRoutes, "/rss.xml", "/robots.txt", "/sitemap.xml", "/llms.txt"]) {
+const sitemapEntries = sitemap();
+const sitemapPaths = new Set(sitemapEntries.map((entry) => new URL(entry.url).pathname));
+for (const route of [...canonicalRoutes, "/rss.xml", "/robots.txt", "/sitemap.xml"]) {
   expect(sitemapPaths.has(route), `sitemap missing ${route}`);
 }
+expect(!sitemapPaths.has("/llms.txt"), "sitemap must not include /llms.txt");
+const lastmodByPath = new Map(sitemapEntries.map((entry) => [new URL(entry.url).pathname, new Date(entry.lastModified).toISOString().slice(0, 10)]));
+expect(new Set(lastmodByPath.values()).size > 1, "sitemap lastmod must vary per content date");
+const doctrineLastmod = lastmodByPath.get("/wiki/operational-intelligence-canonical-doctrine");
+const frameworkLastmod = lastmodByPath.get("/framework");
+expect(Boolean(doctrineLastmod && doctrineLastmod > "2026-07-16"), `doctrine lastmod must follow its later content date, got ${doctrineLastmod}`);
+expect(Boolean(frameworkLastmod && frameworkLastmod > "2026-07-16"), `framework lastmod must follow its later content date, got ${frameworkLastmod}`);
 
 const llms = buildLlmsTxt(siteUrl);
 expectIncludes("llms.txt", llms, [
@@ -206,7 +216,11 @@ expectIncludes("llms.txt", llms, [
   "Indexed Public Assets",
   "Machine Notes",
   "Operational Intelligence is the reasoning layer between enterprise telemetry and human decision.",
-  "Current deterministic trust fixtures"
+  "Current deterministic trust fixtures",
+  "Updated: 2026-09-27",
+  "Ask the public record",
+  "Deterministic retrieval; optional LLM synthesis, disclosed on each answer.",
+  "AIOps Lead Architect"
 ]);
 for (const route of canonicalRoutes) {
   expect(llms.includes(`${siteUrl}${route}`) || llms.includes(route), `llms.txt missing ${route}`);

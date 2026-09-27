@@ -551,7 +551,7 @@ export function localFallbackAnswer(question: string, context: Array<{ title: st
   const ravikanthValueAnswer =
     "The case for a technical conversation is inspectable rather than asserted: a published doctrine that states its own falsification conditions, a reference architecture written so another team could implement it, a working investigation artifact, and an evaluation harness that gates every claim made here.";
   const ravikanthIdentityAnswer =
-    "Ravikanth Seri is a senior infrastructure architect working on AI-native enterprise operations. His career runs from enterprise integration and API architecture through identity and platform engineering, cloud and Kubernetes modernization, and observability, into governed agent systems, Agentic SRE, and the Operational Intelligence thesis published here.";
+    "Ravikanth Seri is an AIOps Lead Architect working on AI-native enterprise operations. His career runs from enterprise integration and API architecture through identity and platform engineering, cloud and Kubernetes modernization, and observability, into governed agent systems, Agentic SRE, and the Operational Intelligence thesis published here.";
   const ravikanthContext = asksAboutAskPersona
     ? "This is a deterministic assistant, not Ravi personally. It answers from approved public work: the Operational Intelligence doctrine, Operations Room, architecture patterns, public writing, resume evidence, GitHub activity, LinkedIn signal, and the current AI-native operations thesis. It cites evidence, states constraints and tradeoffs, and does not invent a personal response."
     : /what.*(built|build|building|shipped|ship|created|made)|which.*(built|shipped)/.test(lower)
@@ -654,7 +654,7 @@ export function localFallbackAnswer(question: string, context: Array<{ title: st
       : null,
     // Kept unconditional: it discloses which answer mode produced this text, which is
     // true of every answer and is the honest caveat a reader needs.
-    "Trust boundary: this assistant is intentionally deterministic and source-scoped. It answers only from the public record; unsupported or confidential questions remain out of scope.",
+    "Trust boundary: Deterministic retrieval; optional LLM synthesis, disclosed on each answer. It answers only from the public record; unsupported or confidential questions remain out of scope.",
     `Related page or artifact: ${relatedArtifacts.join(", ")}.`,
     "Explicit unknowns: anything employer-specific, confidential, proprietary, or unsupported by public sources remains outside the public-safe knowledge base.",
     `Suggested next question: ${suggestedNextQuestion}`

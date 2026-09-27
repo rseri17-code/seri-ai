@@ -24,15 +24,15 @@
 
 ### 1. Home identity focus line — Claude — **P0 / highest ROI polish**
 
-**Why:** H1 says production AI systems; portrait still only “Senior Technical Lead – AIOps & Observability.” Undersells the mantle in the first viewport.
+**Why:** H1 says production AI systems. The portrait now carries the owner-approved current title.
 
 **Do:** Under the portrait on `/` (match `/background` identity card if same block):
 
-- Keep: `Senior Technical Lead - AIOps & Observability`
-- Add focus line: `Production AI systems for enterprise operations`
+- Current title: `AIOps Lead Architect` (owner-approved 2026-09-27; supersedes “keep Senior Technical Lead”)
+- Keep focus line: `Production AI systems for enterprise operations`
 - Keep: TIAA · Charlotte · 15+ years
 
-**Do not:** replace Senior Technical Lead; invent Architect/Director titles; touch frozen H1.
+**Do not:** invent other titles; touch frozen H1. Past roles stay as published.
 
 **Branch:** `claude/identity-focus-line`  
 **Acceptance:** first viewport shows official title + production-AI focus without clutter.

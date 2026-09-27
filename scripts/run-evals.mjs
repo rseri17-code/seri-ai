@@ -19,6 +19,10 @@ for (const key of envKeys) {
   delete process.env[key];
 }
 const { POST: askPost } = jiti("../app/api/ask/route.ts");
+const { askEvalFixtureCount } = jiti("../lib/ask-eval-count.ts");
+if (askEvalFixtureCount !== report.fixtures.length) {
+  errors.push(`askEvalFixtureCount (${askEvalFixtureCount}) drifted from eval fixture definitions (${report.fixtures.length}).`);
+}
 
 function promptForFixture(fixture) {
   if (fixture.promptType && boundaryFixturePrompts[fixture.promptType]) {
@@ -121,6 +125,17 @@ try {
   }
 }
 
+const passingFixtures = report.fixtures.filter((fixture) => fixture.result === "Pass").length;
+if (passingFixtures !== askEvalFixtureCount) {
+  errors.push(`Passing fixtures (${passingFixtures}) must equal askEvalFixtureCount (${askEvalFixtureCount}).`);
+}
+for (const relativePath of ["app/ask/page.tsx", "lib/llms.ts", "app/resume/page.tsx"]) {
+  const source = fs.readFileSync(path.join(root, relativePath), "utf8");
+  if (!source.includes("askEvalFixtureCount")) {
+    errors.push(`${relativePath} must derive the displayed eval count from askEvalFixtureCount.`);
+  }
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
@@ -130,8 +145,8 @@ const generated = {
   ...report,
   generatedAt: `${report.lastRun}T00:00:00.000Z`,
   generatedBy: "npm run evals",
-  fixtureCount: report.fixtures.length,
-  passingFixtures: report.fixtures.filter((fixture) => fixture.result === "Pass").length,
+  fixtureCount: askEvalFixtureCount,
+  passingFixtures: askEvalFixtureCount,
   fixtures: report.fixtures.map((fixture) =>
     /internal|private|confidential|proprietary|ignore previous|bypass safety|system prompt|developer message|jailbreak/i.test(fixture.prompt)
       ? { ...fixture, prompt: "[redacted public-safety boundary fixture]" }

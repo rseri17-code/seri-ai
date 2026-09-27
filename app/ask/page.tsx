@@ -18,7 +18,7 @@ import { Card } from "@/components/card";
 import { ProfileMark } from "@/components/profile-mark";
 import { Section } from "@/components/section";
 import { askContextCards, askGuidePaths, askRaviPrompts, askThesisLenses } from "@/content/ask";
-import { evalReport } from "@/content/site";
+import { askEvalFixtureCount } from "@/lib/ask-eval-count";
 import Link from "next/link";
 import { ArrowRight, BookOpen, BrainCircuit, ClipboardCheck, GitBranch, Map, Network, ShieldCheck, type LucideIcon } from "lucide-react";
 import type { Metadata } from "next";
@@ -50,7 +50,6 @@ export default async function AskPage({
   searchParams: Promise<{ prompt?: string }>;
 }) {
   const params = await searchParams;
-  const evalFixtureCount = evalReport.fixtures.length;
   const initialPrompt = params.prompt ?? "";
 
   return (
@@ -71,9 +70,8 @@ export default async function AskPage({
               Explore the public work, frameworks, and operating principles behind seri.ai. Answers cite what is known, name what is not, and keep non-public work out of scope.
             </p>
             <p className="mt-4 rounded border border-amber/25 bg-amber/[0.05] p-4 text-sm leading-6 text-slate-300">
-              <span className="font-semibold text-amber">How this works.</span> This assistant is intentionally deterministic and
-              source-scoped. It answers only from the public record; unsupported or confidential questions remain out of scope.
-              Behaviour is held to {" "}{evalFixtureCount} deterministic checks that run on every build.
+              <span className="font-semibold text-amber">How this works.</span>{" "}
+              {`Deterministic retrieval; optional LLM synthesis, disclosed on each answer. It answers only from the public record; unsupported or confidential questions remain out of scope. Behaviour is held to ${askEvalFixtureCount} deterministic checks that run on every build.`}
             </p>
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               {["Ground claims", "Expose sources", "Separate inference", "Stop at evidence"].map((step) => (

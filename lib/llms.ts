@@ -1,4 +1,5 @@
-import { evalReport, site } from "../content/site";
+import { resume, site } from "../content/site";
+import { askEvalFixtureCount, askEvalPassingRecord } from "./ask-eval-count";
 import { buildPublishingIndex } from "./publishing";
 
 const canonicalReferenceRoutes = [
@@ -20,10 +21,16 @@ export function buildLlmsTxt(siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http
     .filter((asset) => canonicalReferenceRoutes.includes(asset.url) || asset.assetType === "pattern" || asset.assetType === "article")
     .slice(0, 30);
 
+  const currentRole = resume.experience.find((role) => /present/i.test(role.period))?.role ?? resume.experience[0].role;
+
   return [
     "# seri.ai",
     "",
+    "Updated: 2026-09-27",
+    "",
     "> Public home of Ravikanth Seri's work on Operational Intelligence, Agentic SRE, transaction intelligence, evidence graphs, AI-native incident investigation, evaluation gates, operator control planes, and enterprise observability.",
+    "",
+    `Current role: ${currentRole}.`,
     "",
     "## Public-Safe Boundary",
     "",
@@ -41,12 +48,14 @@ export function buildLlmsTxt(siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http
     "",
     "## Ask Ravikanth Behavior Contract",
     "",
+    "- Ask the public record.",
+    "- Deterministic retrieval; optional LLM synthesis, disclosed on each answer.",
     "- Ground answers in approved public sources.",
     "- Cite or name the public source family used.",
     "- Separate observation, inference, confirmed fact, contradiction, and missing evidence.",
     "- Preserve human approval boundaries for consequential action.",
     "- Refuse confidential, proprietary, employer-specific, or unsupported questions.",
-    `- Current deterministic trust fixtures: ${evalReport.fixtures.length}/${evalReport.fixtures.length} passing.`,
+    `- Current deterministic trust fixtures: ${askEvalPassingRecord(askEvalFixtureCount)} passing.`,
     "",
     "## Public Profiles",
     "",
@@ -76,7 +85,7 @@ function labelForRoute(route: string) {
     "/wiki/operational-intelligence-evidence-pack": "Operational Intelligence Evidence Pack",
     "/framework": "Operational Intelligence Framework",
     "/investigation-room": "Operations Room",
-    "/ask": "Public Trust Evals",
+    "/ask": "Ask the public record",
     "/work": "Public Work Index",
     "/resume": "Interactive Resume",
     "/contact": "Practitioner Review and Contact"

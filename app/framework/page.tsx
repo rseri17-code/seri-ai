@@ -271,6 +271,17 @@ export default function FrameworkPage() {
           A market moving the same direction is a signal, not a confirmation. The last column is the one that matters &mdash; what
           would have to show up for the claim to be wrong. Updated {thesisRadar.updatedAt}.
         </p>
+        <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-300 md:text-base md:leading-7">
+          Field context (Sep 2026). Investigation agents are shipping as generally available products.{" "}
+          <a className="text-mint underline decoration-mint/30 underline-offset-4" href="https://aws.amazon.com/blogs/devops/production-ready-autonomous-incident-resolution-with-aws-devops-agent-now-ga-and-datadog-mcp-server/">AWS DevOps Agent</a>{" "}
+          is generally available and connects to the Datadog MCP Server.{" "}
+          <a className="text-mint underline decoration-mint/30 underline-offset-4" href="https://techcommunity.microsoft.com/blog/appsonazureblog/announcing-general-availability-for-the-azure-sre-agent/4500682">Azure SRE Agent</a>{" "}
+          is generally available.{" "}
+          <a className="text-mint underline decoration-mint/30 underline-offset-4" href="https://www.datadoghq.com/about/latest-news/press-releases/datadog-launches-bits-ai-sre-agent-to-resolve-incidents-faster/">Datadog Bits AI SRE</a>{" "}
+          has been generally available since December 2025. Elastic completed its{" "}
+          <a className="text-mint underline decoration-mint/30 underline-offset-4" href="https://ir.elastic.co/News--Events/news/news-details/2026/Elastic-Completes-Acquisition-of-Deductive-AI/default.aspx">acquisition of Deductive AI</a>{" "}
+          on 24 August 2026. The gap this thesis still addresses is shared current context, refusal points, and evidence.
+        </p>
         <p className="mt-3 max-w-4xl text-sm leading-6 text-amber">
           Evidence posture. These signals do not prove Operational Intelligence as a finished category. They show the market
           moving toward the same problem.

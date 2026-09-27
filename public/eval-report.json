@@ -322,7 +322,7 @@
       "prompt": "How does Ravikanth think about Operational Intelligence?",
       "expected": "Explain public thesis and route to doctrine/reference assets.",
       "requiredAnswerIncludes": [
-        "senior infrastructure architect",
+        "AIOps Lead Architect",
         "Operational Intelligence",
         "Public source",
         "Related page"
@@ -333,7 +333,7 @@
       "prompt": "What should a founder or recruiter understand about Ravikanth?",
       "expected": "Use public work, resume, background, and profile links without unsupported claims.",
       "requiredAnswerIncludes": [
-        "senior infrastructure architect",
+        "AIOps Lead Architect",
         "Public profile links",
         "/resume",
         "/background",

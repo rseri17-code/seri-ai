@@ -680,7 +680,7 @@ export function Chat({
             </div>
           ) : null}
           <p className="mt-4 text-xs leading-5 text-slate-400">
-            This assistant is intentionally deterministic and source-scoped. It answers only from the public record; unsupported or confidential questions remain out of scope.
+            Deterministic retrieval; optional LLM synthesis, disclosed on each answer. It answers only from the public record; unsupported or confidential questions remain out of scope.
           </p>
         </div>
         {!hasAskedQuestion ? (

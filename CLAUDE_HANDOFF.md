@@ -6,15 +6,27 @@ Last updated: 2026-09-27
 
 Preview-only. Do not merge.
 
-- Framework upgrade from Next.js 15.5.23 to 16.3.6 (latest stable 16.x; patched for CVE-2026-94545 / GHSA-vcvr-r3jv-pc5j). React and react-dom 19.3.0. `@types/react` and `@types/react-dom` 19.3.0. `eslint-config-next` 16.3.6. ESLint stays on 9.39.5 because ESLint 10 crashes `eslint-plugin-react` 7.37.5 shipped by that config.
-- `middleware.ts` renamed to `proxy.ts` (Node.js runtime). Admin basic-auth matcher is unchanged.
-- Async `params` / `searchParams` were already awaited. No `next/image` usage, so image default changes do not apply. Cache Components and `instant` were not adopted. Visitor copy, design system, Operations Room logic, security headers in `vercel.json`, JSON-LD job title, robots, and sitemap behaviour were not edited.
+- Merged main `8412d02` (PR #17). That commit pinned Next.js **15.5.26** and `eslint-config-next` **15.5.26**. This branch keeps every PR #17 content change and moves the framework to 16.3.6.
+- Framework upgrade to 16.3.6 (latest stable 16.x; patched for CVE-2026-94545 / GHSA-vcvr-r3jv-pc5j). React and react-dom 19.3.0. `@types/react` and `@types/react-dom` 19.3.0. `eslint-config-next` 16.3.6. ESLint stays on 9.39.5 because ESLint 10 crashes `eslint-plugin-react` 7.37.5 shipped by that config. `browserslist` override is 4.29.1. sharp override is 0.35.4.
+- `middleware.ts` renamed to `proxy.ts` (Node.js runtime). Admin basic-auth matcher is unchanged. Security headers from PR #17 stay in `next.config.ts` and `vercel.json`.
+- Async `params` / `searchParams` were already awaited. No `next/image` usage, so image default changes do not apply. Cache Components and `instant` were not adopted.
 - Lint: new `react-hooks/set-state-in-effect` error from react-hooks 7 is turned off so Ask session restore, the nav menu, and Operations Room playback stay as they are.
 - Client imports of the content barrel (`header`, framework teacher) now import the JSON module they use. Turbopack was pulling the whole barrel into one client chunk above the 260KB per-file budget. Wiring only; no copy change.
 
 Public-safety: no employer data added. Preview-only; do not merge.
 
-## ACT SITE QUALITY PASS — 2026-09-23
+## ACT OWNER TITLE + FIELD CONTEXT — 2026-09-27
+
+Preview-only. Do not merge. Work-first Operational Intelligence thesis stays. Ask stays retrieval-bound.
+
+- **Owner ruling 2026-09-27:** current role title is `AIOps Lead Architect` everywhere. This supersedes the 2026-09-01 focus-line instruction to keep `Senior Technical Lead - AIOps & Observability` and the 2026-08-30 note not to restore *AIOps Lead Architect*. Still do not invent other titles. Past roles stay. Frozen hero H1 and both primary CTAs stay. JSON-LD `jobTitle` is read from the Present resume role.
+- Portrait on `/` and `/background`, resume headline, summary, and Jun 2025–present role, metadata/OG descriptions, and `llms.txt` use that title.
+- Main pinned Next.js `15.5.26` (eslint-config-next aligned) before this upgrade. Sitemap `lastmod` comes from content `updatedAt`, with `lib/publishing.ts` `defaultDate` as the fallback. `/llms.txt` is not a sitemap route. Robots lists only `/sitemap.xml` and still disallows `/api`.
+- Doctrine bibliography adds the NIST AI Agent Standards Initiative (Feb 2026) and Regulation (EU) 2026/1744. Annex III high-risk obligations apply from 2 December 2027. Article 50 transparency applied from 2 August 2026.
+- Doctrine states that OpenTelemetry GenAI semantic conventions live in their own repository (Development; split at semconv v1.42.0, June 2026) and that MCP 2026-07-28 carries W3C trace context and deprecates MCP logging in favour of OpenTelemetry. That supports “evidence must be traceable.” No `gen_ai.*` renames. No MCP in Ask.
+- `/framework` carries a short Field context (Sep 2026) note from primary vendor sources. Ask copy says deterministic retrieval with optional LLM synthesis disclosed on each answer. The fixture total is `askEvalFixtureCount`, graded by `scripts/run-evals.mjs`.
+
+Public-safety: no employer data added. Preview-only; do not merge.
 
 ## ACT SITE QUALITY PASS — 2026-09-23
 
@@ -106,7 +118,7 @@ Preview-only. Do not merge. Homepage is the 10/10 surface. Deep `/framework` and
 
 **Kept (frozen / named with clauses):** H1 `I build evidence-grounded AI systems for enterprise operations.`; CTAs `Enter the Operations Room` / `Explore the body of work`; five-item nav + Ask (`Framework` label from the prior jargon pass); `the Authorized Misfire` + existing clause; Context Acquisition Tax four-answer gloss; `SRE / Agent Harness`; `Batch Intelligence`; Staff / Principal quiet line.
 
-**Homepage first screen:** H1 glossed as “a recommendation can be traced to a source”; production ownership + private/public boundary without a resume stack; portrait keeps `Senior Technical Lead — AIOps & Observability` and adds `Production AI systems for enterprise operations`. Operational Intelligence is taught in the 30s map, not the eyebrow.
+**Homepage first screen:** H1 glossed as “a recommendation can be traced to a source”; production ownership + private/public boundary without a resume stack; portrait focus line stays `Production AI systems for enterprise operations`. **Owner ruling 2026-09-27:** the current role under the portrait is `AIOps Lead Architect`, which supersedes `Senior Technical Lead — AIOps & Observability`. Operational Intelligence is taught in the 30s map, not the eyebrow.
 
 **30s map:** one claim per sentence. Enterprise Context Layer = maintained data product (owner, change, dependency, customer journey). Harness = investigation loop that reads it. Batch = public execution-graph proof. Ten layers = filing. Work-plainly no longer restacks the map; evidence ladder prove-lines stay a path through the work.
 
@@ -790,8 +802,9 @@ Ravikanth ruled these directly on 2026-08-30. They are in `AGENTS.md` too.
   diagnosed problem.
 - **Nav is 5 items + Ask.** Do not re-expand.
 - **Real employer names are published.** Do not revert to "Major regulated financial-services
-  enterprise", and do not restore the invented titles *AIOps Lead Architect* /
-  *Infrastructure Technical Lead — Identity and Observability*.
+  enterprise". **Owner ruling 2026-09-27:** the current role title is `AIOps Lead Architect`.
+  That supersedes the earlier instruction not to use this title. Still do not invent other titles,
+  including *Infrastructure Technical Lead — Identity and Observability*. Past roles stay.
 - **Do not restore to the homepage:** the falsification matrix, inspection ledger, persona-route
   grid, five-stop visitor map, contact-reason grid. They were relocated, and their destinations were
   verified before removal.
@@ -1203,13 +1216,13 @@ complete.
 
   | Period | Role | Employer |
   | --- | --- | --- |
-  | Jun 2025 - Present | Senior Technical Lead - AIOps & Observability | TIAA |
+  | Jun 2025 - Present | AIOps Lead Architect | TIAA |
   | May 2022 - May 2025 | Technical Lead - Identity & Infrastructure | TIAA |
   | Aug 2008 - May 2022 | Lead Integration Engineer, Digital Metrics Infrastructure Engineer, and Senior Middleware Engineer | LPL Financial, TIAA, Wells Fargo, VF Corporation, State Farm |
 
-  This also closes the standing **job titles disagree with the resume** risk: the site said *AIOps
-  Lead Architect* and *Infrastructure Technical Lead — Identity and Observability*; the resume's
-  titles are now the published ones. Neither agent restores the grander variants.
+  This closed the standing **job titles disagree with the resume** risk at the time. **Owner ruling
+  2026-09-27:** the current role is `AIOps Lead Architect` on the site and in the resume. Still do
+  not invent other titles. Past roles stay as published.
 
   A new `employers` array per experience entry drives the wordmark chips and is enforced by
   `validate-content.mjs`.
@@ -2149,7 +2162,7 @@ Ravikanth's first Vercel deploy failed at `validate:reference` with `TypeError: 
 
 1. **Portrait renders** on `/`, `/background`, `/resume` (WebP with JPEG fallback).
 2. **Hero reads correctly**: "Operations should explain themselves before AI acts." with the first-person identity paragraph beside the portrait.
-3. **Ask behaves**: ask "Who is Ravikanth Seri?" — must open "Ravikanth Seri is a senior infrastructure architect…", NOT the assistant-disclaimer text. Then ask "How does Ravikanth think about evaluation?" — should answer about evaluation, not recite the bio.
+3. **Ask behaves**: ask "Who is Ravikanth Seri?" — must open with the current role, `AIOps Lead Architect` (owner ruling 2026-09-27; this supersedes "senior infrastructure architect"), NOT the assistant-disclaimer text. Then ask "How does Ravikanth think about evaluation?" — should answer about evaluation, not recite the bio.
 4. **`answer_mode` honesty**: check the Trust Contract panel. With no provider keys set it must read `local_fallback`, not `ai_synthesis`. If it reads `ai_synthesis`, keys are configured and model synthesis is live — note which.
 5. **Operations Room hero**: headline on two clean lines, actions in a row beneath (not floating mid-height).
 6. **Mobile 390px**: Ask opening message complete, not clipped; no horizontal scroll on `/`, `/ask`, `/work`.

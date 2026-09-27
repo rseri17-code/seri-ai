@@ -62,7 +62,7 @@ Ravikanth authorized collapsing toward roughly six primary destinations. Sanctio
 
 ### Highest ROI next — execute in order
 
-1. **Claude P0:** Home (and About identity card if shared) **focus line** under portrait: keep `Senior Technical Lead - AIOps & Observability`; add `Production AI systems for enterprise operations`. **Do not change frozen hero H1.**
+1. **Owner ruling 2026-09-27:** the current role title is `AIOps Lead Architect` everywhere. This supersedes the earlier instruction to keep `Senior Technical Lead - AIOps & Observability`. Still do not invent other titles. Keep the focus line `Production AI systems for enterprise operations`. **Do not change frozen hero H1.**
 2. **Claude P0:** Agent **evaluation & observability** chapter on `/background` and/or `/work` (capabilities, not vendor logos; public-safe).
 3. **Claude P0:** **Essay depth** behind “Read the essay” (Ravikanth final edit).
 4. **Codex:** Verify/finish Ask a11y (headings, contrast, control reachability) + Work tap targets ≥24px if anything remains from the redirect branch. Mark DONE in CLAUDE_HANDOFF if already live.
@@ -133,6 +133,13 @@ Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.
 - `/api/ask` validates, caps history, aborts slow providers, logs `ask_latency`, and rate-limits. Durable KV/Upstash is optional; memory window is the fallback.
 - JSON-LD jobTitle is AIOps Lead Architect. Blank site URL falls back to the canonical Vercel origin.
 - Homepage class strings shortened in CSS. robots no longer lists `/admin`; `/api` stays disallowed. Sitemap refs stay.
+
+## SESSION HANDOFF — 2026-09-27 (owner title ruling)
+
+Preview PR only. Do not merge. Work-first Operational Intelligence thesis stays.
+
+- **Owner ruling 2026-09-27:** current role title is `AIOps Lead Architect` everywhere, including the portrait, background, resume headline and Jun 2025–present role, JSON-LD `jobTitle` (read from that resume role), metadata, and `llms.txt`. This supersedes the 2026-09-01 instruction to keep `Senior Technical Lead - AIOps & Observability` and the 2026-08-30 note not to restore this title. Still do not invent other titles. Past roles stay. Frozen hero H1 stays.
+- Main pinned Next.js at 15.5.26 before the 16.3.6 upgrade on this branch. Sitemap `lastmod` comes from content dates. Robots lists only `/sitemap.xml` and still disallows `/api`.
 
 ## Ruled copy is machine-enforced
 

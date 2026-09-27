@@ -18,7 +18,8 @@ import { AppLink as Link } from "@/components/app-link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ClipboardCheck, GitBranch, Route, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/card";
-import { evalReport, operationalIntelligenceFramework, projectProof, projects } from "@/content/site";
+import { operationalIntelligenceFramework, projectProof, projects } from "@/content/site";
+import { askEvalFixtureCount } from "@/lib/ask-eval-count";
 import { buildPublishingIndex } from "@/lib/publishing";
 
 export function generateStaticParams() {
@@ -121,7 +122,7 @@ const inspectionLabels: Record<string, string> = {
 };
 
 const inspectionLink = (href: string): [string, string] => [href, inspectionLabels[href] ?? href.replace(/^\//, "").replace(/[-/]/g, " ")];
-const formatProofText = (text: string) => text.replace("{fixtureCount}", String(evalReport.fixtures.length));
+const formatProofText = (text: string) => text.replace("{fixtureCount}", String(askEvalFixtureCount));
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

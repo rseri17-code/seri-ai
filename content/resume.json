@@ -1,12 +1,12 @@
 {
-  "headline": "Senior Technical Lead - AIOps & Observability. I build production AI systems for enterprise operations.",
+  "headline": "AIOps Lead Architect. I build production AI systems for enterprise operations.",
   "location": "Charlotte, NC",
   "contact": [
     "rseri17@gmail.com",
     "github.com/rseri17-code",
     "linkedin.com/in/ravikanthseri"
   ],
-  "summary": "Senior Technical Lead in AIOps and Observability, with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial services. I build production AI systems for enterprise operations: bounded execution, agent observability, evaluation, and runtime governance. That work rests on enterprise integration, identity modernization, container platforms, and telemetry correlation, and on one operating conviction: an operational decision should be able to show the evidence behind it.",
+  "summary": "AIOps Lead Architect, with 15+ years designing, modernizing, and operating distributed enterprise systems in regulated financial services. I build production AI systems for enterprise operations: bounded execution, agent observability, evaluation, and runtime governance. That work rests on enterprise integration, identity modernization, container platforms, and telemetry correlation, and on one operating conviction: an operational decision should be able to show the evidence behind it.",
   "strengths": [
     "Production AI agent systems for enterprise operations",
     "Operational Intelligence, AIOps, and AI-native incident investigation",
@@ -64,7 +64,7 @@
   ],
   "experience": [
     {
-      "role": "Senior Technical Lead - AIOps & Observability",
+      "role": "AIOps Lead Architect",
       "organization": "TIAA",
       "period": "Jun 2025 - Present",
       "impact": "Leads architecture for production AI-assisted operational workflows that support observability, incident response, retrieval, evaluation, and governed tool use.",

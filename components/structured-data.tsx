@@ -1,7 +1,8 @@
-import { canonicalDefinition, contentRegistry, operationalIntelligenceFramework, site } from "@/content/site";
+import { canonicalDefinition, contentRegistry, operationalIntelligenceFramework, resume, site } from "@/content/site";
 
 const CANONICAL_SITE_URL = "https://seri-ai.vercel.app";
-const PERSON_JOB_TITLE = "AIOps Lead Architect";
+// Owner ruling 2026-09-27: current role title is AIOps Lead Architect. Single-sourced from the Present resume role.
+const PERSON_JOB_TITLE = resume.experience.find((role) => /present/i.test(role.period))?.role ?? resume.experience[0].role;
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 const siteUrl = configuredSiteUrl || CANONICAL_SITE_URL;
 

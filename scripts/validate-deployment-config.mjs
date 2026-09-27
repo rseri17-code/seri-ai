@@ -107,7 +107,10 @@ const nextConfig = read("next.config.ts");
 for (const required of [
   "staticPageGenerationTimeout: 180",
   "staticGenerationMaxConcurrency: 4",
-  "staticGenerationRetryCount: 1"
+  "staticGenerationRetryCount: 1",
+  "X-Frame-Options",
+  "Content-Security-Policy",
+  "frame-ancestors 'none'"
 ]) {
   expect(nextConfig.includes(required), `next.config.ts missing production build stability setting ${required}`);
 }

@@ -160,7 +160,7 @@ const routeContracts = [
     required: [
       "Where the thesis comes from.",
       "15+ years",
-      "Senior Technical Lead — AIOps & Observability",
+      "AIOps Lead Architect",
       "Building evidence-grounded AI systems for enterprise operations.",
       "How the judgment formed.",
       "Container platforms and observability",
@@ -189,7 +189,7 @@ const routeContracts = [
     // verifiable record and the printable path, plus the lead identity a recruiter reads first.
     required: [
       "Ravikanth Seri",
-      "Senior Technical Lead",
+      "AIOps Lead Architect",
       "15+ years in enterprise engineering",
       "Impact ledger",
       "Strengths",
