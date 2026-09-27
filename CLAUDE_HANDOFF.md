@@ -10,6 +10,7 @@ Preview-only. Do not merge.
 - `middleware.ts` renamed to `proxy.ts` (Node.js runtime). Admin basic-auth matcher is unchanged.
 - Async `params` / `searchParams` were already awaited. No `next/image` usage, so image default changes do not apply. Cache Components and `instant` were not adopted. Visitor copy, design system, Operations Room logic, security headers in `vercel.json`, JSON-LD job title, robots, and sitemap behaviour were not edited.
 - Lint: new `react-hooks/set-state-in-effect` error from react-hooks 7 is turned off so Ask session restore, the nav menu, and Operations Room playback stay as they are.
+- Client imports of the content barrel (`header`, framework teacher) now import the JSON module they use. Turbopack was pulling the whole barrel into one client chunk above the 260KB per-file budget. Wiring only; no copy change.
 
 Public-safety: no employer data added. Preview-only; do not merge.
 
