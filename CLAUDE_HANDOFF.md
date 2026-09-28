@@ -2,13 +2,26 @@
 
 Last updated: 2026-09-27
 
+## NEXT.JS 16.3.6 UPGRADE — 2026-09-27
+
+Preview-only. Do not merge.
+
+- Merged main `8412d02` (PR #17). That commit pinned Next.js **15.5.26** and `eslint-config-next` **15.5.26**. This branch keeps every PR #17 content change and moves the framework to 16.3.6.
+- Framework upgrade to 16.3.6 (latest stable 16.x; patched for CVE-2026-94545 / GHSA-vcvr-r3jv-pc5j). React and react-dom 19.3.0. `@types/react` and `@types/react-dom` 19.3.0. `eslint-config-next` 16.3.6. ESLint stays on 9.39.5 because ESLint 10 crashes `eslint-plugin-react` 7.37.5 shipped by that config. `browserslist` override is 4.29.1. sharp override is 0.35.4.
+- `middleware.ts` renamed to `proxy.ts` (Node.js runtime). Admin basic-auth matcher is unchanged. Security headers from PR #17 stay in `next.config.ts` and `vercel.json`.
+- Async `params` / `searchParams` were already awaited. No `next/image` usage, so image default changes do not apply. Cache Components and `instant` were not adopted.
+- Lint: new `react-hooks/set-state-in-effect` error from react-hooks 7 is turned off so Ask session restore, the nav menu, and Operations Room playback stay as they are.
+- Client imports of the content barrel (`header`, framework teacher) now import the JSON module they use. Turbopack was pulling the whole barrel into one client chunk above the 260KB per-file budget. Wiring only; no copy change.
+
+Public-safety: no employer data added. Preview-only; do not merge.
+
 ## ACT OWNER TITLE + FIELD CONTEXT — 2026-09-27
 
 Preview-only. Do not merge. Work-first Operational Intelligence thesis stays. Ask stays retrieval-bound.
 
 - **Owner ruling 2026-09-27:** current role title is `AIOps Lead Architect` everywhere. This supersedes the 2026-09-01 focus-line instruction to keep `Senior Technical Lead - AIOps & Observability` and the 2026-08-30 note not to restore *AIOps Lead Architect*. Still do not invent other titles. Past roles stay. Frozen hero H1 and both primary CTAs stay. JSON-LD `jobTitle` is read from the Present resume role.
 - Portrait on `/` and `/background`, resume headline, summary, and Jun 2025–present role, metadata/OG descriptions, and `llms.txt` use that title.
-- Next.js `15.5.26` (eslint-config-next aligned). Sitemap `lastmod` comes from content `updatedAt`, with `lib/publishing.ts` `defaultDate` as the fallback. `/llms.txt` is not a sitemap route. Robots lists only `/sitemap.xml` and still disallows `/api`.
+- Main pinned Next.js `15.5.26` (eslint-config-next aligned) before this upgrade. Sitemap `lastmod` comes from content `updatedAt`, with `lib/publishing.ts` `defaultDate` as the fallback. `/llms.txt` is not a sitemap route. Robots lists only `/sitemap.xml` and still disallows `/api`.
 - Doctrine bibliography adds the NIST AI Agent Standards Initiative (Feb 2026) and Regulation (EU) 2026/1744. Annex III high-risk obligations apply from 2 December 2027. Article 50 transparency applied from 2 August 2026.
 - Doctrine states that OpenTelemetry GenAI semantic conventions live in their own repository (Development; split at semconv v1.42.0, June 2026) and that MCP 2026-07-28 carries W3C trace context and deprecates MCP logging in favour of OpenTelemetry. That supports “evidence must be traceable.” No `gen_ai.*` renames. No MCP in Ask.
 - `/framework` carries a short Field context (Sep 2026) note from primary vendor sources. Ask copy says deterministic retrieval with optional LLM synthesis disclosed on each answer. The fixture total is `askEvalFixtureCount`, graded by `scripts/run-evals.mjs`.

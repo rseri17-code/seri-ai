@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { site } from "@/content/site";
+import site from "@/content/site-config.json";
 
 /**
  * Five destinations, by the 2026-08-30 homepage ruling. The wordmark is the Home link, and

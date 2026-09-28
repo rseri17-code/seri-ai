@@ -4,7 +4,8 @@ import Link from "next/link";
 import { ArrowRight, GitBranch, Layers, Play, ShieldCheck } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Card } from "@/components/card";
-import { operationalIntelligenceFramework, operationalIntelligenceSystem } from "@/content/site";
+import operationalIntelligenceFramework from "@/content/operational-intelligence-framework.json";
+import operationalIntelligenceSystem from "@/content/operational-intelligence-system.json";
 import { captureSafeEvent } from "@/lib/analytics-events";
 
 export function FrameworkTeacher() {

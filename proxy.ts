@@ -8,7 +8,7 @@ function unauthorized() {
   });
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const adminToken = process.env.ADMIN_TOKEN;
   if (!adminToken) {
     return unauthorized();
