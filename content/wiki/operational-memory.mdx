@@ -5,7 +5,7 @@ category: "Operational Intelligence"
 tags: ["Operational Intelligence", "Knowledge Graphs", "Agentic Systems"]
 status: "published"
 createdAt: "2026-07-05"
-updatedAt: "2026-07-05"
+updatedAt: "2026-10-08"
 related: ["evidence-before-conclusions", "shared-context-for-enterprise-agents"]
 ---
 
@@ -14,3 +14,9 @@ Operational memory is the accumulated context that helps an enterprise understan
 Without memory, every investigation starts from zero. With memory, AI systems can compare the current situation against known patterns while still respecting evidence and uncertainty.
 
 The goal is not to automate judgment away from people. The goal is to preserve context so human decisions get better over time.
+
+Each investigation should leave the dynamic map more complete. Newly discovered components become nodes, and observed dependencies become edges. Validated causal relationships carry supporting evidence and the conditions under which they hold. Untested explanations remain hypotheses.
+
+When a node fails again, the agent starts with those dependencies and findings, checks what changed, and challenges relationships that no longer hold. The harness should retain evidence references and validation results so reusable knowledge stays testable.
+
+Read [A Causal Graph Earned Through Investigation](/ideas/causal-graphs-earned-through-investigation) for a hypothetical retry and connection-pool incident that explains this learning loop.

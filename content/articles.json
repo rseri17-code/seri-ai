@@ -1,5 +1,26 @@
 [
   {
+    "slug": "causal-graphs-earned-through-investigation",
+    "title": "A Causal Graph Earned Through Investigation",
+    "dek": "Each investigation should extend the dependency map and preserve evidence the next investigation can test.",
+    "theme": "Operational Intelligence",
+    "date": "2026-10-08",
+    "readingTime": "2 min",
+    "body": [
+      "Known failure modes have runbooks. The incidents that expose gaps are P3s that become P2s by crossing dependencies nobody connected.",
+      "Consider a hypothetical incident. The frontend application is returning errors, affecting users. Several hops downstream, a service can't reach its database. Trace context was lost between the gateway and the queue.",
+      "Telemetry can help rebuild the path, but the path fits two explanations. Either the database is failing and the frontend inherits the errors, or frontend retries are driving enough downstream work to exhaust the service's connection pool.",
+      "A restart hides the difference. The errors stop. Recovery looks like confirmation. Retries pile up, and the incident returns.",
+      "Recovery was mistaken for explanation.",
+      "Timing narrows the hypotheses. It doesn't establish the cause. Test the mechanism: cap retries under controlled conditions. If the pool recovers while database health remains unchanged, that supports the retry hypothesis. The investigation still has to account for other changes and competing explanations.",
+      "Each investigation should extend the dynamic map with newly discovered nodes and dependency edges. A dependency edge records an observed connection. A validated causal relationship records an explanation supported by evidence, with the operating conditions under which it holds. Untested explanations stay hypotheses.",
+      "When a node fails again, the agent starts from those dependencies and findings, checks what changed, and challenges relationships that no longer hold. Existing nodes and edges receive fresh evidence; newly discovered dependencies extend the map. The next investigation should not have to rebuild that context from scratch.",
+      "The agent harness should preserve evidence references, validation results, and the conditions that require rechecking a finding. Reusing a prior explanation is a starting point for investigation, not permission to assume it remains true.",
+      "Operational intelligence should mean a system that improves through investigation.",
+      "The test is whether the next P3 like this gets connected before it becomes a P2."
+    ]
+  },
+  {
     "slug": "operational-intelligence-is-the-new-control-plane",
     "title": "Operational Intelligence Is the New Control Plane",
     "dek": "Why enterprises need systems that reason across signals, workflows, people, and outcomes.",
