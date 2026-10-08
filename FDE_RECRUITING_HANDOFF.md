@@ -26,3 +26,7 @@ The retrieval gate includes seven career-delivery queries, unrelated architectur
 Full npm test and npm run build passed with the final outcome-validation changes, including 124 Ask fixtures, 74 existing retrieval queries, seven new delivery queries, mocked synthesis checks, and production rendering/performance gates. The documentation update recording these results also requires both gates before publication. The measured source corpus contains 92 entries and 78 unique URLs. Publishing remains 63 assets; the knowledge graph remains 8071 relationships across 10 layers.
 
 Built-site Chromium verification passed at desktop 1440×1000 and mobile 390×844 for home and Work: no horizontal overflow or page errors, the new delivery section and links render, and Background, Resume, Projects, Ask, Contact, and Operations Room return 200. Screenshots were reviewed. Live Groq synthesis and deployed commit verification follow publication; those checks are not claimed here in advance.
+
+## Live synthesis follow-up
+
+The first production release retrieved the right delivery/resume sources and named the accomplishments, but Groq listed earlier metrics and then called documented outcomes limited to deployment, omitting the synthetic boundary. The follow-up scoped prompt explicitly requires all four evidence categories and the earlier role period. Regression checks now reject that observed contradictory scope and answers that omit the demonstration category. The follow-up must pass both full gates before publication and be rechecked live.

@@ -65,6 +65,10 @@ const rejected = await generateRaviAnswer({ question, context, env, fetchImpl: m
 assert.equal(rejected.mode, "local_fallback");
 assert.equal(rejected.llmSkipReason, "validation_rejected");
 assert.match(rejected.answer, /from thesis to production/);
+const liveAmbiguity = "He delivered an investigation agent and earlier automation reduced support tickets by 80% [P1]. Publicly documented outcomes, however, are limited to the fact that these systems have been deployed. Citations: [P1] /work#production-delivery.";
+assert.equal(validateSynthesizedAnswer(liveAmbiguity, context, { question }).reason, "contradicted_experience");
+const incomplete = "Ravikanth took an enterprise SRE investigation agent from thesis to production. AI metrics are not published. Earlier identity automation reduced support tickets by 80% [P1]. Citations: [P1] /work#production-delivery.";
+assert.equal(validateSynthesizedAnswer(incomplete, context, { question }).reason, "incomplete_delivery_scope");
 for (const fabricated of [
   "The production AI agent reduced MTTR by 40% and has 500 users [P1]. Citations: [P1] /work#production-delivery.",
   "His investigation agent reduced support tickets by 80% [P2]. Citations: [P2] /resume."
