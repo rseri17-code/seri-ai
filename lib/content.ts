@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { productionDeliveryContent, productionDeliveryUrl } from "./production-delivery";
 import { articles, askLiveReviewPacket, contentRegistry, identityAsset, keyboardAccessibilityWalkthroughs, mobileTouchWalkthroughs, nowPage, patterns, portraitIntake, practitionerReviewPacket, principles, professionalGraph, projectProof, projects, proofBacklog, publicCode, publicationSpine, qualityScorecard, resume, site, thesisRadar, thesisRadarLifecycle, visitorReviewKit } from "../content/site";
 
 export type WikiStatus = "draft" | "review" | "approved" | "published" | "archived";
@@ -535,6 +536,21 @@ export function buildPublicSourceIndex(): PublicSource[] {
 
   const profileSources = [
     {
+      id: "profile:production-delivery",
+      title: "Ravikanth Seri Production Delivery and Documented Outcomes",
+      description: "Published production experience, personal delivery scope, earlier resume outcomes, and limits of synthetic demonstrations.",
+      content: productionDeliveryContent(),
+      url: productionDeliveryUrl,
+      type: "registry" as const,
+      category: "background",
+      tags: ["production", "shipped", "delivery", "outcomes", "adoption", "career"],
+      author: "Ravikanth Seri",
+      assetType: "profile",
+      date: "2026-10-08",
+      frameworkLayers: [], principles: [], patterns: [], products: [],
+      status: "published" as const
+    },
+    {
       id: "profile:first-time-visitor-review-kit",
       title: visitorReviewKit.title,
       description: "Public-safe first-time visitor and practitioner review protocol for evaluating whether seri.ai clearly represents Ravikanth Seri, the work, and the Operational Intelligence thesis.",
@@ -666,6 +682,8 @@ export function buildPublicSourceIndex(): PublicSource[] {
       content: [
         "Resume evidence. Architecture judgment ledger. Architecture judgment rather than just skills.",
         "Impact ledger. Capability evidence matrix. Source provenance. Education. Certifications.",
+        resume.summary,
+        resume.experience.flatMap((role) => [role.period, role.role, role.impact, ...role.bullets]).join(". "),
         resume.education.flatMap((item) => [item.credential, item.issuer, item.status, item.supports, item.sourceClass]).join(". "),
         resume.certifications.flatMap((item) => [item.credential, item.issuer, item.issued ?? "", item.status, item.supports, item.doesNotProve, item.sourceClass]).join(". "),
         "Preserved constraints: operational evidence, governed execution, replay evaluation, transaction journeys, public-safe architecture."

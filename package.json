@@ -32,7 +32,7 @@
     "validate:publishing": "node scripts/validate-publishing-discovery.mjs",
     "validate:knowledge-graph": "node scripts/validate-knowledge-graph-health.mjs",
     "validate:discovery": "node scripts/validate-discovery-metadata.mjs",
-    "validate:retrieval": "node scripts/validate-search-retrieval.mjs",
+    "validate:retrieval": "node scripts/validate-search-retrieval.mjs && node scripts/validate-production-delivery.mjs",
     "validate:analytics": "node scripts/validate-analytics.mjs",
     "validate:api": "node scripts/validate-api-contracts.mjs",
     "validate:ask-llm": "node scripts/validate-ask-llm.mjs",

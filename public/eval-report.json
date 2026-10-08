@@ -472,7 +472,7 @@
       "prompt": "What production experience supports Ravikanth's thinking?",
       "expected": "Route to production-delivery evidence and resume/background without protected implementation details.",
       "requiredAnswerIncludes": [
-        "Production delivery path",
+        "from thesis to production",
         "/background",
         "/work",
         "/resume",

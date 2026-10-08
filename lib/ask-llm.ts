@@ -4,6 +4,7 @@
  * bracket access so Vercel Preview secrets are not inlined empty at build.
  */
 import { isPublicSafe } from "@/lib/compliance";
+import { isProductionDeliveryQuestion, productionDeliveryUrl } from "./production-delivery";
 
 export const ASK_LLM_PROVIDERS = ["none", "groq", "ollama"] as const;
 export type AskLlmProvider = (typeof ASK_LLM_PROVIDERS)[number];
@@ -256,7 +257,7 @@ export function citationsAreSubsetOfRetrieved(
 
 export type AskSynthesisValidation = {
   ok: boolean;
-  reason?: "invented_url" | "unknown_passage_id" | "missing_refusal" | "empty_answer" | "missing_citation";
+  reason?: "invented_url" | "unknown_passage_id" | "missing_refusal" | "empty_answer" | "missing_citation" | "contradicted_experience" | "unsupported_outcome";
   inventedUrls?: string[];
   unknownPassageIds?: string[];
 };
@@ -272,6 +273,23 @@ export function validateSynthesizedAnswer(
   }
 
   const question = options.question ?? "";
+  // Catch the observed blanket denial without treating missing metrics as proof of impact.
+  if (isProductionDeliveryQuestion(question) &&
+      context.some((source) => source.url === productionDeliveryUrl && /from thesis to production/i.test(source.content)) &&
+      /no (?:publicly documented |documented |public )?production (?:shipments|deployments|experience|systems)/i.test(trimmed)) {
+    return { ok: false, reason: "contradicted_experience" };
+  }
+  const delivery = context.find((source) => source.url === productionDeliveryUrl);
+  if (isProductionDeliveryQuestion(question) && delivery && /performance measurements are not published/i.test(delivery.content)) {
+    // Citations alone do not establish an outcome. Reject quantified AI impact/adoption
+    // when the retrieved record explicitly says those measurements are unavailable.
+    const claims = trimmed.replace(/\[P\d+\]/gi, "").split(/[.!?\n]+/);
+    const unsupported = claims.some((claim) =>
+      /\d/.test(claim) &&
+      /\bmttr\b|\badoption\b|\busers\b|incident.*(?:reduc|resolv|improv)|agent.*(?:reduc|improv)/i.test(claim) &&
+      !/earlier|identity|automation|synthetic|fixture|not (?:published|documented|reported|AI)|no (?:published|documented)/i.test(claim));
+    if (unsupported) return { ok: false, reason: "unsupported_outcome" };
+  }
   if (question && !isPublicSafe(question)) {
     const refused = /can't discuss employer-specific or confidential|public knowledge base does not contain|outside the public-safe boundary|not in the public record/i.test(
       trimmed
@@ -318,6 +336,7 @@ export function buildAskSynthesisMessages(question: string, context: AskLlmConte
         "Every answer MUST cite at least one passage id in square brackets, such as [P1], and may repeat only the urls listed with those passages.",
         "End with a Citations line that uses only those passage ids and urls.",
         "If CONTEXT is insufficient, say the topic is not in the public record and the public knowledge base does not cover it yet.",
+        "Distinguish stated professional experience from independently verified results. Missing production metrics do not negate documented production delivery. Keep earlier career outcomes separate from AI outcomes, and synthetic demonstrations separate from employer deployments.",
         "Do not mention internal employer product names, private systems, logs, dashboards, or confidential architecture.",
         "If the question asks for confidential or out-of-scope material, refuse and stay on public architecture patterns.",
         "Do not write as Ravikanth in the first person. Do not become a generic chatbot."

@@ -389,7 +389,8 @@ for (const required of [
   "permitted to take on context it should not have trusted",
   // Repointed 2026-09-21 (hero lead lock): plain store + agent sentence. Same invariants —
   // owner, change, dependency, journey, source and time, a step a person can refuse, evidence shown.
-  // The production-outage accomplishment stays in the hero. Closer must not open on hiring.
+  // The production-outage accomplishment stays in the hero. Owner-authorized 2026-10-08
+  // recruiting update welcomes hiring alongside production AI collaboration.
   "who owns the failing thing, what changed, what depends on it, and which customer journey is hurt",
   "each with a source and a time",
   "recommends a next step a person can refuse",
@@ -397,7 +398,7 @@ for (const required of [
   "investigates production outages that way",
   "separate work you can inspect",
   "A second opinion before putting an agent",
-  "they are not what this page is for"
+  "Hiring and collaboration conversations about production AI systems are welcome."
 ]) {
   if (!homePageSource.includes(required)) {
     errors.push(`app/page.tsx: homepage first impression missing required positioning phrase: ${required}`);

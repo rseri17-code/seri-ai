@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { isProductionDeliveryQuestion, productionDeliveryUrl } from "./production-delivery";
 
 export type ChatMessage = {
   role: "user" | "assistant";
@@ -512,6 +513,10 @@ function selectRelevantPassage(
 }
 
 export function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
+  const delivery = context.find((source) => source.url === productionDeliveryUrl);
+  if (isProductionDeliveryQuestion(question) && delivery) {
+    return `Direct answer: ${delivery.content}\n\nPublic source: ${delivery.title} (${delivery.url}). Earlier career outcomes can be reviewed at /resume. Synthetic examples do not establish private production results.`;
+  }
   const lower = normalizeQuestionIntent(question);
   const asksAboutRavikanth = /ravikanth|about me|about him|who is|hire|hiring|worth talking|worth a conversation|good fit|right person|what.*building|what.*built|what.*shipped|done professionally|professionally|his career|his experience|why.*trust|why would|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education|technical problems?|speciali[sz]e|work with him|engineering organization/.test(lower);
   const layers = inferFrameworkLayers(question);

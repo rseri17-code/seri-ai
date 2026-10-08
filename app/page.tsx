@@ -58,8 +58,8 @@ const selectedWork = [
     proof: "Reference architecture, checks before a recommendation is trusted, and rules plus a log for which tools the agent may call.",
     outcome:
       "The model was the easy part. Keeping its context current and its actions answerable was the work.",
-    href: "/work",
-    linkLabel: "See the operating record",
+    href: "/work#production-delivery",
+    linkLabel: "Inspect the production delivery record",
     status: "Production experience"
   },
   {
@@ -110,6 +110,7 @@ export default function Home() {
 
               <p className="mt-5 max-w-2xl border-l-2 border-mint/60 pl-4 text-base leading-7 text-slate-200 sm:pl-5">
                 I designed and ran an agent that investigates production outages that way &mdash; from first build through daily use. That system stays private. What&apos;s on this site is separate work you can inspect.
+                {" "}<Link href="/work#production-delivery" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">Read what I delivered and the published outcomes.</Link>
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -310,7 +311,7 @@ export default function Home() {
           </h2>
           <p className="mt-6 max-w-2xl text-lg leading-9 text-slate-300">
             A second opinion before putting an agent somewhere that matters. Building a production investigation
-            loop. A conference or engineering forum. Hiring conversations happen too &mdash; they are not what this page is for.
+            loop. A conference or engineering forum. Hiring and collaboration conversations about production AI systems are welcome.
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
             Telling me where the written model is wrong is the most useful thing you can do with it.

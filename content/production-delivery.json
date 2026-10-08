@@ -1,0 +1,40 @@
+{
+  "title": "An enterprise investigation agent, from problem to production",
+  "summary": "Ravikanth took an enterprise SRE investigation agent from thesis to production, owning problem definition, prototype, architecture, engineering, integration, evaluation, governance, rollout, and daily operation.",
+  "sections": [
+    {
+      "label": "Operator problem",
+      "text": "Production failures cross services and ownership boundaries. Operators need to connect current telemetry with ownership, dependencies, recent changes, and the affected customer journey before deciding what to do.",
+      "source": "/work"
+    },
+    {
+      "label": "Personal ownership",
+      "text": "I carried the investigation agent from problem definition and prototype through architecture, engineering, enterprise integration, evaluation, governance, rollout, and running it in production.",
+      "source": "/background"
+    },
+    {
+      "label": "Implementation and tradeoffs",
+      "text": "I separated deterministic routing, evidence collection, and gate evaluation from model reasoning. Governed interfaces connect telemetry and enterprise workflows; bounded tool use, evidence references, and human review keep recommendations inspectable.",
+      "source": "/resume"
+    },
+    {
+      "label": "Evaluation and operation",
+      "text": "My published experience includes evaluation workflows for root-cause analysis, operational usefulness, and regression testing, plus instrumentation for tool calls, orchestration paths, latency, and model behavior. The public Ask checks are a separate implementation that visitors can inspect.",
+      "source": "/resume"
+    },
+    {
+      "label": "Stakeholders and rollout",
+      "text": "The delivery scope included governance, rollout, and daily operation. I also authored executive technical memos and delivered architecture enablement sessions for operations, platform engineering, and leadership stakeholders. Specific adoption measurements and customer feedback are not published here.",
+      "source": "/resume"
+    }
+  ],
+  "outcomeBoundary": "The production AI delivery is stated professional experience. Its adoption, incident-resolution improvements, and production performance measurements are not published on this site. The outcomes below concern earlier identity and automation work, not the investigation agent.",
+  "demonstrationBoundary": "The Operations Room is a synthetic example, and the public reference architecture is separate from the employer implementation. They demonstrate investigation design and engineering judgment; they do not independently verify private production results.",
+  "links": [
+    { "label": "Inspect public code", "href": "https://github.com/rseri17-code" },
+    { "label": "Run an investigation", "href": "/investigation-room" },
+    { "label": "Inspect evaluation", "href": "/ask" },
+    { "label": "Read the resume", "href": "/resume" },
+    { "label": "Discuss a role or collaboration", "href": "/contact" }
+  ]
+}

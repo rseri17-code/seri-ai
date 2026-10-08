@@ -22,6 +22,7 @@ import { Section } from "@/components/section";
 import { homeLinkedInSignals, homeProfileLinks } from "@/content/home";
 import { professionalGraph, projects, publicCode } from "@/content/site";
 import { askEvalFixtureCount } from "@/lib/ask-eval-count";
+import { productionDelivery, earlierDeliveryOutcomes } from "@/lib/production-delivery";
 
 export const metadata: Metadata = {
   title: "Work | Ravikanth Seri",
@@ -94,6 +95,37 @@ export default function WorkPage() {
         </Card>
         <EvidenceLadder source="work" />
       </Section>
+
+      <section id="production-delivery" className="mx-auto max-w-7xl scroll-mt-24 px-4 py-12 sm:px-6 lg:px-8">
+        <p className="text-sm font-semibold uppercase text-mint">Production delivery</p>
+        <h2 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight text-white">{productionDelivery.title}</h2>
+        <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-300">{productionDelivery.summary}</p>
+        <dl className="mt-8 grid gap-x-10 gap-y-6 md:grid-cols-2">
+          {productionDelivery.sections.map((section) => (
+            <div key={section.label} className="border-t border-white/15 pt-5">
+              <dt className="text-lg font-semibold text-white">{section.label}</dt>
+              <dd className="mt-2 text-base leading-7 text-slate-300">{section.text}</dd>
+              <dd className="mt-2"><Link href={section.source} className="inline-flex min-h-11 items-center text-sm font-semibold text-mint">Read the published record <ArrowRight className="ml-2" size={14} aria-hidden="true" /></Link></dd>
+            </div>
+          ))}
+        </dl>
+        <div className="mt-8 border-t border-white/15 pt-6">
+          <h3 className="text-xl font-semibold text-white">Published outcomes and their scope</h3>
+          <p className="mt-3 max-w-4xl text-base leading-7 text-slate-300">{productionDelivery.outcomeBoundary}</p>
+          <p className="mt-4 text-sm font-semibold text-mint">Identity and automation · May 2022 - May 2025</p>
+          <ul className="mt-3 max-w-4xl list-disc space-y-3 pl-5 text-base leading-7 text-slate-200">
+            {earlierDeliveryOutcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
+          </ul>
+          <p className="mt-3 text-sm leading-6 text-slate-400">These are published resume claims; measurement methods and a detailed baseline period are not provided.</p>
+          <p className="mt-5 max-w-4xl text-base leading-7 text-slate-300">{productionDelivery.demonstrationBoundary}</p>
+        </div>
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+          {productionDelivery.links.map((link) => (
+            <Link key={link.href} href={link.href} className="inline-flex min-h-11 items-center gap-2 font-semibold text-mint underline decoration-mint/30 underline-offset-4">{link.label}<ArrowRight size={14} aria-hidden="true" /></Link>
+          ))}
+          <a href={publicCode.entries[1].href} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 font-semibold text-mint underline decoration-mint/30 underline-offset-4">Inspect the reference repository<ArrowRight size={14} aria-hidden="true" /></a>
+        </div>
+      </section>
 
       <Section eyebrow="Operating arc" title="How I got here, and what each stretch taught me.">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

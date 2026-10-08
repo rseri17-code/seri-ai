@@ -11,6 +11,8 @@ Both agents serve one mission and one protocol:
 2. **`CLAUDE_HANDOFF.md`** — the live working protocol between the agents: role split, validation gates, handoff checklist, and current status. Read it at the start of every session. Update your status/sync section at the end of any session that pushes.
 3. **`PROJECT_LEAD_ASSIGNMENTS.md`** — active work ordered by the Project Lead (Grok). When present and marked ACTIVE, it sets the current sprint priority. Read it after NORTH_STAR and before choosing work.
 
+The owner-authorized 2026-10-08 recruiting update has a focused status and validation handoff in **`FDE_RECRUITING_HANDOFF.md`**. Read it alongside the live protocol when working on Work, resume retrieval, or production-delivery answers.
+
 ## Coordination rules (both agents)
 
 - Git is the source of truth. `git fetch` before starting work; read the newest `CLAUDE_HANDOFF.md`, `PROJECT_LEAD_ASSIGNMENTS.md`, and this file from the remote, not from memory.

@@ -1,4 +1,5 @@
 import { buildPublicSourceIndex, type PublicSource } from "./content";
+import { isProductionDeliveryQuestion, productionDeliveryUrl } from "./production-delivery";
 
 export type SearchHit = {
   source: PublicSource;
@@ -327,6 +328,9 @@ export function sourceCoversPhrases(source: RetrievableSource, phrases: string[]
 }
 
 function namedTopicPlan(query: string) {
+  if (isProductionDeliveryQuestion(query)) {
+    return { phrases: [], coveringUrls: new Set<string>(), requireCoverage: false, thinRecord: false };
+  }
   const topic = extractDefinitionalTopic(query);
   const words = topic?.split(/\s+/) ?? [];
   const shortDefinitional = Boolean(topic && words.length > 0 && words.length <= 6);
@@ -514,6 +518,8 @@ export function localSearch(query: string, limit = 5): SearchHit[] {
       const batchIntelligenceBoost = source.url === batchIntelligenceUrl && BATCH_INTELLIGENCE_PATTERN.test(lowerQuery) ? 90 : 0;
       const score =
         normalizedBaseScore +
+        (isProductionDeliveryQuestion(query) && source.id === "profile:production-delivery" ? 150 : 0) +
+        (isProductionDeliveryQuestion(query) && source.id === "profile:ravikanth-seri-resume-evidence" ? 100 : 0) +
         namedTopicBoost +
         batchIntelligenceBoost +
         canonicalDefinitionBoost +
@@ -566,6 +572,15 @@ export function resolveAskContext(question: string, retrieved: AskContextSource[
     content: hit.content
   }));
   const plan = namedTopicPlan(question);
+
+  if (isProductionDeliveryQuestion(question)) {
+    const canonical = localHits.filter((source) => source.url === productionDeliveryUrl || source.url === resumeUrl);
+    const merged = [...canonical];
+    for (const source of [...retrieved, ...localHits]) {
+      if (!merged.some((item) => item.url === source.url)) merged.push(source);
+    }
+    return merged.slice(0, 4);
+  }
 
   if (plan.thinRecord) {
     return [];
