@@ -515,7 +515,12 @@ function selectRelevantPassage(
 export function localFallbackAnswer(question: string, context: Array<{ title: string; url: string; content: string }>) {
   const delivery = context.find((source) => source.url === productionDeliveryUrl);
   if (isProductionDeliveryQuestion(question) && delivery) {
-    return `Direct answer: ${delivery.content}\n\nPublic source: ${delivery.title} (${delivery.url}). Earlier career outcomes can be reviewed at /resume. Synthetic examples do not establish private production results.`;
+    // Extract the accomplishment and evidence boundaries from the retrieved record.
+    // Supporting implementation detail remains available in the linked case study.
+    const paragraphs = delivery.content.split(/\n\s*\n/);
+    const answer = paragraphs.filter((paragraph) => !/^(Operator problem|Personal ownership|Implementation and tradeoffs|Evaluation and operation|Stakeholders and rollout):/.test(paragraph)).join("\n\n");
+    const records = [...new Set([...delivery.content.matchAll(/Published record:\s*(\/[\w/-]+)/g)].map((match) => match[1]))];
+    return `Direct answer: ${answer}\n\nPublic source: ${delivery.title} (${delivery.url}). Published career records: ${records.join(", ")}.`;
   }
   const lower = normalizeQuestionIntent(question);
   const asksAboutRavikanth = /ravikanth|about me|about him|who is|hire|hiring|worth talking|worth a conversation|good fit|right person|what.*building|what.*built|what.*shipped|done professionally|professionally|his career|his experience|why.*trust|why would|architecture judgment|technical direction|engineering philosophy|professional achievement|recruiter|founder|linkedin|github|resume|background|certification|credential|education|technical problems?|speciali[sz]e|work with him|engineering organization/.test(lower);

@@ -19,7 +19,7 @@ export function productionDeliveryContent() {
     ...earlierDeliveryOutcomes,
     "These are published resume claims; measurement methods and a detailed baseline period are not provided.",
     delivery.demonstrationBoundary
-  ].join(" ");
+  ].join("\n\n");
 }
 
 export function isProductionDeliveryQuestion(question: string) {

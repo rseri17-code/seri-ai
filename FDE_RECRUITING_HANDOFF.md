@@ -30,3 +30,5 @@ Built-site Chromium verification passed at desktop 1440×1000 and mobile 390×84
 ## Live synthesis follow-up
 
 The first production release retrieved the right delivery/resume sources and named the accomplishments, but Groq listed earlier metrics and then called documented outcomes limited to deployment, omitting the synthetic boundary. The follow-up scoped prompt explicitly requires all four evidence categories and the earlier role period. Regression checks now reject that observed contradictory scope and answers that omit the demonstration category. The follow-up must pass both full gates before publication and be rechecked live.
+
+The deployed follow-up rejected live synthesis and returned the correct grounded fallback. The final extraction change keeps that fallback below 300 words by extracting the accomplishment, outcomes, and evidence boundaries from the same retrieved record; implementation detail stays in the linked case study. It adds no answer facts. Full test/build gates apply before release.

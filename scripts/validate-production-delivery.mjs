@@ -33,6 +33,7 @@ for (const question of questions) {
   assert.match(result.answer, /earlier identity and automation work, not the investigation agent/);
   assert.match(result.answer, /80%/);
   assert.doesNotMatch(result.answer, /No publicly documented production shipments/);
+  assert(result.answer.split(/\s+/).length < 300, "delivery fallback should summarize the evidence rather than repeat the whole case study");
 }
 
 const sources = buildPublicSourceIndex();
