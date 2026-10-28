@@ -5,9 +5,19 @@ category: "Operational Intelligence"
 tags: ["Operational Intelligence", "Transaction Intelligence", "Agentic Systems", "AI Evaluation", "Knowledge Graphs", "Signal Layer", "Transaction Layer", "Topology Layer", "Evidence Layer", "Reasoning Layer", "Memory Layer", "Evaluation Layer", "Decision Layer", "Learning Layer", "Operator Layer"]
 status: "published"
 createdAt: "2026-07-17"
-updatedAt: "2026-09-27"
+updatedAt: "2026-10-27"
 related: ["evidence-before-conclusions", "transaction-journeys", "operational-memory", "evaluation-and-replay", "shared-context-for-enterprise-agents"]
 ---
+
+Intelligence can be distributed. Operational understanding cannot be fragmented.
+
+Much of the evidence an enterprise needs is already there. The problem is that it is scattered across systems that do not share the same understanding of what happened. Logs capture failures. Dependency graphs expose relationships. Business systems hold the commitments that matter. When evidence exists but system relationships have to be reconstructed every time, investigations slow down and every agent pays the Context Acquisition Tax.
+
+When an agent has permission to act but lacks sufficient context, a plausible explanation can become an Authorized Misfire — an action the system was permitted to take on context it should not have trusted. A larger model cannot reconstruct relationships that were never established. The bottleneck is not just comprehension. It is coherence.
+
+Operational intelligence needs a time-aware understanding of system state, dependencies, evidence, and business consequences. That is the role of an Operational Context Layer: not another centralized data store, but a logical layer that connects distributed evidence through shared operational context. This is also where specialized small language models earn their place — evaluated for bounded tasks, operating against coherent context rather than reconstructing it from scratch.
+
+The architectural shift is not simply toward more intelligent agents. It is toward making the enterprise itself more understandable.
 
 Operational Intelligence is the reasoning layer between enterprise telemetry and human decision. It converts signals, transaction context, topology, evidence, historical memory, evaluation gates, and operator judgment into reviewable operational understanding.
 
@@ -58,7 +68,7 @@ Synthetic case OI-ROOM-001. A checkout journey shows elevated latency and partia
 
 Observation, inference, confirmed fact. An observation is directly present in approved evidence. An inference explains what the evidence may mean. A confirmed fact is validated by enough cited evidence or responsible human review. Operational Intelligence should label these states visibly and avoid collapsing them into one answer.
 
-Glossary. Operational Intelligence: the reasoning layer between enterprise telemetry and human decision. Transaction Intelligence: reasoning over customer, process, or business journeys rather than isolated components. Evidence Graph: a typed graph of observations, sources, relationships, contradictions, missing evidence, and confirmed facts. Hypothesis Lifecycle: the movement of possible explanations through proposed, supported, contradicted, rejected, or confirmed states. Replay Seed: the minimum approved context needed to reproduce an investigation scenario without exposing production systems. Evaluation Gate: a release or responsibility boundary based on tested behavior, not confidence prose. Operator Control Plane: the human review layer that governs scope, approval, escalation, and accountability. Operational Memory: approved reusable context accumulated from prior incidents, decisions, patterns, outcomes, and lessons.
+Glossary. Operational Intelligence: the reasoning layer between enterprise telemetry and human decision. Transaction Intelligence: reasoning over customer, process, or business journeys rather than isolated components. Evidence Graph: a typed graph of observations, sources, relationships, contradictions, missing evidence, and confirmed facts. Hypothesis Lifecycle: the movement of possible explanations through proposed, supported, contradicted, rejected, or confirmed states. Replay Seed: the minimum approved context needed to reproduce an investigation scenario without exposing production systems. Evaluation Gate: a release or responsibility boundary based on tested behavior, not confidence prose. Operator Control Plane: the human review layer that governs scope, approval, escalation, and accountability. Operational Memory: approved reusable context accumulated from prior incidents, decisions, patterns, outcomes, and lessons. Operational Context Layer: a logical layer that connects distributed evidence through shared operational context so agents and humans do not reconstruct relationships from scratch. Context Acquisition Tax: the repeated cost paid by every engineer, workflow, and agent when ownership, change, dependency, and journey context must be rebuilt privately. Authorized Misfire: an action the system was permitted to take on context it should not have trusted.
 
 Boundaries. Operational Intelligence does not prove causality from sequence alone. It does not eliminate dashboards. It does not replace incident commanders, SRE judgment, ITSM processes, security incident response, or organizational accountability. It does not justify autonomous production changes without approval. It does not ingest confidential employer material, private logs, internal dashboards, proprietary project names, or unapproved architecture. It should refuse or redirect when the answer requires confidential context or unsupported claims.
 
