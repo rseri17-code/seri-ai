@@ -2,7 +2,7 @@
   "title": "Operational Intelligence Framework",
   "subtitle": "The reasoning layer between live operations data and a human decision.",
   "promise": "A reference model for building the layer an agent reads before it acts — written so another team could implement it without talking to me.",
-  "thesis": "The gap is not visibility. It is that nobody can assemble what is visible fast enough, or show their working afterwards.",
+  "thesis": "Intelligence can be distributed. Operational understanding cannot be fragmented. The bottleneck is not just comprehension — it is coherence. An Operational Context Layer connects distributed evidence through shared operational context so agents and humans stop paying the Context Acquisition Tax and avoid Authorized Misfires.",
   "operatorQuestions": [
     "What changed?",
     "What customer journey is affected?",
