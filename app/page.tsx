@@ -105,11 +105,11 @@ export default function Home() {
                 I build evidence-grounded AI systems for enterprise operations.
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg sm:leading-8">
-                I maintain a shared store of what&apos;s true in production right now &mdash; who owns the failing thing, what changed, what depends on it, and which customer journey is hurt &mdash; each with a source and a time. An investigation agent reads that store, recommends a next step a person can refuse, and has to show its evidence.
+                I maintain a shared store of what's true in production right now &mdash; who owns the failing thing, what changed, what depends on it, and which customer journey is hurt &mdash; each with a source and a time. An investigation agent reads that store, recommends a next step a person can refuse, and has to show its evidence.
               </p>
 
               <p className="mt-5 max-w-2xl border-l-2 border-mint/60 pl-4 text-base leading-7 text-slate-200 sm:pl-5">
-                I designed and ran an agent that investigates production outages that way &mdash; from first build through daily use. That system stays private. What&apos;s on this site is separate work you can inspect.
+                I designed and ran an agent that investigates production outages that way &mdash; from first build through daily use. That system stays private. What's on this site is separate work you can inspect.
                 {" "}<Link href="/work#production-delivery" className="font-semibold text-mint underline decoration-mint/30 underline-offset-4">Read what I delivered and the published outcomes.</Link>
               </p>
 
@@ -126,7 +126,7 @@ export default function Home() {
                   href="/work"
                   eventName="homepage_cta_click"
                   eventProperties={{ cta: "explore_body_of_work" }}
-                  className="inline-flex min-h-[48px] items-center gap-2 rounded border border-white/25 px-6 py-3 text-base font-semibold text-white transition hover:border-mint/50 hover:text-mint"
+                  className="inline-flex min-h-[48px] items-center gap-2 rounded border border-white/25 px-6 py-3 text-base font-semibold text-ink"
                 >
                   Explore the body of work
                 </TrackedLink>
@@ -167,20 +167,32 @@ export default function Home() {
             The failure I design against
           </p>
           <h2 className="mt-5 text-[1.75rem] font-semibold leading-tight text-white sm:text-4xl">
-            AI agents don&apos;t misfire because they lack intelligence.
+            Intelligence can be distributed.<br />
+            Operational understanding cannot be fragmented.
           </h2>
           <p className="mt-6 max-w-2xl text-xl leading-9 text-slate-200 sm:text-2xl sm:leading-10">
-            They misfire when operational context is fragmented, stale, incomplete, or trusted after it&apos;s no longer true.
-          </p>
-          <p className="mt-7 max-w-2xl text-lg leading-9 text-slate-300">
-            This is <strong className="font-semibold text-amber">the Authorized Misfire</strong> &mdash; an action the
-            system was permitted to take on context it should not have trusted. No rule was broken. When any of the four
-            records &mdash; owner, change, dependency, or journey &mdash; is missing, older or thinner than the decision, or contradicted.
+            Much of the evidence an enterprise needs is already there. The problem is that it's scattered across systems that don't share the same understanding of what happened.
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
-            Incidents and runbooks are memory, not current production truth. The layer must
-            rebuild what is happening now, show how the findings connect, keep the unknowns visible, and leave
-            anything consequential to a person.
+            Logs capture failures. Dependency graphs expose relationships. Business systems hold the commitments that matter. When evidence exists but system relationships have to be reconstructed every time, investigations slow down.
+          </p>
+          <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
+            Now imagine multiple AI agents doing the same work independently. Every agent pays the <strong className="font-semibold text-amber">Context Acquisition Tax</strong>.
+          </p>
+          <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
+            And when an agent has permission to act but lacks sufficient context, a plausible explanation can become an <strong className="font-semibold text-amber">Authorized Misfire</strong> &mdash; an action the system was permitted to take on context it should not have trusted. No rule was broken. When any of the four records &mdash; owner, change, dependency, or journey &mdash; is missing, older or thinner than the decision, or contradicted.
+          </p>
+          <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
+            A larger model cannot reconstruct relationships that were never established. The bottleneck isn't just comprehension. It's coherence.
+          </p>
+          <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
+            Operational intelligence needs a time-aware understanding of system state, dependencies, evidence, and business consequences. That's the role of an <strong className="font-semibold text-white">Operational Context Layer</strong> &mdash; not another centralized data store, but a logical layer that connects distributed evidence through shared operational context.
+          </p>
+          <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
+            This is also where specialized small language models earn their place: evaluated for bounded tasks, operating against coherent context rather than reconstructing it from scratch.
+          </p>
+          <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-300">
+            The architectural shift isn't simply toward more intelligent agents. It's toward making the enterprise itself more understandable.
           </p>
           <Link
             href="/wiki/operational-intelligence-canonical-doctrine"
