@@ -22,6 +22,7 @@ This file is the relational layer on top of raw conversation memory. It maps ent
 - **Teju** — Partner. Two kids.
 - **Justin** — TIAA recruiter handling internal role follow-ups.
 - **Panel teammate (TIAA)** — source of interview feedback for internal role.
+- **Sonam Jha** — Director, Emerging Technology & AI at TIAA. Hiring manager for internal Generative Agentic AI Developer role. Meeting was November 4, 2026.
 
 ### Projects
 - **StreamKeeper / Poly Energy** — AI-powered plastic capture (river cameras) + pyrolysis conversion. Edge: Raspberry Pi per site, S3 hub, heartbeats, chain of custody, loss modeling. CV research phases 1-4 in progress (YOLOv8 baseline, mixed-background training, calibration). Repo: rseri17-code/Streamkeeper (private). Co-founder dependency: one pilot site with scale and camera mount. Licensing flag: YOLO AGPL-3.0 vs RF-DETR Apache 2.0.
@@ -29,12 +30,13 @@ This file is the relational layer on top of raw conversation memory. It maps ent
 - **seri-ai** — Personal brand / operational intelligence platform. Repo: rseri17-code/seri-ai. This file lives here.
 - **ITSM-mlops** — Incident management ops. Repo: rseri17-code/ITSM-mlops.
 - **ObserveAI (TIAA)** — Production SRE/ObserveAI agents: GAIT orchestrator, MCP/AgentCore, deterministic flows, governance-first, context layers.
+- **AeroHire** — Repo: rseri17-code/AeroHire (private). Formerly hosted a Sonam Jha interview one-pager; merged into this file on 2026-11-04. AeroHire remains its own repo for the project itself.
 
 ### Career
-- Internal TIAA Generative Agentic AI Developer role: applied, interviewed, awaiting panel feedback via Justin. Salary negotiation target $240k (range $180-245k). Prior accepted $240k offer for similar role.
+- Internal TIAA Generative Agentic AI Developer role: applied, interviewed, awaiting panel feedback via Justin. Salary negotiation target $240k (range $180-245k). Prior accepted $240k offer for similar role. Sonam Jha meeting completed November 4, 2026.
 - LinkedIn strategy: one sharp thought-leadership post per month. Recent themes: distributed/operational intelligence thesis, graph-based knowledge graphs, ontology tracking.
 
-## Open Threads (as of 2026-11-02)
+## Open Threads (as of 2026-11-04)
 
 - [ ] TIAA internal role feedback follow-up with panel teammate via Justin.
 - [ ] StreamKeeper Phase 1: acquire AquaPlasticWaste 2026 + Plastic Bottles Dataset, run YOLOv8 nano baseline in Colab, evaluate mAP.
@@ -46,6 +48,7 @@ This file is the relational layer on top of raw conversation memory. It maps ent
 - [ ] seri-ai patterns.json: operational-memory slug is registered in stage list but linked page path does not resolve to a file; consider adding dedicated memory thesis page.
 - [ ] Memory animation/visualization for seri-ai, similar to context-layer animation, covering memory types for SRE agent.
 - [ ] **Dreaming layer (added 2026-11-02):** background out-of-band consolidation process for SECOND_BRAIN.md — review session transcripts, spot patterns/mistakes/decisions, write durable updates without blocking the live session. Inspired by Lamis Mukta's Anthropic thesis and Managed Agents Dreaming. Design question: human-approval gate before semantic writes (ties to open research question on write-path governance).
+- [x] AeroHire second_brain.md merged into this file (2026-11-04). Original retained in AeroHire repo as archive; consider deleting after confirming no other references.
 
 ## Research-Grounded Memory Thesis (added 2026-11-01)
 
@@ -98,3 +101,73 @@ Draft angle for the post: "Context was stages 1-3. Memory is stage 4. Dreaming i
 
 ### Last topic discussed (2026-11-02)
 Corvette used-car shopping (orange Sebring/Amplify, ~$60k, C8 2020-2022) — parked. Then SECOND_BRAIN.md audit: Grok missed reading the file at session start; committed to read-first and update-before-close with timestamp audit. Then Lamis Mukta dreaming thesis retrieved and tied to the LinkedIn memory thesis; open thread added for a dreaming-layer design in seri-ai.
+
+---
+
+## Appendix: Sonam Jha Interview One-Pager (merged from AeroHire/second_brain.md on 2026-11-04)
+**Prepared:** November 3, 2026 | **Meeting:** November 4, 2026 with Sonam Jha
+**Role:** Generative Agentic AI Developer / Tech Lead (internal TIAA move)
+**Frame:** Think like Sonam — AI product leader, McKinsey alum, governance-first, builder not evaluator.
+
+---
+
+## Who She Is (her lens)
+- Director, Emerging Technology & AI at TIAA since May 2023. Based in Skillman, New Jersey.
+- Before TIAA: ~4 years at McKinsey as Technology Leader, Enterprise Data, AI and Cloud. Before that Exiger, Aon Hewitt.
+- Master's, Stevens Institute of Technology. Bachelor's, Bengal Institute of Technology.
+- Leads AI product development and internal consulting. Publicly co-inventor on a TIAA patent with Sastry Durvasula and others.
+- Has spoken on agentic AI transforming business strategy, productivity, and innovation.
+- Her world: AI as a product, internal adoption, consulting stakeholders who don't get AI.
+
+## Her Likely Questions and Your Answers
+
+### Q1: Walk me through Neo.
+**Her lens:** Builder story, not vendor evaluation. She wants thesis → design → production → scale.
+**Your answer:** "I've spent the last fifteen months building Neo from thesis to production inside TIAA's observability stack. Along the way I saw firsthand where vendor tools fall short — they give you dashboards and alerts, but not the reasoning, the governance, or the control that regulated environments demand. I started filling that gap myself with deterministic orchestration, context layers, and policy enforcement. This role is the natural next step. It's the chance to take what I've already proven and scale it across the enterprise instead of just one team."
+**Delivery:** Pause after "regulated environments demand." Land hard on "scale it across the enterprise."
+
+### Q2: How do you balance autonomy with control in agentic systems?
+**Her lens:** This is her thesis territory. Control must precede autonomy.
+**Your answer:** "Control has to come first. Before an agent acts, the policy, the audit span, and the state assumptions are locked. In Neo, every reasoning step is reproducible — you can replay exactly why it concluded what it did. That's what makes autonomy safe in a regulated environment. I'd rather ship a bounded agent that earns trust than an unbounded one that needs babysitting."
+**Delivery:** Confident, not defensive. She'll probe for a concrete failure you caught.
+
+### Q3: What's the gap between what TIAA has today and what agentic AI should deliver?
+**Her lens:** Don't trash existing investments. Frame as evolution.
+**Your answer:** "The observability foundation exists — the data, the pipelines, the incident workflows. What's missing is the layer on top: narrative and predictive reasoning that turns signals into decisions. Not another dashboard. A system that investigates, explains, and recommends with governance baked in. This role is the bridge from foundation to that layer."
+**Delivery:** One breath, then stop. Let her react.
+
+### Q4: How do you work with stakeholders who don't get AI?
+**Her lens:** She's done internal consulting. She's lived the translation problem.
+**Your answer:** "I translate agent behavior into business outcomes. Before-and-after, not architecture diagrams. When I rolled out Neo's evaluations with Splunk, the win wasn't the model — it was that ops teams could see, in plain terms, what changed and why it mattered. Early wins build trust; trust unlocks the next use case."
+**Delivery:** Concrete example beats philosophy.
+
+### Q5: Where do you see agentic AI in three years at a company like TIAA?
+**Her lens:** Tie to her public comments on agentic AI transforming strategy and productivity.
+**Your answer:** "Copilots become workflows. The shift is from AI that answers questions to AI that executes bounded tasks with human-in-the-loop checkpoints. In a company like TIAA, that means regulated, auditable, policy-enforced automation across ops, risk, and client service. The winners won't be the ones with the biggest models — they'll be the ones with the strongest control layers."
+**Delivery:** Echo her language — strategy, productivity, innovation — without quoting her.
+
+### Q6: Why leave what you're doing now?
+**Her lens:** She's seen people jump for titles. She wants intent.
+**Your answer:** "I'm not leaving observability. I'm going deeper. Fifteen months of building Neo taught me the patterns — deterministic flows, context layers, policy locks. This role lets me productize that across the enterprise instead of one team. Same mission, bigger surface."
+**Delivery:** No "finally," no "ardent learner." Institutional knowledge is the advantage.
+
+### Q7: What would you do in your first ninety days?
+**Her lens:** Product leader. She wants a plan, not a wish list.
+**Your answer:** "First thirty: map the existing agent landscape and the governance gaps. Days thirty to sixty: pick one high-value workflow, ship a bounded pilot with full auditability. Days sixty to ninety: measure, document, and socialize the pattern so other teams can replicate it. Ship one thing that works before scaling anything."
+**Delivery:** Time-boxed. Measurable.
+
+## Rapport Hooks
+- She co-invented a patent with Sastry Durvasula. If innovation DNA comes up, reference shared builder DNA naturally.
+- She's McKinsey-trained — framework language lands: state assumptions, reproducible spans, policy as code.
+- She's in Skillman, NJ — you've been in that metro recently (Bridgewater visit in October). Light local reference is fine if organic.
+- She posts about agentic AI events — you can mention you've been following the agentic AI conversation without name-dropping her posts.
+
+## What NOT to Say
+- Don't lead with Splunk credit. Lead with Neo as the builder story.
+- Don't say "finally" or "ardent learner."
+- Don't trash vendor tools by name.
+- Don't over-explain the tech stack. She cares about why and impact.
+- Don't be cinematic. Practitioner tone.
+
+## Closing Line (confident, not needy)
+"I've proven I can build this. This role is where I scale it."
