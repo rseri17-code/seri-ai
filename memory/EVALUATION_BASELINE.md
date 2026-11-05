@@ -49,3 +49,26 @@ On each substantive conversation, fetch canonical SECOND_BRAIN.md when relevant;
 
 ## First test and next action
 Conduct a genuine agent-to-agent transfer: user communicates an in-scope decision to Grok; Grok safely records it with provenance; ChatGPT retrieves the new record unprompted beyond a topic cue, validates that it is current and produces a better recommendation. Then reverse direction. No fake success claims.
+
+## Verified execution results — 2026-11-05
+
+### Cross-agent record preservation / retrieval — PASS (partial coverage of cases 1 and 10)
+- Retrieved latest `main:SECOND_BRAIN.md` in ChatGPT using authenticated GitHub read.
+- Confirmed Grok's actual commit `6633df77cb5441262eee75d415777c088acdf1fb` and its provenance-labeled integration entry.
+- Confirmed ChatGPT's later quality-gate and project entries also remain in canonical file.
+- Confirmed the user-corrected equal-purpose agent doctrine is present.
+- Boundary: This is a real cross-agent **integration-record transfer**, not yet a blind transfer of a new substantive user decision or evidence of improved recommendation quality. Full case 1 remains OPEN.
+
+### Concurrent SHA write conflict / reconciliation — PASS (case 7)
+- Fixture: `memory/tests/concurrency-probe-2026-11-05.md`.
+- Initial commit: `08c2fbc33bb4d4e0e8f6abd9c28525dd58adab8d`.
+- Write A: `cb797c34b73032810e568bfc3c65d9c66564f71e` using initial blob SHA.
+- Write B with intentionally stale SHA: rejected by GitHub API with HTTP 409 CONFLICT; **no overwrite**.
+- Refetched latest content and applied B: `ac1136cb28b2b40c801aa1750c9863fe2424997d`.
+- Read-back confirmed initial content, A, and B; each update occurred exactly once.
+- Boundary: This tests GitHub's optimistic concurrency control with two simulated sequential writers in one ChatGPT execution, not actual simultaneous Grok/ChatGPT tool calls.
+
+### Current evidence-based status
+- Verified: cross-agent record retrieval, preservation of both agents' contributions, version-conflict rejection and safe reconciliation.
+- Still open: full user-decision transfer, supersession, hypothesis handling, failure lesson transfer, connection quality, independent disagreement, privacy-adversarial test, access-failure disclosure, outcome review and longitudinal improvement.
+- No aggregate 12-test pass rate is claimed; the remaining cases have not been executed.
