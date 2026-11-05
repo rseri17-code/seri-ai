@@ -4,3 +4,4 @@ Isolated test record; no user/project/private data. This document tests SHA-prot
 
 - Initial state: created.
 - Update A: committed with initial SHA.
+- Update B: reconciled after refreshing latest SHA.
