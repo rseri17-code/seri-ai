@@ -3,3 +3,4 @@
 Isolated test record; no user/project/private data. This document tests SHA-protected writes.
 
 - Initial state: created.
+- Update A: committed with initial SHA.
