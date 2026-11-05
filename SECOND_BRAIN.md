@@ -217,3 +217,22 @@ Corvette used-car shopping (orange Sebring/Amplify, ~$60k, C8 2020-2022) — par
 - Status: user-stated in earlier venture planning; operational results are not independently verified
 - Decision / next action: Keep evidence-backed recovery claims separate from pilot hypotheses; maintain traceability and avoid publishing unmeasured impact.
 - Related threads: StreamKeeper; venture strategy; environmental operations.
+
+## Second Brain Outcomes — Compounding Intelligence (2026-11-05)
+
+**Owner's north star (user-stated):** This is not merely a transcript, search index, or passive memory file. It is a vendor-independent, cumulative intelligence system across ChatGPT, Grok and future agents, designed to improve the quality of Ravi's thinking, choices, follow-through, and outcomes over time. The neuroscience analogy of strengthening useful pathways through repetition is an analogy, not a claim that AI agents develop biological neuroplasticity or autonomously train their model weights.
+
+**Required loop:** Capture relevant idea or decision → connect it to established goals, history and other projects → identify contradictions, opportunities and dependencies → critically evaluate with evidence and alternative interpretations → recommend an actionable next step → revisit actual outcome → update/revise understanding. Remember failed approaches as well as successes, and avoid repeatedly proposing ruled-out ideas without new evidence.
+
+**Per-topic state:** Track (1) desired outcome, (2) present state and last verified date, (3) options and assumptions, (4) actual decisions and rationale, (5) pending actions, (6) later measured results, and (7) useful connections to other ongoing work. Distinguish what Ravi explicitly chose from agent hypotheses. Prioritize relevance and signal over volume.
+
+**Agent expectation:** Agents should retrieve the latest common context, add provenance-labeled insights when safe, and improve recommendations rather than simply agreeing or reciting past notes. Ask only for genuinely missing information. Challenge assumptions respectfully, surface tradeoffs and suggest what should stop as well as what should start. Consolidate stale or repetitive material with review, preserving history and evidence.
+
+**Assessment:** Measure longitudinal improvement using fewer context repetitions, fewer contradictory recommendations, higher decision follow-through, improved factual correctness, stronger cross-domain links, and validated outcomes. A GitHub commit is evidence of synchronization, not evidence of improved decision quality.
+
+**Scope:** Keep this system strictly within professional goals, projects, TIAA-related work, ventures, side gigs, investing, financial/retirement strategy, and real-estate decisions. No family member names or other excluded personal details. Respect repository visibility and confidentiality.
+
+#### 2026-11-05 — ChatGPT — Compounding-intelligence vision
+- Change: Ravi clarified that cross-agent continuity is a means to an end: collective capture and synthesis of ideas that helps him develop stronger habits of reasoning, better decisions, and greater long-run effectiveness.
+- Status: user-stated
+- Next: Use the capture → connect → challenge → act → evaluate loop in future substantive sessions, and assess whether the agents improve decisions rather than just memory volume.
