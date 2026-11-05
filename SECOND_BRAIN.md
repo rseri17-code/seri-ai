@@ -173,6 +173,8 @@ Corvette used-car shopping (orange Sebring/Amplify, ~$60k, C8 2020-2022) — par
 
 ## Cross-Agent Knowledge Protocol (2026-11-05)
 
+**Reliability gates:** [memory/QUALITY_GATES.md](memory/QUALITY_GATES.md)
+
 **Scope:** Work and business context only: TIAA roles, professional projects, career, engineering work, business ventures and side gigs, investing/retirement strategy, real-estate decisions, financial planning, personal ambitions and goals, and cross-domain decisions. Exclude family/partner/children names, relationships, household biographical details, health information, personal contact information and identifiers. Financial numbers and property information may be recorded only when relevant and appropriate for repository visibility. Do not capture raw private correspondence.
 
 **Source of truth:** This GitHub file on `main` is the common durable context for ChatGPT, Grok and Claude, not a private transcript archive. Each agent should fetch its latest version before substantive advice and consider only relevant domain sections. If read access fails, disclose the gap rather than claiming synchronization.
