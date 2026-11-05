@@ -12,14 +12,13 @@ This file is the relational layer on top of raw conversation memory. It maps ent
 2. **Session end:** Before the conversation closes, update this file with anything new: decisions, open questions, entity changes, project status, and the last topic discussed.
 3. **Literal updates only:** Edit with search-and-replace against exact stored text. Do not rewrite surrounding content unless asked.
 4. **No secrets:** Never store credentials, tokens, passwords, or private keys in this file.
-5. **Family boundary:** Do not proactively raise family details. Only reference if the user brings it up in the current session.
+5. **Scope boundary:** Do not collect or include partner, children, family, health, or personal contact information in this repository.
 6. **Act, don't just store:** When Ravi brings up a topic, actively apply prior context — how he likes things framed, what he values, his standing positions — and help enhance that thinking. The file is not a passive archive.
 
 ## Entity Map
 
 ### People
 - **Ravi (Ravikanth Seri)** — Sr. Tech Lead, AIOps/Observability at TIAA. Building ObserveAI/GAIT agents. Side projects: StreamKeeper, seri-ai. Using Kiro for agent dev. Pursuing internal Generative Agentic AI Developer role (~$240k target).
-- **Teju** — Partner. Two kids.
 - **Justin** — TIAA recruiter handling internal role follow-ups.
 - **Panel teammate (TIAA)** — source of interview feedback for internal role.
 - **Sonam Jha** — Director, Emerging Technology & AI at TIAA. Hiring manager for internal Generative Agentic AI Developer role. Meeting was November 4, 2026.
@@ -171,3 +170,25 @@ Corvette used-car shopping (orange Sebring/Amplify, ~$60k, C8 2020-2022) — par
 
 ## Closing Line (confident, not needy)
 "I've proven I can build this. This role is where I scale it."
+
+## Cross-Agent Knowledge Protocol (2026-11-05)
+
+**Scope:** Work and business context only: TIAA roles, professional projects, career, engineering work, business ventures and side gigs, investing/retirement strategy, real-estate decisions, financial planning, personal ambitions and goals, and cross-domain decisions. Exclude family/partner/children names, relationships, household biographical details, health information, personal contact information and identifiers. Financial numbers and property information may be recorded only when relevant and appropriate for repository visibility. Do not capture raw private correspondence.
+
+**Source of truth:** This GitHub file on `main` is the common durable context for ChatGPT, Grok and Claude, not a private transcript archive. Each agent should fetch its latest version before substantive advice and consider only relevant domain sections. If read access fails, disclose the gap rather than claiming synchronization.
+
+**Updates:** When a substantive conversation produces new or corrected project facts, business decisions, milestones, priorities, risks, assumptions, financial/real-estate strategy, or action items, produce a concise update grounded in the user's statements or evidence. Avoid transcript dumps, speculative claims recast as facts, and duplicate entries. Maintain historical context: mark outdated decisions as superseded rather than silently overwriting the record.
+
+**Attribution:** New entries record a date (UTC), authoring agent, topic, what changed, confidence/status (user-stated / verified / inference / pending), and next action. Label uncertain research separately. Never include excluded personal/family/health/contact information.
+
+**Safe Git writes:** Fetch latest content and blob SHA just before writing, make a minimal exact-context change, write using expected SHA. On SHA conflict, refetch and reconcile; never force overwrite or silently revert another agent. Prefer PR/review for ambiguous reconciliations. Where repo policy requires tests, branches, and approval before merge, preserve that policy. Do not claim a commit without returned commit SHA.
+
+**Agent interoperability:** `AGENTS.md` contains shared-agent guidance; `CLAUDE.md` references these rules. Grok, Claude, and ChatGPT must each have their own functioning GitHub access and read/write workflow. Instructions alone do not configure automatic on-session-end writes or continuous sync. Agent roles do not override this scope.
+
+### Cross-agent update ledger
+
+#### 2026-11-05 — ChatGPT — Shared Second Brain mandate
+- Change: Ravi requested a common GitHub knowledge base for ChatGPT, Grok, and Claude, with deliberate exclusion of family/partner, health, and personal contact details.
+- Status: user-stated
+- Next: Configure Claude and Grok to follow this contract; verify each agent's read and safe update capability. Automatic conversation-end synchronization remains unverified.
+
