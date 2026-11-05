@@ -214,3 +214,7 @@ TIAA Generative Agentic AI Developer role decision and counteroffer. Grok recomm
 - Change: User asked whether to accept the Generative Agentic AI Lead role. Grok recommended lean-accept conditional on (1) builder ownership of governed agent systems and (2) total comp reaching ~$240k. Drafted counteroffer email targeting $240k base, referencing prior accepted offer and Neo production value. User explicitly stated expectation that Second Brain is updated after every substantive conversation.
 - Status: user-stated + verified (decision stance recorded)
 - Next: Track formal offer / Justin response; update Career and Open Threads when numbers or acceptance/rejection land.
+
+## Cognitive OS v1 Intake Transition (proposed)
+
+A reviewable enhancement is proposed in `memory/AGENT_PROTOCOL.md` and `.github/workflows/cognitive-os-memory.yml`. **Until merged and enabled, this section is not evidence of autonomous conversation capture.** Once approved, the latest agent protocol supersedes earlier instructions to directly rewrite canonical memory after every session: agents should first publish non-sensitive structured proposals, let deterministic validation run, and obtain owner approval before promoting high-impact facts. ChatGPT, Grok, Claude and future agents remain full-spectrum peers. Repository is public; no confidential, family, health, contact or financial identifiers may be published. Existing website ownership, test and merge constraints remain in force.
