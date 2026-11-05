@@ -1,0 +1,43 @@
+name: Cognitive OS memory intake
+on:
+  pull_request:
+    paths:
+      - 'memory/**'
+      - 'SECOND_BRAIN.md'
+      - 'AGENTS.md'
+      - 'CLAUDE.md'
+      - 'GROK.md'
+      - 'scripts/memory-gate*'
+      - '.github/workflows/cognitive-os-memory.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'memory/**'
+      - 'SECOND_BRAIN.md'
+      - 'scripts/memory-gate*'
+  schedule:
+    - cron: '19 12 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test memory gate
+        run: node --test scripts/memory-gate.test.mjs
+      - name: Validate structured proposals and semantic conflicts
+        run: node scripts/memory-gate.mjs --dir memory/inbox
+      - name: Explain scope
+        run: |
+          echo "Automated validation completed. No canonical memory was changed."
+          echo "Conversation ingestion requires an agent-platform publisher."
+          echo "Semantic approval and promotion remain human-reviewed."
