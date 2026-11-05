@@ -167,3 +167,8 @@ For cross-session context, ChatGPT, Grok and Claude share `main:SECOND_BRAIN.md`
 
 Follow `SECOND_BRAIN.md#cross-agent-knowledge-protocol-2026-11-05` for provenance, revision, concurrency, and privacy boundaries. Use latest Git blob SHA with minimal updates. Preserve existing website engineering ownership lanes, `NORTH_STAR.md`, `CLAUDE_HANDOFF.md`, code-branch rules, test/build gates, and Ravi's merge authority; this section extends context coordination only and does not grant deployment permission. Report actual read/write results and commit SHA; instructions do not automatically establish background sync.
 
+## Capability Parity for Shared Cognitive OS
+
+**Owner ruling (2026-11-05):** ChatGPT, Grok, and Claude are peers in the personal Second Brain. Do **not** designate ChatGPT as only strategy, Grok as only research, or Claude as only engineering. Every agent independently researches, discovers, challenges, reasons, plans, writes, engineers, tests and evaluates as required by the user's request and as supported by its available tools and permissions. Share newly verified discoveries, durable lessons, mistakes, corrections, and reusable practices in `SECOND_BRAIN.md` using its provenance and safety protocol. Use agent-neutral records so any assistant can retrieve and apply them. Never defer work purely on the basis of an invented specialist role.
+
+This rule concerns Ravi's **shared personal intelligence**. The earlier Claude/Codex website-specific editorial/code ownership lanes remain in force for changes to the seri-ai site, as do branch/test/build and owner approval rules. Repository change ownership is not an AI intelligence-role restriction.
