@@ -36,6 +36,14 @@ jobs:
         run: node --test scripts/memory-gate.test.mjs
       - name: Validate structured proposals and semantic conflicts
         run: node scripts/memory-gate.mjs --dir memory/inbox
+      - name: Build deterministic steward report
+        run: node scripts/memory-steward.mjs --dir memory/inbox --out memory-steward-report.json
+      - name: Save review report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cognitive-os-steward-report
+          path: memory-steward-report.json
+          retention-days: 7
       - name: Install project dependencies
         run: npm ci
       - name: Run existing repository test gate
