@@ -36,6 +36,12 @@ jobs:
         run: node --test scripts/memory-gate.test.mjs
       - name: Validate structured proposals and semantic conflicts
         run: node scripts/memory-gate.mjs --dir memory/inbox
+      - name: Install project dependencies
+        run: npm ci
+      - name: Run existing repository test gate
+        run: npm test
+      - name: Run existing repository build gate
+        run: npm run build
       - name: Explain scope
         run: |
           echo "Automated validation completed. No canonical memory was changed."
