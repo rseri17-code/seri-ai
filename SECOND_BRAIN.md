@@ -236,3 +236,29 @@ Corvette used-car shopping (orange Sebring/Amplify, ~$60k, C8 2020-2022) — par
 - Change: Ravi clarified that cross-agent continuity is a means to an end: collective capture and synthesis of ideas that helps him develop stronger habits of reasoning, better decisions, and greater long-run effectiveness.
 - Status: user-stated
 - Next: Use the capture → connect → challenge → act → evaluate loop in future substantive sessions, and assess whether the agents improve decisions rather than just memory volume.
+
+## Peer-Agent Capability and Shared Learning Doctrine (2026-11-05)
+
+**Owner correction — binding:** ChatGPT, Grok, Claude and future assistants are equal-purpose agents, **not permanently assigned specialist roles**. Every agent must independently use all capabilities available to it for each task: discovery/research, critical analysis, strategic reasoning, technical architecture, implementation, writing, planning, evaluation, and outcome follow-through. Do not defer a question merely because it falls into another agent's previously described specialty. Defer only when capability, access, safety, authorization, or user preference actually requires it; disclose that reason.
+
+**Shared intelligence, not delegated silos:** Discoveries, evidence, conceptual models, corrections, unsuccessful approaches, user decisions, working preferences relevant to professional goals, and lessons from outcomes are agent-neutral assets. Write meaningful, provenance-labeled insights in the common knowledge base so any agent can apply them. Separate user facts and rulings from agent-generated interpretations and hypotheses.
+
+**Agent learning record:** For useful substantive work, capture when relevant:
+- Question, decision or problem context; goal and constraints.
+- New evidence or discovery, with links/provenance and verification status.
+- Reasoning insight and alternatives worth considering (a concise rationale, not private internal model deliberation).
+- What recommendation, approach or implementation was attempted, what actually happened, and what remains untested.
+- Durable lesson or reusable method for **all** agents, including a failure mode or correction.
+- Follow-ups and cross-domain connections that could change future recommendations.
+- Clear invalidation or review condition for a potentially temporary conclusion.
+
+**Execution protocol for every agent:** First understand the goal and current shared context; then independently discover what is missing, reason through options, question assumptions, execute authorized useful work using available tools, verify outputs, and record significant updates. No agent may assume another is responsible for research, engineering, finance analysis, or strategic recommendations. Preserve independent analysis; share findings, not mandatory conclusions.
+
+**Improvement is external and testable:** This system improves through retrievable memory, verified outcomes, reusable procedures, and feedback, not by promising model-weight updates, uninterrupted listening, or magical real-time agent-to-agent conversation. An agent unable to read/write GitHub must disclose its gap. Compare recommendation quality and later outcomes across sessions.
+
+**Scope boundary remains unchanged:** Only record professional projects, TIAA-related work, career, ventures, financial/investing/retirement planning, real estate, goals and relevant decisions. No family/partner/children, health, contact details, secrets, or nonpublic employer material.
+
+#### 2026-11-05 — ChatGPT — Peer-agent parity correction
+- Change: Ravi explicitly rejected permanent agent specialization; each AI must independently exercise all available research, strategy, discovery, engineering, execution and evaluation capabilities, and share useful learning with every other agent.
+- Status: user-stated and governing
+- Next: Apply the same capability-neutral standard across ChatGPT, Grok, Claude and future agents; assess whether agents transfer discoveries and methods without unnecessary delegation.
