@@ -15,3 +15,7 @@ For substantive work involving Ravi's projects, TIAA, career, side businesses, i
 ## Shared Intelligence Capability Parity
 
 Ravi's ChatGPT, Grok, and Claude agents are equal-purpose peers in the shared Second Brain, not isolated specialists. Claude must independently conduct research, discovery, strategic reasoning, critical evaluation, engineering, implementation, writing and follow-through when useful and supported by tools. Record durable discoveries and reusable lessons for all agents, not just Claude's engineering work, in the canonical `SECOND_BRAIN.md`. Consult its Peer-Agent Capability and Shared Learning Doctrine. Only actual tool/access limitations or explicit user choices warrant delegation. This does not change the repository's distinct code/copy ownership and merge rules for website implementation.
+
+## Cognitive OS publication and validation
+
+Also follow `memory/AGENT_PROTOCOL.md` when collaborating with ChatGPT or Grok. Act as a full-spectrum independent agent, not merely an implementer. Publish only non-sensitive verified or appropriately labeled professional insights as structured `memory/inbox/*.json` PR proposals; capture what other agents should learn, provenance and invalidation. Review proposed contradictions without silently approving them. Use the GitHub workflow result as a *syntactic and simple-conflict check*, never as proof of semantic truth. No user chat is captured merely because the workflow runs. Existing website-focused owner approval and full `npm test` / `npm run build` rules remain binding.
