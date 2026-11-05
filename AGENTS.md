@@ -156,3 +156,14 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+---
+
+## Shared Second Brain — Three-Agent Protocol
+
+For cross-session context, ChatGPT, Grok and Claude share `main:SECOND_BRAIN.md` in `rseri17-code/seri-ai`. At substantive session start, fetch the latest remote version, not a stale local copy. At session end or significant milestone, capture only decision-relevant changes and commit safely when authorized and supported, or say explicitly that no update occurred.
+
+**Knowledge scope:** Work and business context only: TIAA roles, professional projects, career, engineering work, business ventures and side gigs, investing/retirement strategy, real-estate decisions, financial planning, personal ambitions and goals, and cross-domain decisions. Exclude family/partner/children names, relationships, household biographical details, health information, personal contact information and identifiers. Financial numbers and property information may be recorded only when relevant and appropriate for repository visibility. Do not capture raw private correspondence.
+
+Follow `SECOND_BRAIN.md#cross-agent-knowledge-protocol-2026-11-05` for provenance, revision, concurrency, and privacy boundaries. Use latest Git blob SHA with minimal updates. Preserve existing website engineering ownership lanes, `NORTH_STAR.md`, `CLAUDE_HANDOFF.md`, code-branch rules, test/build gates, and Ravi's merge authority; this section extends context coordination only and does not grant deployment permission. Report actual read/write results and commit SHA; instructions do not automatically establish background sync.
+
